@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cokriging.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cosgsim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cosisim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filtersim_std\dev_finder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="difference_with_base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dssim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filtersim_std\filters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filtersim_std\filtersim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filtersim_std\filtersim_cate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filtersim_std\filtersim_cont.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="grid_variog_computer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageProcess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="indicator_kriging.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kriging.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kriging_mean.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="library_geostat_init.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LU_sim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filtersim_std\mapping_pattern_id.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="moving_window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="snesim_std\NodeDropped.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nuTauModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parameters_handler_impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filtersim_std\partition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filtersim_std\patch_helper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filtersim_std\pattern_paster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PostKriging.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Postsim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Postsim_categorical.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pset_variog_computer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sgsim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sisim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="snesim_std\snesim_std.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filtersim_std\TI_manipulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="trans.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="transcat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="declus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kmeans_clustering.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clustering_from_centroids.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cokriging_cross_validation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kriging_cross_validation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cokriging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cosgsim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cosisim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\dev_finder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="difference_with_base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\distance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\distance_kernels.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dssim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\filters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\filtersim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\filtersim_cate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\filtersim_cont.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Filtersim_filters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\filtersim_servo_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\filtersim_tau_updating.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="geostat_algo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="grid_variog_computer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GsTL_filters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="indicator_kriging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\is_categorical.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="snesim_std\is_categorical.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="snesim_std\is_categorical.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\kernelized_kmeans.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kriging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kriging_mean.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="snesim_std\layer_sequential_simulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="snesim_std\layer_servo_system_sampler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="library_geostat_init.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LU_sim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\mapping_pattern_id.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="moving_window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="snesim_std\NodeDropped.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nuTauModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parameters_handler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parameters_handler_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\partition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\patch_helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\pattern.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\pattern_paster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PostKriging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Postsim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Postsim_categorical.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\prototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\prototype_help.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\Prototype_kernelized_kmeans.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\prototype_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pset_variog_computer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="snesim_mti\search_tree_mti.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\sequential_patch_simulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sgsim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sisim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="snesim_std\snesim_std.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\tau_updating.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="snesim_std\tau_updating.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filtersim_std\TI_manipulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="trans.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="transcat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="snesim_std\tree_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="snesim_mti\tree_list_mti.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="declus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kmeans_clustering.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clustering_from_centroids.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cokriging_cross_validation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kriging_cross_validation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,5 @@
+LIBS += -lGsTLAppli_utils
+win32 {
+  DEFINES += APPLI_EXPORTS
+  LIBS += -lGsTLAppli_utils
+}

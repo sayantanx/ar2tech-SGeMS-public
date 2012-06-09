@@ -1,0 +1,4 @@
+
+win32 {
+  DEFINES += UTILS_EXPORTS
+}

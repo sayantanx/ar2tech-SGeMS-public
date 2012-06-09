@@ -1,0 +1,41 @@
+QTreeView {
+  show-decoration-selected: 1;
+}
+    
+QTreeView::item {
+  border: 1px solid #d9d9d9;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  selection-color : transparent;
+}
+
+QTreeView::item:hover {
+  background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
+  border: 1px solid #bfcde4;
+}
+
+QTreeView::item:selected {
+  border: transparent;
+  font: bold;
+  selection-color : #0336b8;
+}
+
+QTreeView::item:selected:active{
+  /*background: #c5d0db;*/
+  background: transparent;
+}
+
+QTreeView::item:selected:!active {
+  /*background: #c5d0db;*/
+  background: transparent;
+}
+
+
+
+QMenu::item {
+  background-color: transparent;
+}
+
+QMenu::item:selected {
+  background-color: #c5d0db;
+}

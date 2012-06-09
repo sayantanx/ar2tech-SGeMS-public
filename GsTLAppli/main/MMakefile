@@ -1,0 +1,18 @@
+TARGET = sgems
+
+INCLUDEPATH += $$VTK_INCLUDE
+INCLUDEPATH += $$PYTHON_INCLUDE
+LIBS += -L$$PYTHON_LIB -l$$PYTHON_SO
+
+
+#LIBS += -L$(QTDIR)/tools/designer/uilib 
+LIBS += -lGsTLAppli_utils -lGsTLAppli_appli -lGsTLAppli_math 
+LIBS += -lGsTLAppli_grid -lGsTLAppli_geostat -lGsTLAppli_filters
+LIBS += -lGsTLAppli_gui -lGsTLAppli_actions
+LIBS += -lGsTLAppli_extragui -lqwt
+LIBS += -L$$GSTLAPPLI_HOME/plugins/designer -lGsTLwidgets
+LIBS += -L$$VTK_LIB -lvtkCommon -lvtksys -lQVTK  -lvtkViews -lvtkCharts -lvtkWidgets -lvtkRendering -lvtkVolumeRendering -lvtkInfovis -lvtkGraphics -lvtkImaging -lvtkIO -lvtkFiltering -lvtkHybrid
+#LIBS += -lGLU -lX11 -lXmu -lXi -lm -lpthread -lGL
+LIBS += -lpthread -lm
+
+
