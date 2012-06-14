@@ -1,0 +1,61 @@
+# Change the values of the following variables so that they point to the
+# correct location on your computer.
+# GSTLHOME: where GsTL is installed. This directory usually contains files
+#           named authors, license, todo, and more importantly a directory
+#           called GsTL (I know, having a GsTL directory within a directory
+#           named GsTL itself is confusing...)
+# GSTLAPPLI_HOME: where S-GeMS is installed
+# PYTHON_LIB: where the lib files (dll or so) for python are located (eg /usr/lib/python2.4)
+# PYTHON_INCLUDE: where the .h files of python are located (eg /usr/include/python2.4)
+# PYTHON_SO: the name of the python .so file, eg python2.4 if the .so file is libpython2.4.so
+
+
+GSTLHOME = /home/lewisli/code-dev/GsTL
+GSTLAPPLI_HOME = /home/lewisli/code-dev/sgems
+#VTK_LIB = /usr/lib
+#VTK_INCLUDE = /usr/include/vtk-5.4/
+
+VTK_LIB = /usr/local/lib/vtk-5.9/
+VTK_INCLUDE += /home/lewisli/VTK
+VTK_INCLUDE += /home/lewisli/VTK/Common
+VTK_INCLUDE += /home/lewisli/VTK/Utilities
+VTK_INCLUDE += /home/lewisli/VTK/Rendering
+VTK_INCLUDE += /home/lewisli/VTK/VolumeRendering
+VTK_INCLUDE += /home/lewisli/VTK/Charts
+VTK_INCLUDE += /home/lewisli/VTK/Geovis
+VTK_INCLUDE += /home/lewisli/VTK/Infovis
+VTK_INCLUDE += /home/lewisli/VTK/Views
+VTK_INCLUDE += /home/lewisli/VTK/Hybrid
+VTK_INCLUDE += /home/lewisli/VTK/Widgets
+VTK_INCLUDE += /home/lewisli/VTK/IO
+VTK_INCLUDE += /home/lewisli/VTK/Imaging
+VTK_INCLUDE += /home/lewisli/VTK/Graphics
+VTK_INCLUDE += /home/lewisli/VTK/GenericFiltering
+VTK_INCLUDE += /home/lewisli/VTK/Filtering
+VTK_INCLUDE += /home/lewisli/VTK/GUISupport
+VTK_INCLUDE += /home/lewisli/VTK/GUISupport/Qt
+
+
+#INVENTOR_LIB = /usr/lib/vtk-5.4
+#INVENTOR_INCLUDE = /usr/include
+BOOST_INCLUDE = /usr/include/boost
+PYTHON_LIB = /usr/lib
+PYTHON_INCLUDE = /usr/include/python2.7
+PYTHON_SO = python2.7
+
+
+
+
+# define some global variables
+# CUR_PLATFORM: the name of your platform (not very important)
+# QMAKESPEC: define this variable if you want Qt to use a specific
+# compiler configuration (see the Qt documentation)
+
+CUR_PLATFORM = linux
+#QMAKESPEC = /usr/share/qt4/mkspecs/default
+
+
+#========================================
+# Don't change this last line
+CONFIG += qt
+

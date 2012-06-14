@@ -70,7 +70,7 @@ Visualization_tree_view::Visualization_tree_view(QWidget* parent)
 }
 
 Visualization_tree_view::~Visualization_tree_view() {
-
+//  this->selectionModel()->clear();
 }
 
 /*

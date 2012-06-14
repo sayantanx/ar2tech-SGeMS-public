@@ -250,7 +250,7 @@ public :
 
 
 	Grid_viz_parameters(): Visualization_parameters(){}
-	virtual ~Grid_viz_parameters(){}
+  virtual ~Grid_viz_parameters(){ delete vtk_prop_;}
 
 	virtual void display();
 	virtual void undisplay();

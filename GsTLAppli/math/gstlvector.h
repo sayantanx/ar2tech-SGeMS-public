@@ -116,7 +116,13 @@ public:
     const R& y() const { return coords_[1];} 
     const R& z() const { return coords_[2];} 
  
- 
+    R length2() const { 
+      return coords_[0]*coords_[0]  + coords_[1]*coords_[1] + coords_[2]*coords_[2];
+    }
+
+    double length() const { 
+      return std::sqrt(coords_[0]*coords_[0]  + coords_[1]*coords_[1] + coords_[2]*coords_[2]);
+    } 
     // GsTL Requirements : 
  
     bool operator == (const GsTLVector<R>& v ) const { 

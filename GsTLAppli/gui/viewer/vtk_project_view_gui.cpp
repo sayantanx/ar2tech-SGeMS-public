@@ -77,7 +77,7 @@ Named_interface* Create_vtk_view(std::string&)
 
 
 Vtk_view::Vtk_view(GsTL_project* project, QWidget* parent) :
-	QFrame(parent), Project_view(project), connections_(0) {
+	QFrame(parent), Project_view(project), connections_(0), model_(0) {
 
 	this->setAcceptDrops(true);
   camera_view_.is_initialized = false;
@@ -375,7 +375,8 @@ QWidget* Vtk_view::init_control_frame(){
 //  Root_model* mm = dynamic_cast<Root_model*>(Root::instance()->model());
 //  tree_->setModel(mm);
 //  tree_->setRootIndex(model_->project_root_index());
-  tree_->setSelectionMode(QAbstractItemView::NoSelection);
+  //tree_->setSelectionMode(QAbstractItemView::NoSelection);
+  tree_->setSelectionMode(QAbstractItemView::SingleSelection);
 //  tree_->setRootIndex(mm->project_root_index());
  // tree_->setSelectionModel(new Project_selection_model(model_,tree_));
 
@@ -885,9 +886,29 @@ void Vtk_view::remove_viz_parameters(const QModelIndex & parent, int start, int 
 			  std::map<void*, Visualization_parameters*>::iterator it = viz_params_.find(ptr);
 			  if(it == viz_params_.end()) continue;
 
-			  Visualization_parameters* param = it->second;
+        //if we are removing a grid.  Must manually removed all the properties (children), regions belonging to that grid.
+        GsTL_object_item* item = static_cast<GsTL_object_item*>(ptr);
+        if(dynamic_cast<Geostat_grid*>(item) != 0) {
+          std::vector<void*> to_be_removed;
+          std::map<void*, Visualization_parameters*>::iterator iit = viz_params_.begin();
+          for( ;  iit != viz_params_.end(); ++iit ) {
+            if( iit->first != item && iit->second->grid() == item ) {
+              to_be_removed.push_back(iit->first);
+            }
+          }
+          for(int i=0; i<to_be_removed.size(); ++i) {
+            iit = viz_params_.find(to_be_removed[i]);
+            Visualization_parameters* param = iit->second;
+            viz_params_.erase(iit);
+            delete param;
+          }
+        }
+        //Delete the actual items
+//        it = viz_params_.find(ptr);
+        Visualization_parameters* param = it->second;
 			  viz_params_.erase(it);
-			  delete param;
+        delete param;
 
+			  
 		}
 }

@@ -50,6 +50,7 @@ public:
 	virtual ~Visualization_parameters();
 
 	GsTL_vtkProp* vtk_prop();
+  Geostat_grid* grid();
 
 	virtual void display()=0;
 	virtual void undisplay()=0;

@@ -46,3 +46,7 @@ Visualization_parameters::~Visualization_parameters() {
 GsTL_vtkProp* Visualization_parameters::vtk_prop(){
 	return vtk_prop_;
 }
+
+Geostat_grid* Visualization_parameters::grid(){
+  return vtk_prop_->grid();
+}

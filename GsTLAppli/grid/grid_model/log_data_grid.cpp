@@ -398,33 +398,40 @@ QString Log_data_grid::item_type() const{
 
 GsTL_object_item *Log_data_grid::child(int row){
 	if(row == 0) {
-		return log_manager_;
-	}
-	else if(row == 1) {
 		return &point_prop_;
 	}
-	else if(row < group_manager_.size() +2) {
+
+	else if(row < group_manager_.size() +1) {
 		std::map<std::string, GsTLGridPropertyGroup*>::iterator  it = group_manager_.begin_group();
-		for(int i=1; i<row; ++i, ++it){}
+    std::advance(it,row-1);
+		//for(int i=1; i<row; ++i, ++it){}
 		return it->second;
 	}
-	else return &region_manager_;
+	else if (row == group_manager_.size() + 1) {
+    return &region_manager_;
+  }
+	else  {
+		return log_manager_;
+	}
 
 }
 
 const GsTL_object_item *Log_data_grid::child(int row) const{
 	if(row == 0) {
-		return log_manager_;
-	}
-	else if(row == 1) {
 		return &point_prop_;
 	}
-	else if(row < group_manager_.size() +2) {
-		std::map<std::string, GsTLGridPropertyGroup*>::const_iterator  it = group_manager_.begin_group();
-		for(int i=1; i<row; ++i, ++it){}
-		return it->second;
+  	else if(row < group_manager_.size() +1) {
+      std::map<std::string, GsTLGridPropertyGroup*>::const_iterator  it = group_manager_.begin_group();
+      std::advance(it,row-1);
+		  //for(int i=1; i<row; ++i, ++it){}
+		  return it->second;
 	}
-	else return &region_manager_;
+	else if (row == group_manager_.size() + 1) {
+    return &region_manager_;
+  }
+	else  {
+		return log_manager_;
+	}
 
 }
 

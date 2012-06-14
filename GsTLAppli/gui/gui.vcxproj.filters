@@ -576,9 +576,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="variogram2\a.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <CustomBuild Include="utils\categorical_definition_dialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>

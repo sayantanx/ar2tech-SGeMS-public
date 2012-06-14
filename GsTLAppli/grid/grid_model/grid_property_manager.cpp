@@ -241,10 +241,32 @@ Grid_property_manager::Grid_property_manager( GsTLInt size ) {
 }
 
 Grid_property_manager::~Grid_property_manager() {
+/*
+  while(!properties_map_.empty()) {
+    std::map< std::string, int >::iterator it = properties_map_.begin();
+    int ind = it->second;
+ //   The removal of the membership is done by the destructor.
+    if(model_) {
+    	model_->begin_remove_item(this,0);
+    }
+
+    delete properties_[ind];
+    properties_[ind] = 0;
+    properties_map_.erase( it );
+    if(model_) model_->end_remove_item();
+  }
+*/
+/*
   std::vector< GsTLGridProperty* >::iterator it = properties_.begin();
   for( ; it != properties_.end() ; ++it )
-    if( *it != 0 )
+    if( *it != 0 ) {
+      if(model_) {
+    	  model_->begin_remove_item(this,0);
+      }
       delete *it;
+      if(model_) model_->end_remove_item();
+    }
+*/
 }
 
 
@@ -524,7 +546,8 @@ Grid_property_manager::remove_property( const std::string& name ) {
 
     // Check if the property was use as the selected selected_properties
     if( selected_property_ == ind ) {
-      selected_property_ = properties_map_.begin()->second;
+      if(properties_map_.size() == 0) selected_property_=0;
+      else selected_property_ = properties_map_.begin()->second;
 
     }
 

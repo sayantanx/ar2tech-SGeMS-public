@@ -117,10 +117,15 @@ int Kriging::execute( GsTL_project* ) {
   simul_grid_->select_property( prop->name() );
   
   // create property for kriging variance
-  std::string var_prop_name = prop->name() + "_krig_var";
-  GsTLGridProperty* var_prop = 
-    geostat_utils::add_property_to_grid( simul_grid_, var_prop_name );
-  var_prop->set_parameters(parameters_);
+  GsTLGridProperty* var_prop=0;
+  GsTLGridProperty* nsamples_prop=0;
+  GsTLGridProperty* aver_dist_prop=0;
+  GsTLGridProperty* sum_pos_prop=0;
+  GsTLGridProperty* sum_weights_prop=0;
+  GsTLGridProperty* lagrangian_prop=0;
+
+  this->init_option_properties(prop->name(),var_prop,nsamples_prop,aver_dist_prop,sum_pos_prop,sum_weights_prop, lagrangian_prop);
+
 
 
   typedef Geostat_grid::iterator iterator;
@@ -170,7 +175,41 @@ int Kriging::execute( GsTL_project* ) {
 		                            			kriging_weights_.end(),
 					                            *(neighborhood_.raw_ptr()) );
       begin->set_property_value( estimate );
-      var_prop->set_value( variance, begin->node_id() );
+
+      if(output_krig_var_) var_prop->set_value( variance, begin->node_id() );
+
+      if(output_average_distance_ && !neighborhood_->is_empty()) {
+        float average_dist = 0.0;
+        Neighborhood::const_iterator it = neighborhood_->begin();
+        for(; it!=neighborhood_->end(); ++it) {
+          average_dist += (begin->location()-it->location()).length();
+        }
+        aver_dist_prop->set_value( average_dist/neighborhood_->size(), begin->node_id() );
+      }
+
+      if(output_n_samples_) nsamples_prop->set_value( neighborhood_->size(), begin->node_id() );
+      
+      if(output_sum_positive_weights_) {
+        float sum_pos_weight =0.0;
+        for(int i=0; i<neighborhood_->size();++i) {
+          if(kriging_weights_[i] > 0) sum_pos_weight+=kriging_weights_[i];
+        }
+        sum_pos_prop->set_value( sum_pos_weight, begin->node_id() );
+      }
+
+      if(output_sum_weights_) {
+        float sum_weight =0.0;
+        for(int i=0; i<neighborhood_->size();++i) {
+          sum_weight+=kriging_weights_[i];
+        }
+        sum_weights_prop->set_value( sum_weight, begin->node_id() );
+      }
+
+      //Here we assumed that the check was already done that there is lagrangian computed in the system
+      if(output_lagrangian_) {  
+        lagrangian_prop->set_value( kriging_weights_[neighborhood_->size()], begin->node_id() );
+      }
+      
     }
     else {
     	// the kriging system could not be solved, issue a warning and skip the
@@ -375,11 +414,63 @@ bool Kriging::initialize( const Parameters_handler* parameters,
                              simul_grid_ );
 */
 
+  output_krig_var_ = parameters->value( "ouput_kriging_variance.value" )=="1";
+  output_n_samples_ = parameters->value( "output_n_samples_.value" )=="1";
+  output_average_distance_ = parameters->value( "output_average_distance.value" )=="1";
+  output_sum_positive_weights_ = parameters->value( "output_sum_positive_weights.value" )=="1";
+  output_sum_weights_ = parameters->value( "output_sum_weights.value" )=="1";
+  
+  std:string kriging_type = parameters->value( "Kriging_Type.type" );
+  if(String_Op::contains( kriging_type, "OK", false ) ||  String_Op::contains( kriging_type, "KT", false )) {
+    output_lagrangian_ = parameters->value( "output_lagrangian.value" )=="1";
+  }
+  else output_lagrangian_= false;
+
   if( !errors->empty() )
     return false;
  
   this->extract_parameters(parameters);
   return true;
+}
+
+
+void  Kriging::init_option_properties(std::string base_name, 
+                              GsTLGridProperty*& var_prop,GsTLGridProperty*& nsamples_prop,
+                              GsTLGridProperty*& aver_dist_prop,GsTLGridProperty*& sum_pos_prop,
+                              GsTLGridProperty*& sum_weights_prop,GsTLGridProperty*& lagrangian_prop)
+{
+  if(output_krig_var_) {
+    std::string prop_name = base_name + " krig_var";
+    var_prop = geostat_utils::add_property_to_grid( simul_grid_, prop_name );
+    var_prop->set_parameters(parameters_);
+  }
+  if(output_n_samples_) {
+    std::string prop_name = base_name + " n samples";
+    nsamples_prop = geostat_utils::add_property_to_grid( simul_grid_, prop_name );
+    nsamples_prop->set_parameters(parameters_);
+  }
+  if(output_average_distance_) {
+    std::string prop_name = base_name + " average sample distance";
+    aver_dist_prop = geostat_utils::add_property_to_grid( simul_grid_, prop_name );
+    aver_dist_prop->set_parameters(parameters_);
+  }
+  if(output_sum_positive_weights_) {
+    std::string prop_name = base_name + " sum positive weights";
+    sum_pos_prop = geostat_utils::add_property_to_grid( simul_grid_, prop_name );
+    sum_pos_prop->set_parameters(parameters_);
+  }
+  if(output_sum_weights_) {
+    std::string prop_name = base_name + " sum weigts";
+    sum_weights_prop = geostat_utils::add_property_to_grid( simul_grid_, prop_name );
+    sum_weights_prop->set_parameters(parameters_);
+  }
+
+  if(output_lagrangian_) {
+    std::string prop_name = base_name + " Lagrangian";
+    lagrangian_prop = geostat_utils::add_property_to_grid( simul_grid_, prop_name );
+    lagrangian_prop->set_parameters(parameters_);
+  }
+  
 }
 
 

@@ -714,10 +714,14 @@ void Visualization_proxy_model::begin_remove_proxy_rows(const QModelIndex & sour
     for(; start<=end; ++start) {
       QModelIndex index =  this->mapFromSource( source_parent.child(start,0) );
       GsTL_object_item *item = static_cast<GsTL_object_item*>(index.internalPointer());
+
+      this->remove_selections(item);
     
-      if( currently_selected_.find( item) == currently_selected_.end() ) continue;
+//      if( currently_selected_.find( item) == currently_selected_.end() ) continue;
     
-      update_checked_items(index);
+//      update_checked_items(index);
+
+      
     }
   }
 
@@ -747,6 +751,27 @@ void Visualization_proxy_model::end_remove_proxy_rows(const QModelIndex & source
 
 }
 
+void Visualization_proxy_model::remove_selections(const QModelIndex& index){
+  GsTL_object_item* item = static_cast<GsTL_object_item*>(this->mapToSource(index).internalPointer());
+
+  std::map<GsTL_object_item*, bool>::iterator it = checked_states_.find(item);
+  bool is_selected = it != checked_states_.end() && it->second;
+
+}
+
+void Visualization_proxy_model::remove_selections(GsTL_object_item* item){
+
+  currently_selected_.erase(item);
+  checked_states_.erase(item);
+
+  //Check for the children
+  int nchild = item->childCount();
+  for(int i=0; i<nchild; ++i) {
+    GsTL_object_item* child_item = item->child(i);
+    this->remove_selections(child_item);
+  }
+
+}
 
 
 void Visualization_proxy_model::update_checked_items(const QModelIndex& index){
@@ -757,6 +782,7 @@ void Visualization_proxy_model::update_checked_items(const QModelIndex& index){
 
   //The selected index will already be updated by the setData function
   QList<QModelIndex> index_to_update;
+  index_to_update.append(src_index);
   
   GsTL_object_item* item = static_cast<GsTL_object_item*>(this->mapToSource(index).internalPointer());
 

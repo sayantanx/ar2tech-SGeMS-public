@@ -69,7 +69,7 @@ CGrid_viz_parameters::CGrid_viz_parameters() : Grid_viz_parameters(), viewer_(0)
 CGrid_viz_parameters::~CGrid_viz_parameters(){
 	viewer_->setParent(0);
 	delete viewer_;
-	delete vtk_prop_;
+//	delete vtk_prop_;
 }
 
 
@@ -107,7 +107,7 @@ MGrid_viz_parameters::MGrid_viz_parameters() : Grid_viz_parameters(), viewer_(0)
 MGrid_viz_parameters::~MGrid_viz_parameters(){
 	viewer_->setParent(0);
 	delete viewer_;
-	delete vtk_prop_;
+//	delete vtk_prop_;
 }
 
 
@@ -143,7 +143,7 @@ PSet_viz_parameters::PSet_viz_parameters() : Grid_viz_parameters(), viewer_(0){
 PSet_viz_parameters::~PSet_viz_parameters(){
 	viewer_->setParent(0);
 	delete viewer_;
-	delete vtk_prop_;
+//	delete vtk_prop_;
 }
 
 
@@ -181,7 +181,7 @@ Log_grid_viz_parameters::Log_grid_viz_parameters() : Grid_viz_parameters(), view
 Log_grid_viz_parameters::~Log_grid_viz_parameters(){
 	viewer_->setParent(0);
 	delete viewer_;
-	delete vtk_prop_;
+//	delete vtk_prop_;
 }
 
 
@@ -216,7 +216,7 @@ Structured_grid_viz_parameters::Structured_grid_viz_parameters() : Grid_viz_para
 Structured_grid_viz_parameters::~Structured_grid_viz_parameters(){
 	viewer_->setParent(0);
 	delete viewer_;
-	delete vtk_prop_;
+//	delete vtk_prop_;
 }
 
 

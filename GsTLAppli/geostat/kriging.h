@@ -86,6 +86,13 @@ class GEOSTAT_DECL Kriging : public Geostat_algo {
  protected:
    void clean( const std::string& prop ); 
 
+private:
+
+   void init_option_properties(std::string base_name, 
+                              GsTLGridProperty*& var_prop,GsTLGridProperty*& nsamples_prop,
+                              GsTLGridProperty*& aver_dist_prop,GsTLGridProperty*& sum_pos_prop,
+                              GsTLGridProperty*& sum_weights_prop, GsTLGridProperty*& lagrangian_prop);
+
  protected: 
   typedef Geostat_grid::location_type Location; 
   typedef std::vector<double>::const_iterator weight_iterator; 
@@ -118,6 +125,14 @@ class GEOSTAT_DECL Kriging : public Geostat_algo {
   Temporary_gridRegion_Selector hdgridTempRegionSelector_;
 
   bool do_block_kriging_;
+
+  //output options
+  bool output_krig_var_;
+  bool output_n_samples_;
+  bool output_average_distance_;
+  bool output_sum_positive_weights_;
+  bool output_sum_weights_;
+  bool output_lagrangian_;
 
 
 /* 

@@ -135,6 +135,8 @@ protected slots:
 
 private :
   void update_indexes(const QList<QModelIndex>& src_indexes);
+  void remove_selections(const QModelIndex& index);
+  void remove_selections(GsTL_object_item* item);
 
 private slots :
 	void begin_insert_proxy_rows(const QModelIndex & source_parent, int start, int end);
