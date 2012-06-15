@@ -161,12 +161,12 @@ int Kriging::execute( GsTL_project* ) {
     if(rhs_covar_blk_) {
       status  = kriging_weights_2( kriging_weights_, variance,
                                    *begin, *(neighborhood_.raw_ptr()),
-                      				     covar_,*rhs_covar_blk_, *Kconstraints_ );
+                                   covar_,*rhs_covar_blk_, *Kconstraints_,rhs_covar_blk_->block_covariance()  );
     } 
     else {
       status = kriging_weights_2( kriging_weights_, variance,
                                   *begin, *(neighborhood_.raw_ptr()),
-                      				    covar_,*rhs_covar_, *Kconstraints_ );
+                                  covar_,*rhs_covar_, *Kconstraints_, rhs_covar_->c0() );
     }
 
     if(status == 0) {
