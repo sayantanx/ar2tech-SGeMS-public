@@ -365,34 +365,21 @@ bool Cgrid_to_cgrid_copier::copy( const Geostat_grid* server,
 
   // if the 2 grids are identical, just copy the property
   if( are_identical_grids( from_grid, to_grid ) ) {
-
+    
     Geostat_grid::const_iterator it = from_grid->begin();
 
     appli_assert( server_prop->size() == client_prop->size() );
-    for( ; it != from_grid->end() ; ++it ) {
-//    for( int i=0; i < server_prop->size() ; i++ ) {
-/*  This is a bug it still copy the property even if it is
-    not informed
-      if( !server_prop->is_informed( i ) ) 
-        client_prop->set_not_informed( i );
-
-      client_prop->set_value( server_prop->get_value( i ), i );
-*/
-
-//    if( server_prop->is_informed( i ) ) {
-    int node_id = it->node_id();
-    if( it->is_informed() ) {
+    for(int nodeid=0; nodeid<from_grid->size();++nodeid) {
+      if( server_prop->is_informed(nodeid) ) {
       
-		  //client_prop->set_value( server_prop->get_value( i ), i );
-      client_prop->set_value( it->property_value(), node_id );
-		  if( mark_as_hard_ )   //added by Yongshe
-              client_prop->set_harddata( true, node_id); //added by Yongshe
-		}
-	  else if(overwrite_)
-		  client_prop->set_not_informed( node_id );
-
+		    //client_prop->set_value( server_prop->get_value( i ), i );
+        client_prop->set_value( server_prop->get_value(nodeid), nodeid );
+		    if( mark_as_hard_ )   //added by Yongshe
+                client_prop->set_harddata( true, nodeid); //added by Yongshe
+		  }
+	    else if(overwrite_)
+		    client_prop->set_not_informed( nodeid );
     }
-
     return true;
   }
   

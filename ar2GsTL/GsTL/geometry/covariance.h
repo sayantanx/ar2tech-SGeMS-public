@@ -570,6 +570,8 @@ class Covariance {
 		     double alpha, double beta, double theta );
   double sill( int id ) const;
   void sill( int id, double s );
+
+  virtual result_type c0() const{ return cov_.c0();}
   
  protected:
   typedef Anisotropic_covariance_3d<Location> StructureType;

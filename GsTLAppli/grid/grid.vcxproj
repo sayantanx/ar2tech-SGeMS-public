@@ -87,7 +87,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtGui;$(QTDIR)\include;.;$(QTDIR)\include\ActiveQt;debug;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(VTKDIR)\Build;$(VTKDIR);$(VTKDIR)\Common;$(VTKDIR)\Utilities;$(VTKDIR)\Rendering;$(VTKDIR)\VolumeRendering;$(VTKDIR)\Charts;$(VTKDIR)\Geovis;$(VTKDIR)\Infovis;$(VTKDIR)\Views;$(VTKDIR)\Hybrid;$(VTKDIR)\Widgets;$(VTKDIR)\IO;$(VTKDIR)\Imaging;$(VTKDIR)\Graphics;$(VTKDIR)\GenericFiltering;$(VTKDIR)\Filtering;$(VTKDIR)\GUISupport;$(VTKDIR)\GUISupport\Qt;$(VTKDIR)\build\Rendering;.;$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtGui;$(QTDIR)\include;.;$(QTDIR)\include\ActiveQt;debug;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;GRID_EXPORTS;QT_DLL;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;BOOST_NO_EXCEPTIONS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -169,7 +169,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>.;$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtXml;$(QTDIRwin32)\include\QtGui;$(QTDIRwin32)\include;$(QTDIRwin32)\include\ActiveQt;release;$(VTKDIRwin32)\Common\;$(VTKDIRwin32)\build\%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;$(QTDIRwin32)\include\QtOpenGL;$(QTDIRwin32)\include\QtXml;$(QTDIRwin32)\include;.;$(QTDIRwin32)\tools\designer\interfaces;$(QTDIRwin32)\include\ActiveQt;$(VTKDIRwin32)\Build;$(VTKDIRwin32);$(VTKDIRwin32)\Common;$(VTKDIRwin32)\Utilities;$(VTKDIRwin32)\Rendering;$(VTKDIRwin32)\VolumeRendering;$(VTKDIRwin32)\Charts;$(VTKDIRwin32)\Geovis;$(VTKDIRwin32)\Infovis;$(VTKDIRwin32)\Views;$(VTKDIRwin32)\Hybrid;$(VTKDIRwin32)\Widgets;$(VTKDIRwin32)\IO;$(VTKDIRwin32)\Imaging;$(VTKDIRwin32)\Graphics;$(VTKDIRwin32)\GenericFiltering;$(VTKDIRwin32)\Filtering;$(VTKDIRwin32)\GUISupport;$(VTKDIRwin32)\GUISupport\Qt;$(VTKDIRwin32)\build\Rendering;$(PYTHONDIRwin32)\include;$(BOOSTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QT_NO_DEBUG;GSTLAPPLI_NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;GRID_EXPORTS;QT_DLL;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -189,7 +189,7 @@
       <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;GRID_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_math.lib;GsTLAppli_appli.lib;QtCore4.lib;QtXml4.lib;vtkCommon.lib;QtGui4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_math.lib;GsTLAppli_appli.lib;vtkCommon.lib;vtksys.lib;QVTK.lib;vtkViews.lib;vtkWidgets.lib;vtkRendering.lib;vtkVolumeRendering.lib;vtkInfovis.lib;vtkGraphics.lib;vtkImaging.lib;vtkIO.lib;vtkFiltering.lib;vtkHybrid.lib;vtkCharts.lib;QtCore4.lib;QtXml4.lib;QtGui4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\release\GsTLAppli_grid.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRwin32)\lib;$(AR2TECH_SGEMS_DIR)\lib\win32\release;$(VTKDIRwin32)\build\bin\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

@@ -56,8 +56,8 @@ protected :
 protected slots:
 	void contextMenu(const QPoint& positionXY);
 
-	QItemSelectionModel::SelectionFlags
-	selectionCommand ( const QModelIndex & index, const QEvent * event = 0 ) const;
+//	QItemSelectionModel::SelectionFlags
+//	selectionCommand ( const QModelIndex & index, const QEvent * event = 0 ) const;
 
 
 //	bool delete_grid();

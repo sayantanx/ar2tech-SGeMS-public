@@ -24,6 +24,8 @@ class Block_covariance : public Covariance<Location>{
    Covariance<Location>(rhs){
     c0_ = rhs.c0_;
     block_vectors_ = rhs.block_vectors_;
+    pt_covariance_ = rhs.pt_covariance_;
+    block_covariance_ = rhs.block_covariance_;
    }
 
    Block_covariance(Covariance<Location> cov, float c0,
@@ -54,9 +56,28 @@ class Block_covariance : public Covariance<Location>{
 
       EuclideanVector vec_c0(0.,0.,0.);
       c0_ = compute(vec_c0);
+
+      pt_covariance_ = Covariance<Location>::compute(vec_c0);
+      block_covariance_ = 0.0;
+      for( int i=0; i < n_blkpoints_; ++i) {
+        for(int j=0; j < n_blkpoints_; ++j) {
+          block_covariance_ += Covariance<Location>::compute(block_vectors_[i]-block_vectors_[j]);
+          if(i==j) block_covariance_-= Covariance<Location>::nugget();
+        }
+      }
+      block_covariance_/=(n_blkpoints_*n_blkpoints_);
+      /*
+      typename std::vector< EuclideanVector >::const_iterator it = block_vectors_.begin();
+      for(; it != block_vectors_.end() ; ++it) {
+        EuclideanVector pt_in_block(it->x(),it->y(),it->z());
+        block_covariance_ += Covariance<Location>::compute(pt_in_block);
+      }
+      block_covariance_/=n_blkpoints_; 
+      */
+//      block_covariance_-= Covariance<Location>::nugget();
    }
 
-   result_type c0() const { return c0_;}
+   virtual result_type c0() const { return c0_;}
 
 
   inline result_type operator()(const Location& u1, const Location& u2) const {
@@ -78,11 +99,20 @@ class Block_covariance : public Covariance<Location>{
     return cov/n_blkpoints_;
   }
 
+  inline double point_covariance() const {
+    return pt_covariance_;
+  }
+
+  inline double block_covariance() const {
+    return block_covariance_;
+  }
 
 protected:
   float c0_;
   std::vector< EuclideanVector > block_vectors_;
   float n_blkpoints_;
+  double pt_covariance_;
+  double block_covariance_;
 
 };
 

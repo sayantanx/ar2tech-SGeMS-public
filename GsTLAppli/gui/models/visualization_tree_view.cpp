@@ -58,7 +58,7 @@ Visualization_tree_view::Visualization_tree_view(QWidget* parent)
  : QTreeView(parent){
 
 	this->setContextMenuPolicy(Qt::CustomContextMenu);
-  this->setSelectionMode(QAbstractItemView::NoSelection);
+//  this->setSelectionMode(QAbstractItemView::NoSelection);
 	this->setSelectionBehavior(QAbstractItemView::SelectItems);
 	this->setEditTriggers(QAbstractItemView::NoEditTriggers);
   this->setExpandsOnDoubleClick(true);
@@ -150,39 +150,12 @@ void Visualization_tree_view::contextMenu(const QPoint& point){
 }
 
 
-
+/*
 QItemSelectionModel::SelectionFlags
 Visualization_tree_view::selectionCommand ( const QModelIndex & index, const QEvent * event) const{
 	return QItemSelectionModel::NoUpdate;
 	QEvent::Type etype = event->type();
-	/*
-	if( etype != QEvent::MouseButtonPress )
-		return QItemSelectionModel::NoUpdate;
 
-	 if (static_cast<const QMouseEvent*>(event)->button() == Qt::LeftButton)
-	                return QItemSelectionModel::NoUpdate|selectionBehaviorFlags(); // finalize
-
-    switch (event->type()) {
-    case QEvent::KeyPress:
-        if (static_cast<const QKeyEvent*>(event)->key() == Qt::En
-         || static_cast<const QKeyEvent*>(event)->key() == Qt::Key_Select)
-            return QItemSelectionModel::Toggle|selectionBehaviorFlags();
-        break;
-    case QEvent::MouseButtonPress:
-        if (static_cast<const QMouseEvent*>(event)->button() == Qt::LeftButton)
-            return QItemSelectionModel::Toggle|selectionBehaviorFlags(); // toggle
-        break;
-    case QEvent::MouseButtonRelease:
-        if (static_cast<const QMouseEvent*>(event)->button() == Qt::LeftButton)
-            return QItemSelectionModel::NoUpdate|selectionBehaviorFlags(); // finalize
-        break;
-    case QEvent::MouseMove:
-        if (static_cast<const QMouseEvent*>(event)->buttons() & Qt::LeftButton)
-            return QItemSelectionModel::ToggleCurrent|selectionBehaviorFlags(); // toggle drag select
-    default:
-        break;
-    }
-*/
 	switch (event->type()) {
 	case QEvent::MouseButtonDblClick:
 		return QTreeView::selectionCommand(index, event);
@@ -190,16 +163,8 @@ Visualization_tree_view::selectionCommand ( const QModelIndex & index, const QEv
 		return QItemSelectionModel::NoUpdate;
 	}
 
-	/*
-	if(etype == QEvent::MouseButtonDblClick)
-		return QTreeView::selectionCommand(index, event);
-
-	else
-		 return QItemSelectionModel::NoUpdate;
-*/
-
 }
-
+*/
 /*
 void Visualization_tree_view::show_grid_context_menu(GsTL_grid_item* item, const QPoint& point){
 

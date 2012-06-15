@@ -294,7 +294,8 @@ int kriging_weights_2(
 
   // Compute the kriging variance
   if(status == 0) {
-    double C0=covar(center.location(),center.location());
+    //double C0=covar(center.location(),center.location());
+    double C0=covar_rhs(center.location(),center.location());
     kriging_variance =
       compute_kriging_variance(weights.begin(), 
                                weights.begin()+conditioning_data, weights.end(),
@@ -305,6 +306,89 @@ int kriging_weights_2(
 
   return status;
 }
+
+
+
+//===========================================
+
+
+/** Compute the kriging weights, using a different covariance function for
+ * the kriging matrix and the right-hand side of the kriging system. This
+ * is useful for block kriging for example.
+ * @return 0 if no problem was encountered, 1 if the kriging system could not be
+ * solved, and 2 if no neighbors were provided (empty neighborhood).
+ * 
+ * @param weights is the vector where the kriging weights will be output
+ * @param kriging_variance is where the kriging variance will be output
+ * @param center is the location being estimated
+ * @param neighbors points to the neighborhood of conditioning data used to 
+ * estimate \c center. If there are no neighbors, no kriging is performed and  
+ * the return code is 2.
+ * @param covar is the covariance function used for the kriging matrix
+ * @param covar_rhs is the covariance function used to compute the right-hand
+ * side of the kriging system, ie the covariance between the data and the 
+ * unknown.
+ * @param Kconstraints are the kriging constraints (eg SK, OK, KT, ...).
+ */
+
+template<
+         class MatrixLibrary,
+         class Geovalue,
+         class Neighborhood,
+         class Covariance,
+         class Covariance2,
+         class KrigingConstraints,
+         class Vector
+        >
+int kriging_weights_2(
+		    Vector& weights,
+		    double& kriging_variance,
+		    const Geovalue& center,
+		    const Neighborhood& neighbors,
+		    Covariance& covar, Covariance2& covar_rhs,
+		    KrigingConstraints& Kconstraints,
+        double C0
+		    ) {
+
+  typedef matrix_lib_traits< MatrixLibrary > MatrixLib;
+  
+  // If the neighborhood is empty, there is no kriging to be done.
+  if( neighbors.is_empty() ) {
+    gstl_warning( "Empty neighborhood. No kriging to be done. " );
+    return 2;
+  }
+  
+  typename MatrixLib::Symmetric_matrix A;
+  typename MatrixLib::Vector b;
+  
+  int conditioning_data = 
+    build_kriging_system(A,b,
+     		         weights, 
+		         center, neighbors,
+		         covar, covar_rhs, Kconstraints);
+
+  // solve the system
+  int status = 
+         kriging_constraints_traits<
+                                    KrigingConstraints,
+                                    MatrixLibrary
+                                   >::const_kriging_solver(A, b, weights.begin());
+
+  // Compute the kriging variance
+  if(status == 0) {
+    //double C0=covar(center.location(),center.location());
+ //   double C0=covar_rhs(center.location(),center.location());
+    kriging_variance =
+      compute_kriging_variance(weights.begin(), 
+                               weights.begin()+conditioning_data, weights.end(),
+                               b, Kconstraints, center, C0);
+  }
+  else
+    kriging_variance = -99;
+
+  return status;
+}
+
 
 
 
@@ -384,7 +468,32 @@ kriging_weights_2(
 					  covar, covar_rhs, Kconstraints );
 }
 
+/** This overloaded function uses the default matrix library: TNT.
+ */
+// The c0 covariance is provided
+template<
+         class Geovalue,
+         class Neighborhood,
+         class Covariance,
+         class Covariance2,
+         class KrigingConstraints,
+         class Vector
+        >
+inline int
+kriging_weights_2(
+		Vector& weights,
+		double& kriging_variance,
+		const Geovalue& center,
+		const Neighborhood& neighbors,
+		Covariance& covar, Covariance2& covar_rhs,
+		KrigingConstraints& Kconstraints,
+    double c0
+		) {
 
+  return kriging_weights_2< GSTL_TNT_lib >( weights, kriging_variance,
+					  center,neighbors,
+					  covar, covar_rhs, Kconstraints, c0 );
+}
 
 /** This overloaded function uses the default matrix library: TNT.
  */ 

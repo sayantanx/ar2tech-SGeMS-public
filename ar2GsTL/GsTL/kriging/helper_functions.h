@@ -406,10 +406,14 @@ double compute_kriging_variance(
                                 const Geovalue& center,
 				double C0
 				) {
+/*
   double contrib = 
     kconstraints.kriging_variance_contrib( center, lagrange_begin, weights_end );
   double inner_product = std::inner_product(weights_begin, lagrange_begin,
                                             b.begin(), contrib );
+                                            */
+  double inner_product = std::inner_product(weights_begin, weights_end,
+                                            b.begin(), 0.0 );
   return C0 - inner_product;
 };
 
