@@ -31,7 +31,7 @@
 #include <string>
 #include <utility>
 
-#include <GsTLAppli\filters\common.h>
+#include <GsTLAppli/filters/common.h>
 
 class FILTERS_DECL Save_project_objects :  public Named_interface
 {
