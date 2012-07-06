@@ -13,7 +13,8 @@
 # Compile with debug options, and lots of warnings
 # Replace "debug" with "release" if you want to compile in release mode
 
-CONFIG += debug
+CONFIG += release
+DEFINES += GSTLAPPLI_NDEBUG
 #warn_on
 
 
@@ -26,7 +27,7 @@ CONFIG += debug
 #QMAKE_CXXFLAGS_WARN_ON += -Wredundant-decls -Woverloaded-virtual -Winline
 CONFIG += thread
 
-INCLUDEPATH += $$GSTLHOME $$GSTLAPPLI_HOME $$BOOST_INCLUDE $$VTK_INCLUDE
+INCLUDEPATH += $$GSTLAPPLI_HOME/ar2GsTL $$GSTLAPPLI_HOME $$BOOST_INCLUDE $$VTK_INCLUDE
 #INCLUDEPATH += $$INVENTOR_INCLUDE
 
 DEPENDPATH += $$INCLUDEPATH

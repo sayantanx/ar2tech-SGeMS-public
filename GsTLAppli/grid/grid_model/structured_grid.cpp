@@ -1,4 +1,4 @@
-#include <GsTLAppli\grid\grid_model\structured_grid.h>
+#include <GsTLAppli/grid/grid_model/structured_grid.h>
 
 #include <vtkPoints.h>
 
@@ -55,3 +55,4 @@ GsTLPoint Structured_grid::get_corner_point_locations(int id) const {
 
 
 }
+

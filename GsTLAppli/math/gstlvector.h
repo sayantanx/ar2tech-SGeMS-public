@@ -57,7 +57,8 @@
  
 #include <GsTLAppli/math/common.h>
 #include <GsTLAppli/utils/gstl_types.h> 
- 
+
+#include <cmath> 
 #include <iostream> 
  
  

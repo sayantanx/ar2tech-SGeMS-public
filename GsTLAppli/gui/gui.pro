@@ -75,6 +75,7 @@ HEADERS += viewer/visualization_parameters.h \
     vtk_prop/vtk_prop_mgrid.h \
     vtk_prop/vtk_prop_pointset.h \
     vtk_prop/vtk_prop_strati_grid.h \
+    vtk_prop/vtk_prop_structured_grid.h \
     QWidget_value_accessors/default_accessor.h \
     QWidget_value_accessors/qbuttongroup_accessor.h \
     QWidget_value_accessors/qcheckbox_accessor.h \
@@ -106,7 +107,6 @@ HEADERS += viewer/visualization_parameters.h \
     utils/script_editor.h \
     utils/script_syntax_highlighter.h \
     utils/std_output_redirect.h \
-    variogram2/a.h \
     variogram2/first_scr.h \
     variogram2/plot_settings_dialog.h \
     variogram2/print_plots_dialog.h \
@@ -121,12 +121,15 @@ HEADERS += viewer/visualization_parameters.h \
     appli/about_sgems.h \
     charts/chart_base.h \
     charts/chart_continuous_histogram.h \
+    charts/chart_categorical_histogram.h \
     charts/chart_display_control.h \
     charts/chart_distribution.h \
     charts/chart_mdi_area.h \
     charts/eda_dialog.h \
+    charts/eda_charts.h \
     charts/histogram_item_tree_view.h \
     charts/histogram_proxy_model.h \
+    charts/categorical_histogram_proxy_model.h \
     models/categorical_table_model.h \
     models/chart_style_delegate.h \
     models/histogram_chart_model.h \
@@ -208,6 +211,7 @@ SOURCES += viewer/visualization_parameters.cpp \
     vtk_prop/vtk_prop_gstl.cpp \
     vtk_prop/vtk_prop_mgrid.cpp \
     vtk_prop/vtk_prop_pointset.cpp \
+    vtk_prop/vtk_prop_structured_grid.cpp \
     QWidget_value_accessors/default_accessor.cpp \
     QWidget_value_accessors/qbuttongroup_accessor.cpp \
     QWidget_value_accessors/qcheckbox_accessor.cpp \
@@ -252,12 +256,15 @@ SOURCES += viewer/visualization_parameters.cpp \
     appli/about_sgems.cpp \
     charts/chart_base.cpp \
     charts/chart_continuous_histogram.cpp \
+    charts/chart_categorical_histogram.cpp \
     charts/chart_display_control.cpp \
     charts/chart_distribution.cpp \
     charts/chart_mdi_area.cpp \
     charts/eda_dialog.cpp \
+    charts/eda_charts.cpp \
     charts/histogram_item_tree_view.cpp \
     charts/histogram_proxy_model.cpp \
+    charts/categorical_histogram_proxy_model.cpp \
     models/categorical_table_model.cpp \
     models/chart_style_delegate.cpp \
     models/histogram_chart_model.cpp \
