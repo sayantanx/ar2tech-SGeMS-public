@@ -420,7 +420,7 @@ i.e. I (Z&lt;zk) or  I (G=k)</string>
              <string>Assign hard data to simulation grid</string>
             </property>
             <property name="checked">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
            </widget>
           </item>

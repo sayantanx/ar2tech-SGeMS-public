@@ -245,7 +245,7 @@ protected :
 	vtkProp_structured_grid* vtk_prop_struct_grid_;
 };
 
-class Grid_viz_parameters : public Visualization_parameters {
+class GUI_DECL Grid_viz_parameters : public Visualization_parameters {
 public :
 
 
@@ -265,7 +265,7 @@ protected :
 
 
 
-class CGrid_viz_parameters : public Grid_viz_parameters {
+class GUI_DECL CGrid_viz_parameters : public Grid_viz_parameters {
 public :
 
 	static Named_interface* create_new_interface(std::string&);
@@ -284,7 +284,7 @@ protected :
 };
 
 
-class MGrid_viz_parameters : public Grid_viz_parameters {
+class GUI_DECL MGrid_viz_parameters : public Grid_viz_parameters {
 public :
 
 	static Named_interface* create_new_interface(std::string&);
@@ -300,7 +300,7 @@ protected :
 	MGrid_param_viewer* viewer_;
 };
 
-class PSet_viz_parameters : public Grid_viz_parameters {
+class GUI_DECL PSet_viz_parameters : public Grid_viz_parameters {
 public :
 
 	static Named_interface* create_new_interface(std::string&);
@@ -316,7 +316,7 @@ protected :
 	PSet_param_viewer* viewer_;
 };
 
-class Log_grid_viz_parameters : public Grid_viz_parameters {
+class GUI_DECL Log_grid_viz_parameters : public Grid_viz_parameters {
 public :
 
 	static Named_interface* create_new_interface(std::string&);
@@ -332,7 +332,7 @@ protected :
 	Log_grid_param_viewer* viewer_;
 };
 
-class Structured_grid_viz_parameters : public Grid_viz_parameters {
+class GUI_DECL Structured_grid_viz_parameters : public Grid_viz_parameters {
 public :
 
 	static Named_interface* create_new_interface(std::string&);

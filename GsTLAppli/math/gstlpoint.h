@@ -91,7 +91,12 @@ public:
                       coords_[2]*coords_[2]  );
   }
 
-
+  R distance2(const GsTLTripletTmpl<R>& gp) { 
+    R dx =  coords_[0] - gp[0];
+    R dy =  coords_[1] - gp[1];
+    R dz =  coords_[2] - gp[2];
+    return dx*dx + dy*dy + dz*dz;
+  }
 
   void normalize() {
     R l=length();

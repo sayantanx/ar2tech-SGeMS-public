@@ -62,7 +62,7 @@ class Block_covariance : public Covariance<Location>{
       for( int i=0; i < n_blkpoints_; ++i) {
         for(int j=0; j < n_blkpoints_; ++j) {
           block_covariance_ += Covariance<Location>::compute(block_vectors_[i]-block_vectors_[j]);
-          if(i==j) block_covariance_-= Covariance<Location>::nugget();
+          if(i==j) block_covariance_-= Covariance<Location>::nugget();   // This is gslib style.  Not sure why?
         }
       }
       block_covariance_/=(n_blkpoints_*n_blkpoints_);

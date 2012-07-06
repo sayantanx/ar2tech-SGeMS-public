@@ -273,8 +273,8 @@ void vtkProp_structured_grid::refresh_colormap() {
 	mapper_->SetScalarRange(cmap_->lower_bound(),cmap_->upper_bound());
 	mapper_->SetLookupTable(cmap_->color_table());
 /*
-  section_map::iterator it = section_pipelines_.begin();
-  for( ; it != section_pipelines_.end(); ++it) {
+  structured_section_map::iterator it = structured_section_pipelines_.begin();
+  for( ; it != structured_section_pipelines_.end(); ++it) {
     it->second.mapper->SetScalarRange(cmap_->lower_bound(),cmap_->upper_bound());
     it->second.mapper->SetLookupTable(cmap_->color_table());
   }
@@ -497,55 +497,42 @@ void vtkProp_structured_grid::set_colortable_to_mapper(vtkMapper* mapper){
 
 int vtkProp_structured_grid::add_section(int id, QString orientation, bool is_visible){
 
-	section_map::iterator it = section_pipelines_.find(id);
-	if( it !=  section_pipelines_.end()) {  // Already exist
+	structured_section_map::iterator it = structured_section_pipelines_.find(id);
+	if( it !=  structured_section_pipelines_.end()) {  // Already exist
 		return -1;
 	}
 
-	section_pipeline section;
+  int max_extent;
+
+	structured_section_pipeline section;
   section.id = id;
   section.enabled = is_visible;
-  section.plane = vtkPlane::New();
-  section.cutter = vtkCutter::New();
-  section.mapper = vtkPolyDataMapper::New();
-  section.actor = vtkActor::New();
+  section.plane = vtkStructuredGridGeometryFilter::New();
 
-  it = section_pipelines_.insert(section_pipelines_.begin(),std::make_pair(id,section));
+  it = structured_section_pipelines_.insert(structured_section_pipelines_.begin(),std::make_pair(id,section));
+  it->second.plane->SetInputConnection(data_pass_through_filter_->GetOutputPort());
 
-  int max_extent = -1;
+  int dim[3];
+  structured_grid_->GetDimensions(dim);
 
-  int min_extent_x,min_extent_y,min_extent_z;
-  int max_extent_x,max_extent_y,max_extent_z;
-  structured_grid_->GetExtent(min_extent_x,max_extent_x,min_extent_y,
-                         max_extent_y,min_extent_z,max_extent_z);
   if(orientation == "X") {
-    max_extent = max_extent_x;
-    it->second.plane->SetNormal(1,0,0);
+    max_extent = dim[0];
+    it->second.plane->SetExtent(0,0,0,dim[1]-1,0,dim[2]-1);
     it->second.orientation = XSECTION;
   }
   else if(orientation == "Y") {
-     max_extent = max_extent_y;
-     it->second.plane->SetNormal(0,1,0);
-     it->second.orientation = YSECTION;
+    max_extent = dim[1];
+    it->second.plane->SetExtent(0,dim[0]-1,0,0,0,dim[2]-1);
+    it->second.orientation = YSECTION;
 
   }else if(orientation == "Z") {
-     max_extent = max_extent_z;
-     it->second.plane->SetNormal(0,0,1);
-     it->second.orientation = ZSECTION;
+    max_extent = dim[2];
+    it->second.plane->SetExtent(0,dim[0]-1,0,dim[1]-1,0,0);
+    it->second.orientation = ZSECTION;
   }
-  
-  it->second.plane->SetOrigin(grid_->origin().x(),grid_->origin().y(),grid_->origin().z());
-  //it->second.plane->SetOrigin(structured_grid_->GetOrigin());
-  it->second.cutter->SetInputConnection(data_pass_through_filter_->GetOutputPort());
-  it->second.cutter->SetCutFunction(it->second.plane);
-//  it->second.mapper->SetInputConnection(it->second.cutter->GetOutputPort());
-//  it->second.mapper->SetScalarRange(cmap_->lower_bound(),cmap_->upper_bound());
-//  it->second.mapper->SetLookupTable(cmap_->color_table());
-//  it->second.actor->SetMapper(it->second.mapper);
-//  renderer_->AddActor(it->second.actor);
 
 	if(is_visible) {
-		section_poly_data_->AddInput(it->second.cutter->GetOutput());
+		section_poly_data_->AddInput(it->second.plane->GetOutput());
 		if(is_section_active_ == false) {
 			this->enable_section_pipeline();
 			is_section_active_ = true;
@@ -558,39 +545,117 @@ int vtkProp_structured_grid::add_section(int id, QString orientation, bool is_vi
 
 bool vtkProp_structured_grid::update_section(int id, int step, bool is_visible){
 
-	section_map::iterator it = section_pipelines_.find(id);
-	if( it ==  section_pipelines_.end()) {  // does not exist
+	structured_section_map::iterator it = structured_section_pipelines_.find(id);
+	if( it ==  structured_section_pipelines_.end()) {  // does not exist
 		return false;
 	}
-/*
-  //Get the displacement from the step number
-  int min_extent_x,min_extent_y,min_extent_z;
-  int max_extent_x,max_extent_y,max_extent_z;
-  structured_grid_->GetExtent(min_extent_x,min_extent_y,min_extent_z,
-                         max_extent_x,max_extent_y,max_extent_z);
-
-  double x_cell_dim, y_cell_dim,z_cell_dim;
-  structured_grid_->GetSpacing(x_cell_dim, y_cell_dim,z_cell_dim);
-
-  double x_origin, y_origin,z_origin;
-  structured_grid_->GetOrigin(x_origin, y_origin,z_origin);
+  int dim[3];
+  structured_grid_->GetDimensions(dim);
 
   if(it->second.orientation == XSECTION) {
-    if( step >  max_extent_x) step = max_extent_x;
-    it->second.plane->SetOrigin(x_origin+x_cell_dim*step, y_origin,z_origin );
+    if( step >  dim[0]-1) step = dim[0]-1;
+    it->second.plane->SetExtent(step,step,0,dim[1]-1,0,dim[2]-1);
   }
   else if(it->second.orientation == YSECTION) {
-    it->second.plane->SetNormal(0,1,0);
-    it->second.plane->SetOrigin(x_origin, y_origin+ y_cell_dim*step,z_origin );
+    if( step >  dim[1]-1) step = dim[1]-1;
+    it->second.plane->SetExtent(0,dim[0]-1,step,step,0,dim[2]-1);
 
   }
   else if(it->second.orientation == ZSECTION) {
-    it->second.plane->SetNormal(0,0,1);
-    it->second.plane->SetOrigin(x_origin, y_origin,z_origin + z_cell_dim*step );
+    if( step >  dim[2]-1) step = dim[2]-1;
+    it->second.plane->SetExtent(0,dim[0]-1,0,dim[1]-1,step,step);
 
   }
 
   it->second.plane->Modified();
-*/
+
+
+}
+
+
+
+bool vtkProp_structured_grid::remove_all_sections(){
+
+  section_poly_data_->RemoveAllInputs();
+	structured_section_map::iterator it = structured_section_pipelines_.begin();
+
+	for( ; it != structured_section_pipelines_.end(); ++it) {
+    section_poly_data_->RemoveInput(it->second.plane->GetOutput());
+    it->second.plane->Delete();
+	}
+	structured_section_pipelines_.clear();
+
+	is_section_active_ == false;
+  this->disable_section_pipeline();
+
+	return true;
+
+}
+
+
+bool vtkProp_structured_grid::remove_section(int id){
+
+
+	structured_section_map::iterator it = structured_section_pipelines_.find(id);
+
+	if(it == structured_section_pipelines_.end()) return true;
+
+  section_poly_data_->RemoveInput(it->second.plane->GetOutput());
+
+  it->second.plane->Delete();
+
+	structured_section_pipelines_.erase(it);
+
+	is_section_active_ = false;
+	for(int i=0; i<structured_section_pipelines_.size();++i) {
+		if( structured_section_pipelines_[i].enabled ) {
+			is_thresold_active_= true;
+			break;
+		}
+	}
+
+	if(is_thresold_active_ == false) {
+		this->disable_section_pipeline();
+	}
+
+	return true;
+}
+
+bool vtkProp_structured_grid::enable_section(int id){
+
+  structured_section_map::iterator it = structured_section_pipelines_.find(id);
+  if(it == structured_section_pipelines_.end()) return false;
+
+  it->second.enabled = true;
+
+  section_poly_data_->AddInput(it->second.plane->GetOutput());
+  if(is_section_active_ == false) {
+    is_section_active_ = true;
+    this->enable_section_pipeline();
+  }
+
+  return true;
+}
+
+
+bool vtkProp_structured_grid::disable_section(int id){
+
+  structured_section_map::iterator it = structured_section_pipelines_.find(id);
+  if(it == structured_section_pipelines_.end()) return false;
+
+  section_poly_data_->RemoveInput(it->second.plane->GetOutput());
+  it->second.enabled = false;
+
+
+	is_section_active_ = false;
+	for(int i=0; i<structured_section_pipelines_.size();++i) {
+		if( structured_section_pipelines_[i].enabled ) {
+			is_section_active_  = true;
+		}
+	}
+  if( !is_section_active_  )
+	  this->disable_section_pipeline();
+  
+  return true;
 
 }

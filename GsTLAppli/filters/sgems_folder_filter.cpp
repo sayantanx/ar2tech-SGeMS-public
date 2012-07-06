@@ -37,6 +37,7 @@
 #include <GsTLAppli/grid/grid_model/point_set.h>
 #include <GsTLAppli/grid/grid_model/reduced_grid.h>
 #include <GsTLAppli/grid/grid_model/log_data_grid.h>
+#include <GsTLAppli/grid/grid_model/structured_grid.h>
 #include <GsTLAppli/grid/grid_model/grid_property.h>
 #include <GsTLAppli/grid/grid_model/grid_region.h>
 #include <GsTLAppli/appli/manager_repository.h>
@@ -132,6 +133,8 @@ Named_interface* Sgems_folder_input_filter::read( const std::string& filename,
 		grid = read_point_set(dir,root, errors);
 	else if(type == "Log_data_grid")
 		grid = read_log_data_grid(dir,root, errors);
+	else if(type == "Structured_grid")
+		grid = read_structured_grid(dir,root, errors);
 	else {
 		errors->append("Non matching grid type");
 		return 0;
@@ -390,6 +393,69 @@ Geostat_grid* Sgems_folder_input_filter::read_log_data_grid(QDir dir,const QDomE
 }
 
 
+
+Geostat_grid*
+Sgems_folder_input_filter::read_structured_grid(QDir dir,const QDomElement& elem, std::string* errors){
+
+	QString grid_name = elem.attribute("name");
+
+	QDomElement elemGeom = elem.firstChildElement("Geometry");
+
+  int nx = elemGeom.attribute("nx").toInt();
+  int ny = elemGeom.attribute("ny").toInt();
+  int nz = elemGeom.attribute("nz").toInt();
+
+  float rotation_z_angle = elemGeom.attribute("rotation_z_angle").toFloat();
+
+
+// Read the mask
+ // std::string maskfile = dir.absolutePath().toStdString()+"/gridmask.sgems";
+ // std::fstream stream(maskfile.c_str());
+
+  QFile file( dir.absolutePath()+"/corner_coordinates.sgems" );
+  if( !file.open( QIODevice::ReadOnly ) ) {
+  	errors->append("Could not open the coordinates for the grid geometry");
+  	return 0;
+  }
+	QDataStream stream( &file );
+  stream.setFloatingPointPrecision(QDataStream::DoublePrecision);
+/*
+#if QT_VERSION >= 0x040600
+  stream.setFloatingPointPrecision(QDataStream::DoublePrecision);
+#endif
+*/
+  int n_points = (nx+1)*(ny+1)*(nz+1); 
+  std::vector<GsTLPoint> coords;
+	coords.reserve(n_points);
+	for( GsTLInt k = 0; k < n_points ; k++ ) {
+    GsTLPoint corner_coords;
+		stream >> corner_coords.x();
+    stream >> corner_coords.y();
+    stream >> corner_coords.z();
+		coords.push_back( corner_coords );
+	}
+
+  std::string final_grid_name;
+	SmartPtr<Named_interface> ni =
+		Root::instance()->new_interface( "Structured_grid://" + grid_name.toStdString(),
+		gridModels_manager + "/" + grid_name.toStdString());
+	Structured_grid* grid = dynamic_cast<Structured_grid*>( ni.raw_ptr() );
+	if(grid==0) return 0;
+
+	if (!grid) {
+		errors->append("could not create the grid");
+		return 0;
+	}
+
+  grid->set_dimensions( nx, ny, nz);
+  grid->set_structured_points(coords);
+
+	return grid;
+
+}
+
+
+
 bool Sgems_folder_input_filter::read_properties(QDir dir,const QDomElement& root, Geostat_grid* grid, std::string* errors){
 
   long int filesize = grid->size()*sizeof( float );
@@ -624,6 +690,8 @@ bool Sgems_folder_output_filter::write( std::string outfile,
   	elemGeom =  write_cartesian_grid_geometry( dir, doc,  grid );
   else if( grid->classname() == "Log_data_grid" )
   	elemGeom =  write_log_data_grid_geometry( dir, doc,  grid );
+  else if( grid->classname() == "Structured_grid" )
+  	elemGeom =  write_structured_grid_geometry( dir, doc,  grid );
   else {
 	  errors->append( "The grid type "+grid->classname()+" cannot be saved with this filter" );
 	  return false;
@@ -801,6 +869,47 @@ QDomElement Sgems_folder_output_filter::write_log_data_grid_geometry( QDir dir, 
 	 return elemGeom;
 
 }
+
+
+
+QDomElement Sgems_folder_output_filter::write_structured_grid_geometry(QDir dir, QDomDocument& dom, const Geostat_grid* grid){
+	const Reduced_grid *mgrid =  dynamic_cast<const Reduced_grid*>( grid );
+
+	const Structured_grid* struct_grid = dynamic_cast<const Structured_grid*>(grid);
+
+	 QDomElement elemGeom = dom.createElement("Geometry");
+	 elemGeom.setAttribute("nx",struct_grid->nx());
+	 elemGeom.setAttribute("ny",struct_grid->ny());
+	 elemGeom.setAttribute("nz",struct_grid->nz());
+   elemGeom.setAttribute("rotation_z_angle",struct_grid->rotation_z());
+
+  QFile file( dir.absoluteFilePath("corner_coordinates.sgems" ) );
+  if( !file.open( QIODevice::WriteOnly ) ) {
+  	elemGeom.clear();
+  	return elemGeom;
+  }
+	QDataStream stream( &file );
+  /*
+	#if QT_VERSION >= 0x040600
+		stream.setFloatingPointPrecision(QDataStream::SinglePrecision);
+	#endif
+  */
+  stream.setFloatingPointPrecision(QDataStream::DoublePrecision);
+
+  int n_points = (struct_grid->nx()+1)*(struct_grid->ny()+1)*(struct_grid->nz()+1);
+
+	for(int i=0; i<n_points; ++i) {
+    GsTLPoint pt = struct_grid->get_corner_point_locations(i);
+    stream<< pt.x();
+    stream<< pt.y();
+    stream<< pt.z();
+  }
+	file.close();
+	return elemGeom;
+
+}
+
+
 
 QDomElement
 Sgems_folder_output_filter::write_properties(QDir dir, QDomDocument& doc, const Geostat_grid* grid)

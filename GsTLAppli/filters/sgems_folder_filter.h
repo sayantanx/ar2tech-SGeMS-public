@@ -63,6 +63,7 @@ protected :
   Geostat_grid* read_masked_grid(QDir dir,const QDomElement& elem, std::string* errors);
   Geostat_grid* read_point_set(QDir dir,const QDomElement& elem, std::string* errors);
   Geostat_grid* read_log_data_grid(QDir dir,const QDomElement& elem, std::string* errors);
+  Geostat_grid* read_structured_grid(QDir dir,const QDomElement& elem, std::string* errors);
 
   bool read_properties(QDir dir,const QDomElement& dom, Geostat_grid* grid, std::string* errors);
   bool read_regions(QDir dir,const QDomElement& dom, Geostat_grid* grid, std::string* errors);
@@ -98,6 +99,7 @@ protected :
   QDomElement write_cartesian_grid_geometry( QDir dir, QDomDocument& dom, const Geostat_grid* grid );
   QDomElement write_log_data_grid_geometry( QDir dir, QDomDocument& dom, const Geostat_grid* grid );
   QDomElement write_log_data_geometry( QDomDocument& dom, const Log_data* ldata );
+  QDomElement write_structured_grid_geometry(QDir dir, QDomDocument& dom, const Geostat_grid* grid );
 
   QDomElement write_properties(QDir dir, QDomDocument& dom, const Geostat_grid* grid);
   QDomElement write_regions(QDir dir, QDomDocument& dom, const Geostat_grid* grid);

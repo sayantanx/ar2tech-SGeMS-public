@@ -53,6 +53,7 @@
 #include <vtkImageShiftScale.h>
 #include <vtkVolumeTextureMapper2D.h>
 #include <vtkVolumeTextureMapper3D.h>
+#include <vtkStructuredGridGeometryFilter.h>
 
  
 #include <map> 
@@ -92,6 +93,10 @@ class GUI_DECL vtkProp_structured_grid : public GsTL_vtkProp {
   virtual int add_slice( VTK::Axis axis, int position, bool visible );
   virtual void remove_slice( int slice_id );
 
+  virtual bool remove_section(int id);
+  virtual bool remove_all_sections();
+  virtual bool enable_section(int id);
+  virtual bool disable_section(int id);
   virtual int add_section(int id, QString orientation, bool is_visible);
   virtual bool update_section(int id, int steps, bool is_visible);
 
@@ -103,6 +108,17 @@ class GUI_DECL vtkProp_structured_grid : public GsTL_vtkProp {
 
 
  protected: 
+
+  struct structured_section_pipeline {
+    section_orientation orientation;
+    int id;
+    bool enabled;
+    vtkStructuredGridGeometryFilter* plane;
+  };
+  typedef std::map<int, structured_section_pipeline> structured_section_map;
+  structured_section_map structured_section_pipelines_;
+
+
   virtual void refresh();
   virtual void property_deleted( const std::string& prop_name );
   virtual bool connect_threshold_to_data(vtkThreshold* thresholder);
@@ -111,10 +127,11 @@ class GUI_DECL vtkProp_structured_grid : public GsTL_vtkProp {
   virtual bool enable_section_pipeline();
   virtual bool disable_section_pipeline();
 
+
+
   virtual void set_colortable_to_mapper(vtkMapper* mapper);
 
 
- 
  protected: 
 //  typedef std::list< Oinv_slice* >::iterator SliceList_iterator;
    

@@ -271,9 +271,9 @@ bool Cokriging::initialize( const Parameters_handler* parameters,
   std::string sec_harddata_region_name = parameters->value( "Secondary_Harddata_Grid.region" );
   GsTLGridRegion* sec_hd_region = sec_harddata_grid_->region(sec_harddata_region_name);
 
-  bool assign = 
-    String_Op::to_number<bool>( parameters->value( "Assign_Hard_Data.value" ) );
-
+//  bool assign = 
+//    String_Op::to_number<bool>( parameters->value( "Assign_Hard_Data.value" ) );
+  bool assign = false;
   /*
   if( assign || ( prim_harddata_grid_ == simul_grid_ ) ) {
     SmartPtr<Property_copier> property_copier_ = 

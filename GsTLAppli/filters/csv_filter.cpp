@@ -1246,7 +1246,7 @@ Geostat_grid* Csv_structured_infilter::read( std::ifstream& infile, std::string 
 	  property_names.removeOne(coord_names.at(i));
   }
 
-  std::vector<GsTLCoordVector> corners;
+  std::vector<GsTLPoint> corners;
 
 //  For a csv file no data value is indicated by an empty field e.g. {34,,5.5}
   int grid_size=0;
@@ -1254,7 +1254,7 @@ Geostat_grid* Csv_structured_infilter::read( std::ifstream& infile, std::string 
     qstr = str.c_str();
     QStringList fields = qstr.split(",");
 
-    GsTLCoordVector  pts(fields[x_id].toDouble(),fields[y_id].toDouble(),fields[z_id].toDouble() );
+    GsTLPoint  pts(fields[x_id].toDouble(),fields[y_id].toDouble(),fields[z_id].toDouble() );
     corners.push_back(pts);
 
     grid_size++;

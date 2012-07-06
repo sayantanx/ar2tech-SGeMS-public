@@ -45,13 +45,14 @@ public:
 
   virtual ~Structured_grid();
 
-  virtual std::string classname() const { return "StructuredGrid"; } 
+  virtual std::string classname() const { return "Structured_grid"; } 
 
   virtual GsTLPoint origin() const {return origin_;}
 
-  void set_structured_points( std::vector<GsTLCoordVector>& corner_points);
+  void set_structured_points( std::vector<GsTLPoint>& corner_points);
 
   vtkSmartPointer<vtkStructuredGrid> get_structured_geometry() { return sgrid_geom_;}
+  GsTLPoint get_corner_point_locations(int id) const ;
 
 protected:
   vtkSmartPointer<vtkStructuredGrid> sgrid_geom_;

@@ -42,7 +42,7 @@
 #include <QMenu>
 #include <QIcon>
 
-class Context_menu_interface : public Named_interface {
+class GUI_DECL Context_menu_interface : public Named_interface {
 public:
 	Context_menu_interface();
 	virtual ~Context_menu_interface();
@@ -60,7 +60,7 @@ protected :
 	QList<QMenu*> submenus_;
 };
 
-class Context_menu_grid : public Context_menu_interface {
+class GUI_DECL Context_menu_grid : public Context_menu_interface {
 public:
 
 	static Named_interface* create_new_interface(std::string&);
@@ -85,7 +85,7 @@ protected :
 };
 
 
-class Context_menu_region : public Context_menu_interface {
+class GUI_DECL Context_menu_region : public Context_menu_interface {
 public:
 
 	static Named_interface* create_new_interface(std::string&);

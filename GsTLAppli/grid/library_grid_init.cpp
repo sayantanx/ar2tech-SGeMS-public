@@ -156,7 +156,7 @@ bool library_grid_init::bind_models_factories(Manager* dir) {
   dir->factory( "rgrid", create_Rgrid );
   dir->factory( "point_set", Point_set::create_new_interface );
   dir->factory( "log_grid", Log_data_grid::create_new_interface );
-  dir->factory( "StructuredGrid", Structured_grid::create_new_interface );
+  dir->factory( "Structured_grid", Structured_grid::create_new_interface );
 
   //TL modified
   dir->factory("reduced_grid", create_reduced_grid);

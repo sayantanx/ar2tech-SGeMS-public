@@ -29,13 +29,13 @@ Structured_grid::~Structured_grid()
 }
 
 
-void Structured_grid::set_structured_points( std::vector<GsTLCoordVector>& corner_points){
+void Structured_grid::set_structured_points( std::vector<GsTLPoint>& corner_points){
 
   vtkSmartPointer<vtkPoints> pts = vtkSmartPointer<vtkPoints>::New();
   pts->SetDataTypeToDouble ();
   pts->SetNumberOfPoints( (this->nx()+1) * (this->ny()+1) * (this->nz()+1) );
 
-  std::vector<GsTLCoordVector>::const_iterator it = corner_points.begin();
+  std::vector<GsTLPoint>::const_iterator it = corner_points.begin();
   for(int i=0 ; it!= corner_points.end(); ++it,++i) {
     pts->SetPoint(i,it->x(),it->y(),it->z());
   }
@@ -45,4 +45,13 @@ void Structured_grid::set_structured_points( std::vector<GsTLCoordVector>& corne
   double origin_coord[3];
   sgrid_geom_->GetPoint(0,origin_coord);
   origin_ = GsTLPoint(origin_coord[0],origin_coord[1],origin_coord[2]); 
+}
+
+
+GsTLPoint Structured_grid::get_corner_point_locations(int id) const {
+  double d_coord[3];
+  sgrid_geom_->GetPoint(id,d_coord);
+  return GsTLPoint(d_coord[0],d_coord[1],d_coord[2]); 
+
+
 }
