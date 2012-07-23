@@ -81,6 +81,11 @@ class GRID_DECL Neighborhood : public SmartPtr_interface<Neighborhood> {
  
  public: 
    Neighborhood() : includes_center_( true ),region_(0),neigh_filter_(new Search_filter()) {}
+   Neighborhood(const Neighborhood& other) : includes_center_( other.includes_center_ ),region_(other.region_),neigh_filter_(new Search_filter()) 
+   {
+     neighbors_ = other.neighbors_;
+   }
+
   virtual ~Neighborhood() {delete neigh_filter_;} 
  
   virtual void find_neighbors( const Geovalue& center ) = 0 ; 
@@ -106,6 +111,8 @@ class GRID_DECL Neighborhood : public SmartPtr_interface<Neighborhood> {
   iterator end() { return neighbors_.end(); } 
   const_iterator begin() const { return neighbors_.begin(); } 
   const_iterator end() const { return neighbors_.end(); } 
+
+  const std::vector<Geovalue>& get_neighbors()const {return neighbors_;} 
  
   virtual int size() const { return neighbors_.size(); } 
   virtual void max_size( int s ) = 0; 
@@ -121,6 +128,8 @@ class GRID_DECL Neighborhood : public SmartPtr_interface<Neighborhood> {
   Search_filter* search_neighborhood_filter() { return neigh_filter_;}
 
   virtual bool is_valid() { return neigh_filter_->is_neighborhood_valid();}
+
+  
 
   /** Set the neighbors to geovalues in range [begin,end). Geovalues of range
   * [begin,end) that are not compatible with the neighborhood are ignored 
@@ -246,6 +255,8 @@ class GRID_DECL DummyNeighborhood : public Neighborhood {
 
  public: 
   DummyNeighborhood() {}
+  DummyNeighborhood(const DummyNeighborhood& other) {}
+
   virtual ~DummyNeighborhood() {} 
  
   virtual void find_neighbors( const Geovalue&  ) {} ; 
@@ -334,6 +345,12 @@ class GRID_DECL Grid_template {
 class GRID_DECL Window_neighborhood : public Neighborhood { 
  public: 
    Window_neighborhood() : Neighborhood() { includes_center_ = false; }
+
+   Window_neighborhood(const Window_neighborhood& other) : Neighborhood(other){ 
+     includes_center_ = other.includes_center_; 
+     geom_ = other.geom_;
+   }
+
   virtual ~Window_neighborhood() {} 
  
   virtual void set_geometry( Grid_template::iterator begin,  

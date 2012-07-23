@@ -432,6 +432,7 @@ void DiskAccessor::flush( bool leave_stream_open ) {
 }
 
 int DiskAccessor::delete_cache_file() {
+  this->close_cache_stream();
   QFile file(cache_filename_.c_str());
   return file.remove();
   //int status = remove( cache_filename_.c_str() );

@@ -241,7 +241,7 @@ Grid_property_manager::Grid_property_manager( GsTLInt size ) {
 }
 
 Grid_property_manager::~Grid_property_manager() {
-/*
+
   while(!properties_map_.empty()) {
     std::map< std::string, int >::iterator it = properties_map_.begin();
     int ind = it->second;
@@ -255,7 +255,7 @@ Grid_property_manager::~Grid_property_manager() {
     properties_map_.erase( it );
     if(model_) model_->end_remove_item();
   }
-*/
+
 /*
   std::vector< GsTLGridProperty* >::iterator it = properties_.begin();
   for( ; it != properties_.end() ; ++it )
