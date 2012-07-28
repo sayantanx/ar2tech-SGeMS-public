@@ -103,8 +103,10 @@ compute_variogram_values( Discrete_function &experim_variog,
   const int ny = grid_->ny();
   const int nz = grid_->nz();
 
-  SGrid_cursor cursor = *( grid_->cursor() );
-  cursor.set_multigrid_level(1);
+  //SGrid_cursor cursor = *( grid_->cursor() );
+  const SGrid_cursor* cursor = grid_->cursor();
+  //cursor.set_multigrid_level(1);
+
 
   double covar = 1.0;
   /* Disabling standardize because it doesn't always work in the case of
@@ -134,11 +136,15 @@ compute_variogram_values( Discrete_function &experim_variog,
             }
           }
 
-          int tail_id = cursor.node_id( u,v,w );
+          //int tail_id = cursor.node_id( u,v,w );
+          int tail_id = cursor->node_id( u,v,w );
+          if(tail_id < 0) continue;
           if( !head_prop_->is_informed( tail_id ) ) continue;
           if( !tail_prop_->is_informed( tail_id ) ) continue;
   
-          int head_id = cursor.node_id( u+step.x(), v+step.y(), w+step.z() );
+          //int head_id = cursor.node_id( u+step.x(), v+step.y(), w+step.z() );
+          int head_id = cursor->node_id( u+step.x(), v+step.y(), w+step.z() );
+          if(head_id < 0) continue;
           if( !head_prop_->is_informed( head_id ) ) continue;
           if( !tail_prop_->is_informed( head_id ) ) continue;
 
