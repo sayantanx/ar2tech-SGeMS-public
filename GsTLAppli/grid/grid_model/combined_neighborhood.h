@@ -96,6 +96,8 @@ class GRID_DECL Combined_neighborhood : public Neighborhood {
   virtual void find_neighbors( const Geovalue& center ); 
   virtual void max_size( int s ); 
   virtual int max_size() const { return max_size_; } 
+
+
   virtual Geovalue center() const { return center_; } 
  
   virtual void set_neighbors( const_iterator begin, const_iterator end );

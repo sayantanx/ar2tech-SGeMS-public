@@ -75,6 +75,7 @@
 #include <GsTLAppli/actions/categorical_definition_actions.h>
 #include <GsTLAppli/actions/property_group_actions.h>
 #include <GsTLAppli/actions/distribution_action.h>
+#include <GsTLAppli/actions/property_transformer_actions.h>
 
 void init_python_interpreter();
 
@@ -208,6 +209,11 @@ bool library_actions_init::bind_action_factories(Manager* dir)
   dir->factory("UpscaleProperties", Upscale_properties::create_new_interface);
   dir->factory("UpscaleGroup", Upscale_group::create_new_interface);
  
+  dir->factory("New_pca_transformer", New_pca_transformer::create_new_interface);
+  dir->factory("Multivariate_forward_transform", Multivariate_forward_transform::create_new_interface);
+  dir->factory("Multivariate_back_transform", Multivariate_back_transform::create_new_interface);
+  dir->factory("Delete_multivariate_transforms", Delete_multivariate_transforms::create_new_interface);
+
 
 	// algorithm related actions
 	dir->factory("RunGeostatAlgorithm", Run_geostat_algo::create_new_interface);

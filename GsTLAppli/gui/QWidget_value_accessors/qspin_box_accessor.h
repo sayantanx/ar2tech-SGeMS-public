@@ -58,7 +58,8 @@
 #include <GsTLAppli/gui/common.h>
 #include <GsTLAppli/gui/utils/qwidget_value_accessor.h> 
  
-#include <qspinbox.h> 
+#include <QSpinBox> 
+#include <QDoubleSpinBox> 
  
 #include <string> 
  
@@ -82,5 +83,23 @@ class GUI_DECL QSpinBox_accessor : public QWidget_value_accessor {
  
 }; 
  
+class GUI_DECL QDoubleSpinBox_accessor : public QWidget_value_accessor { 
+ public: 
+  static Named_interface* create_new_interface(std::string&); 
  
+ public: 
+  QDoubleSpinBox_accessor( QWidget* widget = 0 ); 
+  virtual ~QDoubleSpinBox_accessor() {} 
+ 
+  virtual bool initialize( QWidget* widget = 0 ); 
+  virtual bool is_valid() const { return spin_box_ != 0; } 
+  virtual std::string value() const; 
+  virtual bool set_value( const std::string& str ); 
+  virtual void clear(); 
+     
+ private: 
+  QDoubleSpinBox* spin_box_; 
+ 
+}; 
+
 #endif  

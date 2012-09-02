@@ -140,7 +140,7 @@ void vtkProp_mgrid::init( Geostat_grid* grid, vtkRenderer* renderer ) {
 
 
   vtk_mask_threshold_ = vtkThreshold::New();
-  vtk_mask_threshold_->SetInput(image_data_);
+  vtk_mask_threshold_->SetInputData(image_data_);
   vtk_mask_threshold_->SetInputArrayToProcess(0,0,0,vtkDataObject::FIELD_ASSOCIATION_CELLS,"mask");
   vtk_mask_threshold_->ThresholdBetween(1,1);
   vtk_mask_threshold_->Update();
@@ -148,18 +148,18 @@ void vtkProp_mgrid::init( Geostat_grid* grid, vtkRenderer* renderer ) {
   ugrid_ = vtk_mask_threshold_->GetOutput();
 
   data_pass_through_ = vtkPassThrough::New();
-  data_pass_through_->SetInput(ugrid_);
+  data_pass_through_->SetInputData(ugrid_);
 
   surface_extractor_ = vtkDataSetSurfaceFilter::New();
   surface_extractor_->SetInputArrayToProcess(0,0,0,vtkDataObject::FIELD_ASSOCIATION_CELLS,vtkDataSetAttributes::SCALARS);
-  surface_extractor_->SetInput((vtkDataSet*)data_pass_through_->GetOutput());
+  surface_extractor_->SetInputConnection(data_pass_through_->GetOutputPort());
 
 
 	vtk_property_->SetRepresentationToSurface();
 	vtk_property_->EdgeVisibilityOff();
 
   mapper_ = vtkDataSetMapper::New();
-  mapper_->SetInput(surface_extractor_->GetOutput());
+  mapper_->SetInputConnection(surface_extractor_->GetOutputPort());
 
   actor_ = vtkActor::New();
   actor_->SetProperty(vtk_property_);
@@ -177,7 +177,7 @@ void vtkProp_mgrid::init( Geostat_grid* grid, vtkRenderer* renderer ) {
   ugrid_->GetCellData()->AddArray(maskArray);
 
     region_threshold_ = vtkThreshold::New();
-    region_threshold_->SetInput(ugrid_);
+    region_threshold_->SetInputData(ugrid_);
     region_threshold_->SetInputArrayToProcess(0,0,0,vtkDataObject::FIELD_ASSOCIATION_CELLS,"RegionArray");
     region_threshold_->ThresholdBetween(1,1);
 
@@ -401,8 +401,8 @@ void vtkProp_mgrid::set_region(const std::string& region_name ){
 
 	if(region_name == "" ) {
 		current_region_ = 0;
-		region_threshold_->SetInput(0);
-		data_pass_through_->SetInput(ugrid_);
+		region_threshold_->SetInputData(0);
+		data_pass_through_->SetInputData(ugrid_);
 
 	}
 	else {
@@ -423,8 +423,8 @@ void vtkProp_mgrid::set_region(const std::string& region_name ){
 			cached_region_name_ = current_region_->name();
 
 		}
-		region_threshold_->SetInput(ugrid_);
-		data_pass_through_->SetInput((vtkDataSet*)region_threshold_->GetOutput());
+		region_threshold_->SetInputData(ugrid_);
+		data_pass_through_->SetInputConnection(region_threshold_->GetOutputPort());
     region_threshold_->Modified();
 
 	}
@@ -434,13 +434,13 @@ void vtkProp_mgrid::set_region(const std::string& region_name ){
 }
 
 bool vtkProp_mgrid::connect_threshold_to_data(vtkThreshold* thresholder){
-	thresholder->SetInput(vtkDataSet::SafeDownCast(data_pass_through_->GetOutput()));
+	thresholder->SetInputConnection(data_pass_through_->GetOutputPort());
   return true;
 }
 
 bool vtkProp_mgrid::enable_threshold_pipeline(){
-	surface_extractor_->SetInput(0);
-	mapper_->SetInput(threshold_poly_data_->GetOutput());
+  surface_extractor_->RemoveAllInputConnections(0);
+  mapper_->SetInputConnection(threshold_poly_data_->GetOutputPort());
 	mapper_->Modified();
   return true;
 }
@@ -452,8 +452,9 @@ bool vtkProp_mgrid::disable_threshold_pipeline(){
   }
   else {
 
-	  surface_extractor_->SetInput(vtkDataSet::SafeDownCast(data_pass_through_->GetOutput()));
-	  mapper_->SetInput(surface_extractor_->GetOutput());
+	  //surface_extractor_->SetInput(vtkDataSet::SafeDownCast(data_pass_through_->GetOutput()));
+    surface_extractor_->SetInputConnection(data_pass_through_->GetOutputPort());
+	  mapper_->SetInputConnection(surface_extractor_->GetOutputPort());
   }
 
 	mapper_->Modified();
@@ -465,7 +466,7 @@ bool vtkProp_mgrid::disable_threshold_pipeline(){
 
 bool vtkProp_mgrid::enable_section_pipeline(){
 
-	mapper_->SetInput(section_poly_data_->GetOutput());
+	mapper_->SetInputConnection(section_poly_data_->GetOutputPort());
 	mapper_->Modified();
   return true;
 }
@@ -477,8 +478,9 @@ bool vtkProp_mgrid::disable_section_pipeline(){
   }
   else {
 
-	  surface_extractor_->SetInput(vtkDataSet::SafeDownCast(data_pass_through_->GetOutput()));
-	  mapper_->SetInput(surface_extractor_->GetOutput());
+	  //surface_extractor_->SetInput(vtkDataSet::SafeDownCast(data_pass_through_->GetOutput()));
+    surface_extractor_->SetInputConnection(0,data_pass_through_->GetOutputPort());
+	  mapper_->SetInputConnection(surface_extractor_->GetOutputPort());
 
 	  mapper_->Modified();
   }
@@ -547,7 +549,7 @@ int vtkProp_mgrid::add_section(int id, QString orientation, bool is_visible){
 //  renderer_->AddActor(it->second.actor);
 
 	if(is_visible) {
-		section_poly_data_->AddInput(it->second.cutter->GetOutput());
+    section_poly_data_->AddInputConnection(it->second.cutter->GetOutputPort());
 		if(is_section_active_ == false) {
 			this->enable_section_pipeline();
 			is_section_active_ = true;

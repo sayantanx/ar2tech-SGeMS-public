@@ -95,7 +95,7 @@ void Cartesian_grid::set_geometry( RGrid_geometry* geom ) {
   if( geom_ != geom ) {
     delete geom_;
     geom_ = geom->clone();
-    topology_is_updated_ = false;
+    connection_is_updated_ = false;
   }
   grid_cursor_ = new SGrid_cursor(nx(), ny(), nz(), 1);
   property_manager_.set_prop_size( geom->size() );
@@ -107,7 +107,7 @@ void Cartesian_grid::set_geometry( RGrid_geometry* geom ) {
 
 
 
-GsTLInt Cartesian_grid::closest_node( const location_type& P ) {
+GsTLInt Cartesian_grid::closest_node( const location_type& P ) const {
   location_type origin = geometry_->origin();
   location_type P0;
   P0.x() = P.x() - origin.x();

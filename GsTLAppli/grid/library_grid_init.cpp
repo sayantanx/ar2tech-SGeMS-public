@@ -62,6 +62,7 @@
 #include <GsTLAppli/grid/grid_model/log_data_grid.h>
 #include <GsTLAppli/grid/grid_model/structured_grid.h>
 #include <GsTLAppli/grid/grid_model/grid_downscaler.h>
+#include <GsTLAppli/grid/property_transformer.h>
 
 int library_grid_init::references_ = 0;
 
@@ -124,6 +125,7 @@ int library_grid_init::init_lib() {
   init_property_copier_factory();
   init_downscaler_factory();
   init_categorical_definition_factory();
+  init_property_transformer_factory();
 
 
 
@@ -169,7 +171,7 @@ bool library_grid_init::bind_models_factories(Manager* dir) {
 bool library_grid_init::init_property_copier_factory() {
   Property_copier_factory::add_method( Point_set().classname(), 
                                        Cartesian_grid().classname(), 
-                                       Cgrid_to_pset_copier::create_new_interface );
+                                       Pset_to_cgrid_copier::create_new_interface );
   Property_copier_factory::add_method( Cartesian_grid().classname(), 
                                        Cartesian_grid().classname(), 
                                        Cgrid_to_cgrid_copier::create_new_interface );
@@ -185,7 +187,12 @@ bool library_grid_init::init_property_copier_factory() {
                                        Reduced_grid().classname(), 
                                        Pset_to_mask_copier::create_new_interface );
 
-
+  Property_copier_factory::add_method( Cartesian_grid().classname(), 
+                                       Point_set().classname(), 
+                                       Rgrid_to_pset_copier::create_new_interface );
+  Property_copier_factory::add_method( Reduced_grid().classname(), 
+                                       Point_set().classname(), 
+                                       Rgrid_to_pset_copier::create_new_interface );
   return true;
 }
 
@@ -207,6 +214,24 @@ bool library_grid_init::init_downscaler_factory(){
   dir->factory( "Masked_grid", MGrid_downscaler::new_interface );
 }
 
+
+bool library_grid_init::init_property_transformer_factory(){
+  GsTLlog << "Creating transformer manager" << "\n";
+  SmartPtr<Named_interface> ni_transformer = 
+    Root::instance()->new_interface("directory://transformer",
+      transformer_manager );
+      
+  Manager* dir = dynamic_cast<Manager*>( ni_transformer.raw_ptr() );
+    
+  if( !dir ) {
+    GsTLlog << "could not create directory " 
+	      << transformer_manager << "\n";
+    return false;
+  }
+  dir->factory( "PCA_transformer", PCA_transformer::create_new_interface );
+
+
+}
 
 bool library_grid_init::init_categorical_definition_factory() {
   //----------------------

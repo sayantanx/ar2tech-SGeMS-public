@@ -32,9 +32,20 @@ Chart_display_control::Chart_display_control(QWidget *parent)
   ui.setupUi(this);
 
   connect(ui.title_label_edit, SIGNAL(textChanged(const QString &)), this, SIGNAL(title_changed(const QString &)));
-  connect( ui.x_label_edit, SIGNAL(textChanged(const QString &)), this, SIGNAL(xaxis_changed(const QString &)));
-  connect( ui.y_label_edit, SIGNAL(textChanged(const QString &)), this, SIGNAL(yaxis_changed(const QString &)));
+  connect( ui.x_label_edit, SIGNAL(textChanged(const QString &)), this, SIGNAL(xaxis_label_changed(const QString &)));
+  connect( ui.y_label_edit, SIGNAL(textChanged(const QString &)), this, SIGNAL(yaxis_label_changed(const QString &)));
   connect(ui.legend_display, SIGNAL(	toggled(bool)), this, SIGNAL(legend_display_changed(bool)));
+  //connect(ui.grid_display, SIGNAL(	toggled(bool)), this, SIGNAL(grid_display_changed(bool)));
+  connect(ui.x_grid_display, SIGNAL(	toggled(bool)), this, SIGNAL(x_grid_display_changed(bool)));
+  connect(ui.y_grid_display, SIGNAL(	toggled(bool)), this, SIGNAL(y_grid_display_changed(bool)));
+
+  bool ok = connect(ui.x_axis_font_size, SIGNAL(	valueChanged (int)), this, SIGNAL( x_axis_font_size(int)) );
+  ok = connect(ui.y_axis_font_size, SIGNAL(	valueChanged (int)), this, SIGNAL( y_axis_font_size(int)) );
+  ok = connect(ui.x_label_font_size, SIGNAL(	valueChanged (int)), this, SIGNAL( x_label_font_size(int)) );
+  ok = connect(ui.y_label_font_size, SIGNAL(	valueChanged (int)), this, SIGNAL( y_label_font_size(int)) );
+  ok = connect(ui.legend_font_size, SIGNAL(	valueChanged (int)), this, SIGNAL( legend_font_size(int)) );
+  ok = connect(ui.title_font_size, SIGNAL(	valueChanged (int)), this, SIGNAL( title_font_size(int)) );
+
 
   connect(ui.x_min, SIGNAL(editingFinished()), this,  SLOT( forward_x_min_changed() ) );
   connect(ui.x_max, SIGNAL(editingFinished()), this,  SLOT( forward_x_max_changed() ) );
@@ -53,6 +64,28 @@ Chart_display_control::Chart_display_control(QWidget *parent)
 
 
 }
+
+void Chart_display_control::send_axis_signals(){
+  QString str_par;
+  str_par = ui.title_label_edit->text();
+  emit title_changed(str_par);
+  str_par = ui.x_label_edit->text();
+  emit xaxis_label_changed(str_par);
+  str_par = ui.y_label_edit->text();
+  emit yaxis_label_changed(str_par);
+  emit legend_display_changed(ui.legend_display->isChecked());
+  emit x_grid_display_changed(ui.x_grid_display->isChecked());
+  emit y_grid_display_changed(ui.y_grid_display->isChecked());
+
+  emit title_font_size(ui.title_font_size->value());
+  emit legend_font_size(ui.legend_font_size->value());
+  emit x_axis_font_size(ui.x_axis_font_size->value());
+  emit y_axis_font_size(ui.y_axis_font_size->value());
+  emit x_label_font_size(ui.x_label_font_size->value());
+  emit y_label_font_size(ui.y_label_font_size->value());
+
+}
+
 
 Chart_display_control::~Chart_display_control()
 {

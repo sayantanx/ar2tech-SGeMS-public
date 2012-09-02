@@ -111,11 +111,11 @@ void vtkProp_log::init(  Geostat_grid* grid, vtkRenderer* renderer ) {
   append_log_ = vtkAppendPolyData::New();
 
   data_pass_through_ = vtkPassThrough::New();
-  data_pass_through_->SetInput(append_log_->GetOutput());
+  data_pass_through_->SetInputConnection(append_log_->GetOutputPort());
 
   mapper_ = vtkPolyDataMapper::New();
   actor_ = vtkActor::New();
-  mapper_->SetInput(append_log_->GetOutput());
+  mapper_->SetInputConnection(append_log_->GetOutputPort());
   actor_->SetProperty(vtk_property_);
   actor_->SetMapper(mapper_);
   renderer_->AddActor(actor_);
@@ -158,7 +158,7 @@ void vtkProp_log::init(  Geostat_grid* grid, vtkRenderer* renderer ) {
 	  linePoints->Delete();
 
 	  pipeline.log_mapper = vtkPolyDataMapper::New();
-	  pipeline.log_mapper->SetInput(pipeline.vtk_data_log);
+    pipeline.log_mapper->SetInputData(pipeline.vtk_data_log);
 
 	  pipeline.log_actor = vtkActor::New();
 	  pipeline.log_actor->SetMapper(pipeline.log_mapper);
@@ -168,7 +168,7 @@ void vtkProp_log::init(  Geostat_grid* grid, vtkRenderer* renderer ) {
 	  log_pipelines_.push_back(pipeline);
 	  log_pipelines_region_.push_back(region_pipeline);
 
-	  append_log_->AddInput(pipeline.vtk_data_log);
+    append_log_->AddInputData(pipeline.vtk_data_log);
 
   }
   mapper_->Modified();
@@ -402,7 +402,7 @@ void vtkProp_log::set_region(const std::string& region_name ) {
 	if(region_name == "" ) {
 		current_region_ = 0;
 
-		data_pass_through_->SetInput(append_log_->GetOutput());
+    data_pass_through_->SetInputConnection(append_log_->GetOutputPort());
 
 	}
 	else {
@@ -411,7 +411,7 @@ void vtkProp_log::set_region(const std::string& region_name ) {
 
 		std::vector<log_pipeline>::iterator it_pipeline_region = log_pipelines_region_.begin();
 		for( ; it_pipeline_region != log_pipelines_region_.end();  ++it_pipeline_region  ) {
-			region_append_log_->RemoveInput(it_pipeline_region->vtk_data_log);
+			region_append_log_->RemoveInputData(it_pipeline_region->vtk_data_log);
 			it_pipeline_region->vtk_data_log->Delete();
 			//it_pipeline_region->vtk_ma->Delete();
 
@@ -442,10 +442,10 @@ void vtkProp_log::set_region(const std::string& region_name ) {
 			it_pipeline_region->vtk_data_log->SetPoints(linePoints);
 			linePoints->Delete();
 
-			region_append_log_->AddInput(it_pipeline_region->vtk_data_log);
+      region_append_log_->AddInputData(it_pipeline_region->vtk_data_log);
 
 		}
-		data_pass_through_->SetInput(region_append_log_->GetOutput());
+    data_pass_through_->SetInputConnection(region_append_log_->GetOutputPort());
 
 		this->set_property_with_region(current_property_name_,cmap_);
 
@@ -472,12 +472,12 @@ void vtkProp_log::set_colormap( Colormap* cmap ){
 }
 
 bool vtkProp_log::connect_threshold_to_data(vtkThreshold* thresholder){
-	thresholder->SetInput((vtkPolyData*)data_pass_through_->GetOutput());
+  thresholder->SetInputConnection(data_pass_through_->GetOutputPort());
   return true;
 }
 
 bool vtkProp_log::enable_threshold_pipeline(){
-	mapper_->SetInput(threshold_poly_data_->GetOutput());
+	mapper_->SetInputConnection(threshold_poly_data_->GetOutputPort());
 	mapper_->Modified();
   return true;
 }
@@ -485,7 +485,7 @@ bool vtkProp_log::enable_threshold_pipeline(){
 bool vtkProp_log::disable_threshold_pipeline(){
 
 
-	mapper_->SetInput((vtkPolyData*)data_pass_through_->GetOutput());
+	mapper_->SetInputConnection(data_pass_through_->GetOutputPort());
 
 	mapper_->Modified();
   return true;

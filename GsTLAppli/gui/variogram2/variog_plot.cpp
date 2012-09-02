@@ -163,6 +163,8 @@ Variog_plot( const Discrete_function& df,
     float ymin = *(std::min_element( y, y+actual_size ));
     if( ymax == 0 && ymin == 0 ) 
       this->setAxisAutoScale( QwtPlot::yLeft );
+    else if(ymax>0)
+      this->setAxisScale( QwtPlot::yLeft, 0.0, ymax*ymargin );
     else
       this->setAxisScale( QwtPlot::yLeft, ymin*(2-ymargin), ymax*ymargin );
   

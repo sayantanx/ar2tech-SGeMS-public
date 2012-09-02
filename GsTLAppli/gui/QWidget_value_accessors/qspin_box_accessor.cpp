@@ -119,3 +119,67 @@ void QSpinBox_accessor::clear() {
 Named_interface* QSpinBox_accessor::create_new_interface(std::string&) {
   return new QSpinBox_accessor;
 }
+
+/*
+  ------------------------------------
+*/
+
+
+QDoubleSpinBox_accessor::QDoubleSpinBox_accessor( QWidget* widget ) 
+    : spin_box_(dynamic_cast<QDoubleSpinBox*>(widget) ) {}
+
+    
+bool QDoubleSpinBox_accessor::initialize( QWidget* widget ) {
+
+  spin_box_ = dynamic_cast<QDoubleSpinBox*>(widget);
+  if( spin_box_ == 0 )
+    return false;
+  
+  return true;
+}
+
+
+std::string QDoubleSpinBox_accessor::value() const {
+  std::string widget_name = String_Op::qstring2string(spin_box_->objectName());
+
+  // Use a QString to convert a number to a string.
+  QString qstr_value;
+
+  qstr_value = qstr_value.setNum( spin_box_->value() );
+  
+  std::string str_value( String_Op::qstring2string(qstr_value) );
+
+
+  return "<" + widget_name + "  value=\"" + str_value + "\" /> \n";
+}
+
+
+bool QDoubleSpinBox_accessor::set_value( const std::string& str ) {
+  QString qstr( str.c_str() );
+    
+  // str is just an element of an xml file, hence can not be parsed
+  // by QDomDocument. We need to add a root element.
+  qstr = "<root>" + qstr + "</root>";
+  QDomDocument doc;
+  bool parsed = doc.setContent( qstr );
+  appli_assert( parsed );
+
+  QDomElement root_element = doc.documentElement();
+  QDomElement elem = root_element.firstChild().toElement();
+  
+  QString qstr_value = elem.attribute( "value" );
+
+  int val = qstr_value.toInt();
+  spin_box_->setValue( val );
+  return true;
+}
+
+
+void QDoubleSpinBox_accessor::clear() {
+  spin_box_->setValue( spin_box_->minimum() );
+}
+
+
+Named_interface* QDoubleSpinBox_accessor::create_new_interface(std::string&) {
+  return new QDoubleSpinBox_accessor;
+}

@@ -348,7 +348,7 @@ compute_df_rgrid( std::vector<Discrete_function> &df,
 {
   Discrete_function df_elem; 
 
-  Grid_variog_computer variog_computer( (Strati_grid*) grid_, 
+  Grid_variog_computer variog_computer( (RGrid*) grid_, 
                                         grid_->property( f_->head_property() ),
                                         grid_->property( f_->tail_property() ) );
 
@@ -411,8 +411,15 @@ compute_df_rgrid( std::vector<Discrete_function> &df,
   	df.push_back(df_elem);
     pairs.push_back( pairs_count );
       
-    directions[i] = directions[i] * ( 1 / euclidean_norm( directions[i] ) );
-  	v.push_back( directions[i] );
+// Need to consider the dimension of the blocks
+    RGrid* rgrid = dynamic_cast<RGrid*>(grid_);
+    double dx = directions[i][0]*rgrid->geometry()->cell_dims().x();
+    double dy = directions[i][1]*rgrid->geometry()->cell_dims().y();
+    double dz = directions[i][2]*rgrid->geometry()->cell_dims().z();
+    GsTLCoordVector direction(dx,dy,dz);
+
+    directions[i] = direction * ( 1 / euclidean_norm( direction ) );
+    v.push_back( directions[i] );
 
     QString params( "(" );
     QString val;
@@ -526,9 +533,9 @@ compute_df_pset( std::vector<Discrete_function> &df,
       angle1.push_back((angle_table->item(i2,0)->text()).toDouble());
       //there seems to be a problem of convention with the angles
       // the conventions here does not fits with the one used for ellipsoid.
-      // This changes chould be doubel checked
-      //angle2.push_back((angle_table->item(i2,1)->text()).toDouble());
-      angle2.push_back(-1.0*(angle_table->item(i2,1)->text()).toDouble());
+      // This changes should be double checked
+      angle2.push_back((angle_table->item(i2,1)->text()).toDouble());  //Original
+      //angle2.push_back(-1.0*(angle_table->item(i2,1)->text()).toDouble());  //test
 
       bool is_a_number;
       double angle_tolerance = angle_table->item(i2,2)->text().toDouble(&is_a_number);

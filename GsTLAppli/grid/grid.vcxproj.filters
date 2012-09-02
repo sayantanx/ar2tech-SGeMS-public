@@ -98,6 +98,12 @@
     <ClCompile Include="grid_model\structured_grid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="property_transformer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="coordinate_mapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grid_model\cartesian_grid.h">
@@ -215,6 +221,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="grid_model\structured_grid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="property_transformer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="topology.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="coordinate_mapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

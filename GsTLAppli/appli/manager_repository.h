@@ -125,7 +125,7 @@ static const std::string gridModels_manager = "/GridObject/Model";
 static const std::string vtkProps_manager = "/GridObject/vtkProps";
 static const std::string QtSummaryDescription_manager = "/GridObject/QtSummaryDescription";
 static const std::string downscaler_manager = "/GridObject/Downscalers";
-
+static const std::string transformer_manager = "/GridObject/Transformer";
 
 static const std::string mdsSpace_manager = "/mds";
 static const std::string responseData_manager = "/metricData";

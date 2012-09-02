@@ -120,7 +120,12 @@ bool library_extragui_init::bind_qt_wrappers_factories(Manager* dir) {
   dir->factory(classname, GridSelector_accessor::create_new_interface);
   
   // PropertySelector
-  PropertySelectorNoRegion prop;
+  PropertySelectorNoRegion prop_noregion;
+  classname = std::string( prop_noregion.metaObject()->className() );
+  dir->factory(classname, PropertySelectorNoRegion_accessor::create_new_interface);
+
+  // PropertySelector
+  PropertySelector prop;
   classname = std::string( prop.metaObject()->className() );
   dir->factory(classname, PropertySelector_accessor::create_new_interface);
 

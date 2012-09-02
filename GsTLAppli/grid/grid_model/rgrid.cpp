@@ -76,8 +76,8 @@ bool RGrid::reNameProperty(std::string oldName, std::string newName)
 RGrid::RGrid( )
   :  Strati_grid(),
      geom_(0),
-     topology_(0),
-     topology_is_updated_(false), property_manager_(),
+     cell_connection_(0),
+     connection_is_updated_(false), property_manager_(),
      accessor_(0),
      grid_cursor_(0){
 	 region_manager_.set_parent_item(this);
@@ -87,8 +87,8 @@ RGrid::RGrid( )
 RGrid::RGrid( std::string name )
 :  Strati_grid(name),
    geom_(0),
-   topology_(0),
-   topology_is_updated_(false), property_manager_(),
+   cell_connection_(0),
+   connection_is_updated_(false), property_manager_(),
    accessor_(0),
    grid_cursor_(0){
 	 region_manager_.set_parent_item(this);
@@ -100,7 +100,7 @@ RGrid::RGrid( std::string name )
 
 RGrid::~RGrid() {
     delete geom_;
-    delete topology_;
+    //delete cell_connection_;
     delete accessor_;
     delete grid_cursor_;
 }
@@ -110,7 +110,7 @@ void RGrid::set_geometry(RGrid_geometry* geom) {
   if( geom_ != geom ) {
     delete geom_;
     geom_ = geom->clone();
-    topology_is_updated_ = false;
+    connection_is_updated_ = false;
   }
   grid_cursor_ = new SGrid_cursor(nx(), ny(), nz(), 1);
   property_manager_.set_prop_size( geom->size() );
@@ -270,7 +270,8 @@ std::list<std::string> RGrid::region_list() const {
 Neighborhood* RGrid::neighborhood( double x, double y, double z,
 				   double ang1, double ang2, double ang3,
 				   const Covariance<location_type>* cov,
-				   bool only_harddata, const GsTLGridRegion* region ) {
+				   bool only_harddata, const GsTLGridRegion* region,
+           Coordinate_mapper* coord_mapper) {
 
   // The constructor of Rgrid_ellips_neighborhood expects the dimensions
   // of the search ellipsoid to be in "number of cells", and the covariance
@@ -316,7 +317,8 @@ Neighborhood* RGrid::neighborhood( double x, double y, double z,
 Neighborhood* RGrid::neighborhood( const GsTLTripletTmpl<double>& dim,
 				   const GsTLTripletTmpl<double>& angles,
 				   const Covariance<location_type>* cov,
-				   bool only_harddata, const GsTLGridRegion* region ) {
+				   bool only_harddata, const GsTLGridRegion* region,
+           Coordinate_mapper* coord_mapper) {
   int nx = GsTL::round( dim[0] /geom_->cell_dims()[0] );
   int ny = GsTL::round( dim[1] /geom_->cell_dims()[1] );
   int nz = GsTL::round( dim[2] /geom_->cell_dims()[2] );

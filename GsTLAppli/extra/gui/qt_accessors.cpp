@@ -139,19 +139,17 @@ bool GridSelector_accessor::set_value( const std::string& str ) {
   return true;
 }
 
-
-
 //=====================================
-Named_interface* PropertySelector_accessor::create_new_interface(std::string&) {
-  return new PropertySelector_accessor;
+Named_interface* PropertySelectorNoRegion_accessor::create_new_interface(std::string&) {
+  return new PropertySelectorNoRegion_accessor;
 }
 
-PropertySelector_accessor::PropertySelector_accessor( QWidget* widget ) 
+PropertySelectorNoRegion_accessor::PropertySelectorNoRegion_accessor( QWidget* widget ) 
 : selector_( dynamic_cast<PropertySelectorNoRegion*>( widget ) ) {
   
 }
 
-bool PropertySelector_accessor::initialize( QWidget* widget ) {
+bool PropertySelectorNoRegion_accessor::initialize( QWidget* widget ) {
 
   selector_ = dynamic_cast<PropertySelectorNoRegion*>(widget);
   if( selector_ == 0 )
@@ -161,18 +159,78 @@ bool PropertySelector_accessor::initialize( QWidget* widget ) {
 }
 
 
-std::string PropertySelector_accessor::value() const {
+std::string PropertySelectorNoRegion_accessor::value() const {
   std::string widget_name = String_Op::qstring2string(selector_->objectName());
-  std::string grid, property;
+  std::string grid, prop, region;
   
-  if( !selector_->selectedGrid().isEmpty() )
+  if( !selector_->selectedGrid().isEmpty() ) {
     grid = std::string( String_Op::qstring2string(selector_->selectedGrid()) );
+  }
   
   if( !selector_->selectedProperty().isEmpty() )
-    property = std::string( String_Op::qstring2string(selector_->selectedProperty())) ;
+    prop = std::string( String_Op::qstring2string(selector_->selectedProperty())) ;
   
   return "<" + widget_name + "  grid=\"" + grid +
-            "\"   property=\"" + property + "\"  /> \n";
+            "\"   property=\"" + prop + "\"  /> \n";
+}
+
+
+bool PropertySelectorNoRegion_accessor::set_value( const std::string& str ) {
+  QString qstr( str.c_str() );
+  
+  // str is just an element of an xml file, hence can not be parsed
+  // by QDomDocument. We need to add a root element.
+  qstr = "<root>" + qstr + "</root>";
+  QDomDocument doc;
+  bool parsed = doc.setContent( qstr );
+  appli_assert( parsed );
+
+  QDomElement root_element = doc.documentElement();
+  QDomElement elem = root_element.firstChild().toElement();
+  
+  selector_->setSelectedGrid( elem.attribute( "grid" ) );
+  selector_->setSelectedProperty( elem.attribute( "property" ) );
+  
+  return true;
+}
+
+
+
+//=====================================
+Named_interface* PropertySelector_accessor::create_new_interface(std::string&) {
+  return new PropertySelector_accessor;
+}
+
+PropertySelector_accessor::PropertySelector_accessor( QWidget* widget ) 
+: selector_( dynamic_cast<PropertySelector*>( widget ) ) {
+  
+}
+
+bool PropertySelector_accessor::initialize( QWidget* widget ) {
+
+  selector_ = dynamic_cast<PropertySelector*>(widget);
+  if( selector_ == 0 )
+    return false;
+  
+  return true;
+}
+
+
+std::string PropertySelector_accessor::value() const {
+  std::string widget_name = String_Op::qstring2string(selector_->objectName());
+  std::string grid, prop, region;
+  
+  if( !selector_->selectedGrid().isEmpty() ) {
+    grid = std::string( String_Op::qstring2string(selector_->selectedGrid()) );
+    region = std::string( String_Op::qstring2string(selector_->selectedRegion()) );
+  }
+  
+  if( !selector_->selectedProperty().isEmpty() )
+    prop = std::string( String_Op::qstring2string(selector_->selectedProperty())) ;
+  
+  return "<" + widget_name + "  grid=\"" + grid +
+            "\"   property=\"" + prop +
+            "\"   region=\"" + region +"\"  /> \n";
 }
 
 
@@ -191,6 +249,7 @@ bool PropertySelector_accessor::set_value( const std::string& str ) {
   
   selector_->setSelectedGrid( elem.attribute( "grid" ) );
   selector_->setSelectedProperty( elem.attribute( "property" ) );
+  selector_->setSelectedRegion( elem.attribute( "region" ) );
   
   return true;
 }
@@ -1179,6 +1238,7 @@ std::string nonParamCdfInput_accessor::value() const {
 	result <<"filename =\"" << String_Op::qstring2string(input_->getRefFileName()) <<"\"  ";
 //  } else if ( input_->isRefOnGrid() ) {
 	result <<" grid =\"" << String_Op::qstring2string(input_->getRefGridName());
+  result <<"\"  region =\"" << String_Op::qstring2string(input_->getRefRegionName());
   result <<"\"  property =\"" << String_Op::qstring2string(input_->getRefPropName()) <<"\">\n";
 //  }
   tailCdfInput_accessor LTI_accessor( input_->LTI );
@@ -1217,6 +1277,8 @@ bool nonParamCdfInput_accessor::set_value( const std::string& str ) {
   input_->setRefFileName(val);
   val = elem.attribute( "grid" );
   input_->setRefGridName(val);
+  val = elem.attribute( "region" );
+  input_->setRefRegionName(val);
   val = elem.attribute( "property" );
   input_->setRefPropName(val);
 

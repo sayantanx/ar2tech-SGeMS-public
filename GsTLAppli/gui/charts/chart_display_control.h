@@ -38,6 +38,8 @@ public:
     Chart_display_control(QWidget *parent = 0);
     ~Chart_display_control();
 
+    void send_axis_signals();
+
 public slots:
   void set_xaxis_min(double min);
   void set_xaxis_max(double max);
@@ -51,10 +53,13 @@ public slots:
 
 
 signals :
-    void xaxis_changed(const QString& axis);
-    void yaxis_changed(const QString& axis);
+    void xaxis_label_changed(const QString& axis);
+    void yaxis_label_changed(const QString& axis);
     void title_changed(const QString& axis);
     void legend_display_changed(bool on);
+    void grid_display_changed(bool);
+    void x_grid_display_changed(bool);
+    void y_grid_display_changed(bool);
 
     void xaxis_min_changed(double);
     void xaxis_max_changed(double);
@@ -69,6 +74,13 @@ signals :
     void yaxis_nticks_changed(int);
     void yaxis_logscale_changed(bool);
     void yaxis_autoscale_changed();
+
+    void x_axis_font_size(int);
+    void y_axis_font_size(int);
+    void x_label_font_size(int);
+    void y_label_font_size(int);
+    void legend_font_size(int);
+    void title_font_size(int);
 
 private:
     Ui::Chart_display_control ui;

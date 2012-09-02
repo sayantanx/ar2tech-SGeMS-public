@@ -55,6 +55,8 @@
 #include <GsTLAppli/grid/grid_model/geostat_grid.h>
 #include <GsTLAppli/grid/grid_model/point_set.h>
 #include <GsTLAppli/grid/grid_model/cartesian_grid.h>
+#include <GsTLAppli/grid/grid_model/grid_property.h>
+#include <GsTLAppli/grid/grid_model/grid_region.h>
 #include <GsTLAppli/grid/grid_model/gval_iterator.h>
 #include <GsTL/cdf/cdf_basics.h>
 #include <GsTL/cdf/gaussian_cdf.h>
@@ -102,6 +104,9 @@ bool trans::initialize( const Parameters_handler* parameters,
 	else 
 		return false;
 
+  std::string region_name = parameters->value( "grid.region" );
+  region_ = grid_->region(region_name);
+
 	std::vector< std::string > prop_names = String_Op::decompose_string( 
 						parameters->value( "props.value" ), ";" );
 	errors->report( prop_names.empty(), "props", "No property specified" );
@@ -125,13 +130,14 @@ bool trans::initialize( const Parameters_handler* parameters,
 		GsTLGridProperty* cond_prop = grid_->property( cond_prop_str );
 
 		//weights_.insert(weights_.begin(), cond_prop->begin(),cond_prop->end() );
-        for (int i=0; i<cond_prop->size(); i++)
-        {
-            if ( cond_prop->is_informed(i) )
-                weights_.push_back( cond_prop->get_value(i) );
-            else
-                weights_.push_back( -999 );
-        }
+    for (int i=0; i<cond_prop->size(); i++)
+    {
+      if(region_ && !region_->is_inside_region(i)) continue;
+      if ( cond_prop->is_informed(i) )
+          weights_.push_back( cond_prop->get_value(i) );
+      else
+          weights_.push_back( -999 );
+    }
 
 		wgth_iterator it_max  = std::max_element(weights_.begin(),weights_.end());
 		for(wgth_iterator it = weights_.begin() ; it!= weights_.end(); ++it )
@@ -146,11 +152,11 @@ bool trans::initialize( const Parameters_handler* parameters,
   if(!errors->empty()) return false;
 
 // Set up the property Copier 
-	Property_copier* prop_copier;
-	Point_set* pset = dynamic_cast< Point_set* >( grid_ );
-    Cartesian_grid* cgrid = dynamic_cast< Cartesian_grid* >( grid_ );
-	if( pset ) prop_copier = new Pset_to_pset_copier();
-	else if(cgrid) prop_copier = new Cgrid_to_cgrid_copier();
+//	Property_copier* prop_copier;
+//	Point_set* pset = dynamic_cast< Point_set* >( grid_ );
+//    Cartesian_grid* cgrid = dynamic_cast< Cartesian_grid* >( grid_ );
+//	if( pset ) prop_copier = new Pset_to_pset_copier();
+//	else if(cgrid) prop_copier = new Cgrid_to_cgrid_copier();
 
 	for(int j=0; j<prop_names.size() ; j++ ) {
 		GsTLGridProperty* sourceProp = grid_->property( prop_names[j] );
@@ -158,7 +164,13 @@ bool trans::initialize( const Parameters_handler* parameters,
 		GsTLGridProperty* targetProp = 
 			geostat_utils::add_property_to_grid( grid_, prop_names[j]+suffix );
 
-		prop_copier->copy(grid_,sourceProp,grid_,targetProp);
+    for(int i=0; i<grid_->size();++i) {
+      if(region_ && !region_->is_inside_region(i)) continue;
+      if( !sourceProp->is_informed(i) ) continue;
+      targetProp->set_value(sourceProp->get_value(i),i);
+    }
+
+//		prop_copier->copy(grid_,sourceProp,grid_,targetProp);
     targetProp->set_parameters(parameters_);
 		props_.push_back( targetProp );
 	}
@@ -204,9 +216,15 @@ void  trans::cdf_transform( GsTLGridProperty* prop )
 	grid_->select_property( prop->name() );
 	for( Geostat_grid::iterator it = grid_->begin(); it != grid_->end(); ++it )
 	{
+    if(region_ && !region_->is_inside_region(it->node_id()) ) continue;
 		if( it->is_informed() ) {
 			double p = cdf_source_->prob(it->property_value());
-			it->set_property_value( cdf_target_->inverse(p) );
+      if(p > 0 && p < 1.0) {
+			  it->set_property_value( cdf_target_->inverse(p) );
+      }
+      else {
+        it->set_not_informed();
+      }
 		}
 	}
 }
@@ -218,6 +236,7 @@ void  trans::cdf_transform_weighted( GsTLGridProperty* prop  )
 	wgth_iterator it_wt = weights_.begin();
 	for( Geostat_grid::iterator it = grid_->begin(); it != grid_->end(); ++it, ++it_wt )
 	{
+    if(region_ && !region_->is_inside_region(it->node_id()) ) continue;
 		if( it->is_informed() ) {
 			float val = it->property_value();
 			float zval = cdf_target_->inverse( cdf_source_->prob( val ) );

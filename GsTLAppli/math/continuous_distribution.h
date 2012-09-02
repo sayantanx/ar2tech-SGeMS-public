@@ -47,6 +47,7 @@ public:
   virtual ~Continuous_distribution(void){}
 
   virtual bool copy(const Continuous_distribution* dist) = 0;
+  virtual Continuous_distribution* clone() = 0;
 
   virtual double cdf(float z) const=0;
   virtual float kurtosis() const=0;
@@ -118,6 +119,12 @@ public:
     }
     else
       return false;
+  }
+
+  virtual Continuous_distribution* clone(){
+    Beta_distribution* dist = new Beta_distribution;
+    dist->copy(this);
+    return dist; 
   }
 
   void initialize(double alpha, double beta){
@@ -193,6 +200,12 @@ public:
       return false;
   }
 
+  virtual Continuous_distribution* clone(){
+    Exponential_distribution* dist = new Exponential_distribution;
+    dist->copy(this);
+    return dist; 
+  }
+
   void initialize(double lambda = 1.0){
     delete dist_;
     dist_ = new boost::math::exponential_distribution<>(lambda);
@@ -263,6 +276,12 @@ public:
     }
     else
       return false;
+  }
+
+  virtual Continuous_distribution* clone(){
+    Extreme_value_distribution* dist = new Extreme_value_distribution;
+    dist->copy(this);
+    return dist; 
   }
 
   void initialize(double location, double scale){
@@ -337,6 +356,12 @@ public:
     }
     else
       return false;
+  }
+
+  virtual Continuous_distribution* clone(){
+    Gamma_distribution* dist = new Gamma_distribution;
+    dist->copy(this);
+    return dist; 
   }
 
   void initialize(double shape, double scale = 1.0){
@@ -484,6 +509,12 @@ public:
       return false;
   }
 
+  virtual Continuous_distribution* clone(){
+    Logistic_distribution* dist = new Logistic_distribution;
+    dist->copy(this);
+    return dist; 
+  }
+
   void initialize(double location =0 , double scale=1.0){
     delete dist_;
     dist_ = new boost::math::logistic_distribution<>(location,scale);
@@ -556,6 +587,12 @@ public:
     }
     else
       return false;
+  }
+
+  virtual Continuous_distribution* clone(){
+    LogNormal_distribution* dist = new LogNormal_distribution;
+    dist->copy(this);
+    return dist; 
   }
 
   void initialize(double location =0 , double scale=1.0){
@@ -666,6 +703,12 @@ public:
       return false;
   }
 
+  virtual Continuous_distribution* clone(){
+    Gaussian_distribution* dist = new Gaussian_distribution;
+    dist->copy(this);
+    return dist; 
+  }
+
   void initialize(double mean =0 , double std=1.0){
     delete dist_;
     dist_ = new boost::math::normal_distribution<>(mean,std);
@@ -739,6 +782,12 @@ public:
       return false;
   }
 
+  virtual Continuous_distribution* clone(){
+    Pareto_distribution* dist = new Pareto_distribution;
+    dist->copy(this);
+    return dist; 
+  }
+
   void initialize(double scale, double shape){
     delete dist_;
     dist_ = new boost::math::pareto_distribution<>(scale,shape);
@@ -808,6 +857,12 @@ public:
     }
     else
       return false;
+  }
+
+  virtual Continuous_distribution* clone(){
+    Rayleigh_distribution* dist = new Rayleigh_distribution;
+    dist->copy(this);
+    return dist; 
   }
 
   void initialize(double sigma=1){
@@ -881,6 +936,13 @@ public:
     }
     else
       return false;
+  }
+
+
+  virtual Continuous_distribution* clone(){
+    Triangular_distribution* dist = new Triangular_distribution;
+    dist->copy(this);
+    return dist; 
   }
 
   void initialize(double lower = -1, double mode = 0, double upper = 1){
@@ -958,6 +1020,12 @@ public:
       return false;
   }
 
+  virtual Continuous_distribution* clone(){
+    Uniform_distribution* dist = new Uniform_distribution;
+    dist->copy(this);
+    return dist; 
+  }
+
   void initialize(double lower=0, double upper =1){
     delete dist_;
     dist_ = new boost::math::uniform_distribution<>(lower,upper);
@@ -1028,6 +1096,12 @@ public:
     }
     else
       return false;
+  }
+
+  virtual Continuous_distribution* clone(){
+    Weibull_distribution* dist = new Weibull_distribution;
+    dist->copy(this);
+    return dist; 
   }
 
   void initialize(double shape, double scale=1){

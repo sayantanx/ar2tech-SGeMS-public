@@ -77,13 +77,19 @@ Grid_variog_computer::Grid_variog_computer() {
 }
 
 Grid_variog_computer::
-Grid_variog_computer( Strati_grid *grid, 
+Grid_variog_computer( RGrid *grid, 
                       GsTLGridProperty* head_prop, 
                       GsTLGridProperty* tail_prop ) {
   grid_ = grid; 
   head_prop_ = head_prop;
   tail_prop_ = tail_prop;
   standardize_ = false;
+  
+  head_prop_->swap_to_memory();
+  tail_prop_->swap_to_memory();
+
+
+
 }
 
 
@@ -102,6 +108,13 @@ compute_variogram_values( Discrete_function &experim_variog,
   const int nx = grid_->nx();
   const int ny = grid_->ny();
   const int nz = grid_->nz();
+
+  double dx = direction[0]*grid_->geometry()->cell_dims().x();
+  double dy = direction[1]*grid_->geometry()->cell_dims().y();
+  double dz = direction[2]*grid_->geometry()->cell_dims().z();
+  GsTLCoordVector dlag(dx,dy,dz);
+  double lag_distance = dlag.length();
+
 
   //SGrid_cursor cursor = *( grid_->cursor() );
   const SGrid_cursor* cursor = grid_->cursor();
@@ -158,7 +171,8 @@ compute_variogram_values( Discrete_function &experim_variog,
       }
     }
       
-    x_values.push_back( euclidean_norm( step ) );
+//    x_values.push_back( euclidean_norm( step ) );
+    x_values.push_back( lag_distance*(lag+1) );
     double correl_value = correl_measure->correlation();
     if( !GsTL::equals( correl_value, Correlation_measure::NaN, 0.0001 ) )
       y_values.push_back( correl_measure->correlation() / covar ); 

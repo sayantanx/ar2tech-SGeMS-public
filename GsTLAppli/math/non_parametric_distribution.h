@@ -63,6 +63,12 @@ public :
   }
   virtual bool copy(const Continuous_distribution* dist);
 
+  virtual Continuous_distribution* clone(){
+    Non_parametric_distribution* dist = new Non_parametric_distribution;
+    dist->copy(this);
+    return dist; 
+  }
+
   template<class Z_iterator>
   void initialize(Z_iterator z_begin, Z_iterator z_end, 
     const Tail_interpolator low_interp = Tail_interpolator( new No_TI() ),

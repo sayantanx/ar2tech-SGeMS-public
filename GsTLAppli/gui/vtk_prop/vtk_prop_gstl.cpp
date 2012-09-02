@@ -125,14 +125,17 @@ bool GsTL_vtkProp::add_thresholding(int id, float min, float max, bool is_visibl
 	threshold.thresholder->ThresholdBetween(min,max);
 
 	threshold.surface = vtkDataSetSurfaceFilter::New();
+  threshold.surface->SetInputConnection(threshold.thresholder->GetOutputPort() );
 	threshold.surface->SetInputArrayToProcess(0,0,0,vtkDataObject::FIELD_ASSOCIATION_CELLS,vtkDataSetAttributes::SCALARS);
-	threshold.surface->SetInput((vtkDataSet*)threshold.thresholder->GetOutput() );
+  //threshold.surface->SetInput((vtkDataSet*)threshold.thresholder->GetOutput() );
+  
 	this->connect_threshold_to_data(threshold.thresholder);
 	threshold.enabled = is_visible;
 	threshold_pipelines_[id] = threshold;
 
 	if(is_visible) {
-		threshold_poly_data_->AddInput(threshold.surface->GetOutput());
+		//threshold_poly_data_->AddInputData(threshold.surface->GetOutput());
+    threshold_poly_data_->AddInputConnection(0,threshold.surface->GetOutputPort());
 		if(is_thresold_active_ == false) {
 			this->enable_threshold_pipeline();
 			is_thresold_active_ = true;
@@ -151,7 +154,8 @@ bool GsTL_vtkProp::remove_all_thresholding(){
 
 	this->disable_threshold_pipeline();
 
-	threshold_poly_data_->RemoveAllInputs();
+	//threshold_poly_data_->RemoveAllInputs();
+  threshold_poly_data_->RemoveAllInputConnections(0);
 
 	for( ; it != threshold_pipelines_.end(); ++it) {
 		it->second.surface->Delete();
@@ -174,7 +178,8 @@ bool GsTL_vtkProp::remove_thresholding(int id){
 
 	if(it == threshold_pipelines_.end()) return true;
 
-	threshold_poly_data_->RemoveInput(it->second.surface->GetOutput());
+	//threshold_poly_data_->RemoveInputData(it->second.surface->GetOutput());
+  threshold_poly_data_->RemoveInputConnection(0,it->second.surface->GetOutputPort());
 
 	it->second.surface->Delete();
 	it->second.thresholder->Delete();
@@ -210,7 +215,8 @@ bool GsTL_vtkProp::enable_thresholding(){
 		if( threshold_pipelines_[i].enabled ) {
 			is_thresold_active_= true;
 			this->connect_threshold_to_data(threshold_pipelines_[i].thresholder);
-			threshold_poly_data_->AddInput(threshold_pipelines_[i].surface->GetOutput());
+      threshold_poly_data_->AddInputConnection(0,threshold_pipelines_[i].surface->GetOutputPort());
+			//threshold_poly_data_->AddInputData(threshold_pipelines_[i].surface->GetOutput());
 
 		}
 	}
@@ -226,7 +232,8 @@ bool GsTL_vtkProp::disable_thresholding(){
 	is_thresold_active_ = false;
 	for(int i=0; i<threshold_pipelines_.size();++i) {
 		if( threshold_pipelines_[i].enabled ) {
-			threshold_poly_data_->RemoveInput(threshold_pipelines_[i].surface->GetOutput());
+			//threshold_poly_data_->RemoveInputData(threshold_pipelines_[i].surface->GetOutput());
+      threshold_poly_data_->RemoveInputConnection(0,threshold_pipelines_[i].surface->GetOutputPort());
 
 		}
 	}
@@ -260,11 +267,13 @@ bool GsTL_vtkProp::update_thresholding(int id, float min, float max, bool is_vis
 
 		if(it->second.enabled == true &&  is_visible == false) {
 				it->second.enabled = false;
-				threshold_poly_data_->RemoveInput(it->second.surface->GetOutput());
+				//threshold_poly_data_->RemoveInputData(it->second.surface->GetOutput());
+        threshold_poly_data_->RemoveInputConnection(0,it->second.surface->GetOutputPort());
 		}
 		else if(it->second.enabled == false &&  is_visible == true) {
 			it->second.enabled = true;
-			threshold_poly_data_->AddInput(it->second.surface->GetOutput());
+      //threshold_poly_data_->AddInputData(it->second.surface->GetOutput());
+			threshold_poly_data_->AddInputConnection(0,it->second.surface->GetOutputPort());
 		}
 
 	}
@@ -387,7 +396,8 @@ bool GsTL_vtkProp::remove_section(int id){
 
 	if(it == section_pipelines_.end()) return true;
 
-  section_poly_data_->RemoveInput(it->second.cutter->GetOutput());
+  //section_poly_data_->RemoveInputData(it->second.cutter->GetOutput());
+  section_poly_data_->RemoveInputConnection(0,it->second.cutter->GetOutputPort());
   //renderer_->RemoveActor(it->second.actor);
 
   it->second.plane->Delete();
@@ -419,7 +429,7 @@ bool GsTL_vtkProp::enable_section(int id){
 
   it->second.enabled = true;
 
-  section_poly_data_->AddInput(it->second.cutter->GetOutput());
+  section_poly_data_->AddInputData(it->second.cutter->GetOutput());
 //  renderer_->AddActor(it->second.actor);
   if(is_section_active_ == false) {
     is_section_active_ = true;
@@ -435,7 +445,7 @@ bool GsTL_vtkProp::disable_section(int id){
   section_map::iterator it = section_pipelines_.find(id);
   if(it == section_pipelines_.end()) return false;
 
-  section_poly_data_->RemoveInput(it->second.cutter->GetOutput());
+  section_poly_data_->RemoveInputData(it->second.cutter->GetOutput());
   it->second.enabled = false;
 
 

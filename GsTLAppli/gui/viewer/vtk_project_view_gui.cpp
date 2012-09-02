@@ -66,6 +66,8 @@
 #include <QModelIndex>
 #include <QMenu>
 #include <QProgressDialog>
+
+#include <strstream>
 //#include <MouseButtons>
 
 //#include <GsTLAppli/gui/models/modeltest.h>

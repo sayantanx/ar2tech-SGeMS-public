@@ -121,9 +121,9 @@ void Chart_distribution::set_distribution( Continuous_distribution* distribution
   table_->AddColumn(pdf);  
   table_->AddColumn(cdf);  
 
-  plot_pdf_->SetInput(table_, 0,1);
+  plot_pdf_->SetInputData(table_, 0,1);
   plot_pdf_->SetColor(150,150,120,100);
-  plot_cdf_->SetInput(table_, 0,2);
+  plot_cdf_->SetInputData(table_, 0,2);
   plot_cdf_->SetWidth(2);
 
 

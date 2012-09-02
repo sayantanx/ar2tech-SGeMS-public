@@ -111,7 +111,7 @@ public:
   virtual SGrid_cursor* cursor(); 
   virtual void set_cursor(SGrid_cursor cursor); 
  
-  GsTLGridTopology* topology(); 
+  RGrid_cell_connection* cell_connection(); 
  
    
  
@@ -134,7 +134,7 @@ public:
     return grid_cursor_->node_id( index );  
   } 
  
-  virtual GsTLInt closest_node( const location_type& P ) {  
+  virtual GsTLInt closest_node( const location_type& P ) const {  
     appli_warning( "not yet implemented" ); 
     return -1; 
   } 
@@ -226,12 +226,14 @@ public:
 				      double ang1, double ang2, double ang3, 
 				      const Covariance<location_type>* cov=0, 
 				      bool only_harddata = false,
-              const GsTLGridRegion* region = 0); 
+              const GsTLGridRegion* region = 0,
+              Coordinate_mapper* coord_mapper=0); 
   virtual Neighborhood* neighborhood( const GsTLTripletTmpl<double>& dim, 
 				      const GsTLTripletTmpl<double>& angles, 
 				      const Covariance<location_type>* cov=0, 
 				      bool only_harddata = false,
-              const GsTLGridRegion* region = 0); 
+              const GsTLGridRegion* region = 0,
+              Coordinate_mapper* coord_mapper=0); 
   virtual Window_neighborhood* window_neighborhood( const Grid_template& templ ); 
    
  
@@ -281,12 +283,15 @@ public:
  
  protected: 
   RGrid_geometry* geom_; 
-  GsTLGridTopology* topology_; 
-  bool topology_is_updated_; 
+  //GsTLGridTopology* cell_connection_; 
+  RGrid_cell_connection* cell_connection_;
+  bool connection_is_updated_; 
  
-  Grid_property_manager property_manager_; 
-  Grid_region_manager region_manager_;
   Grid_property_group_manager group_manager_;
+  Grid_region_manager region_manager_;
+  Grid_property_manager property_manager_; 
+  
+  
  
 //  std::map<std::string, GsTLGridRegionFlags*> regions_; 
   RGrid_gval_accessor* accessor_; 
@@ -370,29 +375,29 @@ RGrid_geometry* RGrid::geometry() {
  
  
 inline 
-GsTLGridTopology* RGrid::topology() { 
+RGrid_cell_connection* RGrid::cell_connection() { 
   update_topology(); 
-  return topology_; 
+  return cell_connection_; 
 } 
  
 inline 
 void RGrid::update_topology() { 
-  if( topology_is_updated_ ) { 
+  if( connection_is_updated_ ) { 
     return; 
   } 
      
   if( geom_ == 0 ) { 
-    delete topology_; 
-    topology_ = 0; 
-    topology_is_updated_ = false; 
+    delete cell_connection_; 
+    cell_connection_ = 0; 
+    connection_is_updated_ = false; 
     return; 
   } 
      
-  if( topology_ != 0 ) { 
-    delete topology_; 
+  if( cell_connection_ != 0 ) { 
+    delete cell_connection_; 
   } 
-  topology_ = new GsTLGridTopology(geom_); 
-  topology_is_updated_ = true; 
+  cell_connection_ = new RGrid_cell_connection(geom_); 
+  connection_is_updated_ = true; 
 } 
  
 inline 

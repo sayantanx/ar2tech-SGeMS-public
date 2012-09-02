@@ -87,6 +87,10 @@ Pset_variog_computer( Point_set *pset,
   head_prop_ = head_prop;
   tail_prop_ = tail_prop;
   standardize_ = false;
+
+  head_prop_->swap_to_memory();
+  tail_prop_->swap_to_memory();
+
 }
                         
     

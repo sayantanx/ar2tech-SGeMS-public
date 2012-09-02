@@ -1138,7 +1138,11 @@ bool get_non_param_cdf(GsTLNonParametricCdfType& cdf_non_param,
 {
 		std::vector< float > reference;
     std::string ref_in_distribution = parameters->value( tag_name+".ref_in_distribution" );
+   
+
     if(  ref_in_distribution == "1" ) {
+        errors->report( "tag_name", "This algorithm cannot use a pre-defined distribution" );
+        return false;
       std::string distribution_name = parameters->value( tag_name+".distribution" );
       Named_interface* ni = Root::instance()->interface( continuous_distributions_manager+"/"+distribution_name ).raw_ptr();
       Continuous_distribution* dist = dynamic_cast<Continuous_distribution*>(ni);
@@ -1146,13 +1150,10 @@ bool get_non_param_cdf(GsTLNonParametricCdfType& cdf_non_param,
         errors->report( "tag_name", "The distribution "+distribution_name+" does not exist" );
         return false;
       }
-
+      
     }
 
-
-		std::string tmp = parameters->value( tag_name+".ref_on_file" );
-		bool is_on_file = ( parameters->value( tag_name+".ref_on_file" ) == "1" );
-
+    bool is_on_file = ( parameters->value( tag_name+".ref_on_file" ) == "1" );
 		if( is_on_file )
 		{
 			std::string filename = parameters->value( tag_name+".filename" );
@@ -1462,6 +1463,7 @@ bool get_continuous_cdf(SmartPtr<Continuous_distribution>& cdist, const Paramete
 		{
 			std::string ref_grid_str = parameters->value( tag_name+".grid" );
 			std::string ref_prop_str = parameters->value( tag_name+".property" );
+      std::string ref_region_str = parameters->value( tag_name+".region" );
 			errors->report( ref_grid_str.empty()|| ref_prop_str.empty(), "tag_name", 
 				"No reference distribution specified" );
 			Geostat_grid* ref_grid;
@@ -1473,12 +1475,15 @@ bool get_continuous_cdf(SmartPtr<Continuous_distribution>& cdist, const Paramete
 			else 
 				return false;
 			ref_grid->select_property( ref_prop_str );
-			GsTLGridProperty* ref_prop = ref_grid->property(ref_prop_str);
+      GsTLGridProperty* ref_prop = ref_grid->property(ref_prop_str);
+			GsTLGridRegion* ref_region = ref_grid->region(ref_region_str);
 
 			reference.reserve( ref_grid->size() );
 
-			for(int i=0; i< ref_grid->size(); i++)
+			for(int i=0; i< ref_grid->size(); i++) {
+        if(ref_region && !ref_region->is_inside_region(i) ) continue;
 				if( ref_prop->is_informed(i) ) reference.push_back( ref_prop->get_value(i) );
+      }
 		}
 
     bool include_max = false;
@@ -1519,6 +1524,7 @@ bool get_non_param_cdf(Non_parametric_distribution& cdf_non_param,
         errors->report( "tag_name", "The distribution "+distribution_name+" does not exist" );
         return false;
       }
+      return true;
 
     }
 

@@ -368,8 +368,7 @@ public:
 		} 
 	} 
 	
-	
-	
+
 	
 	/** The location in the current 
 	* multigrid coordinate system of node-id "node_id" is computed and 

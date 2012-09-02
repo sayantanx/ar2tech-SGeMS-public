@@ -186,7 +186,7 @@ bool Mask_to_mask_copier::copy( const Geostat_grid* server,
 									 
 //===========================================
 
-Cgrid_to_pset_copier::Cgrid_to_pset_copier() 
+Pset_to_cgrid_copier::Pset_to_cgrid_copier() 
   : Property_copier() {
   server_ = 0;
   client_ = 0;
@@ -197,7 +197,7 @@ Cgrid_to_pset_copier::Cgrid_to_pset_copier()
 
 }
 
-bool Cgrid_to_pset_copier::copy( const Geostat_grid* server, 
+bool Pset_to_cgrid_copier::copy( const Geostat_grid* server, 
                                  const GsTLGridProperty* server_prop,
                                  Geostat_grid* client, 
                                  GsTLGridProperty* client_prop ) {
@@ -320,7 +320,7 @@ bool Cgrid_to_pset_copier::copy( const Geostat_grid* server,
 
 
 
-bool Cgrid_to_pset_copier::undo_copy() {
+bool Pset_to_cgrid_copier::undo_copy() {
   //if( !undo_enabled_ ) return false;
 
   for( unsigned int i = 0 ; i < backup_.size() ; i++ ) {
@@ -536,6 +536,10 @@ bool Pset_to_mask_copier::copy( const Geostat_grid* server,
                                   GsTLGridProperty* client_prop ) {
   Reduced_grid* to_grid = dynamic_cast< Reduced_grid* >( client );
   const Point_set* from_grid = dynamic_cast< const Point_set* >( server );
+  client_property_ = client_prop;
+  index_client_to_source_.clear();
+  original_client_value_.clear();
+
   int nx = to_grid->nx();
   int ny = to_grid->ny();
   int nz = to_grid->nz();
@@ -547,21 +551,78 @@ bool Pset_to_mask_copier::copy( const Geostat_grid* server,
 
   copy_categorical_definition(server_prop,client_prop);
 
+  // Use a map to record what point was assigned to which grid node
+  // This map is used in case multiple points could be assigned to the
+  // same grid node: in that case the new point is assigned if it is closer
+  // to the grid node than the previously assigned node was.
+  typedef Geostat_grid::location_type location_type;
+  typedef std::map<GsTLInt,location_type>::iterator map_iterator;
+  std::map<GsTLInt,location_type> already_assigned;
+
   // Copy the property
-  Point_set::location_type l;
+  location_type pset_loc;
    for( int i=0; i < server_prop->size() ; i++ ) {
-	   l = from_grid->location(i);
-	   id = int(l[2])*xy/o[0]+int(l[1])*nx/o[1]+int(l[0])/o[2];
+	   pset_loc = from_grid->location(i);
+     id = to_grid->closest_node(pset_loc);
      if(id < 0 ) continue;
-	   if (!to_grid->is_inside_mask(id)) continue;
-	  if( server_prop->is_informed( i ) ) 
-		  client_prop->set_value( server_prop->get_value( i ), to_grid->full2reduced(id) );
-	  else if(overwrite_)
-		  client_prop->set_not_informed( to_grid->full2reduced(id) );
+
+     std::map<GsTLInt,location_type>::iterator it = already_assigned.find(id);
+     if( it != already_assigned.end() ) {
+       
+       location_type to_grid_loc = to_grid->location(id);
+
+     	  // if the new point is further away to the grid node than
+     	  // the already assigned node, don't assign the new point
+     	  if( square_euclidean_distance( pset_loc, to_grid_loc) > 
+          square_euclidean_distance( it->second, to_grid_loc ) ) 
+          continue; 
+     }
+
+     if( server_prop->is_informed(i ) ) {
+
+      // Check if it the first time this client node is considered
+      if(client_prop->is_informed(id) && it == already_assigned.end()) {
+        original_client_value_[id] = client_prop->get_value(id);
+      }
+
+
+      client_prop->set_value( server_prop->get_value( i ), id );
+      already_assigned[id] = pset_loc;
+
+      if(mark_as_hard_) client_prop->set_harddata(true,id);
+
+      index_client_to_source_[id] = i;
+       
+
+     }
+    else if(overwrite_) {
+		client_prop->set_not_informed( id );
+    index_client_to_source_[id] = i;
+    already_assigned[id] = pset_loc;
     }
+
+   }
+
    return true;
 }
 
+bool Pset_to_mask_copier::undo_copy(){
+  std::map<int,int>::const_iterator it = index_client_to_source_.begin();
+
+  for( ; it != index_client_to_source_.end(); ++it) {
+    int client_id = it->first;
+    std::map<int,float>::const_iterator it_client = original_client_value_.find(client_id);
+    if(it_client != original_client_value_.end()) {
+      client_property_->set_value( it_client->second, client_id  );
+    }
+    else {
+      client_property_->set_not_informed(client_id);
+    }
+  }
+  return true;
+}
+
+//--------------------------
 Pset_to_pset_copier::Pset_to_pset_copier() 
   : Property_copier() {
   server_ = 0;
@@ -611,3 +672,34 @@ bool Pset_to_pset_copier::copy( const Geostat_grid* server,
 
 
 
+//-----------------------------
+
+bool Rgrid_to_pset_copier::copy( const Geostat_grid* server, 
+                     const GsTLGridProperty* server_prop,
+                     Geostat_grid* client, 
+                     GsTLGridProperty* client_prop )
+{
+  const RGrid* server_rgrid = dynamic_cast<const RGrid*>(server);
+  Point_set* client_pset = dynamic_cast<Point_set*>(client);
+
+  // looping on the point set since it is the constraining grid
+  Point_set::iterator it = client_pset->begin();
+  for(int i=0 ; it!= client_pset->end(); ++it, ++i) {
+    if(!client_pset->is_inside_selected_region(i) ) continue;
+
+    Geostat_grid::location_type loc = it->location();
+    int node_id = server_rgrid->closest_node(loc);
+    if(node_id < 0 ) continue;
+
+
+    if( server_prop->is_informed(node_id) )  {
+      client_prop->set_value(server_prop->get_value(node_id),i);
+      if( mark_as_hard_ ) client_prop->set_harddata( true, i );
+    }
+	  else if(overwrite_)
+		  client_prop->set_not_informed( i );
+
+  }
+
+  return true;
+}

@@ -244,7 +244,7 @@ void Snapshot_dialog::take_snapshot( const QString& filename, const QString& for
       return;
     }*/
     vtkSmartPointer<vtkPostScriptWriter> ps = vtkSmartPointer<vtkPostScriptWriter>::New();
-    ps->SetInput(w2i->GetOutput());
+    ps->SetInputConnection(w2i->GetOutputPort());
     ps->SetFileName(ba_filename.data());
     ps->Write();
 
@@ -254,7 +254,7 @@ void Snapshot_dialog::take_snapshot( const QString& filename, const QString& for
   if(  format.contains( "PNG", Qt::CaseInsensitive ) ) {
     
     vtkSmartPointer<vtkPNGWriter> png = vtkSmartPointer<vtkPNGWriter>::New();
-    png->SetInput(w2i->GetOutput());
+    png->SetInputConnection(w2i->GetOutputPort());
     png->SetFileName(ba_filename.data());
     png->Write();
   }
@@ -262,7 +262,7 @@ void Snapshot_dialog::take_snapshot( const QString& filename, const QString& for
   if( format.contains( "JPEG", Qt::CaseInsensitive ) || format.contains( "JPG", Qt::CaseInsensitive ) ) {
 
     vtkSmartPointer<vtkJPEGWriter> jpeg = vtkSmartPointer<vtkJPEGWriter>::New();
-    jpeg->SetInput(w2i->GetOutput());
+    jpeg->SetInputConnection(w2i->GetOutputPort());
     jpeg->SetFileName(ba_filename.data());
     jpeg->Write();
   }
@@ -270,7 +270,7 @@ void Snapshot_dialog::take_snapshot( const QString& filename, const QString& for
   if( format.contains( "TIFF", Qt::CaseInsensitive ) ){
 
     vtkSmartPointer<vtkTIFFWriter> tiff = vtkSmartPointer<vtkTIFFWriter>::New();
-    tiff->SetInput(w2i->GetOutput());
+    tiff->SetInputConnection(w2i->GetOutputPort());
     tiff->SetFileName(ba_filename.data());
     tiff->Write();
   }

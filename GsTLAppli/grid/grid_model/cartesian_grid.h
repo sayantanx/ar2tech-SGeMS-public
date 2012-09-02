@@ -89,7 +89,7 @@ class GRID_DECL Cartesian_grid : public RGrid {
    
   virtual std::string classname() const { return "Cgrid"; } 
   
-  virtual GsTLInt closest_node( const location_type& P ); 
+  virtual GsTLInt closest_node( const location_type& P ) const; 
  
   GsTL_cube bounding_box() const; 
  

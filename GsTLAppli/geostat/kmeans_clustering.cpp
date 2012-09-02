@@ -171,7 +171,8 @@ int Kmeans_clustering::execute( GsTL_project* proj ){
 
   vtkSmartPointer<vtkKMeansStatistics> kmeans_stat = vtkSmartPointer<vtkKMeansStatistics>::New();
 
-  kmeans_stat->SetInput( vtkStatisticsAlgorithm::INPUT_DATA, table );
+  //kmeans_stat->SetInput( vtkStatisticsAlgorithm::INPUT_DATA, table );
+  kmeans_stat->SetInputData( vtkStatisticsAlgorithm::INPUT_DATA, table );
   for(int p=0; p<props_.size(); ++p) {
     kmeans_stat->SetColumnStatus( table->GetColumnName( p ) , 1 );
   }

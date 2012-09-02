@@ -101,6 +101,26 @@ class EXTRAGUI_DECL GridSelector_accessor : public QWidget_value_accessor {
 
 
 
+class EXTRAGUI_DECL PropertySelectorNoRegion_accessor : public QWidget_value_accessor {
+ public:
+  static Named_interface* create_new_interface(std::string&);
+
+ public:
+  PropertySelectorNoRegion_accessor( QWidget* widget = 0 );
+  virtual ~PropertySelectorNoRegion_accessor() {}
+  
+  virtual bool initialize( QWidget* widget = 0 );
+  virtual bool is_valid() const { return selector_ != 0; } 
+  virtual std::string value() const;
+  virtual bool set_value( const std::string& str );
+  virtual void clear() {}
+    
+ private:
+  PropertySelectorNoRegion* selector_;
+
+};
+
+
 class EXTRAGUI_DECL PropertySelector_accessor : public QWidget_value_accessor {
  public:
   static Named_interface* create_new_interface(std::string&);
@@ -116,9 +136,10 @@ class EXTRAGUI_DECL PropertySelector_accessor : public QWidget_value_accessor {
   virtual void clear() {}
     
  private:
-  PropertySelectorNoRegion* selector_;
+  PropertySelector* selector_;
 
 };
+
 
 class EXTRAGUI_DECL SinglePropertySelector_accessor : public QWidget_value_accessor {
  public:

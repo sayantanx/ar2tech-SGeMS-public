@@ -58,7 +58,7 @@
 
 
 Geostat_grid::Geostat_grid(std::string name) :
-	 name_(name){}
+	 name_(name),coord_mapper_(0){}
 
 Neighborhood* Geostat_grid::colocated_neighborhood( const std::string& prop ) {
   return new Colocated_neighborhood( this, prop );

@@ -147,6 +147,7 @@ QSP_application::QSP_application( QWidget* parent )
 
 QSP_application::~QSP_application() {
   appli_warning( "destructor for QSP_application not implemented yet" );
+  this->close_project();
 
   /*
   // tell the managers to delete all the objects they manage
@@ -1287,14 +1288,14 @@ void QSP_application::quit_slot() {
       return;
     }
   }
-
+  project_->clear();
   save_app_preferences();
   qApp->quit();
 }
 
 
 void QSP_application::save_app_preferences() {
-  QSettings settings( "scrf.stanford.edu", "sgems" );
+  QSettings settings( "ar2tech.com", "ar2gems" );
 
   // geometry
   int h = this->height();

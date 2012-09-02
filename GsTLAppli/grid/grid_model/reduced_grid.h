@@ -114,13 +114,15 @@ public:
 		double ang1, double ang2, double ang3, 
 		const Covariance<location_type>* cov=0, 
 		bool only_harddata = false,
-    const GsTLGridRegion* region = 0); 
+    const GsTLGridRegion* region = 0,
+    Coordinate_mapper* coord_mapper=0); 
 
 	virtual Neighborhood* neighborhood( const GsTLTripletTmpl<double>& dim, 
 		const GsTLTripletTmpl<double>& angles, 
 		const Covariance<location_type>* cov=0, 
 		bool only_harddata = false,
-    const GsTLGridRegion* region = 0); 
+    const GsTLGridRegion* region = 0,
+    Coordinate_mapper* coord_mapper=0); 
 
 	virtual Window_neighborhood* window_neighborhood( const Grid_template& templ ); 
 
@@ -130,7 +132,7 @@ public:
   bool add_location(GsTLCoord x, GsTLCoord y, GsTLCoord z);
   bool add_location(int CartesianGridNodeId);
 
-  GsTLInt closest_node( const location_type& P );
+  GsTLInt closest_node( const location_type& P ) const;
 
   const std::vector<bool>& mask() const;
   void mask(const std::vector<bool>& mask);

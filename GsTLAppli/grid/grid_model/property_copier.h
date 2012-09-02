@@ -181,7 +181,7 @@ public:
                      Geostat_grid* client, 
                      GsTLGridProperty* client_prop );
 
-  virtual bool undo_copy(){return false;}
+  virtual bool undo_copy();
 
 
 protected:
@@ -189,6 +189,12 @@ protected:
   const Geostat_grid* client_;
   const GsTLGridProperty* server_prop_;
   GsTLGridProperty* client_property_;
+
+  //Allow to keep track which node-id was assigned where
+  // useful for the undo
+  std::map<int,int> index_client_to_source_;
+  std::map<int,float> original_client_value_;
+
 };
 
 /*
@@ -209,13 +215,13 @@ private:
 
 //=====================================
 
-class GRID_DECL Cgrid_to_pset_copier : public Property_copier {
+class GRID_DECL Pset_to_cgrid_copier : public Property_copier {
 public:
   static Named_interface* create_new_interface( std::string& ) {
-    return new Cgrid_to_pset_copier;
+    return new Pset_to_cgrid_copier;
   }
 
-  Cgrid_to_pset_copier();
+  Pset_to_cgrid_copier();
 
   virtual bool copy( const Geostat_grid* server, 
                      const GsTLGridProperty* server_prop,
@@ -312,6 +318,29 @@ protected:
   GsTLGridProperty* client_property_;
   std::vector< std::pair< GsTLInt, GsTLGridProperty::property_type > > backup_;
   bool unset_harddata_flag_;
+
+};
+
+
+
+class GRID_DECL Rgrid_to_pset_copier : public Property_copier {
+public:
+  static Named_interface* create_new_interface( std::string& ) {
+    return new Rgrid_to_pset_copier;
+  }
+
+  Rgrid_to_pset_copier(){}
+
+  virtual bool copy( const Geostat_grid* server, 
+                     const GsTLGridProperty* server_prop,
+                     Geostat_grid* client, 
+                     GsTLGridProperty* client_prop );
+
+  virtual bool undo_copy(){return false;}
+
+
+protected:
+
 
 };
 

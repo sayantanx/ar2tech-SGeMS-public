@@ -115,10 +115,10 @@ void vtkProp_pointset::init(  Geostat_grid* grid, vtkRenderer* renderer ) {
   vtk_property_->SetRepresentationToPoints();
 
   data_pass_through_ = vtkPassThrough::New();
-  data_pass_through_->SetInput(pset_polydata_);
+  data_pass_through_->SetInputData(pset_polydata_);
 
   mapper_ = vtkPolyDataMapper::New();
-  mapper_->SetInput((vtkPolyData*)data_pass_through_->GetOutput());
+  mapper_->SetInputConnection(data_pass_through_->GetOutputPort());
 
   actor_ = vtkActor::New();
   actor_->SetProperty(vtk_property_);
@@ -131,13 +131,13 @@ void vtkProp_pointset::init(  Geostat_grid* grid, vtkRenderer* renderer ) {
 
 	// Set the thresholder for the region; perform the thresholding based on the visibility array
 	region_threshold_ = vtkThreshold::New();
-	region_threshold_->SetInput(pset_polydata_);
+	region_threshold_->SetInputData(pset_polydata_);
 	region_threshold_->SetInputArrayToProcess(0,0,0,vtkDataObject::FIELD_ASSOCIATION_CELLS,"MaskRegion");
 	region_threshold_->ThresholdBetween(1,1);
 
 	region_filter_ = vtkGeometryFilter::New();
 	region_filter_->SetInputArrayToProcess(0,0,0,vtkDataObject::FIELD_ASSOCIATION_CELLS,vtkDataSetAttributes::SCALARS);
-	region_filter_->SetInput(region_threshold_->GetOutput());
+	region_filter_->SetInputConnection(region_threshold_->GetOutputPort());
 
 
 	this->point_size(3);
@@ -295,8 +295,8 @@ void vtkProp_pointset::set_region(const std::string& region_name ) {
 
 	if(region_name == "" ) {
 		current_region_ = 0;
-		region_threshold_->SetInput(0);
-		data_pass_through_->SetInput(pset_polydata_);
+		region_threshold_->SetInputData(0);
+		data_pass_through_->SetInputData(pset_polydata_);
 
 
 	}
@@ -316,8 +316,8 @@ void vtkProp_pointset::set_region(const std::string& region_name ) {
 				region_mask->SetValue(i,*it);
 			}
 		}
-		region_threshold_->SetInput(pset_polydata_);
-		data_pass_through_->SetInput(region_filter_->GetOutput());
+		region_threshold_->SetInputData(pset_polydata_);
+		data_pass_through_->SetInputConnection(region_filter_->GetOutputPort());
     region_threshold_->Modified();
 
 	}
@@ -327,20 +327,20 @@ void vtkProp_pointset::set_region(const std::string& region_name ) {
 
 
 bool vtkProp_pointset::connect_threshold_to_data(vtkThreshold* thresholder){
-	thresholder->SetInput(vtkDataSet::SafeDownCast(data_pass_through_->GetOutput()));
+	thresholder->SetInputConnection(data_pass_through_->GetOutputPort());
   return true;
 }
 
 bool vtkProp_pointset::enable_threshold_pipeline(){
 //	data_pass_through_->SetInput(0);
-	mapper_->SetInput(threshold_poly_data_->GetOutput());
+	mapper_->SetInputConnection(threshold_poly_data_->GetOutputPort());
 	mapper_->Modified();
   return true;
 }
 
 bool vtkProp_pointset::disable_threshold_pipeline(){
 
-	mapper_->SetInput((vtkPolyData*)data_pass_through_->GetOutput());
+	mapper_->SetInputConnection(data_pass_through_->GetOutputPort());
 
 	mapper_->Modified();
 

@@ -187,12 +187,14 @@ class GRID_DECL Point_set : public Geostat_grid {
   virtual Neighborhood* neighborhood( double x, double y, double z, 
                                       double ang1, double ang2, double ang3, 
 				      const Covariance<location_type>* cov=0, 
-				      bool only_harddata = false, const GsTLGridRegion* region = 0 ); 
+				      bool only_harddata = false, const GsTLGridRegion* region = 0,
+              Coordinate_mapper* coord_mapper=0); 
  
   virtual Neighborhood* neighborhood( const GsTLTripletTmpl<double>& dim, 
                                       const GsTLTripletTmpl<double>& angles, 
 				      const Covariance<location_type>* cov=0, 
-				      bool only_harddata = false, const GsTLGridRegion* region = 0 ); 
+				      bool only_harddata = false, const GsTLGridRegion* region = 0,
+              Coordinate_mapper* coord_mapper=0); 
  
  
    
@@ -223,7 +225,7 @@ class GRID_DECL Point_set : public Geostat_grid {
  
   Geovalue geovalue(int node_id); 
  
-  virtual GsTLInt closest_node( const location_type& P ) { 
+  virtual GsTLInt closest_node( const location_type& P ) const { 
     appli_warning( "NOT YET IMPLEMENTED"); 
     return -1; 
   } 

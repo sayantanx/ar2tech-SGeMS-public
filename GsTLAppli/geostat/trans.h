@@ -35,6 +35,7 @@
 #include <GsTLAppli/math/continuous_distribution.h>
 
 class Geostat_grid;
+class GsTLGridRegion;
 
 
 class GEOSTAT_DECL trans : public Geostat_algo {
@@ -62,6 +63,7 @@ class GEOSTAT_DECL trans : public Geostat_algo {
 
 	bool is_local_cond_;
 	
+  GsTLGridRegion* region_;
 	std::vector<GsTLGridProperty*> props_;
 	GsTLGridProperty* cond_prop_;
 	std::vector<float> weights_;

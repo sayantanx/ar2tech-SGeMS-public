@@ -252,6 +252,7 @@
     <ClCompile Include="misc_actions.cpp" />
     <ClCompile Include="obj_manag_actions.cpp" />
     <ClCompile Include="property_group_actions.cpp" />
+    <ClCompile Include="property_transformer_actions.cpp" />
     <ClCompile Include="python_commands.cpp" />
     <ClCompile Include="python_group_script.cpp" />
     <ClCompile Include="python_script.cpp" />
@@ -270,6 +271,7 @@
     <ClInclude Include="misc_actions.h" />
     <ClInclude Include="obj_manag_actions.h" />
     <ClInclude Include="property_group_actions.h" />
+    <ClInclude Include="property_transformer_actions.h" />
     <ClInclude Include="python_commands.h" />
     <ClInclude Include="python_group_script.h" />
     <ClInclude Include="python_script.h" />

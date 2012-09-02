@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>318</width>
+    <width>334</width>
     <height>1128</height>
    </rect>
   </property>
@@ -54,7 +54,7 @@ description=sequential gaussian simulation</string>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
            <widget class="GridSelector" name="Grid_Name">
-            <property name="currentIndex">
+            <property name="currentIndex" stdset="0">
              <number>0</number>
             </property>
            </widget>
@@ -319,25 +319,42 @@ description=sequential gaussian simulation</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <layout class="QHBoxLayout">
-            <property name="spacing">
-             <number>6</number>
-            </property>
-            <property name="margin">
-             <number>0</number>
-            </property>
-            <item>
+           <layout class="QFormLayout" name="formLayout">
+            <item row="0" column="0">
              <widget class="QLabel" name="TextLabel2_2_2_2_3">
               <property name="text">
-               <string>Max conditioning data</string>
+               <string>Max conditioning hard data</string>
               </property>
               <property name="wordWrap">
                <bool>false</bool>
               </property>
              </widget>
             </item>
-            <item>
+            <item row="0" column="1">
              <widget class="QSpinBox" name="Max_Conditioning_Data">
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>20000</number>
+              </property>
+              <property name="value">
+               <number>12</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="TextLabel2_2_2_2_4">
+              <property name="text">
+               <string>Max conditioning previously simulated data</string>
+              </property>
+              <property name="wordWrap">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSpinBox" name="Max_Conditioning_Simul_Data">
               <property name="minimum">
                <number>0</number>
               </property>
@@ -516,7 +533,7 @@ description=sequential gaussian simulation</string>
   </customwidget>
   <customwidget>
    <class>GridSelector</class>
-   <extends>QTabWidget</extends>
+   <extends>QWidget</extends>
    <header>GsTLAppli/extra/qtplugins/selectors.h</header>
   </customwidget>
   <customwidget>

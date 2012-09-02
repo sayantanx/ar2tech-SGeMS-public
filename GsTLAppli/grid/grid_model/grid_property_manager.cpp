@@ -245,6 +245,8 @@ Grid_property_manager::~Grid_property_manager() {
   while(!properties_map_.empty()) {
     std::map< std::string, int >::iterator it = properties_map_.begin();
     int ind = it->second;
+
+
  //   The removal of the membership is done by the destructor.
     if(model_) {
     	model_->begin_remove_item(this,0);

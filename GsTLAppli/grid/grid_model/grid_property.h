@@ -525,7 +525,7 @@ inline
 bool GsTLGridProperty::is_informed( GsTLInt id ) const { 
   if( id < 0 || id >= size() ) return false; 
 //  return ( accessor_->get_property_value( id ) != no_data_value );
-  return !boost::math::isnan(accessor_->get_property_value( id ));
+  return !(boost::math::isnan)(accessor_->get_property_value( id ));
  // volatile float v = accessor_->get_property_value( id );
 //  return !(v!=v);
  // return !std::isnan(accessor_->get_property_value( id ));

@@ -129,22 +129,22 @@ bool vtkProp_structured_grid::is_visibile(){
 
 // Set the thresholder for the region; perform the thresholding based on the visibility array
   region_threshold_ = vtkThreshold::New();
-  region_threshold_->SetInput(structured_grid_);
+  region_threshold_->SetInputData(structured_grid_);
   region_threshold_->SetInputArrayToProcess(0,0,0,vtkDataObject::FIELD_ASSOCIATION_CELLS,vtkDataSetAttributes::SCALARS);
   region_threshold_->ThresholdBetween(-1e9,1e9);
 
   data_pass_through_filter_ = vtkPassThrough::New();
-  data_pass_through_filter_->SetInput(structured_grid_);
+  data_pass_through_filter_->SetInputData(structured_grid_);
 
   surface_extractor_ = vtkDataSetSurfaceFilter::New();
   surface_extractor_->SetInputArrayToProcess(0,0,0,vtkDataObject::FIELD_ASSOCIATION_CELLS,vtkDataSetAttributes::SCALARS);
-  surface_extractor_->SetInput((vtkDataSet*)data_pass_through_filter_->GetOutput());
+  surface_extractor_->SetInputConnection(data_pass_through_filter_->GetOutputPort());
 
 	vtk_property_->SetRepresentationToSurface();
 	vtk_property_->EdgeVisibilityOff();
 
   mapper_ = vtkDataSetMapper::New();
-  mapper_->SetInput(surface_extractor_->GetOutput());
+  mapper_->SetInputConnection(surface_extractor_->GetOutputPort());
 
   actor_ = vtkActor::New();
   actor_->SetProperty(vtk_property_);
@@ -390,8 +390,8 @@ void vtkProp_structured_grid::set_region(const std::string& region_name ){
 		}
 
 //  Connect the pipeline directly to image_data
-		region_threshold_->SetInput(0);
-		data_pass_through_filter_->SetInput(structured_grid_);
+		region_threshold_->SetInputData(0);
+		data_pass_through_filter_->SetInputData(structured_grid_);
 //		mapper_->SetInput(structured_grid_);
 
 
@@ -406,10 +406,10 @@ void vtkProp_structured_grid::set_region(const std::string& region_name ){
 		current_region_ = region;
 
 // Connect the region pipeline
-		region_threshold_->SetInput(structured_grid_);
+		region_threshold_->SetInputData(structured_grid_);
 //		mapper_->SetInput(surface_extractor_->GetOutput());
 //		pre_mapper_pass_through_filter_->SetInput(surface_extractor_->GetOutput());
-		data_pass_through_filter_->SetInput((vtkDataSet*)region_threshold_->GetOutput());
+		data_pass_through_filter_->SetInputConnection(region_threshold_->GetOutputPort());
 
 //		if( current_region_->name() != cached_region_name_ ) {
 		if( true ) {
@@ -433,14 +433,14 @@ void vtkProp_structured_grid::set_region(const std::string& region_name ){
 
 
 bool vtkProp_structured_grid::connect_threshold_to_data(vtkThreshold* thresholder){
-	thresholder->SetInput(vtkDataSet::SafeDownCast(data_pass_through_filter_->GetOutput()));
+	thresholder->SetInputConnection(data_pass_through_filter_->GetOutputPort());
   return true;
 }
 
 bool vtkProp_structured_grid::enable_threshold_pipeline(){
 
-	surface_extractor_->SetInput(0);
-	mapper_->SetInput(threshold_poly_data_->GetOutput());
+	surface_extractor_->SetInputData(0);
+	mapper_->SetInputConnection(threshold_poly_data_->GetOutputPort());
 	mapper_->Modified();
   return true;
 }
@@ -451,8 +451,8 @@ bool vtkProp_structured_grid::disable_threshold_pipeline(){
     this->enable_section_pipeline();
   }
   else {
-	  surface_extractor_->SetInput(vtkDataSet::SafeDownCast(data_pass_through_filter_->GetOutput()));
-	  mapper_->SetInput(surface_extractor_->GetOutput());
+	  surface_extractor_->SetInputConnection(data_pass_through_filter_->GetOutputPort());
+	  mapper_->SetInputConnection(surface_extractor_->GetOutputPort());
   }
 
 	mapper_->Modified();
@@ -464,7 +464,7 @@ bool vtkProp_structured_grid::disable_threshold_pipeline(){
 
 bool vtkProp_structured_grid::enable_section_pipeline(){
 
-	mapper_->SetInput(section_poly_data_->GetOutput());
+	mapper_->SetInputConnection(section_poly_data_->GetOutputPort());
 	mapper_->Modified();
   return true;
 }
@@ -476,8 +476,8 @@ bool vtkProp_structured_grid::disable_section_pipeline(){
   }
   else {
 
-	  surface_extractor_->SetInput(vtkDataSet::SafeDownCast(data_pass_through_filter_->GetOutput()));
-	  mapper_->SetInput(surface_extractor_->GetOutput());
+	  surface_extractor_->SetInputConnection(data_pass_through_filter_->GetOutputPort());
+    mapper_->SetInputConnection(surface_extractor_->GetOutputPort());
 
 	  mapper_->Modified();
   }
@@ -532,7 +532,7 @@ int vtkProp_structured_grid::add_section(int id, QString orientation, bool is_vi
   }
 
 	if(is_visible) {
-		section_poly_data_->AddInput(it->second.plane->GetOutput());
+		section_poly_data_->AddInputData(it->second.plane->GetOutput());
 		if(is_section_active_ == false) {
 			this->enable_section_pipeline();
 			is_section_active_ = true;
@@ -580,7 +580,7 @@ bool vtkProp_structured_grid::remove_all_sections(){
 	structured_section_map::iterator it = structured_section_pipelines_.begin();
 
 	for( ; it != structured_section_pipelines_.end(); ++it) {
-    section_poly_data_->RemoveInput(it->second.plane->GetOutput());
+    section_poly_data_->RemoveInputData(it->second.plane->GetOutput());
     it->second.plane->Delete();
 	}
 	structured_section_pipelines_.clear();
@@ -600,7 +600,7 @@ bool vtkProp_structured_grid::remove_section(int id){
 
 	if(it == structured_section_pipelines_.end()) return true;
 
-  section_poly_data_->RemoveInput(it->second.plane->GetOutput());
+  section_poly_data_->RemoveInputData(it->second.plane->GetOutput());
 
   it->second.plane->Delete();
 
@@ -628,7 +628,7 @@ bool vtkProp_structured_grid::enable_section(int id){
 
   it->second.enabled = true;
 
-  section_poly_data_->AddInput(it->second.plane->GetOutput());
+  section_poly_data_->AddInputData(it->second.plane->GetOutput());
   if(is_section_active_ == false) {
     is_section_active_ = true;
     this->enable_section_pipeline();
@@ -643,7 +643,7 @@ bool vtkProp_structured_grid::disable_section(int id){
   structured_section_map::iterator it = structured_section_pipelines_.find(id);
   if(it == structured_section_pipelines_.end()) return false;
 
-  section_poly_data_->RemoveInput(it->second.plane->GetOutput());
+  section_poly_data_->RemoveInputData(it->second.plane->GetOutput());
   it->second.enabled = false;
 
 

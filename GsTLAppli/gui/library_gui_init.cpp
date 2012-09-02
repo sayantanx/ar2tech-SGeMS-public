@@ -338,6 +338,11 @@ bool library_gui_init::bind_qt_accessors_factories(Manager* dir) {
   classname = spinbox.metaObject()->className();
   dir->factory(classname, QSpinBox_accessor::create_new_interface);
 
+  // DoubleSpinBox
+  QDoubleSpinBox double_spinbox;
+  classname = double_spinbox.metaObject()->className();
+  dir->factory(classname, QDoubleSpinBox_accessor::create_new_interface);
+
   // RadioButton
   QRadioButton radiobutton(0);
   classname = radiobutton.metaObject()->className();

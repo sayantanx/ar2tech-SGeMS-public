@@ -96,7 +96,8 @@ Neighborhood* Reduced_grid::neighborhood( double x, double y, double z,
 				   double ang1, double ang2, double ang3,
 				   const Covariance<location_type>* cov,
 				   bool only_harddata,
-           const GsTLGridRegion* region) {
+           const GsTLGridRegion* region,
+           Coordinate_mapper* coord_mapper) {
 
   // The constructor of Rgrid_ellips_neighborhood expects the dimensions
   // of the search ellipsoid to be in "number of cells", and the covariance
@@ -143,7 +144,8 @@ Neighborhood* Reduced_grid::neighborhood( const GsTLTripletTmpl<double>& dim,
 				   const GsTLTripletTmpl<double>& angles,
 				   const Covariance<location_type>* cov,
 				   bool only_harddata,
-           const GsTLGridRegion* region) {
+           const GsTLGridRegion* region,
+           Coordinate_mapper* coord_mapper) {
   int nx = GsTL::round( dim[0] /geometry_->cell_dims()[0] );
   int ny = GsTL::round( dim[1] /geometry_->cell_dims()[1] );
   int nz = GsTL::round( dim[2] /geometry_->cell_dims()[2] );
@@ -239,7 +241,7 @@ void Reduced_grid::set_geometry(RGrid_geometry* geom) {
 	if( geom_ != geom ) {
 		delete geom_;
 		geom_ = geom->clone();
-		topology_is_updated_ = false;
+		connection_is_updated_ = false;
 	}
 
   geometry_ = dynamic_cast<Simple_RGrid_geometry*>( geom_ );
@@ -505,7 +507,17 @@ const std::vector<bool>& Reduced_grid::mask() const{
 
 
 
-GsTLInt Reduced_grid::closest_node( const location_type& P ) {
+GsTLInt Reduced_grid::closest_node( const location_type& P ) const {
+/*
+  int node_id = Cartesian_grid::closest_node(P);
+  if(node_id < 0 || !is_inside_mask(node_id) ) {
+    return -1;
+  }
+  else {
+    return node_id;
+  }
+*/
+
   location_type origin = geometry_->origin();
   location_type P0;
   P0.x() = P.x() - origin.x();
@@ -519,6 +531,7 @@ GsTLInt Reduced_grid::closest_node( const location_type& P ) {
   cell_sizes.x() = cell_sizes.x() * spacing;
   cell_sizes.y() = cell_sizes.y() * spacing;
   cell_sizes.z() = cell_sizes.z() * spacing;
+
 
   GsTLInt i = std::max( GsTL::floor( P0.x()/cell_sizes.x() + 0.5 ), 0 );
   GsTLInt j = std::max( GsTL::floor( P0.y()/cell_sizes.y() + 0.5 ), 0 );
@@ -535,5 +548,8 @@ GsTLInt Reduced_grid::closest_node( const location_type& P ) {
 
   // Need to check if the i,j,k is within the active_region of the grid
 
+//  SGrid_cursor* cursor = dynamic_cast<SGrid_cursor*>(mgrid_cursor_);
+//  int id = cursor->node_id(i,j,k);
+//  return id;
   return mgrid_cursor_->node_id( i, j, k );
 }

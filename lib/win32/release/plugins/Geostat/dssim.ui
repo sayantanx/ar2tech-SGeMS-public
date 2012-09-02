@@ -260,7 +260,7 @@
              <string>Assign hard data to simulation grid</string>
             </property>
             <property name="checked">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
            </widget>
           </item>

@@ -117,7 +117,8 @@ Point_set_neighborhood::Point_set_neighborhood( double x,double y,double z,
 						Point_set* pset,
 						GsTLGridProperty* property,
 						const Covariance<location_type>* cov, bool only_harddata,
-            const GsTLGridRegion* region)
+            const GsTLGridRegion* region,
+            Coordinate_mapper* coord_mapper)
   : pset_( pset ),
     property_( property ),
     max_neighbors_( max_neighbors ),
@@ -187,51 +188,92 @@ Point_set_neighborhood::Point_set_neighborhood( double x,double y,double z,
 
   //use_only_informed_node_ =  pset_->selected_property() == property_;
   //use_only_informed_node_ = true;
+  int nInformed = 0; 
   if( (use_n_closest_)) {
-    int nInformed = 0;
+//    int nInformed = 0;
     for(int i=0; i<pset_->size(); ++i) {
       if(property_->is_informed(i) ) {
         if( region_ && !region_->is_inside_region(i)) continue;
         nInformed++;
       }
     }
-    coords_ = new boost::multi_array<GsTLCoord,2>(boost::extents[nInformed][3]);
-    idx_.reserve( nInformed );
+//    coords_ = new boost::multi_array<GsTLCoord,2>(boost::extents[nInformed][3]);
+//    idx_.reserve( nInformed );
   }
   else {
-    int nInformed = 0;
+//    int nInformed = 0;
     for(int i=0; i<pset_->size(); ++i) {
       if( region_ && !region_->is_inside_region(i)) continue;
       nInformed++;
     }
-    coords_ = new boost::multi_array<GsTLCoord,2>(boost::extents[pset_->size()][3]);
-    idx_.reserve( nInformed );
+//    coords_ = new boost::multi_array<GsTLCoord,2>(boost::extents[nInformed][3]);
+//    idx_.reserve( nInformed );
   }
+  coords_ = new boost::multi_array<GsTLCoord,2>(boost::extents[nInformed][3]);
+  idx_.reserve( nInformed );
 
   const std::vector<GsTLPoint>& locs = pset_->point_locations();
-  if( use_n_closest_ ) {
-    index ii = 0;
-    for( int i=0; i < locs.size() ; i++ ) {
-      if( !property_->is_informed(i) ) continue;
-      if( region_ && !region_->is_inside_region(i)) continue;
+  
+  //If no change of coordinates is required
+  if(coord_mapper == 0) {
+    if( use_n_closest_ ) {
+      index ii = 0;
+      for( int i=0; i < locs.size() ; i++ ) {
+        if( !property_->is_informed(i) ) continue;
+        if( region_ && !region_->is_inside_region(i)) continue;
 		    location_type loc = (*coord_transform_)(locs[i]);
         (*coords_)[ii][0] = loc[0];
         (*coords_)[ii][1] = loc[1];
         (*coords_)[ii][2] = loc[2];
         ii++;
         idx_.push_back(i);
-//          coords[i][3] = i;
+  //          coords[i][3] = i;
+	    }
+    } else  {
+        for( int i=0; i < locs.size() ; i++ ) {
+          if( region_ && !region_->is_inside_region(i)) continue;
+		        location_type loc = (*coord_transform_)(locs[i]);
+            (*coords_)[i][0] = loc[0];
+            (*coords_)[i][1] = loc[1];
+            (*coords_)[i][2] = loc[2];
+            idx_.push_back(i);
+        }
 	  }
-  } else  {
-      for( int i=0; i < locs.size() ; i++ ) {
+  } 
+  else { // Need a change of coordinate.  Split in two to avoid duplicate memory when no changes are needed
+    std::vector<GsTLPoint> uvwlocs(locs);
+    for(int i=0; i< uvwlocs.size(); ++i) {
+      uvwlocs[i] = coord_mapper->uvw_coords(uvwlocs[i]);
+    }
+
+    if( use_n_closest_ ) {
+      index ii = 0;
+      for( int i=0; i < uvwlocs.size() ; i++ ) {
+        if( !property_->is_informed(i) ) continue;
         if( region_ && !region_->is_inside_region(i)) continue;
-		      location_type loc = (*coord_transform_)(locs[i]);
-          (*coords_)[i][0] = loc[0];
-          (*coords_)[i][1] = loc[1];
-          (*coords_)[i][2] = loc[2];
-          idx_.push_back(i);
-      }
-	}
+		    location_type loc = (*coord_transform_)(uvwlocs[i]);
+        (*coords_)[ii][0] = loc[0];
+        (*coords_)[ii][1] = loc[1];
+        (*coords_)[ii][2] = loc[2];
+        ii++;
+        idx_.push_back(i);
+  //          coords[i][3] = i;
+	    }
+    } else  {
+        for( int i=0; i < uvwlocs.size() ; i++ ) {
+          if( region_ && !region_->is_inside_region(i)) continue;
+		        location_type loc = (*coord_transform_)(uvwlocs[i]);
+            (*coords_)[i][0] = loc[0];
+            (*coords_)[i][1] = loc[1];
+            (*coords_)[i][2] = loc[2];
+            idx_.push_back(i);
+        }
+	  }
+
+  }
+
+
+
   kdtree_ = new kdtree2(*coords_, property_, &idx_, true, 3 );
   kdtree_->sort_results = true;
   //kdtree_->set_informatation_property(property_, &idx_);

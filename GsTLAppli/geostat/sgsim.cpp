@@ -156,6 +156,13 @@ int Sgsim::execute( GsTL_project* ) {
     appli_message( "Doing simulation" );
 
 	
+    //If the grid has a multi-grid options, perform the simulation per multi-grid
+//    RGrid* rgrid = dynamic_cast<RGrid*>(simul_grid_);
+//    int status;
+//    if(rgrid ==0) {    
+//      simul_grid_->init_random_path(from_scratch);
+//      from_scratch = false;
+
     // do the simulation
     int status = 
       sequential_simulation( simul_grid_->random_path_begin(),
@@ -166,6 +173,23 @@ int Sgsim::execute( GsTL_project* ) {
 			     marginal,
 			     sampler, progress_notifier.raw_ptr()
 			     );
+//    }
+/*    else {
+      for (int i=6;i>0;--i) {
+        rgrid->set_level(i);
+        simul_grid_->init_random_path(from_scratch);
+            status = 
+            sequential_simulation( rgrid->random_path_begin(),
+			     rgrid->random_path_end(),
+			     *(neighborhood_.raw_ptr()),
+			     ccdf,
+			     cdf_estimator,
+			     marginal,
+			     sampler, progress_notifier.raw_ptr()
+			     );
+      }
+*/
+    //}
     if( status == -1 ) {
       clean( prop );
       return 1;
@@ -321,6 +345,8 @@ bool Sgsim::initialize( const Parameters_handler* parameters,
 
   int max_neigh = 
     String_Op::to_number<int>( parameters->value( "Max_Conditioning_Data.value" ) );
+  int max_neigh_simul = 
+    String_Op::to_number<int>( parameters->value( "Max_Conditioning_Simul_Data.value" ) );
   
   GsTLTriplet ranges;
   GsTLTriplet angles;
@@ -339,16 +365,26 @@ bool Sgsim::initialize( const Parameters_handler* parameters,
   // If the hard data are not "relocated" on the simulation grid,
   // use a "combined neighborhood", otherwise use a single 
   // neighborhood
+  // The octant search is only used on the hard data
+  // The max size is set for each neighborhood not for the combined
   if( !harddata_grid_ || assign_harddata ) {
 
     neighborhood_ = SmartPtr<Neighborhood>( 
                      simul_grid_->neighborhood( ranges, angles, &covar_ ) );
+    neighborhood_->max_size(max_neigh_simul);
+ //   geostat_utils::set_advanced_search(neighborhood_, 
+//                      "AdvancedSearch", parameters, errors);
+
 
   }
   else {
     Neighborhood* simul_neigh  = simul_grid_->neighborhood( ranges, angles, &covar_ );
 
-    simul_neigh->max_size( max_neigh );
+    simul_neigh->max_size( max_neigh_simul );
+ //   geostat_utils::set_advanced_search(simul_neigh,    
+//                      "AdvancedSearch", parameters, errors);
+
+
     harddata_grid_->select_property(harddata_property_->name());
 
     std::string harddata_region_name = parameters->value( "Hard_Data.region" );
@@ -363,9 +399,9 @@ bool Sgsim::initialize( const Parameters_handler* parameters,
       harddata_neigh = 
         harddata_grid_->neighborhood( ranges, angles, &covar_, false, hd_region );
     }
-
-
     harddata_neigh->max_size( max_neigh );
+    geostat_utils::set_advanced_search(harddata_neigh, 
+                      "AdvancedSearch", parameters, errors);
   //  harddata_neigh->select_property( harddata_property_->name() );
 
     neighborhood_ =
@@ -375,9 +411,9 @@ bool Sgsim::initialize( const Parameters_handler* parameters,
 //							                                           simul_neigh, &covar_, false) );
   }
 
-  neighborhood_->max_size( max_neigh );
-  geostat_utils::set_advanced_search(neighborhood_, 
-                      "AdvancedSearch", parameters, errors);
+ // neighborhood_->max_size( max_neigh ); // The constraint is on the individual neighborhood
+  //geostat_utils::set_advanced_search(neighborhood_, 
+  //                    "AdvancedSearch", parameters, errors);
 
 
   //-----------------

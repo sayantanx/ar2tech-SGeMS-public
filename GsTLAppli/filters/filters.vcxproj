@@ -128,7 +128,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIRx64)\include\QtCore;$(QTDIRx64)\include\QtGui;$(QTDIRx64)\include\QtXml;$(QTDIRx64)\include;.;gslib;$(QTDIRx64)\include\ActiveQt;.moc;$(VTKDIR)\Build;$(VTKDIR);$(VTKDIR)\Common;$(VTKDIR)\Utilities;$(VTKDIR)\Rendering;$(VTKDIR)\VolumeRendering;$(VTKDIR)\Charts;$(VTKDIR)\Geovis;$(VTKDIR)\Infovis;$(VTKDIR)\Views;$(VTKDIR)\Hybrid;$(VTKDIR)\Widgets;$(VTKDIR)\IO;$(VTKDIR)\Imaging;$(VTKDIR)\Graphics;$(VTKDIR)\GenericFiltering;$(VTKDIR)\Filtering;$(VTKDIR)\GUISupport;$(VTKDIR)\GUISupport\Qt;$(VTKDIR)\build\Rendering;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIRx64)\include\QtCore;$(QTDIRx64)\include\QtGui;$(QTDIRx64)\include\QtXml;$(QTDIRx64)\include;.;gslib;$(QTDIRx64)\include\ActiveQt;.moc;$(VTKDIR);$(VTKDIR)\Common;$(VTKDIR)\Common\Core;$(VTKDIR)\Common\DataModel;$(VTKDIR)\Common\ExecutionModel;$(VTKDIR)\Filters\Core;$(VTKDIR)\Filters\General;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;FILTERS_EXPORTS;QT_DLL;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -144,10 +144,10 @@
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;FILTERS_EXPORTS;QT_DLL;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_math.lib;GsTLAppli_grid.lib;GsTLAppli_appli.lib;vtkCommon.lib;vtksys.lib;QVTK.lib;vtkViews.lib;vtkWidgets.lib;vtkRendering.lib;vtkVolumeRendering.lib;vtkInfovis.lib;vtkGraphics.lib;vtkImaging.lib;vtkIO.lib;vtkFiltering.lib;vtkHybrid.lib;vtkCharts.lib;QtGuid4.lib;QtCored4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_math.lib;GsTLAppli_grid.lib;GsTLAppli_appli.lib;vtkCommonCore-6.0.lib;vtkCommonDataModel-6.0.lib;vtkCommonExecutionModel-6.0.lib;vtkCommonCore-6.0.lib;vtkCommonDataModel-6.0.lib;vtkCommonExecutionModel-6.0.lib;QtGuid4.lib;QtCored4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\debug\GsTLAppli_filters.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(QTDIRx64)\lib;$(AR2TECH_SGEMS_DIR)\lib\x64\debug;$(VTKDIR)\build\bin\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIRx64)\lib;$(AR2TECH_SGEMS_DIR)\lib\x64\debug;$(VTKDIR)\lib\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>
       </ProgramDatabaseFile>
@@ -210,7 +210,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIRx64)\include\QtCore;$(QTDIRx64)\include\QtGui;$(QTDIRx64)\include\QtXml;$(QTDIRx64)\include;.;gslib;$(QTDIRx64)\include\ActiveQt;.moc;$(VTKDIR)\Build;$(VTKDIR);$(VTKDIR)\Common;$(VTKDIR)\Utilities;$(VTKDIR)\Rendering;$(VTKDIR)\VolumeRendering;$(VTKDIR)\Charts;$(VTKDIR)\Geovis;$(VTKDIR)\Infovis;$(VTKDIR)\Views;$(VTKDIR)\Hybrid;$(VTKDIR)\Widgets;$(VTKDIR)\IO;$(VTKDIR)\Imaging;$(VTKDIR)\Graphics;$(VTKDIR)\GenericFiltering;$(VTKDIR)\Filtering;$(VTKDIR)\GUISupport;$(VTKDIR)\GUISupport\Qt;$(VTKDIR)\build\Rendering;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIRx64)\include\QtCore;$(QTDIRx64)\include\QtGui;$(QTDIRx64)\include\QtXml;$(QTDIRx64)\include;.;gslib;$(QTDIRx64)\include\ActiveQt;.moc;$(VTKDIR);$(VTKDIR)\Common;$(VTKDIR)\Common\Core;$(VTKDIR)\Common\DataModel;$(VTKDIR)\Common\ExecutionModel;$(VTKDIR)\Filters\Core;$(VTKDIR)\Filters\General;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QT_NO_DEBUG;GSTLAPPLI_NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;FILTERS_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -227,10 +227,10 @@
       <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;FILTERS_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_math.lib;GsTLAppli_grid.lib;GsTLAppli_appli.lib;vtkCommon.lib;vtksys.lib;QVTK.lib;vtkViews.lib;vtkWidgets.lib;vtkRendering.lib;vtkVolumeRendering.lib;vtkInfovis.lib;vtkGraphics.lib;vtkImaging.lib;vtkIO.lib;vtkFiltering.lib;vtkHybrid.lib;vtkCharts.lib;QtGui4.lib;QtCore4.lib;QtXml4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_math.lib;GsTLAppli_grid.lib;GsTLAppli_appli.lib;vtkCommonCore-6.0.lib;vtkCommonDataModel-6.0.lib;vtkCommonExecutionModel-6.0.lib;QtGui4.lib;QtCore4.lib;QtXml4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\release\GsTLAppli_filters.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(AR2TECH_SGEMS_DIR)\lib\x64\release;$(QTDIRx64)\lib;$(VTKDIR)\build\bin\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(AR2TECH_SGEMS_DIR)\lib\x64\release;$(QTDIRx64)\lib;$(VTKDIR)\lib\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <ProgramDatabaseFile>
       </ProgramDatabaseFile>

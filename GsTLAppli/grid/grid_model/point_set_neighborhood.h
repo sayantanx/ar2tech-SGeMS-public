@@ -63,6 +63,7 @@
 #include <GsTLAppli/grid/grid_model/superblock.h> 
 #include <GsTLAppli/math/gstlvector.h> 
 #include <GsTLAppli/grid/grid_model/gstl_kdtree2.h>
+#include <GsTLAppli/grid/coordinate_mapper.h>
 
 #include <GsTL/geometry/geometry_algorithms.h> 
 #include <GsTL/geometry/covariance.h> 
@@ -104,7 +105,8 @@ public:
 			   GsTLGridProperty* property, 
 			   const Covariance<location_type>* cov = 0,
          bool only_harddata = false,
-         const GsTLGridRegion* region=0); 
+         const GsTLGridRegion* region=0,
+         Coordinate_mapper* coord_mapper=0); 
  
   virtual ~Point_set_neighborhood(); 
   virtual bool select_property( const std::string& prop_name );  

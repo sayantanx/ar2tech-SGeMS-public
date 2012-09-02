@@ -60,14 +60,16 @@
 #include <GsTLAppli/grid/grid_model/rgrid_geometry.h> 
 #include <iostream> 
  
+
+//This file has been renamed from GsTLGridTopology to grid_connection
  
-class GRID_DECL GsTLGridTopology { 
+class GRID_DECL RGrid_cell_connection { 
 public: 
-    GsTLGridTopology( 
+    RGrid_cell_connection( 
         RGrid_geometry* geo  
     ); 
      
-    ~GsTLGridTopology(); 
+    ~RGrid_cell_connection(); 
  
      
     void initialize(); 
@@ -118,7 +120,7 @@ private:
 //______________ INLINE FUNCTIONS __________________ 
  
 inline 
-GsTLGridTopology::GsTLGridTopology( 
+RGrid_cell_connection::RGrid_cell_connection( 
      RGrid_geometry* geo  
 ) : geom_(geo) { 
     flags_ = new GsTLUInt [nx()*ny()*nz()]; 
@@ -128,27 +130,27 @@ GsTLGridTopology::GsTLGridTopology(
 } 
  
 inline 
-GsTLGridTopology::~GsTLGridTopology() { 
+RGrid_cell_connection::~RGrid_cell_connection() { 
     delete [] flags_; 
 } 
  
 inline 
-GsTLInt GsTLGridTopology::nx()  const { 
+GsTLInt RGrid_cell_connection::nx()  const { 
     return (geom_->dim(0)); 
 } 
  
 inline 
-GsTLInt GsTLGridTopology::ny()  const { 
+GsTLInt RGrid_cell_connection::ny()  const { 
     return (geom_->dim(1)); 
 } 
  
 inline 
-GsTLInt GsTLGridTopology::nz()  const { 
+GsTLInt RGrid_cell_connection::nz()  const { 
     return (geom_->dim(2)); 
 } 
  
 inline 
-void GsTLGridTopology::initialize() { 
+void RGrid_cell_connection::initialize() { 
     GsTLInt nx1 = nx()-1; 
     GsTLInt ny1 = ny()-1; 
     GsTLInt nz1 = nz()-1; 
@@ -175,72 +177,72 @@ void GsTLGridTopology::initialize() {
 } 
  
 inline  
-bool GsTLGridTopology::full_connection( GsTLInt idx ) const { 
+bool RGrid_cell_connection::full_connection( GsTLInt idx ) const { 
     return (!((flags_[idx] ^ full_connection_) & full_connection_)); 
 } 
  
 inline 
-bool GsTLGridTopology::next_i( GsTLInt idx ) const { 
+bool RGrid_cell_connection::next_i( GsTLInt idx ) const { 
     return (flags_[idx] & NextI ); 
 } 
  
 inline 
-bool GsTLGridTopology::next_j( GsTLInt idx ) const { 
+bool RGrid_cell_connection::next_j( GsTLInt idx ) const { 
     return (flags_[idx] & NextJ ); 
 } 
  
 inline 
-bool GsTLGridTopology::next_k( GsTLInt idx ) const { 
+bool RGrid_cell_connection::next_k( GsTLInt idx ) const { 
     return (flags_[idx] & NextK ); 
 } 
  
 inline 
-bool GsTLGridTopology::prev_i( GsTLInt idx ) const { 
+bool RGrid_cell_connection::prev_i( GsTLInt idx ) const { 
     return (flags_[idx] & PrevI ); 
 } 
  
 inline 
-bool GsTLGridTopology::prev_j( GsTLInt idx ) const { 
+bool RGrid_cell_connection::prev_j( GsTLInt idx ) const { 
     return (flags_[idx] & PrevJ ); 
 } 
  
 inline 
-bool GsTLGridTopology::prev_k( GsTLInt idx ) const { 
+bool RGrid_cell_connection::prev_k( GsTLInt idx ) const { 
     return (flags_[idx] & PrevK ); 
 } 
  
 inline 
-void GsTLGridTopology::break_next_i( GsTLInt idx ) { 
+void RGrid_cell_connection::break_next_i( GsTLInt idx ) { 
     flags_[idx] &= ~NextI; 
 } 
  
 inline 
-void GsTLGridTopology::break_next_j( GsTLInt idx ) { 
+void RGrid_cell_connection::break_next_j( GsTLInt idx ) { 
     flags_[idx] &= ~NextJ; 
 } 
  
 inline 
-void GsTLGridTopology::break_next_k( GsTLInt idx ) { 
+void RGrid_cell_connection::break_next_k( GsTLInt idx ) { 
     flags_[idx] &= ~NextK; 
 } 
  
 inline 
-void GsTLGridTopology::break_prev_i( GsTLInt idx ) { 
+void RGrid_cell_connection::break_prev_i( GsTLInt idx ) { 
     flags_[idx] &= ~PrevI; 
 } 
  
 inline 
-void GsTLGridTopology::break_prev_j( GsTLInt idx ) { 
+void RGrid_cell_connection::break_prev_j( GsTLInt idx ) { 
     flags_[idx] &= ~PrevJ; 
 } 
  
 inline 
-void GsTLGridTopology::break_prev_k( GsTLInt idx ) { 
+void RGrid_cell_connection::break_prev_k( GsTLInt idx ) { 
     flags_[idx] &= ~PrevK; 
 } 
  
 inline 
-void GsTLGridTopology::print_flag( std::ostream& os, GsTLInt idx )  { 
+void RGrid_cell_connection::print_flag( std::ostream& os, GsTLInt idx )  { 
     GsTLInt nxyz = nx()*ny()*nz(); 
     if( idx < 0 || idx >= nxyz ) { 
         os << "Index OUT of limits ...." << idx << std::endl; 

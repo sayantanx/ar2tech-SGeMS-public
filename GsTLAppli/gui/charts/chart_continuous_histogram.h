@@ -98,6 +98,9 @@ public slots :
   void set_y_axis_label(const QString& text);
   void set_title(const QString& text);
   void set_legend(bool);
+  void set_grid(bool);
+  void set_x_grid(bool);
+  void set_y_grid(bool);
 
   void set_xaxis_min(double min);
   void set_xaxis_max(double max);
@@ -118,6 +121,13 @@ public slots :
   void set_y_clipping_values(float min_y, float max_y);
   void reset_clipping_values();
 
+  void set_x_axis_font_size(int size);
+  void set_y_axis_font_size(int size);
+  void set_x_label_font_size(int size);
+  void set_y_label_font_size(int size);
+  void set_legend_font_size(int size);
+  void set_title_font_size(int size);
+
   void set_numbers_of_bins(int nbins);
 
 
@@ -126,7 +136,7 @@ public slots :
 
 private:
 
-  enum DescriptiveStats {  DATA, N, MEAN, VARIANCE, MIN, MAX, SUM, SKEWNESS, KURTOSIS };
+  enum DescriptiveStats {  DATA, GRID, N, MEAN, VARIANCE, MIN, MAX, SUM, SKEWNESS, KURTOSIS };
 
 
   struct histo_data {
@@ -135,6 +145,7 @@ private:
     GsTLGridWeightProperty* weight;
     GsTLGridRegion* region;
     Continuous_distribution* dist;
+    Geostat_grid* grid;
     float mean;
     float variance;
     float skewness;

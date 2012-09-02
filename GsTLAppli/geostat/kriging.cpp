@@ -373,7 +373,7 @@ bool Kriging::initialize( const Parameters_handler* parameters,
   harddata_grid_->select_property(harddata_property_name_);
   if( dynamic_cast<Point_set*>(harddata_grid_) ) {
   neighborhood_ = SmartPtr<Neighborhood>(
-    harddata_grid_->neighborhood( ellips_ranges, ellips_angles, &covar_, true, hd_region ) );
+    harddata_grid_->neighborhood( ellips_ranges, ellips_angles, &covar_, true, hd_region, simul_grid_->coordinate_mapper() ) );
   } 
   else {
     neighborhood_ =  SmartPtr<Neighborhood>(

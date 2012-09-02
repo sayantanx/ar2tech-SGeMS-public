@@ -163,28 +163,29 @@ bool vtkProp_cgrid::is_visibile(){
   image_data_->SetExtent(0,grid_->nx(), 0,grid_->ny(), 0,grid_->nz());
   image_data_->SetOrigin(origin.x()-cell_dims.x()/2, origin.y()-cell_dims.y()/2,origin.z()-cell_dims.z()/2);
   image_data_->SetSpacing(cell_dims.x(),cell_dims.y(),cell_dims.z());
-  image_data_->SetScalarTypeToFloat ();
+//  image_data_->SetScalarTypeToFloat ();
   image_data_->GetCellData()->SetScalars(0);
   image_data_->GetPointData()->SetScalars(0);
 
 // Set the thresholder for the region; perform the thresholding based on the visibility array
   region_threshold_ = vtkThreshold::New();
-  region_threshold_->SetInput(image_data_);
+  region_threshold_->SetInputData(image_data_);
   region_threshold_->SetInputArrayToProcess(0,0,0,vtkDataObject::FIELD_ASSOCIATION_CELLS,vtkDataSetAttributes::SCALARS);
   region_threshold_->ThresholdBetween(-1e9,1e9);
 
   data_pass_through_filter_ = vtkPassThrough::New();
-  data_pass_through_filter_->SetInput(image_data_);
+  data_pass_through_filter_->SetInputData(image_data_);
 
   surface_extractor_ = vtkDataSetSurfaceFilter::New();
   surface_extractor_->SetInputArrayToProcess(0,0,0,vtkDataObject::FIELD_ASSOCIATION_CELLS,vtkDataSetAttributes::SCALARS);
-  surface_extractor_->SetInput((vtkDataSet*)data_pass_through_filter_->GetOutput());
+  //surface_extractor_->SetInput((vtkDataSet*)data_pass_through_filter_->GetOutput());
+  surface_extractor_->SetInputConnection(data_pass_through_filter_->GetOutputPort());
 
 	vtk_property_->SetRepresentationToSurface();
 	vtk_property_->EdgeVisibilityOff();
 
   mapper_ = vtkDataSetMapper::New();
-  mapper_->SetInput(surface_extractor_->GetOutput());
+  mapper_->SetInputConnection(surface_extractor_->GetOutputPort());
 
   actor_ = vtkActor::New();
   actor_->SetProperty(vtk_property_);
@@ -196,22 +197,6 @@ bool vtkProp_cgrid::is_visibile(){
   renderer_->AddActor(actor_);
 
   //build a cutter for testing
-
-  /*
-  implicit_plane_ = vtkPlane::New();
-  implicit_plane_->SetOrigin(image_data_->GetCenter());
-  cutter_ = vtkCutter::New();
-  cutter_->SetInputConnection(data_pass_through_filter_->GetOutputPort());
-  cutter_->SetCutFunction(implicit_plane_);
-
-  cut_mapper_ = vtkPolyDataMapper::New();
-  cut_mapper_->SetInputConnection(cutter_->GetOutputPort());
-
-  cut_actor_ = vtkActor::New();
-  cut_actor_->SetMapper(cut_mapper_);
-  renderer_->AddActor(cut_actor_);
-  */
-//  renderer_->AddActor(region_actor_);
   
 }
 
@@ -248,14 +233,14 @@ int vtkProp_cgrid::vtk_3d_slices(vtkRenderWindowInteractor* iren){
 
   vtkImageMapToColors* imageToColor = vtkImageMapToColors::New();
   imageToColor->SetLookupTable(cmap_->color_table());
-  imageToColor->SetInput(image_data_);
+  imageToColor->SetInputData(image_data_);
 
 
 // The 3 image plane widgets are used to probe the dataset.
 	vtkImagePlaneWidget* planeWidgetX = vtkImagePlaneWidget::New();
 	planeWidgetX->DisplayTextOn();
 	//planeWidgetX->SetInput(image_data_);
-	planeWidgetX->SetInput(imageToColor->GetOutput());
+	planeWidgetX->SetInputConnection(imageToColor->GetOutputPort());
 	planeWidgetX->SetPlaneOrientationToXAxes();
 	planeWidgetX->SetSliceIndex(4);
 	planeWidgetX->SetPicker(picker);
@@ -521,8 +506,8 @@ void vtkProp_cgrid::set_region(const std::string& region_name ){
 		}
 
 //  Connect the pipeline directly to image_data
-		region_threshold_->SetInput(0);
-		data_pass_through_filter_->SetInput(image_data_);
+		region_threshold_->SetInputData(0);
+		data_pass_through_filter_->SetInputData(image_data_);
 //		mapper_->SetInput(image_data_);
 
 
@@ -537,10 +522,10 @@ void vtkProp_cgrid::set_region(const std::string& region_name ){
 		current_region_ = region;
 
 // Connect the region pipeline
-		region_threshold_->SetInput(image_data_);
+		region_threshold_->SetInputData(image_data_);
 //		mapper_->SetInput(surface_extractor_->GetOutput());
-//		pre_mapper_pass_through_filter_->SetInput(surface_extractor_->GetOutput());
-		data_pass_through_filter_->SetInput((vtkDataSet*)region_threshold_->GetOutput());
+
+		data_pass_through_filter_->SetInputConnection(region_threshold_->GetOutputPort());
 
 //		if( current_region_->name() != cached_region_name_ ) {
 		if( true ) {
@@ -564,14 +549,16 @@ void vtkProp_cgrid::set_region(const std::string& region_name ){
 
 
 bool vtkProp_cgrid::connect_threshold_to_data(vtkThreshold* thresholder){
-	thresholder->SetInput(vtkDataSet::SafeDownCast(data_pass_through_filter_->GetOutput()));
+	thresholder->SetInputConnection(data_pass_through_filter_->GetOutputPort());
   return true;
 }
 
 bool vtkProp_cgrid::enable_threshold_pipeline(){
 
-	surface_extractor_->SetInput(0);
-	mapper_->SetInput(threshold_poly_data_->GetOutput());
+	//surface_extractor_->SetInputData(0);
+  surface_extractor_->RemoveAllInputConnections(0);
+	mapper_->SetInputConnection(threshold_poly_data_->GetOutputPort());
+  threshold_poly_data_->Modified();
 	mapper_->Modified();
   return true;
 }
@@ -582,8 +569,8 @@ bool vtkProp_cgrid::disable_threshold_pipeline(){
     this->enable_section_pipeline();
   }
   else {
-	  surface_extractor_->SetInput(vtkDataSet::SafeDownCast(data_pass_through_filter_->GetOutput()));
-	  mapper_->SetInput(surface_extractor_->GetOutput());
+	  surface_extractor_->SetInputConnection(data_pass_through_filter_->GetOutputPort());
+	  mapper_->SetInputConnection(surface_extractor_->GetOutputPort());
   }
 
 	mapper_->Modified();
@@ -595,7 +582,7 @@ bool vtkProp_cgrid::disable_threshold_pipeline(){
 
 bool vtkProp_cgrid::enable_section_pipeline(){
 
-	mapper_->SetInput(section_poly_data_->GetOutput());
+	mapper_->SetInputConnection(section_poly_data_->GetOutputPort());
 	mapper_->Modified();
   return true;
 }
@@ -607,8 +594,8 @@ bool vtkProp_cgrid::disable_section_pipeline(){
   }
   else {
 
-	  surface_extractor_->SetInput(vtkDataSet::SafeDownCast(data_pass_through_filter_->GetOutput()));
-	  mapper_->SetInput(surface_extractor_->GetOutput());
+	  surface_extractor_->SetInputConnection(data_pass_through_filter_->GetOutputPort());
+	  mapper_->SetInputConnection(surface_extractor_->GetOutputPort());
 
 	  mapper_->Modified();
   }
@@ -676,7 +663,7 @@ int vtkProp_cgrid::add_section(int id, QString orientation, bool is_visible){
 //  renderer_->AddActor(it->second.actor);
 
 	if(is_visible) {
-		section_poly_data_->AddInput(it->second.cutter->GetOutput());
+		section_poly_data_->AddInputConnection(0,it->second.cutter->GetOutputPort());
 		if(is_section_active_ == false) {
 			this->enable_section_pipeline();
 			is_section_active_ = true;

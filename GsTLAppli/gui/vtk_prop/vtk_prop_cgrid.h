@@ -49,10 +49,10 @@
 
 #include <vtkVolume.h>
 #include <vtkVolumeProperty.h>
-#include <vtkVolumeRayCastMapper.h>
+//#include <vtkVolumeRayCastMapper.h>
 #include <vtkImageShiftScale.h>
-#include <vtkVolumeTextureMapper2D.h>
-#include <vtkVolumeTextureMapper3D.h>
+//#include <vtkVolumeTextureMapper2D.h>
+//#include <vtkVolumeTextureMapper3D.h>
 
  
 #include <map> 

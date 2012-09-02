@@ -90,7 +90,10 @@ public:
     for(Z_iterator it=z_begin; it != z_end ; it++)
       z_values_.push_back(*it);
     
-    p_values_.resize(z_values_.size());
+    //Assume that the z are equiprobable
+    p_values_.clear();
+    p_values_.insert( p_values_.begin(), z_values_.size(), 1.0/z_values_.size() );
+    //p_values_.resize(z_values_.size());
 
     range = z_values_.back() - z_values_.front();
   };

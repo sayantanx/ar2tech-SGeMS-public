@@ -185,7 +185,7 @@ operator ()(clusterT& x, std::vector<clusterT>& kmeans_clusters, int nb_clusters
   vtkSmartPointer<vtkKMeansStatistics> kmeans_stat = vtkSmartPointer<vtkKMeansStatistics>::New();
   kmeans_stat->GlobalWarningDisplayOff(); // does not show the degenerate centroids
 
-  kmeans_stat->SetInput( vtkStatisticsAlgorithm::INPUT_DATA, table );
+  kmeans_stat->SetInputData( vtkStatisticsAlgorithm::INPUT_DATA, table );
   for(int f=0; f<nb_filter; ++f) {
     kmeans_stat->SetColumnStatus( table->GetColumnName( f ) , 1 );
   }

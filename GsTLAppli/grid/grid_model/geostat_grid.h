@@ -61,6 +61,7 @@
 //#include <GsTLAppli/grid/grid_model/gval_iterator.h>
 #include <GsTLAppli/utils/named_interface.h> 
 #include <GsTLAppli/math/gstlpoint.h> 
+#include <GsTLAppli/grid/coordinate_mapper.h>
 
 #include <QModelIndex>
 #include <QVariant>
@@ -68,6 +69,7 @@
 #include <QMimeData>
 #include <QAbstractProxyModel>
 #include <QStringList>
+
 
 #include <typeinfo> 
 #include <list> 
@@ -111,7 +113,7 @@ class GRID_DECL Geostat_grid : public Named_interface {
   
  public: 
  
-  Geostat_grid(){}
+  Geostat_grid(): coord_mapper_(0){}
   Geostat_grid(std::string name);
   virtual ~Geostat_grid() {} 
 
@@ -120,6 +122,15 @@ class GRID_DECL Geostat_grid : public Named_interface {
 
   virtual std::string name() const { return name_; }
   virtual void name(std::string name){ name_ = name; }
+
+
+  /** Get the topology of the grid
+  * Allows conversion between geological and real-world coordinates
+  */
+  virtual Coordinate_mapper* coordinate_mapper() {return coord_mapper_;}
+  virtual const Coordinate_mapper* coordinate_mapper() const {return coord_mapper_;}
+    
+
  
   //------------------------------------ 
   // Properties management 
@@ -287,7 +298,8 @@ class GRID_DECL Geostat_grid : public Named_interface {
   virtual Neighborhood* neighborhood( double x, double y, double z, 
 				      double ang1, double ang2, double ang3, 
 				      const Covariance<location_type>* cov=0, 
-				      bool only_harddata = false, const GsTLGridRegion* region = 0 )=0 ; 
+				      bool only_harddata = false, const GsTLGridRegion* region = 0,
+              Coordinate_mapper* coord_mapper=0)=0 ; 
 
   /** Creates a new ellipsoid neighborhood. Triplet \a dim defines the affinity 
   * ratios of the ellispoid, and triplet angles the rotation angles.
@@ -302,7 +314,8 @@ class GRID_DECL Geostat_grid : public Named_interface {
   virtual Neighborhood* neighborhood( const GsTLTripletTmpl<double>& dim, 
 				      const GsTLTripletTmpl<double>& angles, 
 				      const Covariance<location_type>* cov=0, 
-				      bool only_harddata = false, const GsTLGridRegion* region = 0 )=0; 
+				      bool only_harddata = false, const GsTLGridRegion* region = 0,
+              Coordinate_mapper* coord_mapper=0)=0; 
   virtual Neighborhood* colocated_neighborhood( const std::string& prop ); 
  
   //---------------------------   
@@ -337,14 +350,22 @@ class GRID_DECL Geostat_grid : public Named_interface {
   // Misc. 
    
   /** Computes the location of a node, given its node_id. 
+  // This is the "geological" coordinates.  Use xyz_location to get
+  // the real work coordinate
    */ 
   virtual location_type location( int node_id ) const = 0; 
- 
+
+  /** Computes the location of a node, given its node_id. 
+  // This is the "real world" coordinates.  Use location to get
+  // the geological coordinate
+   */ 
+  virtual location_type xyz_location( int node_id ) const {return this->location(node_id);} 
+
   /** Find the node of the grid which is closest to the input point 
    * The input point (geovalue) may not be a grid node.  
    * @return the node-id of the node closest to "P" 
    */ 
-  virtual GsTLInt closest_node( const location_type& P ) = 0; 
+  virtual GsTLInt closest_node( const location_type& P ) const = 0; 
  
   /** This function returns the node-id of the index-th node. 
    * This is useful if there is a re-mapping of the node-id, ie 
@@ -372,6 +393,7 @@ public :
 
 
  protected :
+   Coordinate_mapper* coord_mapper_;
 
 
  protected :

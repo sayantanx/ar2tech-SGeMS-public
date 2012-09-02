@@ -89,12 +89,12 @@ public slots :
 
 
  protected:
-  vtkSmartPointer<vtkRenderer> renderer_;
   vtkSmartPointer<vtkOrientationMarkerWidget> orientation_widget_;
   vtkSmartPointer<vtkLegendScaleActor> scale_actor_;
   vtkSmartPointer<vtkCellPicker> picker_;
   vtkSmartPointer<vtkDistanceWidget> distance_;
   vtkSmartPointer<vtkCellCentersPointPlacer> point_placer_;
+  vtkSmartPointer<vtkRenderer> renderer_;
  // vtkSmartPointer<vtkCompassWidget> compass_;
 
 

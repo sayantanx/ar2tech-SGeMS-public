@@ -30,6 +30,12 @@
 #include <GsTLAppli/grid/common.h>
 #include <vtkStructuredGrid.h>
 #include <vtkSmartPointer.h>
+#include <vtkCellCenters.h>
+
+
+
+class Structured_grid_coord_mapper;
+
 
 class GRID_DECL Structured_grid :  public Cartesian_grid
 {
@@ -51,12 +57,34 @@ public:
 
   void set_structured_points( std::vector<GsTLPoint>& corner_points);
 
+    /** Computes the location of a node, given its node_id. 
+  // This is the "real world" coordinates.  Use location to get
+  // the geological coordinate
+   */ 
+  virtual location_type xyz_location( int node_id ) const;
+
   vtkSmartPointer<vtkStructuredGrid> get_structured_geometry() { return sgrid_geom_;}
   GsTLPoint get_corner_point_locations(int id) const ;
 
 protected:
   vtkSmartPointer<vtkStructuredGrid> sgrid_geom_;
+  vtkSmartPointer<vtkCellCenters> cell_centers_filter_;
   GsTLPoint origin_;
+
+};
+
+
+class Structured_grid_coord_mapper : public Coordinate_mapper 
+{
+public :
+  Structured_grid_coord_mapper(Structured_grid* sgrid);
+
+  virtual GsTLPoint uvw_coords(GsTLPoint xyz); 
+  virtual GsTLPoint xyz_coords(GsTLPoint uvw); 
+
+protected :
+  Structured_grid* sgrid_;  
+  GsTLTripletTmpl<int> grid_cell_dimension_;;
 
 };
 

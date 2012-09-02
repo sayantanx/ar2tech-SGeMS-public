@@ -399,7 +399,7 @@ void Chart_categorical_histogram::initialize_plot(Categorical_histogram_item* it
 //  plt->SetInputArray(0,"Category");
 //  plt->SetInputArray(1,it->second.prop->name());
   //it->second.plot_bar->SetInput(it->second.histo_table);
-    it->second.plot_bar->SetInput(it->second.histo_table, 0, 1);
+    it->second.plot_bar->SetInputData(it->second.histo_table, 0, 1);
 //  it->second.plot_bar->SetInput(it->second.histo_table);
 //  it->second.plot_bar->SetInputArray(0,"Category");
 //  it->second.plot_bar->SetInputArray(1,it->second.prop->name());
@@ -660,7 +660,7 @@ void Chart_categorical_histogram::initialize_stacked_chart(){
  if( current_cdef_ == 0 ) return;
  stacked_bar_ = vtkPlotBar::SafeDownCast(chart_stacked_->AddPlot(vtkChart::BAR));
  //stacked_bar_->SetInput(proportion_table_, "Properties", current_cdef_->get_category_name(0));
- stacked_bar_->SetInput(proportion_table_, 0,1);
+ stacked_bar_->SetInputData(proportion_table_, 0,1);
  for(int i=1; i<ncat_; ++i) {
   stacked_bar_->SetInputArray(i+1,current_cdef_->get_category_name(i));
  }
