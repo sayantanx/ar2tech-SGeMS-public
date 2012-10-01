@@ -238,6 +238,8 @@ class Soares_cdf : public First2_moments_cdf {
 	 var_ = global_cdf_->variance();
 	 mean_global_ = mean_;
 	 var_global_ = var_;
+   max_global_ = global_cdf_->inverse(MAX_PROB) ;
+   min_global_ = global_cdf_->inverse(MIN_PROB) ;
    }
 	  
   virtual ~Soares_cdf(){}
@@ -260,6 +262,8 @@ class Soares_cdf : public First2_moments_cdf {
 
 	float var_global_;
 	float mean_global_;
+  float min_global_;
+  float max_global_;
 	Global_cdf* global_cdf_;
 	Gaussian_cdf* gaussian_local_cdf_;
 	Gaussian_cdf* gaussian_global_cdf_;
@@ -269,10 +273,10 @@ class Soares_cdf : public First2_moments_cdf {
 template< class Global_cdf >
   inline int Soares_cdf<Global_cdf>::set_moments(float mean, float var )
   {
-	  if(mean < global_cdf_->inverse(0.0) ) 
-		  mean_ = global_cdf_->inverse(MIN_PROB) ;
-	  else if (mean > global_cdf_->inverse(1.0) ) 
-		  mean_ = global_cdf_->inverse(MAX_PROB) ;
+	  if(mean < min_global_ ) 
+		  mean_ = min_global_ ;
+	  else if (mean > max_global_ ) 
+		  mean_ = max_global_ ;
 	  else 
 		  mean_ = mean;
 	  var_ = var;
@@ -300,8 +304,8 @@ inline float Soares_cdf<Global_cdf>::inverse(double p) const
 //		value_type z2=z;
 //		z = ( z - biased_mean )*std::sqrt(var_/biased_var) + mean_;
 		z = z - biased_mean + mean_;
-		if(z < global_cdf_->inverse(0.0) ) return global_cdf_->inverse(MIN_PROB);
-		if(z > global_cdf_->inverse(1.0) ) return global_cdf_->inverse(MAX_PROB);
+    if(z < min_global_ ) return min_global_;
+		if(z > max_global_ ) return max_global_ ;
 		return z;
 	}
 	else return z;

@@ -129,7 +129,8 @@ class GRID_DECL Geostat_grid : public Named_interface {
   */
   virtual Coordinate_mapper* coordinate_mapper() {return coord_mapper_;}
   virtual const Coordinate_mapper* coordinate_mapper() const {return coord_mapper_;}
-    
+  
+  virtual void set_coordinate_mapper(Coordinate_mapper* coord_mapper) {coord_mapper_ = coord_mapper;}
 
  
   //------------------------------------ 

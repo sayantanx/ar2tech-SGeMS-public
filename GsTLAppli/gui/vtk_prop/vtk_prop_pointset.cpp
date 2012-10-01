@@ -88,7 +88,7 @@ void vtkProp_pointset::init(  Geostat_grid* grid, vtkRenderer* renderer ) {
 
 
 // Initialize the geometry of the pset
-  std::vector<Geostat_grid::location_type> locs = grid_->point_locations();
+  std::vector<Geostat_grid::location_type> locs = grid_->xyz_point_locations();
   vtkPoints* xyzPts = vtkPoints::New();
   xyzPts->SetDataTypeToDouble();
   xyzPts->SetNumberOfPoints(locs.size());

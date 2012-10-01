@@ -140,6 +140,12 @@ Named_interface* Sgems_folder_input_filter::read( const std::string& filename,
 		return 0;
 	}
 
+  if(grid == 0) {
+    QString grid_name = root.attribute("name");
+    errors->append("Cannot create a grid with the name "+ grid_name.toStdString());
+		return 0;
+  }
+
 
   ok  = read_category_definition(root.firstChildElement("CategoricalDefinitions"), grid, errors);
   if(!ok) {

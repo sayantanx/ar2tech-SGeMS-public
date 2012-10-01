@@ -278,6 +278,7 @@ class GRID_DECL GsTLGridProperty: public GsTL_object_item {
     inline bool operator == ( const iterator& it ) const; 
     inline bool operator != ( const iterator& it ) const; 
     inline iterator& operator = ( const iterator& it ); 
+    inline int node_id() const;
  
   private: 
     GsTLGridProperty* prop_; 
@@ -307,6 +308,7 @@ class GRID_DECL GsTLGridProperty: public GsTL_object_item {
     inline bool operator == ( const const_iterator& it ) const ; 
     inline bool operator != ( const const_iterator& it ) const ; 
     inline const_iterator& operator = ( const const_iterator& it ); 
+    inline int node_id() const;
  
   private: 
     const GsTLGridProperty* prop_; 
@@ -723,6 +725,11 @@ GsTLGridProperty::iterator::operator = ( const iterator& it ) {
   return *this; 
 } 
  
+
+inline int 
+GsTLGridProperty::iterator::node_id() const { 
+  return id_; 
+}
  
 
 
@@ -793,5 +800,9 @@ GsTLGridProperty::const_iterator::operator = ( const const_iterator& it ) {
   return *this; 
 } 
  
+inline int 
+GsTLGridProperty::const_iterator::node_id() const { 
+  return id_; 
+}
  
 #endif 

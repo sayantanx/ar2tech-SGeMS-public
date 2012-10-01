@@ -1467,6 +1467,7 @@ void GridSelector::setSelectedGrid( const QString& name ) {
 	QString current_grid = object_selector_->currentText();
 	if(current_grid == name) return;
 	object_selector_->setCurrentText(name);
+//  this->update_region_model();
 	emit this->object_changed(name);
 
 }
@@ -1492,9 +1493,16 @@ void GridSelector::setSelectedRegion( const QString& name ) {
 		if( !grid) return;
 
 		GsTLGridRegion* region = grid->region(name.toStdString());
-		QModelIndex index = region_model_->index(region->row(),0,QModelIndex());
-		if(index.isValid()) region_name = name;
-		region_selector_->setCurrentIndex(index);
+    if(region != 0) {
+      int i = region->row();
+		  QModelIndex index = region_model_->index(region->row(),0,QModelIndex());
+		  if(index.isValid()) region_name = name;
+      region_selector_->selectionModel()->select(index,QItemSelectionModel::Select);
+		  //region_selector_->setCurrentIndex(index);
+    }
+    else {
+      region_selector_->clearSelection();
+    }
 
 	}
 

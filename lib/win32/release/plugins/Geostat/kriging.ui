@@ -19,7 +19,7 @@
   <property name="AlgorithmDescription" stdset="0">
    <string>SK, OK, KT and block kriging</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_4">
+  <layout class="QVBoxLayout" name="verticalLayout_6">
    <item>
     <widget class="QTabWidget" name="tabWidget3">
      <property name="currentIndex">
@@ -334,6 +334,80 @@
           <size>
            <width>20</width>
            <height>131</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Options</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Information to output</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QCheckBox" name="ouput_kriging_variance">
+            <property name="text">
+             <string>Kriging variance</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="output_n_samples_">
+            <property name="text">
+             <string>Number of samples</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="output_average_distance">
+            <property name="text">
+             <string>Average distance of samples</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="output_sum_weights">
+            <property name="text">
+             <string>Sum of weights (SK and LVM)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="output_sum_positive_weights">
+            <property name="text">
+             <string>Sum of positive weights</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="output_lagrangian">
+            <property name="text">
+             <string>Langragian (OK and KT)</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>534</height>
           </size>
          </property>
         </spacer>

@@ -230,28 +230,28 @@ Point_set_neighborhood::Point_set_neighborhood( double x,double y,double z,
   //          coords[i][3] = i;
 	    }
     } else  {
+        index ii = 0;
         for( int i=0; i < locs.size() ; i++ ) {
           if( region_ && !region_->is_inside_region(i)) continue;
 		        location_type loc = (*coord_transform_)(locs[i]);
-            (*coords_)[i][0] = loc[0];
-            (*coords_)[i][1] = loc[1];
-            (*coords_)[i][2] = loc[2];
+            (*coords_)[ii][0] = loc[0];
+            (*coords_)[ii][1] = loc[1];
+            (*coords_)[ii][2] = loc[2];
             idx_.push_back(i);
+            ii++;
         }
 	  }
   } 
-  else { // Need a change of coordinate.  Split in two to avoid duplicate memory when no changes are needed
-    std::vector<GsTLPoint> uvwlocs(locs);
-    for(int i=0; i< uvwlocs.size(); ++i) {
-      uvwlocs[i] = coord_mapper->uvw_coords(uvwlocs[i]);
-    }
+  else { // Need a change of coordinate.  Splitted in two to avoid duplicate memory when no changes are needed
+    geol_coords_.reserve(nInformed);
 
     if( use_n_closest_ ) {
       index ii = 0;
-      for( int i=0; i < uvwlocs.size() ; i++ ) {
+      for( int i=0; i < locs.size() ; i++ ) {
         if( !property_->is_informed(i) ) continue;
         if( region_ && !region_->is_inside_region(i)) continue;
-		    location_type loc = (*coord_transform_)(uvwlocs[i]);
+        geol_coords_.push_back( coord_mapper->uvw_coords(locs[i]) );
+        location_type loc = (*coord_transform_)(geol_coords_.back());
         (*coords_)[ii][0] = loc[0];
         (*coords_)[ii][1] = loc[1];
         (*coords_)[ii][2] = loc[2];
@@ -260,12 +260,14 @@ Point_set_neighborhood::Point_set_neighborhood( double x,double y,double z,
   //          coords[i][3] = i;
 	    }
     } else  {
-        for( int i=0; i < uvwlocs.size() ; i++ ) {
+        index ii = 0;
+        for( int i=0; i < locs.size() ; i++ ) {
           if( region_ && !region_->is_inside_region(i)) continue;
-		        location_type loc = (*coord_transform_)(uvwlocs[i]);
-            (*coords_)[i][0] = loc[0];
-            (*coords_)[i][1] = loc[1];
-            (*coords_)[i][2] = loc[2];
+            geol_coords_.push_back( coord_mapper->uvw_coords(locs[i]) );
+            location_type loc = (*coord_transform_)(geol_coords_.back());
+            (*coords_)[ii][0] = loc[0];
+            (*coords_)[ii][1] = loc[1];
+            (*coords_)[ii][2] = loc[2];
             idx_.push_back(i);
         }
 	  }
@@ -485,6 +487,9 @@ void Point_set_neighborhood::find_neighbors(const Geovalue& center) {
       for (unsigned int i=0; i<nearest.size(); i++) {
         if(nearest[i].dis < a2 ) 
            neighbors_.push_back( Geovalue( pset_, property_, idx_[nearest[i].idx] ) );
+          if(!geol_coords_.empty()) {
+            neighbors_.back().set_cached_location(geol_coords_[nearest[i].idx]);
+          }
       }
     }
     else {
@@ -493,6 +498,11 @@ void Point_set_neighborhood::find_neighbors(const Geovalue& center) {
       for (unsigned int i=0; i<nearest.size(); i++) {
         if(nearest[i].dis < a2 && nearest[i].dis > 0) 
            neighbors_.push_back( Geovalue( pset_, property_, idx_[nearest[i].idx] ) );
+
+          //If the coord_mapper was used must cache the geological coordinates
+          if(!geol_coords_.empty()) {
+            neighbors_.back().set_cached_location(geol_coords_[nearest[i].idx]);
+          }
       }
     }
 
@@ -507,6 +517,10 @@ void Point_set_neighborhood::find_neighbors(const Geovalue& center) {
   //    if(property_->is_informed(id) ) {
         Geovalue gval( pset_, property_, node_id );
         if(neigh_filter_->is_admissible(gval, center)) {
+          //If the coord_mapper was used must cache the geological coordinates
+          if(!geol_coords_.empty()) {
+            gval.set_cached_location(geol_coords_[nearest[i].idx]);
+          }
           neighbors_.push_back( gval );
           n_neigh++;
         }
@@ -522,6 +536,7 @@ void Point_set_neighborhood::find_neighbors(const Geovalue& center) {
   if(!includes_center_ && neighbors_.size() > max_neighbors_) {
     neighbors_.pop_back();
   }
+  
 /*  
   if( neigh_filter_->is_neighborhood_valid() ) 
     std::sort(neighbors_.begin(), neighbors_.end(),

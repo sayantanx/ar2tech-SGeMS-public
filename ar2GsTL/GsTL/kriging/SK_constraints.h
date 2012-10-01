@@ -106,11 +106,12 @@ class SK_constraints{
 }; // end of class SK_constraints 
 
 
-
+#include "SK_constraints.cc"
+/*
 #if defined(__GNUC__) || defined(WIN32)
 #include "SK_constraints.cc"
 #elif defined(__xlC__)
 #pragma implementation("SK_constraints.cc")
 #endif
-
+*/
 #endif

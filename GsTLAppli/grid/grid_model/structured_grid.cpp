@@ -24,13 +24,17 @@ Structured_grid::Structured_grid()  : Cartesian_grid()
 
 Structured_grid::Structured_grid(std::string name) : Cartesian_grid(name)
 {
-    sgrid_geom_ = vtkSmartPointer<vtkStructuredGrid>::New();
+  sgrid_geom_ = vtkSmartPointer<vtkStructuredGrid>::New();
+  cell_centers_filter_ = vtkSmartPointer<vtkCellCenters>::New();
+  cell_centers_filter_->SetInputData(sgrid_geom_);
 }
 
 Structured_grid::Structured_grid(std::string name, int nx, int ny, int nz) :
   Cartesian_grid(name, nx, ny, nz)
 {
   sgrid_geom_ = vtkSmartPointer<vtkStructuredGrid>::New();
+  cell_centers_filter_ = vtkSmartPointer<vtkCellCenters>::New();
+  cell_centers_filter_->SetInputData(sgrid_geom_);
 }
 
 

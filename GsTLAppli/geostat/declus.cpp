@@ -116,6 +116,10 @@ int Declus::execute( GsTL_project* ) {
         std::stringstream stream_name;
         stream_name <<weight_name_<<" ( "<<xcs<<","<<ycs<<","<<zcs<<" )";
         GsTLGridWeightProperty* wprop = grid_->add_weight_property(stream_name.str());
+        while(wprop == 0 ) {
+          stream_name<<"_0";
+          wprop = grid_->add_weight_property(stream_name.str());
+        }
         wprop->set_parameters(parameters_);
         for(int i=0; i< wprop->size(); ++i) {
           if( !region_ || region_->is_inside_region(i)) wprop->set_value(0,i);

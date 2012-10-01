@@ -86,7 +86,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIRwin32)\include\;$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);.;$(QTDIRwin32)\include\QtCore;$(QTDIR)\include\QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;MATH_EXPORTS;QT_CORE_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -108,7 +108,7 @@
       <AdditionalDependencies>GsTLAppli_utils.lib;QtCored4.lib;QtGuid4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\debug\GsTLAppli_math.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(AR2TECH_SGEMS_DIR)\lib\win32\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(AR2TECH_SGEMS_DIR)\lib\win32\debug;$(QTDIRwin32)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>
       </ProgramDatabaseFile>
@@ -167,7 +167,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>.;$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIRwin32)\include\;$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIRwin32)\include\;$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;.;$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIRwin32)\include\;$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GSTLAPPLI_NDEBUG;QT_NO_DEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;MATH_EXPORTS;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>

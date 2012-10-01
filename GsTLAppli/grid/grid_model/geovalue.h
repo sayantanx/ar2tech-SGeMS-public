@@ -132,7 +132,7 @@ class GRID_DECL Const_geovalue {
 #ifdef SGEMS_ACCESSOR_LARGE_FILE
     return property_array_->is_informed(node_id_);
 #else
-    return !boost::math::isnan(values_array_[ node_id_ ]);
+    return !(boost::math::isnan)(values_array_[ node_id_ ]);
     //return ( values_array_[ node_id_ ] != GsTLGridProperty::no_data_value );
 #endif
   } 
@@ -154,6 +154,15 @@ class GRID_DECL Const_geovalue {
     return loc_; 
   } 
  
+  const location_type& xyz_location() const {  
+    if( xyz_loc_.x() == invalid_coord_ )
+      xyz_loc_ = grid_->xyz_location( node_id_ );
+
+    GVAL_ASSERT
+    return xyz_loc_; 
+  } 
+
+
   //---------- 
  
  
@@ -165,6 +174,7 @@ class GRID_DECL Const_geovalue {
   const float* values_array_; 
   int node_id_; 
   mutable location_type loc_; 
+  mutable location_type xyz_loc_; 
  
 }; 
 
@@ -219,6 +229,7 @@ class GRID_DECL Geovalue {
   const Geostat_grid* grid() const { return grid_; }
  
   void set_cached_location( const location_type& loc ) { loc_ = loc; } 
+  void set_cached_xyz_location( const location_type& xyz_loc ) { xyz_loc_ = xyz_loc; } 
  
   bool operator == ( const Geovalue& rhs ) const;  
   bool operator != ( const Geovalue& rhs ) const;  
@@ -244,7 +255,7 @@ class GRID_DECL Geovalue {
 #ifdef SGEMS_ACCESSOR_LARGE_FILE
     return property_array_->is_informed(node_id_);
 #else
-    return !boost::math::isnan(values_array_[ node_id_ ]);
+    return !(boost::math::isnan)(values_array_[ node_id_ ]);
     // return !std::isnan(values_array_[ node_id_ ]);  //May not be supported on all compiler; Not supported on msvc10 but ok on gcc
      //volatile float v = values_array_[ node_id_ ];
     //return !(v!=v);
@@ -275,10 +286,18 @@ class GRID_DECL Geovalue {
     if( loc_.x() == invalid_coord_ )
       loc_ = grid_->location( node_id_ );
 
-    GVAL_ASSERT 
+    GVAL_ASSERT   //Need to be removed since the cached location could be of the geological coordinates not the grid coordinate.
     return loc_; 
   } 
  
+  const location_type& xyz_location() const {  
+    if( xyz_loc_.x() == invalid_coord_ )
+      xyz_loc_ = grid_->xyz_location( node_id_ );
+
+ //   GVAL_ASSERT   //Need to be removed since the cached location could be of the geological coordinates not the grid coordinate.
+    return loc_; 
+  } 
+
   //---------- 
  
  
@@ -290,6 +309,7 @@ class GRID_DECL Geovalue {
   float* values_array_; 
   int node_id_; 
   mutable location_type loc_; 
+  mutable location_type xyz_loc_; 
 }; 
  
 

@@ -78,7 +78,7 @@ Named_interface* Kriging::create_new_interface( std::string& ) {
 
 
 Kriging::Kriging()
-  : Kconstraints_(0), combiner_(0),simul_grid_(0),
+  : Kconstraints_(0), combiner_(0),simul_grid_(0),harddata_grid_(0),
     neighborhood_(0), min_neigh_(0),rhs_covar_blk_(0),rhs_covar_(0) {
 }
  
@@ -89,6 +89,10 @@ Kriging::~Kriging() {
 
   if( combiner_ )
     delete combiner_;
+
+  if( harddata_grid_!=0 && dynamic_cast<Point_set*>(harddata_grid_) ) {
+      harddata_grid_->set_coordinate_mapper(0);
+  }
 
  // if(blk_covar_)
  //   delete blk_covar_;
@@ -372,8 +376,11 @@ bool Kriging::initialize( const Parameters_handler* parameters,
 
   harddata_grid_->select_property(harddata_property_name_);
   if( dynamic_cast<Point_set*>(harddata_grid_) ) {
-  neighborhood_ = SmartPtr<Neighborhood>(
-    harddata_grid_->neighborhood( ellips_ranges, ellips_angles, &covar_, true, hd_region, simul_grid_->coordinate_mapper() ) );
+    harddata_grid_->set_coordinate_mapper(simul_grid_->coordinate_mapper());
+    neighborhood_ = SmartPtr<Neighborhood>(
+      harddata_grid_->neighborhood( ellips_ranges, ellips_angles, &covar_, true, hd_region ) );
+
+    //harddata_grid_->neighborhood( ellips_ranges, ellips_angles, &covar_, true, hd_region, simul_grid_->coordinate_mapper() ) );
   } 
   else {
     neighborhood_ =  SmartPtr<Neighborhood>(

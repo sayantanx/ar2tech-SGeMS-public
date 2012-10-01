@@ -86,7 +86,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtGui;$(QTDIR)\include;.;filtersim_std;snesim_std;$(QTDIR)\include\ActiveQt;debug;$(PYTHONDIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(VTKDIRwin32);$(VTKDIRwin32)\Common;$(VTKDIRwin32)\Common\Core;$(VTKDIRwin32)\Common\DataModel;$(VTKDIRwin32)\Common\ExecutionModel;$(VTKDIRwin32)\Filters\Statistics;$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtGui;$(QTDIR)\include;.;filtersim_std;snesim_std;$(QTDIR)\include\ActiveQt;debug;$(PYTHONDIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GSTL_NOWARNING_2;GSTL_NOCHECK_2;WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;QT_DLL;SOQT_DLL;COIN_DLL;QWT_DLL;GEOSTAT_EXPORTS;QT_THREAD_SUPPORT;GSTL_DEBUG_1;GSTL_DEBUG_2;QT_LARGEFILE_SUPPORT;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -105,10 +105,10 @@
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;GEOSTAT_EXPORTS;QT_DLL;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_grid.lib;GsTLAppli_appli.lib;GsTLAppli_utils.lib;GsTLAppli_math.lib;QtGuid4.lib;QtCored4.lib;python27.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GsTLAppli_grid.lib;GsTLAppli_appli.lib;GsTLAppli_utils.lib;GsTLAppli_math.lib;vtkCommonCore-6.0.lib;vtkCommonDataModel-6.0.lib;vtkCommonExecutionModel-6.0.lib;vtkCommonMath-6.0.lib;vtkCommonMisc-6.0.lib;vtkCommonSystem-6.0.lib;vtkCommonTransforms-6.0.lib;vtkFiltersCore-6.0.lib;vtkFiltersExtraction-6.0.lib;vtkFiltersGeneral-6.0.lib;vtkFiltersGeometry-6.0.lib;vtkFiltersHybrid-6.0.lib;vtkFiltersImaging-6.0.lib;vtkFiltersModeling-6.0.lib;vtkFiltersSources-6.0.lib;vtkFiltersStatistics-6.0.lib;vtkFiltersTexture-6.0.lib;QtGuid4.lib;QtCored4.lib;python27_d.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\debug\GsTLAppli_geostat.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(AR2TECH_SGEMS_DIR)\lib\win32\debug;$(PYTHONDIR)\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIRwin32)\lib;$(AR2TECH_SGEMS_DIR)\lib\win32\debug;$(PYTHONDIRwin32)\libs;$(VTKDIRwin32)\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>
       </ProgramDatabaseFile>
@@ -167,7 +167,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(VTKDIRwin32)\Common\;$(VTKDIRwin32)\infovis\;$(VTKDIRwin32)\Filtering\;$(VTKDIRwin32)\build\;$(PYTHONDIRwin32)\include;$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;$(QTDIRwin32)\include\QtXml;$(QTDIRwin32)\include;.;filtersim_std;snesim_std;$(QTDIRwin32)\include\ActiveQt;release;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(VTKDIRwin32);$(VTKDIRwin32)\Common;$(VTKDIRwin32)\Common\Core;$(VTKDIRwin32)\Common\DataModel;$(VTKDIRwin32)\Common\ExecutionModel;$(VTKDIRwin32)\Filters\Statistics;$(VTKDIRwin32)\Common\;$(VTKDIRwin32)\infovis\;$(VTKDIRwin32)\Filtering\;$(VTKDIRwin32)\build\;$(PYTHONDIRwin32)\include;$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;$(QTDIRwin32)\include\QtXml;$(QTDIRwin32)\include;.;filtersim_std;snesim_std;$(QTDIRwin32)\include\ActiveQt;release;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GSTL_NDEBUG;GSTLAPPLI_NDEBUG;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;QT_DLL;SOQT_DLL;COIN_DLL;SIMVOLEON_DLL;QWT_DLL;GEOSTAT_EXPORTS;QT_THREAD_SUPPORT;QT_NO_DEBUG;QT_LARGEFILE_SUPPORT;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -187,10 +187,10 @@
       <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;GEOSTAT_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_grid.lib;GsTLAppli_appli.lib;GsTLAppli_utils.lib;GsTLAppli_math.lib;vtkCommon.lib;vtkInfovis.lib;vtkFiltering.lib;QtCore4.lib;QtXml4.lib;python27.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GsTLAppli_grid.lib;GsTLAppli_appli.lib;GsTLAppli_utils.lib;GsTLAppli_math.lib;vtkCommonCore-6.0.lib;vtkCommonDataModel-6.0.lib;vtkCommonExecutionModel-6.0.lib;vtkCommonMath-6.0.lib;vtkCommonMisc-6.0.lib;vtkCommonSystem-6.0.lib;vtkCommonTransforms-6.0.lib;vtkFiltersCore-6.0.lib;vtkFiltersExtraction-6.0.lib;vtkFiltersGeneral-6.0.lib;vtkFiltersGeometry-6.0.lib;vtkFiltersHybrid-6.0.lib;vtkFiltersImaging-6.0.lib;vtkFiltersModeling-6.0.lib;vtkFiltersSources-6.0.lib;vtkFiltersStatistics-6.0.lib;vtkFiltersTexture-6.0.lib;QtCore4.lib;QtXml4.lib;python27.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\release\GsTLAppli_geostat.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(AR2TECH_SGEMS_DIR)\lib\win32\release;$(PYTHONDIRwin32)\libs;$(QTDIRwin32)\lib;$(VTKDIRwin32)\build\bin\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(AR2TECH_SGEMS_DIR)\lib\win32\release;$(PYTHONDIRwin32)\libs;$(QTDIRwin32)\lib;$(VTKDIRwin32)\lib\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <ProgramDatabaseFile>
       </ProgramDatabaseFile>

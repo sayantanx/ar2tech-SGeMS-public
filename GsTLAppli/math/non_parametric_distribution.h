@@ -152,10 +152,12 @@ public :
   virtual const std::pair<float,float> range() const {return std::make_pair(dist_->inverse(0.000000000001),dist_->inverse(0.999999999999));}
   virtual float quantile(double p) const {return dist_->inverse(p);}
   virtual float skewness() const {return dist_->skewness();}
-  virtual float variance() const {return dist_->kurtosis();}
+  virtual float variance() const {return dist_->variance();}
 
   virtual std::string type() const {return "Non-parametric";}
   virtual bool is_parametric() const {return false;}
+
+
 
 private :
   Non_param_cdf<>* dist_;

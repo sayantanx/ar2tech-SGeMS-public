@@ -169,7 +169,9 @@ public:
 protected:
   kdtree2* kdtree_;
   boost::multi_array<GsTLCoord,2>* coords_;
+
   //bool use_only_informed_node_;
+  std::vector<location_type> geol_coords_;
   
   std::vector<int> idx_;
 

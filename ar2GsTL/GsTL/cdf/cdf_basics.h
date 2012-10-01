@@ -32,7 +32,8 @@ class Non_parametric_cdf : public Cdf<T> {
  public:
   static const double NaN;
 
-  Non_parametric_cdf() {}
+  Non_parametric_cdf():
+    is_mean_computed_(false),is_variance_computed_(false),is_skewness_computed_(false) {}
   virtual ~Non_parametric_cdf() {}
 
   virtual bool make_valid() = 0; 
@@ -40,6 +41,8 @@ class Non_parametric_cdf : public Cdf<T> {
   virtual void resize( unsigned int m ) {
     z_values_.resize(m);
     p_values_.resize(m);
+    is_mean_computed_ = false;
+    is_variance_computed_ = false;
   }
   
   virtual value_type inverse(double p) const = 0;
@@ -60,51 +63,56 @@ class Non_parametric_cdf : public Cdf<T> {
 
   value_type mean( void ) const
   {
-	  double inc_p = 0.005;
-	  double mean = 0.;
+    if(!is_mean_computed_) {
+	    double inc_p = 0.005;
+	    mean_ = 0.;
 
-	  for(double pp = 0.005; pp<0.995; pp+=inc_p )
-		  mean += inverse( pp )*inc_p;
-	  return  mean;
+	    for(double pp = 0.005; pp<0.995; pp+=inc_p ) {
+		    mean_ += inverse( pp )*inc_p;
+      }
+      is_mean_computed_ = true;
+    }
+	  return  mean_;
   }
   value_type variance( void ) const
   {
-	  double inc_p = 0.005;
-	  double s1 = 0.;
-	  double s2 = 0.;
-	  double inv_p;
+    if(!is_variance_computed_) {
+	    double inc_p = 0.005;
+	    double s1 = 0.;
+	    double s2 = 0.;
+	    double inv_p;
 
-	  for(double pp = 0.005; pp<0.995; pp+=inc_p ){
-		  inv_p = inverse( pp );
-		  s1 += inv_p*inc_p;
-		  s2 += inv_p*inv_p*inc_p;
-	  }
-/*
-	std::vector< double > ik_pdf(p_values_.size());
-	std::adjacent_difference(p_values_.begin(),p_values_.end(),ik_pdf.begin() );
-	value_type s1 = std::inner_product(ik_pdf.begin(),ik_pdf.end(), z_values_.begin(), 0.0);
-	value_type s2 = std::inner_product(ik_pdf.begin(),ik_pdf.end(), z_values_.begin(), 0.0, 
-		std::plus<double>(),inner_prod_square);
-*/
-	return s2 - s1*s1;
+	    for(double pp = 0.005; pp<0.995; pp+=inc_p ){
+		    inv_p = inverse( pp );
+		    s1 += inv_p*inc_p;
+		    s2 += inv_p*inv_p*inc_p;
+	    }
+
+	    variance_ =  s2 - s1*s1;
+      is_variance_computed_ = true;
+    }
+    return variance_;
   }
 
 
   value_type skewness( void ) const
   {
+    if(!is_skewness_computed_) {
+      double mean = this->mean();
+	    double inc_p = 0.005;
+	    double s3 = 0.;
+	    double inv_p;
 
-    double mean = this->mean();
-	  double inc_p = 0.005;
-	  double s3 = 0.;
-	  double inv_p;
+      unsigned int n = 0;
+	    for(double pp = 0.005; pp<0.995; pp+=inc_p, n++ ){
+		    inv_p = inverse( pp );
+        s3 += std::pow( inv_p-mean  ,3);
+	    }
 
-    unsigned int n = 0;
-	  for(double pp = 0.005; pp<0.995; pp+=inc_p, n++ ){
-		  inv_p = inverse( pp );
-      s3 += std::pow( inv_p-mean  ,3);
-	  }
-
-	return s3/n;
+      skewness_ =  s3/n;
+      is_skewness_computed_ = true;
+    }
+    return skewness_;
   }
 
   value_type kurtosis( void ) const
@@ -124,9 +132,17 @@ class Non_parametric_cdf : public Cdf<T> {
 	return s4/n;
   }
 
+
+
  protected:
   std::vector<value_type>  z_values_;
   std::vector<double>      p_values_;
+  mutable bool is_mean_computed_;
+  mutable bool is_variance_computed_;
+  mutable bool is_skewness_computed_;
+  mutable double variance_;
+  mutable double mean_;
+  mutable double skewness_;
 };
 
 template< class T >

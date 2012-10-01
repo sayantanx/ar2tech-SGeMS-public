@@ -85,7 +85,7 @@ bool Point_set::reNameProperty(std::string oldName, std::string newName)
 }
 
 Point_set::Point_set(std::string name, int size)
-  : Geostat_grid(name), point_loc_( size ) {
+  : Geostat_grid(name), xyz_point_loc_( size ), point_loc_( size ) {
   
 //	point_prop_ = new Grid_property_manager();
   point_prop_.set_prop_size(size);
@@ -103,7 +103,7 @@ Point_set::~Point_set()
 }
 
 void Point_set::point_locations( const std::vector<location_type>& locations ) { 
-    point_loc_ = locations; 
+    xyz_point_loc_ = locations; 
     GsTLCoord minx  = locations[0].x();
     GsTLCoord miny  = locations[0].y();
     GsTLCoord minz  = locations[0].z();
@@ -112,10 +112,10 @@ void Point_set::point_locations( const std::vector<location_type>& locations ) {
     GsTLCoord maxz  = locations[0].z();
     
     GsTLCoord x,y,z;
-    for(int i=1; i< point_loc_.size(); ++i) {
-      x =  point_loc_[i].x();
-      y =  point_loc_[i].y();
-      z =  point_loc_[i].z();
+    for(int i=1; i< xyz_point_loc_.size(); ++i) {
+      x =  xyz_point_loc_[i].x();
+      y =  xyz_point_loc_[i].y();
+      z =  xyz_point_loc_[i].z();
       if(x < minx ) minx = x;
       if(y < miny ) miny = y;
       if(z < minz ) minz = z;
@@ -123,6 +123,9 @@ void Point_set::point_locations( const std::vector<location_type>& locations ) {
       if(y > maxy ) maxy = y;
       if(z > maxz ) maxz = z;
     }
+    point_loc_.clear();
+    point_loc_.insert(point_loc_.begin(), xyz_point_loc_.begin(), xyz_point_loc_.end() );
+
     bbox_ = std::make_pair( location_type(minx,miny,minz), location_type(maxx,maxy,maxz) );
 
   } 
@@ -292,7 +295,7 @@ Neighborhood* Point_set::neighborhood( const GsTLTripletTmpl<double>& dim,
 
 void Point_set::init_random_path( bool from_scratch ) { 
   if( grid_path_.empty() ) {
-    grid_path_.resize( point_loc_.size() );
+    grid_path_.resize( xyz_point_loc_.size() );
     from_scratch = true;
   }
 
@@ -308,7 +311,7 @@ void Point_set::init_random_path( bool from_scratch ) {
 
 Point_set::random_path_iterator 
 Point_set::random_path_begin( GsTLGridProperty* prop ) {
-  if( int(grid_path_.size()) != point_loc_.size() )  
+  if( int(grid_path_.size()) != xyz_point_loc_.size() )  
     init_random_path( true ); 
 
   GsTLGridProperty* property = prop;
@@ -316,14 +319,14 @@ Point_set::random_path_begin( GsTLGridProperty* prop ) {
     property = point_prop_.selected_property();
  
   return random_path_iterator( this, property,
-                  			       0, point_loc_.size(),
+                  			       0, xyz_point_loc_.size(),
 			                         TabularMapIndex(&grid_path_) ); 
 }
 
 
 Point_set::random_path_iterator 
 Point_set::random_path_end( GsTLGridProperty* prop ) {
-  if( int(grid_path_.size()) != point_loc_.size() )  
+  if( int(grid_path_.size()) != xyz_point_loc_.size() )  
     init_random_path( true ); 
 
   GsTLGridProperty* property = prop;
@@ -331,7 +334,7 @@ Point_set::random_path_end( GsTLGridProperty* prop ) {
     property = point_prop_.selected_property();
 
   return random_path_iterator( this, property,
-                  			       point_loc_.size(), point_loc_.size(),
+                  			       xyz_point_loc_.size(), xyz_point_loc_.size(),
 			                         TabularMapIndex(&grid_path_) ); 
 
 }
@@ -388,6 +391,24 @@ QVariant Point_set::item_data(int column) const{
 
 	return QVariant();
 
+}
+
+void Point_set::set_coordinate_mapper(Coordinate_mapper* coord_mapper){
+
+ if(coord_mapper == 0 && coord_mapper_ == 0) return;
+ 
+ coord_mapper_ = coord_mapper;
+ point_loc_.clear();
+ 
+ if(coord_mapper == 0) {
+   point_loc_.insert(point_loc_.begin(), xyz_point_loc_.begin(),xyz_point_loc_.end());
+ }
+ else {
+   point_loc_.reserve(xyz_point_loc_.size());
+   for(int i=0; i<xyz_point_loc_.size(); ++i ) {
+     point_loc_.push_back( coord_mapper_->uvw_coords(xyz_point_loc_[i]) );
+   }
+ }
 }
 
 /*

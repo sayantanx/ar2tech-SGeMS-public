@@ -547,6 +547,11 @@ class Covariance {
     return cov_(u1,u2);
   } 
 
+  template<class Geovalue>
+  inline result_type operator()(const Geovalue& g1, const Geovalue& g2) const {
+    return cov_(g1.location(),g2.location());
+  } 
+
   inline result_type compute(const EuclideanVector& vec) const {
     return cov_.compute( vec );
   } 

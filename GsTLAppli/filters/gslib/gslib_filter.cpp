@@ -1132,8 +1132,10 @@ bool Gslib_outfilter::write( std::string outfile, const Named_interface* ni,
       errors->append( "can't write to file: " + outfile );
     return false;
   }
-
-  return this->write( out, grid );
+  if( _maskToRegular )
+    return this->writeReduced2Cartesian( out, grid );
+  else
+    return this->write( out, grid );
 }
 
 bool Gslib_outfilter::writeReduced2Cartesian( std::ofstream& outfile, const Geostat_grid* grid ) 
@@ -1147,15 +1149,15 @@ bool Gslib_outfilter::writeReduced2Cartesian( std::ofstream& outfile, const Geos
 
 	int nb_properties = property_names.size();
 
-	outfile << nb_properties << std::endl;
+  outfile << rgrid->name() << "size : " << rgrid->geometry()->dim(0)<<","<<rgrid->geometry()->dim(1)<<","<<rgrid->geometry()->dim(2)<< std::endl;
+	outfile << nb_properties+1 << std::endl;
 
-	for( string_iterator it = property_names.begin(); it != property_names.end();
-		++ it ) 
+	for( string_iterator it = property_names.begin(); it != property_names.end(); ++ it ) 
 	{
 		outfile << *it << std::endl;
 		properties.push_back( grid->property( *it ) );
 	}
-//	outfile << rgrid->maskColumn() << std::endl; //use saved name for the mask column
+	outfile << "Mask" << std::endl; //use saved name for the mask column
 
 	int grid_size = rgrid->rgrid_size();
 

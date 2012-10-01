@@ -183,7 +183,7 @@ public:
 
     }
 
-    if(n >2 ) return (x2 - x*x)/n;
+    if(n >2 ) return x2/n - x*x/n/n;
 
     else return GsTLGridProperty::no_data_value; //indicates not informed
 

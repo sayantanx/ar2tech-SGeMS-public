@@ -89,12 +89,14 @@ class GRID_DECL Point_set : public Geostat_grid {
    
   void point_locations( const std::vector<location_type>& locations ); 
   const std::vector<location_type>& point_locations() const { return point_loc_;}
+  const std::vector<location_type>& xyz_point_locations() const { return xyz_point_loc_;}
+
+  virtual void set_coordinate_mapper(Coordinate_mapper* coord_mapper);
  
   virtual std::pair<Geostat_grid::location_type, Geostat_grid::location_type> bounding_box() const {return bbox_;}
 
   // Returns the most specific name of the current class 
   virtual std::string classname() const { return "Point_set"; } 
-
 
   //----------------------------
   // Properties management 
@@ -218,10 +220,11 @@ class GRID_DECL Point_set : public Geostat_grid {
   /** Computes the location of a node, given its node_id. 
    */ 
   virtual location_type location( int node_id ) const; 
+  virtual location_type xyz_location( int node_id ) const; 
  
   virtual GsTLInt node_id( GsTLInt index ) const { return index; } 
    
-  virtual GsTLInt size() const {return point_loc_.size();} 
+  virtual GsTLInt size() const {return xyz_point_loc_.size();} 
  
   Geovalue geovalue(int node_id); 
  
@@ -248,7 +251,8 @@ class GRID_DECL Point_set : public Geostat_grid {
 
 
 protected:
-  std::vector<location_type> point_loc_; 
+  std::vector<location_type> xyz_point_loc_; 
+  std::vector<location_type> point_loc_;
   Grid_property_manager point_prop_;
 
   Grid_region_manager region_manager_;
@@ -298,7 +302,11 @@ Point_set::location_type Point_set::location( int node_id ) const {
      return point_loc_[node_id]; 
   } 
  
- 
+inline 
+Point_set::location_type Point_set::xyz_location( int node_id ) const { 
+     appli_assert( node_id >= 0 && node_id <(signed int)( xyz_point_loc_.size()) ); 
+     return xyz_point_loc_[node_id]; 
+  }  
  
  
 inline 
@@ -389,7 +397,7 @@ Point_set::iterator Point_set::begin( GsTLGridProperty* prop ){
     property = point_prop_.selected_property();
 
   return iterator( this, property, 
-		               0,point_loc_.size(), LinearMapIndex() ); 
+		               0,xyz_point_loc_.size(), LinearMapIndex() ); 
 } 
 inline 
 Point_set::iterator Point_set::end( GsTLGridProperty* prop ){ 
@@ -398,7 +406,7 @@ Point_set::iterator Point_set::end( GsTLGridProperty* prop ){
     property = point_prop_.selected_property();
 
   return iterator( this, property, 
-              		 point_loc_.size(), point_loc_.size(), LinearMapIndex() ); 
+              		 xyz_point_loc_.size(), xyz_point_loc_.size(), LinearMapIndex() ); 
 } 
  
 
@@ -409,7 +417,7 @@ Point_set::const_iterator Point_set::begin( const GsTLGridProperty* prop ) const
     property = point_prop_.selected_property();
 
   return const_iterator( this, property, 
-		  0,point_loc_.size(), 
+		  0,xyz_point_loc_.size(), 
                    LinearMapIndex() ); 
 } 
 inline 
@@ -419,7 +427,7 @@ Point_set::const_iterator Point_set::end( const GsTLGridProperty* prop ) const {
     property = point_prop_.selected_property();
 
   return const_iterator( this, property, 
-	                    	 point_loc_.size(),point_loc_.size(), 
+	                    	 xyz_point_loc_.size(),xyz_point_loc_.size(), 
                          LinearMapIndex() ); 
 } 
 

@@ -471,6 +471,25 @@ if (!QIcon::hasThemeIcon(GENERIC_ICON_TO_CHECK)) {
 }
 
 int main(int argc, char **argv) {
+  /*
+#ifdef _WIN32
+  char* vtk_dir;
+  vtk_dir = getenv("VTKDIR");
+  std::string vtk_env_path = "VTK_AUTOLOAD_PATH=.;";
+  if(strlen(vtk_dir) > 0) {
+#ifdef _DEBUG
+    vtk_env_path += std::string(vtk_dir)+"\\BIN\\DEBUG";
+#else
+     vtk_env_path += std::string(vtk_dir)+"\\BIN\\RELEASE";
+#endif
+     
+  }
+  //std::string vtk_env_path = "VTK_AUTOLOAD_PATH=.;"+std::string(vtk_dir)+"\\BIN\\RELEASE";
+  //std::string vtk_env_path = "VTK_AUTOLOAD_PATH=.";
+  putenv(vtk_env_path.c_str());
+  //putenv("VTK_AUTOLOAD_PATH=.;"+vtk_dir+"\BIN\DEBUG");
+#endif
+*/
 	if (argc == 1) {
 		return gui_main(argc, argv);
 	} else {
