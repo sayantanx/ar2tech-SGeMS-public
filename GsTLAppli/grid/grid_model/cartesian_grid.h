@@ -76,6 +76,9 @@ class GRID_DECL Cartesian_grid : public RGrid {
   }
 
   Cartesian_grid(std::string name, int nx, int ny, int nz) ;
+
+  Cartesian_grid(std::string name, int nx, int ny, int nz,
+                            double xsize, double ysize, double zsize);
    
   virtual void set_geometry( RGrid_geometry* geom ); 
   void set_dimensions( int nx, int ny, int nz ); 

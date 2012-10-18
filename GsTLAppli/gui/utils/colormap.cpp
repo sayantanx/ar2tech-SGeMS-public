@@ -38,7 +38,6 @@
 
 Colormap::Colormap() {
 	color_table_ = vtkLookupTable::New();
-	color_table_ = vtkLookupTable::New();
 	color_transfer_function_ = vtkColorTransferFunction::New();
 	opacity_transfer_function_ = vtkPiecewiseFunction::New();
 	opacity_transfer_function_->AllowDuplicateScalarsOn();
@@ -96,7 +95,7 @@ bool Colormap::operator == ( const Colormap& rhs ) {
 void Colormap::color( float value,
 		      float& r, float& g, float& b ) const{
 
-	double* rgb;
+	double rgb[3];
 	color_table_->GetColor((double)value, rgb);
 	r = static_cast<float>(rgb[0]);
 	g = static_cast<float>(rgb[1]);
@@ -112,7 +111,7 @@ void Colormap::color( float value,
 void Colormap::color( float value,
 		      double& r, double& g, double& b ) const{
 
-	double* rgb;
+	double rgb[3];
 	color_table_->GetColor((double)value, rgb);
 	r = rgb[0];
 	g = rgb[1];
@@ -132,6 +131,7 @@ void Colormap::set_nan_color(float r, float g, float b, float a) {
 
 void Colormap::set_default_nan_color() {
 	color_table_->SetNanColor(0.803,0.788,0.788,0.8);
+  color_transfer_function_->SetNanColor(0.803,0.788,0.788);
 }
 
 
@@ -247,11 +247,13 @@ void Colormap_continuous::setLogScale(bool on){
 		if(range[0]<=0) return;
 		color_table_->SetScaleToLog10();
 		color_transfer_function_->SetScaleToLog10();
+    this->set_default_nan_color();
 
 	}
 	else {
 		color_table_->SetScaleToLinear();
 		color_transfer_function_->SetScaleToLinear();
+    this->set_default_nan_color();
 	}
 
 }

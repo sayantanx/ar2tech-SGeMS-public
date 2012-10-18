@@ -439,7 +439,7 @@ bool vtkProp_structured_grid::connect_threshold_to_data(vtkThreshold* thresholde
 
 bool vtkProp_structured_grid::enable_threshold_pipeline(){
 
-	surface_extractor_->SetInputData(0);
+//	surface_extractor_->SetInputData(0);
 	mapper_->SetInputConnection(threshold_poly_data_->GetOutputPort());
 	mapper_->Modified();
   return true;
@@ -451,7 +451,7 @@ bool vtkProp_structured_grid::disable_threshold_pipeline(){
     this->enable_section_pipeline();
   }
   else {
-	  surface_extractor_->SetInputConnection(data_pass_through_filter_->GetOutputPort());
+//	  surface_extractor_->SetInputConnection(data_pass_through_filter_->GetOutputPort());
 	  mapper_->SetInputConnection(surface_extractor_->GetOutputPort());
   }
 
@@ -532,7 +532,8 @@ int vtkProp_structured_grid::add_section(int id, QString orientation, bool is_vi
   }
 
 	if(is_visible) {
-		section_poly_data_->AddInputData(it->second.plane->GetOutput());
+    section_poly_data_->AddInputConnection(it->second.plane->GetOutputPort());
+		//section_poly_data_->AddInputData(it->second.plane->GetOutput());
 		if(is_section_active_ == false) {
 			this->enable_section_pipeline();
 			is_section_active_ = true;
@@ -580,7 +581,8 @@ bool vtkProp_structured_grid::remove_all_sections(){
 	structured_section_map::iterator it = structured_section_pipelines_.begin();
 
 	for( ; it != structured_section_pipelines_.end(); ++it) {
-    section_poly_data_->RemoveInputData(it->second.plane->GetOutput());
+    //section_poly_data_->RemoveInputData(it->second.plane->GetOutput());
+    section_poly_data_->RemoveInputConnection(0,it->second.plane->GetOutputPort());
     it->second.plane->Delete();
 	}
 	structured_section_pipelines_.clear();
@@ -600,7 +602,8 @@ bool vtkProp_structured_grid::remove_section(int id){
 
 	if(it == structured_section_pipelines_.end()) return true;
 
-  section_poly_data_->RemoveInputData(it->second.plane->GetOutput());
+  //section_poly_data_->RemoveInputData(it->second.plane->GetOutput());
+  section_poly_data_->RemoveInputConnection(0,it->second.plane->GetOutputPort());
 
   it->second.plane->Delete();
 
@@ -628,7 +631,8 @@ bool vtkProp_structured_grid::enable_section(int id){
 
   it->second.enabled = true;
 
-  section_poly_data_->AddInputData(it->second.plane->GetOutput());
+  //section_poly_data_->AddInputData(it->second.plane->GetOutput());
+  section_poly_data_->AddInputConnection(it->second.plane->GetOutputPort());
   if(is_section_active_ == false) {
     is_section_active_ = true;
     this->enable_section_pipeline();
@@ -643,7 +647,8 @@ bool vtkProp_structured_grid::disable_section(int id){
   structured_section_map::iterator it = structured_section_pipelines_.find(id);
   if(it == structured_section_pipelines_.end()) return false;
 
-  section_poly_data_->RemoveInputData(it->second.plane->GetOutput());
+  //section_poly_data_->RemoveInputData(it->second.plane->GetOutput());
+  section_poly_data_->RemoveInputConnection(0,it->second.plane->GetOutputPort());
   it->second.enabled = false;
 
 

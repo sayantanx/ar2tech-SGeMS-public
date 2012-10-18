@@ -84,7 +84,7 @@ public :
 
 protected :
   Structured_grid* sgrid_;  
-  GsTLTripletTmpl<int> grid_cell_dimension_;;
+  GsTLTripletTmpl<int> grid_cell_number_;
 
 };
 

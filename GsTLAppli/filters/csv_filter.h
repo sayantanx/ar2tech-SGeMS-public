@@ -132,7 +132,7 @@ class FILTERS_DECL Csv_logdata_infilter : public Csv_specialized_infilter {
 
   virtual Geostat_grid* read( std::ifstream& infile );
 
-  virtual Geostat_grid* read_no_gui( std::ifstream& infile );
+  virtual Geostat_grid* read_no_gui( std::ifstream& infile, std::string name = "" );
 
   virtual bool has_valid_parameters() const;
 
@@ -236,7 +236,7 @@ class FILTERS_DECL Csv_structured_infilter : public Csv_specialized_infilter {
 
   virtual Geostat_grid* read( std::ifstream& infile );
 
-  virtual Geostat_grid* read_no_gui( std::ifstream& infile );
+  virtual Geostat_grid* read_no_gui( std::ifstream& infile , std::string name = "" );
 
   virtual bool has_valid_parameters() const;
 

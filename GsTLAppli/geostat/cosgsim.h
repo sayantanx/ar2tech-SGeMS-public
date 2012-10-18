@@ -112,6 +112,7 @@ class GEOSTAT_DECL Cosgsim : public Geostat_algo {
   Geostat_grid* sec_harddata_grid_;
   GsTLGridProperty* primary_variable_;
   GsTLGridProperty* secondary_variable_;
+  GsTLGridPropertyGroup* secondary_variable_group_;
 
   //Grid_initializer* initializer_; 
   SmartPtr<Property_copier> property_copier_;
@@ -129,6 +130,7 @@ class GEOSTAT_DECL Cosgsim : public Geostat_algo {
   bool transform_secondary_variable_; 
   //geostat_utils::NonParametricCdfType original_cdf_;
   SmartPtr<Continuous_distribution> original_cdf_;
+  SmartPtr<Continuous_distribution> sec_distribution_;
   Neighborhood* variance_record_neighborhood_;
   
   bool clean_primary_var_, clean_secondary_var_;

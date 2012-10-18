@@ -138,13 +138,14 @@ public:
 
 
 	void set_log_geometry( std::map<std::string, std::vector< std::pair< int, std::pair<GsTLPoint,GsTLPoint> > > >&  log_segments );
-
+/*
 	 void point_locations( const std::vector<location_type>& locations ) {
 	   point_loc_ = locations;
 	 }
-
+*/
+/*
  const std::vector<location_type>& point_locations() const { return point_loc_;}
-
+ */
  // Returns the most specific name of the current class
  virtual std::string classname() const { return "Log_data_grid"; }
 

@@ -68,6 +68,11 @@ Cartesian_grid::Cartesian_grid(std::string name, int nx, int ny, int nz)
   set_dimensions( nx, ny, nz );
 }
 
+Cartesian_grid::Cartesian_grid(std::string name, int nx, int ny, int nz,
+                            double xsize, double ysize, double zsize)
+ : RGrid(name){
+  set_dimensions( nx, ny, nz, xsize, ysize, zsize );
+}
 
 void Cartesian_grid::set_dimensions( int nx, int ny, int nz ) {
   // set up a new geometry and pass it to the rgrid

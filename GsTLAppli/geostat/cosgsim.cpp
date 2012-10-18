@@ -133,6 +133,18 @@ int Cosgsim::execute( GsTL_project* ) {
       return 1;
     }
 
+    bool clean_sec_variable_after_each_simulation = false;
+    if( secondary_variable_group_ != 0 ) {
+      secondary_variable_ = secondary_variable_group_->get_property( nreal%secondary_variable_group_->size() );
+      if( !secondary_variable_ ) return false;
+      secondary_variable_ = 
+      distribution_utils::gaussian_transform_property( secondary_variable_, sec_distribution_.raw_ptr(), sec_harddata_grid_ );
+      neighborhood_vector_.back().select_property(secondary_variable_->name());
+      clean_sec_variable_after_each_simulation = true;
+      clean_secondary_var_ = false; // will be clean automatically after each simulation
+
+    }
+
 
     // Create a new property to hold the realization and tell the simulation 
     // grid to use it as the current property 
@@ -171,6 +183,10 @@ int Cosgsim::execute( GsTL_project* ) {
     if( transform_primary_variable_ ) {
       cdf_transform( prop->begin(), prop->end(), 
         marginal, *original_cdf_.raw_ptr() );
+    }
+
+    if( clean_sec_variable_after_each_simulation ) {
+      clean( secondary_variable_ );
     }
 
   }
@@ -255,19 +271,47 @@ bool Cosgsim::initialize( const Parameters_handler* parameters,
     parameters->value( "Secondary_Harddata_Grid.value" );
   errors->report( sec_harddata_grid_name.empty(),
                   "Secondary_Harddata_Grid", "No secondary variable specified" );
-  if( !sec_harddata_grid_name.empty() ) {
+
+  if(!errors->empty()) return false;
+    
+  // Get the harddata grid from the grid manager
+  bool ok2 = geostat_utils::create( sec_harddata_grid_, sec_harddata_grid_name, 
+  	                           	    "Secondary_Harddata_Grid", errors );
+  if( !ok2 ) return false;
+
+
+  // Does the secondary attribute is a single property or a group of property
+  bool is_sec_group = parameters->value( "is_secondary_group.value" )=="1";
+
+  if( is_sec_group ) {
+    std::string secondary_variable_group_name =
+      parameters->value( "Secondary_Variable_Group.value" );
+    errors->report( secondary_variable_group_name.empty(), 
+                    "Secondary_Variable_Group", "No group property name specified" );
+
+    secondary_variable_group_ = sec_harddata_grid_->get_group( secondary_variable_group_name );
+    if(secondary_variable_group_ == 0 || secondary_variable_group_->empty()) {
+        errors->report("Secondary_Variable_Group", "The group "+secondary_variable_group_name+" is empty" );
+        return false;
+    }
+    secondary_variable_ = secondary_variable_group_->get_property(0);
+  }
+  else {
     std::string secondary_variable_name =
       parameters->value( "Secondary_Variable.value" );
     errors->report( secondary_variable_name.empty(), 
                     "Secondary_Variable", "No property name specified" );
 
-    
-    // Get the harddata grid from the grid manager
-    bool ok2 = geostat_utils::create( sec_harddata_grid_, sec_harddata_grid_name, 
-  	                           	     "Secondary_Harddata_Grid", errors );
-    if( !ok2 ) return false;
-
     secondary_variable_ = sec_harddata_grid_->property( secondary_variable_name );
+  }
+
+
+  //Assign the coordinate mapper
+  if( dynamic_cast<Point_set*>(prim_harddata_grid_) ) {
+    prim_harddata_grid_->set_coordinate_mapper(simul_grid_->coordinate_mapper());
+  }
+  if( sec_harddata_grid_ != simul_grid_ && dynamic_cast<Point_set*>(sec_harddata_grid_) ) {
+    sec_harddata_grid_->set_coordinate_mapper(simul_grid_->coordinate_mapper());
   }
 
   bool assign_harddata = 
@@ -336,19 +380,21 @@ bool Cosgsim::initialize( const Parameters_handler* parameters,
       return false;
     }
 
-    SmartPtr<Continuous_distribution> sec_distribution;
-    bool ok = distribution_utils::get_continuous_cdf(sec_distribution, parameters, errors, "nonParamCdf_secondary");
+    //SmartPtr<Continuous_distribution> sec_distribution;
+    bool ok = distribution_utils::get_continuous_cdf(sec_distribution_, parameters, errors, "nonParamCdf_secondary");
     if(!ok) {
       errors->report( std::string( "nonParamCdf_secondary" ), 
                 "Normal score transform requested, "
                 "but no property was selected" );
       return false;
     }
-    secondary_variable_ = 
-      distribution_utils::gaussian_transform_property( secondary_variable_, sec_distribution.raw_ptr(), sec_harddata_grid_ );
-    if( !secondary_variable_ ) return false;
-    
-    clean_secondary_var_ = true;
+    if( secondary_variable_group_ == 0 ) {
+      secondary_variable_ = 
+        distribution_utils::gaussian_transform_property( secondary_variable_, sec_distribution_.raw_ptr(), sec_harddata_grid_ );
+      if( !secondary_variable_ ) return false;
+      clean_secondary_var_ = true;
+    }
+
   }
  
  
@@ -540,6 +586,7 @@ Cosgsim::Cosgsim() {
   sec_harddata_grid_ = 0;
   primary_variable_ = 0;
   secondary_variable_ = 0;
+  secondary_variable_group_ = 0;
   
   covar_ = 0; 
   combiner_ = 0; 
@@ -557,6 +604,14 @@ Cosgsim::~Cosgsim() {
   delete covar_;
   delete kconstraints_;
   delete combiner_;
+
+  if( prim_harddata_grid_!=0 && dynamic_cast<Point_set*>(prim_harddata_grid_) ) {
+      prim_harddata_grid_->set_coordinate_mapper(0);
+  }
+
+  if( sec_harddata_grid_!=simul_grid_ && dynamic_cast<Point_set*>(sec_harddata_grid_) ) {
+      sec_harddata_grid_->set_coordinate_mapper(0);
+  }
 
   clean();  
 }

@@ -78,6 +78,29 @@ GsTLGridProperty* GsTLGridPropertyGroup::get_property(std::string prop_name) {
   return it->second;
 }
 
+const GsTLGridProperty* GsTLGridPropertyGroup::get_property(std::string prop_name) const {
+  property_map::const_iterator it = properties_.find( prop_name);
+  if( it == properties_.end() ) return 0;
+  return it->second;
+}
+
+GsTLGridProperty* GsTLGridPropertyGroup::get_property(int id) {
+  if( id >= properties_.size() ) return 0;
+  property_map::iterator it = properties_.begin();
+  std::advance(it,id);
+  if( it == properties_.end() ) return 0;
+  return it->second;
+}
+
+
+const GsTLGridProperty* GsTLGridPropertyGroup::get_property(int id) const {
+  if( id >= properties_.size() ) return 0;
+  property_map::const_iterator it = properties_.begin();
+  std::advance(it,id);
+  if( it == properties_.end() ) return 0;
+  return it->second;
+}
+
 bool GsTLGridPropertyGroup::add_property(GsTLGridProperty* prop) {
   if(prop == 0) return false;
   if(model_) {

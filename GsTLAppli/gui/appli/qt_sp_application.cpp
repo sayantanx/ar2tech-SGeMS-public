@@ -1269,6 +1269,11 @@ void QSP_application::about_version() {
 
 
 void QSP_application::quit_slot() {
+  this->close_project();
+  save_app_preferences();
+  qApp->quit();
+
+  /*
   if( project_->has_changed() ) {
     switch( QMessageBox::information( this, "SGeMS",
                           "The current project has been modified since last saved\n" 
@@ -1288,7 +1293,9 @@ void QSP_application::quit_slot() {
       return;
     }
   }
+  this->close_project();
   project_->clear();
+  */
   save_app_preferences();
   qApp->quit();
 }

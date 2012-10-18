@@ -79,6 +79,8 @@ class GridSelector;
 class PropertySelector;
 class HardDataKrigingPropertySelector;
 class SingleWeightPropertySelector;
+class SinglePropertyGroupSelector;
+class MultiPropertyGroupSelector;
 
 class EXTRAGUI_DECL GridSelector_accessor : public QWidget_value_accessor {
  public:
@@ -241,6 +243,44 @@ class EXTRAGUI_DECL OrderedCategoricalPropertySelector_accessor : public QWidget
 };
 
 
+
+class EXTRAGUI_DECL SinglePropertyGroupSelector_accessor : public QWidget_value_accessor {
+ public:
+  static Named_interface* create_new_interface(std::string&);
+
+ public:
+  SinglePropertyGroupSelector_accessor( QWidget* widget = 0 );
+  virtual ~SinglePropertyGroupSelector_accessor() {}
+  
+  virtual bool initialize( QWidget* widget = 0 );
+  virtual bool is_valid() const { return selector_ != 0; } 
+  virtual std::string value() const;
+  virtual bool set_value( const std::string& str );
+  virtual void clear() {}
+    
+ private:
+  SinglePropertyGroupSelector* selector_;
+
+};
+
+class EXTRAGUI_DECL MultiPropertyGroupSelector_accessor : public QWidget_value_accessor {
+ public:
+  static Named_interface* create_new_interface(std::string&);
+
+ public:
+  MultiPropertyGroupSelector_accessor( QWidget* widget = 0 );
+  virtual ~MultiPropertyGroupSelector_accessor() {}
+  
+  virtual bool initialize( QWidget* widget = 0 );
+  virtual bool is_valid() const { return selector_ != 0; } 
+  virtual std::string value() const;
+  virtual bool set_value( const std::string& str );
+  virtual void clear() {}
+    
+ private:
+  MultiPropertyGroupSelector* selector_;
+
+};
 
 class EXTRAGUI_DECL FileChooser_accessor : public QWidget_value_accessor {
  public:

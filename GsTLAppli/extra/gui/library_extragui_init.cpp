@@ -68,6 +68,7 @@
 #include <GsTLAppli/extra/qtplugins/ellipsoid_input.h>
 #include <GsTLAppli/extra/qtplugins/non_param_cdf_input.h>
 #include <GsTLAppli/extra/qtplugins/neighborhood_filter_input.h>
+#include <GsTLAppli/extra/qtplugins/group_selectors.h>
 
 int library_extragui_init::references_ = 0;
 
@@ -228,6 +229,16 @@ bool library_extragui_init::bind_qt_wrappers_factories(Manager* dir) {
   classname = std::string( weight_prop_select.metaObject()->className() );
   dir->factory(classname, SingleWeightPropertySelector_accessor::create_new_interface);
 
+
+  // SinglePropertyGroupSelector
+  SinglePropertyGroupSelector single_prop_group_select;
+  classname = std::string( single_prop_group_select.metaObject()->className() );
+  dir->factory(classname, SinglePropertyGroupSelector_accessor::create_new_interface);
+
+  // MultiPropertySelector
+  MultiPropertyGroupSelector multi_prop_group_select;
+  classname = std::string( multi_prop_group_select.metaObject()->className() );
+  dir->factory(classname, MultiPropertyGroupSelector_accessor::create_new_interface);
 
   return true;
 

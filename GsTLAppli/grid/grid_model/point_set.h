@@ -87,7 +87,7 @@ class GRID_DECL Point_set : public Geostat_grid {
    
   virtual ~Point_set(); 
    
-  void point_locations( const std::vector<location_type>& locations ); 
+  virtual void point_locations( const std::vector<location_type>& locations ); 
   const std::vector<location_type>& point_locations() const { return point_loc_;}
   const std::vector<location_type>& xyz_point_locations() const { return xyz_point_loc_;}
 

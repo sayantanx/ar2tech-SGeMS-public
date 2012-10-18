@@ -71,6 +71,7 @@ Modified A. Boucher
 #include <GsTLAppli/extra/qtplugins/neighborhood_filter_input.h>
 #include <GsTLAppli/extra/qtplugins/categorical_selectors.h>
 #include <GsTLAppli/extra/qtplugins/weight_property_selector.h>
+#include <GsTLAppli/extra/qtplugins/group_selectors.h>
 #include <QDesignerCustomWidgetCollectionInterface>
 //Added by qt3to4:
 #include <QPixmap>
@@ -339,6 +340,7 @@ private:
   
 };
 
+
 class MultiPropertySelectorPlugin : public QObject, public QDesignerCustomWidgetInterface
 {
   Q_OBJECT
@@ -381,6 +383,95 @@ private:
   bool _initialized;
   
 };
+
+
+class SinglePropertyGroupSelectorPlugin : public QObject, public QDesignerCustomWidgetInterface
+{
+  Q_OBJECT
+  Q_INTERFACES(QDesignerCustomWidgetInterface)
+    
+public:
+  SinglePropertyGroupSelectorPlugin(QObject * o) : QObject(o) { _initialized = false; }
+  
+  bool isContainer() const { return false; }
+  
+  void initialize(QDesignerFormEditorInterface *)
+  {
+    if (_initialized)
+      return;
+    _initialized = true;
+  }
+
+  bool isInitialized () const { return _initialized; }
+
+  QWidget * createWidget(QWidget * parent)
+  {
+    return new SinglePropertyGroupSelector(parent);
+  }
+
+  QString name() const { return QLatin1String("SinglePropertyGroupSelector"); }
+
+  QString group() const { return QLatin1String("GsTLWidget"); }
+
+  QIcon icon() const {     return QIcon( QPixmap( GridSelector_pixmap ) ); }
+
+  QString toolTip() const { return QLatin1String("SinglePropertyGroupSelector widget"); }
+
+  QString whatsThis() const {
+    return "Widget for selecting a group property of a grid object";
+  }
+
+  QString includeFile() const { return "GsTLAppli/extra/qtplugins/group_selectors.h"; }
+  
+private:
+  bool _initialized;
+  
+};
+
+
+class MultiPropertyGroupSelectorPlugin : public QObject, public QDesignerCustomWidgetInterface
+{
+  Q_OBJECT
+  Q_INTERFACES(QDesignerCustomWidgetInterface)
+    
+public:
+  MultiPropertyGroupSelectorPlugin(QObject * o) : QObject(o) { _initialized = false; }
+  
+  bool isContainer() const { return false; }
+  
+  void initialize(QDesignerFormEditorInterface *)
+  {
+    if (_initialized)
+      return;
+    _initialized = true;
+  }
+
+  bool isInitialized () const { return _initialized; }
+
+  QWidget * createWidget(QWidget * parent)
+  {
+    return new MultiPropertyGroupSelector(parent);
+  }
+
+  QString name() const { return QLatin1String("MultiPropertyGroupSelector"); }
+
+  QString group() const { return QLatin1String("GsTLWidget"); }
+
+  QIcon icon() const {     return QIcon( QPixmap( GridSelector_pixmap ) ); }
+
+  QString toolTip() const { return QLatin1String("MultiPropertyGroupSelector widget"); }
+
+  QString whatsThis() const {
+    return "Widget for selecting multiple properties of a grid object";
+  }
+
+  QString includeFile() const { return "GsTLAppli/extra/qtplugins/group_selectors.h"; }
+  
+private:
+  bool _initialized;
+  
+};
+
 
 class OrderedPropertySelectorPlugin : public QObject, public QDesignerCustomWidgetInterface
 {

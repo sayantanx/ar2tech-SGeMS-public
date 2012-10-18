@@ -18,6 +18,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GsTLAppli_utils", "..\GsTLAppli\utils\utils.vcxproj", "{C52740F0-2A21-4416-997A-AC11D019B75F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "main", "..\GsTLAppli\main\main.vcxproj", "{37999513-4C37-4B60-9F03-CDC34330B022}"
+	ProjectSection(ProjectDependencies) = postProject
+		{89578F97-F7D2-3944-A1DC-8DBC7B3C6064} = {89578F97-F7D2-3944-A1DC-8DBC7B3C6064}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qwt", "..\GsTLAppli\extra\qwt\qwt.vcxproj", "{83E1D314-C34C-3BB7-8225-20646D87A194}"
 EndProject

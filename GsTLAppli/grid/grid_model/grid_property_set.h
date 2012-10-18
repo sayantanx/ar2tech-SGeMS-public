@@ -88,7 +88,11 @@ public:
 
   bool is_member_property(std::string prop_name) const;
   GsTLGridProperty* get_property(std::string prop_name);
+  GsTLGridProperty* get_property(int id);
+  const GsTLGridProperty* get_property(std::string prop_name) const;
+  const GsTLGridProperty* get_property(int id) const;
   int size() const {return properties_.size();}
+  bool empty() const {return properties_.empty();}
 
   bool add_property(GsTLGridProperty*);
   bool remove_property(GsTLGridProperty*);

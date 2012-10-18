@@ -95,6 +95,8 @@ GsTL_Widgets_plugin::GsTL_Widgets_plugin(QObject * o) : QObject(o)
   widgets.append(new Drift_componentsPlugin(this));
   widgets.append(new CategoricalDefinitionViewerPlugin(this));
   widgets.append(new SingleWeightPropertySelectorPlugin(this));
+  widgets.append(new SinglePropertyGroupSelectorPlugin(this));
+  widgets.append(new MultiPropertyGroupSelectorPlugin(this));
 
   
 }

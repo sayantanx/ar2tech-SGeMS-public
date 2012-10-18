@@ -104,13 +104,17 @@ Named_interface* Csv_infilter::read( const std::string& filename,
 // based on user preferences stored in a (XML) file
 
   if( this->is_log_file(infile) ) {
+    QStringList path = QString(filename.c_str()).split("/");
+    QString grid_name = path.last().split(".").at(0);
 	  Csv_logdata_infilter reader;
-	  return reader.read_no_gui(infile);
+    return reader.read_no_gui(infile, grid_name.toStdString());
   }
 
   if( this->is_structured_grid(infile) ) {
+    QStringList path = QString(filename.c_str()).split("/");
+    QString grid_name = path.last().split(".").at(0);
 	  Csv_structured_infilter reader;
-	  return reader.read_no_gui(infile);
+	  return reader.read_no_gui(infile, grid_name.toStdString());
   }
 
   wizard_->set_file( infile );
@@ -387,7 +391,7 @@ Geostat_grid* Csv_logdata_infilter::read( std::ifstream& infile ) {
 }
 
 
-Geostat_grid* Csv_logdata_infilter::read_no_gui(ifstream& infile) {
+Geostat_grid* Csv_logdata_infilter::read_no_gui(ifstream& infile, std::string name) {
 	std::string str;
 	std::getline(infile, str);
 	QString qstr(str.c_str());
@@ -410,7 +414,9 @@ Geostat_grid* Csv_logdata_infilter::read_no_gui(ifstream& infile) {
 
 	infile.seekg(0);
 
-	return this->read(infile, "test-dh",dh_id,
+  if(name.empty()) name = "test-dh";
+
+	return this->read(infile, name,dh_id,
 					  xstart_id, ystart_id, zstart_id,
 					  xend_id, yend_id, zend_id, -99);
 
@@ -429,7 +435,6 @@ Geostat_grid* Csv_logdata_infilter::read( std::ifstream& infile, std::string nam
   QStringList property_names = qstr.split(",");
 
   QString nan_str = QString("%1").arg(nan);
-  nan_str = "-99";
 
   QStringList coord_names;
   coord_names.append(property_names.at(xstart_id));
@@ -1196,7 +1201,7 @@ Geostat_grid* Csv_structured_infilter::read( std::ifstream& infile ) {
 }
 
 
-Geostat_grid* Csv_structured_infilter::read_no_gui(ifstream& infile) {
+Geostat_grid* Csv_structured_infilter::read_no_gui(ifstream& infile, std::string name) {
 	std::string str;
 	std::getline(infile, str);
 	QString qstr(str.c_str());
@@ -1213,7 +1218,9 @@ Geostat_grid* Csv_structured_infilter::read_no_gui(ifstream& infile) {
 
 	infile.seekg(0);
 
-  return this->read(infile, "structured_grid",x_id,y_id,z_id);
+  if(name.empty()) name = "test-structured-grid";
+
+  return this->read(infile, name,x_id,y_id,z_id);
 
 
 }

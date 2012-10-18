@@ -56,6 +56,7 @@
 
 #include <GsTL/univariate_stats/utils.h>
 #include <GsTL/math/random_number_generators.h>
+#include <boost/math/special_functions/fpclassify.hpp>
 
 #include <numeric>
 #include <cmath>
@@ -124,7 +125,8 @@ Dataset_iterator& Dataset_iterator::operator ++ ( int ) {
 
 bool Dataset_iterator::is_valid() const {
   float val = *it_;
-  return val >= low_clip_ && val <= high_clip_ && val != no_data_value_;
+  return val >= low_clip_ && val <= high_clip_ && !(boost::math::isnan)(val);
+  //return val >= low_clip_ && val <= high_clip_ && val != no_data_value_;
 }
 
 
@@ -346,7 +348,7 @@ std::pair<float,float> Scatter_plot::find_min_max( Variable var ) {
   
   // go to the first valid value in vec:
   unsigned int i = 0;
-  while( (*vec)[i] == no_data_value_[var] ) { 
+  while( (boost::math::isnan)((*vec)[i]) ) { 
     if( i++ >= vec->size() ) return std::make_pair( 0.0, 0.0 );   
   }
 
@@ -355,7 +357,7 @@ std::pair<float,float> Scatter_plot::find_min_max( Variable var ) {
 
   for( ; i < vec->size() ; i++ ) {
     float val = (*vec)[i];
-    if( (*vec)[i] != no_data_value_[var] ) {
+    if( !(boost::math::isnan)(val) ) {
       min_max.first = std::min( min_max.first, val );
       min_max.second = std::max( min_max.second, val );
     }

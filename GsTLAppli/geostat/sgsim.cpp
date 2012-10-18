@@ -272,13 +272,16 @@ bool Sgsim::initialize( const Parameters_handler* parameters,
     }
 
   }
+  if( dynamic_cast<Point_set*>(harddata_grid_) ) {
+    harddata_grid_->set_coordinate_mapper(simul_grid_->coordinate_mapper());
+  }
 
 
   // hard data assignement and transform is only needed if we have a valid
   // hard data grid and property.  We always assigne the data if it belongs
   // the same grid
 
-  
+
   bool  assign_harddata = 
       String_Op::to_number<bool>( parameters->value( "Assign_Hard_Data.value" ) );
   if( harddata_grid_ == NULL ) assign_harddata=false; 
@@ -499,6 +502,10 @@ Sgsim::Sgsim() {
 Sgsim::~Sgsim() {
   delete Kconstraints_;
   delete combiner_;
+
+  if( harddata_grid_!=0 && dynamic_cast<Point_set*>(harddata_grid_) ) {
+      harddata_grid_->set_coordinate_mapper(0);
+  }
 
   clean();
 }

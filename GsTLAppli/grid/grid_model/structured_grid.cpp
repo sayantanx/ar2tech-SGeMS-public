@@ -30,7 +30,7 @@ Structured_grid::Structured_grid(std::string name) : Cartesian_grid(name)
 }
 
 Structured_grid::Structured_grid(std::string name, int nx, int ny, int nz) :
-  Cartesian_grid(name, nx, ny, nz)
+  Cartesian_grid(name, nx, ny, nz, (double)1.0/nx, (double)1.0/ny, (double)1.0/nz)
 {
   sgrid_geom_ = vtkSmartPointer<vtkStructuredGrid>::New();
   cell_centers_filter_ = vtkSmartPointer<vtkCellCenters>::New();
@@ -101,9 +101,9 @@ Geostat_grid::location_type Structured_grid::xyz_location( int node_id ) const
 Structured_grid_coord_mapper::Structured_grid_coord_mapper(Structured_grid* sgrid)
   :Coordinate_mapper(sgrid), sgrid_(sgrid)
 { 
-  grid_cell_dimension_.x() = sgrid_->geometry()->dim(0);
-  grid_cell_dimension_.y() = sgrid_->geometry()->dim(1);
-  grid_cell_dimension_.z() = sgrid_->geometry()->dim(2);
+  grid_cell_number_.x() = sgrid_->geometry()->dim(0);
+  grid_cell_number_.y() = sgrid_->geometry()->dim(1);
+  grid_cell_number_.z() = sgrid_->geometry()->dim(2);
 }
 
 GsTLPoint Structured_grid_coord_mapper::uvw_coords(GsTLPoint xyz)  {
@@ -116,8 +116,8 @@ GsTLPoint Structured_grid_coord_mapper::uvw_coords(GsTLPoint xyz)  {
   
   double xyzcoord[3];
   xyzcoord[0] = xyz.x();
-  xyzcoord[0] = xyz.y();
-  xyzcoord[0] = xyz.z();
+  xyzcoord[1] = xyz.y();
+  xyzcoord[2] = xyz.z();
 
   double pcoord[3];
   double weights[8];
@@ -125,14 +125,17 @@ GsTLPoint Structured_grid_coord_mapper::uvw_coords(GsTLPoint xyz)  {
 
   int cellid = geom->FindCell(xyzcoord,0,gcell,-1,1e-4,subid,pcoord,weights);
 
-  if(cellid <0 ) return GsTLPoint(-1,-1,-1);
+  //If it outside the grid, ensure that it is so far away that it will get pickup within a neighborhood
+  if(cellid <0 ) return GsTLPoint(xyzcoord[0] + 9e9,xyzcoord[1] + 9e9,xyzcoord[2] + 9e9);
   //geom->GetCell(cellid, gcell);  //may not be necessary if gcell is already stored in the FindCell
   int i,j,k;
   sgrid_->cursor()->coords(cellid,i,j,k);
 
-  double u = (static_cast<double>(i) + pcoord[0])/grid_cell_dimension_.x();
-  double v = (static_cast<double>(j) + pcoord[1])/grid_cell_dimension_.y();
-  double w = (static_cast<double>(k) + pcoord[2])/grid_cell_dimension_.z();
+  //Th u,v,w coordinates ranges from 0-1
+
+  double u = (static_cast<double>(i) + pcoord[0])/grid_cell_number_.x();
+  double v = (static_cast<double>(j) + pcoord[1])/grid_cell_number_.y();
+  double w = (static_cast<double>(k) + pcoord[2])/grid_cell_number_.z();
 
   return GsTLPoint(u,v,w );
 
@@ -148,9 +151,9 @@ GsTLPoint Structured_grid_coord_mapper::xyz_coords(GsTLPoint uvw)  {
 
   //The coordinates wihtin the cell
   double pcoords[3];
-  pcoords[0] = uvw.x() - static_cast<double>(i)/grid_cell_dimension_.x();
-  pcoords[1] = uvw.y() - static_cast<double>(j)/grid_cell_dimension_.y();
-  pcoords[2] = uvw.z() - static_cast<double>(k)/grid_cell_dimension_.z();
+  pcoords[0] = uvw.x() - static_cast<double>(i)/grid_cell_number_.x();
+  pcoords[1] = uvw.y() - static_cast<double>(j)/grid_cell_number_.y();
+  pcoords[2] = uvw.z() - static_cast<double>(k)/grid_cell_number_.z();
 
   double xyz[3];
   double* weights;

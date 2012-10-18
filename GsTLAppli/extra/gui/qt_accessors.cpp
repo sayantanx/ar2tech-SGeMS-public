@@ -65,6 +65,7 @@
 #include <GsTLAppli/extra/qtplugins/ellipsoid_input.h>
 #include <GsTLAppli/extra/qtplugins/non_param_cdf_input.h>
 #include <GsTLAppli/extra/qtplugins/neighborhood_filter_input.h>
+#include <GsTLAppli/extra/qtplugins/group_selectors.h>
 
 #include <qstring.h>
 #include <qdom.h>
@@ -577,6 +578,139 @@ bool OrderedCategoricalPropertySelector_accessor::set_value( const std::string& 
   return true;
 }
 
+
+//=====================================
+Named_interface* SinglePropertyGroupSelector_accessor::create_new_interface(std::string&) {
+  return new SinglePropertyGroupSelector_accessor;
+}
+
+SinglePropertyGroupSelector_accessor::SinglePropertyGroupSelector_accessor( QWidget* widget ) 
+: selector_( dynamic_cast<SinglePropertyGroupSelector*>( widget ) ) {
+  
+}
+
+bool SinglePropertyGroupSelector_accessor::initialize( QWidget* widget ) {
+
+  selector_ = dynamic_cast<SinglePropertyGroupSelector*>(widget);
+  if( selector_ == 0 )
+    return false;
+  
+  return true;
+}
+
+
+std::string SinglePropertyGroupSelector_accessor::value() const {
+  std::string widget_name = String_Op::qstring2string(selector_->objectName());
+  std::string property;
+
+  if( selector_->currentText().isEmpty() )
+     property = "";
+  else 
+    property = String_Op::qstring2string(selector_->currentText());
+
+  return "<" + widget_name + "  value=\"" + property + "\"  /> \n";
+}
+
+
+bool SinglePropertyGroupSelector_accessor::set_value( const std::string& str ) {
+  QString qstr( str.c_str() );
+  
+  // str is just an element of an xml file, hence can not be parsed
+  // by QDomDocument. We need to add a root element.
+  qstr = "<root>" + qstr + "</root>";
+  QDomDocument doc;
+  bool parsed = doc.setContent( qstr );
+  appli_assert( parsed );
+
+  QDomElement root_element = doc.documentElement();
+  QDomElement elem = root_element.firstChild().toElement();
+  QString name = elem.attribute( "value" );
+  
+  int id = 0; 
+  for( ; id < selector_->count() ; id++ ) {
+    if( selector_->itemText( id ) == name ) {
+      selector_->setItemText( selector_->currentIndex(), name );
+      break;
+    }
+  } 
+
+  return true;
+}
+
+
+//=====================================
+Named_interface* MultiPropertyGroupSelector_accessor::create_new_interface(std::string&) {
+  return new MultiPropertyGroupSelector_accessor;
+}
+
+MultiPropertyGroupSelector_accessor::MultiPropertyGroupSelector_accessor( QWidget* widget ) 
+: selector_( dynamic_cast<MultiPropertyGroupSelector*>( widget ) ) {
+  
+}
+
+bool MultiPropertyGroupSelector_accessor::initialize( QWidget* widget ) {
+
+  selector_ = dynamic_cast<MultiPropertyGroupSelector*>(widget);
+  if( selector_ == 0 )
+    return false;
+  
+  return true;
+}
+
+
+std::string MultiPropertyGroupSelector_accessor::value() const {
+  std::string widget_name = String_Op::qstring2string(selector_->objectName());
+  std::string group;
+
+  // make a list of all the selected properties. Each property is separated
+  // by a semi-column
+  int group_count=0;
+  for( unsigned int i = 0; i < selector_->count() ; i++ ) {
+    if( selector_->item(i)->isSelected(  ) && !selector_->item(i)->text().isEmpty() ) {
+      group += std::string( String_Op::qstring2string(selector_->item(i)->text())) + ";";
+      group_count++;
+    }
+  } 
+  
+  std::ostringstream so;
+  so << "<" << widget_name 
+     << " count=\"" << group_count << "\" "
+     << "  value=\"" <<  group <<  "\"  /> \n";
+
+  return so.str();
+}
+
+
+bool MultiPropertyGroupSelector_accessor::set_value( const std::string& str ) {
+  QString qstr( str.c_str() );
+  
+  // str is just an element of an xml file, hence can not be parsed
+  // by QDomDocument. We need to add a root element.
+  qstr = "<root>" + qstr + "</root>";
+  QDomDocument doc;
+  bool parsed = doc.setContent( qstr );
+  appli_assert( parsed );
+
+  QDomElement root_element = doc.documentElement();
+  QDomElement elem = root_element.firstChild().toElement();
+
+  QString count_str = elem.attribute( "count" );
+  int count = count_str.toInt();
+  QString prop_string = elem.attribute( "value" );
+  QStringList prop_list = prop_string.split( ";",QString::SkipEmptyParts,Qt::CaseInsensitive );
+
+  for( int i = 0 ; i < prop_list.size() ; i++ ) {
+    QString name = prop_list[i];
+    int id = 0; 
+    for( ; id < selector_->count() ; id++ ) {
+      if( selector_->item(id)->text(  ) == name ) {
+        selector_->setCurrentItem( selector_->item(id) );
+        break;
+      }
+    }
+  }
+  return true;
+}
 
 
 //=====================================
