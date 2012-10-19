@@ -251,20 +251,20 @@ void Chart_continuous_histogram::initialize_default_colors(){
   colors->SetColorScheme(vtkColorSeries::WILD_FLOWER);
   for( int i=0; i<colors->GetNumberOfColors(); ++i ) {
     vtkColor3ub c3ub	= colors->GetColor (i);
-    const unsigned char r = c3ub.Red();
-    const unsigned char g = c3ub.Green();
-    const unsigned char b = c3ub.Blue();
+    const unsigned char r = c3ub.GetRed();
+    const unsigned char g = c3ub.GetGreen();
+    const unsigned char b = c3ub.GetBlue();
 
-    default_colors_.append(QColor(c3ub.Red(),int(g),int(b)));
+    default_colors_.append(QColor(int(r),int(g),int(b)));
   }
 
   
   colors->SetColorScheme(vtkColorSeries::CITRUS);
   for( int i=0; i<colors->GetNumberOfColors(); ++i ) {
     vtkColor3ub c3ub	= colors->GetColor (i);
-    const unsigned char r = c3ub.Red();
-    const unsigned char g = c3ub.Green();
-    const unsigned char b = c3ub.Blue();
+    const unsigned char r = c3ub.GetRed();
+    const unsigned char g = c3ub.GetGreen();
+    const unsigned char b = c3ub.GetBlue();
 
     default_colors_.append(QColor((int)r,int(g),int(b)));
   }
@@ -273,9 +273,9 @@ void Chart_continuous_histogram::initialize_default_colors(){
 
   for( int i=0; i<colors->GetNumberOfColors(); ++i ) {
     vtkColor3ub c3ub	= colors->GetColor (i);
-    const unsigned char r = c3ub.Red();
-    const unsigned char g = c3ub.Green();
-    const unsigned char b = c3ub.Blue();
+    const unsigned char r = c3ub.GetRed();
+    const unsigned char g = c3ub.GetGreen();
+    const unsigned char b = c3ub.GetBlue();
 
     default_colors_.append(QColor((int)r,int(g),int(b)));
   }

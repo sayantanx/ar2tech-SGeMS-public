@@ -232,7 +232,7 @@
       <AdditionalDependencies>python27.lib;GsTLAppli_utils.lib;GsTLAppli_appli.lib;GsTLAppli_grid.lib;GsTLAppli_filters.lib;QtCore4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\release\GsTLAppli_actions.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>c:\code-dev\Python-2.7.1\PCbuild\amd64;$(QTDIRx64)\lib;$(AR2TECH_SGEMS_DIR)\lib\x64\release\;$(PYTHONDIRx64)/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(PYTHONDIRx64)\libs;$(QTDIRx64)\lib;$(AR2TECH_SGEMS_DIR)\lib\x64\release\;$(PYTHONDIRx64)/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <ProgramDatabaseFile>
       </ProgramDatabaseFile>
