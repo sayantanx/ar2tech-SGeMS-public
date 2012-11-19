@@ -33,7 +33,7 @@
 #include "ui_create_distribution_dialog.h"
 #include <GsTLAppli/extra/qtplugins/distribution_selectors.h>
 #include <GsTLAppli/extra/qtplugins/distribution_parameter_widget.h>
-#include <GsTLAppli/gui/charts/chart_distribution.h>
+#include <GsTLAppli/charts/chart_distribution.h>
 
 class GUI_DECL  New_distribution_dialog : public QDialog
 {

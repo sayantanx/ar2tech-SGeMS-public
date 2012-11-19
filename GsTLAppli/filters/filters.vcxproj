@@ -139,6 +139,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;FILTERS_EXPORTS;QT_DLL;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -222,6 +223,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>
       </DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;FILTERS_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -250,6 +252,7 @@
     <ClCompile Include="library_filters_init.cpp" />
     <ClCompile Include="save_project_objects.cpp" />
     <ClCompile Include="sgems_folder_filter.cpp" />
+    <ClCompile Include="sgems_folder_grid_geometry.cpp" />
     <ClCompile Include="simulacre_filter.cpp" />
     <ClCompile Include=".moc\moc_csv_filter_qt_dialogs.cpp" />
     <ClCompile Include=".moc\moc_filter_qt_dialogs.cpp" />
@@ -307,6 +310,7 @@
     <ClInclude Include="library_filters_init.h" />
     <ClInclude Include="save_project_objects.h" />
     <ClInclude Include="sgems_folder_filter.h" />
+    <ClInclude Include="sgems_folder_grid_geometry.h" />
     <ClInclude Include="simulacre_filter.h" />
     <ClInclude Include="ui_csv_grid_import.h" />
     <ClInclude Include="ui_csv_masked_import.h" />

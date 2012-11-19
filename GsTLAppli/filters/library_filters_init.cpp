@@ -59,7 +59,14 @@
 #include <GsTLAppli/filters/sgems_folder_filter.h>
 #include <GsTLAppli/filters/distribution_filter.h>
 #include <GsTLAppli/filters/save_project_objects.h>
+#include <GsTLAppli/filters/sgems_folder_grid_geometry.h>
 #include <GsTLAppli/utils/gstl_messages.h>
+
+#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
+#include <GsTLAppli/grid/grid_model/point_set.h>
+#include <GsTLAppli/grid/grid_model/log_data_grid.h>
+#include <GsTLAppli/grid/grid_model/reduced_grid.h>
+#include <GsTLAppli/grid/grid_model/structured_grid.h>
 
 int library_filters_init::references_ = 0;
 
@@ -148,6 +155,16 @@ int library_filters_init::init_lib() {
 
 
   //create the binding for saving a project
+  SmartPtr<Named_interface> geometry_filter_ni = 
+    Root::instance()->new_interface("directory://grid_geometry_xml_io",
+				    grid_geom_xml_io_manager );
+  dir = dynamic_cast<Manager*>( geometry_filter_ni.raw_ptr() );
+  appli_assert( dir );
+
+  bind_geometry_xml_managers(dir);
+
+
+  //create the binding for saving a project
   SmartPtr<Named_interface> project_filter_ni = 
     Root::instance()->new_interface("directory://project_filters",
 				    project_filters_manager );
@@ -223,7 +240,6 @@ bool library_filters_init::bind_csv_infilters_factories(Manager* dir) {
   dir->factory( filter.object_filtered(), 
 		Csv_grid_infilter::create_new_interface );
 
-  //TL modified
   Csv_mgrid_infilter mfilter;
   dir->factory( mfilter.object_filtered(), 
 		Csv_mgrid_infilter::create_new_interface );
@@ -265,6 +281,23 @@ bool library_filters_init::bind_project_output(Manager* dir){
     project_filter->add_directory(continuous_distributions_manager,
       std::make_pair(Distribution_output_filter().filter_name(),outfilters_manager+"/") );
 
+    return true;
+
+}
+
+bool library_filters_init::bind_geometry_xml_managers(Manager* dir){
+
+    dir->factory( Cartesian_grid().classname(),
+		  Cartesian_grid_geometry_xml_io::create_new_interface );
+    dir->factory( Point_set().classname(),
+		  Pointset_geometry_xml_io::create_new_interface );
+    dir->factory( Reduced_grid().classname(),
+		  Masked_grid_geometry_xml_io::create_new_interface );
+    dir->factory( Log_data_grid().classname(),
+		  Log_data_grid_geometry_xml_io::create_new_interface );
+    dir->factory( Structured_grid().classname(),
+		  Structured_grid_geometry_xml_io::create_new_interface );
+    
     return true;
 
 }

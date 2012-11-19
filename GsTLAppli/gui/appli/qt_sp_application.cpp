@@ -91,7 +91,7 @@
 #include <GsTLAppli/gui/utils/manager_dialog.h>
 #include <GsTLAppli/gui/appli/cli_commands_panel.h>
 #include <GsTLAppli/gui/variogram2/variogram_modeler_gui.h>
-#include <GsTLAppli/gui/charts/eda_dialog.h>
+#include <GsTLAppli/charts/chart_dialog.h>
 #include <GsTLAppli/gui/utils/new_distribution_dialog.h>
 #include <GsTLAppli/appli/manager_repository.h>
 #include <GsTLAppli/appli/project.h>
@@ -1644,8 +1644,8 @@ void QSP_application::show_project_model(){
 }
 
 void QSP_application::show_eda_beta(){
-	  EDA_dialog* dialog =
-	    new EDA_dialog( this );
+	  Chart_dialog* dialog =
+	    new Chart_dialog( this );
 	  dialog->setWindowTitle( "SGeMS grid" );
 	  dialog->show();
 }

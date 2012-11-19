@@ -118,6 +118,8 @@ static const std::string topLevelInputFilters_manager = "/InputFilters/TopLevel"
 static const std::string gslibInputFilters_manager = "/InputFilters/Gslib";
 static const std::string csvInputFilters_manager = "/InputFilters/Csv";
 
+static const std::string grid_geom_xml_io_manager = "/GridGeometryXML";
+
 static const std::string project_filters_manager = "/ProjectFilters";
 
 static const std::string gridObject_manager = "/GridObject";

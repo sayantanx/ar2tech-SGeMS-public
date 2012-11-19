@@ -32,6 +32,7 @@
  */
 
 #include <GsTLAppli/filters/sgems_folder_filter.h>
+#include <GsTLAppli/filters/sgems_folder_grid_geometry.h>
 #include <GsTLAppli/grid/grid_model/geostat_grid.h>
 #include <GsTLAppli/grid/grid_model/cartesian_grid.h>
 #include <GsTLAppli/grid/grid_model/point_set.h>
@@ -124,7 +125,17 @@ Named_interface* Sgems_folder_input_filter::read( const std::string& filename,
 	QString type = root.attribute("type");
 
 	Geostat_grid* grid=0;
-	QDomElement elemGeom = root.firstChildElement("Geometry");
+
+  SmartPtr<Named_interface> ni = Root::instance()->new_interface( type.toStdString(),
+    		grid_geom_xml_io_manager + "/");
+
+  Grid_geometry_xml_io* geom_xml_io = dynamic_cast<Grid_geometry_xml_io*>(ni.raw_ptr());
+  if( geom_xml_io == 0) {
+    errors->append("Cannot create a grid of type "+ type.toStdString());
+		return 0;
+  }
+  grid = geom_xml_io->read_grid_geometry(dir,root, errors);
+	/*
 	if(type == "Cgrid")
 		grid =  read_cartesian_grid(dir,root, errors);
 	else if(type == "Masked_grid")
@@ -139,7 +150,7 @@ Named_interface* Sgems_folder_input_filter::read( const std::string& filename,
 		errors->append("Non matching grid type");
 		return 0;
 	}
-
+  */
   if(grid == 0) {
     QString grid_name = root.attribute("name");
     errors->append("Cannot create a grid with the name "+ grid_name.toStdString());
@@ -688,6 +699,16 @@ bool Sgems_folder_output_filter::write( std::string outfile,
   bool ok_geometry;
   QDomElement elemGeom;
 
+  SmartPtr<Named_interface> ni_xml_io = Root::instance()->new_interface( grid->classname(),
+    		grid_geom_xml_io_manager + "/");
+
+  Grid_geometry_xml_io* geom_xml_io = dynamic_cast<Grid_geometry_xml_io*>(ni_xml_io.raw_ptr());
+  if( geom_xml_io == 0) {
+    errors->append( "The grid type "+grid->classname()+" cannot be saved with this filter" );
+		return 0;
+  }
+  elemGeom = geom_xml_io->write_grid_geometry(dir, doc,grid);
+/*
   if ( grid->classname() == "Masked_grid")
   	elemGeom =  write_masked_grid_geometry(dir, doc,grid);
   else if( grid->classname() == "Point_set" )
@@ -702,7 +723,7 @@ bool Sgems_folder_output_filter::write( std::string outfile,
 	  errors->append( "The grid type "+grid->classname()+" cannot be saved with this filter" );
 	  return false;
   }
-
+  */
 
   if(elemGeom.isNull()){
 	  errors->append( "can't create the geometry header: " + dirname.toStdString() );

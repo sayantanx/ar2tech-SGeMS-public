@@ -53,6 +53,9 @@
     <ClCompile Include="save_project_objects.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sgems_folder_grid_geometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -101,6 +104,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="save_project_objects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sgems_folder_grid_geometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

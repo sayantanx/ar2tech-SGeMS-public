@@ -224,6 +224,10 @@ class GRID_DECL Colocated_neighborhood : public Neighborhood {
  public: 
   Colocated_neighborhood( Geostat_grid* grid, 
 			  const std::string& property_name ); 
+
+  // Select property must be called if this constructor is used
+  Colocated_neighborhood( Geostat_grid* grid );  
+
   virtual ~Colocated_neighborhood() {}; 
   virtual bool select_property( const std::string& prop_name );  
   virtual const GsTLGridProperty* selected_property() const { return property_; }

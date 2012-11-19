@@ -81,6 +81,7 @@ class HardDataKrigingPropertySelector;
 class SingleWeightPropertySelector;
 class SinglePropertyGroupSelector;
 class MultiPropertyGroupSelector;
+class MultiRegionSelector;
 
 class EXTRAGUI_DECL GridSelector_accessor : public QWidget_value_accessor {
  public:
@@ -279,6 +280,26 @@ class EXTRAGUI_DECL MultiPropertyGroupSelector_accessor : public QWidget_value_a
     
  private:
   MultiPropertyGroupSelector* selector_;
+
+};
+
+
+class EXTRAGUI_DECL MultiRegionSelector_accessor : public QWidget_value_accessor {
+ public:
+  static Named_interface* create_new_interface(std::string&);
+
+ public:
+  MultiRegionSelector_accessor( QWidget* widget = 0 );
+  virtual ~MultiRegionSelector_accessor() {}
+  
+  virtual bool initialize( QWidget* widget = 0 );
+  virtual bool is_valid() const { return selector_ != 0; } 
+  virtual std::string value() const;
+  virtual bool set_value( const std::string& str );
+  virtual void clear() {}
+    
+ private:
+  MultiRegionSelector* selector_;
 
 };
 

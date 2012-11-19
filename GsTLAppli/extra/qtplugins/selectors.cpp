@@ -110,6 +110,17 @@ GridSelectorBasic::~GridSelectorBasic() {
   //new_ref();
 }
 
+
+Geostat_grid* GridSelectorBasic::selected_grid_object(){
+
+  QString grid_name = currentText();
+  if( grid_name.isEmpty() ) return (Geostat_grid*)0;
+
+  SmartPtr< Named_interface > ni = 
+    Root::instance()->interface( gridModels_manager + "/" + grid_name.toStdString() );
+  return dynamic_cast<Geostat_grid*>(ni.raw_ptr());
+}
+
 void GridSelectorBasic::setCurrentText( const QString& text ) {
 	int id = findText(text);
 	if(id == currentIndex()) return;

@@ -75,6 +75,12 @@ Colocated_neighborhood( Geostat_grid* grid,
 //  center_property_ = 0;
 }
 
+Colocated_neighborhood::
+Colocated_neighborhood( Geostat_grid* grid ) {
+  grid_ = grid;
+  property_ = 0;
+//  center_property_ = 0;
+}
 
 void Colocated_neighborhood::find_neighbors( const Geovalue& center ) {
   if( neighbors_.empty() ) {

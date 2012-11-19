@@ -397,14 +397,14 @@ bool MultiPropertySelector_accessor::initialize( QWidget* widget ) {
 
 std::string MultiPropertySelector_accessor::value() const {
   std::string widget_name = String_Op::qstring2string(selector_->objectName());
-  std::string property;
+  std::string props;
 
   // make a list of all the selected properties. Each property is separated
   // by a semi-column
   int prop_count=0;
   for( unsigned int i = 0; i < selector_->count() ; i++ ) {
     if( selector_->item(i)->isSelected(  ) && !selector_->item(i)->text().isEmpty() ) {
-      property += std::string( String_Op::qstring2string(selector_->item(i)->text())) + ";";
+      props += std::string( String_Op::qstring2string(selector_->item(i)->text())) + ";";
       prop_count++;
     }
   } 
@@ -412,7 +412,7 @@ std::string MultiPropertySelector_accessor::value() const {
   std::ostringstream so;
   so << "<" << widget_name 
      << " count=\"" << prop_count << "\" "
-     << "  value=\"" <<  property <<  "\"  /> \n";
+     << "  value=\"" <<  props <<  "\"  /> \n";
 
   return so.str();
 }
@@ -433,11 +433,11 @@ bool MultiPropertySelector_accessor::set_value( const std::string& str ) {
 
   QString count_str = elem.attribute( "count" );
   int count = count_str.toInt();
-  QString prop_string = elem.attribute( "value" );
-  QStringList prop_list = prop_string.split( ";",QString::SkipEmptyParts,Qt::CaseInsensitive );
+  QString props_string = elem.attribute( "value" );
+  QStringList props_list = props_string.split( ";",QString::SkipEmptyParts,Qt::CaseInsensitive );
 
-  for( int i = 0 ; i < prop_list.size() ; i++ ) {
-    QString name = prop_list[i];
+  for( int i = 0 ; i < props_list.size() ; i++ ) {
+    QString name = props_list[i];
     int id = 0; 
     for( ; id < selector_->count() ; id++ ) {
       if( selector_->item(id)->text(  ) == name ) {
@@ -448,7 +448,6 @@ bool MultiPropertySelector_accessor::set_value( const std::string& str ) {
   }
   return true;
 }
-
 
 
 
@@ -711,6 +710,84 @@ bool MultiPropertyGroupSelector_accessor::set_value( const std::string& str ) {
   }
   return true;
 }
+
+
+
+//=====================================
+Named_interface* MultiRegionSelector_accessor::create_new_interface(std::string&) {
+  return new MultiRegionSelector_accessor;
+}
+
+MultiRegionSelector_accessor::MultiRegionSelector_accessor( QWidget* widget ) 
+: selector_( dynamic_cast<MultiRegionSelector*>( widget ) ) {
+  
+}
+
+bool MultiRegionSelector_accessor::initialize( QWidget* widget ) {
+
+  selector_ = dynamic_cast<MultiRegionSelector*>(widget);
+  if( selector_ == 0 )
+    return false;
+  
+  return true;
+}
+
+
+std::string MultiRegionSelector_accessor::value() const {
+  std::string widget_name = String_Op::qstring2string(selector_->objectName());
+  std::string regions;
+
+  // make a list of all the selected properties. Each property is separated
+  // by a semi-column
+  int prop_count=0;
+  for( unsigned int i = 0; i < selector_->count() ; i++ ) {
+    if( selector_->item(i)->isSelected(  ) && !selector_->item(i)->text().isEmpty() ) {
+      regions += std::string( String_Op::qstring2string(selector_->item(i)->text())) + ";";
+      prop_count++;
+    }
+  } 
+  
+  std::ostringstream so;
+  so << "<" << widget_name 
+     << " count=\"" << prop_count << "\" "
+     << "  value=\"" <<  regions <<  "\"  /> \n";
+
+  return so.str();
+}
+
+
+bool MultiRegionSelector_accessor::set_value( const std::string& str ) {
+  QString qstr( str.c_str() );
+  
+  // str is just an element of an xml file, hence can not be parsed
+  // by QDomDocument. We need to add a root element.
+  qstr = "<root>" + qstr + "</root>";
+  QDomDocument doc;
+  bool parsed = doc.setContent( qstr );
+  appli_assert( parsed );
+
+  QDomElement root_element = doc.documentElement();
+  QDomElement elem = root_element.firstChild().toElement();
+
+  QString count_str = elem.attribute( "count" );
+  int count = count_str.toInt();
+  QString region_string = elem.attribute( "value" );
+  QStringList region_list = region_string.split( ";",QString::SkipEmptyParts,Qt::CaseInsensitive );
+
+  for( int i = 0 ; i < region_list.size() ; i++ ) {
+    QString name = region_list[i];
+    int id = 0; 
+    for( ; id < selector_->count() ; id++ ) {
+      if( selector_->item(id)->text(  ) == name ) {
+        selector_->setCurrentItem( selector_->item(id) );
+        break;
+      }
+    }
+  }
+  return true;
+}
+
+
 
 
 //=====================================

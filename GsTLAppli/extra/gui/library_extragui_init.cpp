@@ -145,6 +145,11 @@ bool library_extragui_init::bind_qt_wrappers_factories(Manager* dir) {
   classname = std::string( order_prop_select.metaObject()->className() );
   dir->factory(classname, OrderedPropertySelector_accessor::create_new_interface);
 
+//MultiRegionSelector_accessor
+  MultiRegionSelector multi_region_select;
+  classname = std::string( multi_region_select.metaObject()->className() );
+  dir->factory(classname, MultiRegionSelector_accessor::create_new_interface);
+
   // FileChooser
   FileChooser chooser;
   classname = std::string( chooser.metaObject()->className() );

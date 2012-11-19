@@ -60,6 +60,7 @@
 #include <GsTLAppli/geostat/library_geostat_init.h>
 #include <GsTLAppli/grid/library_grid_init.h>
 #include <GsTLAppli/gui/library_gui_init.h>
+#include <GsTLAppli/charts/library_charts_init.h>
 #include <GsTLAppli/extra/gui/library_extragui_init.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 
@@ -105,6 +106,7 @@ void Lib_initializer::init()
 	libGsTLAppli_filters_init();
 	libGsTLAppli_geostat_init();
 	libGsTLAppli_grid_init();
+  libGsTLAppli_charts_init();
 	libGsTLAppli_gui_init();
 	libGsTLAppli_extragui_init();
 }
@@ -157,6 +159,7 @@ void Lib_initializer::release()
 	Root::instance()->delete_interface(projects_manager);
   Root::instance()->delete_interface(actions_manager);
   Root::instance()->delete_interface(distributions_manager);
+  Root::instance()->delete_interface(eda_charts_manager);
   
 
 }

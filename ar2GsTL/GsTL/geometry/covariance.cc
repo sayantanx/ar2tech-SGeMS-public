@@ -588,10 +588,36 @@ Covariance<Location>::add_structure( const std::string& type ) {
 }
 
 template<class Location>
+int
+Covariance<Location>::add_structure( const Covariance_base<Location>& cov ) {
+  return cov_.add_structure( cov );
+}
+
+template<class Location>
 bool
 Covariance<Location>::remove_structure( int id ) {
   cov_.remove_structure( id );
   return true;
+}
+
+
+
+template<class Location>
+bool 
+Covariance<Location>::replace_structure( int id, const Covariance_base<Location>& cov) {
+  return cov_.replace_structure(id, cov );
+}
+
+template<class Location>
+Covariance_base<Location>* 
+Covariance<Location>::get_structure(int id) {
+  return cov_.get_structure(id);
+}
+
+template<class Location>
+const Covariance_base<Location>* 
+Covariance<Location>::get_structure(int id) const {
+  return cov_.get_structure(id);
 }
 
 
@@ -684,8 +710,8 @@ Covariance<Location>::set_geometry( int id,
 
 template<class Location>
 double Covariance<Location>::sill( int id ) const {
-  Covariance_base<Location>* structure = cov_.get_structure( id );
-  StructureType* varg_struct = dynamic_cast< StructureType* >( structure );
+  const Covariance_base<Location>* structure = cov_.get_structure( id );
+  const StructureType* varg_struct = dynamic_cast<const StructureType* >( structure );
   return varg_struct->sill();
 }
 

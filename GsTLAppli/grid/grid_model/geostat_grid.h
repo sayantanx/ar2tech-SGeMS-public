@@ -318,7 +318,11 @@ class GRID_DECL Geostat_grid : public Named_interface {
 				      bool only_harddata = false, const GsTLGridRegion* region = 0,
               Coordinate_mapper* coord_mapper=0)=0; 
   virtual Neighborhood* colocated_neighborhood( const std::string& prop ); 
- 
+
+  /** It is the used reponsability to set a selected property
+  * to the colocated neighborhood
+  */
+  virtual Neighborhood* colocated_neighborhood(  ); 
   //---------------------------   
   // iterators 
  

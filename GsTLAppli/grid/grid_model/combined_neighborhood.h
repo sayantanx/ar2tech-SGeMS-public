@@ -113,6 +113,10 @@ class GRID_DECL Combined_neighborhood : public Neighborhood {
 //    second_->search_neighborhood_filter(filter->clone());
   }
   
+  SmartPtr<Neighborhood>& first_neighborhood(){return first_;} 
+  SmartPtr<Neighborhood>& second_neighborhood(){return second_;}
+
+
   protected: 
   SmartPtr<Neighborhood> first_; 
   SmartPtr<Neighborhood> second_;

@@ -64,7 +64,9 @@ Neighborhood* Geostat_grid::colocated_neighborhood( const std::string& prop ) {
   return new Colocated_neighborhood( this, prop );
 }
 
-
+Neighborhood* Geostat_grid::colocated_neighborhood( ) {
+  return new Colocated_neighborhood( this );
+}
 
 int Geostat_grid::row() const{
 	if(parent_interface_ == 0) return 0;

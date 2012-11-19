@@ -78,6 +78,7 @@ class FILTERS_DECL library_filters_init {
   static bool bind_output_filters_factories(Manager* dir); 
   static bool bind_csv_infilters_factories(Manager* dir);
 
+  static bool bind_geometry_xml_managers(Manager* dir);
   static bool bind_project_output(Manager* dir);
  
 }; 

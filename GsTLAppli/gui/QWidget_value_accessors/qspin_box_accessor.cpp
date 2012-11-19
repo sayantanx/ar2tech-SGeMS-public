@@ -169,7 +169,7 @@ bool QDoubleSpinBox_accessor::set_value( const std::string& str ) {
   
   QString qstr_value = elem.attribute( "value" );
 
-  int val = qstr_value.toInt();
+  double val = qstr_value.toDouble();
   spin_box_->setValue( val );
   return true;
 }

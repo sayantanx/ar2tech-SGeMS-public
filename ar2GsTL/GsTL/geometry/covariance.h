@@ -561,7 +561,13 @@ class Covariance {
 
   int structures_count() const { return cov_.number_of_structures(); } 
   int add_structure( const std::string& type );
+  int add_structure(const Covariance_base<Location>& cov);
   bool remove_structure( int id );
+
+  bool replace_structure( int id, const Covariance_base<Location>& cov);
+
+  Covariance_base<Location>* get_structure(int id);
+  const Covariance_base<Location>* get_structure(int id) const; 
 
   std::vector<std::string> available_types() const;
   void set_type( int id, const std::string& type );

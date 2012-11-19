@@ -63,6 +63,8 @@
 #include <GsTLAppli/grid/grid_model/cartesian_grid.h>
 #include <GsTLAppli/grid/grid_model/reduced_grid.h>
 #include <GsTLAppli/grid/grid_model/point_set.h>
+#include <GsTLAppli/grid/grid_model/log_data_grid.h>
+#include <GsTLAppli/grid/grid_model/structured_grid.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 #include <GsTLAppli/gui/QWidget_value_accessors/qcombobox_accessor.h>
 #include <GsTLAppli/gui/QWidget_value_accessors/qlineedit_accessor.h>
@@ -81,7 +83,6 @@
 #include <GsTLAppli/gui/viewer/region_param_viewer.h>
 #include <GsTLAppli/gui/viewer/group_param_viewer.h>
 #include <GsTLAppli/gui/models/context_menu_interface.h>
-#include <GsTLAppli/gui/charts/eda_charts.h>
 
 #include <QTableWidget>
 
@@ -291,6 +292,8 @@ int library_gui_init::init_lib() {
   dir = dynamic_cast<Manager*>( ni_menu.raw_ptr() );
   bind_context_menus(dir);
 
+
+  /*  NOW moved into the project charts
   //----------------------
   // Bind the eda charts
   GsTLlog << "Creating EDA charts" << "\n";
@@ -300,7 +303,7 @@ int library_gui_init::init_lib() {
 
   dir = dynamic_cast<Manager*>( ni_charts.raw_ptr() );
   bind_eda_charts(dir);
-
+  */
 
   //----------------------
   GsTLlog << "Registration done" << "\n\n";
@@ -547,12 +550,14 @@ bool library_gui_init::bind_context_menus(Manager* dir){
 	dir->factory( Reduced_grid().classname(), Context_menu_grid::create_new_interface);
 	dir->factory( Point_set().classname(), Context_menu_grid::create_new_interface);
 	dir->factory( Log_data_grid().classname(), Context_menu_grid::create_new_interface);
+  dir->factory( Structured_grid().classname(), Context_menu_grid::create_new_interface);
 
 	// Create the context menu
 	dir->new_interface(Cartesian_grid().classname(),"/"+Cartesian_grid().classname());
 	dir->new_interface(Reduced_grid().classname(),"/"+Reduced_grid().classname());
 	dir->new_interface(Point_set().classname(),"/"+Point_set().classname());
 	dir->new_interface(Log_data_grid().classname(),"/"+Log_data_grid().classname());
+  dir->new_interface(Structured_grid().classname(),"/"+Structured_grid().classname());
 
 	dir->factory( "ContinuousProperty", Context_menu_property::create_new_interface);
 	dir->factory( "CategoricalProperty", Context_menu_property::create_new_interface);
@@ -566,7 +571,7 @@ bool library_gui_init::bind_context_menus(Manager* dir){
   return true;
 }
 
-
+/*
 bool library_gui_init::bind_eda_charts(Manager* dir){
   dir->factory( EDA_continuous_histogram_factory().name(), 
                 EDA_continuous_histogram_factory::create_new_interface);
@@ -576,7 +581,7 @@ bool library_gui_init::bind_eda_charts(Manager* dir){
 
   return true;
 }
-
+*/
 
 extern "C" {
   int libGsTLAppli_gui_init() {

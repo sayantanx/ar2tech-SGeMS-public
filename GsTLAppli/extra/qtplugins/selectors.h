@@ -89,6 +89,8 @@ class QTPLUGINS_DECL  GridSelectorBasic : public QComboBox {
   virtual ~GridSelectorBasic();
   virtual void setCurrentText( const QString& );
 
+  Geostat_grid* selected_grid_object();
+
 
  public:
   static const QString no_selection;
@@ -486,6 +488,7 @@ class QTPLUGINS_DECL  GridSelector : public QWidget {
   virtual void init( GsTL_project* project ) { }//object_selector_->init( project ); }
 
   QString selectedGrid() const;
+  Geostat_grid* selected_grid_object() {return object_selector_->selected_grid_object();}
   void setSelectedGrid( const QString& name );
   QString selectedRegion() const;
   void setSelectedRegion( const QString& name );

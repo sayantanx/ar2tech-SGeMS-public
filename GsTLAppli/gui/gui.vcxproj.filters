@@ -25,9 +25,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="utils\categorical_definition_dialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="appli\cli_commands_panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -436,82 +433,10 @@
     <ClCompile Include="GeneratedFiles\qrc_icons.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include=".moc\moc_chart_base.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="charts\chart_base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_histogram_proxy_model.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="charts\histogram_proxy_model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="charts\histogram_item_tree_view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_histogram_item_tree_view.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="charts\chart_continuous_histogram.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_chart_continuous_histogram.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="charts\chart_mdi_area.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_chart_mdi_area.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="charts\eda_dialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_eda_dialog.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="models\histogram_chart_model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_histogram_chart_model.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="models\categorical_table_model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include=".moc\moc_categorical_table_model.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="models\region_weight_delegate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_region_weight_delegate.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="models\chart_style_delegate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_chart_style_delegate.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="charts\chart_option_controls.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_chart_option_controls.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="charts\chart_display_control.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_chart_display_control.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="charts\chart_distribution.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_chart_distribution.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="utils\new_distribution_dialog.cpp">
@@ -541,12 +466,6 @@
     <ClCompile Include=".moc\moc_copy_property_dialog.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include=".moc\moc_chart_categorical_histogram.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="charts\chart_categorical_histogram.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="utils\downscale_grid_dialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -559,19 +478,10 @@
     <ClCompile Include=".moc\moc_upscale_property_dialog.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="charts\eda_charts.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_eda_charts.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_categorical_histogram_proxy_model.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="charts\categorical_histogram_proxy_model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="vtk_prop\vtk_prop_structured_grid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\categorical_definition_dialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -852,9 +762,6 @@
     <ClInclude Include="vtk_prop\vtk_prop_strati_grid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui_chart_display_control.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="ui_create_distribution_dialog.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -991,46 +898,7 @@
     <CustomBuild Include="viewer\visualization_parameters.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="charts\chart_base.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="charts\histogram_proxy_model.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="charts\histogram_item_tree_view.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="charts\chart_continuous_histogram.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="charts\chart_mdi_area.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="charts\eda_dialog.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="models\histogram_chart_model.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="models\categorical_table_model.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="models\region_weight_delegate.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="models\chart_style_delegate.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="charts\chart_option_controls.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="charts\chart_display_control.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="charts\chart_display_control.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="charts\chart_distribution.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="utils\create_distribution_dialog.ui">
@@ -1048,19 +916,10 @@
     <CustomBuild Include="utils\copy_property_dialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="charts\chart_categorical_histogram.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="utils\downscale_grid_dialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="utils\upscale_property_dialog.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="charts\eda_charts.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="charts\categorical_histogram_proxy_model.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
