@@ -1,0 +1,36 @@
+# C++ objects and libs
+
+*.slo
+*.lo
+*.o
+*.a
+*.la
+*.lai
+*.so
+*.dll
+*.dylib
+*.obj
+*.exp
+*.lib
+
+# Qt-es
+
+*.pro.user
+*.pro.user.*
+moc_*.cpp
+qrc_*.cpp
+ui_*.cpp
+ui_*.h
+Makefile
+*-build-*
+
+# visual studio
+*.tlog
+*.log
+*.user
+*.pdb
+*.suo
+*.*sdf
+Debug/
+debug/
+Release/
