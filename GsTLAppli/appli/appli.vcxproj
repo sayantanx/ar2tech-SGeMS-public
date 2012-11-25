@@ -267,19 +267,19 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"   -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I." "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIR)\include" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(SGEMS_BUILD)\sgems-ar2tech" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I." "-I." "-I." "-I." "root_model.h" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I$(AR2TECH_GSTL_DIR)\." "-I." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIR)\include" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(SGEMS_BUILD)\sgems-ar2tech" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL "-I." "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I." "-I." "-I." "-I."</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"   -DGSTLAPPLI_NDEBUG -DQT_NO_DEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I." "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIR)\include" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(QTDIR)\include" "-I." "-I." "-I." "-I." "root_model.h" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DGSTLAPPLI_NDEBUG -DQT_NO_DEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I$(AR2TECH_GSTL_DIR)\." "-I." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIR)\include" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DGSTLAPPLI_NDEBUG -DQT_NO_DEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL "-I." "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I." "-I." "-I." "-I."</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DGSTLAPPLI_NDEBUG -DQT_NO_DEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include"</Command>
     </CustomBuild>
     <ClInclude Include="utilities.h" />
   </ItemGroup>
@@ -294,7 +294,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties QtVersion_x0020_x64="4.7.3-x64" />
+      <UserProperties QtVersion_x0020_x64="4.7.3-x64" QtVersion_x0020_Win32="4.8.3-win32" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

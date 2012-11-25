@@ -163,6 +163,8 @@ public:
  
   virtual void set_neighbors( const_iterator begin, const_iterator end );
 
+  virtual Grid_template& geometry() { return geom_; } 
+  virtual const Grid_template& geometry() const { return geom_; } 
 
  protected: 
   RGrid* grid_; 
