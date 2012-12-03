@@ -249,16 +249,6 @@
            <string>Gaussian</string>
           </property>
          </item>
-         <item>
-          <property name="text" >
-           <string>Log Normal</string>
-          </property>
-         </item>
-         <item>
-          <property name="text" >
-           <string>Uniform</string>
-          </property>
-         </item>
         </widget>
        </item>
        <item row="5" column="0" >

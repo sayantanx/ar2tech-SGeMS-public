@@ -247,7 +247,7 @@
              <string>Assign Data to Kriging Grid</string>
             </property>
             <property name="checked">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
            </widget>
           </item>
