@@ -192,13 +192,14 @@ void QSP_application::init() {
 
   
   algo_panel_ = new Algo_control_panel( project_, dock_controls_, "algo_panel" );
+  GsTLlog<<"algo panel completed\n";
   dock_controls_->setWidget( algo_panel_ );
   dock_controls_->layout()->setContentsMargins( 0,0,0,0 );
   dock_controls_->layout()->setSpacing( 0 );
 
   addDockWidget(Qt::LeftDockWidgetArea, dock_controls_);
   dock_controls_->setWindowTitle("Algorithms");
-
+  GsTLlog<<"algo panel docked\n";
   //revisit - TL
   //setAppropriate( dock_controls_, true );
 
@@ -218,7 +219,7 @@ void QSP_application::init() {
   
   addDockWidget( Qt::BottomDockWidgetArea , dock_cli_); 
   dock_cli_->setWindowTitle("Commands");
-
+  GsTLlog<<"cli panel docked\n";
   //dock_cli_->setFixedExtentHeight( 20 );  //seems useless
 
   //revisit - TL
@@ -239,7 +240,7 @@ void QSP_application::init() {
   default_3dview_ = dynamic_cast<Vtk_view*>( view_ni.raw_ptr() );
   appli_assert( default_3dview_ );
   default_3dview_->initialize( project_, this );
-  
+  GsTLlog<<"3D view panel initialized\n";
 
   // Old code - remove if everything works ok...
   // default_3dview_ = new Oinv_view( project_, this );
@@ -254,6 +255,7 @@ void QSP_application::init() {
   //----------------------
   // Temporary
   init_menu_bar();
+  GsTLlog<<"menu bar initialized\n";
   //----------------
 
 }
@@ -1270,6 +1272,10 @@ void QSP_application::about_version() {
 
 void QSP_application::quit_slot() {
   this->close_project();
+  QTime timer;
+  timer.start();
+  // There seems to be a race condition with the asynchronyous calls of the signal/slots when quiting
+  while(timer.elapsed() < 500) {}
   save_app_preferences();
   qApp->quit();
 

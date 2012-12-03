@@ -615,6 +615,7 @@ bool Visualization_proxy_model::setData ( const QModelIndex & index, const QVari
     emit item_checked(index);
     //checked_states_[item] = value.toBool();
     return true;
+    emit dataChanged(index, index);
   }
 
   

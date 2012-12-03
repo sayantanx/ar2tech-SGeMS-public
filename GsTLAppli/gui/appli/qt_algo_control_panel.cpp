@@ -247,7 +247,7 @@ Algo_control_panel::Algo_control_panel( GsTL_project* project,
   param_input_frame_->hide();
 
   setup_algo_selector();
-
+  GsTLlog<<"algo selector set up\n";
   QObject::connect( 
         algo_selector_, 
 	SIGNAL(mouseButtonClicked( Qt::MouseButton, QTreeWidgetItem* ,int) ),
@@ -340,7 +340,7 @@ void Algo_control_panel::add_algorithm( Geostat_algo* algo,
 	    << "Error while parsing " << ui_filename  << "\nAborting\n\n";
     return;
   }
-
+  GsTLlog<<"Read xml of "<< ui_filename<<"\n";
     // retrieve the "name" and "description" attributes
 
   QString category( "" );
@@ -362,6 +362,7 @@ void Algo_control_panel::add_algorithm( Geostat_algo* algo,
 		  description = e.firstChildElement("string").text();
   }
   if(category.isEmpty()) GsTLlog << "Tag 'algorithm' not defined.\n ";
+  GsTLlog<<"category and description "<< ui_filename<<"\n";
 
 
   
@@ -390,11 +391,11 @@ void Algo_control_panel::add_algorithm( Geostat_algo* algo,
   // make the algorithm available in the algorithm list, 
   // in the correct category.
   
-
+  GsTLlog<<"Adding to selector "<< (category + "/" + QString( entry_name.c_str() )).toStdString()<<"/"<< description.toStdString()<<"\n";
 	algo_selector_->addItem( category + "/" + QString( entry_name.c_str() ),
 				 "/",
 				 description );
-
+	GsTLlog<<"Added to selector "<< ui_filename<<"\n";
 
 }
 

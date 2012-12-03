@@ -165,7 +165,7 @@ void Chart_categorical_histogram::load_data(QModelIndexList indexes){
   foreach(index, indexes) {
     GsTL_object_item* item = static_cast<GsTL_object_item*>(index.internalPointer());
     if(item->item_type() == "CategoricalProperty") {
-      cprops.push_back(dynamic_cast<GsTLGridCategoricalProperty*>(item));
+      cprops.push_back(static_cast<GsTLGridCategoricalProperty*>(item->data_pointer()));
     }
     else if(item->item_type() == "Group") {
       GsTLGridPropertyGroup* group = static_cast<GsTLGridPropertyGroup*>(index.internalPointer());
@@ -199,7 +199,7 @@ void Chart_categorical_histogram::load_data(QModelIndexList indexes){
     QModelIndex index = indexes.at(i);
     GsTL_object_item* item = static_cast<GsTL_object_item*>(index.internalPointer());
     if(item->item_type() == "CategoricalProperty" ) {
-      GsTLGridCategoricalProperty* prop = static_cast<GsTLGridCategoricalProperty*>(index.internalPointer());
+      GsTLGridCategoricalProperty* prop = static_cast<GsTLGridCategoricalProperty*>(item->data_pointer());
       std::map<GsTL_object_item*,GsTLGridRegion*>::iterator it = grid_to_region.find(prop->parent()->parent());
       GsTLGridRegion* region = 0;
       if(it != grid_to_region.end()) region = it->second;

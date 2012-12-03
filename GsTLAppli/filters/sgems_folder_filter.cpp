@@ -564,7 +564,25 @@ bool Sgems_folder_input_filter::read_category_definition(const QDomElement& root
 
 	for(; !elemDef.isNull(); elemDef = elemDef.nextSiblingElement("CategoricalDefinition")) {
 		QString name = elemDef.attribute("name");
-		QStringList cat_names = elemDef.attribute("categoryNames").split(";");
+    QStringList cat_names;
+    QList<QColor> colors;
+    //legacy
+    if(elemDef.hasAttribute("categoryNames")) {
+      cat_names = elemDef.attribute("categoryNames").split(";");
+    }
+    else  {
+	    QDomElement elem = elemDef.firstChildElement("Category"); 
+      
+	    for(; !elem.isNull(); elem = elem.nextSiblingElement("Category") ) {
+        cat_names.append( elem.attribute("name"));
+        int r = elem.attribute("red").toFloat()*255;
+        int g = elem.attribute("green").toFloat()*255;
+        int b = elem.attribute("blue").toFloat()*255;
+        int a = elem.attribute("alpha").toFloat()*255;
+        colors.append( QColor( r,g,b,a ) );
+      }
+    }
+
 
 	  SmartPtr<Named_interface> ni =
 	    Root::instance()->interface( categoricalDefinition_manager+"/"+name.toStdString()  );
@@ -588,8 +606,16 @@ bool Sgems_folder_input_filter::read_category_definition(const QDomElement& root
 		    is_conflict = check_for_conflict(cat_definition, cat_names );
 	    }
     }
-
+    ni = 	Root::instance()->interface( categoricalDefinition_manager+"/"+name.toStdString()  );
+	  cat_definition = dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
+    if(cat_definition  ) {
+      for( int i=0; i< colors.size(); ++i ){
+        cat_definition->color(i, colors.at(i));
+      }
+      
+    }
 	}
+
 	return true;
 
 }
@@ -1153,10 +1179,15 @@ QDomElement Sgems_folder_output_filter::write_category_definition(QDomDocument& 
     std::vector<std::string> names = cat_definition_name->category_names();
 	  std::vector<std::string>::const_iterator  it_name = names .begin();
 	  for( ; it_name != names.end(); it_name++ ) {
-	  	cat_names.append(it_name->c_str());
+      QDomElement elemCategory = dom.createElement("Category");
+      elemCategory.setAttribute("name",it_name->c_str());
+      int i = std::distance(names.cbegin() , it_name);
+      elemCategory.setAttribute("red",QString("%1").arg(cat_definition->red(i)));
+      elemCategory.setAttribute("green",QString("%1").arg(cat_definition->green(i)));
+      elemCategory.setAttribute("blue",QString("%1").arg(cat_definition->blue(i)));
+      elemCategory.setAttribute("alpha",QString("%1").arg(cat_definition->alpha(i)));
+      elemCat.appendChild(elemCategory);
 	  }
-
-	  elemCat.setAttribute("categoryNames",cat_names.join(";"));
 	  elemCats.appendChild(elemCat);
 
 	}

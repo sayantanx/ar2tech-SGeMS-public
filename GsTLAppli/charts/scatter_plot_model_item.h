@@ -112,6 +112,7 @@ public :
 
   void marker_size(float marker_size){marker_size_ = marker_size;}
   void marker_style(Scatter_plot_item::Marker_style marker_style){marker_style_ = marker_style;}
+  void marker_style(QString marker_style){marker_style_ = (Scatter_plot_item::Marker_style)(marker_styles_string_.indexOf(marker_style)+1);}
   virtual void color(const QColor &color) {color_ = color;}
 
   virtual void display_format(QString display_format) {display_format_ = display_format;}

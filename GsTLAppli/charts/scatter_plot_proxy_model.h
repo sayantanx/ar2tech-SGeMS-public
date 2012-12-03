@@ -39,14 +39,14 @@
 #include <QModelIndex>
 #include <QVariant>
 #include <QStringList>
-#include <QAbstractProxyModel>
+#include <QAbstractItemModel>
 #include <QWidget>
 #include <QHash>
 #include <QPair>
 
 
 
-class CHARTS_DECL Scatter_plot_proxy_model : public QAbstractProxyModel
+class CHARTS_DECL Scatter_plot_proxy_model : public QAbstractItemModel
 {
   Q_OBJECT
 
@@ -65,8 +65,8 @@ public:
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
     virtual int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
-    virtual QModelIndex	mapFromSource ( const QModelIndex & sourceIndex ) const;
-    virtual QModelIndex	mapToSource ( const QModelIndex & proxyIndex ) const;
+//    virtual QModelIndex	mapFromSource ( const QModelIndex & sourceIndex ) const;
+//    virtual QModelIndex	mapToSource ( const QModelIndex & proxyIndex ) const;
 
     virtual bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
 

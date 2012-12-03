@@ -57,12 +57,12 @@ Scatter_plot_point_style_delegate::~Scatter_plot_point_style_delegate()
  {
    
    QComboBox* options = new QComboBox(parent);
-
-   options->addItem(QIcon(":/icons/appli/Pixmaps/histo-bars.svg"), "Cross");
-   options->addItem(QIcon(":/icons/appli/Pixmaps/histo-lines.svg"), "Plus"); 
-   options->addItem(QIcon(":/icons/appli/Pixmaps/histo-bar-lines.svg"), "Square");
-   options->addItem(QIcon(":/icons/appli/Pixmaps/histo-bar-lines.svg"), "Circle");
-   options->addItem(QIcon(":/icons/appli/Pixmaps/histo-bar-lines.svg"), "Diamond");
+ //  options->addItem(QIcon(":/icons/appli/Pixmaps/histo-bars.svg"), "Cross");
+   options->addItem( "Cross");
+   options->addItem("Plus"); 
+   options->addItem("Square");
+   options->addItem("Circle");
+   options->addItem("Diamond");
 
    return options;
 
@@ -78,7 +78,7 @@ void	Scatter_plot_point_style_delegate::setModelData ( QWidget * editor, QAbstra
   QComboBox* edit = static_cast<QComboBox*>(editor);
   int i = edit->currentIndex();
 
-  if(i==0) model->setData(index, QVariant(), Qt::EditRole );
+ // if(i==0) model->setData(index, QVariant(), Qt::EditRole );
 
   QString option = edit->itemText(i);
    

@@ -334,7 +334,7 @@ void Chart_continuous_histogram::load_data(QModelIndexList indexes){
     GsTL_object_item* item = static_cast<GsTL_object_item*>(index.internalPointer());
     //if(item->item_type() == "ContinuousProperty" || item->item_type() == "WeightsProperty") {
     if(item->item_type() == "ContinuousProperty" ) {
-      GsTLGridProperty* prop = static_cast<GsTLGridProperty*>(index.internalPointer());
+      GsTLGridProperty* prop = static_cast<GsTLGridProperty*>(item->data_pointer());
       GsTL_object_item* parent_grid = prop->parent()->parent();
   
       std::map<GsTL_object_item*,GsTLGridRegion*>::iterator it = grid_to_region.find(parent_grid);

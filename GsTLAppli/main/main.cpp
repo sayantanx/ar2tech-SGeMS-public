@@ -418,16 +418,21 @@ if (!QIcon::hasThemeIcon(GENERIC_ICON_TO_CHECK)) {
 	bool show_cli_panel = settings.value("/panels/cli", false).toBool();
 
 	appli->setWindowIcon(QPixmap("new_icon6_32x32.bmp"));
-  std::cout<<"appli->show();"<<std::endl;
+	std::cout<<"appli->show();"<<std::endl;
+	GsTLlog<<"setting appli\n";
 	appli->show();
+	GsTLlog<<"setting appli->show\n";
 	appli->show_algo_panel(show_algo_panel);
+	GsTLlog<<"setting appli->show_algo_panel\n";
 	appli->show_commands_panel(show_cli_panel);
-
+	GsTLlog<<"setting appli->show_comamnd panel\n";
 	//------------------
 	SmartPtr<Named_interface> ni = Root::instance()->interface(projects_manager + "/" + "project");
 	GsTL_project* project = dynamic_cast<GsTL_project*> (ni.raw_ptr());
 	appli_assert( project );
+	GsTLlog<<"setting python ...";
 	Python_project_wrapper::set_project(project);
+	GsTLlog<<"set python project";
 
 	//------------------
 

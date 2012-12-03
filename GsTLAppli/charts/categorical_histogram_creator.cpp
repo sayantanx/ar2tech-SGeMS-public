@@ -102,7 +102,7 @@ void Categorical_histogram_creator::show_categorical_histogram(){
       region_indexes.append(index);
     }
     else if(item->item_type() == "CategoricalProperty") {
-      GsTLGridCategoricalProperty* cprop = static_cast<GsTLGridCategoricalProperty*>(index.internalPointer());
+      GsTLGridCategoricalProperty* cprop = static_cast<GsTLGridCategoricalProperty*>(item->data_pointer());
       CategoricalPropertyDefinition* cdef = cprop->get_category_definition();
       std::map<std::string, QModelIndexList>::iterator it = cdef_indexes.find(cdef->name());
       if( it == cdef_indexes.end() ) {

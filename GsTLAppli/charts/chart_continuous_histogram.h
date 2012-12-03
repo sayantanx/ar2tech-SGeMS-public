@@ -63,7 +63,7 @@ class CHARTS_DECL Chart_continuous_histogram : public Chart_base
 
 public:
     Chart_continuous_histogram(int nbins = 55,QWidget *parent=0);
-    ~Chart_continuous_histogram();
+    virtual ~Chart_continuous_histogram();
 
 
 public slots :

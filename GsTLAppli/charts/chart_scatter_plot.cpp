@@ -64,6 +64,7 @@ Chart_scatter_plot::Chart_scatter_plot(int nbins, QWidget *parent)
   Scatter_plot_item_tree_view* tree = new Scatter_plot_item_tree_view(this);
   model_ = new Scatter_plot_proxy_model(this);
   tree->setModel(model_);
+  tree->setExpandsOnDoubleClick(false);
 
   Color_delegate* color_delegate = new Color_delegate (this);
   tree->setItemDelegateForColumn(3,color_delegate);
@@ -280,7 +281,7 @@ void Chart_scatter_plot::load_data(GsTL_object_item* item_x, std::vector<GsTL_ob
   for( int i=0; i<items_y.size(); ++i ) {
     GsTL_object_item* item_y = items_y[i];
     if(item_y->item_type() == "ContinuousProperty") {
-      GsTLGridProperty* prop_y = dynamic_cast<GsTLGridProperty*>(item_y);
+	  GsTLGridProperty* prop_y = static_cast<GsTLGridProperty*>(item_y->data_pointer());
       if(prop_y == prop_x) continue;
       std::vector<GsTL_object_item*>::iterator it = items_filter.begin();
       for( ; it != items_filter.end(); ++it) {
@@ -307,12 +308,17 @@ void Chart_scatter_plot::load_data(GsTL_object_item* item_x, std::vector<GsTL_ob
       GsTLGridPropertyGroup* group_y = dynamic_cast<GsTLGridPropertyGroup*>(item_y);
       std::vector<GsTL_object_item*>::iterator it = items_filter.begin();
       for( ; it != items_filter.end(); ++it) {
-        if( (*it)->item_type() == "GsTLGridRegion" ) {
+        if( (*it) == 0) {
+          model_->insert_row(prop_x,group_y, 
+                             default_colors_.at(default_color_id_%max_index_default_colors_) );
+          ++default_color_id_;
+        }
+        else if( (*it)->item_type() == "GsTLGridRegion" ) {
           model_->insert_row(prop_x,group_y,dynamic_cast<GsTLGridRegion*>(*it), 
                              default_colors_.at(default_color_id_%max_index_default_colors_) );
           ++default_color_id_;
         }
-        if( (*it)->item_type() == "CategoricalProperty" ) {
+        else if( (*it)->item_type() == "CategoricalProperty" ) {
           model_->insert_row(prop_x,group_y,dynamic_cast<GsTLGridCategoricalProperty*>(*it), 
                              default_colors_.at(default_color_id_%max_index_default_colors_) );
           ++default_color_id_;
@@ -394,6 +400,14 @@ void Chart_scatter_plot::add_data(Scatter_plot_item* item){
       std::map<int, Scatter_data>::iterator it = data_stats_.find(prop_item->id());
       std::cout<<"set color and style"<<std::endl;
       it->second.plot_points->SetColor( prop_item->color().red(),prop_item->color().green(),prop_item->color().blue(), prop_item->color().alpha());
+    }
+    else if(item->type() == "Property-Group") {
+      Scatter_plot_property_group_item* prop_group_item = dynamic_cast<Scatter_plot_property_group_item*>(item);
+      int n_props = prop_group_item->children_count();
+      for(int j=0; j<n_props;++j) {
+        Scatter_plot_property_item* prop_item = dynamic_cast<Scatter_plot_property_item*>(prop_group_item->children(j));
+        this->add_data(prop_item);
+      }
     }
     else if(item->type() == "Group") {
       Scatter_plot_group_item* group_item = dynamic_cast<Scatter_plot_group_item*>(item);
@@ -845,6 +859,14 @@ void Chart_scatter_plot::set_visibility( Scatter_plot_item* item){
     }
 
   }
+  else if(item->type() == "Property-Group") {
+    Scatter_plot_property_group_item* prop_group_item = dynamic_cast<Scatter_plot_property_group_item*>(item);
+    int n_props = prop_group_item->children_count();
+    for(int j=0; j<n_props;++j) {
+      Scatter_plot_property_item* prop_item = dynamic_cast<Scatter_plot_property_item*>(prop_group_item->children(j));
+      this->set_visibility(prop_item);
+    }
+  }
   else if(item->type() == "Group") {
     Scatter_plot_group_item* group_item = dynamic_cast<Scatter_plot_group_item*>(item);
     int n_props = group_item->children_count();
@@ -861,6 +883,17 @@ void Chart_scatter_plot::set_color( Scatter_plot_item* item){
     if( it == data_stats_.end() ) return;
     it->second.plot_points->SetColor( prop_item->color().red(),prop_item->color().green(),prop_item->color().blue(), prop_item->color().alpha());
     it->second.plot_points->Update();
+  }
+  else if(item->type() == "Property-Group") {
+    Scatter_plot_property_group_item* prop_group_item = dynamic_cast<Scatter_plot_property_group_item*>(item);
+    int n_props = prop_group_item->children_count();
+    for(int j=0; j<n_props;++j) {
+      Scatter_plot_property_item* prop_item = dynamic_cast<Scatter_plot_property_item*>(prop_group_item->children(j));
+      std::map<int, Scatter_data>::iterator it = data_stats_.find(prop_item->id());
+      if( it == data_stats_.end() ) return;
+      it->second.plot_points->SetColor( prop_item->color().red(),prop_item->color().green(),prop_item->color().blue(), prop_item->color().alpha());
+      it->second.plot_points->Update();
+    }
   }
   else if(item->type() == "Group") {
     Scatter_plot_group_item* group_item = dynamic_cast<Scatter_plot_group_item*>(item);
@@ -914,6 +947,14 @@ void Chart_scatter_plot::set_data_filter(Scatter_plot_item* item){
     }
 
   }
+  else if(item->type() == "Property-Group") {
+    Scatter_plot_property_group_item* prop_group_item = dynamic_cast<Scatter_plot_property_group_item*>(item);
+    int n_props = prop_group_item->children_count();
+    for(int j=0; j<n_props;++j) {
+      Scatter_plot_property_item* prop_item = dynamic_cast<Scatter_plot_property_item*>(prop_group_item->children(j));
+      this->set_data_filter(prop_item);
+    }
+  }
   else if(item->type() == "Group") {
     Scatter_plot_group_item* group_item = dynamic_cast<Scatter_plot_group_item*>(item);
     int n_props = group_item->children_count();
@@ -922,7 +963,6 @@ void Chart_scatter_plot::set_data_filter(Scatter_plot_item* item){
       this->set_data_filter(prop_item);
     }
   }
-
 }
 
 
@@ -934,6 +974,14 @@ void Chart_scatter_plot::set_marker_style(Scatter_plot_item* item) {
     if( it == data_stats_.end() ) return;
     it->second.plot_points->SetMarkerStyle( item->marker_style() );
 
+  }
+  else if(item->type() == "Property-Group") {
+    Scatter_plot_property_group_item* prop_group_item = dynamic_cast<Scatter_plot_property_group_item*>(item);
+    int n_props = prop_group_item->children_count();
+    for(int j=0; j<n_props;++j) {
+      Scatter_plot_property_item* prop_item = dynamic_cast<Scatter_plot_property_item*>(prop_group_item->children(j));
+      this->set_marker_style(prop_item);
+    }
   }
   else if(item->type() == "Group") {
     Scatter_plot_group_item* group_item = dynamic_cast<Scatter_plot_group_item*>(item);
@@ -954,6 +1002,14 @@ void Chart_scatter_plot::set_marker_size(Scatter_plot_item* item) {
     if( it == data_stats_.end() ) return;
     it->second.plot_points->SetMarkerSize( item->marker_size() );
 
+  }
+  else if(item->type() == "Property-Group") {
+    Scatter_plot_property_group_item* prop_group_item = dynamic_cast<Scatter_plot_property_group_item*>(item);
+    int n_props = prop_group_item->children_count();
+    for(int j=0; j<n_props;++j) {
+      Scatter_plot_property_item* prop_item = dynamic_cast<Scatter_plot_property_item*>(prop_group_item->children(j));
+      this->set_marker_size(prop_item);
+    }
   }
   else if(item->type() == "Group") {
     Scatter_plot_group_item* group_item = dynamic_cast<Scatter_plot_group_item*>(item);

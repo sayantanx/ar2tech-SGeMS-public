@@ -36,18 +36,18 @@
 
 
 Histogram_proxy_model::Histogram_proxy_model(QObject *parent)
- : QAbstractProxyModel(parent), current_id_(0) {
+ : QAbstractItemModel(parent), current_id_(0) {
 	grid_manager_ = dynamic_cast<Manager*>(Root::instance()->interface(gridModels_manager).raw_ptr());
   
 	model_ = dynamic_cast<Root_model*>(Root::instance()->model());
-	this->setSourceModel(model_);
+	//this->setSourceModel(model_);
   this->set_connections();
 
 }
 
 
 Histogram_proxy_model::Histogram_proxy_model(QList< GsTL_object_item*> items, QObject *parent)
- : QAbstractProxyModel(parent),current_id_(0) {
+ : QAbstractItemModel(parent),current_id_(0) {
 	grid_manager_ = dynamic_cast<Manager*>(Root::instance()->interface(gridModels_manager).raw_ptr());
 
 
@@ -74,7 +74,7 @@ Histogram_proxy_model::Histogram_proxy_model(QList< GsTL_object_item*> items, QO
   }
  
 	model_ = dynamic_cast<Root_model*>(Root::instance()->model());
-	this->setSourceModel(model_);
+	//this->setSourceModel(model_);
   this->set_connections();
 
 }
@@ -98,7 +98,7 @@ void Histogram_proxy_model::set_connections(){
 					 this, SLOT(begin_insert_proxy_rows(const QModelIndex& , int , int)));
 	Q_ASSERT(ok);
 */
-	ok = QObject::connect(this->sourceModel(),SIGNAL(rowsAboutToBeRemoved(const QModelIndex& , int , int ) ),
+	ok = QObject::connect(model_,SIGNAL(rowsAboutToBeRemoved(const QModelIndex& , int , int ) ),
 					 this, SLOT(begin_remove_proxy_rows(const QModelIndex& , int , int)));
 	Q_ASSERT(ok);
 
@@ -107,7 +107,7 @@ void Histogram_proxy_model::set_connections(){
 					 this, SLOT(end_insert_proxy_rows(const QModelIndex& , int , int)));
 	Q_ASSERT(ok);
 */
-	ok = QObject::connect(this->sourceModel(),SIGNAL(rowsRemoved(const QModelIndex& , int , int ) ),
+	ok = QObject::connect(model_,SIGNAL(rowsRemoved(const QModelIndex& , int , int ) ),
 					 this, SLOT(end_remove_proxy_rows(const QModelIndex& , int , int)));
 	Q_ASSERT(ok);
 }
@@ -125,10 +125,11 @@ Qt::ItemFlags Histogram_proxy_model::flags(const QModelIndex &index) const
 
     //Cannot edit the name (column 0) but is checkable
     if( index.column() == 0 ) {
-      return Qt::ItemIsEnabled | Qt::ItemIsSelectable |  Qt::ItemIsDragEnabled | Qt::ItemIsUserCheckable;
+      //return Qt::ItemIsEnabled | Qt::ItemIsSelectable |  Qt::ItemIsDragEnabled | Qt::ItemIsUserCheckable;
+      return Qt::ItemIsEnabled  | Qt::ItemIsUserCheckable ;
     }
     else {
-      return Qt::ItemIsEnabled | Qt::ItemIsSelectable |  Qt::ItemIsDragEnabled  | Qt::ItemIsEditable;
+      return Qt::ItemIsEnabled | Qt::ItemIsEditable;
     }
 
 }
@@ -521,12 +522,14 @@ bool Histogram_proxy_model::setData ( const QModelIndex & index, const QVariant 
   return ok;
 }
 
-
+/*
 QModelIndex	Histogram_proxy_model::mapFromSource ( const QModelIndex & sourceIndex ) const{
 
-  /*
+  
 	GsTL_object_item *object_item = static_cast<GsTL_object_item*>(sourceIndex.internalPointer());
 
+
+  
   std::map<GsTL_object_item*,Histogram_item*>::const_iterator it = lookup_items_.find(object_item);
 
   if(it == lookup_items_.end()) return QModelIndex();
@@ -548,13 +551,15 @@ QModelIndex	Histogram_proxy_model::mapFromSource ( const QModelIndex & sourceInd
     return createIndex(row,sourceIndex.column(),static_cast<void*>(item));
 
   }
-  */
+  
   return QModelIndex();
 }
 
 
+
 QModelIndex	Histogram_proxy_model::mapToSource ( const QModelIndex & proxyIndex ) const{
 
+  if( !proxyIndex.isValid() ) return QModelIndex();
   if(proxyIndex.column() > 0 ) return QModelIndex(); // Only the first index is mappable to the source
 
   Histogram_item* item = static_cast<Histogram_item*>(proxyIndex.internalPointer());
@@ -577,7 +582,7 @@ QModelIndex	Histogram_proxy_model::mapToSource ( const QModelIndex & proxyIndex 
   return QModelIndex();
 
 }
-
+*/
 
 
 /*
@@ -599,10 +604,10 @@ void Histogram_proxy_model::begin_remove_proxy_rows(const QModelIndex & source_p
   std::set<Histogram_item*> items_to_remove;
   for(int i=start ; i <= end; ++i) {
     QModelIndex source_index = source_parent.child(i,0);
-    QModelIndex proxy_index = this->mapFromSource(source_index);
-    if(!proxy_index.isValid()) continue;
-    GsTL_object_item* item = static_cast<GsTL_object_item*>(proxy_index.internalPointer());
-    find_items_to_be_removed(item, items_to_remove);
+    //QModelIndex proxy_index = this->mapFromSource(source_index);
+    //if(!proxy_index.isValid()) continue;
+    //GsTL_object_item* item = static_cast<GsTL_object_item*>(proxy_index.internalPointer());
+    //find_items_to_be_removed(item, items_to_remove);
 
  //   items_to_remove.push_back( lookup_items_[item] );
 

@@ -51,7 +51,7 @@
         <item row="1" column="1" colspan="2">
          <widget class="QLineEdit" name="x_label_edit">
           <property name="text">
-           <string>Values</string>          
+           <string>Values</string>
           </property>
          </widget>
         </item>
@@ -258,7 +258,7 @@
         <item row="4" column="1">
          <widget class="QSpinBox" name="x_nticks">
           <property name="value">
-           <number>2</number>
+           <number>10</number>
           </property>
          </widget>
         </item>
@@ -271,13 +271,13 @@
         </item>
         <item row="5" column="1">
          <widget class="QSpinBox" name="x_axis_font_size">
+          <property name="minimum">
+           <number>2</number>
+          </property>
           <property name="maximum">
            <number>40</number>
           </property>
-           <property name="minimum">
-             <number>2</number>
-           </property>
-           <property name="singleStep">
+          <property name="singleStep">
            <number>2</number>
           </property>
           <property name="value">
@@ -389,7 +389,7 @@
         <item row="4" column="1">
          <widget class="QSpinBox" name="y_nticks">
           <property name="value">
-           <number>2</number>
+           <number>10</number>
           </property>
          </widget>
         </item>
@@ -402,13 +402,13 @@
         </item>
         <item row="5" column="1">
          <widget class="QSpinBox" name="y_axis_font_size">
+          <property name="minimum">
+           <number>2</number>
+          </property>
           <property name="maximum">
            <number>40</number>
           </property>
-           <property name="minimum">
-             <number>2</number>
-           </property>
-           <property name="singleStep">
+          <property name="singleStep">
            <number>2</number>
           </property>
           <property name="value">

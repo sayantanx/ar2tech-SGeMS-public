@@ -60,7 +60,7 @@ class CHARTS_DECL Chart_scatter_plot : public Chart_base
 
 public:
     Chart_scatter_plot(int nbins = 55,QWidget *parent=0);
-    ~Chart_scatter_plot();
+    virtual ~Chart_scatter_plot();
 
 
 public slots :

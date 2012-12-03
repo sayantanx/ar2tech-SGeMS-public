@@ -38,12 +38,10 @@ Scatter_plot_item_tree_view::Scatter_plot_item_tree_view(QWidget *parent)
   : QTreeView(parent)
 {
 
-  this->header()->setResizeMode(QHeaderView::Stretch);
+  this->header()->setResizeMode(QHeaderView::ResizeToContents);
 
   QObject::connect( this, SIGNAL(doubleClicked ( const QModelIndex&)), this, SLOT(show_color_editor(const QModelIndex&)) );
-  //QObject::connect( this,  SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(show_color_editor(const QModelIndex&)) );
 
-  //QObject::connect( this, SIGNAL(doubleClicked ( const QModelIndex&)), this, SLOT(show_color_editor(const QModelIndex&)) );
 
 }
 

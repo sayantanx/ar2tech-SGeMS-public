@@ -343,10 +343,12 @@ QModelIndex	Weight_property_proxy_model_no_selection::mapFromSource ( const QMod
 }
 QModelIndex	Weight_property_proxy_model_no_selection::mapToSource ( const QModelIndex & proxyIndex ) const{
 
+  if(!proxyIndex.isValid()) return QModelIndex();
 	if(proxyIndex.row() == 0 ) return QModelIndex();
 
   //Search for the 
   GsTLGridWeightProperty* wprop = grid_->weight_property(proxyIndex.data().toString().toStdString());
+  if(wprop==0) return QModelIndex();
 
   Root_model* rmodel = dynamic_cast<Root_model*>(this->sourceModel());
   QModelIndex src_parent_index = rmodel->property_root_index(grid_->item_name());

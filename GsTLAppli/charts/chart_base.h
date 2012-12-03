@@ -59,7 +59,7 @@ class CHARTS_DECL Chart_base : public QFrame
 
 public:
     Chart_base(QWidget *parent);
-    ~Chart_base();
+    virtual ~Chart_base();
 
     vtkSmartPointer<vtkChartXY> chart(){return chart_;}
 

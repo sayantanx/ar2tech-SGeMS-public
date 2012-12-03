@@ -502,12 +502,14 @@ QModelIndex	Category_proxy_model::mapFromSource ( const QModelIndex & sourceInde
 
 QModelIndex	Category_proxy_model::mapToSource ( const QModelIndex & proxyIndex ) const{
 
+  if(!proxyIndex.isValid()) return QModelIndex();
   if(proxyIndex.column() > 0 ) return QModelIndex(); // Only the first index is mappable to the source
 
-//  Categorical_item* item = static_cast<Categorical_item*>(proxyIndex.internalPointer());
-
-  QModelIndex parent = model_->top_level_manager_index(categoricalDefinition_manager.c_str());
-  return this->sourceModel()->index(proxyIndex.row(), proxyIndex.column(), parent );
+  //Index of cdef manager
+  QModelIndex cdef_manager_index = model_->top_level_manager_index(categoricalDefinition_manager.c_str());
+  QModelIndex cdef_index = this->sourceModel()->index(cdef_->row(),proxyIndex.column(),cdef_manager_index);
+  
+  return this->sourceModel()->index(proxyIndex.row(), proxyIndex.column(), cdef_index );
 
 }
 

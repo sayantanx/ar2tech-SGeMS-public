@@ -108,6 +108,7 @@ void Vtk_view::initialize(GsTL_project* project, QWidget* parent){
     QWidget* controlFrame = this->init_control_frame();
     QFrame* viewerMainFrame = this->init_viewer_frame();
 
+
     splitter->addWidget(controlFrame);
     splitter->addWidget(viewerMainFrame);
 
@@ -144,10 +145,12 @@ Vtk_view::~Vtk_view() {
 QFrame* Vtk_view::init_viewer_frame(){
 
 	QFrame* viewerMainFrame = new QFrame(this);
+	viewerMainFrame->setAcceptDrops(true);
 	QVBoxLayout *lhsMainLayout = new QVBoxLayout(viewerMainFrame);
 
 
 	gstl_vtk_viewer_ = new QvtkGsTLViewer(this, "camera");
+	gstl_vtk_viewer_->setAcceptDrops(true);
  //   QFrame* viewerFrame = new QFrame(viewerMainFrame);
 	QSizePolicy sizePolicyViewFrame(QSizePolicy::Preferred, QSizePolicy::Preferred);
 	sizePolicyViewFrame.setHorizontalStretch(70);
@@ -364,6 +367,7 @@ QWidget* Vtk_view::init_control_frame(){
 
 
 	tree_ = new Visualization_tree_view(this);
+
   /*
 	SmartPtr<Named_interface> model_ni =
 			Root::instance()->interface(qitem_model_manager + "/project_model");
@@ -399,7 +403,7 @@ QWidget* Vtk_view::init_control_frame(){
 	controlSplitter->addWidget(tree_);
 //	controlSplitter->addWidget(params_frame);
 	controlSplitter->addWidget(params_viewer_);
-
+	controlSplitter->setAcceptDrops(true);
 	return controlSplitter;
 
 }
@@ -759,19 +763,39 @@ void Vtk_view::undisplay_item ( const QModelIndex & index ){
 }
 
 
-void Vtk_view::dragMoveEvent(QDragMoveEvent *)
+bool Vtk_view::eventFilter(QObject *obj, QEvent *ev){
+	
+	if (ev->type() == QEvent::Drop) {
+        return true;
+	} else if (ev->type() == QEvent::DragEnter){
+        return true;
+	} else if (ev->type() == QEvent::DragMove){
+        return true;
+    }
+	else {
+		return false;
+    }
+
+}
+
+void Vtk_view::dragMoveEvent(QDragMoveEvent* e)
 {
+//	if (e->mimeData()->hasUrls())
+//		e->acceptProposedAction();
 }
 
 void Vtk_view::dragEnterEvent(QDragEnterEvent * e)
 {
-	if (e->mimeData()->hasUrls())
+	if (e->mimeData()->hasUrls()) {
 		e->acceptProposedAction();
+	}
+	else e->ignore();
 
 }
 
 void Vtk_view::dragLeaveEvent(QDragLeaveEvent *)
 {
+
 }
 
 void Vtk_view::dropEvent(QDropEvent * e)

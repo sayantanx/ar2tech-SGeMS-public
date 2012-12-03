@@ -47,7 +47,7 @@ class CHARTS_DECL Chart_categorical_histogram : public Chart_base
 
 public:
     Chart_categorical_histogram(QWidget *parent=0);
-    ~Chart_categorical_histogram();
+    virtual ~Chart_categorical_histogram();
 
 public slots :
 

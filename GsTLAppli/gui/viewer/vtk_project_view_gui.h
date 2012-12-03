@@ -130,10 +130,12 @@ protected :
                               const GsTLVector<float>& view_up);
 
 
-	void dragEnterEvent(QDragEnterEvent *);
-	void dragMoveEvent(QDragMoveEvent *);
-	void dragLeaveEvent(QDragLeaveEvent *);
-	void dropEvent(QDropEvent *);
+	void dragEnterEvent(QDragEnterEvent *ev);
+	void dragMoveEvent(QDragMoveEvent *ev);
+	void dragLeaveEvent(QDragLeaveEvent *ev);
+	void dropEvent(QDropEvent *ev);
+
+    bool eventFilter(QObject *obj, QEvent *ev);
 
 
 
