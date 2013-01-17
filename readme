@@ -1,76 +1,65 @@
-This rudimentary readme file contains information on how to compile S-GeMS
-on Unix systems. For Windows systems, only Visual C++ 6 with Intel compiler 7.x
-or 8.x, or Visual C++ .Net 2003 are currently supported. A workspace file (.dsw/.sln) is available in directory WinGsTLAppli.
+This project is managed and owned by Advanced Resources and Risk Technology, LLC (ar2tech).  
+For any questions, please contact Alex Boucher (aboucher@ar2tech.com).
 
-Project files (.dsp/.vcproj) are available in each subdirectory of GsTLAppli.
+AR2GEMS is a branch of the open-source SGeMS software under its x-free license.  
+This version is not an open-source and cannot be integrated into existing software or 
+distributed without the explicit authorization of ar2tech.
 
-S-GeMS is distributed under two licenses (choose one): the GPL license and the
-Xfree license. Copies of these two licenses are in files LICENSE.GPL and 
-LICENSE.XFREE.
+If you would like to contribute code to this project you can either:
+a)	License the new code with a BSD license
+b)	Transfer copyright to ar2tech
+If you are interested into another option please contact ar2tech.
 
-Note: The name of this software has changed several times, so you might find
-that it is sometimes called GEMS, Simulacre, or GsTLAppli...
+Academic research:  There are no restrictions for academic purposes.  Note that only the 
+plugins can be distributed by third-party, the software itself can only be distributed 
+by ar2tech.  This is done to reduce fragmentation of the software.  
 
+Commercial plugins: You are free to build proprietary plugins for commercial purposes 
+within an organization (no distribution) or to be freely distributed (no requirement 
+to release the source code).  Please contact ar2tech for licensing agreement if you 
+intend to sell or distribute the plugins with a fee.
 
+In case of doubt please contact Alex Boucher (aboucher@ar2tech.com).
 
-Compiling:
---------------- 
-Warning: the compilation process of S-GeMS is not streamlined yet, and might 
-require some manual intervention. 
+----------Compiling SGeMS with Visual Studio 2010 on 64 bits--------------------
+Note that Visual Studio SP1 must be installed.
+Required external libraries:
+Qt, VTK, Boost and Python
 
-Before you try to compile S-GeMS, make sure that you have the following 
-libraries:
-- Qt     (www.trolltech.com)
-- Coin   (www.coin3d.org)
-- SoQt   (www.coin3d.org)
-- SimVoleon (www.coin3d.org)
-- Python (www.python.org)  
-- GsTL   (http://pangea.stanford.edu/~nremy/GTL/GsTL_home.html)
+----------Compiling Qt 64 bits ----------------
+1- Download qt source code (a zip file) from : http://qt-project.org/downloads
+2- Unzip it (e.g. c:\Qt\4.8.3-x64)
+3- Open the prompt shell for visual studio 2010 (
+   go to the MS start->All Programs->Microsoft Visual studio 2010
+   ->Visual Studio Tools->Visual Studio x64 Win64 Command Prompt (2010))
+4- Go to the qt directory
+5- Type:  configure -debug-and-release -no-webkit -platform win32-msvc2010 -no-script -no-scripttools -opensource 
+6- Type : nmake
 
-Notice that Qt and Coin can not be used in a commercial setting unless you
-purchase the appropriate license. 
+---------- Compiling VTK ---------------------------
+1 – Download and install cmake: http://www.cmake.org/
+2- Get the vtk 6.0 source code either from the git or the website: http://vtk.org/VTK/resources/software.html
+   SGeMS is currently built using the master branch of the github repository
+3– Build the project files with with cmake or cmake-gui.  Be sure to select the Qt options.
+4– Open the vtk project files into visual studio and built the release and debug version.
 
-1) Edit file ".qmake.cache" and modify the path variables. One common mistake when setting the paths in .qmake.cache: the top-level directory of GsTL contains a directory that is also called GsTL and contains the source files. The GSTLHOME variable must be set to the top-level directory, not to the nested GsTL directory. So GSTLHOME=/tmp/GsTL, not /tmp/GsTL/GsTL. Similarily, the top-level directory of SGeMS contains a directory called GsTLAppli. Set GSTLAPPLI_HOME=/tmp/SGeMS, not /tmp/SGeMS/GsTLAppli.
-2) If you want to compile in release mode, edit "config.qmake" and
-   change line:
-      CONFIG +=  debug warn_on
-   to
-      CONFIG +=  release warn_on
-   (remove "warn_on" to decrease the number of compiler warnings) 
-3) run qmake (just type "qmake") to generate the top-level makefile.
-4) Finally, run make.
-5) The executable will be output to $GSTLAPPLI_HOME/bin/linux/s-gems. It will probably be necessary to set LD_LIBRARY_PATH so linux can find the sgems shared libraries. These libraries are in $GSTLAPPLI_HOME/lib/linux and $GSTLAPPLI_HOME/plugins/designer:
-    export LD_LIBRARY_PATH=$GSTLAPPLI_HOME/lib/linux:$GSTLAPPLI_HOME/plugins/designer
-Library $GSTLAPPLI_HOME/plugins/designer/libGsTLwidgets.so is a plug-in for Qt. If Qt can't find that plug-in, parts of the interface will be missing. You can copy libGsTLwidgets.so to $QTDIR/plugins/designer, or use qtconfig to add a new plug-ins search path.
-6) Before you run the software, define a variable called GSTLAPPLIHOME to
-   point to the root directory of S-GeMS .
+---------- Compiling Python 64 bits -----------------
+Installing python 2.x from the installer only provide the release dll.  To get the 
+debug version, download the source code, open the project and build the debug version.  
+You can ignore all the errors.  Copy the debug .dll and .lib to the main python 
+directory along the release version.
 
-
-
-
-
-Generating Makefiles:
------------------------
-
-Makefiles are generated using qmake and .pro files. All .pro files should already
-be there. This part explains how to use shell script "Makemake" to generate the
-.pro files and the corresponding Makefiles.
-To generate a makefile:
- - define in MMakefile any non-default variable. MMakefile can
-     be used to override the target name (TARGET=name), add paths to
-     the include path (INCLUDEPATH += /new/path), etc. See qmake help
-     for all available options.
- - run: Makemake -a|-l
-     Makemake will generate a .pro file and the corresponding makefile.
-     Makemake should be rerun each time new source files are added.
-     By default Makemake will attempt to compile all the files in the 
-     directory. If more than one file contains a main() function, compilation
-     will fail. To remove the extra files, put the following line in MMakefile:
-       SOURCES -= extra_file.cpp
-       HEADERS -= extra_file.h
+---------- Building ar2gems ---------------------------------------------
+1- Get SGeMS from the github repository
+2– Set the following environmental variable
+QTDIR and QTDIRx64: path to qt installation direction
+VTKDIR : path to vtk install directory
+BOOSTDIR : path to the boost directory
+PYTHONDIRx64: path to the 64 bits python install directory
+AR2TECH_SGEMS_DIR : path to the source code
+AR2TECH_GSTL_DIR : The GsTL library is now included in the main source code repository.  
+                   The path is then AR2TECH_SGEMS_DIR\ar2GsTL
+3– Open the visual studio solution and build the release and debug binaries
+-------------------------------------------------------------
 
 
-If your target is an executable, you can also run "make link" to obtain a link
-to the compiled executable in the current directory (note that the rule for
-"link" is generated by Makemake, so if you don't use Makemake to generate the
-makefile, there won't be any "link" rule ).

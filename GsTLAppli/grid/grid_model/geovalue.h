@@ -286,7 +286,7 @@ class GRID_DECL Geovalue {
     if( loc_.x() == invalid_coord_ )
       loc_ = grid_->location( node_id_ );
 
-    GVAL_ASSERT   //Need to be removed since the cached location could be of the geological coordinates not the grid coordinate.
+  //  GVAL_ASSERT   //Need to be removed since the cached location could be of the geological coordinates not the grid coordinate.
     return loc_; 
   } 
  
@@ -295,7 +295,7 @@ class GRID_DECL Geovalue {
       xyz_loc_ = grid_->xyz_location( node_id_ );
 
  //   GVAL_ASSERT   //Need to be removed since the cached location could be of the geological coordinates not the grid coordinate.
-    return loc_; 
+    return xyz_loc_; 
   } 
 
   //---------- 

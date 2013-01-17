@@ -31,6 +31,10 @@ Makefile
 *.pdb
 *.suo
 *.*sdf
+*.ipch
+*.dll.manifest
 Debug/
 debug/
 Release/
+* - Copy.h
+* - Copy.cpp

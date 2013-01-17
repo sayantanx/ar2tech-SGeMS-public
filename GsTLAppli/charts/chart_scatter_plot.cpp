@@ -49,6 +49,9 @@
 #include <QModelIndex>
 #include <QAbstractItemView>
 
+
+#include <GsTLAppli/utils/gstl_messages.h>
+
 Chart_scatter_plot::Chart_scatter_plot(int nbins, QWidget *parent)
   :  Chart_base(parent)
 {
@@ -85,6 +88,8 @@ Chart_scatter_plot::Chart_scatter_plot(int nbins, QWidget *parent)
 	chart_ = vtkSmartPointer<vtkChartXY>::New();
 	context_view_->GetScene()->AddItem(chart_);  
   chartSplitter->addWidget(qvtkWidget_);
+  chart_->GetAxis(vtkAxis::LEFT)->SetNumberOfTicks(10);
+  chart_->GetAxis(vtkAxis::BOTTOM)->SetNumberOfTicks(10);
 
   mainSplitter->addWidget(chartSplitter);
 
@@ -153,7 +158,7 @@ Chart_scatter_plot::Chart_scatter_plot(int nbins, QWidget *parent)
   connect( chart_control_, SIGNAL(yaxis_autoscale_changed()), this, SLOT(set_yaxis_autoscale()) );
 
   chart_control_->send_axis_signals();
-
+  GsTLlog<<"Finished constructor\n";
   //QObject::connect( tree, SIGNAL(doubleClicked ( const QModelIndex&)), tree, SLOT(show_color_editor(const QModelIndex&)) );
 }
 
@@ -282,6 +287,7 @@ void Chart_scatter_plot::load_data(GsTL_object_item* item_x, std::vector<GsTL_ob
     GsTL_object_item* item_y = items_y[i];
     if(item_y->item_type() == "ContinuousProperty") {
 	  GsTLGridProperty* prop_y = static_cast<GsTLGridProperty*>(item_y->data_pointer());
+     GsTLlog<<"Loading property "+prop_y->name()+"\n";
       if(prop_y == prop_x) continue;
       std::vector<GsTL_object_item*>::iterator it = items_filter.begin();
       for( ; it != items_filter.end(); ++it) {
@@ -289,11 +295,13 @@ void Chart_scatter_plot::load_data(GsTL_object_item* item_x, std::vector<GsTL_ob
           model_->insert_row(prop_x,prop_y, 
                              default_colors_.at(default_color_id_%max_index_default_colors_) );
           ++default_color_id_;
+          GsTLlog<<"Finisehed inserting rows for property "+prop_y->name()+"\n";
         }
         else if( (*it)->item_type() == "GsTLGridRegion" ) {
           model_->insert_row(prop_x,prop_y,dynamic_cast<GsTLGridRegion*>(*it), 
                              default_colors_.at(default_color_id_%max_index_default_colors_) );
           ++default_color_id_;
+          GsTLlog<<"Finisehed inserting rows (with region) for property "+prop_y->name()+"\n";
         }
         else if( (*it)->item_type() == "CategoricalProperty" ) {
           model_->insert_row(prop_x,prop_y,dynamic_cast<GsTLGridCategoricalProperty*>(*it), 
@@ -1106,19 +1114,23 @@ void Chart_scatter_plot::set_xaxis_max(double max){
 }
 void Chart_scatter_plot::set_xaxis_precision(int digits){
   chart_->GetAxis(vtkAxis::BOTTOM)->SetPrecision(digits);
+  chart_->Update();
   qvtkWidget_->update();
 }
 void Chart_scatter_plot::set_xaxis_nticks(int nticks){
   chart_->GetAxis(vtkAxis::BOTTOM)->SetNumberOfTicks(nticks);
+  chart_->Update();
   qvtkWidget_->update();
 }
 void Chart_scatter_plot::set_xaxis_logscale(bool on){
   chart_->GetAxis(vtkAxis::BOTTOM)->SetLogScale(on);
+  chart_->Update();
   qvtkWidget_->update();
   this->update_chart_display_control();
 }
 void Chart_scatter_plot::set_xaxis_autoscale(){
   chart_->GetAxis(vtkAxis::BOTTOM)->AutoScale();
+  chart_->Update();
   qvtkWidget_->update();
   this->update_chart_display_control();
 }
@@ -1134,19 +1146,23 @@ void Chart_scatter_plot::set_yaxis_max(double max){
 }
 void Chart_scatter_plot::set_yaxis_precision(int digits){
   chart_->GetAxis(vtkAxis::LEFT)->SetPrecision(digits);
+  chart_->Update();
   qvtkWidget_->update();
 }
 void Chart_scatter_plot::set_yaxis_nticks(int nticks){
   chart_->GetAxis(vtkAxis::LEFT)->SetNumberOfTicks(nticks);
+  chart_->Update();
   qvtkWidget_->update();
 }
 void Chart_scatter_plot::set_yaxis_logscale(bool on){
   chart_->GetAxis(vtkAxis::LEFT)->SetLogScale(on);
+  chart_->Update();
   qvtkWidget_->update();
   this->update_chart_display_control();
 }
 void Chart_scatter_plot::set_yaxis_autoscale(){
   chart_->GetAxis(vtkAxis::LEFT)->AutoScale();
+  chart_->Update();
   qvtkWidget_->update();
   this->update_chart_display_control();
 }

@@ -1287,7 +1287,7 @@ Geostat_grid* Csv_structured_infilter::read( std::ifstream& infile, std::string 
     return 0;
   }
 
-  ni = Root::instance()->new_interface( "StructuredGrid://" + name,
+  ni = Root::instance()->new_interface( "Structured_grid://" + name,
 				  gridModels_manager + "/" + name );
   Structured_grid* sgrid = dynamic_cast<Structured_grid*>( ni.raw_ptr() );
   appli_assert( sgrid != 0 );

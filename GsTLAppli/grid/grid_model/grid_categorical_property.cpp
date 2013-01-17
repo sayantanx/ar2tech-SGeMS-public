@@ -108,7 +108,9 @@ CategoricalPropertyDefinitionName::CategoricalPropertyDefinitionName() {
 }
 
 CategoricalPropertyDefinitionName::~CategoricalPropertyDefinitionName() {
-	// TODO Auto-generated destructor stub
+	for( int i=0; i< cat_coding_.size(); ++i ) {
+    delete cat_coding_[i];
+  }
 }
 
 CategoricalPropertyDefinitionName::CategoricalPropertyDefinitionName(
@@ -232,14 +234,14 @@ void CategoricalPropertyDefinitionName::color(unsigned int cat_id, QColor color)
  * The name are of type "category_0"
  */
 
-CategoricalPropertyDefinitionDefault::CategoricalPropertyDefinitionDefault(){
+CategoricalPropertyDefinitionDefault::CategoricalPropertyDefinitionDefault():current_n_categ_in_use_(10){
   // Build the vector of color
   /*   it would be a better idea to take the list from the colorscale manager but the color are only loaded with the gui library
   SmartPtr<Named_interface> ni =
 	  Root::instance()->interface( colorscale_manager+"/default_categorical" );
   Color_scale* colors = dynamic_cast<Color_scale*>( ni.raw_ptr() );
   */
-
+  
   colors_.push_back(QColor(141,211,199));
   colors_.push_back(QColor(255, 255, 179));
   colors_.push_back(QColor(190, 186, 218));
@@ -252,8 +254,18 @@ CategoricalPropertyDefinitionDefault::CategoricalPropertyDefinitionDefault(){
   colors_.push_back(QColor(188, 128, 189));
   colors_.push_back(QColor(204, 235, 197));
   colors_.push_back(QColor(255, 237, 111));
+  for( int i=0; i< 100; ++i) {
+    QString name = QString("Category %1").arg(i);
+    cat_coding_.push_back(new Categorical_color_coding(name.toStdString(),i,this));
+  }
 
 
+}
+
+CategoricalPropertyDefinitionDefault::~CategoricalPropertyDefinitionDefault(){	
+  for( int i=0; i< cat_coding_.size(); ++i ) {
+    delete cat_coding_[i];
+  }
 }
 
 //Useful to ensure that all classes use the same default
@@ -277,13 +289,18 @@ QColor CategoricalPropertyDefinitionDefault::default_color(int cat_id){
 
 
 std::string CategoricalPropertyDefinitionDefault::get_category_name(unsigned int id) const{
-	std::stringstream name;
-	name <<"category_"<<id;
-	return name.str();
+  if(id < cat_coding_.size()) {
+    return cat_coding_[id]->name().toStdString();
+  }
+  else {
+	  std::stringstream name;
+	  name <<"Category "<<id;
+	  return name.str();
+  }
 }
 
 int CategoricalPropertyDefinitionDefault::category_id(std::string name) const{
-	if( name.substr(0,9) != "category_" ) return -1;
+	if( name.substr(0,9) != "Category " ) return -1;
 	int id;
   std::istringstream name_istr(name.substr(9,name.size()-9));
 

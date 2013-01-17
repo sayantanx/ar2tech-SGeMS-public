@@ -61,7 +61,8 @@ const Geovalue::location_type::coordinate_type Geovalue::invalid_coord_ = -9.9e3
 Geovalue::Geovalue() 
   : grid_(0), property_array_(0), values_array_(0),
     node_id_(-1),
-    loc_( invalid_coord_, invalid_coord_, invalid_coord_ ) {
+    loc_( invalid_coord_, invalid_coord_, invalid_coord_ ),
+    xyz_loc_( invalid_coord_, invalid_coord_, invalid_coord_ ){
   
 }
 
@@ -70,7 +71,9 @@ Geovalue::Geovalue( const Geovalue& rhs )
     property_array_( rhs.property_array_ ),
     values_array_( rhs.values_array_ ),
     node_id_( rhs.node_id_ ),
-    loc_( rhs.loc_ ) {
+    loc_( rhs.loc_ ),
+    xyz_loc_(rhs.xyz_loc_)
+{
 }
 
 
@@ -78,7 +81,8 @@ Geovalue::Geovalue( Geostat_grid* grid, GsTLGridProperty* prop,
 		    int node_id )
   : grid_(grid), property_array_(prop), 
     node_id_(node_id),
-    loc_( invalid_coord_, invalid_coord_, invalid_coord_ ) {
+    loc_( invalid_coord_, invalid_coord_, invalid_coord_ ),
+    xyz_loc_( invalid_coord_, invalid_coord_, invalid_coord_ ){
 
   appli_assert( prop );
   values_array_ = prop->data() ;
@@ -96,6 +100,7 @@ Geovalue& Geovalue::operator = ( const Geovalue& rhs ) {
   values_array_ = rhs.values_array_ ;
   node_id_ = rhs.node_id_ ;
   loc_ = rhs.loc_ ;
+  xyz_loc_ = rhs.xyz_loc_ ;
   }
 
   return *this;
@@ -139,6 +144,11 @@ void Geovalue::set_node_id( int id ) {
       loc_.x() = invalid_coord_;
       loc_.y() = invalid_coord_;
       loc_.z() = invalid_coord_;
+    }
+    if( xyz_loc_.x() != invalid_coord_ ) {
+      xyz_loc_.x() = invalid_coord_;
+      xyz_loc_.y() = invalid_coord_;
+      xyz_loc_.z() = invalid_coord_;
     }
   }
 }

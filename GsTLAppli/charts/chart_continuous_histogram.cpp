@@ -85,6 +85,9 @@ Chart_continuous_histogram::Chart_continuous_histogram(int nbins, QWidget *paren
 	context_view_->GetScene()->AddItem(chart_);  
   chartSplitter->addWidget(qvtkWidget_);
 
+  chart_->GetAxis(0)->SetNumberOfTicks(10);
+  chart_->GetAxis(1)->SetNumberOfTicks(10);
+
   mainSplitter->addWidget(chartSplitter);
 
 
@@ -1280,6 +1283,7 @@ void Chart_continuous_histogram::set_xaxis_logscale(bool on){
 }
 void Chart_continuous_histogram::set_xaxis_autoscale(){
   chart_->GetAxis(vtkAxis::BOTTOM)->AutoScale();
+  chart_->Update();
   qvtkWidget_->update();
   this->update_chart_display_control();
 }
@@ -1295,19 +1299,23 @@ void Chart_continuous_histogram::set_yaxis_max(double max){
 }
 void Chart_continuous_histogram::set_yaxis_precision(int digits){
   chart_->GetAxis(vtkAxis::LEFT)->SetPrecision(digits);
+  chart_->Update();
   qvtkWidget_->update();
 }
 void Chart_continuous_histogram::set_yaxis_nticks(int nticks){
   chart_->GetAxis(vtkAxis::LEFT)->SetNumberOfTicks(nticks);
+  chart_->Update();
   qvtkWidget_->update();
 }
 void Chart_continuous_histogram::set_yaxis_logscale(bool on){
   chart_->GetAxis(vtkAxis::LEFT)->SetLogScale(on);
+  chart_->Update();
   qvtkWidget_->update();
   this->update_chart_display_control();
 }
 void Chart_continuous_histogram::set_yaxis_autoscale(){
   chart_->GetAxis(vtkAxis::LEFT)->AutoScale();
+  chart_->Update();
   qvtkWidget_->update();
   this->update_chart_display_control();
 }

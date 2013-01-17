@@ -172,18 +172,26 @@ bool library_grid_init::init_property_copier_factory() {
   Property_copier_factory::add_method( Point_set().classname(), 
                                        Cartesian_grid().classname(), 
                                        Pset_to_cgrid_copier::create_new_interface );
+  Property_copier_factory::add_method( Log_data_grid().classname(), 
+                                       Cartesian_grid().classname(), 
+                                       Pset_to_cgrid_copier::create_new_interface );
   Property_copier_factory::add_method( Cartesian_grid().classname(), 
                                        Cartesian_grid().classname(), 
                                        Cgrid_to_cgrid_copier::create_new_interface );
   Property_copier_factory::add_method( Point_set().classname(), 
                                        Point_set().classname(), 
                                        Pset_to_pset_copier::create_new_interface );
-
+  Property_copier_factory::add_method( Log_data_grid().classname(), 
+                                       Log_data_grid().classname(), 
+                                       Pset_to_pset_copier::create_new_interface );
   //TL modified
   Property_copier_factory::add_method( Reduced_grid().classname(), 
                                        Reduced_grid().classname(), 
                                        Mask_to_mask_copier::create_new_interface );
   Property_copier_factory::add_method( Point_set().classname(), 
+                                       Reduced_grid().classname(), 
+                                       Pset_to_mask_copier::create_new_interface );
+  Property_copier_factory::add_method( Log_data_grid().classname(), 
                                        Reduced_grid().classname(), 
                                        Pset_to_mask_copier::create_new_interface );
 
@@ -193,6 +201,14 @@ bool library_grid_init::init_property_copier_factory() {
   Property_copier_factory::add_method( Reduced_grid().classname(), 
                                        Point_set().classname(), 
                                        Rgrid_to_pset_copier::create_new_interface );
+
+  Property_copier_factory::add_method( Point_set().classname(), 
+                                       Structured_grid().classname(), 
+                                       Pset_to_structured_grid_copier::create_new_interface );
+
+  Property_copier_factory::add_method( Log_data_grid().classname(), 
+                                       Structured_grid().classname(), 
+                                       Pset_to_structured_grid_copier::create_new_interface );
   return true;
 }
 

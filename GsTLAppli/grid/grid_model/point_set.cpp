@@ -396,7 +396,8 @@ QVariant Point_set::item_data(int column) const{
 void Point_set::set_coordinate_mapper(Coordinate_mapper* coord_mapper){
 
  if(coord_mapper == 0 && coord_mapper_ == 0) return;
- 
+ if(coord_mapper_ == coord_mapper ) return;  // potential problem if coord_mapper was updated, then should first set 0 then reset the coord mapper
+
  coord_mapper_ = coord_mapper;
  point_loc_.clear();
  

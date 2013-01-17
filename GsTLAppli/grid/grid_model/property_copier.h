@@ -345,4 +345,33 @@ protected:
 };
 
 
+class GRID_DECL Pset_to_structured_grid_copier : public Property_copier {
+public:
+  static Named_interface* create_new_interface( std::string& ) {
+    return new Pset_to_structured_grid_copier;
+  }
+
+  Pset_to_structured_grid_copier(){}
+
+  virtual bool copy( const Geostat_grid* server, 
+                     const GsTLGridProperty* server_prop,
+                     Geostat_grid* client, 
+                     GsTLGridProperty* client_prop );
+
+  virtual bool undo_copy();
+
+
+private :
+  const Geostat_grid* server_;
+  const Geostat_grid* client_;
+  const GsTLGridProperty* server_prop_;
+  GsTLGridProperty* client_property_;
+
+  //Allow to keep track which node-id was assigned where
+  // useful for the undo
+  std::map<int,int> index_client_to_source_;
+  std::map<int,float> original_client_value_;
+
+};
+
 #endif

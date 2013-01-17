@@ -178,7 +178,7 @@ public:
   static QColor default_color(int cat_id);
 
   CategoricalPropertyDefinitionDefault();
-	virtual ~CategoricalPropertyDefinitionDefault(){}
+	virtual ~CategoricalPropertyDefinitionDefault();
 
 	virtual std::string get_category_name(unsigned int id) const;
 
@@ -187,7 +187,7 @@ public:
 	virtual int category_id(std::string name) const;
 
   virtual std::string name() const;
-
+/*
   virtual QColor color(unsigned int cat_id)const { return colors_[cat_id%12];}
   virtual float red(unsigned int cat_id) const {return colors_[cat_id%12].redF();}
   virtual float green(unsigned int cat_id) const {return colors_[cat_id%12].greenF();}
@@ -195,8 +195,28 @@ public:
   virtual float alpha(unsigned int cat_id) const {return colors_[cat_id%12].alphaF();}
   virtual void color(unsigned int cat_id, QColor color){colors_[cat_id%12] = color;}
   virtual void color(unsigned int cat_id, float r, float g, float b, float alpha=1.0){colors_[cat_id%12].setRgbF(r,g,b,alpha);}
+*/
+
+  virtual QColor color(unsigned int cat_id) const { return cat_coding_[cat_id]->color();}
+  virtual float red(unsigned int cat_id) const {return cat_coding_[cat_id]->color().redF();}
+  virtual float green(unsigned int cat_id) const {return cat_coding_[cat_id]->color().greenF();}
+  virtual float blue(unsigned int cat_id) const {return cat_coding_[cat_id]->color().blueF();}
+  virtual float alpha(unsigned int cat_id) const {return cat_coding_[cat_id]->color().alphaF();}
+  virtual void color(unsigned int cat_id, QColor color){cat_coding_[cat_id]->color(color);}
+  virtual void color(unsigned int cat_id, float r, float g, float b, float alpha=1.0){
+    QColor color;
+    color.setRgbF(r,g,b,alpha);
+    cat_coding_[cat_id]->color(color);
+  }
+
+  // GsTL-Object functions
+  virtual GsTL_object_item *child(int row){return cat_coding_[row];}
+  virtual const GsTL_object_item *child(int row) const {return cat_coding_[row];}
+  virtual int childCount() const{return cat_coding_.size();}
 
 protected :
+  std::vector<Categorical_color_coding*> cat_coding_;
+  int current_n_categ_in_use_;
   std::vector<QColor> colors_; //Create a dictionary of colors  Use the default categroical (then repeat them)
   
 
