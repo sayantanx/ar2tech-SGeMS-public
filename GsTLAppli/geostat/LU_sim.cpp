@@ -1,5 +1,5 @@
 /* -----------------------------------------------------------------------------
-** Copyright© 2012 Advanced Resources and Risk Technology, LLC
+** Copyright (c) 2012 Advanced Resources and Risk Technology, LLC
 ** All rights reserved.
 **
 ** This file is part of Advanced Resources and Risk Technology, LLC (AR2TECH) 

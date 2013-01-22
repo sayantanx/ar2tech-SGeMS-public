@@ -248,6 +248,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="coordinate_mapper.cpp" />
+    <ClCompile Include="grid_filter.cpp" />
     <ClCompile Include="grid_model\cartesian_grid.cpp" />
     <ClCompile Include="grid_model\combined_neighborhood.cpp" />
     <ClCompile Include="grid_model\cross_variog_computer.cpp" />
@@ -281,6 +282,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="coordinate_mapper.h" />
+    <ClInclude Include="grid_filter.h" />
     <ClInclude Include="grid_model\cartesian_grid.h" />
     <ClInclude Include="grid_model\combined_neighborhood.h" />
     <ClInclude Include="common.h" />
