@@ -355,7 +355,20 @@ void pdf_to_cdf( NonParamCdf& cdf, const NonParamPdf& pdf,
 //=====================================================================
 
 
+/** Check whether range [begin,end) defines a valid pdf. 
+ */
+template <class ForwardIterator>
+bool is_valid_pdf( ForwardIterator begin, ForwardIterator end ) {
 
+  double sum = std::accumulate( begin, end, 0.0 );
+  if( !GsTL::equals( sum, 1.0, 0.00001 ) )
+    return false;
+
+  for( ; begin != end; ++begin ) 
+    if( *begin < 0 || *begin > 1 ) return false;
+
+  return true;
+}
 
 /** Check whether range [begin,end) defines a valid cdf. This function
  * does not apply to cdf's of categorical variables because it allows the
@@ -443,32 +456,6 @@ bool make_cdf_valid( RandomIterator begin, RandomIterator end,
 
 
 
-/** This version of make_cdf_valid works on categorical variables.
- * It modifies range [begin,end) so that it defines the probability values
- * of a valid cdf: range [begin,end) is interpreted as defining the probabilities
- * of belonging to classes c_0 to c_k (k is the size of range [begin,end) ), 
- * in other words, range [begin,end) is a (not yet valid) PDF.
- */ 
-template <class RandomIterator>
-bool make_cdf_valid( RandomIterator begin, RandomIterator end,
-		     GsTL::discrete_variable_tag tag ) {
-
- return make_pdf_valid( begin, end );        
-}
-
-
-
-/** Turn a cdf into a valid cdf.
- */ 
-
-template <class NonParametricCdf>
-bool make_cdf_valid( NonParametricCdf& cdf ) {
-  return make_cdf_valid( cdf.p_begin(), cdf.p_end(), 
-			 typename NonParametricCdf::variable_category() );
-}
-
-
-
 
 /** make_pdf_valid modifies range [begin,end) so that it defines the 
  * probability values of a valid pdf
@@ -496,19 +483,31 @@ bool make_pdf_valid( RandomIterator begin, RandomIterator end ) {
 
 
 
-/** Check whether range [begin,end) defines a valid pdf. 
- */
-template <class ForwardIterator>
-bool is_valid_pdf( ForwardIterator begin, ForwardIterator end ) {
 
-  double sum = std::accumulate( begin, end, 0.0 );
-  if( !GsTL::equals( sum, 1.0, 0.00001 ) )
-    return false;
+/** This version of make_cdf_valid works on categorical variables.
+ * It modifies range [begin,end) so that it defines the probability values
+ * of a valid cdf: range [begin,end) is interpreted as defining the probabilities
+ * of belonging to classes c_0 to c_k (k is the size of range [begin,end) ), 
+ * in other words, range [begin,end) is a (not yet valid) PDF.
+ */ 
+template <class RandomIterator>
+bool make_cdf_valid( RandomIterator begin, RandomIterator end,
+		     GsTL::discrete_variable_tag tag ) {
 
-  for( ; begin != end; ++begin ) 
-    if( *begin < 0 || *begin > 1 ) return false;
-
-  return true;
+ return make_pdf_valid( begin, end );        
 }
+
+
+
+/** Turn a cdf into a valid cdf.
+ */ 
+
+template <class NonParametricCdf>
+bool make_cdf_valid( NonParametricCdf& cdf ) {
+  return make_cdf_valid( cdf.p_begin(), cdf.p_end(), 
+			 typename NonParametricCdf::variable_category() );
+}
+
+
 
 #endif

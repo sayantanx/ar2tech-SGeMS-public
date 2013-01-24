@@ -37,11 +37,11 @@ Qt, VTK, Boost and Python
 6- Type : nmake
 
 ---------- Compiling VTK ---------------------------
-1 – Download and install cmake: http://www.cmake.org/
+1- Download and install cmake: http://www.cmake.org/
 2- Get the vtk 6.0 source code either from the git or the website: http://vtk.org/VTK/resources/software.html
    SGeMS is currently built using the master branch of the github repository
-3– Build the project files with with cmake or cmake-gui.  Be sure to select the Qt options.
-4– Open the vtk project files into visual studio and built the release and debug version.
+3- Build the project files with with cmake or cmake-gui.  Be sure to select the Qt options.
+4- Open the vtk project files into visual studio and built the release and debug version.
 
 ---------- Compiling Python 64 bits -----------------
 Installing python 2.x from the installer only provide the release dll.  To get the 
@@ -51,7 +51,7 @@ directory along the release version.
 
 ---------- Building ar2gems ---------------------------------------------
 1- Get SGeMS from the github repository
-2– Set the following environmental variable
+2- Set the following environmental variable
 QTDIR and QTDIRx64: path to qt installation direction
 VTKDIR : path to vtk install directory
 BOOSTDIR : path to the boost directory
@@ -59,7 +59,7 @@ PYTHONDIRx64: path to the 64 bits python install directory
 AR2TECH_SGEMS_DIR : path to the source code
 AR2TECH_GSTL_DIR : The GsTL library is now included in the main source code repository.  
                    The path is then AR2TECH_SGEMS_DIR\ar2GsTL
-3– Open the visual studio solution and build the release and debug binaries
+3- Open the visual studio solution and build the release and debug binaries
 -------------------------------------------------------------
 
 

@@ -28,11 +28,16 @@
 #define CHARTS_GLOBAL_H
 
 
-
-#ifdef CHARTS_EXPORT
-# define CHARTS_DECL __declspec(dllexport)
-#else
-# define CHARTS_DECL __declspec(dllimport)
+#if defined(_WIN32) || defined(WIN32)
+  #ifdef CHARTS_EXPORT
+    #define CHARTS_DECL __declspec(dllexport)
+  #else
+    #define CHARTS_DECL __declspec(dllimport)
 #endif
+#else
+    #define CHARTS_DECL
+#endif
+
+
 
 #endif // CHARTS_GLOBAL_H

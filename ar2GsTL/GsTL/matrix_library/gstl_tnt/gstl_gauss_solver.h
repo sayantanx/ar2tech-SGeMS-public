@@ -45,44 +45,6 @@
 namespace GSTL_TNT {
 
 
-template <
-          class SymmetricMatrix,
-          class MatVector,
-          class RandomIterator
-         >
-inline int gauss_solver(
-			SymmetricMatrix& A,
-			MatVector& b,
-			RandomIterator solution
-			) {
-  precondition(A);
-  return fortran_gauss_solver(b.size(), A.raw_access(), b.raw_access(), solution);
-}
-
-
-
-
-template <class SymmetricMatrix>
-static void precondition(SymmetricMatrix& A){
-  int neq = A.num_rows();
-  
-  if (neq < 2) {
-        return;
-    }
-
-  double tr=0;
-  for(int i=1; i<=neq; i++)
-    tr += A(i,i);
-
-  double noise = tr / (double(neq)*1000.);
-  noise = std::min(0.0001, noise);
-
-  for(int j=1; j<=neq; j++) {
-    if(A(j,j)!=0)
-      A(j,j) += noise;
-  }
-}
-
 
 
 //============================================
@@ -229,6 +191,41 @@ int fortran_gauss_solver( int neq, double *a, double *r, RandomIterator s ) {
      return ising ;
 }
 
+
+template <class SymmetricMatrix>
+static void precondition(SymmetricMatrix& A){
+  int neq = A.num_rows();
+  
+  if (neq < 2) {
+        return;
+    }
+
+  double tr=0;
+  for(int i=1; i<=neq; i++)
+    tr += A(i,i);
+
+  double noise = tr / (double(neq)*1000.);
+  noise = std::min(0.0001, noise);
+
+  for(int j=1; j<=neq; j++) {
+    if(A(j,j)!=0)
+      A(j,j) += noise;
+  }
+}
+
+template <
+          class SymmetricMatrix,
+          class MatVector,
+          class RandomIterator
+         >
+inline int gauss_solver(
+			SymmetricMatrix& A,
+			MatVector& b,
+			RandomIterator solution
+			) {
+  precondition(A);
+  return fortran_gauss_solver(b.size(), A.raw_access(), b.raw_access(), solution);
+}
 
 
 }

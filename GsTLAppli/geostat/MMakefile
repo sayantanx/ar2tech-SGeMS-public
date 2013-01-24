@@ -4,6 +4,7 @@ INCLUDEPATH += $$GSTLHOME $$GSTLAPPLI_HOME $$PYTHON_INCLUDE
 CONFIG += qt
 LIBS += -lGsTLAppli_utils -lGsTLAppli_math
 LIBS += -lGsTLAppli_grid -lGsTLAppli_appli
+LIBS += -L$$VTK_LIB -lvtkCommonCore-6.0 -lvtkCommonDataModel-6.0 -lvtkCommonExecutionModel-6.0 -lvtkCommonMath-6.0 -lvtkCommonMisc-6.0 -lvtkCommonSystem-6.0 -lvtkCommonTransforms-6.0 -lvtkFiltersCore-6.0 -lvtkFiltersExtraction-6.0 -lvtkFiltersGeneral-6.0 -lvtkFiltersGeometry-6.0 -lvtkFiltersHybrid-6.0 -lvtkFiltersImaging-6.0 -lvtkFiltersModeling-6.0 -lvtkFiltersSources-6.0 -lvtkFiltersStatistics-6.0 -lvtkFiltersTexture-6.0
 
 
 

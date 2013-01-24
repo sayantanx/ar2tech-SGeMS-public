@@ -3,6 +3,7 @@
 ##############################################################
 
 TEMPLATE = subdirs
-CONFIG += debug
-SUBDIRS = utils appli math grid geostat actions extra/qwt extra/qtplugins filters gui extra/gui main
-INCLUDEPATH += utils
+SUBDIRS = utils appli math grid geostat actions extra/qwt extra/qtplugins filters charts gui extra/gui main
+CONFIG += ordered
+
+

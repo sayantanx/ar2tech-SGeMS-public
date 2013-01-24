@@ -124,10 +124,6 @@ SOURCES += difference_with_base.cpp \
     kriging_cross_validation.cpp \
     cokriging_cross_validation.cpp
 
-#LIBS += -lGsTLAppli_utils -lGsTLAppli_math
-#LIBS += -lGsTLAppli_grid -lGsTLAppli_appli
-#LIBS += -lpython
-#LIBS += -L/usr/local/lib/vtk-5.9/ -lvtkFiltering -lvtkCommon -lvtkImaging -lvtkInfovis
 TARGET = GsTLAppli_geostat
 QT += xml
 CONFIG += plugin

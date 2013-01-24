@@ -1177,11 +1177,11 @@ QDomElement Sgems_folder_output_filter::write_category_definition(QDomDocument& 
 
 	  QStringList cat_names;
     std::vector<std::string> names = cat_definition_name->category_names();
-	  std::vector<std::string>::const_iterator  it_name = names .begin();
+	  std::vector<std::string>::iterator  it_name = names .begin();
 	  for( ; it_name != names.end(); it_name++ ) {
       QDomElement elemCategory = dom.createElement("Category");
       elemCategory.setAttribute("name",it_name->c_str());
-      int i = std::distance(names.cbegin() , it_name);
+      int i = std::distance(names.begin() , it_name);
       elemCategory.setAttribute("red",QString("%1").arg(cat_definition->red(i)));
       elemCategory.setAttribute("green",QString("%1").arg(cat_definition->green(i)));
       elemCategory.setAttribute("blue",QString("%1").arg(cat_definition->blue(i)));

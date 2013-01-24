@@ -45,7 +45,7 @@ Scatter_plot_proxy_model::Scatter_plot_proxy_model(QObject *parent)
 }
 
 
-Scatter_plot_proxy_model::Scatter_plot_proxy_model(QList< QPair<GsTL_object_item*,GsTL_object_item*>> items, QObject *parent)
+Scatter_plot_proxy_model::Scatter_plot_proxy_model(QList< QPair<GsTL_object_item*,GsTL_object_item*> > items, QObject *parent)
  : QAbstractItemModel(parent),current_id_(0) {
 	grid_manager_ = dynamic_cast<Manager*>(Root::instance()->interface(gridModels_manager).raw_ptr());
 

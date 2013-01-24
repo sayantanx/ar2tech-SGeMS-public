@@ -1,4 +1,5 @@
 MOC_DIR = .moc
+CONFIG += -std=c++11
 win32 {
   DEFINES += FILTERS_EXPORTS
   LIBS += -lGsTLAppli_utils -lGsTLAppli_math

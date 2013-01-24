@@ -52,7 +52,7 @@ class CHARTS_DECL Scatter_plot_proxy_model : public QAbstractItemModel
 
 public:
     Scatter_plot_proxy_model(QObject *parent);
-    Scatter_plot_proxy_model(QList< QPair<GsTL_object_item*,GsTL_object_item*>> items, QObject *parent);
+    Scatter_plot_proxy_model(QList< QPair<GsTL_object_item*,GsTL_object_item*> > items, QObject *parent);
     ~Scatter_plot_proxy_model();
 
     virtual QVariant data(const QModelIndex &index, int role) const;

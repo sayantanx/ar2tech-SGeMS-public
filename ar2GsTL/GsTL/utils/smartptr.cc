@@ -21,7 +21,7 @@ template
 SmartPtr<T,RefManagePolicy>::SmartPtr( const SmartPtr<T, RefManagePolicy>& smart_ptr )
   : RefManagePolicy(smart_ptr), raw_ptr_( smart_ptr.raw_ptr() ) {
   if( raw_ptr_ ) 
-    new_ref(raw_ptr_);
+    RefManagePolicy::new_ref(raw_ptr_);
 }
 
 
@@ -49,9 +49,9 @@ operator=( const SmartPtr<T, RefManagePolicy>& smart_ptr ) {
   T* save = raw_ptr_;
   raw_ptr_ = smart_ptr.raw_ptr_;
   if( raw_ptr_ )
-    new_ref(raw_ptr_);
+    RefManagePolicy::new_ref(raw_ptr_);
   if( save )
-    delete_ref(save);  // changed from "delete_ref(raw_ptr_)", which looked like a bug
+    RefManagePolicy::delete_ref(save);  // changed from "delete_ref(raw_ptr_)", which looked like a bug
 }
 
 

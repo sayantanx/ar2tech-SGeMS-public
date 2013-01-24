@@ -252,7 +252,7 @@ operator()(
       if( u.property_array() == neigh_it->property_array() || 
         neigh_it->property_array() == hd_property_ ) {
         prob +=
-      	  double(indicator_( neigh_it->property_value(), *z_it )) * Parent_::weights_[ind];
+      	  double(this->indicator_( neigh_it->property_value(), *z_it )) * Parent_::weights_[ind];
         weight_sum += Parent_::weights_[ind];
       }
       else {  // The data is already coded
@@ -362,7 +362,7 @@ operator()(
       if( u.property_array() == neigh_it->property_array() || 
         neigh_it->property_array() == hd_property_) {
         prob +=
-      	  double(indicator_( neigh_it->property_value(), *z_it )) * Parent_::weights_[ind];
+      	  double(this->indicator_( neigh_it->property_value(), *z_it )) * Parent_::weights_[ind];
         weights_sum += Parent_::weights_[ind];
       }
       // The data is already coded

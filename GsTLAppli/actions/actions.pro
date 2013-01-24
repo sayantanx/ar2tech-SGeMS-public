@@ -23,7 +23,8 @@ HEADERS += action.h \
            maskedgrid_actions.h \
            categorical_definition_actions.h \
            property_group_actions.h \
-           distribution_action.h
+           distribution_action.h \
+           property_transformer_actions.h
            
 SOURCES += algorithms_actions.cpp \
            library_actions_init.cpp \
@@ -37,7 +38,8 @@ SOURCES += algorithms_actions.cpp \
            maskedgrid_actions.cpp \
            categorical_definition_actions.cpp \
            property_group_actions.cpp \
-           distribution_action.cpp
+           distribution_action.cpp \
+           property_transformer_actions.cpp
 
 TARGET=GsTLAppli_actions
 QT += xml

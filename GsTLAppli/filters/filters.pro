@@ -17,6 +17,7 @@ HEADERS += common.h \
            csv_filter_qt_dialogs.h \
            csv_filter.h \
            sgems_folder_filter.h \
+           sgems_folder_grid_geometry.h \
            distribution_filter.h \
     save_project_objects.h
 FORMS += gslib/gslib_pointset_import.ui \
@@ -34,6 +35,7 @@ SOURCES += library_filters_init.cpp \
            csv_filter_qt_dialogs.cpp \
            csv_filter.cpp \
            sgems_folder_filter.cpp \
+           sgems_folder_grid_geometry.cpp \ 
            distribution_filter.cpp \          
     save_project_objects.cpp
 

@@ -1,38 +1,68 @@
 # Change the values of the following variables so that they point to the
 # correct location on your computer.
 # GSTLAPPLI_HOME: where ar2GeMS is installed
-# PYTHON_LIB: where the lib files (dll or so) for python are located (eg /usr/lib/python2.4)
-# PYTHON_INCLUDE: where the .h files of python are located (eg /usr/include/python2.4)
-# PYTHON_SO: the name of the python .so file, eg python2.4 if the .so file is libpython2.4.so
+# PYTHON_LIB: where the lib files (dll or so) for python are located (eg /usr/lib/python2.7)
+# PYTHON_INCLUDE: where the .h files of python are located (eg /usr/include/python2.7)
+# PYTHON_SO: the name of the python .so file, eg python2.7 if the .so file is libpython2.7.so
 
 GSTLAPPLI_HOME =  /home/aboucher/code-dev/ar2gems
 VTK_INCLUDE_PATH = /home/aboucher/code-dev/VTK
 
-VTK_LIB = /home/aboucher/code-dev/VTK/bin
+VTK_LIB = /home/aboucher/code-dev/VTK/lib
 VTK_INCLUDE += $$VTK_INCLUDE_PATH
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/Common
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/Utilities
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/Rendering
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/VolumeRendering
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/Charts
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/Geovis
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/Infovis
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/Views
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/Hybrid
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/Widgets
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/IO
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/Imaging
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/Graphics
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/GenericFiltering
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/Filtering
-VTK_INCLUDE += $$VTK_INCLUDE_PATH/GUISupport
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Common/Core
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Common/DataModel
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Common/ExecutionModel
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Common/Misc
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Common/Color
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Common/Math
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Rendering/Core
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Rendering/Qt
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Rendering/Volume
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Rendering/Label
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Rendering/Context2D
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Rendering/Annotation
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Rendering/FreeType
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Rendering/OpenGL
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Charts/Core
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Geovis/Core
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Infovis/Core
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Infovis/Layout
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Views/Core
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Views/Infovis
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Views/Context2D
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Views/Qt
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/IO/Core
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/IO/Image
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/IO/Infovis
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/IO/Geometry
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/IO/XML
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Imaging/Core
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Imaging/General
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Imaging/Hybrid
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Filters/Core
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Filters/General
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Filters/Statistics
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Filters/ParallelStatistics
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Filters/Generic
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Filters/Extraction
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Filters/Geometry
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Filters/Hybrid
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Filters/Sources
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Filters/Modeling
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Filters/Imaging
 VTK_INCLUDE += $$VTK_INCLUDE_PATH/GUISupport/Qt
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/GUISupport/QtOpenGl
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Interaction/Style
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Interaction/Image
+VTK_INCLUDE += $$VTK_INCLUDE_PATH/Interaction/Widgets
 
 
-BOOST_INCLUDE = /home/aboucher/code-dev/boost_1_49_0
+
+BOOST_INCLUDE = /usr/include/boost
 PYTHON_LIB = /usr/lib
-PYTHON_INCLUDE = /usr/include/python2.6
-PYTHON_SO = python2.6
+PYTHON_INCLUDE = /usr/include/python2.7
+PYTHON_SO = python2.7
 
 
 
