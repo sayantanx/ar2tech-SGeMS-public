@@ -154,6 +154,7 @@ public:
 
  std::string get_log_name(int index) const;
  int get_log_id(std::string log_name) const;
+ int get_log_id_from_nodeid(int nodeid) const;
 
 
 

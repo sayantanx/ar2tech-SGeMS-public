@@ -30,6 +30,7 @@
 #include <GsTLAppli/grid/grid_model/grid_categorical_property.h> 
 #include <GsTLAppli/grid/grid_model/grid_region.h> 
 #include <GsTLAppli/grid/grid_model/geostat_grid.h> 
+#include <GsTLAppli/grid/grid_model/log_data_grid.h> 
 
 
 class GRID_DECL Grid_filter
@@ -39,6 +40,8 @@ public:
   virtual ~Grid_filter(void){}
 
   virtual bool is_valid_nodeid(int nodeid) const = 0;
+
+  virtual Grid_filter* clone() const =0;
 };
 
 
@@ -51,6 +54,14 @@ public:
       delete filters_[i];
     }
   
+  }
+
+  virtual Grid_filter* clone() const {
+    Grid_filter_union* union_filter = new Grid_filter_union();
+    for( int i=0; filters_.size(); ++i  ) {
+      union_filter->add_filter( this->filter(i)->clone() );
+    }
+    return union_filter;
   }
 
   int number_of_filters() const {return filters_.size();}
@@ -93,6 +104,14 @@ public:
   
   }
 
+  virtual Grid_filter* clone() const {
+    Grid_filter_intersection* intersection_filter = new Grid_filter_intersection();
+    for( int i=0; filters_.size(); ++i  ) {
+      intersection_filter->add_filter( this->filter(i)->clone() );
+    }
+    return intersection_filter;
+  }
+
   int number_of_filters() const {return filters_.size();}
   const Grid_filter* filter(int index)  const {return filters_[index];}
   
@@ -127,9 +146,14 @@ public:
   Grid_filter_region(const GsTLGridRegion* region) : region_(region){}
   virtual ~Grid_filter_region(void){}
 
+  virtual Grid_filter* clone() const {
+    return new Grid_filter_region(this->region_);
+  }
+
   virtual bool is_valid_nodeid(int nodeid) const {
     return region_->is_inside_region(nodeid);
   }
+
 
 private :
   const GsTLGridRegion* region_;
@@ -143,6 +167,10 @@ public:
     : cprop_(cprop), category_(active_category){}
 
   virtual ~Grid_filter_category(void){}
+
+  virtual Grid_filter* clone() const {
+    return new Grid_filter_category(this->cprop_, this->category_);
+  }
 
   virtual bool is_valid_nodeid(int nodeid) const {
     if( !cprop_->is_informed(nodeid) ) return false;
@@ -163,6 +191,10 @@ public:
 
   virtual ~Grid_filter_less_than(void){}
 
+  virtual Grid_filter* clone() const {
+    return new Grid_filter_less_than(this->prop_, this->upper_bound_);
+  }
+
   virtual bool is_valid_nodeid(int nodeid) const {
     if( !prop_->is_informed(nodeid) ) return false;
 
@@ -181,6 +213,10 @@ public:
     : prop_(prop), upper_bound_(upper_bound){}
 
   virtual ~Grid_filter_lessor_or_equal_than(void){}
+
+  virtual Grid_filter* clone() const {
+    return new Grid_filter_lessor_or_equal_than(this->prop_, this->upper_bound_);
+  }
 
   virtual bool is_valid_nodeid(int nodeid) const {
     if( !prop_->is_informed(nodeid) ) return false;
@@ -201,6 +237,10 @@ public:
 
   virtual ~Grid_filter_greater_than(void){}
 
+  virtual Grid_filter* clone() const {
+    return new Grid_filter_greater_than(this->prop_, this->lower_bound_);
+  }
+
   virtual bool is_valid_nodeid(int nodeid) const {
     if( !prop_->is_informed(nodeid) ) return false;
 
@@ -219,6 +259,10 @@ public:
     : prop_(prop), lower_bound_(lower_bound){}
 
   virtual ~Grid_filter_greater_or_equal_than(void){}
+
+  virtual Grid_filter* clone() const {
+    return new Grid_filter_greater_or_equal_than(this->prop_, this->lower_bound_);
+  }
 
   virtual bool is_valid_nodeid(int nodeid) const {
     if( !prop_->is_informed(nodeid) ) return false;
@@ -239,6 +283,10 @@ public:
 
   virtual ~Grid_filter_bounded(void){}
 
+  virtual Grid_filter* clone() const {
+    return new Grid_filter_bounded(this->prop_, this->lower_bound_,  this->upper_bound_);
+  }
+
   virtual bool is_valid_nodeid(int nodeid) const {
     if( !prop_->is_informed(nodeid) ) return false;
 
@@ -250,6 +298,128 @@ private :
   const GsTLGridProperty* prop_;
   float lower_bound_;
   float upper_bound_;
+};
+
+
+class GRID_DECL Grid_filter_x_coord_bounded  : public Grid_filter
+{
+public:
+  Grid_filter_x_coord_bounded(const Geostat_grid* grid, double x_coord_lower_bound,double x_coord_upper_bound) 
+    : grid_(grid), x_coord_lower_bound_(x_coord_lower_bound), x_coord_upper_bound_(x_coord_upper_bound){}
+
+  virtual ~Grid_filter_x_coord_bounded(void){}
+
+  virtual Grid_filter* clone() const {
+    return new Grid_filter_x_coord_bounded(this->grid_, this->x_coord_lower_bound_,  this->x_coord_upper_bound_);
+  }
+
+  virtual bool is_valid_nodeid(int nodeid) const {
+
+    Geostat_grid::location_type loc = grid_->location(nodeid);
+
+    double x = loc.x();
+    return x > x_coord_lower_bound_ && x < x_coord_upper_bound_;
+  }
+
+private :
+  const Geostat_grid* grid_;
+  double x_coord_lower_bound_;
+  double x_coord_upper_bound_;
+};
+
+
+class GRID_DECL Grid_filter_y_coord_bounded  : public Grid_filter
+{
+public:
+  Grid_filter_y_coord_bounded(const Geostat_grid* grid, double y_coord_lower_bound,double y_coord_upper_bound) 
+    : grid_(grid), y_coord_lower_bound_(y_coord_lower_bound), y_coord_upper_bound_(y_coord_upper_bound){}
+
+  virtual ~Grid_filter_y_coord_bounded(void){}
+
+  virtual Grid_filter* clone() const {
+    return new Grid_filter_y_coord_bounded(this->grid_, this->y_coord_lower_bound_,  this->y_coord_upper_bound_);
+  }
+
+  virtual bool is_valid_nodeid(int nodeid) const {
+
+    Geostat_grid::location_type loc = grid_->location(nodeid);
+
+    double y = loc.y();
+    return y > y_coord_lower_bound_ && y < y_coord_upper_bound_;
+  }
+
+private :
+  const Geostat_grid* grid_;
+  double y_coord_lower_bound_;
+  double y_coord_upper_bound_;
+};
+
+
+class GRID_DECL Grid_filter_z_coord_bounded  : public Grid_filter
+{
+public:
+  Grid_filter_z_coord_bounded(const Geostat_grid* grid, double z_coord_lower_bound,double z_coord_upper_bound) 
+    : grid_(grid), z_coord_lower_bound_(z_coord_lower_bound), z_coord_upper_bound_(z_coord_upper_bound){}
+
+  virtual ~Grid_filter_z_coord_bounded(void){}
+
+  virtual Grid_filter* clone() const {
+    return new Grid_filter_z_coord_bounded(this->grid_, this->z_coord_lower_bound_,  this->z_coord_upper_bound_);
+  }
+
+  virtual bool is_valid_nodeid(int nodeid) const {
+
+    Geostat_grid::location_type loc = grid_->location(nodeid);
+
+    double z = loc.z();
+    return z > z_coord_lower_bound_ && z < z_coord_upper_bound_;
+  }
+
+private :
+  const Geostat_grid* grid_;
+  double z_coord_lower_bound_;
+  double z_coord_upper_bound_;
+};
+
+
+class GRID_DECL Grid_filter_log_names  : public Grid_filter
+{
+public:
+  Grid_filter_log_names(const Log_data_grid* grid, std::vector<std::string> log_names) 
+    : grid_(grid)
+  {
+    log_ids_.reserve(log_names.size());
+    std::vector<std::string>::const_iterator it = log_names.begin();
+    for( ; it != log_names.end() ; ++it ) {
+      int id = grid_->get_log_id(*it);
+      if(id >=0 ) log_ids_.push_back( id   );
+    }
+
+  }
+
+  Grid_filter_log_names(const Log_data_grid* grid, std::vector<int> log_id) 
+    : grid_(grid), log_ids_(log_id)
+  {
+  }
+
+  virtual Grid_filter* clone() const {
+    return new Grid_filter_log_names(this->grid_, this->log_ids_);
+  }
+
+  virtual ~Grid_filter_log_names(void){}
+
+  virtual bool is_valid_nodeid(int nodeid) const {
+
+    int log_id = grid_->get_log_id_from_nodeid(nodeid);
+    std::vector<int>::const_iterator it = std::find( log_ids_.begin(), log_ids_.end(), log_id );
+    return it != log_ids_.end();
+
+  }
+
+private :
+  const const Log_data_grid* grid_;
+  std::vector<int> log_ids_;
+
 };
 
 #endif

@@ -320,9 +320,11 @@ void Log_data_grid::set_log_geometry( std::map<std::string, std::vector< std::pa
 	}
 
 	std::vector< Point_set::location_type > point_locations(number_of_values);
+  log_id_.insert(log_id_.begin(),number_of_values,-1);
 
 	for(it_log = log_segments.begin() ; it_log != log_segments.end(); ++it_log) {
 		Log_data* log_data = log_manager_->add_log(it_log->first);
+    int log_id = log_data->id();
 //		Log_data* log_data = log_manager_->get_log_data(id);
 		std::vector< std::pair<int,std::pair<GsTLPoint,GsTLPoint> > >::iterator it_segments = it_log->second.begin();
 		for( ; it_segments != it_log->second.end(); ++it_segments) {
@@ -333,6 +335,7 @@ void Log_data_grid::set_log_geometry( std::map<std::string, std::vector< std::pa
 			loc[1] = (it_segments->second.second.y()  + it_segments->second.first.y())/2.0;
 			loc[2] = (it_segments->second.second.z()  + it_segments->second.first.z())/2.0;
 			point_locations[it_segments->first] = loc;
+      log_id_[it_segments->first] = log_id;
 //			point_locations.push_back(loc);
 		}
 	}
@@ -354,6 +357,10 @@ int Log_data_grid::get_log_id(std::string log_name) const{
 	return log_manager_->get_log_id(log_name);
 }
 
+int Log_data_grid::get_log_id_from_nodeid(int nodeid) const {
+  if(nodeid < 0 || nodeid>= this->size() ) return -1;
+  return log_id_[nodeid];
+}
 
 Log_data& Log_data_grid::get_log_data(std::string name_id){
 	return *log_manager_->get_log_data(name_id);
