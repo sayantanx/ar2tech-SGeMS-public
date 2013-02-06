@@ -54,6 +54,9 @@ public :
 	void add_log_segment(int node_id, GsTLPoint begin, GsTLPoint end);
 	std::pair<GsTLPoint,GsTLPoint> get_log_segment(int node_id) const;
 
+  int nodeid_from_segmentid(int segmentid) const;
+  int segmentid_from_nodeid(int nodeid) const;
+
 	nodeid_to_log_coords::const_iterator position_begin();
 	nodeid_to_log_coords::const_iterator position_end();
 
@@ -64,6 +67,8 @@ public :
 	float min_segment_length() const;
 	float max_segment_length() const;
 	float average_segment_length();
+  double segment_length(int nodeid) const;
+  double total_length() const;
 
 
 	// GsTL_object_item implementation
@@ -79,12 +84,14 @@ protected :
 	int id_;
 	std::string name_id_;
 	GsTLPoint collar_location_;
+  double total_length_;
 
 	std::map<int, float> lengths_;
 
 	float min_segment_length_;
 	float max_segment_length_;
 	float average_segment_length_;
+  
 
 
 	nodeid_to_log_coords log_coords_;
@@ -155,8 +162,6 @@ public:
  std::string get_log_name(int index) const;
  int get_log_id(std::string log_name) const;
  int get_log_id_from_nodeid(int nodeid) const;
-
-
 
  int number_of_logs() const;
  Log_data& get_log_data(std::string name_id);

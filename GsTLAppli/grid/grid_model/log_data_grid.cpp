@@ -37,7 +37,7 @@
 
 
 Log_data::Log_data(std::string name_id, int id, GsTL_object_item* parent)
-: GsTL_object_item(parent), name_id_(name_id), id_(id) {
+: GsTL_object_item(parent), name_id_(name_id), id_(id), total_length_(0.0) {
 		average_segment_length_ = -1;
 		min_segment_length_ = 9e10;
 		max_segment_length_ = -9e10;
@@ -73,6 +73,7 @@ void Log_data::add_log_segment(int node_id, GsTLPoint begin, GsTLPoint end){
 		if( length < min_segment_length_ ) min_segment_length_ = length;
 		if( length > max_segment_length_ ) max_segment_length_ = length;
 		lengths_[node_id] = length;
+    total_length_ +=  length;
 
 	}
 
@@ -88,6 +89,21 @@ std::pair<GsTLPoint,GsTLPoint> Log_data::get_log_segment(int node_id) const{
 	}
 	return it->second;
 
+}
+
+
+int Log_data::nodeid_from_segmentid(int segmentid) const {
+  if(segmentid >= lengths_.size()) return -1;
+  nodeid_to_log_coords::const_iterator it = log_coords_.begin();
+  std::advance(it,segmentid);
+  return it->first;
+}
+
+
+int Log_data::segmentid_from_nodeid(int nodeid) const {
+  nodeid_to_log_coords::const_iterator it = log_coords_.find(nodeid);
+  if(it == log_coords_.end()) return -1;
+  return distance( log_coords_.begin(), it);
 }
 
 Log_data::nodeid_to_log_coords::const_iterator Log_data::position_begin(){
@@ -130,6 +146,18 @@ float Log_data::average_segment_length() {
 	return average_segment_length_;
 
 }
+
+double Log_data::segment_length(int nodeid) const {
+  std::map<int, float>::const_iterator it = lengths_.find( nodeid );
+  if( it == lengths_.end() ) return -1;
+  return it->second;
+}
+
+
+double Log_data::total_length() const{
+  return total_length_;
+}
+
 
 	// GsTL_object_item implementation
 QString Log_data::item_type() const {
