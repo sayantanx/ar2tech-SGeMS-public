@@ -9,7 +9,7 @@ This project is managed and owned by Advanced Resources and Risk Technology, LLC
 For any questions, please contact Alex Boucher (aboucher@ar2tech.com).
 
 AR2GEMS is a branch of the open-source SGeMS software under its x-free license.  
-This version is not an open-source and cannot be integrated into existing software or 
+This version cannot be integrated into existing software or 
 distributed without the explicit authorization of ar2tech.
 
 If you would like to contribute code to this project you can either:
@@ -66,6 +66,7 @@ PYTHONDIRx64: path to the 64 bits python install directory
 AR2TECH_SGEMS_DIR : path to the source code
 AR2TECH_GSTL_DIR : The GsTL library is now included in the main source code repository.  
                    The path is then AR2TECH_SGEMS_DIR\ar2GsTL
+VTK_AUTOLOAD_PATH: To the VK binaries (e.g. C:\code-dev\VTK\VTK\bin\Release)
 3- Open the visual studio solution and build the release and debug binaries
 -------------------------------------------------------------
 

@@ -285,7 +285,7 @@ int nogui_main(int argc, char** argv) {
 
 QString path_to_splash_image() {
 	QFileInfo finfo;
-	QString image_file("new_splash2.png");
+	QString image_file("ar2gems_splash.png");
 
 	char* env = getenv("GSTLAPPLIHOME");
 	if (env) {
@@ -409,7 +409,7 @@ if (!QIcon::hasThemeIcon(GENERIC_ICON_TO_CHECK)) {
 
 	// restore preferences
 	QSettings settings;
-	settings.setPath(QSettings::NativeFormat, QSettings::UserScope, "scrf.stanford.edu");
+	settings.setPath(QSettings::NativeFormat, QSettings::UserScope, "www.ar2tech.com");
 	int height = settings.value("/geometry/height", 480).toInt();
 	int width = settings.value("/geometry/width", 640).toInt();
 	appli->resize(QSize(width, height));
@@ -417,7 +417,7 @@ if (!QIcon::hasThemeIcon(GENERIC_ICON_TO_CHECK)) {
 	bool show_algo_panel = settings.value("/panels/algo", true).toBool();
 	bool show_cli_panel = settings.value("/panels/cli", false).toBool();
 
-	appli->setWindowIcon(QPixmap("new_icon6_32x32.bmp"));
+	appli->setWindowIcon(QPixmap("ar2gems-icon_32x32.bmp"));
 	std::cout<<"appli->show();"<<std::endl;
 	GsTLlog<<"setting appli\n";
 	appli->show();

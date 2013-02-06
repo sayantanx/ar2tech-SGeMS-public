@@ -38,8 +38,4 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="new_icon6_32x32.bmp" />
-    <None Include="new_splash2-beta.bmp" />
-  </ItemGroup>
 </Project>

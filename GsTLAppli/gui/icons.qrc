@@ -44,5 +44,6 @@
         <file>appli/Pixmaps/histo-lines.svg</file>
         <file>appli/Pixmaps/weight_property.svg</file>
         <file>appli/Pixmaps/ar2tech-sgems.png</file>
+        <file>appli/Pixmaps/ar2gems-splash.png</file>
     </qresource>
 </RCC>

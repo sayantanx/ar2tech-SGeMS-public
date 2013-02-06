@@ -1698,7 +1698,7 @@ About_sgems_version::About_sgems_version(QWidget * p) : QDialog(p)
   QVBoxLayout* _vlayout = new QVBoxLayout( );
   _vlayout->addStretch();
   setLayout(_vlayout);
-  _pixmap.load( ":/icons/appli/Pixmaps/new_splash2-beta.bmp" );
+  _pixmap.load( ":/icons/appli/Pixmaps/ar2gems-splash.png" );
   
 }
 

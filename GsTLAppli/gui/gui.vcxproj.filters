@@ -1025,5 +1025,8 @@
     <None Include="appli\Pixmaps\histo-lines.svg">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="appli\Pixmaps\ar2gems-splash.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
