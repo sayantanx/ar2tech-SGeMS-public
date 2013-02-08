@@ -84,7 +84,7 @@ SplashScreen::SplashScreen( const QPixmap& pixmap )
 
   if( pixmap_.isNull() ) return;
 
-  QString version( GEMS_VERSION_STR );
+  QString version( AR2GEMS_VERSION_STR );
  
   setFont( QFont("Times", 12, QFont::Bold) );
   QPainter painter( &pixmap_);

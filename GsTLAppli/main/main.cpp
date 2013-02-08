@@ -285,7 +285,7 @@ int nogui_main(int argc, char** argv) {
 
 QString path_to_splash_image() {
 	QFileInfo finfo;
-	QString image_file("ar2gems_splash.png");
+	QString image_file("ar2gems-splash.png");
 
 	char* env = getenv("GSTLAPPLIHOME");
 	if (env) {
@@ -371,9 +371,11 @@ if (!QIcon::hasThemeIcon(GENERIC_ICON_TO_CHECK)) {
 
 	QApplication::addLibraryPath(path_to_plugins());
 
-	QPixmap pixmap(path_to_splash_image());
+  QPixmap pixmap(path_to_splash_image());
+  //QPixmap pixmap ( QPixmap(path_to_splash_image()).scaledToHeight(300) );
 
-	QSplashScreen* splash = new QSplashScreen(pixmap);
+	QSplashScreen* splash = new QSplashScreen(pixmap,Qt::WindowStaysOnTopHint);
+  splash->show();
 
 	splash->setFont(QFont("Times", 8, QFont::Bold));
 	splash->showMessage("Initializing...");
@@ -404,7 +406,7 @@ if (!QIcon::hasThemeIcon(GENERIC_ICON_TO_CHECK)) {
 	statusbar_scribe->subscribe(GsTLcout);
 
 	appli->init();
-	appli->setWindowTitle("SGeMS");
+	appli->setWindowTitle("SGeMS by ar2tech");
 
 
 	// restore preferences
@@ -417,22 +419,16 @@ if (!QIcon::hasThemeIcon(GENERIC_ICON_TO_CHECK)) {
 	bool show_algo_panel = settings.value("/panels/algo", true).toBool();
 	bool show_cli_panel = settings.value("/panels/cli", false).toBool();
 
-	appli->setWindowIcon(QPixmap("ar2gems-icon_32x32.bmp"));
-	std::cout<<"appli->show();"<<std::endl;
-	GsTLlog<<"setting appli\n";
+	appli->setWindowIcon(QPixmap(":/icons/appli/Pixmaps/ar2gems-icon-256x256.png"));
 	appli->show();
-	GsTLlog<<"setting appli->show\n";
 	appli->show_algo_panel(show_algo_panel);
-	GsTLlog<<"setting appli->show_algo_panel\n";
 	appli->show_commands_panel(show_cli_panel);
-	GsTLlog<<"setting appli->show_comamnd panel\n";
+
 	//------------------
 	SmartPtr<Named_interface> ni = Root::instance()->interface(projects_manager + "/" + "project");
 	GsTL_project* project = dynamic_cast<GsTL_project*> (ni.raw_ptr());
 	appli_assert( project );
-	GsTLlog<<"setting python ...";
 	Python_project_wrapper::set_project(project);
-	GsTLlog<<"set python project";
 
 	//------------------
 

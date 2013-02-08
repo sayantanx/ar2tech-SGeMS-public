@@ -1888,6 +1888,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="appli\Pixmaps\ar2gems-splash.png" />
+    <None Include="appli\Pixmaps\ar2gems-icon-256x256.png" />
     <None Include="appli\Pixmaps\background_color.svg">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

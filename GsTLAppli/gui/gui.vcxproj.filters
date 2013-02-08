@@ -1028,5 +1028,8 @@
     <None Include="appli\Pixmaps\ar2gems-splash.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="appli\Pixmaps\ar2gems-icon-256x256.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

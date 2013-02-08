@@ -27,7 +27,7 @@
 #ifndef __SGEMS_VERSION_H__
 #define __SGEMS_VERSION_H__
 
-#define GEMS_VERSION_STR "2.5b"
+#define AR2GEMS_VERSION_STR "3.0b"
 
 #endif
 

@@ -1708,15 +1708,13 @@ void About_sgems_version::paintEvent(QPaintEvent *)
   painter.setFont(QFont("Times", 14, QFont::Bold) );
   painter.drawPixmap(QPoint(0,0),_pixmap);
   
-  std::ostringstream version;
-  version << "v" << GEMS_VERSION_STR << "\nBuild " 
-          << qstring2string(generate_build_number());
+  QString version = QString(" Version %1 %2 ").arg(AR2GEMS_VERSION_STR).arg(generate_build_number());
   
   painter.setPen( Qt::black );
   QRect r = rect();
-  //r.setRect( r.x() + 350, r.y() +20, r.width() - 20, r.height() - 20 );
-  r.setRect( r.x() + 25, r.y() +220, r.width() - 20, r.height() - 20 );
-  painter.drawText( r, Qt::AlignLeft, version.str().c_str() );
+  r.setRect( r.x() + 25, r.y() +40, r.width() - 20, r.height() - 20 );
+  //r.setRect( r.x() + 25, r.y() +220, r.width() - 20, r.height() - 20 );
+  painter.drawText( r, Qt::AlignLeft, version );
   
 }
 
