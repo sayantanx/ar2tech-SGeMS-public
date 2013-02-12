@@ -76,9 +76,21 @@
 
 int trans::execute( GsTL_project* ) {
 
-	for(int i=0; i<props_.size(); i++ ) {
-		if(is_local_cond_) cdf_transform_weighted(props_[i]);
-		else cdf_transform(props_[i]);
+	for(int i=0; i<source_props_.size(); i++ ) {
+
+    GsTLGridProperty* source_prop = source_props_[i];
+		GsTLGridProperty* target_prop = 
+			geostat_utils::add_property_to_grid( grid_, source_prop->name()+suffix_ );
+
+    for(int i=0; i<grid_->size();++i) {
+      if(region_ && !region_->is_inside_region(i)) continue;
+      if( !source_prop->is_informed(i) ) continue;
+      target_prop->set_value(source_prop->get_value(i),i);
+    }
+
+		if(is_local_cond_) cdf_transform_weighted(target_prop);
+		else cdf_transform(target_prop);
+    target_prop->set_parameters(parameters_);
 	}
 
 	return 0;
@@ -110,7 +122,7 @@ bool trans::initialize( const Parameters_handler* parameters,
 	std::vector< std::string > prop_names = String_Op::decompose_string( 
 						parameters->value( "props.value" ), ";" );
 	errors->report( prop_names.empty(), "props", "No property specified" );
-	std::string suffix = parameters->value( "out_suffix.value" );
+	suffix_ = parameters->value( "out_suffix.value" );
   if( !errors->empty() ) return false;
 
 
@@ -160,23 +172,15 @@ bool trans::initialize( const Parameters_handler* parameters,
 
 	for(int j=0; j<prop_names.size() ; j++ ) {
 		GsTLGridProperty* sourceProp = grid_->property( prop_names[j] );
-		errors->report( sourceProp==NULL, "props", "Non existing properties" );
-		GsTLGridProperty* targetProp = 
-			geostat_utils::add_property_to_grid( grid_, prop_names[j]+suffix );
-
-    for(int i=0; i<grid_->size();++i) {
-      if(region_ && !region_->is_inside_region(i)) continue;
-      if( !sourceProp->is_informed(i) ) continue;
-      targetProp->set_value(sourceProp->get_value(i),i);
+    if( sourceProp== 0 ) {
+		  errors->report( "props", "Non existing properties" );
+      return false;
     }
+    source_props_.push_back(sourceProp);
 
-//		prop_copier->copy(grid_,sourceProp,grid_,targetProp);
-    targetProp->set_parameters(parameters_);
-		props_.push_back( targetProp );
-	}
+  }
+
   if(!errors->empty()) {
-    for( int i=0; i < props_.size(); ++i ) 
-      grid_->remove_property(props_[i]->name());
     return false;
   }
 
@@ -188,24 +192,49 @@ SmartPtr<Continuous_distribution> trans::get_cdf( const Parameters_handler* para
 		Error_messages_handler* errors, std::string suffix )
 {
 	SmartPtr<Continuous_distribution> cdist;
-	bool is_nonparam = ( parameters->value( "ref_type_"+suffix+".value" ) == "Non Parametric" );
-	bool is_Gaussian = ( parameters->value( "ref_type_"+suffix+".value" ) == "Gaussian" );
+  std::string cdf_type = parameters->value( "ref_type_"+suffix+".value" );
 
-  if( is_nonparam ) {
+	//bool is_nonparam = ( parameters->value( "ref_type_"+suffix+".value" ) == "Non Parametric" );
+	//bool is_Gaussian = ( parameters->value( "ref_type_"+suffix+".value" ) == "Gaussian" );
+
+  if( cdf_type == "Non Parametric" ) {
     bool ok = distribution_utils::get_continuous_cdf(cdist,parameters,
               errors,"nonParamCdf_"+suffix);
   }
-
-	else if(is_Gaussian)
+	else if(cdf_type == "Gaussian")
 	{
 		std::string mean_str = parameters->value( "G_mean_"+suffix+".value" );
 	    std::string var_str = parameters->value( "G_variance_"+suffix+".value" );
 		errors->report( mean_str.empty()|| var_str.empty(), "GaussianBox_"+suffix, 
 				"No mean or variance provided" );
 
-    cdist = SmartPtr<Continuous_distribution>(new Gaussian_distribution(String_Op::to_number<float>(mean_str),
-                                                                        String_Op::to_number<float>(var_str) ));
+    float mean = String_Op::to_number<float>(mean_str);
+    float variance = String_Op::to_number<float>(var_str);
 
+    cdist = SmartPtr<Continuous_distribution>(new Gaussian_distribution(mean, std::sqrtf(variance) ) );
+	} 
+	else if(cdf_type == "Uniform")
+	{
+		std::string unif_min = parameters->value( "Unif_min_"+suffix+".value" );
+	  std::string unif_max = parameters->value( "Unif_max_"+suffix+".value" );
+		errors->report( unif_min.empty()|| unif_max.empty(), "UniformBox_"+suffix, 
+				"No minimum or maximum provided" );
+
+    cdist = SmartPtr<Continuous_distribution>(new Uniform_distribution(String_Op::to_number<float>(unif_min),
+                                                                        String_Op::to_number<float>(unif_max) ));
+	} 
+
+	else if(cdf_type == "Log Normal")
+	{
+		std::string mean_str = parameters->value( "LN_mean_"+suffix+".value" );
+	    std::string var_str = parameters->value( "LN_variance_"+suffix+".value" );
+		errors->report( mean_str.empty()|| var_str.empty(), "logNormalBox_"+suffix, 
+				"No mean or variance provided" );
+
+    float mean = String_Op::to_number<float>(mean_str);
+    float variance = String_Op::to_number<float>(var_str);
+
+    cdist = SmartPtr<Continuous_distribution>(new Gaussian_distribution(mean, std::sqrtf(variance) ));
 	} 
 
 	return cdist;

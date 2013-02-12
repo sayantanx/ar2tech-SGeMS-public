@@ -60,11 +60,12 @@ class GEOSTAT_DECL trans : public Geostat_algo {
 	Geostat_grid* grid_;
 		
 	std::vector< float > reference_;
+  std::string suffix_;
 
 	bool is_local_cond_;
 	
   GsTLGridRegion* region_;
-	std::vector<GsTLGridProperty*> props_;
+	std::vector<GsTLGridProperty*> source_props_;
 	GsTLGridProperty* cond_prop_;
 	std::vector<float> weights_;
 	typedef std::vector<float>::iterator wgth_iterator;
