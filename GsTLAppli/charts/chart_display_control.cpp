@@ -122,6 +122,9 @@ void Chart_display_control::forward_y_max_changed(){
 
 }
 
+void Chart_display_control::set_title(const QString& label){
+  ui.title_label_edit->setText( label );
+}
 
 void Chart_display_control::set_xaxis_min(double min){
   ui.x_min->setValue(min);
@@ -136,6 +139,10 @@ void Chart_display_control::set_xaxis_nticks(int nticks){
   ui.x_nticks->setValue(nticks);
 }
 
+void Chart_display_control::set_xaxis_label(const QString& label) {
+  ui.x_label_edit->setText( label );
+}
+
 void Chart_display_control::set_yaxis_min(double min){
   ui.y_min->setValue(min);
 }
@@ -147,4 +154,8 @@ void Chart_display_control::set_yaxis_precision(int precision){
 }
 void Chart_display_control::set_yaxis_nticks(int nticks){
   ui.y_nticks->setValue(nticks);
+}
+
+void Chart_display_control::set_yaxis_label(const QString& label) {
+  ui.y_label_edit->setText( label );
 }

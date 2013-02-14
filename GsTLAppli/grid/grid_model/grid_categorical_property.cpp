@@ -42,7 +42,12 @@ else
   return new CategoricalPropertyDefinitionName(name);
 }
 
+QColor CategoricalPropertyDefinition::color(std::string name) const{
 
+  int cat_id = this->category_id( name );
+  return this->color( cat_id );
+
+}
 
 void CategoricalPropertyDefinition::register_property(const GsTLGridProperty* prop) {
   props_.insert(prop);

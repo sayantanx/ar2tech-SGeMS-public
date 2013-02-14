@@ -65,6 +65,7 @@ public:
   property_set::const_iterator end_property() const;
 
   virtual QColor color(unsigned int cat_id) const =0;
+  virtual QColor color(std::string name) const;
   virtual float red(unsigned int cat_id) const =0;
   virtual float green(unsigned int cat_id) const =0;
   virtual float blue(unsigned int cat_id) const =0;

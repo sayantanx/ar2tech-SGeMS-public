@@ -29,7 +29,7 @@
 
 #include <GsTLAppli/charts/common.h>
 #include <QWidget>
-#include "ui_chart_display_control.h"
+#include <GsTLAppli/charts/GeneratedFiles/ui_chart_display_control.h>
 
 class CHARTS_DECL Chart_display_control : public QWidget
 {
@@ -46,12 +46,15 @@ public slots:
   void set_xaxis_max(double max);
   void set_xaxis_precision(int precision);
   void set_xaxis_nticks(int nticks);
+  void set_xaxis_label(const QString& label);
 
   void set_yaxis_min(double min);
   void set_yaxis_max(double max);
   void set_yaxis_precision(int precision);
   void set_yaxis_nticks(int nticks);
+  void set_yaxis_label(const QString& label);
 
+  void set_title(const QString& label);
 
 signals :
     void xaxis_label_changed(const QString& axis);
