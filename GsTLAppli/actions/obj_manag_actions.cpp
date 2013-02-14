@@ -671,6 +671,14 @@ bool Load_project::exec() {
     dir->entryInfoList(QDir::Dirs | QDir::Files | QDir::NoSymLinks | QDir::NoDotAndDotDot );
   QFileInfoList::iterator it= files_info.begin();
 
+  // ensure that the grid are loaded first
+  for(int i=0; i< files_info.size(); ++i) {
+    if( files_info.at(i).fileName().endsWith(".grid") ) {
+      files_info.move(i,0);
+    }
+  }
+
+
   while( it != files_info.end() ) {
     QByteArray tmp = (*it).absoluteFilePath().toAscii();
     std::string param( std::string( tmp.constData() ) + 
