@@ -29,7 +29,7 @@
 
 #include <GsTLAppli/charts/common.h>
 #include <QWidget>
-#include <GsTLAppli/charts/GeneratedFiles/ui_chart_display_control.h>
+#include "ui_chart_display_control.h"
 
 class CHARTS_DECL Chart_display_control : public QWidget
 {
