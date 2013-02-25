@@ -353,9 +353,6 @@ bool Cosgsim::initialize( const Parameters_handler* parameters,
   if( transform_primary_variable_ ) {
     bool ok = distribution_utils::get_continuous_cdf(original_cdf_,parameters, errors,"nonParamCdf_primary");
     if(!ok) {
-      errors->report( std::string( "nonParamCdf_primary" ), 
-                "Normal score transform requested, "
-                "but no property was selected" );
       return false;
     }
 	  if( primary_variable_ ) {
@@ -383,9 +380,6 @@ bool Cosgsim::initialize( const Parameters_handler* parameters,
     //SmartPtr<Continuous_distribution> sec_distribution;
     bool ok = distribution_utils::get_continuous_cdf(sec_distribution_, parameters, errors, "nonParamCdf_secondary");
     if(!ok) {
-      errors->report( std::string( "nonParamCdf_secondary" ), 
-                "Normal score transform requested, "
-                "but no property was selected" );
       return false;
     }
     if( secondary_variable_group_ == 0 ) {
