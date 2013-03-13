@@ -51,7 +51,6 @@ public:
     Chart_base_display_controls(QWidget *parent=0);
     virtual ~Chart_base_display_controls();
 
-
 public slots :
   
   void reset_axis();
@@ -84,15 +83,29 @@ public slots :
   void set_legend_font_size(int size);
   void set_title_font_size(int size);
 
+  virtual void save_figure();
+  virtual void save_figure(QString& filename);
+  virtual void save_report();
+  virtual void view_report();
+
+  void set_report_control_visibility(bool ok);
+  void set_save_report_visibility(bool ok);
+  void set_save_figure_visibility(bool ok);
+  void set_view_report_visibility(bool ok);
 
 
 protected:
 
-  void update_chart_display_control();
+  void update_chart_axis_display_control();
 
 protected:
 
   Chart_display_control* chart_control_;
+
+  QFrame* report_frame_;
+  QPushButton* view_report_button_;
+  QPushButton* save_report_button_;
+  QPushButton* save_figure_button_;
 
     
 };

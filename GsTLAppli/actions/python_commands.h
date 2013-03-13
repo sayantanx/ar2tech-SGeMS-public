@@ -405,12 +405,18 @@ static PyObject* sgems_set_categorical_property_alpha( PyObject *self, PyObject 
                                            categoricalDefinition_manager +"/"+cat_def_name );
 	//  ni = Root::instance()->new_interface( categoricalDefinition_manager, cat_def_name);
     cat_def = dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
+    std::set<std::string> cat_names;
 	  for( int i=0 ; i < size ; i++ ) {
 		  char* code;
 	    PyArg_Parse( PyList_GET_ITEM( tuple, i ), "s", &code );
 	    std::string code_str(code);
-	    cat_def->add_category(code_str);
+      cat_names.insert(code_str);
 	  }
+
+    std::set<std::string>::iterator it =  cat_names.begin();
+    for(int i=0 ; it != cat_names.end(); ++it, ++i) {
+      cat_def->add_category(i, *it);
+    }
   }
 
   prop->set_category_definition(cat_def->name());

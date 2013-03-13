@@ -566,6 +566,7 @@ bool Sgems_folder_input_filter::read_category_definition(const QDomElement& root
 		QString name = elemDef.attribute("name");
     QStringList cat_names;
     QList<QColor> colors;
+    QList<int> numerical_codes;
     //legacy
     if(elemDef.hasAttribute("categoryNames")) {
       cat_names = elemDef.attribute("categoryNames").split(";");
@@ -575,6 +576,9 @@ bool Sgems_folder_input_filter::read_category_definition(const QDomElement& root
       
 	    for(; !elem.isNull(); elem = elem.nextSiblingElement("Category") ) {
         cat_names.append( elem.attribute("name"));
+        if( elem.hasAttribute("numerical_code") ) {
+          numerical_codes.append( elem.attribute("numerical_code").toInt() );
+        }
         int r = elem.attribute("red").toFloat()*255;
         int g = elem.attribute("green").toFloat()*255;
         int b = elem.attribute("blue").toFloat()*255;
@@ -590,11 +594,11 @@ bool Sgems_folder_input_filter::read_category_definition(const QDomElement& root
 	    dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
 
 	  if(cat_definition == 0) {
-	  	bool ok = create_categorial_definition( name,  cat_names );
+	  	bool ok = create_categorial_definition( name,  cat_names, numerical_codes );
     }
     else {
 	    //If the definition already exist check if it the same
-	    bool is_conflict = check_for_conflict(cat_definition, cat_names);
+	    bool is_conflict = check_for_conflict(cat_definition, cat_names, numerical_codes);
 	    // Nothing to be done, already loaded
 
 	    while( is_conflict ) {
@@ -602,8 +606,8 @@ bool Sgems_folder_input_filter::read_category_definition(const QDomElement& root
 		    ni = Root::instance()->interface( categoricalDefinition_manager+"/"+name.toStdString()  );
 		    cat_definition = dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
 		    if(cat_definition == 0)
-		  	  return create_categorial_definition( name,  cat_names );
-		    is_conflict = check_for_conflict(cat_definition, cat_names );
+		  	  return create_categorial_definition( name,  cat_names, numerical_codes );
+		    is_conflict = check_for_conflict(cat_definition, cat_names, numerical_codes  );
 	    }
     }
     ni = 	Root::instance()->interface( categoricalDefinition_manager+"/"+name.toStdString()  );
@@ -621,29 +625,59 @@ bool Sgems_folder_input_filter::read_category_definition(const QDomElement& root
 }
 
 bool Sgems_folder_input_filter::check_for_conflict(CategoricalPropertyDefinitionName* def,
-																										const QStringList& cat_names) {
+																										const QStringList& cat_names,
+                                                    const QList<int>& codes) {
 	if( def->number_of_category() != cat_names.size() ) return true;
-	for( int i =0; i<cat_names.size(); i++  ) {
-		if( cat_names[i].toStdString() != def->get_category_name(i) ) return true;
-	}
+  if(codes.isEmpty()) {
+	  for( int i =0; i<cat_names.size(); i++  ) {
+		  if( cat_names[i].toStdString() != def->get_category_name(i) ) return true;
+	  }
+  } else {
+	  for( int i =0; i<cat_names.size(); i++  ) {
+		  if( cat_names[i].toStdString() != def->get_category_name(i) ) return true;
+	  }
+  }
 	return false;
 }
 
 bool Sgems_folder_input_filter::create_categorial_definition(
 	 QString& name,
-	 QStringList& cat_names) {
+	 QStringList& cat_names,
+   QList<int>& codes) {
 
-  cat_names.prepend(name);
-  std::string parameters = cat_names.join( Actions::separator.c_str() ).toStdString();
-
-  // call the CopyProperty action
+ 
   Error_messages_handler error_messages;
-  std::string command( "NewCategoricalDefinition" );
 
-  SmartPtr<Named_interface> ni =
-    Root::instance()->interface( projects_manager + "/" + "project" );
-  GsTL_project* project = dynamic_cast<GsTL_project*>( ni.raw_ptr() );
-  return project->execute( command, parameters, &error_messages );
+  if(codes.isEmpty()) {
+    // call the CopyProperty action
+    std::string command( "NewCategoricalDefinition" );
+    cat_names.prepend(name);
+    std::string parameters = cat_names.join( Actions::separator.c_str() ).toStdString();
+
+    SmartPtr<Named_interface> ni =
+      Root::instance()->interface( projects_manager + "/" + "project" );
+    GsTL_project* project = dynamic_cast<GsTL_project*>( ni.raw_ptr() );
+    return project->execute( command, parameters, &error_messages );
+    
+  }
+  else {
+    std::string command( "NewCategoricalCodeDefinition" );
+
+    QStringList codes_str;
+    for(int i=0; i< codes.size(); ++i) {
+      codes_str.append( QString("%1").arg( codes.at(i)) );
+    }
+
+    QStringList params;
+    params<<name<<QString("%1").arg(cat_names.size())<<cat_names<<codes_str;
+    std::string parameters = params.join( Actions::separator.c_str() ).toStdString();
+
+    SmartPtr<Named_interface> ni =
+      Root::instance()->interface( projects_manager + "/" + "project" );
+    GsTL_project* project = dynamic_cast<GsTL_project*>( ni.raw_ptr() );
+    return project->execute( command, parameters, &error_messages );
+  }
+
 }
 
 
@@ -1181,6 +1215,7 @@ QDomElement Sgems_folder_output_filter::write_category_definition(QDomDocument& 
 	  for( ; it_name != names.end(); it_name++ ) {
       QDomElement elemCategory = dom.createElement("Category");
       elemCategory.setAttribute("name",it_name->c_str());
+      elemCategory.setAttribute("numerical_code",cat_definition->category_id(*it_name));
       int i = std::distance(names.begin() , it_name);
       elemCategory.setAttribute("red",QString("%1").arg(cat_definition->red(i)));
       elemCategory.setAttribute("green",QString("%1").arg(cat_definition->green(i)));

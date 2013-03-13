@@ -70,8 +70,8 @@ protected :
   bool read_group(const QDomElement& dom, Geostat_grid* grid, std::string* errors);
   bool read_category_definition(const QDomElement& root, Geostat_grid* grid, std::string* errors);
 
-  bool check_for_conflict(CategoricalPropertyDefinitionName* def, const QStringList& cat_names);
-  bool create_categorial_definition( QString& name, QStringList& cat_names);
+  bool check_for_conflict(CategoricalPropertyDefinitionName* def, const QStringList& cat_names, const QList<int>& codes);
+  bool create_categorial_definition( QString& name, QStringList& cat_names, QList<int>& codes);
 };
 
 class Sgems_folder_output_filter: public Output_filter {

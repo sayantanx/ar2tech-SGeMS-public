@@ -103,6 +103,7 @@
 #include <GsTLAppli/grid/grid_model/reduced_grid.h>
 #include <GsTLAppli/actions/distribution_action.h>
 #include <GsTLAppli/filters/filter.h>
+#include <GsTLAppli/gui/utils/new_region_from_grid_filter_dialog.h>
 
 #include <GsTLAppli/gui/appli/about_sgems.h>
 
@@ -327,7 +328,8 @@ void QSP_application::init_menu_bar() {
 * Alexandre Boucher
 */
   QMenu* region =   menuBar()->addMenu( "&Regions" );
-  region->addAction( "New region", this, SLOT( new_region_from_property() ), Qt::CTRL+Qt::Key_R );
+  region->addAction( "New Region", this, SLOT( new_region_from_property() ), Qt::CTRL+Qt::Key_R );
+  region->addAction( "New Region from filtering", this, SLOT( new_region_from_grid_filter() ), Qt::CTRL+Qt::SHIFT+Qt::Key_R );
   region->addAction( "Merge Regions", this, SLOT( merge_object_regions() ), Qt::CTRL+Qt::Key_M );
   region->addSeparator();
   region->addAction( "Delete Regions", this, SLOT( delete_object_regions() ), Qt::Key_Delete+Qt::Key_R );
@@ -968,7 +970,10 @@ void QSP_application::delete_geostat_objects( const QStringList& names ) {
 
   QString sep = Actions::separator.c_str();
   std::string parameters = std::string( qstring2string(names.join( sep )) );
-  if( parameters.empty() ) return;
+  if( parameters.empty() ) {
+    QApplication::restoreOverrideCursor();
+    return;
+  }
 
   // call the DeleteObjectProperties action
   Error_messages_handler error_messages;
@@ -1029,7 +1034,10 @@ void QSP_application::delete_object_properties( const QString& qgrid_name,
   QStringList list( prop_names );
   list.prepend( qgrid_name );
   std::string parameters = std::string( qstring2string(list.join( sep )) );
-  if( parameters.empty() ) return;
+  if( parameters.empty() ) {
+    QApplication::restoreOverrideCursor();
+    return;
+  }
 
   // call the DeleteObjectProperties action
   Error_messages_handler error_messages;
@@ -1391,7 +1399,10 @@ void QSP_application::delete_object_regions( const QString& qgrid_name,
   QStringList list( region_names );
   list.prepend( qgrid_name );
   std::string parameters = std::string( qstring2string(list.join( sep )) );
-  if( parameters.empty() ) return;
+  if( parameters.empty() ) {
+    QApplication::restoreOverrideCursor();
+    return;
+  }
 
   // call the DeleteObjectProperties action
   Error_messages_handler error_messages;
@@ -1443,7 +1454,10 @@ void QSP_application::merge_object_regions( const QString& qgrid_name,
   list.prepend(new_region_name);
   list.prepend( qgrid_name );
   std::string parameters = std::string( qstring2string(list.join( sep )) );
-  if( parameters.empty() ) return;
+  if( parameters.empty() ) {
+    QApplication::restoreOverrideCursor();
+    return;
+  }
 
   // call the DeleteObjectProperties action
   Error_messages_handler error_messages;
@@ -1523,20 +1537,16 @@ void QSP_application::new_region_from_property(){
   dialog->setWindowTitle( "Create New Region" );
   dialog->exec();
   delete dialog;
-  //if( dialog->exec() == QDialog::Rejected ) return;
-//  delete
-/*
-  QString grid_name = dialog->selected_grid();
-  QString new_region_name = dialog->new_region_name();
-  QString prop_name = dialog->selected_property();
 
-  QStringList minmax;
-  minmax.append( dialog->get_min_filter_value() );
-  minmax.append( dialog->get_max_filter_value() );
+}
 
+void QSP_application::new_region_from_grid_filter(){
+  New_region_from_grid_filter_dialog* dialog = 
+    new New_region_from_grid_filter_dialog( this, "Create region from filtering" );
+  dialog->setWindowTitle( "Create New Region" );
+  dialog->exec();
+  delete dialog;
 
-  new_region_from_property( grid_name, new_region_name, prop_name, minmax );
-  */
 }
 
 /*
@@ -1612,7 +1622,10 @@ void QSP_application::new_mgrid_from_cgrid(const QString& cgrid_name,
   list.append( region_names );
   
   std::string parameters = std::string( qstring2string(list.join( sep )) );
-  if( parameters.empty() ) return;
+  if( parameters.empty() ) {
+    QApplication::restoreOverrideCursor();
+    return;
+  }
 
   // call the CreateMgridFromCgrid action
   Error_messages_handler error_messages;

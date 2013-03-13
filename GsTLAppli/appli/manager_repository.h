@@ -149,6 +149,7 @@ static const std::string colormap_continuous_manager = "/Colormaps/Continuous";
 static const std::string colormap_categorical_manager = "/Colormaps/Categorical";
 
 static const std::string qitem_model_manager = "/QItemModels";
+static const std::string qitem_grid_filter_model_manager = "/QItemModels/GridFilters";
 static const std::string qitem_root_model_manager = "/QItemModels/RootModel";
 static const std::string qitem_project_model_manager = "/QItemModels/ProjectModel";
 
@@ -164,6 +165,9 @@ static const std::string categorical_distributions_manager = "/Distributions/Cat
 
 static const std::string contextMenus_manager = "/ContextMenus";
 static const std::string eda_charts_manager = "/EdaCharts";
+
+static const std::string gridFilter_manager = "/GridFilters";
+
 
 //static const std::string metricProperty_manager = "MetricProperties";
 

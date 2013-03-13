@@ -78,13 +78,7 @@
     <ClInclude Include="gstl_plugins.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gstl_property.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="gstl_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gstlobject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lineeditkey.h">

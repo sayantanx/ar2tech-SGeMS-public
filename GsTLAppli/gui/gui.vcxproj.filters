@@ -484,6 +484,12 @@
     <ClCompile Include="utils\categorical_definition_dialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="utils\new_region_from_grid_filter_dialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".moc\moc_new_region_from_grid_filter_dialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="utils\categorical_definition_dialog.h">
@@ -771,6 +777,9 @@
     <ClInclude Include="vtk_prop\vtk_prop_structured_grid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <CustomBuild Include="utils\new_region_from_grid_filter_dialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ui_MainWindow.h">

@@ -50,10 +50,20 @@ public:
 	virtual ~CategoricalPropertyDefinition(){}
 
 	virtual std::string get_category_name(unsigned int id) const = 0;
+  virtual std::string get_category_name_from_index(unsigned int index) const;
 
 	virtual bool is_category_exist(std::string name) const = 0;
 
 	virtual int category_id(std::string name) const = 0;
+
+  virtual bool is_sequential_coding() const = 0;
+
+  virtual int category_id_from_index(int index ) const = 0;
+  virtual int index_from_category_id(int cat_id ) const = 0;
+
+
+//  virtual int numerical_code(int id) const {return id;}
+//  virtual int numerical_code(std::string name) const { this->numerical_code( this->category_id(name) );}
   
   virtual std::string name() const = 0;
 
@@ -73,9 +83,19 @@ public:
   virtual void color(unsigned int cat_id, QColor color)=0;
   virtual void color(unsigned int cat_id, float r, float g, float b, float alpha=1.0)=0;
 
+  virtual QColor color_from_index(unsigned int index) const {return color(this->category_id_from_index(index));}
+  virtual float red_from_index(unsigned int index) const {return red(this->category_id_from_index(index));}
+  virtual float green_from_index(unsigned int index) const {return green(this->category_id_from_index(index));}
+  virtual float blue_from_index(unsigned int index) const {return blue(this->category_id_from_index(index));}
+  virtual float alpha_from_index(unsigned int index) const {return alpha(this->category_id_from_index(index));}
+  virtual void color_from_index(unsigned int index, QColor color) { this->color(this->category_id_from_index(index), color); }
+  virtual void color_from_index(unsigned int index, float r, float g, float b, float alpha=1.0) {
+    color(this->category_id_from_index(index), r,g,b,alpha);
+  }
+
+
 protected :
   property_set props_;
-
 
 };
 
@@ -122,20 +142,25 @@ public:
 	virtual std::string get_category_name(unsigned int id) const;
 
 	virtual bool is_category_exist(std::string name) const;
+  virtual bool is_category_exist(int id) const;
 
 	virtual int category_id(std::string name) const;
+
+  virtual bool is_sequential_coding() const;
 
   virtual std::string name() const;
 
 	virtual int number_of_category() const;
 
 	bool rename(int id, std::string name);
+  bool rename_from_index(int id, std::string name);
 
   void load_from_file(const std::string& filename);
 
 	void set_category_names(std::vector<std::string> names);
 
-	int add_category(std::string name);
+  int add_category(int code, std::string name);
+	//int add_category(std::string name);
 
   void set_definiton_name(std::string name);
 
@@ -143,7 +168,11 @@ public:
 //  std::vector<std::string>::const_iterator end_category_name() const;
 
   std::vector<std::string> category_names() const;
+  std::vector<int> category_codes() const;
 
+  virtual int category_id_from_index(int index ) const;
+  virtual int index_from_category_id(int cat_id ) const;
+/*
   virtual QColor color(unsigned int cat_id) const { return cat_coding_[cat_id]->color();}
   virtual float red(unsigned int cat_id) const {return cat_coding_[cat_id]->color().redF();}
   virtual float green(unsigned int cat_id) const {return cat_coding_[cat_id]->color().greenF();}
@@ -155,16 +184,34 @@ public:
     color.setRgbF(r,g,b,alpha);
     cat_coding_[cat_id]->color(color);
   }
+*/
+  virtual QColor color(unsigned int cat_id) const;
+  virtual float red(unsigned int cat_id) const;
+  virtual float green(unsigned int cat_id) const;
+  virtual float blue(unsigned int cat_id) const;
+  virtual float alpha(unsigned int cat_id) const;
+  virtual void color(unsigned int cat_id, QColor color){cat_coding_[cat_id]->color(color);}
+  virtual void color(unsigned int cat_id, float r, float g, float b, float alpha=1.0){
+    QColor color;
+    color.setRgbF(r,g,b,alpha);
+    cat_coding_[cat_id]->color(color);
+  }
+
+
+
+
 
   // GsTL-Object functions
   virtual GsTL_object_item *child(int row){return cat_coding_[row];}
-  virtual const GsTL_object_item *child(int row) const {return cat_coding_[row];}
+  virtual const GsTL_object_item *child(int row) const;
   virtual int childCount() const{return cat_coding_.size();}
   //virtual Qt::ItemFlags flags(int column=0){return  Qt::ItemIsEnabled | Qt::ItemIsSelectable |  Qt::ItemIsDragEnabled | Qt::ItemIsEditable;}
   //virtual bool set_item_data(QVariant value, int column= 0 );
 
+
 protected :
-  std::vector<Categorical_color_coding*> cat_coding_;
+  //std::vector<Categorical_color_coding*> cat_coding_;
+  std::map<int,Categorical_color_coding*> cat_coding_;
   
   //std::vector<std::string> cat_names_;
   std::string name_;
@@ -186,6 +233,11 @@ public:
 	virtual bool is_category_exist(std::string name) const;
 
 	virtual int category_id(std::string name) const;
+
+  virtual bool is_sequential_coding() const {return true;}
+
+  virtual int category_id_from_index(int index ) const {return index;}
+  virtual int index_from_category_id(int cat_id ) const {return cat_id;}
 
   virtual std::string name() const;
 /*
@@ -290,6 +342,8 @@ protected :
 protected :
 	  CategoricalPropertyDefinition* cat_definitions_;
     unsigned int number_of_categories_;
+
+    std::set<int> category_codes_;
 };
 
 inline std::string

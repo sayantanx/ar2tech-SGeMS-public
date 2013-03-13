@@ -217,17 +217,10 @@ class GRID_DECL GsTLGridProperty: public GsTL_object_item {
 
   inline std::string parameters() const { return parameters_; }
   inline void set_parameters(std::string parameters) { parameters_ = parameters;}
-//  inline void set_parameters(QDomElement& elem) {   
-//    QString str;
-//    QTextStream stream(&str);
-//    elem.save(stream, 4);
-//    parameters_ =  str.toStdString();
-//  }
 
-/*
-  inline QDomElement xml_parameters() const { return dom_.firstChildElement(); }
-  inline void set_xml_parameters(std::string parameters) { parameters_ = parameters;}
-  */
+  std::string grid_name() const;
+
+
 // GsTL_object_item
   virtual QString item_type() const;
   virtual QString item_name() const;

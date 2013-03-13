@@ -169,6 +169,33 @@
     <ClCompile Include=".moc\moc_project_proxy_model.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="grid_filter_delegate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="grid_filter_model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="grid_filter_tree_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="grid_filter_model_item.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".moc\moc_grid_filter_model.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".moc\moc_grid_filter_tree_view.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".moc\moc_grid_filter_delegate.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="grid_filter_named_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="library_qtplugins_init.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -185,6 +212,15 @@
     </ClInclude>
     <ClInclude Include="ui_variogram_structure_base.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="grid_filter_model_item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="grid_filter_named_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="library_qtplugins_init.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -284,6 +320,15 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="project_proxy_model.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="grid_filter_model.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="grid_filter_tree_view.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="grid_filter_delegate.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

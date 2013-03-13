@@ -25,6 +25,7 @@
 
 
 #include "chart_display_control.h"
+#include <vtkAxis.h>
 
 Chart_display_control::Chart_display_control(QWidget *parent)
     : QWidget(parent)
@@ -158,4 +159,27 @@ void Chart_display_control::set_yaxis_nticks(int nticks){
 
 void Chart_display_control::set_yaxis_label(const QString& label) {
   ui.y_label_edit->setText( label );
+}
+
+
+void Chart_display_control::hide_x_log_scale(bool ok){
+  ui.x_logscale->setHidden(ok);
+}
+void Chart_display_control::hide_y_log_scale(bool ok){
+  ui.y_logscale->setHidden(ok);
+}
+
+void Chart_display_control::hide_x_controls(bool ok){
+  ui.xbox->setHidden(ok);
+}
+
+void Chart_display_control::hide_y_controls(bool ok){
+  ui.ybox->setHidden(ok);
+}
+
+bool Chart_display_control::is_x_axis_log_scale(){
+  return ui.x_logscale->isChecked();
+}
+bool Chart_display_control::is_y_axis_log_scale(){
+  return ui.y_logscale->isChecked();
 }

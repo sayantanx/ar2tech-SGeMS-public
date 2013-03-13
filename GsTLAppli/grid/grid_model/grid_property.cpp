@@ -641,6 +641,15 @@ int GsTLGridProperty::row() const{
 	return 0;
 }
 
+std::string GsTLGridProperty::grid_name() const {
+  const GsTL_object_item* group_item = this->parent();
+  if(group_item == 0) return "";
+  const GsTL_object_item* grid_item = group_item->parent();
+  if(grid_item == 0) return "";
+  return grid_item->item_name().toStdString();
+
+}
+
 
 /*
 Property_parameters::Property_parameters() {

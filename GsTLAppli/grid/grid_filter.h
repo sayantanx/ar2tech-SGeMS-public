@@ -26,6 +26,7 @@
 #define __GRID_FILTER_H__ 
  
 #include <GsTLAppli/grid/common.h>
+#include <GsTLAppli/utils/named_interface.h>
 #include <GsTLAppli/grid/grid_model/grid_property.h> 
 #include <GsTLAppli/grid/grid_model/grid_categorical_property.h> 
 #include <GsTLAppli/grid/grid_model/grid_region.h> 
@@ -33,11 +34,11 @@
 #include <GsTLAppli/grid/grid_model/log_data_grid.h> 
 
 
-class GRID_DECL Grid_filter
+class GRID_DECL Grid_filter : public Named_interface
 {
 public:
-  Grid_filter(void){}
-  virtual ~Grid_filter(void){}
+  Grid_filter(){}
+  virtual ~Grid_filter(){}
 
   virtual bool is_valid_nodeid(int nodeid) const = 0;
 
@@ -48,12 +49,19 @@ public:
 class GRID_DECL Grid_filter_union  : public Grid_filter 
 {
 public:
-  Grid_filter_union(void){}
-  virtual ~Grid_filter_union(void){
+  Grid_filter_union(){
+    item_type_ = "Union";
+  }
+
+  virtual ~Grid_filter_union(){
     for(int i=0; i< filters_.size(); ++i) {
       delete filters_[i];
     }
   
+  }
+
+  static Named_interface* create_new_interface(std::string& str) {
+    return new Grid_filter_union();
   }
 
   virtual Grid_filter* clone() const {
@@ -95,13 +103,19 @@ private:
 class GRID_DECL Grid_filter_intersection  : public Grid_filter 
 {
 public:
-  Grid_filter_intersection( ){}
+  Grid_filter_intersection( ){
+    item_type_ = "Intersection";
+  }
 
   virtual ~Grid_filter_intersection( ){
     for(int i=0; i< filters_.size(); ++i) {
       delete filters_[i];
     }
   
+  }
+
+  static Named_interface* create_new_interface(std::string& str) {
+    return new Grid_filter_intersection();
   }
 
   virtual Grid_filter* clone() const {
@@ -142,9 +156,22 @@ private:
 
 class GRID_DECL Grid_filter_region  : public Grid_filter
 {
+
+public :
+  static Named_interface* create_new_interface(std::string& str) {
+    return new Grid_filter_region();
+  }
+
 public:
-  Grid_filter_region(const GsTLGridRegion* region) : region_(region){}
+  Grid_filter_region() : region_(0){
+    item_type_ = "Region";
+  }
+  Grid_filter_region(const GsTLGridRegion* region) : region_(region){
+    item_type_ = "Region";
+  }
   virtual ~Grid_filter_region(void){}
+
+  void set_region(const GsTLGridRegion* region){region_ = region;}
 
   virtual Grid_filter* clone() const {
     return new Grid_filter_region(this->region_);
@@ -162,11 +189,28 @@ private :
 
 class GRID_DECL Grid_filter_category  : public Grid_filter
 {
+public :
+  static Named_interface* create_new_interface(std::string& str) {
+    return new Grid_filter_category();
+  }
+
 public:
+  Grid_filter_category() 
+    : cprop_(0), category_(-1){
+    item_type_ = "Category";
+  }
+
   Grid_filter_category(const GsTLGridCategoricalProperty* cprop, int active_category) 
-    : cprop_(cprop), category_(active_category){}
+    : cprop_(cprop), category_(active_category){
+    item_type_ = "Category";
+  }
 
   virtual ~Grid_filter_category(void){}
+
+  void set_category(const GsTLGridCategoricalProperty* cprop, int active_category) {
+    cprop_ = cprop;
+    category_ = active_category;
+  }
 
   virtual Grid_filter* clone() const {
     return new Grid_filter_category(this->cprop_, this->category_);
@@ -185,11 +229,29 @@ private :
 
 class GRID_DECL Grid_filter_less_than  : public Grid_filter
 {
+
+public :
+  static Named_interface* create_new_interface(std::string& str) {
+    return new Grid_filter_less_than();
+  }
+
 public:
+  Grid_filter_less_than() 
+    : prop_(0), upper_bound_(-9e20){
+    item_type_ = "Less than";
+  }
+
   Grid_filter_less_than(const GsTLGridProperty* prop, float upper_bound) 
-    : prop_(prop), upper_bound_(upper_bound){}
+    : prop_(prop), upper_bound_(upper_bound){
+    item_type_ = "Less than";
+  }
 
   virtual ~Grid_filter_less_than(void){}
+
+  void set_upper_bound(const GsTLGridProperty* prop, float upper_bound)  {
+    prop_ = prop;
+    upper_bound_ =upper_bound;
+  }
 
   virtual Grid_filter* clone() const {
     return new Grid_filter_less_than(this->prop_, this->upper_bound_);
@@ -208,11 +270,30 @@ private :
 
 class GRID_DECL Grid_filter_lessor_or_equal_than  : public Grid_filter
 {
+
+public :
+  static Named_interface* create_new_interface(std::string& str) {
+    return new Grid_filter_lessor_or_equal_than();
+  }
+
 public:
+
+  Grid_filter_lessor_or_equal_than() 
+    : prop_(0), upper_bound_(-9e20){
+    item_type_ = "Less or equal than";
+  }
+
   Grid_filter_lessor_or_equal_than(const GsTLGridProperty* prop, float upper_bound) 
-    : prop_(prop), upper_bound_(upper_bound){}
+    : prop_(prop), upper_bound_(upper_bound){
+    item_type_ = "Less or equal than";
+  }
 
   virtual ~Grid_filter_lessor_or_equal_than(void){}
+
+  void set_upper_bound(const GsTLGridProperty* prop, float upper_bound)  {
+    prop_ = prop;
+    upper_bound_= upper_bound;
+  }
 
   virtual Grid_filter* clone() const {
     return new Grid_filter_lessor_or_equal_than(this->prop_, this->upper_bound_);
@@ -231,11 +312,29 @@ private :
 
 class GRID_DECL Grid_filter_greater_than  : public Grid_filter
 {
+public :
+  static Named_interface* create_new_interface(std::string& str) {
+    return new Grid_filter_greater_than();
+  }
+
+
 public:
+  Grid_filter_greater_than() 
+    : prop_(0), lower_bound_(9e20){
+    item_type_ = "Greater than";
+  }
+
   Grid_filter_greater_than(const GsTLGridProperty* prop, float lower_bound) 
-    : prop_(prop), lower_bound_(lower_bound){}
+    : prop_(prop), lower_bound_(lower_bound){
+    item_type_ = "Greater than";
+  }
 
   virtual ~Grid_filter_greater_than(void){}
+
+  void set_lower_bound(const GsTLGridProperty* prop, float lower_bound)  {
+    prop_ = prop;
+    lower_bound_= lower_bound;
+  }
 
   virtual Grid_filter* clone() const {
     return new Grid_filter_greater_than(this->prop_, this->lower_bound_);
@@ -254,11 +353,28 @@ private :
 
 class GRID_DECL Grid_filter_greater_or_equal_than  : public Grid_filter
 {
+public :
+  static Named_interface* create_new_interface(std::string& str) {
+    return new Grid_filter_greater_or_equal_than();
+  }
+
 public:
+  Grid_filter_greater_or_equal_than() 
+    : prop_(0), lower_bound_(-9e20){
+    item_type_ = "Greater or equal than";
+  }
+
   Grid_filter_greater_or_equal_than(const GsTLGridProperty* prop, float lower_bound) 
-    : prop_(prop), lower_bound_(lower_bound){}
+    : prop_(prop), lower_bound_(lower_bound){
+    item_type_ = "Greater or equal than";
+  }
 
   virtual ~Grid_filter_greater_or_equal_than(void){}
+
+  void set_lower_bound(const GsTLGridProperty* prop, float lower_bound)  {
+    prop_ = prop;
+    lower_bound_= lower_bound;
+  }
 
   virtual Grid_filter* clone() const {
     return new Grid_filter_greater_or_equal_than(this->prop_, this->lower_bound_);
@@ -277,11 +393,30 @@ private :
 
 class GRID_DECL Grid_filter_bounded  : public Grid_filter
 {
+public :
+  static Named_interface* create_new_interface(std::string& str) {
+    return new Grid_filter_greater_or_equal_than();
+  }
+
 public:
+
+  Grid_filter_bounded() 
+    : prop_(0), lower_bound_(-9e20), upper_bound_(9e20){
+    item_type_ = "Bounded by";
+  }
+
   Grid_filter_bounded(const GsTLGridProperty* prop, float lower_bound,float upper_bound) 
-    : prop_(prop), lower_bound_(lower_bound), upper_bound_(upper_bound){}
+    : prop_(prop), lower_bound_(lower_bound), upper_bound_(upper_bound){
+    item_type_ = "Bounded by";
+  }
 
   virtual ~Grid_filter_bounded(void){}
+
+  void set_bounds(const GsTLGridProperty* prop, float lower_bound,float upper_bound)  {
+    prop_ = prop;
+    lower_bound_= lower_bound;
+    upper_bound_= upper_bound;
+  }
 
   virtual Grid_filter* clone() const {
     return new Grid_filter_bounded(this->prop_, this->lower_bound_,  this->upper_bound_);
@@ -303,11 +438,29 @@ private :
 
 class GRID_DECL Grid_filter_x_coord_bounded  : public Grid_filter
 {
+public :
+  static Named_interface* create_new_interface(std::string& str) {
+    return new Grid_filter_x_coord_bounded();
+  }
 public:
+
+  Grid_filter_x_coord_bounded() 
+    : grid_(0), x_coord_lower_bound_(-9e50), x_coord_upper_bound_(9e50){
+    item_type_ = "Bounded by x coords";
+  }
+
   Grid_filter_x_coord_bounded(const Geostat_grid* grid, double x_coord_lower_bound,double x_coord_upper_bound) 
-    : grid_(grid), x_coord_lower_bound_(x_coord_lower_bound), x_coord_upper_bound_(x_coord_upper_bound){}
+    : grid_(grid), x_coord_lower_bound_(x_coord_lower_bound), x_coord_upper_bound_(x_coord_upper_bound){
+    item_type_ = "Bounded by x coords";
+  }
 
   virtual ~Grid_filter_x_coord_bounded(void){}
+
+  void set_bounds(const Geostat_grid* grid, double x_coord_lower_bound,double x_coord_upper_bound)  {
+    grid_= grid; 
+    x_coord_lower_bound_ = x_coord_lower_bound;
+    x_coord_upper_bound_= x_coord_upper_bound;
+  }
 
   virtual Grid_filter* clone() const {
     return new Grid_filter_x_coord_bounded(this->grid_, this->x_coord_lower_bound_,  this->x_coord_upper_bound_);
@@ -330,11 +483,30 @@ private :
 
 class GRID_DECL Grid_filter_y_coord_bounded  : public Grid_filter
 {
+public :
+  static Named_interface* create_new_interface(std::string& str) {
+    return new Grid_filter_y_coord_bounded();
+  }
+
 public:
+
+  Grid_filter_y_coord_bounded() 
+    : grid_(0), y_coord_lower_bound_(-9e50), y_coord_upper_bound_(9e50){
+    item_type_ = "Bounded by y coords";
+  }
+
   Grid_filter_y_coord_bounded(const Geostat_grid* grid, double y_coord_lower_bound,double y_coord_upper_bound) 
-    : grid_(grid), y_coord_lower_bound_(y_coord_lower_bound), y_coord_upper_bound_(y_coord_upper_bound){}
+    : grid_(grid), y_coord_lower_bound_(y_coord_lower_bound), y_coord_upper_bound_(y_coord_upper_bound){
+    item_type_ = "Bounded by y coords";
+  }
 
   virtual ~Grid_filter_y_coord_bounded(void){}
+
+  void set_bounds(const Geostat_grid* grid, double y_coord_lower_bound,double y_coord_upper_bound)  {
+    grid_= grid; 
+    y_coord_lower_bound_ = y_coord_lower_bound;
+    y_coord_upper_bound_= y_coord_upper_bound;
+  }
 
   virtual Grid_filter* clone() const {
     return new Grid_filter_y_coord_bounded(this->grid_, this->y_coord_lower_bound_,  this->y_coord_upper_bound_);
@@ -357,11 +529,30 @@ private :
 
 class GRID_DECL Grid_filter_z_coord_bounded  : public Grid_filter
 {
+public :
+  static Named_interface* create_new_interface(std::string& str) {
+    return new Grid_filter_z_coord_bounded();
+  }
+
 public:
+
+  Grid_filter_z_coord_bounded() 
+    : grid_(0), z_coord_lower_bound_(-9e50), z_coord_upper_bound_(9e50){
+    item_type_ = "Bounded by z coords";
+  }
+
   Grid_filter_z_coord_bounded(const Geostat_grid* grid, double z_coord_lower_bound,double z_coord_upper_bound) 
-    : grid_(grid), z_coord_lower_bound_(z_coord_lower_bound), z_coord_upper_bound_(z_coord_upper_bound){}
+    : grid_(grid), z_coord_lower_bound_(z_coord_lower_bound), z_coord_upper_bound_(z_coord_upper_bound){
+    item_type_ = "Bounded by z coords";
+  }
 
   virtual ~Grid_filter_z_coord_bounded(void){}
+
+  void set_bounds(const Geostat_grid* grid, double z_coord_lower_bound,double z_coord_upper_bound)  {
+    grid_= grid; 
+    z_coord_lower_bound_ = z_coord_lower_bound;
+    z_coord_upper_bound_= z_coord_upper_bound;
+  }
 
   virtual Grid_filter* clone() const {
     return new Grid_filter_z_coord_bounded(this->grid_, this->z_coord_lower_bound_,  this->z_coord_upper_bound_);
@@ -384,10 +575,23 @@ private :
 
 class GRID_DECL Grid_filter_log_names  : public Grid_filter
 {
+public :
+  static Named_interface* create_new_interface(std::string& str) {
+    return new Grid_filter_log_names();
+  }
+
 public:
+  Grid_filter_log_names() 
+    : grid_(0)
+  {
+    item_type_ = "Log name";
+  }
+
+
   Grid_filter_log_names(const Log_data_grid* grid, std::vector<std::string> log_names) 
     : grid_(grid)
   {
+    item_type_ = "Log name";
     log_ids_.reserve(log_names.size());
     std::vector<std::string>::const_iterator it = log_names.begin();
     for( ; it != log_names.end() ; ++it ) {
@@ -397,9 +601,21 @@ public:
 
   }
 
+
   Grid_filter_log_names(const Log_data_grid* grid, std::vector<int> log_id) 
     : grid_(grid), log_ids_(log_id)
   {
+  }
+
+  void set_log_names(const Log_data_grid* grid, std::vector<std::string> log_names) 
+  {
+    grid_ = grid;
+    log_ids_.reserve(log_names.size());
+    std::vector<std::string>::const_iterator it = log_names.begin();
+    for( ; it != log_names.end() ; ++it ) {
+      int id = grid_->get_log_id(*it);
+      if(id >=0 ) log_ids_.push_back( id   );
+    }
   }
 
   virtual Grid_filter* clone() const {

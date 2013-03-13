@@ -152,6 +152,7 @@ class GUI_DECL QSP_application : public QMainWindow {
                              const QStringList& thresholds );
                              */
   void new_region_from_property();
+  void new_region_from_grid_filter();
 
   void new_mgrid_from_cgrid( const QString& cgrid_name,
                              const QStringList& regions_name,

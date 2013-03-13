@@ -248,6 +248,7 @@
   <ItemGroup>
     <ClCompile Include="algorithms_actions.cpp" />
     <ClCompile Include="categorical_definition_actions.cpp" />
+    <ClCompile Include="categorical_property_actions.cpp" />
     <ClCompile Include="distribution_action.cpp" />
     <ClCompile Include="library_actions_init.cpp" />
     <ClCompile Include="maskedgrid_actions.cpp" />
@@ -265,6 +266,7 @@
     <ClInclude Include="action.h" />
     <ClInclude Include="algorithms_actions.h" />
     <ClInclude Include="categorical_definition_actions.h" />
+    <ClInclude Include="categorical_property_actions.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="distribution_action.h" />

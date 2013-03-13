@@ -448,18 +448,6 @@ class ACTIONS_DECL Set_region_from_categorical_property: public Action {
 };
 
 
-class ACTIONS_DECL Convert_continuous_to_categorical_property: public Action {
- public:
-  static Named_interface* create_new_interface( std::string& );
-
- public:
-  Convert_continuous_to_categorical_property() {}
-  virtual ~Convert_continuous_to_categorical_property() {}
-
-  virtual bool init( std::string& parameters, GsTL_project* proj,
-                     Error_messages_handler* errors );
-  virtual bool exec();
-};
 
 class ACTIONS_DECL Merge_regions : public Action { 
 // public: 

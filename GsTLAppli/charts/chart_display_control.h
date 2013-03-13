@@ -41,6 +41,9 @@ public:
 
     void send_axis_signals();
 
+    bool is_x_axis_log_scale();
+    bool is_y_axis_log_scale();
+
 public slots:
   void set_xaxis_min(double min);
   void set_xaxis_max(double max);
@@ -53,6 +56,12 @@ public slots:
   void set_yaxis_precision(int precision);
   void set_yaxis_nticks(int nticks);
   void set_yaxis_label(const QString& label);
+
+  void hide_x_log_scale(bool ok);
+  void hide_y_log_scale(bool ok);
+
+  void hide_x_controls(bool ok);
+  void hide_y_controls(bool ok);
 
   void set_title(const QString& label);
 

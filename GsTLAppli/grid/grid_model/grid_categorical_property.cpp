@@ -67,6 +67,9 @@ CategoricalPropertyDefinition::end_property() const {
   return props_.end();
 }
 
+std::string CategoricalPropertyDefinition::get_category_name_from_index(unsigned int index) const{
+  return this->get_category_name( this->category_id_from_index(index));
+}
 
 /*
   ----------------------------------------------
@@ -106,6 +109,9 @@ bool Categorical_color_coding::set_item_data(QVariant value, int column ){
 
 }
 
+// 
+// ------------------------------------------------------------------
+//
 
 CategoricalPropertyDefinitionName::CategoricalPropertyDefinitionName() {
 	// TODO Auto-generated constructor stub
@@ -138,16 +144,28 @@ void CategoricalPropertyDefinitionName::load_from_file(const std::string& filena
 	  std::getline(infile, name);
 	  if( name.empty() ) break;
     int code = cat_coding_.size();
-	  cat_coding_.push_back(new Categorical_color_coding(name,code, this));
+
+    cat_coding_[code] = new Categorical_color_coding(name,code, this);
+
+	  //cat_coding_.push_back(new Categorical_color_coding(name,code, this));
   }
   infile.close();
 }
 
 std::string CategoricalPropertyDefinitionName::get_category_name(unsigned int id) const{
+
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.find( id );
+
+  if(it == cat_coding_.end()) return "";
+
+  return it->second->name().toStdString();
+
+/*
 	if(id < cat_coding_.size()  )
     return cat_coding_[id]->name().toStdString();
 	else
 		return "";
+    */
 }
 
 std::string CategoricalPropertyDefinitionName::name() const {
@@ -162,34 +180,87 @@ void CategoricalPropertyDefinitionName::set_definiton_name(std::string name){
 void CategoricalPropertyDefinitionName::set_category_names(std::vector<std::string> names) {
 
   for(int i=0; i< names.size(); ++i) {
-    cat_coding_.push_back(new Categorical_color_coding(names[i], i,this));
+    cat_coding_[i] = new Categorical_color_coding(names[i], i,this);
+    //cat_coding_.push_back(new Categorical_color_coding(names[i], i,this));
   }
 
 	//cat_names_ = names;
 }
-
+/*
 int CategoricalPropertyDefinitionName::add_category(std::string name){
 	bool ok = is_category_exist( name );
 	if(ok) return -1;
   int code = cat_coding_.size();
-  cat_coding_.push_back(new Categorical_color_coding(name, code,this));
+  cat_coding_[code] = new Categorical_color_coding(name, code,this);
+  //cat_coding_.push_back(new Categorical_color_coding(name, code,this));
 	
   //cat_names_.push_back(name);
   //colors_.push_back(CategoricalPropertyDefinitionDefault::default_color(cat_names_.size()-1));
 	return code;
 }
+*/
+
+int CategoricalPropertyDefinitionName::add_category(int code, std::string name){
+	bool ok = is_category_exist( code );
+	if(ok) return -1;
+  cat_coding_[code] = new Categorical_color_coding(name, code,this);
+
+	return code;
+}
+
 
 int CategoricalPropertyDefinitionName::category_id(std::string name) const{
   QString name_cat = name.c_str();
-	std::vector<Categorical_color_coding*>::const_iterator it = cat_coding_.begin();
+
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.begin();
+//	std::vector<Categorical_color_coding*>::const_iterator it = cat_coding_.begin();
 	for( ; it != cat_coding_.end(); ++it) {
-    if((*it)->name() == name_cat) return (*it)->code();
+    if(it->second->name() == name_cat) return it->second->code();
+  //  if((*it)->name() == name_cat) return (*it)->code();
 	}
+  
 	return -1;
 }
 
+bool CategoricalPropertyDefinitionName::is_sequential_coding() const {
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.begin();
+
+  if(it->first != 0) return false;
+
+  std::advance(it,cat_coding_.size()-1 );
+  if(it->first != cat_coding_.size()-1) return false;
+  
+  return true;
+
+}
+
+int CategoricalPropertyDefinitionName::category_id_from_index(int index ) const{
+  if( index >= cat_coding_.size() ) return -1;
+
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.begin();
+  std::advance(it,index);
+  return it->first;
+ 
+}
+
+int CategoricalPropertyDefinitionName::index_from_category_id(int cat_id ) const{
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.find(cat_id);
+  if( it == cat_coding_.end() ) return -1; 
+  return std::distance(cat_coding_.begin(),it);
+}
+
+
 bool CategoricalPropertyDefinitionName::is_category_exist(std::string name) const {
-	return category_id(name) >= 0;
+
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.find( this->category_id(name) );
+  return it != cat_coding_.end();
+
+	//return category_id(name) >= 0;
+}
+
+bool CategoricalPropertyDefinitionName::is_category_exist(int id) const {
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.find( id );
+  return it != cat_coding_.end();
 }
 
 int CategoricalPropertyDefinitionName::number_of_category() const{
@@ -206,13 +277,68 @@ bool CategoricalPropertyDefinitionName::rename(int id, std::string new_name){
 
 }
 
+bool CategoricalPropertyDefinitionName::rename_from_index(int index, std::string name){
+  return this->rename( this->category_id_from_index(index), name );
+}
+
+
+
 std::vector<std::string> CategoricalPropertyDefinitionName::category_names() const{
   std::vector<std::string> names;
-	std::vector<Categorical_color_coding*>::const_iterator it = cat_coding_.begin();
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.begin();
+	//std::vector<Categorical_color_coding*>::const_iterator it = cat_coding_.begin();
 	for( ; it != cat_coding_.end(); ++it) {
-    names.push_back( (*it)->name().toStdString() );
+    names.push_back( it->second->name().toStdString() );
+    //names.push_back( (*it)->name().toStdString() );
 	}
   return names;
+}
+
+std::vector<int> CategoricalPropertyDefinitionName::category_codes() const{
+  std::vector<int> codes;
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.begin();
+	for( ; it != cat_coding_.end(); ++it) {
+    codes.push_back( it->first );
+	}
+  return codes;
+}
+
+
+QColor CategoricalPropertyDefinitionName::color(unsigned int cat_id) const { 
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.find( cat_id );
+  if(it == cat_coding_.end()) return QColor();
+  return it->second->color();
+}
+
+float CategoricalPropertyDefinitionName::red(unsigned int cat_id) const {
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.find( cat_id );
+  if(it == cat_coding_.end()) return QColor().redF();
+  return it->second->color().redF();
+}
+
+float CategoricalPropertyDefinitionName::green(unsigned int cat_id) const {
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.find( cat_id );
+  if(it == cat_coding_.end()) return QColor().greenF();
+  return it->second->color().greenF();
+}
+
+float CategoricalPropertyDefinitionName::blue(unsigned int cat_id) const {
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.find( cat_id );
+  if(it == cat_coding_.end()) return QColor().blueF();
+  return it->second->color().blueF();
+}
+
+float CategoricalPropertyDefinitionName::alpha(unsigned int cat_id) const {
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.find( cat_id );
+  if(it == cat_coding_.end()) return QColor().alphaF();
+  return it->second->color().alphaF();
+}
+
+
+const GsTL_object_item* CategoricalPropertyDefinitionName::child(int row) const {
+  std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.begin( );
+  std::advance(it,row);
+  return it->second;
 }
 
 /*
@@ -452,11 +578,19 @@ void GsTLGridCategoricalProperty
 int GsTLGridCategoricalProperty
 ::compute_number_of_category() const{
 	GsTLGridProperty::const_iterator it = this->begin();
-	int ncat = 0;
+
+  std::set<int> category_codes;
+	for( ; it!=this->end(); ++it) {
+		category_codes.insert(*it );
+	}
+  return category_codes.size();
+
+/*	int ncat = 0;
 	for( ; it!=this->end(); ++it) {
 		if(*it > ncat) ncat = *it;
 	}
 	return ncat+1;
+  */
 }
 
 QString GsTLGridCategoricalProperty::item_type() const{

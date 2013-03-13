@@ -75,10 +75,24 @@ class ACTIONS_DECL New_categorical_definition : public Action {
   New_categorical_definition() {} 
   virtual ~New_categorical_definition() {} 
    
-  /** The parameters for this function are: 
-   * - the name of the new grid 
-   * - its dimensions nx, ny, nz 
-   */ 
+  virtual bool init( std::string& parameters, GsTL_project* proj,
+                     Error_messages_handler* errors ); 
+  virtual bool exec(); 
+ 
+ private: 
+
+}; 
+
+
+class ACTIONS_DECL New_alpha_numerical_categorical_definition : public Action { 
+ public: 
+  static Named_interface* create_new_interface( std::string& ); 
+ 
+ public: 
+  New_alpha_numerical_categorical_definition() {} 
+  virtual ~New_alpha_numerical_categorical_definition() {} 
+   
+
   virtual bool init( std::string& parameters, GsTL_project* proj,
                      Error_messages_handler* errors ); 
   virtual bool exec(); 

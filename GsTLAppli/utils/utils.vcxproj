@@ -286,9 +286,7 @@
     <ClInclude Include="gstl_messages_private.h" />
     <ClInclude Include="gstl_object_item.h" />
     <ClInclude Include="gstl_plugins.h" />
-    <ClInclude Include="gstl_property.h" />
     <ClInclude Include="gstl_types.h" />
-    <ClInclude Include="gstlobject.h" />
     <ClInclude Include="lineeditkey.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="named_interface.h" />

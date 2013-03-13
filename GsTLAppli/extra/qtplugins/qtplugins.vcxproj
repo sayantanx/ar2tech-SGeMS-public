@@ -286,6 +286,9 @@
     <ClCompile Include=".moc\moc_distribution_parameter_widget.cpp" />
     <ClCompile Include=".moc\moc_distribution_proxy_model.cpp" />
     <ClCompile Include=".moc\moc_distribution_selectors.cpp" />
+    <ClCompile Include=".moc\moc_grid_filter_delegate.cpp" />
+    <ClCompile Include=".moc\moc_grid_filter_model.cpp" />
+    <ClCompile Include=".moc\moc_grid_filter_tree_view.cpp" />
     <ClCompile Include=".moc\moc_grid_proxy_model.cpp" />
     <ClCompile Include=".moc\moc_group_selectors.cpp" />
     <ClCompile Include=".moc\moc_project_proxy_model.cpp" />
@@ -302,12 +305,18 @@
     <ClCompile Include="distribution_selectors.cpp" />
     <ClCompile Include="ellipsoid_input.cpp" />
     <ClCompile Include="filechooser.cpp" />
+    <ClCompile Include="grid_filter_delegate.cpp" />
+    <ClCompile Include="grid_filter_model.cpp" />
+    <ClCompile Include="grid_filter_model_item.cpp" />
+    <ClCompile Include="grid_filter_named_interface.cpp" />
+    <ClCompile Include="grid_filter_tree_view.cpp" />
     <ClCompile Include="grid_proxy_model.cpp" />
     <ClCompile Include="group_selectors.cpp" />
     <ClCompile Include="gstl_table.cpp" />
     <ClCompile Include="gstl_widgets_plugin.cpp" />
     <ClCompile Include="kriging_type_selector.cpp" />
     <ClCompile Include="kriging_type_selector_base.cpp" />
+    <ClCompile Include="library_qtplugins_init.cpp" />
     <ClCompile Include="neighborhood_filter_input.cpp" />
     <ClCompile Include="non_param_cdf_input.cpp" />
     <ClCompile Include="project_proxy_model.cpp" />
@@ -674,6 +683,62 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\.moc\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -DQT_NO_DEBUG -DGSTLAPPLI_NDEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL  "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRx64)\include\QtDesigner" "-I$(QTDIRx64)\include\QtUiTools" "-I$(QTDIRx64)\include\QtCore" "-I$(QTDIRx64)\include\QtGui" "-I$(QTDIRx64)\include\QtXml" "-I$(QTDIRx64)\include" "-I." "-I$(QTDIRx64)\tools\designer\interfaces" "-I$(QTDIRx64)\include\ActiveQt" "-I$(BOOSTDIR)\." "-I.\.moc"</Command>
     </CustomBuild>
+    <CustomBuild Include="grid_filter_model.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing grid_filter_model.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRwin32)\include\QtDesigner" "-I$(QTDIRwin32)\include\QtUiTools" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(QTDIRwin32)\include\QtXml" "-I$(QTDIRwin32)\include" "-I." "-I$(QTDIRwin32)\tools\designer\interfaces" "-I$(QTDIRwin32)\include\ActiveQt" "-I.\.moc" "-I$(BOOSTDIR)\." "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtUiTools" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include" "-I$(QTDIR)\tools\designer\interfaces" "-I$(QTDIR)\include\ActiveQt"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing grid_filter_model.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRx64)\include\QtDesigner" "-I$(QTDIRx64)\include\QtUiTools" "-I$(QTDIRx64)\include\QtCore" "-I$(QTDIRx64)\include\QtGui" "-I$(QTDIRx64)\include\QtXml" "-I$(QTDIRx64)\include" "-I." "-I$(QTDIRx64)\tools\designer\interfaces" "-I$(QTDIRx64)\include\ActiveQt" "-I$(BOOSTDIR)\." "-I.\.moc"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing grid_filter_model.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -DQT_NO_DEBUG -DGSTLAPPLI_NDEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRwin32)\include\QtDesigner" "-I$(QTDIRwin32)\include\QtUiTools" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(QTDIRwin32)\include\QtXml" "-I$(QTDIRwin32)\include" "-I." "-I$(QTDIRwin32)\tools\designer\interfaces" "-I$(QTDIRwin32)\include\ActiveQt" "-I.\.moc" "-I$(BOOSTDIR)\."</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing grid_filter_model.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -DQT_NO_DEBUG -DGSTLAPPLI_NDEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRx64)\include\QtDesigner" "-I$(QTDIRx64)\include\QtUiTools" "-I$(QTDIRx64)\include\QtCore" "-I$(QTDIRx64)\include\QtGui" "-I$(QTDIRx64)\include\QtXml" "-I$(QTDIRx64)\include" "-I." "-I$(QTDIRx64)\tools\designer\interfaces" "-I$(QTDIRx64)\include\ActiveQt" "-I$(BOOSTDIR)\." "-I.\.moc"</Command>
+    </CustomBuild>
+    <CustomBuild Include="grid_filter_delegate.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing grid_filter_delegate.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRwin32)\include\QtDesigner" "-I$(QTDIRwin32)\include\QtUiTools" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(QTDIRwin32)\include\QtXml" "-I$(QTDIRwin32)\include" "-I." "-I$(QTDIRwin32)\tools\designer\interfaces" "-I$(QTDIRwin32)\include\ActiveQt" "-I.\.moc" "-I$(BOOSTDIR)\." "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtUiTools" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include" "-I$(QTDIR)\tools\designer\interfaces" "-I$(QTDIR)\include\ActiveQt"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing grid_filter_delegate.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRx64)\include\QtDesigner" "-I$(QTDIRx64)\include\QtUiTools" "-I$(QTDIRx64)\include\QtCore" "-I$(QTDIRx64)\include\QtGui" "-I$(QTDIRx64)\include\QtXml" "-I$(QTDIRx64)\include" "-I." "-I$(QTDIRx64)\tools\designer\interfaces" "-I$(QTDIRx64)\include\ActiveQt" "-I$(BOOSTDIR)\." "-I.\.moc"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing grid_filter_delegate.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -DQT_NO_DEBUG -DGSTLAPPLI_NDEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRwin32)\include\QtDesigner" "-I$(QTDIRwin32)\include\QtUiTools" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(QTDIRwin32)\include\QtXml" "-I$(QTDIRwin32)\include" "-I." "-I$(QTDIRwin32)\tools\designer\interfaces" "-I$(QTDIRwin32)\include\ActiveQt" "-I.\.moc" "-I$(BOOSTDIR)\."</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing grid_filter_delegate.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -DQT_NO_DEBUG -DGSTLAPPLI_NDEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRx64)\include\QtDesigner" "-I$(QTDIRx64)\include\QtUiTools" "-I$(QTDIRx64)\include\QtCore" "-I$(QTDIRx64)\include\QtGui" "-I$(QTDIRx64)\include\QtXml" "-I$(QTDIRx64)\include" "-I." "-I$(QTDIRx64)\tools\designer\interfaces" "-I$(QTDIRx64)\include\ActiveQt" "-I$(BOOSTDIR)\." "-I.\.moc"</Command>
+    </CustomBuild>
+    <ClInclude Include="grid_filter_model_item.h" />
+    <CustomBuild Include="grid_filter_tree_view.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing grid_filter_tree_view.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRwin32)\include\QtDesigner" "-I$(QTDIRwin32)\include\QtUiTools" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(QTDIRwin32)\include\QtXml" "-I$(QTDIRwin32)\include" "-I." "-I$(QTDIRwin32)\tools\designer\interfaces" "-I$(QTDIRwin32)\include\ActiveQt" "-I.\.moc" "-I$(BOOSTDIR)\." "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtUiTools" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include" "-I$(QTDIR)\tools\designer\interfaces" "-I$(QTDIR)\include\ActiveQt"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing grid_filter_tree_view.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRx64)\include\QtDesigner" "-I$(QTDIRx64)\include\QtUiTools" "-I$(QTDIRx64)\include\QtCore" "-I$(QTDIRx64)\include\QtGui" "-I$(QTDIRx64)\include\QtXml" "-I$(QTDIRx64)\include" "-I." "-I$(QTDIRx64)\tools\designer\interfaces" "-I$(QTDIRx64)\include\ActiveQt" "-I$(BOOSTDIR)\." "-I.\.moc"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing grid_filter_tree_view.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -DQT_NO_DEBUG -DGSTLAPPLI_NDEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRwin32)\include\QtDesigner" "-I$(QTDIRwin32)\include\QtUiTools" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(QTDIRwin32)\include\QtXml" "-I$(QTDIRwin32)\include" "-I." "-I$(QTDIRwin32)\tools\designer\interfaces" "-I$(QTDIRwin32)\include\ActiveQt" "-I.\.moc" "-I$(BOOSTDIR)\."</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing grid_filter_tree_view.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -DQT_NO_DEBUG -DGSTLAPPLI_NDEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRx64)\include\QtDesigner" "-I$(QTDIRx64)\include\QtUiTools" "-I$(QTDIRx64)\include\QtCore" "-I$(QTDIRx64)\include\QtGui" "-I$(QTDIRx64)\include\QtXml" "-I$(QTDIRx64)\include" "-I." "-I$(QTDIRx64)\tools\designer\interfaces" "-I$(QTDIRx64)\include\ActiveQt" "-I$(BOOSTDIR)\." "-I.\.moc"</Command>
+    </CustomBuild>
+    <ClInclude Include="grid_filter_named_interface.h" />
     <ClInclude Include="icons\selectors_icons.h" />
     <CustomBuild Include="variogram_input.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC variogram_input.h</Message>
@@ -765,6 +830,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\.moc\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -DQT_NO_DEBUG -DGSTLAPPLI_NDEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL  "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRx64)\include\QtDesigner" "-I$(QTDIRx64)\include\QtUiTools" "-I$(QTDIRx64)\include\QtCore" "-I$(QTDIRx64)\include\QtGui" "-I$(QTDIRx64)\include\QtXml" "-I$(QTDIRx64)\include" "-I." "-I$(QTDIRx64)\tools\designer\interfaces" "-I$(QTDIRx64)\include\ActiveQt" "-I$(BOOSTDIR)\." "-I.\.moc"</Command>
     </CustomBuild>
+    <ClInclude Include="library_qtplugins_init.h" />
     <ClInclude Include="ui_order_properties_dialog.h" />
     <ClInclude Include="ui_variogram_input_base.h" />
     <ClInclude Include="ui_variogram_structure_base.h" />

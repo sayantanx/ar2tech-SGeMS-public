@@ -63,6 +63,7 @@
 #include <GsTLAppli/grid/grid_model/structured_grid.h>
 #include <GsTLAppli/grid/grid_model/grid_downscaler.h>
 #include <GsTLAppli/grid/property_transformer.h>
+#include <GsTLAppli/grid/grid_filter.h>
 
 int library_grid_init::references_ = 0;
 
@@ -126,6 +127,7 @@ int library_grid_init::init_lib() {
   init_downscaler_factory();
   init_categorical_definition_factory();
   init_property_transformer_factory();
+  init_grid_filter_factory();
 
 
 
@@ -276,6 +278,42 @@ bool library_grid_init::init_categorical_definition_factory() {
     return false;
   }
   return true;
+}
+
+bool library_grid_init::init_grid_filter_factory(){
+
+  //----------------------
+  // Create the manager for the categorical definition
+  GsTLlog << "Creating Grid_filter manager" << "\n";
+  SmartPtr<Named_interface> ni_cdefs = 
+    Root::instance()->new_interface("directory://gridfilter",
+				    gridFilter_manager );
+      
+  Manager* dir = dynamic_cast<Manager*>( ni_cdefs.raw_ptr() );
+    
+  if( !dir ) {
+    GsTLlog << "could not create directory " 
+	      << gridFilter_manager << "\n";
+    return false;
+  }
+
+
+  dir->factory( Grid_filter_union().item_type().toStdString(), Grid_filter_union::create_new_interface );
+  dir->factory( Grid_filter_intersection().item_type().toStdString(), Grid_filter_intersection::create_new_interface );
+  dir->factory( Grid_filter_region().item_type().toStdString(), Grid_filter_region::create_new_interface );
+  dir->factory( Grid_filter_category().item_type().toStdString(), Grid_filter_category::create_new_interface );
+  dir->factory( Grid_filter_less_than().item_type().toStdString(), Grid_filter_less_than::create_new_interface );
+  dir->factory( Grid_filter_lessor_or_equal_than().item_type().toStdString(), Grid_filter_lessor_or_equal_than::create_new_interface );
+  dir->factory( Grid_filter_greater_than().item_type().toStdString(), Grid_filter_greater_than::create_new_interface );
+  dir->factory( Grid_filter_greater_or_equal_than().item_type().toStdString(), Grid_filter_greater_or_equal_than::create_new_interface );
+  dir->factory( Grid_filter_bounded().item_type().toStdString(), Grid_filter_bounded::create_new_interface );
+  dir->factory( Grid_filter_x_coord_bounded().item_type().toStdString(), Grid_filter_x_coord_bounded::create_new_interface );
+  dir->factory( Grid_filter_y_coord_bounded().item_type().toStdString(), Grid_filter_y_coord_bounded::create_new_interface );
+  dir->factory( Grid_filter_z_coord_bounded().item_type().toStdString(), Grid_filter_z_coord_bounded::create_new_interface );
+  dir->factory( Grid_filter_log_names().item_type().toStdString(), Grid_filter_log_names::create_new_interface );
+
+  return true;
+
 }
 
 extern "C" {

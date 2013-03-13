@@ -62,6 +62,7 @@
 #include <GsTLAppli/gui/library_gui_init.h>
 #include <GsTLAppli/charts/library_charts_init.h>
 #include <GsTLAppli/extra/gui/library_extragui_init.h>
+#include <GsTLAppli/extra/qtplugins/library_qtplugins_init.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 
 #include <qdir.h>
@@ -107,6 +108,7 @@ void Lib_initializer::init()
 	libGsTLAppli_geostat_init();
 	libGsTLAppli_grid_init();
   libGsTLAppli_charts_init();
+  lib_qtplugins_init();
 	libGsTLAppli_gui_init();
 	libGsTLAppli_extragui_init();
 }
@@ -160,6 +162,7 @@ void Lib_initializer::release()
   Root::instance()->delete_interface(actions_manager);
   Root::instance()->delete_interface(distributions_manager);
   Root::instance()->delete_interface(eda_charts_manager);
+  Root::instance()->delete_interface(qitem_model_manager);
   
 
 }

@@ -65,7 +65,7 @@ bool New_categorical_definition::init( std::string& parameters, GsTL_project* pr
             dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
 
   for(int i=1; i<params.size(); i++ ) {
-    cat_def->add_category(params[i]);
+    cat_def->add_category(i-1, params[i]);
   }
   
   return true;
@@ -80,6 +80,80 @@ bool New_categorical_definition::exec()  {
 /*
         -------------------------------
 */
+
+
+Named_interface* New_alpha_numerical_categorical_definition::create_new_interface( std::string& ) {
+  return new New_alpha_numerical_categorical_definition;
+}
+
+bool New_alpha_numerical_categorical_definition::init( std::string& parameters, GsTL_project* proj,
+                                      Error_messages_handler* errors ) {
+
+  
+  QString param_string =   parameters.c_str();                                      
+  QStringList params = param_string.split( Actions::separator.c_str() );
+
+  if( params.size() < 6 ) {
+    errors->report( "Must have at least 6 parameters, name of the definition, number of categories (>=2) ans at least two categorie names and code" );
+    return false;
+  }
+
+  bool ok;
+  int ncat = params.at(1).toInt( &ok );
+  if( !ok ) {
+    errors->report( "The second parameter must be an integer" );
+    return false;
+  }
+
+  if(params.size() != ncat*2 +2 ) {
+    errors->report( "The number of category entered and the categories listed does not match" );
+    return false;
+  }
+
+  // get the list of numercial code
+  std::vector<int> codes;
+  for(int i=ncat+2; i<params.size(); i++ ) {
+    int code = params.at(i).toInt( &ok );
+    if( !ok ) {
+      QString error_mess = QString("The %1th code could not be converted to an integer").arg(i);
+      errors->report( error_mess.toStdString() );
+      return false;
+    }
+    codes.push_back(code);
+  }
+
+
+
+  std::string def_name = params.at(0).toStdString();
+
+   SmartPtr<Named_interface> ni = 
+    Root::instance()->interface( categoricalDefinition_manager+"/"+def_name );
+  if( ni ) {
+    errors->report("There is already a categorical definition named "+def_name );
+    return false;
+  }
+  ni = Root::instance()->new_interface( "categoricaldefinition://"+def_name,
+                                         categoricalDefinition_manager +"/"+def_name );
+  CategoricalPropertyDefinitionName* cat_def = 
+            dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
+
+  for(int i=0; i<ncat; i++ ) {
+    cat_def->add_category(codes[i],params.at(i+2).toStdString());
+  }
+  
+  return true;
+
+}
+
+bool New_alpha_numerical_categorical_definition::exec()  {
+  return true;
+}
+
+
+/*
+        -------------------------------
+*/
+
 
 Named_interface* Assign_categorical_definition::create_new_interface( std::string& ) {
   return new Assign_categorical_definition;

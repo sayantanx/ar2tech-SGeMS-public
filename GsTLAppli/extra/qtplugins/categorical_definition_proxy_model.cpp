@@ -414,8 +414,8 @@ QVariant Category_proxy_model::data(const QModelIndex &index, int role) const
 
     if( role == Qt::DisplayRole ) {
   //    Categorical_item* item = static_cast<Categorical_item*>(index.internalPointer());
-      if(index.column() == 0) return  QString::fromStdString( cdef_->get_category_name(index.row()) );    //item->category_name();
-      else if(index.column() == 1) return  cdef_->color(index.row()); 
+      if(index.column() == 0) return  QString::fromStdString( cdef_->get_category_name_from_index(index.row()) );    //item->category_name();
+      else if(index.column() == 1) return  cdef_->color_from_index(index.row()); 
     }
 
     if( (flags & Qt::ItemIsUserCheckable) !=0 & role == Qt::CheckStateRole && index.column() == 0) {
@@ -433,11 +433,11 @@ bool Category_proxy_model::setData ( const QModelIndex & index, const QVariant &
       if(value.toString().isEmpty()) return false;
       CategoricalPropertyDefinitionName* cdef_named = dynamic_cast<CategoricalPropertyDefinitionName*>(cdef_);
       if(cdef_named == 0) return false;  // cannot change name for the default cat definition
-      cdef_named->rename(index.row(), value.toString().toStdString());
+      cdef_named->rename_from_index(index.row(), value.toString().toStdString());
       return true;
     }
     if (index.column() == 1) {
-      cdef_->color(index.row(), value.value<QColor>() );
+      cdef_->color_from_index(index.row(), value.value<QColor>() );
       return true;
     }
   }

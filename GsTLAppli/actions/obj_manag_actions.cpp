@@ -1316,62 +1316,6 @@ Set_region_from_categorical_property::create_new_interface( std::string& ) {
 }
 
 
-//================================================
-/* Convert_continuous_to_categorical_property grid_name::prop1::[prop2::]
-* will copy convert the property from continuous to categorical
-*/
-bool Convert_continuous_to_categorical_property::
-init( std::string& parameters, GsTL_project* proj,
-      Error_messages_handler* errors ) {
-
-  std::vector< std::string > params =
-    String_Op::decompose_string( parameters, Actions::separator,
-                      				   Actions::unique );
-
-  if( params.size() <2 ) {
-    errors->report( "some parameters are missing, Needs at least two properties ()" );
-    return false;
-  }
-
-  SmartPtr<Named_interface> grid_ni =
-    Root::instance()->interface( gridModels_manager + "/" + params[0] );
-  Geostat_grid* grid = dynamic_cast<Geostat_grid*>( grid_ni.raw_ptr() );
-  if( !grid ) {
-    std::ostringstream message;
-    message << "No grid called \"" << params[0] << "\" was found";
-    errors->report( message.str() );
-    return false;
-  }
-
-  for(int i=1; i<params.size(); ++i) {
-    GsTLGridCategoricalProperty* cprop = grid->categorical_property(params[i]);
-    if(cprop) continue;
-    GsTLGridProperty* prop = grid->property(params[i]);
-    if(prop == 0) continue;
-    cprop = grid->add_categorical_property(prop->name()+" - categorical");
-    for(int nodeid=0; nodeid < prop->size(); ++nodeid) {
-      if( prop->is_informed(nodeid)) {
-        cprop->set_value(static_cast<int>(prop->get_value(nodeid)),nodeid);
-      }
-    }
-  }
-
-  proj->update( params[0] );
-  return true;
-}
-
-
-bool Convert_continuous_to_categorical_property::exec() {
-  return true;
-}
-
-
-Named_interface*
-Convert_continuous_to_categorical_property::create_new_interface( std::string& ) {
-  return new Convert_continuous_to_categorical_property;
-}
-
-
 
 //================================================
 /* Base class for combining regions

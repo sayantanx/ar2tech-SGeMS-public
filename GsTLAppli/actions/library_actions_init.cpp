@@ -72,6 +72,7 @@
 #include <GsTLAppli/actions/python_script.h>
 #include <GsTLAppli/actions/python_group_script.h>
 #include <GsTLAppli/actions/maskedgrid_actions.h>
+#include <GsTLAppli/actions/categorical_property_actions.h>
 #include <GsTLAppli/actions/categorical_definition_actions.h>
 #include <GsTLAppli/actions/property_group_actions.h>
 #include <GsTLAppli/actions/distribution_action.h>
@@ -189,9 +190,13 @@ bool library_actions_init::bind_action_factories(Manager* dir)
 	dir->factory("CreateMgridFromCgrid", Create_mgrid_from_cgrid::create_new_interface);
 	dir->factory("IndicatorCoding", Create_indicator_properties::create_new_interface);
 
-  
+  dir->factory("ConvertPropertyInDefintionToSequential", Convert_definition_to_sequential_coding::create_new_interface);
+  dir->factory("ConvertCategoricalPropertyToSequential", Convert_categorical_property_to_sequential_coding::create_new_interface);
+
+
   dir->factory("ConvertToCategoricalProperty", Convert_continuous_to_categorical_property::create_new_interface);
 	dir->factory("NewCategoricalDefinition", New_categorical_definition::create_new_interface);
+  dir->factory("NewCategoricalCodeDefinition", New_alpha_numerical_categorical_definition::create_new_interface);
 	dir->factory("AssignCategoricalDefinition", Assign_categorical_definition::create_new_interface);
 
 	dir->factory("NewPropertyGroup", New_property_group::create_new_interface);

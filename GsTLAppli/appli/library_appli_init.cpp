@@ -102,6 +102,8 @@ int library_appli_init::init_lib() {
 	      << qitem_model_manager << "\n";
     return 1;
   }
+  // such that we can create subdirectory
+  dir->factory("directory", create_directory);
  // bind_model_factories(dir);
 
 

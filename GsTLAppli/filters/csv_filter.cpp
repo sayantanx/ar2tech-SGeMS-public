@@ -336,9 +336,14 @@ Geostat_grid* Csv_poinset_infilter::read( std::ifstream& infile ) {
         CategoricalPropertyDefinitionName* cat_def = 
             dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
 
-
+      std::set<QString> cat_names;
       for( int i=0; i < point_set_size; i++ ) {
-        cat_def->add_category(property_values[k][i].toStdString());
+        cat_names.insert(property_values[k][i]);
+        //cat_def->add_category(property_values[k][i].toStdString());
+      }
+      std::set<QString>::iterator  it_cat_names = cat_names.begin();
+      for( int code; it_cat_names != cat_names.end(); ++code, ++it_cat_names) {
+        cat_def->add_category(code, it_cat_names->toStdString() );
       }
       GsTLGridCategoricalProperty* prop = pset->add_categorical_property( property_names[k].toStdString(),cat_def->name() );
 //      prop->set_category_definition(cat_def->name());
@@ -568,10 +573,16 @@ Geostat_grid* Csv_logdata_infilter::read( std::ifstream& infile, std::string nam
         CategoricalPropertyDefinitionName* cat_def =
             dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
 
-
+      std::set<QString> cat_names;
       for( int i=0; i < grid_size; i++ ) {
-        cat_def->add_category(property_values[k][i].toStdString());
+        cat_names.insert(property_values[k][i]);
+        //cat_def->add_category(property_values[k][i].toStdString());
       }
+      std::set<QString>::iterator it_cat_names = cat_names.begin();
+      for(int code = 0; it_cat_names != cat_names.end(); ++it_cat_names, ++code) {
+        cat_def->add_category( code, it_cat_names->toStdString() );
+      }
+
       GsTLGridCategoricalProperty* prop = log_grid->add_categorical_property( property_names[k].toStdString(),cat_def->name() );
 //      prop->set_category_definition(cat_def->name());
       for( int i=0; i < grid_size; i++ ) {
@@ -700,11 +711,19 @@ Geostat_grid* Csv_grid_infilter::read( std::ifstream& infile ) {
       CategoricalPropertyDefinitionName* cat_def = 
             dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
 
+      std::set<QString> cat_names;
       while( std::getline(infile, buffer) ) {
         QString qstr(buffer.c_str());
         QStringList values_qstr = qstr.split(",");
-        cat_def->add_category(values_qstr[j].toStdString());
+        cat_names.insert(values_qstr[j]);
+        //cat_def->add_category(values_qstr[j].toStdString());
       }
+
+      std::set<QString>::iterator it_cat_names = cat_names.begin();
+      for(int code=0; it_cat_names != cat_names.end(); ++it_cat_names ) {
+        cat_def->add_category(code,it_cat_names->toStdString() );
+      }
+
       prop->set_category_definition(cat_def->name());
       infile.clear();
       infile.seekg( start_data );
@@ -947,11 +966,20 @@ Geostat_grid* Csv_mgrid_infilter::readRegularGridFormat(std::ifstream& infile,Re
       CategoricalPropertyDefinitionName* cat_def = 
             dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
 
+
+      std::set<QString> cat_names;
       while( std::getline(infile, buffer) ) {
         QString qstr(buffer.c_str());
         QStringList values_qstr = qstr.split(",");
-        cat_def->add_category(values_qstr[j].toStdString());
+        cat_names.insert(values_qstr[j]);
+        //cat_def->add_category(values_qstr[j].toStdString());
       }
+
+      std::set<QString>::iterator it_cat_names = cat_names.begin();
+      for(int code=0; it_cat_names != cat_names.end(); ++it_cat_names ) {
+        cat_def->add_category(code,it_cat_names->toStdString() );
+      }
+
       prop->set_category_definition(cat_def->name());
       infile.clear();
       infile.seekg( start_data );
@@ -1077,11 +1105,19 @@ Geostat_grid* Csv_mgrid_infilter::readPointsetFormat(std::ifstream& infile, Redu
       CategoricalPropertyDefinitionName* cat_def = 
             dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
 */
+      std::set<QString> cat_names;
       while( std::getline(infile, buffer) ) {
         QString qstr(buffer.c_str());
         QStringList values_qstr = qstr.split(",");
-        cat_def->add_category(values_qstr[j].toStdString());
+        cat_names.insert(values_qstr[j]);
+        //cat_def->add_category(values_qstr[j].toStdString());
       }
+
+      std::set<QString>::iterator it_cat_names = cat_names.begin();
+      for(int code=0; it_cat_names != cat_names.end(); ++it_cat_names ) {
+        cat_def->add_category(code,it_cat_names->toStdString() );
+      }
+
       prop->set_category_definition(cat_def->name());
       infile.clear();
       infile.seekg( start_data );

@@ -53,6 +53,9 @@
     <ClCompile Include="property_transformer_actions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="categorical_property_actions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="action.h">
@@ -104,6 +107,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="property_transformer_actions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="categorical_property_actions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
