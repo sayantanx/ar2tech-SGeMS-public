@@ -565,7 +565,8 @@ bool Sgems_folder_input_filter::read_category_definition(const QDomElement& root
 	for(; !elemDef.isNull(); elemDef = elemDef.nextSiblingElement("CategoricalDefinition")) {
 		QString name = elemDef.attribute("name");
     QStringList cat_names;
-    QList<QColor> colors;
+    std::map<int,QColor> colors;
+    //QList<QColor> colors;
     QList<int> numerical_codes;
     //legacy
     if(elemDef.hasAttribute("categoryNames")) {
@@ -574,16 +575,20 @@ bool Sgems_folder_input_filter::read_category_definition(const QDomElement& root
     else  {
 	    QDomElement elem = elemDef.firstChildElement("Category"); 
       
-	    for(; !elem.isNull(); elem = elem.nextSiblingElement("Category") ) {
+	    for(int code_index = 0; !elem.isNull(); elem = elem.nextSiblingElement("Category") , ++code_index) {
         cat_names.append( elem.attribute("name"));
         if( elem.hasAttribute("numerical_code") ) {
           numerical_codes.append( elem.attribute("numerical_code").toInt() );
+        }
+        else {
+          numerical_codes.append( code_index );
         }
         int r = elem.attribute("red").toFloat()*255;
         int g = elem.attribute("green").toFloat()*255;
         int b = elem.attribute("blue").toFloat()*255;
         int a = elem.attribute("alpha").toFloat()*255;
-        colors.append( QColor( r,g,b,a ) );
+        colors[numerical_codes.back()] = QColor( r,g,b,a );
+        //colors.append( QColor( r,g,b,a ) );
       }
     }
 
@@ -613,9 +618,16 @@ bool Sgems_folder_input_filter::read_category_definition(const QDomElement& root
     ni = 	Root::instance()->interface( categoricalDefinition_manager+"/"+name.toStdString()  );
 	  cat_definition = dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
     if(cat_definition  ) {
+      std::map<int,QColor>::iterator it_color = colors.begin();
+      for( ; it_color != colors.end(); ++it_color){
+        cat_definition->color(it_color->first, it_color->second);
+      }
+      /*
       for( int i=0; i< colors.size(); ++i ){
+        colors.at(
         cat_definition->color(i, colors.at(i));
       }
+      */
       
     }
 	}
@@ -1213,14 +1225,15 @@ QDomElement Sgems_folder_output_filter::write_category_definition(QDomDocument& 
     std::vector<std::string> names = cat_definition_name->category_names();
 	  std::vector<std::string>::iterator  it_name = names .begin();
 	  for( ; it_name != names.end(); it_name++ ) {
+      int code = cat_definition->category_id(*it_name);
+      if(code < 0) continue;
       QDomElement elemCategory = dom.createElement("Category");
       elemCategory.setAttribute("name",it_name->c_str());
-      elemCategory.setAttribute("numerical_code",cat_definition->category_id(*it_name));
-      int i = std::distance(names.begin() , it_name);
-      elemCategory.setAttribute("red",QString("%1").arg(cat_definition->red(i)));
-      elemCategory.setAttribute("green",QString("%1").arg(cat_definition->green(i)));
-      elemCategory.setAttribute("blue",QString("%1").arg(cat_definition->blue(i)));
-      elemCategory.setAttribute("alpha",QString("%1").arg(cat_definition->alpha(i)));
+      elemCategory.setAttribute("numerical_code",code);
+      elemCategory.setAttribute("red",QString("%1").arg(cat_definition->red(code)));
+      elemCategory.setAttribute("green",QString("%1").arg(cat_definition->green(code)));
+      elemCategory.setAttribute("blue",QString("%1").arg(cat_definition->blue(code)));
+      elemCategory.setAttribute("alpha",QString("%1").arg(cat_definition->alpha(code)));
       elemCat.appendChild(elemCategory);
 	  }
 	  elemCats.appendChild(elemCat);

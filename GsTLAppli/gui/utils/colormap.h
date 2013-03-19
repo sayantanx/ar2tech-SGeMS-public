@@ -46,10 +46,16 @@
 #include <GsTLAppli/gui/common.h>
 #include <GsTLAppli/gui/utils/colorscale.h>
 
+#include <vtkLookupTable.h>
+#include <vtkColorTransferFunction.h>
+#include <vtkScalarsToColors.h>
+#include <vtkDiscretizableColorTransferFunction.h>
+#include <vtkPiecewiseFunction.h>
+/*
 #include <vtkLookupTableWithEnabling.h>
 #include <vtkColorTransferFunction.h>
 #include <vtkPiecewiseFunction.h>
-
+*/
 
 #include <string>
 #include <vector>
@@ -63,35 +69,35 @@ public:
 
 	virtual ~Colormap();
 
-
+  /*
 	virtual Colormap& operator = ( const Colormap& rhs );
 
 	bool operator == ( const Colormap& rhs );
+  */
+	virtual vtkScalarsToColors* color_table() const =0; //{ return scalars_to_colors_table_; }
+//	vtkColorTransferFunction* color_transfer_function() const { return color_transfer_function_; }
+//	vtkPiecewiseFunction* opacity_transfer_function() const { return opacity_transfer_function_; }
 
-	vtkLookupTable* color_table() const { return color_table_; }
-	vtkColorTransferFunction* color_transfer_function() const { return color_transfer_function_; }
-	vtkPiecewiseFunction* opacity_transfer_function() const { return opacity_transfer_function_; }
-
-	void set_default_nan_color();
-	void set_nan_color(float r, float g, float b, float alpha=0.9);
+	virtual void set_default_nan_color() =0;
+	virtual void set_nan_color(float r, float g, float b, float alpha=0.9) =0;
 
   virtual int color_count() const = 0;
 
-	RGB_color color( float value ) const ;
-	void color( float value, float& r, float& g, float& b) const;
-	void color( float value, double& r, double& g, double& b) const;
+	virtual RGB_color color( float value ) const =0 ;
+	virtual void color( float value, float& r, float& g, float& b) const =0 ;
+	virtual void color( float value, double& r, double& g, double& b) const =0;
 
-	void set_bounds( float min, float max );
-	void get_bounds( float &min, float &max );
-	void upper_bound( float max );
-	void lower_bound( float min );
-	float upper_bound() const;
-	float lower_bound() const;
+	virtual void set_bounds( float min, float max ) =0;
+	virtual void get_bounds( float &min, float &max ) =0;
+	virtual void upper_bound( float max ) =0;
+	virtual void lower_bound( float min ) =0;
+	virtual float upper_bound() const =0;
+	virtual float lower_bound() const =0;
 
-	void refresh();
+	virtual void refresh() =0;
 
 protected :
-	virtual void init_color_table()=0;
+//	virtual void init_color_table()=0;
 //	void init_transfer_function();
 
 protected :
@@ -102,11 +108,13 @@ protected :
 	// for some reason it does not work.  Both the enabled array and
 	// the Nan value are not working
 	//vtkLookupTableWithEnabling* color_table_;
-	vtkLookupTable* color_table_;
+//  vtkScalarsToColors* scalars_to_colors_table_;
 
+	//vtkLookupTable* color_table_;
+  
 	//For volume rendering
-	vtkColorTransferFunction* color_transfer_function_;
-	vtkPiecewiseFunction* opacity_transfer_function_;
+//	vtkColorTransferFunction* color_transfer_function_;
+//	vtkPiecewiseFunction* opacity_transfer_function_;
 
 };
 
@@ -120,11 +128,33 @@ public:
 
 public:
 	Colormap_continuous();
-	virtual ~Colormap_continuous(){}
+	virtual ~Colormap_continuous();
 	Colormap_continuous( Color_scale* colors, float min, float max );
 	Colormap_continuous( Color_scale* colors );
 
+	Colormap_continuous& operator = ( const Colormap_continuous& rhs );
+
+	bool operator == ( const Colormap_continuous& rhs );
+
   virtual int color_count()const {return colors_->colors_count();};
+
+	virtual vtkScalarsToColors* color_table() const; 
+
+	virtual void set_default_nan_color();
+	virtual void set_nan_color(float r, float g, float b, float alpha=0.9);
+
+	virtual RGB_color color( float value ) const;
+	virtual void color( float value, float& r, float& g, float& b) const;
+	virtual void color( float value, double& r, double& g, double& b) const;
+
+	virtual void set_bounds( float min, float max );
+	virtual void get_bounds( float &min, float &max );
+	virtual void upper_bound( float max );
+	virtual void lower_bound( float min );
+	virtual float upper_bound() const;
+	virtual float lower_bound() const;
+
+	virtual void refresh();
 
 	void color_scale( Color_scale* colors );
 	Color_scale* color_scale() const { return colors_.raw_ptr(); }
@@ -139,6 +169,7 @@ protected :
 	virtual void init_color_table();
 
 protected :
+  vtkLookupTable* color_table_;
 	SmartPtr<Color_scale> colors_;
   float alpha_;
 };
@@ -152,7 +183,10 @@ public:
 public:
 	Colormap_categorical();
 	Colormap_categorical(const CategoricalPropertyDefinition* cat_def, int n_cat);
-	virtual ~Colormap_categorical(){}
+	virtual ~Colormap_categorical();
+
+	Colormap_categorical& operator = ( const Colormap_categorical& rhs );
+  bool operator == ( const Colormap_categorical& rhs );
 
 	void set_categorical_definition(const CategoricalPropertyDefinition* cat_def, int n_cat);
 	const CategoricalPropertyDefinition* get_categorical_definition() const;
@@ -161,12 +195,32 @@ public:
 
   virtual int color_count() const {return n_cat_;};
 
+	virtual vtkScalarsToColors* color_table() const; 
+
+	virtual void set_default_nan_color();
+	virtual void set_nan_color(float r, float g, float b, float alpha=0.9);
+
+	virtual RGB_color color( float value ) const;
+	virtual void color( float value, float& r, float& g, float& b) const;
+	virtual void color( float value, double& r, double& g, double& b) const;
+
+	virtual void set_bounds( float min, float max );
+	virtual void get_bounds( float &min, float &max );
+	virtual void upper_bound( float max );
+	virtual void lower_bound( float min );
+	virtual float upper_bound() const;
+	virtual float lower_bound() const;
+
+	virtual void refresh();
+
 //	bool initialize(Color_scale* colors, float min, float max);
 
 protected :
 	virtual void init_color_table();
 
 protected :
+  vtkDiscretizableColorTransferFunction* discrete_color_table_;
+  vtkPiecewiseFunction* opacity_piecewise_fnc_;
 	const CategoricalPropertyDefinition* cat_def_;
 	unsigned int n_cat_;
 

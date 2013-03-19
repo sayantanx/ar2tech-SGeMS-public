@@ -490,6 +490,12 @@
     <ClCompile Include=".moc\moc_new_region_from_grid_filter_dialog.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include=".moc\moc_categorical_property_dialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\categorical_property_dialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="utils\categorical_definition_dialog.h">
@@ -778,6 +784,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <CustomBuild Include="utils\new_region_from_grid_filter_dialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="utils\categorical_property_dialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

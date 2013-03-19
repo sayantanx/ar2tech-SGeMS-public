@@ -126,14 +126,14 @@ bool Postsim_categorical::initialize( const Parameters_handler* parameters,
 	ncat_;
 	if(defname) ncat_ = defname->number_of_category();
 	else {
-		ncat_ = -1;
+		std::set<int> cat_code;
     for( it= props_.begin() ; it!= props_.end(); it++) {
 		  GsTLGridProperty::const_iterator it_gval = (*it)->begin(true);
 		  for( ; it_gval != (*it)->end(); ++it_gval) {
-			  if(*it_gval > ncat_ ) ncat_ = *it_gval;
+        cat_code.insert( *it_gval );
 		  }
     }
-    ncat_++;
+    ncat_ = cat_code.size();
 	}
 
   GsTLGridPropertyGroup* group = geostat_utils::add_group_to_grid( grid_, output_name_prefix,"CategoricalProbability");
@@ -142,7 +142,7 @@ bool Postsim_categorical::initialize( const Parameters_handler* parameters,
   cgroup->set_categorical_definition(defname);
 
   for(int i =0; i<ncat_; i++) {
-    std::string prop_name = output_name_prefix+" "+cat_def_->get_category_name(i);
+    std::string prop_name = output_name_prefix+" "+cat_def_->get_category_name_from_index(i);
     GsTLGridProperty* prop = geostat_utils::add_property_to_grid( grid_, prop_name );
     prop->set_parameters(parameters_);
     etype_props_.push_back( prop );
@@ -174,9 +174,10 @@ int Postsim_categorical::execute( GsTL_project* ) {
 
     // For eac category
     for(int c = 0; c< ncat_; c++) {
+      int code = cat_def_->category_id_from_index(c);
       float sum = 0.;
       for(int k = 0; k < props_.size(); ++k ) {
-        sum += props_[k]->get_indicator_value( node_id, c );
+        sum += props_[k]->get_indicator_value( node_id, code );
       }
       etype_props_[c]->set_value(sum/nprop,node_id);
     }

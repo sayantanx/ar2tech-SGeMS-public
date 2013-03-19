@@ -540,12 +540,18 @@ Ordered_property_selector_dialog( QWidget* parent, const char* name )
     setObjectName(name);
 
   setupUi(this);
-  /*
-  QIcon icon_left2right(QString::fromUtf8(":/icons/icons/up.png"));
+
+ //  icon.addFile(QString::fromUtf8(":/icons/appli/Pixmaps/folder.png"), QSize(), QIcon::Normal, QIcon::Off);
+
+
+  QIcon icon_left2right(QString::fromUtf8(":/icons/appli/Pixmaps/right.png"));
   left2right_button_->setIcon(icon_left2right);
-  QIcon icon_right2left(QString::fromUtf8(":/icons/Pixmaps/up.png"));
+  QIcon icon_right2left(QString::fromUtf8(":/icons/appli/Pixmaps/left.png"));
   right2left_button_->setIcon(icon_right2left);
-  */
+  QIcon icon_up(QString::fromUtf8(":/icons/appli/Pixmaps/up.png"));
+  up_button_->setIcon(icon_up);
+  QIcon icon_down(QString::fromUtf8(":/icons/appli/Pixmaps/down.png"));
+  down_button_->setIcon(icon_down);
   //selector_box_->setColumnLayout( 1, Qt::Vertical );
   QHBoxLayout * hbox = new QHBoxLayout;
   selector_box_->setLayout(hbox);
@@ -825,19 +831,23 @@ void OrderedPropertySelector::forwardSelection(int i){
 GsTLGroupBox::GsTLGroupBox(QWidget* parent, const char* name,
 			    const QString& keyword,
 			    bool displayed, bool activated )
-  : QGroupBox("GsTLGroupBox", parent ),
+  : QGroupBox("", parent ),
     keyword_( keyword ),
     displayed_( displayed ), activated_( activated ) {
   
   if (name)
     setObjectName(name);
 
+//  this->setWindowTitle("");
+
 
 }
 
 GsTLGroupBox::GsTLGroupBox(const QString &title, QWidget *parent)
 : QGroupBox(title,parent),    keyword_( "Abracadabra" ),
-    displayed_( true ), activated_( true ){}
+    displayed_( true ), activated_( true ){
+//  this->setWindowTitle("");
+}
 
 /*
 GsTLGroupBox::GsTLGroupBox( int strips, Qt::Orientation orientation,

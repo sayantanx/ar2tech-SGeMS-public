@@ -1871,21 +1871,23 @@ bool Create_indicator_properties::exec(){
 		int ncat;
 		if(defname) ncat = defname->number_of_category();
 		else {
-			ncat = -1;
+			std::set<int> codes;
 			GsTLGridProperty::const_iterator it = cprop->begin(true);
 			for( ; it != cprop->end(); ++it) {
-				if(*it > ncat ) ncat = *it;
+        codes.insert(*it);
+				//if(*it > ncat ) ncat = *it;
 			}
-      ncat++;
+      ncat = codes.size();
 		}
 		
 		for(int c=0 ; c < ncat ; c++ ) {
-			std::string name = data_prop_->name()+" indicator "+def->get_category_name(c);
+      int code = def->category_id_from_index(c);
+			std::string name = data_prop_->name()+" indicator "+def->get_category_name(code);
 			GsTLGridProperty* prop =  grid_->add_property(name);
 			if(!prop) continue;
 			for(int i = 0; i < prop->size(); ++i) {
 				if( data_prop_->is_informed(i) )
-					prop->set_value(static_cast<float>(data_prop_->get_value(i) == c), i);
+					prop->set_value(static_cast<float>(data_prop_->get_value(i) == code), i);
 			}
 			group->add_property(prop);
 		}

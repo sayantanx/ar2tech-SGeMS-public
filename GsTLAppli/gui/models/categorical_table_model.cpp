@@ -43,14 +43,16 @@ QVariant Categorical_table_model::headerData ( int section, Qt::Orientation orie
 
   if(role != Qt::DisplayRole) return QVariant();
   if(orientation == Qt::Horizontal) {  // Column Number
-    if(section == 0) return "Name of category";    
-    else if(section == 1) return "Color";    
-    else if(section == 2) return "error";    
+    if(section == 0) return "Code";    
+    else if (section == 1) return "Name of category";    
+    else if(section == 2) return "Color";    
     else return QVariant();
-  }
+  }/*
   else {  // Vertical
     return QString("Code %1").arg(section);
   }
+  */
+  return QVariant();
 }
 
 QVariant Categorical_table_model::data ( const QModelIndex & index, int role ) const{
@@ -59,8 +61,17 @@ QVariant Categorical_table_model::data ( const QModelIndex & index, int role ) c
 
   if(role == Qt::DisplayRole) {
     int col = index.column();
-    if(col ==0) return items_.at(index.row()).name;
-    else if(col == 1) return items_.at(index.row()).color;
+    if(col ==0) return QVariant(items_.at(index.row()).code);
+    else if(col == 1) return items_.at(index.row()).name;
+    else if(col == 2) return items_.at(index.row()).color;
+    else return QVariant();
+  }
+
+  else if(role == Qt::EditRole) {
+    int col = index.column();
+    if(col ==0) return QVariant(items_.at(index.row()).code);
+    else if(col == 1) return items_.at(index.row()).name;
+    else if(col == 2) return items_.at(index.row()).color;
     else return QVariant();
   }
 
@@ -74,17 +85,17 @@ bool Categorical_table_model::setData( const QModelIndex & index, const QVariant
 
   int col = index.column();
   if( col == 0 ) {
-    items_[index.row()].name = value.toString();
-//    cat.name = value.toString();
- //   items_.at(index.row()) = cat;
+    items_[index.row()].code = value.toInt();
     return true;
   }
-  else if ( col == 1 ) {
+  else if( col == 1 ) {
+    items_[index.row()].name = value.toString();
+    return true;
+  }
+  else if ( col == 2 ) {
     QColor color = value.value<QColor>();
     if(!color.isValid()) return false;
     items_[index.row()].color = color;
-//    cat_code& cat = items_.at(index.row());
-//    cat.color = color;
     return true;
   }
   else return false;
@@ -109,6 +120,7 @@ void Categorical_table_model::set_number_of_categories(int ncat){
     int n = items_.size();
     for (int i = n ; i< ncat; ++i ) {
       cat_code cat;
+      cat.code = i;
       cat.name = QString("Category %1").arg(i);
       cat.color = CategoricalPropertyDefinitionDefault::default_color(i);
       items_.append(cat);

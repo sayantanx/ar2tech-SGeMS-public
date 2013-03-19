@@ -172,19 +172,7 @@ public:
 
   virtual int category_id_from_index(int index ) const;
   virtual int index_from_category_id(int cat_id ) const;
-/*
-  virtual QColor color(unsigned int cat_id) const { return cat_coding_[cat_id]->color();}
-  virtual float red(unsigned int cat_id) const {return cat_coding_[cat_id]->color().redF();}
-  virtual float green(unsigned int cat_id) const {return cat_coding_[cat_id]->color().greenF();}
-  virtual float blue(unsigned int cat_id) const {return cat_coding_[cat_id]->color().blueF();}
-  virtual float alpha(unsigned int cat_id) const {return cat_coding_[cat_id]->color().alphaF();}
-  virtual void color(unsigned int cat_id, QColor color){cat_coding_[cat_id]->color(color);}
-  virtual void color(unsigned int cat_id, float r, float g, float b, float alpha=1.0){
-    QColor color;
-    color.setRgbF(r,g,b,alpha);
-    cat_coding_[cat_id]->color(color);
-  }
-*/
+
   virtual QColor color(unsigned int cat_id) const;
   virtual float red(unsigned int cat_id) const;
   virtual float green(unsigned int cat_id) const;
@@ -202,7 +190,7 @@ public:
 
 
   // GsTL-Object functions
-  virtual GsTL_object_item *child(int row){return cat_coding_[row];}
+  virtual GsTL_object_item *child(int row){return cat_coding_[this->category_id_from_index(row)];}
   virtual const GsTL_object_item *child(int row) const;
   virtual int childCount() const{return cat_coding_.size();}
   //virtual Qt::ItemFlags flags(int column=0){return  Qt::ItemIsEnabled | Qt::ItemIsSelectable |  Qt::ItemIsDragEnabled | Qt::ItemIsEditable;}
@@ -329,6 +317,9 @@ public:
   int get_number_of_category();
   int get_number_of_category() const;
 
+  std::vector<int> get_category_id();
+  std::vector<int> get_category_id() const;
+
   /** Set the coding definition for the categories
   */
   bool set_category_definition( std::string cat_definition_name);
@@ -410,6 +401,32 @@ int GsTLGridCategoricalProperty::get_number_of_category() const {
 		return this->compute_number_of_category();
 	else
 		return number_of_categories_;
+}
+
+inline
+std::vector<int> GsTLGridCategoricalProperty::get_category_id(){
+	GsTLGridProperty::const_iterator it = this->begin();
+
+  std::set<int> category_codes;
+	for( ; it!=this->end(); ++it) {
+		category_codes.insert(*it );
+	}
+
+  std::vector<int> cat_vector_codes(category_codes.begin(), category_codes.end());
+  return cat_vector_codes;
+}
+
+inline
+std::vector<int> GsTLGridCategoricalProperty::get_category_id() const{
+	GsTLGridProperty::const_iterator it = this->begin();
+
+  std::set<int> category_codes;
+	for( ; it!=this->end(); ++it) {
+		category_codes.insert(*it );
+	}
+
+  std::vector<int> cat_vector_codes(category_codes.begin(), category_codes.end());
+  return cat_vector_codes;
 }
 
 

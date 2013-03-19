@@ -91,8 +91,16 @@ Categorical_property_stats_view(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_
 	GsTLGridProperty::const_iterator it = cprop_->begin(true);
 	QVBoxLayout* layout = new QVBoxLayout(this);
 
-	int ncat = cprop_->get_number_of_category();
-	std::vector<int> count(ncat,0);
+  std::vector<int> codes = cprop_->get_category_id();
+  int ncat = codes.size();
+	//int ncat = cprop_->get_number_of_category();
+
+  std::map<int, int> count;
+  for(int i=0; i< ncat; ++i) {
+    count[codes[i]] = 0;
+  }
+
+	//std::vector<int> count(ncat,0);
 	unsigned int n = 0;
 	for( ; it != prop_->end(); ++it, ++n) {
 		int id = static_cast<int>(*it);
@@ -104,14 +112,11 @@ Categorical_property_stats_view(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_
 	labels<<"%"<<"Number";
 	table->setHorizontalHeaderLabels(labels);
 	QStringList cat_names;
-//		table->setItem(0,0,new QTableWidgetItem("Name",this));
-//		table->setItem(0,1,new QTableWidgetItem("%",this));
-//		table->setItem(0,2,new QTableWidgetItem("n",this));
+ 
 	for(int c=0; c<ncat; c++) {
-		cat_names<<cprop_->get_category_definition()->get_category_name(c).c_str();
-//		table->setItem(c,0,new QTableWidgetItem(cprop_->get_category_definition()->get_category_name(c).c_str()));
-		table->setItem(c,0,new QTableWidgetItem(QString("%1").arg(static_cast<float>(count[c])/n)));
-		table->setItem(c,1,new QTableWidgetItem(QString("%1").arg(count[c])));
+		cat_names<<cprop_->get_category_definition()->get_category_name(codes[c]).c_str();
+		table->setItem(c,0,new QTableWidgetItem(QString("%1").arg(static_cast<float>(count[codes[c]])/n)));
+		table->setItem(c,1,new QTableWidgetItem(QString("%1").arg(count[codes[c]])));
 	}
 	table->setVerticalHeaderLabels(cat_names);
   table->horizontalHeader()->setResizeMode(QHeaderView::Stretch);

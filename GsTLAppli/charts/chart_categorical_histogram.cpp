@@ -426,6 +426,7 @@ void Chart_categorical_histogram::compute_stats(histo_data& data){
   
  
   GsTLGridCategoricalProperty* prop = data.prop;
+  CategoricalPropertyDefinition* cdef = prop->get_category_definition();
   
   bool need_memory_swap = !prop->is_in_memory();
   if(need_memory_swap) {
@@ -436,7 +437,9 @@ void Chart_categorical_histogram::compute_stats(histo_data& data){
   // always build the array manually since vtk 
   // output nan if nay data is a nan
 
-  std::vector<int> count(ncat_,0);
+  //std::vector<int> count(ncat_,0);
+  std::map<int,int> count;
+
   {
     Temporary_propRegion_Selector temp_region(data.region, prop);
     GsTLGridCategoricalProperty::const_iterator it = data.prop->begin();
@@ -452,7 +455,8 @@ void Chart_categorical_histogram::compute_stats(histo_data& data){
   p->SetNumberOfValues(ncat_);
   id->SetNumberOfValues(ncat_);
   for(int i=0;i<ncat_;++i) {
-    p->SetValue(i,static_cast<float>(count[i])/ndata);
+    int cat_id = cdef->category_id_from_index(i);
+    p->SetValue(i,static_cast<float>(count[cat_id])/ndata);
     id->SetValue(i,i);
   }
 
@@ -469,6 +473,7 @@ void Chart_categorical_histogram::compute_stats_with_weights(histo_data& data){
   
   GsTLGridCategoricalProperty* prop = data.prop;
   GsTLGridWeightProperty* weight = data.weight;
+  CategoricalPropertyDefinition* cdef = prop->get_category_definition();
   
   bool need_memory_swap = !prop->is_in_memory();
   if(need_memory_swap) {
@@ -479,7 +484,8 @@ void Chart_categorical_histogram::compute_stats_with_weights(histo_data& data){
   // always build the array manually since vtk 
   // output nan if nay data is a nan
 
-  std::vector<int> count(ncat_,0);
+  //std::vector<int> count(ncat_,0);
+  std::map<int,int> count;
 
   for(int i=0 ; i<prop->size(); ++i) {
     if( prop->is_informed(i) && weight->is_informed(i)) {
@@ -492,7 +498,8 @@ void Chart_categorical_histogram::compute_stats_with_weights(histo_data& data){
   x->SetName(prop->name().c_str());
   x->Allocate(ncat_);
   for(int i=0;i<ncat_;++i) {
-    x->SetValue(i,static_cast<float>(count[i]/ndata));
+    int cat_id = cdef->category_id_from_index(i);
+    x->SetValue(i,static_cast<float>(count[cat_id]/ndata));
   }
 
   histo_table_->AddColumn(x);
@@ -589,7 +596,7 @@ void Chart_categorical_histogram::initialize_proportion_table(){
 
   for(int c= 0; c< ncat_; ++c) {
     vtkSmartPointer<vtkFloatArray> p = vtkSmartPointer<vtkFloatArray>::New();
-    p->SetName(current_cdef_->get_category_name(c).c_str());
+    p->SetName(current_cdef_->get_category_name_from_index(c).c_str());
     p->SetNumberOfValues(data_stats_.size());
 
     std::map<int, histo_data>::iterator it  = data_stats_.begin();
@@ -662,13 +669,13 @@ void Chart_categorical_histogram::initialize_stacked_chart(){
  //stacked_bar_->SetInput(proportion_table_, "Properties", current_cdef_->get_category_name(0));
  stacked_bar_->SetInputData(proportion_table_, 0,1);
  for(int i=1; i<ncat_; ++i) {
-  stacked_bar_->SetInputArray(i+1,current_cdef_->get_category_name(i));
+  stacked_bar_->SetInputArray(i+1,current_cdef_->get_category_name_from_index(i));
  }
 
  vtkSmartPointer<vtkColorSeries> color_series = vtkSmartPointer<vtkColorSeries>::New();
  color_series->ClearColors();
  for(int i=0; i<ncat_; ++i) {
-   QColor color = current_cdef_->color(i);
+   QColor color = current_cdef_->color_from_index(i);
    vtkColor3ub vtk_color( color.red(), color.green(), color.blue() );
    color_series->AddColor(vtk_color);
  } 
@@ -739,7 +746,7 @@ void Chart_categorical_histogram::set_x_axis_label(){
         vtkSmartPointer<vtkStringArray>::New();
  for(int i=0; i<ncat_; ++i) {
    prop_id->InsertNextValue(i);
-   prop_names->InsertNextValue(current_cdef_->get_category_name(i));
+   prop_names->InsertNextValue(current_cdef_->get_category_name_from_index(i));
  }
 
  axis->SetCustomTickPositions(prop_id,prop_names);

@@ -349,6 +349,11 @@ Qt::ItemFlags Category_proxy_model::flags(const QModelIndex &index) const
 
 }
 
+void Category_proxy_model::set_read_only(){
+  flags_name_ = Qt::ItemIsEnabled;
+  flags_color_ = Qt::ItemIsEnabled;
+}
+
 
 QModelIndex Category_proxy_model::index(int row, int column, const QModelIndex &parent)
             const
@@ -449,28 +454,7 @@ bool Category_proxy_model::setData ( const QModelIndex & index, const QVariant &
       return true;
    }
   return false;
- // bool ok = this->sourceModel()->setData(index, value, role );
-  /*
-  bool ok = false;
-  if( role == Qt::EditRole ) {
-      Categorical_item* item = static_cast<Categorical_item*>(index.internalPointer());
-      if(index.column() == 1) {
-        QColor color = value.value<QColor>();
-        if(color.isValid()) {
-          item->color(color);
-          // emit this->data_color_changed(item);  Need to notify the source model, but need to be sure that it is not a self-feeding loop
-          ok = true;
-        }
-      }
-  }
-  else if( role == Qt::CheckStateRole && index.column() == 0) {
-      Categorical_item* item = static_cast<Categorical_item*>(index.internalPointer());
-      item->set_visibility( value.toBool() );
-//      emit this->category_selection_changed(item);
-      ok = true;
-   }
-   */
-//  return ok;
+
 }
 
 void Category_proxy_model::use_check_state(bool on){
@@ -487,15 +471,7 @@ QModelIndex	Category_proxy_model::mapFromSource ( const QModelIndex & sourceInde
   Categorical_color_coding* cat_coding = dynamic_cast<Categorical_color_coding*>(object_item);
   if(cat_coding == 0) return QModelIndex();
   return this->createIndex(sourceIndex.row(),sourceIndex.column(),static_cast<void*>(0));
-  /*
-  std::set<Categorical_item*>::const_iterator it = items_.begin();
-  int row = 0;
-  for(; it != items_.end(); ++it, ++row ) {
-    if((*it)->category_name() == cat_coding->name()) break;
-  }
-  if(it == items_.end()) return  QModelIndex();
-  return this->createIndex(row,sourceIndex.column(),static_cast<void*>(*it));
-  */
+
 
 }
 

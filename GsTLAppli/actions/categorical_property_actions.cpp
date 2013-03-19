@@ -49,7 +49,7 @@ init( std::string& parameters, GsTL_project* proj,
                       				   Actions::unique );
 
   if( params.size() <2 ) {
-    errors->report( "some parameters are missing, Needs at least two paramters (grid + property)" );
+    errors->report( "some parameters are missing, Needs at least two parameters (grid + property)" );
     return false;
   }
 
@@ -69,7 +69,12 @@ init( std::string& parameters, GsTL_project* proj,
     GsTLGridProperty* prop = grid->property(params[i]);
     if(prop == 0) continue;
     std::set<int> cat_codes;
-    cprop = grid->add_categorical_property(prop->name()+" - categorical");
+    std::string prop_name = prop->name()+" - categorical";
+    cprop = grid->add_categorical_property(prop_name);
+    while(!cprop) {
+      prop_name.append("_0");
+      cprop = grid->add_categorical_property(prop_name);
+    }
     for(int nodeid=0; nodeid < prop->size(); ++nodeid) {
       if( prop->is_informed(nodeid)) {
         int code = static_cast<int>(prop->get_value(nodeid));
@@ -89,10 +94,13 @@ init( std::string& parameters, GsTL_project* proj,
     }
 
     if( !is_sequential_coding  ) {  // Need to build a categorical definition
+      CategoricalPropertyDefinitionName* cat_def = 0;
       std::string catdef_name = grid->name()+"-"+prop->name();
-      SmartPtr<Named_interface> ni = Root::instance()->new_interface( "categoricaldefinition://"+catdef_name,categoricalDefinition_manager +"/"+catdef_name );
-        CategoricalPropertyDefinitionName* cat_def = 
-            dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
+      while(!cat_def) {
+        SmartPtr<Named_interface> ni = Root::instance()->new_interface( "categoricaldefinition://"+catdef_name,categoricalDefinition_manager +"/"+catdef_name );
+        cat_def = dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
+          if(!cat_def) catdef_name.append("_0");
+      }
 
       std::set<int>::iterator it_cat_codes = cat_codes.begin();
       for( int code; it_cat_codes != cat_codes.end(); ++code, ++it_cat_codes) {
@@ -188,7 +196,14 @@ init( std::string& parameters, GsTL_project* proj,
     map_codes[current_codes[i]] = i;
   }
 
+  std::string prop_name = cprop->name()+" sequential";
   GsTLGridCategoricalProperty* seq_cprop = grid->add_categorical_property(cprop->name()+" sequential",cdef->name());
+  while(!seq_cprop) {
+    prop_name.append("_0");
+    seq_cprop = grid->add_categorical_property(prop_name);
+  }
+
+  
   for(int i=0; i < cprop->size(); ++i) {
     if( !cprop->is_informed(i) ) continue;
 

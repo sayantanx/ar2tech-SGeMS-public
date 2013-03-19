@@ -104,6 +104,7 @@
 #include <GsTLAppli/actions/distribution_action.h>
 #include <GsTLAppli/filters/filter.h>
 #include <GsTLAppli/gui/utils/new_region_from_grid_filter_dialog.h>
+#include <GsTLAppli/gui/utils/categorical_property_dialog.h>
 
 #include <GsTLAppli/gui/appli/about_sgems.h>
 
@@ -311,7 +312,11 @@ void QSP_application::init_menu_bar() {
     property_menu->addSeparator();
     property_menu->addAction( "Upscale properties (block average)", this, SLOT( upscale_properties() ) );
     property_menu->addSeparator();
-    QMenu* definitions = property_menu->addMenu(tr("&Categorical Definition"));
+    QMenu* cat_prop_menu = property_menu->addMenu(tr("&Categorical Property"));
+    cat_prop_menu->addAction( "Convert to Categorical Property", this, SLOT( convert_continuous_to_categorical_property() ) );
+    cat_prop_menu->addAction( "Sequentialize Categorical Property", this, SLOT( sequentialize_categorical_property() ) );
+    cat_prop_menu->addAction( "Sequentialize Categorical Property in Definition", this, SLOT( sequentialize_categorical_definition() ) );
+    QMenu* definitions = property_menu->addMenu(tr("Categorical &Definition"));
     definitions->addAction( "New Categorical definition", this, SLOT( new_categorical_definition() ) );
     definitions->addAction( "Show Categorical definition", this, SLOT( show_categorical_definition() ) );
     definitions->addAction( "Assign Categorical definition", this, SLOT( assign_categorical_definition() ) );
@@ -1693,6 +1698,24 @@ void QSP_application::downscale_grid(){
 
 void QSP_application::upscale_properties(){
   Upscale_property_dialog* dialog = new Upscale_property_dialog(this);
+  dialog->exec();
+  delete dialog;
+}
+
+
+
+void QSP_application::convert_continuous_to_categorical_property(){
+  Convert_to_categorical_dialog* dialog = new Convert_to_categorical_dialog(project_, this);
+  dialog->exec();
+  delete dialog;
+}
+void QSP_application::sequentialize_categorical_property(){
+  Sequentialize_categorical_property_dialog* dialog = new Sequentialize_categorical_property_dialog(project_,this);
+  dialog->exec();
+  delete dialog;
+}
+void QSP_application::sequentialize_categorical_definition(){
+  Sequentialize_categorical_definition_dialog* dialog = new Sequentialize_categorical_definition_dialog(project_, this);
   dialog->exec();
   delete dialog;
 }

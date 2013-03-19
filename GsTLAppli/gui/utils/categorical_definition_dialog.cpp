@@ -103,6 +103,7 @@ View_category_definition_dialog( GsTL_project* proj, QWidget* parent, const char
 
   CategoricalDefinitionTable* cdef_table = new CategoricalDefinitionTable(this,"Definition_viewer");
   cdef_table->initialize();
+  cdef_table->set_read_only();
   //def_viewer_ = new CategoricalDefinitionViewer(this,"Definition_viewer");
   
   
@@ -163,7 +164,9 @@ void View_category_definition_dialog::display_properties(const QString& def_name
 
 }
 
-
+/*
+  ------------------------------------------------------
+*/
 
 New_category_definition_dialog::
 New_category_definition_dialog(GsTL_project* project, QWidget* parent, const char* name )
@@ -182,7 +185,7 @@ New_category_definition_dialog(GsTL_project* project, QWidget* parent, const cha
   model_ = new Categorical_table_model(this);
   view->setModel(model_);
   Color_delegate* c_delagate =  new Color_delegate(this);
-  view->setItemDelegateForColumn(1,c_delagate);
+  view->setItemDelegateForColumn(2,c_delagate);
   view->setAlternatingRowColors ( true );
   //view->horizontalHeader()->resizeSections(QHeaderView::Stretch);
 
@@ -247,27 +250,38 @@ void New_category_definition_dialog::clear(){
 void New_category_definition_dialog::create_definition(){
     
   int ncat = model_->rowCount();
-  QStringList list;
+  std::map<int, QString> code_names;
   for(int i=0;i<ncat;++i) {
-    list.append( model_->data( model_->index(i,0) ).toString() );
+    code_names[model_->data( model_->index(i,0) ).toInt()] = model_->data( model_->index(i,1) ).toString();
+  }
+  if(code_names.size() != ncat) {
+    GsTLcerr << "Could not create new definition:  One code is repeated. \n";
+    return;
+  }
+
+  QStringList list_code;
+  QStringList list_name;
+  std::map<int, QString>::iterator it = code_names.begin();
+  for( ; it != code_names.end(); ++it) {
+    list_code.append( QString("%1").arg( it->first));
+    list_name.append( it->second );
   }
 
 
-
+  QStringList parameter_list;
+  parameter_list<<cat_def_name_->text()<<QString("%1").arg(ncat)<<list_name<<list_code;
 //  QStringList list  = cat_names_text_->toPlainText().split("\n");
 //  QStringList parameters  = names.split("\n");
 
-  list.prepend(cat_def_name_->text());
-
   QString sep = Actions::separator.c_str();
-  std::string parameters = list.join( sep ).toStdString();
+  std::string parameters = parameter_list.join( sep ).toStdString();
 
   QApplication::setOverrideCursor( Qt::WaitCursor );
  
   // call the CopyProperty action
   Error_messages_handler error_messages;
 
-  std::string command( "NewCategoricalDefinition" );
+  std::string command( "NewCategoricalCodeDefinition" );
   bool ok = project_->execute( command, parameters, &error_messages );
 
   if( !ok ) {
@@ -275,6 +289,7 @@ void New_category_definition_dialog::create_definition(){
     if( !error_messages.empty() ) {
       GsTLcerr << error_messages.errors();
     }
+    QApplication::restoreOverrideCursor();
     return;
   }
 
@@ -286,7 +301,7 @@ void New_category_definition_dialog::create_definition(){
     dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
 
   for(int i=0;i<ncat;++i) {
-    cat_def->color(i, model_->data( model_->index(i,1) ).value<QColor>() );
+    cat_def->color(model_->data( model_->index(i,0)).value<int>() , model_->data( model_->index(i,2) ).value<QColor>() );
   }
 
   QApplication::restoreOverrideCursor();
@@ -300,11 +315,11 @@ void New_category_definition_dialog::create_definition_close(){
 
 
 void New_category_definition_dialog::show_color_editor(const QModelIndex& index){
-  if ( index.column() != 1 ) return;
+  if ( index.column() != 2 ) return;
 
   //get the current color
   QColor color = index.data().value<QColor>();
-  QString category_name = model_->index(index.row(),0).data().toString();
+  QString category_name = model_->index(index.row(),1).data().toString();
   color = QColorDialog::getColor(color, this, QString("Choose color for %1").arg(category_name),QColorDialog::ShowAlphaChannel);
   model_->setData(index, color);
 }

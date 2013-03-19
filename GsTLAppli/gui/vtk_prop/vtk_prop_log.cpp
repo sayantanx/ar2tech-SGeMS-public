@@ -379,6 +379,7 @@ void vtkProp_log::refresh() {
 void vtkProp_log::refresh_colormap() {
 
   if(cmap_ == 0) return;
+  /*
   color_table_->SetNumberOfTableValues(cmap_->color_count());
   int nColors = color_table_->GetNumberOfTableValues();
 
@@ -388,7 +389,11 @@ void vtkProp_log::refresh_colormap() {
 	color_table_->SetTableValue(i,r,g,b);
   }
   color_table_->Build();
+
   mapper_->SetLookupTable(color_table_);
+  mapper_->Update();
+  */
+  mapper_->SetLookupTable(cmap_->color_table());
   mapper_->Update();
 
   this->update_colorbar();

@@ -565,7 +565,11 @@ public:
   
   LogNormal_distribution():dist_(0){}
   LogNormal_distribution(double location , double scale){
-    dist_ = new boost::math::lognormal_distribution<>(location,scale);
+
+	  float gaussian_var = std::log( scale*scale/location/location + 1 );
+	  float gaussian_mean = std::log(location) -  gaussian_var/2;
+
+    dist_ = new boost::math::lognormal_distribution<>(gaussian_mean,std::sqrtf(gaussian_var));
   }
   virtual ~LogNormal_distribution(void){delete dist_;}
 
@@ -634,6 +638,11 @@ public:
 
 private :
   boost::math::lognormal_distribution<>* dist_;
+
+//  float mean_;
+//  float variance_;
+	
+
 };
 /*
 class MATH_DECL Noncentral_beta_distribution : public Parametric_continuous_distribution

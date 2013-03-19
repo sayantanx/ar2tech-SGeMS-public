@@ -68,6 +68,7 @@ CategoricalPropertyDefinition::end_property() const {
 }
 
 std::string CategoricalPropertyDefinition::get_category_name_from_index(unsigned int index) const{
+  int code = this->category_id_from_index(index);
   return this->get_category_name( this->category_id_from_index(index));
 }
 
@@ -157,6 +158,9 @@ std::string CategoricalPropertyDefinitionName::get_category_name(unsigned int id
   std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.find( id );
 
   if(it == cat_coding_.end()) return "";
+  if(it->second == 0) {
+    return "";
+  }
 
   return it->second->name().toStdString();
 
@@ -235,10 +239,11 @@ bool CategoricalPropertyDefinitionName::is_sequential_coding() const {
 }
 
 int CategoricalPropertyDefinitionName::category_id_from_index(int index ) const{
-  if( index >= cat_coding_.size() ) return -1;
+  if( index >= cat_coding_.size() || index < 0) return -1;
 
   std::map<int,Categorical_color_coding*>::const_iterator it = cat_coding_.begin();
   std::advance(it,index);
+  int code = it->first;
   return it->first;
  
 }
@@ -268,13 +273,21 @@ int CategoricalPropertyDefinitionName::number_of_category() const{
 }
 
 bool CategoricalPropertyDefinitionName::rename(int id, std::string new_name){
-	bool ok = false;
+
+  std::map<int,Categorical_color_coding*>::iterator it = cat_coding_.find( id );
+  if( it == cat_coding_.end() ) return false;;
+	
+  it->second->name(new_name.c_str());
+
+  return true;
+  /*
+  bool ok = false;
 	if(id < cat_coding_.size()  ) {
     cat_coding_[id]->name(new_name.c_str());
 		ok = true;
 	}
 	return ok;
-
+  */
 }
 
 bool CategoricalPropertyDefinitionName::rename_from_index(int index, std::string name){

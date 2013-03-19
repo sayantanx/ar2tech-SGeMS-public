@@ -233,8 +233,9 @@ class QTPLUGINS_DECL  CategoricalDefinitionTable : public QTableView {
   void show_definition( CategoricalPropertyDefinition* cdef );
   void show_definition( int ncat );
   void show_color_editor(const QModelIndex& index);
-  void set_flags_name(Qt::ItemFlags flags) {model_->set_flags_name(flags);}
-  void set_flags_color(Qt::ItemFlags flags) {model_->set_flags_color(flags);}
+  void set_flags_name(Qt::ItemFlags flags) {if(model_) model_->set_flags_name(flags);}
+  void set_flags_color(Qt::ItemFlags flags) {if(model_) model_->set_flags_color(flags);}
+  void set_read_only();
 
 protected: 
 

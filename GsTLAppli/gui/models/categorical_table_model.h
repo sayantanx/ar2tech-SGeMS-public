@@ -41,7 +41,7 @@ public:
     ~Categorical_table_model();
 
     virtual int rowCount(const QModelIndex & parent = QModelIndex() ) const {return items_.size();}
-    virtual int columnCount(const QModelIndex & parent = QModelIndex() ) const{return 2;}
+    virtual int columnCount(const QModelIndex & parent = QModelIndex() ) const{return 3;}
     virtual QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const;
     virtual QVariant	headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 
@@ -56,6 +56,7 @@ public slots:
 private:
   
   struct cat_code {
+    int code;
     QString name;
     QColor color;
   };

@@ -165,6 +165,10 @@ class GUI_DECL QSP_application : public QMainWindow {
   void new_categorical_definition();
   void assign_categorical_definition();
 
+  void convert_continuous_to_categorical_property();
+  void sequentialize_categorical_property();
+  void sequentialize_categorical_definition();
+
   void create_indicator_properties();
 
   void show_property_group();

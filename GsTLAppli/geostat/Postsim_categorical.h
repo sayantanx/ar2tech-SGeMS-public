@@ -87,10 +87,10 @@ class  Postsim_categorical : public Geostat_algo {
    */
 	virtual std::string name() const { return "Postsim_categorical"; }
    
-  private:
+ // private:
 
-    int execute_continous();
-    int execute_categorical();
+//    int execute_continous();
+//    int execute_categorical();
 
 private :
 	typedef std::vector< GsTLGridCategoricalProperty* > cat_prop_vecT;

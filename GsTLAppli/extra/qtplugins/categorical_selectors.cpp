@@ -414,6 +414,10 @@ void CategoricalDefinitionTable::initialize( ) {
   this->setModel(model_);
 }
 
+void CategoricalDefinitionTable::set_read_only() {
+  if(model_) model_->set_read_only();
+}
+
 void CategoricalDefinitionTable::show_definition( QString cat_def_name) {
   if(current_definition_ == cat_def_name ) return;
   current_definition_ = cat_def_name ;

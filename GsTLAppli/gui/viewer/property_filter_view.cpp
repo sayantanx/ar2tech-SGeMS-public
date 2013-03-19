@@ -283,6 +283,7 @@ Property_thresholds_categorical_control(const GsTLGridCategoricalProperty* prop,
   cdef_table_ = new CategoricalDefinitionTable(this);
   cdef_table_->initialize();
   cdef_table_->set_flags_name(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+  cdef_table_->set_flags_color(Qt::ItemIsEnabled );
 
   const CategoricalPropertyDefinition* cdef_const = cprop_->get_category_definition();
 
@@ -370,10 +371,13 @@ void Property_thresholds_categorical_control::execute(){
 
   QAbstractItemModel* model = cdef_table_->model();
 
+  const CategoricalPropertyDefinition* cdef = cprop_->get_category_definition();
+
   int nrows = model->rowCount();
   for(int i=0; i<nrows; ++i) {
     QModelIndex index = model->index(i,0);
-    vtk_prop_->update_thresholding(i, i, i, model->data(index,Qt::CheckStateRole).toBool() );
+    int cat_id = cdef->category_id_from_index( i );
+    vtk_prop_->update_thresholding(i, cat_id, cat_id, model->data(index,Qt::CheckStateRole).toBool() );
   }
 
 //	for(int i=0; i < thresholds_.size() ; ++i ) {
@@ -386,11 +390,13 @@ void Property_thresholds_categorical_control::execute(){
 void Property_thresholds_categorical_control::display(){
 
   QAbstractItemModel* model = cdef_table_->model();
+  const CategoricalPropertyDefinition* cdef = cprop_->get_category_definition();
 
   int nrows = model->rowCount();
   for(int i=0; i<nrows; ++i) {
     QModelIndex index = model->index(i,0);
-    vtk_prop_->update_thresholding(i, i, i, model->data(index,Qt::CheckStateRole).toBool() );
+    int cat_id = cdef->category_id_from_index( i );
+    vtk_prop_->update_thresholding(i, cat_id, cat_id, model->data(index,Qt::CheckStateRole).toBool() );
   }
 
 //	for(int i=0; i < thresholds_.size() ; ++i ) {
