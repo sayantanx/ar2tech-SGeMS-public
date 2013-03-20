@@ -59,7 +59,6 @@ class GUI_DECL vtkProp_pointset : public GsTL_vtkProp{
   virtual void enable_full_view();
   virtual void disable_full_view();
 
-  virtual void property_display_mode( VTK::Property_display_mode mode );
   virtual void point_size( int size ); 
   virtual void property_deleted( const std::string& prop_name );
 

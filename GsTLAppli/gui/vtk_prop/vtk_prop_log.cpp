@@ -93,6 +93,8 @@ void vtkProp_log::set_visibility(bool on){
 	  it_pipeline->log_actor->SetVisibility(on);
   }
   actor_->SetVisibility(on);
+
+  this->update_colorbar_visibility( );
 }
 
 bool vtkProp_log::is_visibile(){
@@ -330,15 +332,9 @@ void vtkProp_log::property_deleted( const std::string& prop_name ) {
     current_property_name_ = "";
     current_property_ = 0;
     cmap_ = 0;
-    property_display_mode( VTK::NOT_PAINTED );
   }
 }
 
-
-void vtkProp_log::property_display_mode( VTK::Property_display_mode mode ) {
-  property_display_mode_ = mode;
-
-}
 
 
 void vtkProp_log::line_width( int size ) {
@@ -393,6 +389,7 @@ void vtkProp_log::refresh_colormap() {
   mapper_->SetLookupTable(color_table_);
   mapper_->Update();
   */
+  mapper_->SetScalarRange(cmap_->lower_bound(),cmap_->upper_bound());
   mapper_->SetLookupTable(cmap_->color_table());
   mapper_->Update();
 

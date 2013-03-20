@@ -286,7 +286,80 @@ void Grid_param_viewer::deleted_object(std::string obj){
 	//Nothing to be done.
 }
 
+void Grid_param_viewer::init_colorbar_page(){
+  QFrame* frame = new QFrame(this);
+	int index = this->addTab(frame,"Colorbar"); 
 
+
+  QGridLayout* main_layout = new QGridLayout(frame);
+
+  QCheckBox* is_colorbar_selected = new QCheckBox("Show Colorbar ",frame); 
+  main_layout->addWidget(is_colorbar_selected, 0,0,2,1);
+
+  QSpinBox* font_size = new QSpinBox(frame);
+  font_size->setMinimum(2);
+  font_size->setMaximum(20);
+  font_size->setValue(8);
+  main_layout->addWidget(new QLabel("Font size", frame), 1,0,1,1);
+  main_layout->addWidget(font_size, 1,1,1,1);
+  
+
+  QDoubleSpinBox* height_spin = new QDoubleSpinBox(frame);
+  height_spin->setMinimum(0.01);
+  height_spin->setMaximum(0.99);
+  height_spin->setValue(0.2);
+  height_spin->setSingleStep(0.01);
+  main_layout->addWidget(new QLabel("Height", frame), 2,0,1,1);
+  main_layout->addWidget(height_spin, 2,1,1,1);
+
+
+  QDoubleSpinBox* width_spin = new QDoubleSpinBox(frame);
+  width_spin->setMinimum(0.01);
+  width_spin->setMaximum(0.99);
+  width_spin->setValue(0.2);
+  width_spin->setSingleStep(0.01);
+  main_layout->addWidget(new QLabel("Width", frame), 3,0,1,1);
+  main_layout->addWidget(width_spin, 3,1,1,1);
+
+
+  QDoubleSpinBox* position_x_spin = new QDoubleSpinBox(frame);
+  position_x_spin->setMinimum(0.01);
+  position_x_spin->setMaximum(0.99);
+  position_x_spin->setValue(0.2);
+  position_x_spin->setSingleStep(0.01);
+  main_layout->addWidget(new QLabel("X", frame), 4,0,1,1);
+  main_layout->addWidget(position_x_spin, 4,1,1,1);
+
+
+  QDoubleSpinBox* position_y_spin = new QDoubleSpinBox(frame);
+  position_y_spin->setMinimum(0.01);
+  position_y_spin->setMaximum(0.99);
+  position_y_spin->setValue(0.2);
+  position_y_spin->setSingleStep(0.01);
+  main_layout->addWidget(new QLabel("Y", frame), 5,0,1,1);
+  main_layout->addWidget(position_y_spin, 5,1,1,1);
+
+
+	frame->setLayout(main_layout);
+
+
+
+
+  QObject::connect(is_colorbar_selected,SIGNAL(clicked(bool)),
+					 this, SLOT(show_colorbar(bool)));
+  QObject::connect(font_size,SIGNAL(valueChanged(int)),
+					 this, SLOT(set_colorbar_font_size(int)));
+  QObject::connect(height_spin,SIGNAL(valueChanged(double)),
+					 this, SLOT(set_colorbar_height(double)));
+  QObject::connect(width_spin,SIGNAL(valueChanged(double)),
+					 this, SLOT(set_colorbar_width(doubke)));
+
+  QObject::connect(position_x_spin,SIGNAL(valueChanged(double)),
+					 this, SLOT(set_colorbar_x_position(double)));
+  QObject::connect(position_y_spin,SIGNAL(valueChanged(double)),
+					 this, SLOT(set_colorbar_y_position(double)));
+
+}
 
 void Grid_param_viewer::init_visualization_page() {
 //	QString str();
@@ -295,42 +368,77 @@ void Grid_param_viewer::init_visualization_page() {
 	frame->setLayout(layout);
 	this->addTab(frame,"Preferences");
 
+  QCheckBox* is_colorbar_selected = new QCheckBox("Show Colorbar ",frame);
+  layout->addWidget(is_colorbar_selected);
+/*
 	QComboBox* cbar_orientation_selector = new QComboBox(frame);
 	QStringList items;
 	items<<"None"<<"Left"<<"Bottom"<<"Right"<<"Top";
 	cbar_orientation_selector->addItems(items);
 	cbar_orientation_selector->setCurrentIndex(0);
 
-	/*
-	QButtonGroup* group_button = new QButtonGroup(frame);
-	QRadioButton* radio_none = new QRadioButton("&None", frame);
-	QRadioButton* radio_horizontal = new QRadioButton("&Bottom", frame);
-	QRadioButton* radio_vertical = new QRadioButton("&Left", frame);
-	group_button->addButton(radio_none,0);
-	group_button->addButton(radio_horizontal,1);
-	group_button->addButton(radio_vertical,2);
-	radio_none->setChecked(true);
-	QVBoxLayout* button_layout = new QVBoxLayout();
-	button_layout->addWidget(radio_none);
-	button_layout->addWidget(radio_horizontal);
-	button_layout->addWidget(radio_vertical);
 
-	*/
-
-//	QGroupBox* cbar_box = new QGroupBox("Colorbar",frame);
 	QHBoxLayout* cbar_layout = new QHBoxLayout();
 	cbar_layout->addWidget(new QLabel("Colorbar",this));
 	cbar_layout->addWidget(cbar_orientation_selector);
 
 	layout->addLayout(cbar_layout);
+  */
 //	layout->addStretch();
 
+  QObject::connect(is_colorbar_selected,SIGNAL(clicked(bool)),
+					 this, SLOT(show_colorbar(bool)));
+/*
 	QObject::connect(cbar_orientation_selector,SIGNAL(currentIndexChanged(const QString&)),
 					 this, SLOT(colorbar_display_option(const QString&)));
-
+*/
 
 }
 
+void Grid_param_viewer::update_from_background_color_changed(){
+  if(vtk_prop_)   vtk_prop_->set_colorbars_text_color();
+}
+
+void Grid_param_viewer::show_colorbar(bool ok){
+  vtk_prop_->is_cbar_requested(ok);
+  //vtk_prop_->set_colorbar_visible(ok);
+  emit this->rendering_modified();
+}
+
+void Grid_param_viewer::set_colorbar_font_size(int size){
+  vtk_prop_->set_colorbar_font_size( size);
+  emit this->rendering_modified();
+}
+//void Grid_param_viewer::set_colorbar_title(const QString& font );
+
+void Grid_param_viewer::set_colorbar_height(double height) {
+  vtk_prop_->set_colorbar_height( height );
+  emit this->rendering_modified();
+}
+void Grid_param_viewer::set_colorbar_width( double width ){
+  vtk_prop_->set_colorbar_width( width );
+  emit this->rendering_modified();
+}
+
+void Grid_param_viewer::set_colorbar_position(double x, double y){
+  vtk_prop_->set_colorbar_position( x, y);
+  emit this->rendering_modified();
+}
+void Grid_param_viewer::set_colorbar_x_position(double x){
+  vtk_prop_->set_colorbar_x_position(x);
+  emit this->rendering_modified();
+}
+void Grid_param_viewer::set_colorbar_y_position(double y){
+  vtk_prop_->set_colorbar_y_position(y);
+  emit this->rendering_modified();
+}
+
+void Grid_param_viewer::set_colorbar_title(const QString& title ){
+  vtk_prop_->set_colorbar_title( title );
+  emit this->rendering_modified();
+}
+
+/*
 void Grid_param_viewer::colorbar_display_option(const QString& location){
 
 	if(location == "None") {
@@ -350,7 +458,7 @@ void Grid_param_viewer::colorbar_display_option(const QString& location){
 	}
   emit this->rendering_modified();
 }
-
+*/
 
 
 
@@ -463,6 +571,7 @@ void CGrid_param_viewer::initialize(GsTL_vtkProp* vtk_prop)
 	this->init_visualization_page();
   this->init_section_page();
 	this->init_stats_page();
+  //this->init_colorbar_page();
   
 
 }
@@ -563,6 +672,7 @@ void MGrid_param_viewer::initialize(GsTL_vtkProp* vtk_prop)
 	this->init_visualization_page();
   this->init_section_page();
 	this->init_stats_page();
+  //this->init_colorbar_page();
 
 }
 
@@ -659,6 +769,7 @@ void PSet_param_viewer::initialize(GsTL_vtkProp* vtk_prop)
 
 	this->init_visualization_page();
 	this->init_stats_page();
+  //this->init_colorbar_page();
 
 }
 
@@ -791,6 +902,7 @@ void Log_grid_param_viewer::initialize(GsTL_vtkProp* vtk_prop)
 
 	this->init_visualization_page();
 	this->init_stats_page();
+  //this->init_colorbar_page();
 
 }
 
@@ -884,7 +996,7 @@ void Log_grid_param_viewer::init_stats_page()
 
   desc_widget->setLayout(layout);
 //  this->addItem(desc_widget,"Preferences");
-  this->addTab(desc_widget,"Preferences");
+  this->addTab(desc_widget,"Stats");
 }
 
 void Log_grid_param_viewer::line_width(int width) {
@@ -939,6 +1051,7 @@ void Structured_grid_param_viewer::initialize(GsTL_vtkProp* vtk_prop)
 	this->init_visualization_page();
   this->init_section_page();
 	this->init_stats_page();
+  //this->init_colorbar_page();
   
 
 }

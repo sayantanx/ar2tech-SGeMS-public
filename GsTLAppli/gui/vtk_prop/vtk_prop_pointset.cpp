@@ -73,6 +73,7 @@ vtkProp* vtkProp_pointset::prop() {
 void vtkProp_pointset::set_visibility(bool on) {
 	//return volume_;
 	actor_->SetVisibility(on);
+  this->update_colorbar_visibility();
 }
 
 bool vtkProp_pointset::is_visibile(){
@@ -142,8 +143,6 @@ void vtkProp_pointset::init(  Geostat_grid* grid, vtkRenderer* renderer ) {
 
 	this->point_size(3);
 
-  property_display_mode( VTK::NOT_PAINTED );
-
 }
 
 
@@ -181,14 +180,7 @@ void vtkProp_pointset::property_deleted( const std::string& prop_name ) {
     current_property_name_ = "";
     current_property_ = 0;
     cmap_ = 0;
-    property_display_mode( VTK::NOT_PAINTED );
   }
-}
-
-
-void vtkProp_pointset::property_display_mode( VTK::Property_display_mode mode ) {
-  property_display_mode_ = mode;
-
 }
 
 

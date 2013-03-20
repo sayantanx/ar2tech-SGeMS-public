@@ -89,14 +89,8 @@ class GUI_DECL vtkProp_cgrid : public GsTL_vtkProp {
   virtual void enable_full_view();
   virtual void disable_full_view();
 
-  virtual int add_slice( VTK::Axis axis, int position, bool visible );
-  virtual void remove_slice( int slice_id );
-
   virtual int add_section(int id, QString orientation, bool is_visible);
   virtual bool update_section(int id, int steps, bool is_visible);
-
-  virtual void display_mode( Display_mode mode ); 
-  virtual void property_display_mode( VTK::Property_display_mode mode );
 
   virtual void show_bounding_box( bool on );
   virtual void hide_volume( bool on ) ;
@@ -132,9 +126,6 @@ class GUI_DECL vtkProp_cgrid : public GsTL_vtkProp {
   vtkDataSetSurfaceFilter *surface_extractor_;
 
   bool initialized_;
-  
-  // a transparency vector for each property
-  std::map< std::string, QString > transparency_map_; 
 
   vtkPlane* implicit_plane_;
   vtkCutter* cutter_;

@@ -104,44 +104,8 @@ vtkProp* vtkProp_cgrid::prop(){
 void vtkProp_cgrid::set_visibility(bool on) {
 
   actor_->SetVisibility(on);
-  /*
-  if(on) {
-    if(is_section_active_) {
-      actor_->SetVisibility(false);
-      section_map::iterator it = section_pipelines_->begin();
-      for( ; it != section_pipelines_.end(); ++it) {
-        if(it->second.enabled) {
-          it->second.actor->SetVisibility(on);
-        }
-      }
-      }
-    else {
-	    actor_->SetVisibility(on);
-    }
-  }
-  else {
-    actor_->SetVisibility(false);
-      section_map::iterator it = section_pipelines_->begin();
-      for( ; it != section_pipelines_.end(); ++it)
-        it->second.actor->SetVisibility(false);
-  }
+  this->update_colorbar_visibility();
 
-  */
-	/*
-	if( on ) {
-		if( is_thresold_active_ ) {
-			this->enable_thresholding();
-		}
-		else
-			this->enable_full_view();
-	}
-	else {
-		if( is_thresold_active_ ) {
-			this->disable_thresholding();
-		}
-		this->disable_full_view();
-	}
-*/
 }
 
 bool vtkProp_cgrid::is_visibile(){
@@ -220,8 +184,6 @@ void vtkProp_cgrid::property_deleted( const std::string& prop_name ) {
     current_property_name_ = "";
     current_property_ = 0;
     cmap_ = 0;
-
-    property_display_mode( VTK::NOT_PAINTED );
   }
   
 }
@@ -259,74 +221,6 @@ int vtkProp_cgrid::vtk_3d_slices(vtkRenderWindowInteractor* iren){
 
   return true;
 }
-
-
-int vtkProp_cgrid::add_slice( VTK::Axis axis, int position,
-			   bool showed ) {
-/*
-  GsTLCoordVector cell_dims = grid_->cell_dimensions();
-
-  // notice that the origin returned by the grid is the center 
-  // of the origin cell, not its corner (cell-centered grid)
-  GsTLPoint origin = grid_->origin();
-  
-  GsTLVector<int> grid_sizes( grid_->nx(), grid_->ny(), grid_->nz() );
-  int max_pos = grid_sizes[axis]-1;
-
-  Oinv_slice_cgrid* new_slice = 
-    new Oinv_slice_cgrid( axis, position, grid_sizes, 
-                          voxel_data_, &initialized_, cmap_,
-			                    cell_dims[0], cell_dims[1], cell_dims[2],
-			                    origin.x(), origin.y(), origin.z() );
-
-  new_slice->property_display_mode( property_display_mode_ );
-  GsTL_SoNode* node = new_slice->oinv_node();
-  node->visible = showed;
-  //new_slice->oinv_node()->visible = showed;
-
-  slices_.push_back( new_slice );
-  slices_node_->addChild( new_slice->oinv_node() );
-
-  return slices_.size()-1;
-  */
-  return 0;
-}
-
-
-void vtkProp_cgrid::remove_slice( int slice_id ) {
-  /*
-  if( slice_id < 0 || slice_id >= int( slices_.size() ) ) {
-    appli_warning( "Slice id " << slice_id << " is out of bounds" );
-    return;
-  }
-  
-  slices_node_->removeChild( slice_id );
-
-  std::list< Oinv_slice* >::iterator it = slices_.begin();
-  std::advance( it, slice_id ); 
-  delete *it;
-  slices_.erase( it );
-  */
-}
-
-
-
-void vtkProp_cgrid::display_mode( Display_mode mode ) {
- // display_switch_->whichChild = int( mode );
-}
-
-
-void vtkProp_cgrid::property_display_mode( VTK::Property_display_mode mode ) {
-	switch(mode) {
-	case VTK::NOT_PAINTED :
-		image_data_->GetCellData()->SetScalars(0);
-//		vtk_property_->SetRepresentationToWireframe();
-		current_property_name_ = "";
-		break;
-	}
-
-}
-
 
 
 

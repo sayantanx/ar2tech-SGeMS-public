@@ -123,6 +123,7 @@ public slots :
 
 signals :
   void rendering_window_modified();
+  void background_color_changed();
 
 protected :
 	virtual void set_view_plane(const GsTLVector<float>& focal_point,

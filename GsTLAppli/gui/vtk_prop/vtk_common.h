@@ -61,8 +61,7 @@
 class GUI_DECL VTK {
  public: 
   enum Axis { X_AXIS=0, Y_AXIS=1, Z_AXIS=2 }; 
-  enum Property_display_mode { NOT_PAINTED=0, PAINTED=1 }; 
-  enum Update_reason { PROPERTY_CHANGED=0, PROPERTY_DELETED=1 }; 
+
   static const RGB_color nodata_color ; 
 }; 
  

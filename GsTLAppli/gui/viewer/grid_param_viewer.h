@@ -83,11 +83,24 @@ signals :
   void rendering_modified();
 
 protected slots:
-	void colorbar_display_option(const QString& location);
+
+  void update_from_background_color_changed();
+
+//	void colorbar_display_option(const QString& location);
+  void show_colorbar(bool ok);
+  void set_colorbar_font_size(int size);
+  void set_colorbar_title(const QString& title );
+  void set_colorbar_height(double height);
+  void set_colorbar_width( double width );
+  void set_colorbar_position(double x, double y);
+  void set_colorbar_x_position(double x);
+  void set_colorbar_y_position(double y);
+//  void get_colorbar_position(double& x, double& y);
 
 
 protected :
 	virtual void init_visualization_page();
+  virtual void init_colorbar_page();
 	virtual void init_stats_page()=0;
 
 protected :

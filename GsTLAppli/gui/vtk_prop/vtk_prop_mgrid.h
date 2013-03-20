@@ -66,11 +66,6 @@ class GUI_DECL vtkProp_mgrid : public GsTL_vtkProp {
   virtual void enable_full_view();
   virtual void disable_full_view();
 
-  virtual int add_slice( VTK::Axis axis, int position, bool visible );
-  virtual void remove_slice( int slice_id );
-  virtual void display_mode( Display_mode mode );
-  virtual void property_display_mode( VTK::Property_display_mode mode );
-
   virtual int add_section(int id, QString orientation, bool is_visible);
   virtual bool update_section(int id, int steps, bool is_visible);
 
@@ -114,11 +109,7 @@ class GUI_DECL vtkProp_mgrid : public GsTL_vtkProp {
 
   vtkLookupTableWithEnabling* color_table_;
 
-
   bool initialized_;
-
-  // a transparency vector for each property
-  std::map< std::string, QString > transparency_map_;
 
 };
 

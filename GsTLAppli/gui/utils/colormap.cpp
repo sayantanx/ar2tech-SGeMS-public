@@ -441,6 +441,8 @@ Colormap_categorical::Colormap_categorical( const CategoricalPropertyDefinition*
 
   discrete_color_table_ = vtkDiscretizableColorTransferFunction::New();
   discrete_color_table_->DiscretizeOff();
+  //discrete_color_table_->DiscretizeOn();
+  discrete_color_table_->IndexedLookupOn();
   discrete_color_table_->EnableOpacityMappingOn();
   opacity_piecewise_fnc_ = vtkPiecewiseFunction::New();
   discrete_color_table_->SetScalarOpacityFunction(opacity_piecewise_fnc_);
@@ -528,6 +530,8 @@ void Colormap_categorical::init_color_table() {
   discrete_color_table_->GetScalarOpacityFunction()->RemoveAllPoints();
   discrete_color_table_->RemoveAllPoints();
 
+  discrete_color_table_->SetNumberOfValues( n_cat_ );
+
   for( int i=0; i < n_cat_ ; i++ ) {
   	float r,g,b;
     int cat_id = cat_def_->category_id_from_index( i );
@@ -541,6 +545,12 @@ void Colormap_categorical::init_color_table() {
   }
 
   discrete_color_table_->Build();
+  for( int i=0; i < n_cat_ ; i++ ) {
+    int cat_id = cat_def_->category_id_from_index( i );
+    discrete_color_table_->SetAnnotation(cat_id, cat_def_->get_category_name( cat_id)  );
+  }
+  discrete_color_table_->Build();
+
   this->set_default_nan_color();
 
 }

@@ -161,9 +161,10 @@ void Property_param_viewer::display(){
 
 	vtk_prop_->set_property(prop_->name(), color_->colormap());
 
-	if(!vtk_prop_->is_colorbar_visible()) {
-		vtk_prop_->set_colorbar_visible(true);
-	}
+  vtk_prop_->update_colorbar_visibility();
+//	if(!vtk_prop_->is_colorbar_visible()) {
+//		vtk_prop_->set_colorbar_visible(true);
+//	}
 
 
   emit this->rendering_modified();
@@ -171,12 +172,15 @@ void Property_param_viewer::display(){
 
 
 void Property_param_viewer::undisplay(){
+
+	vtk_prop_->set_property("", 0);
+	is_displayed_ = false;
+  vtk_prop_->update_colorbar_visibility();
+  /*
 	if(vtk_prop_->is_colorbar_visible()) {
 		vtk_prop_->set_colorbar_visible(false);
 	}
-	vtk_prop_->set_property("", 0);
-	is_displayed_ = false;
-  
+  */
   emit this->rendering_modified();
 
 

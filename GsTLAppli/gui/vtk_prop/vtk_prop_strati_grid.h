@@ -68,19 +68,13 @@
  
 class GUI_DECL vtkProp_strati_grid : public GsTL_vtkProp {
  public: 
-  enum Display_mode { RENDERING=0, FULL=1, SLICES=2, BBOX=3 }; 
  
  public: 
   vtkProp_strati_grid() : GsTL_vtkProp() {}
   virtual ~vtkProp_strati_grid() {}
-  virtual int add_slice( VTK::Axis axis, int position, bool visible ) = 0;
-  virtual void remove_slice( int slice_id ) = 0; 
    
   virtual void set_region(const std::string& region_name )=0;
 
-  virtual void display_mode( Display_mode mode ) = 0; 
-  virtual void property_display_mode( VTK::Property_display_mode mode ) = 0;
- 
   virtual void show_bounding_box( bool on ) = 0;
   virtual void hide_volume( bool on ) = 0;
 

@@ -347,6 +347,7 @@ QFrame* Vtk_view::init_viewer_frame(){
 	QObject::connect(snapshot_button_, SIGNAL(clicked()), this, SLOT(snapshot()));
 	bool ok = QObject::connect(background_button_, SIGNAL(clicked(bool)),
 					this, SLOT(set_white_background(bool)));
+
 	ok = QObject::connect(legend_scale_button_, SIGNAL(clicked(bool)),
 						  gstl_vtk_viewer_, SLOT(set_scale_legend_visible(bool)) );
 	ok = QObject::connect(orientation_button_, SIGNAL(toggled(bool)),
@@ -648,7 +649,8 @@ Visualization_parameters* Vtk_view::get_viz_parameters( GsTL_object_item* item)
 		viz_param->interface()->setParent(params_viewer_);
 
     Grid_param_viewer* viz_param_viewer = dynamic_cast<Grid_param_viewer*>(viz_param->interface());
-    QObject::connect(viz_param_viewer, SIGNAL(rendering_modified()), gstl_vtk_viewer_, SLOT(update()) );
+    bool ok = QObject::connect(viz_param_viewer, SIGNAL(rendering_modified()), gstl_vtk_viewer_, SLOT(update()) );
+    ok = QObject::connect(this, SIGNAL(background_color_changed()), viz_param_viewer, SLOT(update_from_background_color_changed()) );
 
 		return viz_param;
 	}
@@ -866,6 +868,8 @@ void Vtk_view::set_white_background( bool on ) {
     	gstl_vtk_viewer_->set_background_color(1.0,1.0,1.0);
     else
     	gstl_vtk_viewer_->set_background_color( 0., 0., 0. );
+
+    emit this->background_color_changed();
 
 //  Loop over all the vtkprop and set the color label of the colorbar 
 

@@ -47,6 +47,7 @@
 #include <vtkDataSetSurfaceFilter.h>
 #include <vtkDataSetMapper.h>
 #include <vtkScalarBarActor.h>
+#include <vtkScalarBarWidget.h>
 #include <vtkLegendBoxActor.h>
 #include <vtkRenderer.h>
 #include <vtkProperty.h>
@@ -62,20 +63,13 @@ class GsTLGridProperty;
 class GsTLGridRegion;
 class Colormap; 
 class QString;
- 
- 
-/** Oinv_description is the base class for all Open Inventor descriptions 
- * of grid models. Its aim is to describe a grid model (eg a cartesian grid  
- * or a triangulated surface) in Open Inventor terms, so that the grid can 
- * be displayed by Open Inventor.   
- */ 
+
  
 class GUI_DECL GsTL_vtkProp : public Named_interface {
  public: 
-	enum Display_mode { RENDERING=0, FULL=1, SLICES=2, BBOX=3 };
+
   GsTL_vtkProp();
   virtual ~GsTL_vtkProp();
-//  virtual void init( const Geostat_grid* grid ) = 0;
   virtual void init( Geostat_grid* grid, vtkRenderer* renderer ) = 0;
   virtual const Geostat_grid* grid() const {return geostat_grid_; }
   virtual Geostat_grid* grid() {return geostat_grid_; }
@@ -84,20 +78,7 @@ class GUI_DECL GsTL_vtkProp : public Named_interface {
   vtkRenderer* get_renderer(){return renderer_;}
   virtual void set_visibility(bool on) = 0;
   virtual bool is_visibile() = 0;
-  //virtual std::vector<vtkProp*> props()=0;// { return prop_; }
- 
-  /** Update the description of the geostat grid.  
-   * @param property_name is a hint to which grid property has changed.  
-   * If "property_name" is empty, the description is updated, even if it 
-   * was not necessary. 
-   */ 
-//  virtual void update( const std::string& property_name, 
-//		                   Oinv::Update_reason reason ) = 0; 
-  virtual void update( VTK::Update_reason reason ,
-    const std::vector<std::string>* properties = 0 );     
-    //const std::string& property_name = "" ); 
- 
- 
+
 
   virtual void set_colormap( Colormap* cmap ){}
   virtual Colormap* get_colormap(){return cmap_;}
@@ -135,31 +116,32 @@ class GUI_DECL GsTL_vtkProp : public Named_interface {
   virtual void set_region(const std::string& property_name )=0;
   virtual GsTLGridRegion* current_region() const { return current_region_; }
 
-  /** Turn on/off the painting of the property. 
-   */ 
-  virtual void property_display_mode( VTK::Property_display_mode mode )= 0;
-  virtual VTK::Property_display_mode property_display_mode() const {
-    return property_display_mode_; 
-  } 
- 
-
   void set_cell_representation(const QString& type );
   void show_edges(bool );
-
-  virtual bool update_desc(QString &, QString &);
 
   void update_colorbar();
   void remove_colorbar();
 	void set_colorbar_visible(bool visibility);
+  void update_colorbar_visibility( );
 	bool is_colorbar_visible();
-//	void set_colorbar_orientation(bool is_vertical);
-	void set_colorbar_to_left();
-	void set_colorbar_to_bottom();
-	void set_colorbar_to_right();
-	void set_colorbar_to_top();
+  
+  void is_cbar_requested(bool on);
+  bool is_cbar_requested(){return is_cbar_requested_;}
+
+  void set_colorbar_font_size(int size);
+  void set_colorbar_title(const QString& font );
+  void set_colorbar_height(double height);
+  void set_colorbar_width( double width );
+  void set_colorbar_x_position(double x);
+  void set_colorbar_y_position(double y);
+  void set_colorbar_position(double x, double y);
+  void get_colorbar_position(double& x, double& y);
+
+
 	void set_colorbar_width(float width);
 	void set_colorbar_height(float height);
 	void set_colorbars_text_color(bool is_background_white);
+  void set_colorbars_text_color();
 	void set_number_of_ticks(int n_ticks);
 
 
@@ -167,8 +149,6 @@ class GUI_DECL GsTL_vtkProp : public Named_interface {
  protected: 
   virtual void refresh() = 0; 
   virtual void property_deleted( const std::string& prop_name ) = 0;
-
-  void set_colorbar_or_legend();
 
   virtual bool connect_threshold_to_data(vtkThreshold* thresholder)=0;
   virtual bool disable_threshold_pipeline(){return true;}
@@ -218,7 +198,6 @@ class GUI_DECL GsTL_vtkProp : public Named_interface {
 
   bool is_section_active_;
 
-
   Geostat_grid* geostat_grid_;
   GsTLGridProperty* current_property_;
   GsTLGridRegion* current_region_;
@@ -236,14 +215,12 @@ class GUI_DECL GsTL_vtkProp : public Named_interface {
   //   - a colormap to use to paint the property. The bounds of the colormap 
   //     need not be the min and max of the property 
   CmapMap cmap_map_; 
- 
-  VTK::Property_display_mode property_display_mode_;
+
 
   vtkProperty* vtk_property_;
   vtkScalarBarActor* cbar_actor_;
-  vtkLegendBoxActor* legend_actor_;
- 
-
+  vtkScalarBarWidget* cbar_widget_;
+  bool is_cbar_requested_; // synced with the user interface
  
 }; 
  

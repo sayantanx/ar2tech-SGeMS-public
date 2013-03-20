@@ -109,6 +109,7 @@ vtkProp* vtkProp_mgrid::prop(){
 
 void vtkProp_mgrid::set_visibility(bool on) {
 	actor_->SetVisibility(on);
+  this->update_colorbar_visibility();
 }
 
 bool vtkProp_mgrid::is_visibile(){
@@ -244,40 +245,9 @@ void vtkProp_mgrid::property_deleted( const std::string& prop_name ) {
     current_property_name_ = "";
     current_property_ = 0;
     cmap_ = 0;
-
-    property_display_mode( VTK::NOT_PAINTED );
   }
 
 }
-
-
-
-
-
-int vtkProp_mgrid::add_slice( VTK::Axis axis, int position,
-         bool showed ) {
-
-   return 0;
-
-}
-
-
-void vtkProp_mgrid::remove_slice( int slice_id ) {
-
-}
-
-
-
-void vtkProp_mgrid::display_mode( Display_mode mode ) {
- // display_switch_->whichChild = int( mode );
-}
-
-
-void vtkProp_mgrid::property_display_mode( VTK::Property_display_mode mode ) {
-
-}
-
-
 
 
 void vtkProp_mgrid::show_bounding_box( bool on ) {

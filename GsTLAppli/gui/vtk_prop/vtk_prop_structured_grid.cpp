@@ -104,6 +104,7 @@ vtkProp* vtkProp_structured_grid::prop(){
 void vtkProp_structured_grid::set_visibility(bool on) {
 
   actor_->SetVisibility(on);
+  this->update_colorbar_visibility();
 
 }
 
@@ -178,40 +179,9 @@ void vtkProp_structured_grid::property_deleted( const std::string& prop_name ) {
     current_property_ = 0;
     cmap_ = 0;
 
-    property_display_mode( VTK::NOT_PAINTED );
   }
   
 }
-
-
-
-int vtkProp_structured_grid::add_slice( VTK::Axis axis, int position,
-			   bool showed ) {
-  return 0;
-}
-
-
-void vtkProp_structured_grid::remove_slice( int slice_id ) {
-}
-
-
-
-void vtkProp_structured_grid::display_mode( Display_mode mode ) {
-}
-
-
-void vtkProp_structured_grid::property_display_mode( VTK::Property_display_mode mode ) {
-	switch(mode) {
-	case VTK::NOT_PAINTED :
-		structured_grid_->GetCellData()->SetScalars(0);
-//		vtk_property_->SetRepresentationToWireframe();
-		current_property_name_ = "";
-		break;
-	}
-
-}
-
-
 
 
 void vtkProp_structured_grid::show_bounding_box( bool on ) {

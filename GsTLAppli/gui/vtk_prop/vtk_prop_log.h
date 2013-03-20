@@ -67,7 +67,6 @@ public:
  virtual void enable_full_view();
  virtual void disable_full_view();
 
- virtual void property_display_mode( VTK::Property_display_mode mode );
  virtual void line_width( int size );
  virtual void property_deleted( const std::string& prop_name );
 
