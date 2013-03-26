@@ -159,6 +159,24 @@ double Log_data::total_length() const{
 }
 
 
+bool Log_data::are_segments_continuous(int start_nodeid, int segment_length ) const {
+
+  int start_segmentid = this->segmentid_from_nodeid(start_nodeid);
+  if( start_segmentid < 0 || start_segmentid+segment_length > log_coords_.size() ) return false;
+ 
+
+  nodeid_to_log_coords::const_iterator it_current = log_coords_.find(start_nodeid);
+  nodeid_to_log_coords::const_iterator it_next = log_coords_.find(start_nodeid);
+  for(int i=0; i<segment_length-1; ++i ) {
+    std::advance(it_next,1);
+    if( it_current->second.second !=  it_next->second.first ) return false;
+    it_current = it_next;
+  }
+ 
+  return true;
+
+}
+
 	// GsTL_object_item implementation
 QString Log_data::item_type() const {
 	return "Log data";

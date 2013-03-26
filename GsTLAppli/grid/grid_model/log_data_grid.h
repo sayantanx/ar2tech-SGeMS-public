@@ -70,6 +70,8 @@ public :
   double segment_length(int nodeid) const;
   double total_length() const;
 
+  bool are_segments_continuous(int start_segmentid, int segment_length ) const;
+
 
 	// GsTL_object_item implementation
 	 virtual QString item_type() const;

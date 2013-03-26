@@ -218,6 +218,12 @@ public:
         return false; 
     } 
  
+    bool operator != (const GsTLTripletTmpl<R>& t ) const { 
+        if( (coords_[0] != t.coords_[0]) ||  (coords_[1] != t.coords_[1]) ||  (coords_[2] != t.coords_[2]) ) { 
+            return true; 
+        } 
+        return false; 
+    } 
 
     const R* raw_access() const { return coords_; }
     R* raw_access() { return coords_; }
