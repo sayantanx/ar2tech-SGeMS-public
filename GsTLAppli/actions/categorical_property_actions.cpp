@@ -268,7 +268,8 @@ init( std::string& parameters, GsTL_project* proj,
 
   for( ; it != cat_def->end_property(); ++it ) {
     QString parameters = QString("%1::%2").arg((*it)->grid_name().c_str()).arg((*it)->name().c_str());
-    bool ok = sequential_code.init( parameters.toStdString(), proj, errors );
+    std::string parameter_str = parameters.toStdString();
+    bool ok = sequential_code.init( parameter_str, proj, errors );
     if (!ok) return false;
   }
 

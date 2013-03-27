@@ -211,7 +211,7 @@ SmartPtr<Continuous_distribution> trans::get_cdf( const Parameters_handler* para
     float mean = String_Op::to_number<float>(mean_str);
     float variance = String_Op::to_number<float>(var_str);
 
-    cdist = SmartPtr<Continuous_distribution>(new Gaussian_distribution(mean, std::sqrtf(variance) ) );
+    cdist = SmartPtr<Continuous_distribution>(new Gaussian_distribution(mean, std::sqrt(variance) ) );
 	} 
 	else if(cdf_type == "Uniform")
 	{
@@ -234,7 +234,7 @@ SmartPtr<Continuous_distribution> trans::get_cdf( const Parameters_handler* para
     float mean = String_Op::to_number<float>(mean_str);
     float variance = String_Op::to_number<float>(var_str);
 
-    cdist = SmartPtr<Continuous_distribution>(new LogNormal_distribution(mean, std::sqrtf(variance) ));
+    cdist = SmartPtr<Continuous_distribution>(new LogNormal_distribution(mean, std::sqrt(variance) ));
 	} 
 
 	return cdist;

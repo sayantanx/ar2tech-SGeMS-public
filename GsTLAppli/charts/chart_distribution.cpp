@@ -29,7 +29,8 @@
 #include <vtkContextScene.h>
 #include <vtkDoubleArray.h>
 #include <vtkAxis.h>
-
+#include <vtkRenderer.h>
+#include <vtkRenderWindow.h>
 
 #include <QVBoxLayout>
 
@@ -41,11 +42,26 @@ Chart_distribution::Chart_distribution(QWidget *parent)
 
   //Add the vtk rendering window
   qvtkWidget_ = new QVTKWidget(this);
-	context_view_ = vtkSmartPointer<vtkContextView>::New();
-	context_view_->SetInteractor(qvtkWidget_->GetInteractor());
-	qvtkWidget_->SetRenderWindow(context_view_->GetRenderWindow());
-	chart_ = vtkSmartPointer<vtkChartXY>::New();
-	context_view_->GetScene()->AddItem(chart_); 
+//  qvtkWidget_->setMinimumSize(QSize(100, 100));
+/*
+  // Setup window
+  vtkSmartPointer<vtkRenderWindow> render_window =
+      vtkSmartPointer<vtkRenderWindow>::New();
+
+  // Setup renderer
+  vtkSmartPointer<vtkRenderer> renderer =
+      vtkSmartPointer<vtkRenderer>::New();
+  render_window->AddRenderer(renderer);
+  qvtkWidget_->SetRenderWindow(render_window);
+  */
+
+  context_view_ = vtkSmartPointer<vtkContextView>::New();
+  qvtkWidget_->SetRenderWindow(context_view_->GetRenderWindow());
+
+  context_view_->SetInteractor(qvtkWidget_->GetInteractor());
+  //qvtkWidget_->SetRenderWindow(context_view_->GetRenderWindow());
+  chart_ = vtkSmartPointer<vtkChartXY>::New();
+  context_view_->GetScene()->AddItem(chart_);
 
   plot_cdf_ = chart_->AddPlot(vtkChartXY::LINE);
   //plot_cdf_->GetYAxis()->SetPosition(vtkAxis::RIGHT);

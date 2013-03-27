@@ -633,7 +633,7 @@ public:
   }
 
 private :
-  const const Log_data_grid* grid_;
+  const Log_data_grid* grid_;
   std::vector<int> log_ids_;
 
 };

@@ -33,7 +33,13 @@ HEADERS += region_proxy_model.h \
     project_proxy_model.h \
     region_weight_proxy_model.h \
     weight_property_proxy_model.h \
-    weight_property_selector.h    
+    weight_property_selector.h    \
+    grid_filter_delegate.h \
+    grid_filter_model.h \
+    grid_filter_model_item.h \
+    grid_filter_named_interface.h \
+    grid_filter_tree_view.h \
+    library_qtplugins_init.h
 FORMS += order_properties_dialog.ui \
     variogram_input_base.ui \
     variogram_structure_base.ui
@@ -60,7 +66,13 @@ SOURCES += region_proxy_model.cpp \
     project_proxy_model.cpp \
     region_weight_proxy_model.cpp \
     weight_property_proxy_model.cpp \
-    weight_property_selector.cpp   
+    weight_property_selector.cpp  \
+    grid_filter_delegate.cpp \
+    grid_filter_model.cpp \
+    grid_filter_model_item.cpp \
+    grid_filter_named_interface.cpp \
+    grid_filter_tree_view.cpp \
+    library_qtplugins_init.cpp
 RESOURCES += icons.qrc
 TARGET = GsTLAppli_qtplugins
 QT += xml
