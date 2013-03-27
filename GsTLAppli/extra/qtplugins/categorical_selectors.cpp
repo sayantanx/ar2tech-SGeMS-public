@@ -54,7 +54,9 @@
 #include <QHeaderView>
 
 SingleCategoricalPropertySelector::SingleCategoricalPropertySelector( QWidget* parent, const char* name )
-  : SinglePropertySelector( parent, name ) {
+  : SinglePropertySelector( parent, name ), grid_(0) {
+
+    connect(this, SIGNAL(activated(const QString&)) , this, SLOT(property_been_selected(const QString&)) );
 }
 
 void SingleCategoricalPropertySelector::show_properties( const QString& grid_name ) {
@@ -73,16 +75,17 @@ void SingleCategoricalPropertySelector::show_properties( const QString& grid_nam
 
   SmartPtr< Named_interface > ni = 
     Root::instance()->interface( gridModels_manager + "/" + name );
-  Geostat_grid* grid = (Geostat_grid*) ni.raw_ptr() ;
+  grid_ = (Geostat_grid*) ni.raw_ptr() ;
+  //Geostat_grid* grid = (Geostat_grid*) ni.raw_ptr() ;
   // no dynamic_cast is used on the previous line because it makes 
   // designer and uic segfault when they try to load the plugin...
   // It used to work before, don't know what changed.  
 
-  if( !grid ) return;
+  if( !grid_ ) return;
 
   int selected_item = 0;
   int i=0;
-  std::list<std::string> properties = grid->categorical_property_list();
+  std::list<std::string> properties = grid_->categorical_property_list();
   std::list<std::string>::iterator begin = properties.begin();
   for( ; begin != properties.end() ; ++begin, i++ ) {
     QString prop_name( begin->c_str() );
@@ -103,6 +106,13 @@ void SingleCategoricalPropertySelector::show_properties( const QString& grid_nam
   // Don't know why "0". Should be "currentItem". remove if everything works fine
     emit activated( 0 );
 //  emit activated( currentItem() );
+}
+
+void SingleCategoricalPropertySelector::property_been_selected(const QString& cprop_name ){
+  GsTLGridCategoricalProperty* cprop = grid_->categorical_property(cprop_name.toStdString());
+  if( cprop == 0 ) return;
+
+  emit this->categorical_property_selected( cprop );
 }
 
 
@@ -473,6 +483,11 @@ void CategoricalDefinitionTable::show_definition( CategoricalPropertyDefinition*
 
 }
 
+void CategoricalDefinitionTable::show_definition( GsTLGridCategoricalProperty* cprop ){
+  if(cprop == 0) return;
+  this->show_definition(cprop->get_category_definition());
+}
+
 void CategoricalDefinitionTable::show_color_editor(const QModelIndex& index){
   if ( index.column() != 1 ) return;
 
@@ -487,6 +502,34 @@ void CategoricalDefinitionTable::show_color_editor(const QModelIndex& index){
 }
 
 
+QStringList CategoricalDefinitionTable::selected_category_names() const {
+
+  QStringList selected_categories;
+  if(model_ == 0) return selected_categories;
+
+  int nrows = model_->rowCount();
+  for(int i=0; i<nrows; ++i) {
+    QModelIndex index = model_->index(i,0);
+    if( !model_->data(index,Qt::CheckStateRole).toBool() ) continue;
+    selected_categories<<model_->data(index,Qt::DisplayRole).toString();
+  }
+  return selected_categories;
+}
+/*
+std::vector<int> CategoricalDefinitionTable::selected_category_ids() const {
+
+  std::vector<int> selected_categories;
+  if(model_ == 0) return selected_categories;
+
+  int nrows = model_->rowCount();
+  for(int i=0; i<nrows; ++i) {
+    QModelIndex index = model_->index(i,0);
+    if( !model_->data(index,Qt::CheckStateRole).toBool() ) continue;
+    selected_categories.push_back(model_->data(index,Qt::DisplayRole).toInt());
+  }
+  return selected_categories;
+}
+*/
 //===============================================
 
 

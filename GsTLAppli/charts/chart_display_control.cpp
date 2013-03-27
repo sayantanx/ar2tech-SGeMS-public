@@ -85,6 +85,16 @@ void Chart_display_control::send_axis_signals(){
   emit x_label_font_size(ui.x_label_font_size->value());
   emit y_label_font_size(ui.y_label_font_size->value());
 
+
+  emit xaxis_min_changed(ui.x_min->value());
+  emit xaxis_max_changed(ui.x_max->value());
+  emit yaxis_min_changed(ui.y_min->value());
+  emit yaxis_max_changed(ui.y_max->value());
+  
+  emit xaxis_nticks_changed(ui.x_nticks->value());
+  emit yaxis_nticks_changed(ui.y_nticks->value());
+
+
 }
 
 

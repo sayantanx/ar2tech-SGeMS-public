@@ -88,10 +88,16 @@ class QTPLUGINS_DECL  SingleCategoricalPropertySelector : public SinglePropertyS
  public:
   SingleCategoricalPropertySelector( QWidget* parent = 0, const char* name = 0 );
   virtual ~SingleCategoricalPropertySelector() {}
+
+signals:
+  void categorical_property_selected(GsTLGridCategoricalProperty*);
   
   public slots:
     virtual void show_properties( const QString& grid_name );
+    virtual void property_been_selected(const QString& grid_name );
 
+protected :
+  Geostat_grid* grid_;
 };
 
 
@@ -227,11 +233,14 @@ class QTPLUGINS_DECL  CategoricalDefinitionTable : public QTableView {
 
   void initialize();
   QString get_definition_name() const {return current_definition_;}
+  QStringList selected_category_names() const;
+//  std::vector<int> selected_category_ids() const;
 
  public slots:
   void show_definition( QString cdef_name);
   void show_definition( CategoricalPropertyDefinition* cdef );
   void show_definition( int ncat );
+  void show_definition( GsTLGridCategoricalProperty* cprop );
   void show_color_editor(const QModelIndex& index);
   void set_flags_name(Qt::ItemFlags flags) {if(model_) model_->set_flags_name(flags);}
   void set_flags_color(Qt::ItemFlags flags) {if(model_) model_->set_flags_color(flags);}

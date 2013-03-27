@@ -131,9 +131,12 @@ Grid_filter_coord_bounded_editor::Grid_filter_coord_bounded_editor(const Geostat
   layout->addStretch();
   layout->addWidget(new QLabel("Upper", this));
   layout->addWidget(upper_bound_spin_);
+  layout->addStretch();
 
-  layout->setMargin(0);
+  layout->setContentsMargins(0,0,0,0);
   this->setLayout(layout);
+
+  this->setAutoFillBackground(true);
 
   //this->setFocusPolicy( Qt::StrongFocus );
 
