@@ -42,10 +42,12 @@ HEADERS +=       library_gui_init.h    \
       appli/qt_grid_summary.h    \
       appli/qt_sp_application.h    \
       utils/categorical_definition_dialog.h    \
+      utils/categorical_property_dialog.h    \
       utils/colormap.h    \
       utils/copy_property_dialog.h    \
       utils/downscale_grid_dialog.h    \
       utils/new_distribution_dialog.h    \
+      utils/new_region_from_grid_filter_dialog.h \
       utils/save_grid_dialog.h    \
       utils/upscale_property_dialog.h    \
       utils/data_analysis_save_dialog.h    \
@@ -134,8 +136,7 @@ FORMS += viewer/Project_view_form.ui \
     utils/delete_properties_dialog_base.ui \
     utils/delete_regions_dialog_base.ui \
     utils/multichoice_dialog_base.ui \
-    utils/create_distribution_dialog.ui \
-    utils/create_distribution_dialog.ui \    
+    utils/create_distribution_dialog.ui \  
     variogram2/first_scr_base.ui \
     variogram2/point_set_base.ui \
     variogram2/rgrid_base.ui \
@@ -161,10 +162,12 @@ SOURCES +=       library_gui_init.cpp    \
       appli/qt_grid_summary.cpp    \
       appli/qt_sp_application.cpp    \
       utils/categorical_definition_dialog.cpp    \
+      utils/categorical_property_dialog.cpp    \
       utils/colormap.cpp    \
       utils/copy_property_dialog.cpp    \
       utils/downscale_grid_dialog.cpp    \
       utils/new_distribution_dialog.cpp    \
+      utils/new_region_from_grid_filter_dialog.cpp \
       utils/save_grid_dialog.cpp    \
       utils/upscale_property_dialog.cpp    \
       utils/data_analysis_save_dialog.cpp    \
@@ -245,7 +248,6 @@ QT += xml
 QT += opengl
 TARGET = GsTLAppli_gui
 CONFIG += plugin
-#LIBS += -L/usr/local/lib/vtk-5.9/ -lvtkCommon
 INCLUDEPATH += $(QTDIR)/tools/designer/interfaces
 INCLUDEPATH += /usr/local/include/
 contains( TEMPLATE, lib ) { 

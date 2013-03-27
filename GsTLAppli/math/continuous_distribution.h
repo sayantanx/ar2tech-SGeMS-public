@@ -569,7 +569,7 @@ public:
 	  float gaussian_var = std::log( scale*scale/location/location + 1 );
 	  float gaussian_mean = std::log(location) -  gaussian_var/2;
 
-    dist_ = new boost::math::lognormal_distribution<>(gaussian_mean,std::sqrtf(gaussian_var));
+    dist_ = new boost::math::lognormal_distribution<>(gaussian_mean,std::sqrt(gaussian_var));
   }
   virtual ~LogNormal_distribution(void){delete dist_;}
 

@@ -13,7 +13,7 @@
 # Compile with debug options, and lots of warnings
 # Replace "debug" with "release" if you want to compile in release mode
 
-CONFIG += release
+CONFIG += debug
 DEFINES += GSTLAPPLI_NDEBUG
 #warn_on
 

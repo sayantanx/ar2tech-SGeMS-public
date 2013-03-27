@@ -50,7 +50,8 @@ HEADERS += grid_model/log_data_grid.h \
     grid_model/grid_downscaler.h \
     grid_model/structured_grid.h \
     coordinate_mapper.h \
-    property_transformer.h
+    property_transformer.h \
+    grid_filter.h
 SOURCES += grid_model/log_data_grid.cpp \
     library_grid_init.cpp \
     mgrid_neighborhood.cpp \
@@ -81,7 +82,8 @@ SOURCES += grid_model/log_data_grid.cpp \
     grid_model/grid_downscaler.cpp \
     grid_model/structured_grid.cpp \
     coordinate_mapper.cpp \
-    property_transformer.cpp
+    property_transformer.cpp \
+    grid_filter.cpp
 TARGET = GsTLAppli_grid
 QT += xml
 CONFIG += plugin
