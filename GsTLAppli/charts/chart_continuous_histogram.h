@@ -176,7 +176,6 @@ private:
   void compute_stats(histo_data& data);
   void compute_stats_with_weights(histo_data& data);
   void compute_stats_from_distribution(histo_data& data);
-  void remove_plot(vtkSmartPointer<vtkPlot> plot);
 
   void intialize_stats_tables();
   void add_data_to_stats_table(histo_data& data);

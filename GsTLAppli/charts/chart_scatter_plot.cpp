@@ -436,14 +436,8 @@ void Chart_scatter_plot::update_data_display(Scatter_plot_item* item){
 
       std::map<int, Scatter_data>::iterator it = data_stats_.find(item->id());
       it->second.plot_points->SetColor( item->color().red(),item->color().green(),item->color().blue(), item->color().alpha());
-      
-      if( !item->is_visible() ) {
-        chart_->RemovePlotInstance(it->second.plot_points);
-      }
-      else {
-        chart_->RemovePlotInstance(it->second.plot_points);  //Want to be sure that is not added twice, must a smarter way of doing that
-        chart_->AddPlot(it->second.plot_points);
-      }
+      it->second.plot_points->SetVisible(item->is_visible());
+
     }
     else if(item->type() == "Group") {
       Scatter_plot_group_item* group_item = dynamic_cast<Scatter_plot_group_item*>(item);
@@ -454,6 +448,7 @@ void Chart_scatter_plot::update_data_display(Scatter_plot_item* item){
 
       }
     }
+    qvtkWidget_->update();
 }
 
 void Chart_scatter_plot::remove_plot(vtkSmartPointer<vtkPlotPoints> plot){
@@ -533,7 +528,6 @@ void Chart_scatter_plot::initialize_plot(Scatter_plot_item* item){
   it->second.plot_points->SetInputData(it->second.scatter_table, 0, 1);
   QColor color = default_colors_.at( default_color_id_%max_index_default_colors_ );
   it->second.plot_points->SetColor(color.redF(), color.greenF(), color.blueF());
-  chart_->AddPlot(it->second.plot_points);
   it->second.plot_points->Update();
   
 
@@ -858,13 +852,8 @@ void Chart_scatter_plot::set_visibility( Scatter_plot_item* item){
     Scatter_plot_property_item* prop_item = dynamic_cast< Scatter_plot_property_item*>(item);
     std::map<int, Scatter_data>::iterator it = data_stats_.find(prop_item->id());
     if( it == data_stats_.end() ) return;
-    if(prop_item->is_visible()) {
-      chart_->RemovePlotInstance(it->second.plot_points);
-      chart_->AddPlot(it->second.plot_points);
-    }
-    else {
-      chart_->RemovePlotInstance(it->second.plot_points);
-    }
+    it->second.plot_points->SetVisible(prop_item->is_visible());
+
 
   }
   else if(item->type() == "Property-Group") {
@@ -883,6 +872,7 @@ void Chart_scatter_plot::set_visibility( Scatter_plot_item* item){
       this->set_visibility(prop_item);
     }
   }
+  qvtkWidget_->update();
 }
 void Chart_scatter_plot::set_color( Scatter_plot_item* item){
   if(item->type() == "Property") {
@@ -1030,32 +1020,6 @@ void Chart_scatter_plot::set_marker_size(Scatter_plot_item* item) {
 
 }
 
-/*
-void Chart_scatter_plot::manage_plot_display(Scatter_data& data, QString display_style ){
-  bool changed = false;
-  if(display_style == "Bars") {
-    chart_->RemovePlotInstance(data.plot_line);
-    chart_->RemovePlotInstance(data.plot_bar);  //Want to be sure that is not added twice, must a smarter way of doing that
-    chart_->AddPlot(data.plot_bar);
-    changed = true;
-  }
-  else if(display_style == "Lines") {
-    chart_->RemovePlotInstance(data.plot_bar);
-    chart_->RemovePlotInstance(data.plot_line);
-    chart_->AddPlot(data.plot_line);
-    changed = true;
-  }
-  else if(display_style == "Bars and Lines") {
-    chart_->RemovePlotInstance(data.plot_bar);
-    chart_->AddPlot(data.plot_bar);
-    chart_->RemovePlotInstance(data.plot_line);
-    chart_->AddPlot(data.plot_line);    
-    changed = true;
-  }
-  if(changed)
-    this->update_chart_display_control();
-}
-*/
 void Chart_scatter_plot::update_chart_display_control(){
   vtkAxis* xaxis = chart_->GetAxis(vtkAxis::BOTTOM);
   chart_control_->set_xaxis_min(xaxis->GetMinimum());

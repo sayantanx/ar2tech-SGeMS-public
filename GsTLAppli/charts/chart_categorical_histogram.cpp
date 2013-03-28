@@ -295,12 +295,8 @@ void Chart_categorical_histogram::update_data_display(Categorical_histogram_item
 
       std::map<int, histo_data>::iterator it = data_stats_.find(item->id());
       it->second.plot_bar->SetColor( item->color().red(),item->color().green(),item->color().blue(), item->color().alpha());
- //     it->second.plot_line->SetColor( item->color().red(),item->color().green(),item->color().blue(), item->color().alpha());
-      
-      if( !item->is_visible() ) {
-        chart_->RemovePlotInstance(it->second.plot_bar);
-//        chart_->RemovePlotInstance(it->second.plot_line);
-      }
+      it->second.plot_bar->SetVisible(item->is_visible());
+
     }
     else if(item->type() == "Group") {
       Categorical_histogram_group_item* group_item = dynamic_cast<Categorical_histogram_group_item*>(item);
@@ -311,6 +307,7 @@ void Chart_categorical_histogram::update_data_display(Categorical_histogram_item
 
       }
     }
+    qvtkWidget_->update();
 }
 
 void Chart_categorical_histogram::remove_plot(vtkSmartPointer<vtkPlot> plot){
@@ -824,11 +821,7 @@ void Chart_categorical_histogram::set_visibility( Categorical_histogram_item* it
     Categorical_histogram_property_item* prop_item = dynamic_cast< Categorical_histogram_property_item*>(item);
     std::map<int, histo_data>::iterator it = data_stats_.find(prop_item->id());
     if( it == data_stats_.end() ) return;
-    chart_->RemovePlotInstance (it->second.plot_bar);
-    this->remove_plot(it->second.plot_bar);
-    if(prop_item->is_visible()) {
-      chart_->AddPlot(it->second.plot_bar);
-    }
+    it->second.plot_bar->SetVisible(prop_item->is_visible());
   }
   else if(item->type() == "Group") {
     Categorical_histogram_group_item* group_item = dynamic_cast<Categorical_histogram_group_item*>(item);
@@ -838,4 +831,5 @@ void Chart_categorical_histogram::set_visibility( Categorical_histogram_item* it
       this->set_visibility(prop_item);
     }
   }
+  qvtkWidget_->update();
 }
