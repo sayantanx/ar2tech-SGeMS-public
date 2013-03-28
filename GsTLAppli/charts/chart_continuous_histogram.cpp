@@ -41,6 +41,8 @@
 #include <vtkColor.h>
 #include <vtkTextProperty.h>
 #include <vtkChartLegend.h>
+#include <QVTKInteractor.h>
+#include <vtkPlotLine.h>
 
 #include <QSplitter>
 #include <QTreeView>
@@ -78,15 +80,16 @@ Chart_continuous_histogram::Chart_continuous_histogram(int nbins, QWidget *paren
 
   //Add the vtk rendering window
   qvtkWidget_ = new QVTKWidget(this);
-	context_view_ = vtkSmartPointer<vtkContextView>::New();
-	context_view_->SetInteractor(qvtkWidget_->GetInteractor());
-	qvtkWidget_->SetRenderWindow(context_view_->GetRenderWindow());
+  context_view_ = vtkSmartPointer<vtkContextView>::New();
+  context_view_->SetInteractor(qvtkWidget_->GetInteractor());
+  qvtkWidget_->SetRenderWindow(context_view_->GetRenderWindow());
 	chart_ = vtkSmartPointer<vtkChartXY>::New();
-	context_view_->GetScene()->AddItem(chart_);  
-  chartSplitter->addWidget(qvtkWidget_);
+	context_view_->GetScene()->AddItem(chart_); 
 
   chart_->GetAxis(0)->SetNumberOfTicks(10);
   chart_->GetAxis(1)->SetNumberOfTicks(10);
+
+  chartSplitter->addWidget(qvtkWidget_);
 
   mainSplitter->addWidget(chartSplitter);
 
@@ -448,8 +451,8 @@ void Chart_continuous_histogram::update_data_display(Histogram_item* item){
       it->second.plot_line->SetColor( item->color().red(),item->color().green(),item->color().blue(), item->color().alpha());
       
       if( !item->is_visible() ) {
-        chart_->RemovePlotInstance(it->second.plot_bar);
-        chart_->RemovePlotInstance(it->second.plot_line);
+        it->second.plot_bar->SetVisible(false);
+        it->second.plot_line->SetVisible(false);
       }
       else {
         this->manage_plot_display(it->second, item->display_format());
@@ -464,17 +467,7 @@ void Chart_continuous_histogram::update_data_display(Histogram_item* item){
 
       }
     }
-}
-
-void Chart_continuous_histogram::remove_plot(vtkSmartPointer<vtkPlot> plot){
-  // Has to be a better way
-  int n = chart_->GetNumberOfPlots();
-  for(int i=0; i<n; ++i) {
-    if(plot == chart_->GetPlot(i)) { 
-      chart_->RemovePlot(i);
-      break;
-    }
-  }
+    qvtkWidget_->update();
 }
 
 void Chart_continuous_histogram::initialize_data(Histogram_distribution_item* item){
@@ -570,7 +563,7 @@ void Chart_continuous_histogram::initialize_plot(Histogram_item* item){
   it->second.plot_bar->GetYAxis()->SetMaximumLimit(1.00);
   it->second.plot_line->GetYAxis()->SetMaximumLimit(1.00);
 
-  this->manage_plot_display(it->second, item->display_format());
+//  this->manage_plot_display(it->second, item->display_format());
 
   it->second.plot_bar->SetInputData(it->second.histo_table, 0, 2);
   it->second.plot_line->SetInputData(it->second.histo_line_table, 0, 1);
@@ -587,8 +580,8 @@ void Chart_continuous_histogram::remove_data( int id){
 
   std::map<int, histo_data>::iterator it = data_stats_.find(id);
 
-  this->remove_plot(it->second.plot_bar);
-  this->remove_plot(it->second.plot_line);
+  chart_->RemovePlotInstance(it->second.plot_bar);
+  chart_->RemovePlotInstance(it->second.plot_line);
   histo_table_->RemoveColumnByName (it->second.name.c_str());
   data_stats_.erase(it);
 }
@@ -714,8 +707,6 @@ void Chart_continuous_histogram::compute_stats(histo_data& data){
 
   std::cout<<"Computing histo"<<std::endl;
   vtkTable* full_histo = vtkTable::SafeDownCast( mblock_ordered->GetBlock( nbq - 2 ));
- // vtkAbstractArray* aa = full_histo->GetColumn(0);
- // vtkAbstractArray* bb = full_histo->GetColumn(2);
   vtkDoubleArray* d = vtkDoubleArray::SafeDownCast(full_histo->GetColumn(0));
   vtkDoubleArray* p = vtkDoubleArray::SafeDownCast( full_histo->GetColumn(2));
   int histo_bin_id=0;
@@ -1072,13 +1063,8 @@ void Chart_continuous_histogram::set_visibility( Histogram_item* item){
     Histogram_property_item* prop_item = dynamic_cast< Histogram_property_item*>(item);
     std::map<int, histo_data>::iterator it = data_stats_.find(prop_item->id());
     if( it == data_stats_.end() ) return;
-    if(prop_item->is_visible()) {
-      this->manage_plot_display(it->second, prop_item->display_format());
-    }
-    else {
-      this->remove_plot(it->second.plot_bar);
-      this->remove_plot(it->second.plot_line);
-    }
+    it->second.plot_bar->SetVisible(prop_item->is_visible());
+    it->second.plot_line->SetVisible(prop_item->is_visible());
 
   }
   else if(item->type() == "Group") {
@@ -1089,6 +1075,7 @@ void Chart_continuous_histogram::set_visibility( Histogram_item* item){
       this->set_visibility(prop_item);
     }
   }
+  qvtkWidget_->update();
 }
 void Chart_continuous_histogram::set_color( Histogram_item* item){
   if(item->type() == "Property") {
@@ -1190,26 +1177,24 @@ void Chart_continuous_histogram::set_data_display_style(Histogram_item* item){
 void Chart_continuous_histogram::manage_plot_display(histo_data& data, QString display_style ){
   bool changed = false;
   if(display_style == "Bars") {
-    chart_->RemovePlotInstance(data.plot_line);
-    chart_->RemovePlotInstance(data.plot_bar);  //Want to be sure that is not added twice, must a smarter way of doing that
-    chart_->AddPlot(data.plot_bar);
+    data.plot_line->SetVisible(false);
+    data.plot_bar->SetVisible(true);
     changed = true;
   }
   else if(display_style == "Lines") {
-    chart_->RemovePlotInstance(data.plot_bar);
-    chart_->RemovePlotInstance(data.plot_line);
-    chart_->AddPlot(data.plot_line);
+    data.plot_line->SetVisible(true);
+    data.plot_bar->SetVisible(false);
     changed = true;
   }
   else if(display_style == "Bars and Lines") {
-    chart_->RemovePlotInstance(data.plot_bar);
-    chart_->AddPlot(data.plot_bar);
-    chart_->RemovePlotInstance(data.plot_line);
-    chart_->AddPlot(data.plot_line);    
+    data.plot_line->SetVisible(true);
+    data.plot_bar->SetVisible(true);
     changed = true;
   }
-  if(changed)
+  if(changed) {
     this->update_chart_display_control();
+    qvtkWidget_->update();
+  }
 }
 
 void Chart_continuous_histogram::update_chart_display_control(){
