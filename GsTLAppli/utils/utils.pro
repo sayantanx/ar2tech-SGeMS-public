@@ -34,7 +34,7 @@ SOURCES += error_messages_handler.cpp \
     string_manipulation.cpp
 TARGET = GsTLAppli_utils
 CONFIG += plugin
-#LIBS += -L/Users/lewisli/code-dev/sgems/lib/osx -lqwt
+
 INCLUDEPATH += $(QTDIR)/tools/designer/interfaces
 contains( TEMPLATE, lib ) { 
     DESTDIR = $$GSTLAPPLI_HOME/lib/$$CUR_PLATFORM
