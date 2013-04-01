@@ -2,6 +2,8 @@ MOC_DIR = .moc
 CONFIG += -std=c++11
 win32 {
   DEFINES += FILTERS_EXPORTS
-  LIBS += -lGsTLAppli_utils -lGsTLAppli_math
-  LIBS += -lGsTLAppli_grid -lGsTLAppli_appli
 }
+
+LIBS += -lGsTLAppli_utils -lGsTLAppli_math
+LIBS += -lGsTLAppli_grid -lGsTLAppli_appli
+LIBS += -L$$VTK_LIB

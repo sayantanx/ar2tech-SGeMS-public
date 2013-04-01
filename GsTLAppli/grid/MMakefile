@@ -1,7 +1,8 @@
 CONFIG += qt
 INCLUDEPATH += $$VTK_INCLUDE
 LIBS += -lGsTLAppli_utils -lGsTLAppli_math -lGsTLAppli_appli
-LIBS += -L$$VTK_LIB  -lvtkCommonCore-6.0 -lvtkCommonDataModel-6.0 -lvtkCommonExecutionModel-6.0
+LIBS += -L$$VTK_LIB
+#LIBS += -L$$VTK_LIB  -lvtkCommonCore-6.0 -lvtkCommonDataModel-6.0 -lvtkCommonExecutionModel-6.0
 win32 {
   DEFINES += GRID_EXPORTS
 }

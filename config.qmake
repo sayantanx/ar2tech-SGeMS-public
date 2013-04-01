@@ -33,6 +33,10 @@ DEPENDPATH += $$INCLUDEPATH
 
 LIBS += -L$$GSTLAPPLI_HOME/lib/$$CUR_PLATFORM
 
+#Needed for VTK: obtained by running a dummy cmake script
+#DEFINES +="vtkRenderingCore_AUTOINIT=4(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingFreeTypeOpenGL,vtkRenderingOpenGL)"
+DEFINES += vtkRenderingCore_INCLUDE=</home/aboucher/code-dev/ar2gems/GsTLAppli/utils/vtk_definition.h>
+#DEFINES +="vtkRenderingVolume_AUTOINIT=1(vtkRenderingVolumeOpenGL)"
 
 # Windows specific configuration
 win32 {
