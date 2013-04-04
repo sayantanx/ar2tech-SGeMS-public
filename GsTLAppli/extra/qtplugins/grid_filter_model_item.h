@@ -161,10 +161,19 @@ public :
   Grid_filter_category_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_category().item_type(),parent){}
   virtual ~Grid_filter_category_item(){}
 
-  virtual QVariant parameter() const {return QString("Category %1").arg(category_name_);}
+  virtual QVariant parameter() const {
+
+    QString param = QString("%1 : %2").arg(property_name_).arg(category_name_);
+    return param;
+/*
+    QStringList params;
+    params<<property_name_<<category_name_;
+    return params;
+    */
+  }
   virtual void set_parameter(const QVariant& parameters) {
     QStringList params = parameters.toStringList();
-    cdef_name_ = params[0];
+    property_name_ = params[0];
     category_name_ = params[1];
   }
 
@@ -173,14 +182,14 @@ public :
 
 protected :
 
-  QString cdef_name_;
+  QString property_name_;
   QString category_name_;
 
 };
 
 class QTPLUGINS_DECL Grid_filter_less_than_item : public Grid_filter_item {
 public :
-  Grid_filter_less_than_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_less_than().item_type(),parent){}
+  Grid_filter_less_than_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_less_than().item_type(),parent), prop_name_("None"),upper_bound_(GsTLGridProperty::no_data_value){}
   virtual ~Grid_filter_less_than_item(){}
 
   virtual QVariant parameter() const {return QString("%1 < %2").arg(prop_name_).arg(upper_bound_);}
@@ -204,7 +213,7 @@ protected :
 
 class QTPLUGINS_DECL Grid_filter_greater_than_item : public Grid_filter_item {
 public :
-  Grid_filter_greater_than_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_greater_than().item_type(),parent){}
+  Grid_filter_greater_than_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_greater_than().item_type(),parent), prop_name_("None"),lower_bound_(GsTLGridProperty::no_data_value){}
   virtual ~Grid_filter_greater_than_item(){}
 
   virtual QVariant parameter() const {return QString(" %1 > %2").arg(prop_name_).arg(lower_bound_);}
@@ -227,7 +236,8 @@ protected :
 
 class QTPLUGINS_DECL Grid_filter_x_coord_bounded_item : public Grid_filter_item {
 public :
-  Grid_filter_x_coord_bounded_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_x_coord_bounded().item_type(),parent){}
+  Grid_filter_x_coord_bounded_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_x_coord_bounded().item_type(),parent),
+    x_lower_bound_(GsTLGridProperty::no_data_value),x_upper_bound_(GsTLGridProperty::no_data_value){}
   virtual ~Grid_filter_x_coord_bounded_item(){}
 
   virtual QVariant parameter() const {return QString(" %1 < X < %2").arg(x_lower_bound_).arg(x_upper_bound_);}
@@ -248,7 +258,8 @@ protected :
 
 class QTPLUGINS_DECL Grid_filter_y_coord_bounded_item : public Grid_filter_item {
 public :
-  Grid_filter_y_coord_bounded_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_y_coord_bounded().item_type(),parent){}
+  Grid_filter_y_coord_bounded_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_y_coord_bounded().item_type(),parent),
+  y_lower_bound_(GsTLGridProperty::no_data_value),y_upper_bound_(GsTLGridProperty::no_data_value){}
   virtual ~Grid_filter_y_coord_bounded_item(){}
 
   virtual QVariant parameter() const {return QString(" %1 < Y < %2").arg(y_lower_bound_).arg(y_upper_bound_);}
@@ -269,7 +280,8 @@ protected :
 
 class QTPLUGINS_DECL Grid_filter_z_coord_bounded_item : public Grid_filter_item {
 public :
-  Grid_filter_z_coord_bounded_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_z_coord_bounded().item_type(),parent){}
+  Grid_filter_z_coord_bounded_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_z_coord_bounded().item_type(),parent),
+  z_lower_bound_(GsTLGridProperty::no_data_value),z_upper_bound_(GsTLGridProperty::no_data_value){}
   virtual ~Grid_filter_z_coord_bounded_item(){}
 
   virtual QVariant parameter() const {return QString(" %1 < Z < %2").arg(z_lower_bound_).arg(z_upper_bound_);}

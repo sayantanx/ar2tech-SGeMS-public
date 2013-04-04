@@ -118,7 +118,7 @@ public :
   virtual ~Grid_filter_category_item_ni(){}
 
   virtual Grid_filter_item* filter_item() const {return new Grid_filter_category_item();}
-  virtual Grid_filter_abstract_delegate* filter_delegate() const {return new Grid_filter_abstract_delegate(); }
+  virtual Grid_filter_abstract_delegate* filter_delegate() const {return new Grid_filter_cateorical_property_delegate(); }
 
 
 };
@@ -135,7 +135,7 @@ public :
   virtual ~Grid_filter_less_than_item_ni(){}
 
   virtual Grid_filter_item* filter_item() const {return new Grid_filter_less_than_item();}
-  virtual Grid_filter_abstract_delegate* filter_delegate() const {return new Grid_filter_abstract_delegate(); }
+  virtual Grid_filter_abstract_delegate* filter_delegate() const {return new Grid_filter_threshold_property_delegate(); }
 
 
 };
@@ -153,7 +153,7 @@ public :
   virtual ~Grid_filter_greater_than_item_ni(){}
 
   virtual Grid_filter_item* filter_item() const {return new Grid_filter_greater_than_item();}
-  virtual Grid_filter_abstract_delegate* filter_delegate() const {return new Grid_filter_abstract_delegate(); }
+  virtual Grid_filter_abstract_delegate* filter_delegate() const {return new Grid_filter_threshold_property_delegate(); }
 
 
 };

@@ -90,7 +90,7 @@ class QTPLUGINS_DECL  SingleCategoricalPropertySelector : public SinglePropertyS
   virtual ~SingleCategoricalPropertySelector() {}
 
 signals:
-  void categorical_property_selected(GsTLGridCategoricalProperty*);
+  void categorical_property_selected(const GsTLGridCategoricalProperty*);
   
   public slots:
     virtual void show_properties( const QString& grid_name );
@@ -312,5 +312,26 @@ protected:
 
 };
 
+
+class QTPLUGINS_DECL  SingleCategorySelector : public QComboBox {
+
+  Q_OBJECT
+
+ public:
+  SingleCategorySelector( QWidget* parent = 0, const char* name = 0 );
+  virtual ~SingleCategorySelector() {}
+
+  public slots:
+    void show_categories( const QString& cat_def_name);
+    void show_categories( const GsTLGridCategoricalProperty* prop);
+    void show_categories( const CategoricalPropertyDefinitionName* cdef);
+    void show_default_categories( int number_of_category );
+    void set_selected_category(const QString& cat_name);
+
+protected:
+  Category_proxy_model* model_;
+
+
+};
 
 #endif

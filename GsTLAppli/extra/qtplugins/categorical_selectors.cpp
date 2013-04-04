@@ -109,7 +109,7 @@ void SingleCategoricalPropertySelector::show_properties( const QString& grid_nam
 }
 
 void SingleCategoricalPropertySelector::property_been_selected(const QString& cprop_name ){
-  GsTLGridCategoricalProperty* cprop = grid_->categorical_property(cprop_name.toStdString());
+  const GsTLGridCategoricalProperty* cprop = grid_->categorical_property(cprop_name.toStdString());
   if( cprop == 0 ) return;
 
   emit this->categorical_property_selected( cprop );
@@ -621,3 +621,95 @@ void MultipleCategorySelector::selection_size() {
   emit( selected_count(size) );
 }
 
+
+
+
+//===============================================
+
+SingleCategorySelector::SingleCategorySelector( QWidget* parent, const char* name )
+  : QComboBox( parent ), model_(0) {
+  if (name)
+    setObjectName(name);
+ 
+}
+
+void SingleCategorySelector::show_categories( const GsTLGridCategoricalProperty* cprop){
+  
+  if(model_ == 0) {
+    model_ = new Category_proxy_model(this);
+    this->setModel(model_);
+  }
+
+  if(cprop == 0) {
+    model_->initialize(0);
+  }
+
+  QString cdefname = QString::fromStdString(cprop->get_category_definition()->name());
+  
+  SmartPtr<Named_interface> ni =
+    Root::instance()->interface( categoricalDefinition_manager+"/"+cdefname.toStdString() );
+	CategoricalPropertyDefinition* cat_def =
+	  dynamic_cast<CategoricalPropertyDefinition*>(ni.raw_ptr());
+
+  if(cdefname == "Default") {
+    model_->initialize( cat_def, cprop->get_number_of_category() );
+  }
+  else {
+    model_->initialize( dynamic_cast<CategoricalPropertyDefinitionName*>(cat_def) );
+  }
+
+}
+
+void SingleCategorySelector::show_categories( const QString& cat_def_name ) {
+  
+  if(model_ == 0) {
+    model_ = new Category_proxy_model(this);
+    this->setModel(model_);
+  }
+
+  if( cat_def_name.isEmpty() || cat_def_name == GridSelectorBasic::no_selection ) return;
+
+  SmartPtr<Named_interface> ni =
+    Root::instance()->interface( categoricalDefinition_manager+"/"+cat_def_name.toStdString() );
+
+	CategoricalPropertyDefinitionName* cat_def =
+	  dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
+
+  if(cat_def == 0) {
+    model_->initialize( 0 );
+  }
+  model_->initialize( cat_def );
+
+}
+
+void SingleCategorySelector::show_categories( const CategoricalPropertyDefinitionName* cdef){
+  this->show_categories(QString::fromStdString(cdef->name()));
+}
+
+void SingleCategorySelector::show_default_categories( int ncat ) {
+  
+  if(model_ == 0) {
+    model_ = new Category_proxy_model(this);
+    this->setModel(model_);
+  }
+
+  SmartPtr<Named_interface> ni =
+    Root::instance()->interface( categoricalDefinition_manager+"/Default" );
+
+	CategoricalPropertyDefinition* cat_def =
+	  dynamic_cast<CategoricalPropertyDefinition*>(ni.raw_ptr());
+
+  if(cat_def == 0) {
+    model_->initialize( 0 );
+  }
+  model_->initialize( cat_def, ncat );
+
+}
+
+void SingleCategorySelector::set_selected_category(const QString& cat_name){
+
+  int index = this->findText( cat_name );
+  if(index<0) return;
+  this->setCurrentIndex(index);
+
+}
