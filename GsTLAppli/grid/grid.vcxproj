@@ -279,6 +279,7 @@
     <ClCompile Include="grid_model\superblock.cpp" />
     <ClCompile Include="distribution_utilities.cpp" />
     <ClCompile Include="property_transformer.cpp" />
+    <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="coordinate_mapper.h" />
@@ -324,6 +325,7 @@
     <ClInclude Include="distribution_utilities.h" />
     <ClInclude Include="property_transformer.h" />
     <ClInclude Include="topology.h" />
+    <ClInclude Include="utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\appli\appli.vcxproj">

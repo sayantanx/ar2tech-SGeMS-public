@@ -45,6 +45,30 @@ public:
   virtual Grid_filter* clone() const =0;
 };
 
+class GRID_DECL Grid_filter_wrapper : public Grid_filter
+{
+public:
+  Grid_filter_wrapper(){}
+  virtual ~Grid_filter_wrapper(){}
+
+  void initialize(Grid_filter* filter) {
+    if(filter_) delete filter_;
+    filter_ = filter->clone();
+  }
+
+  virtual bool is_valid_nodeid(int nodeid) const {return filter_->is_valid_nodeid(nodeid);}
+
+  virtual Grid_filter* clone() const {
+    if(filter_ == 0) return 0;
+    return filter_->clone();
+  }
+
+private:
+  Grid_filter* filter_;
+};
+
+
+
 
 class GRID_DECL Grid_filter_union  : public Grid_filter 
 {
@@ -86,7 +110,7 @@ public:
 
   virtual bool is_valid_nodeid(int nodeid) const{
 
-  for( int i=0; filters_.size(); ++i  ) {
+  for( int i=0; i<filters_.size(); ++i  ) {
     if(filters_[i]->is_valid_nodeid(nodeid)) return true;
   }
 
@@ -140,7 +164,7 @@ public:
 
   virtual bool is_valid_nodeid(int nodeid) const{
 
-  for( int i=0; filters_.size(); ++i  ) {
+  for( int i=0; i<filters_.size(); ++i  ) {
     if(!filters_[i]->is_valid_nodeid(nodeid)) return false;
   }
 
@@ -205,11 +229,23 @@ public:
     item_type_ = "Category";
   }
 
+  Grid_filter_category(const GsTLGridCategoricalProperty* cprop, std::string category_name) 
+    : cprop_(cprop){
+
+    category_ = cprop_->get_category_definition()->category_id(category_name);
+    item_type_ = "Category";
+  }
+
   virtual ~Grid_filter_category(void){}
 
   void set_category(const GsTLGridCategoricalProperty* cprop, int active_category) {
     cprop_ = cprop;
     category_ = active_category;
+  }
+
+  void set_category(const GsTLGridCategoricalProperty* cprop, std::string category_name) {
+    cprop_ = cprop;
+    category_ = cprop_->get_category_definition()->category_id(category_name);
   }
 
   virtual Grid_filter* clone() const {

@@ -81,8 +81,9 @@ int library_qtplugins_init::release_lib() {
 
 bool library_qtplugins_init::bind_grid_filter_items(Manager* dir) {
 
-  dir->factory( Grid_filter_union().item_type().toStdString(), Grid_filter_union_item_ni::create_new_interface );
-  dir->factory( Grid_filter_intersection().item_type().toStdString(), Grid_filter_intersection_item_ni::create_new_interface );
+  //  Union and intersection are remove until a better interface is written
+//  dir->factory( Grid_filter_union().item_type().toStdString(), Grid_filter_union_item_ni::create_new_interface );
+//  dir->factory( Grid_filter_intersection().item_type().toStdString(), Grid_filter_intersection_item_ni::create_new_interface );
   dir->factory( Grid_filter_region().item_type().toStdString(), Grid_filter_region_item_ni::create_new_interface );
   dir->factory( Grid_filter_category().item_type().toStdString(), Grid_filter_category_item_ni::create_new_interface );
   dir->factory( Grid_filter_less_than().item_type().toStdString(), Grid_filter_less_than_item_ni::create_new_interface );

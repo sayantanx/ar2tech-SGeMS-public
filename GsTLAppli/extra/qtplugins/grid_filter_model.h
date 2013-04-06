@@ -67,6 +67,9 @@ public:
 
     void initialize();
 
+    Grid_filter* create_filter() const;
+    QStringList get_grid_filter_name() const;
+
     virtual QVariant data(const QModelIndex &index, int role) const;
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
     virtual QVariant headerData(int section, Qt::Orientation orientation,
@@ -81,6 +84,7 @@ public:
     virtual bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
 
     const Grid_filter_item* get_grid_filter_item(int row) const {return grid_filters_[row];}
+    
 
 
 public slots :
@@ -88,8 +92,6 @@ public slots :
   void set_grid(const QString& grid_name);
 
 private slots :
-
-private:
 
 private:
 

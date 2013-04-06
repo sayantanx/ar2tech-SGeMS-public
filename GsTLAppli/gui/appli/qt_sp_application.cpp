@@ -1547,8 +1547,8 @@ void QSP_application::new_region_from_property(){
 
 void QSP_application::new_region_from_grid_filter(){
   New_region_from_grid_filter_dialog* dialog = 
-    new New_region_from_grid_filter_dialog( this, "Create region from filtering" );
-  dialog->setWindowTitle( "Create New Region" );
+    new New_region_from_grid_filter_dialog( this);
+  dialog->setWindowTitle( "Create New Region from Filters" );
   dialog->exec();
   delete dialog;
 
