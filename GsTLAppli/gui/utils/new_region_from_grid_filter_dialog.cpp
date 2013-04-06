@@ -25,7 +25,7 @@
 
 #include <GsTLAppli/gui/utils/new_region_from_grid_filter_dialog.h>
 #include <GsTLAppli/extra/qtplugins/selectors.h>
-#include <GsTLAppli/extra/qtplugins/grid_filter_tree_view.h>
+#include <GsTLAppli/extra/qtplugins/grid_filter_widgets.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 #include <GsTLAppli/utils/error_messages_handler.h>
 #include <GsTLAppli/actions/common.h>
@@ -33,6 +33,8 @@
 #include <GsTLAppli/grid/grid_model/geostat_grid.h>
 #include <GsTLAppli/appli/manager_repository.h>
 #include <GsTLAppli/appli/project.h>
+#include <GsTLAppli/grid/grid_filter.h>
+#include <GsTLAppli/grid/utilities.h>
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -45,9 +47,7 @@
 
 
 New_region_from_grid_filter_dialog::
-New_region_from_grid_filter_dialog( QWidget* parent, const char* name ){
-  if (name)
-    setObjectName(name);
+New_region_from_grid_filter_dialog( QWidget* parent ){
   
   QVBoxLayout* main_layout = new QVBoxLayout( this);
   main_layout->setMargin(9);
@@ -66,7 +66,7 @@ New_region_from_grid_filter_dialog( QWidget* parent, const char* name ){
   new_region_layout->addWidget(new_region_ );
   new_region_box->setLayout( new_region_layout );
 
-  grid_filter_view_ = new Grid_filter_tree_view(this);
+  grid_filter_view_ = new Grid_filter_selector(this);
 
   QHBoxLayout* bottom_layout = new QHBoxLayout( this);
   bottom_layout->setSpacing(9);
@@ -80,9 +80,7 @@ New_region_from_grid_filter_dialog( QWidget* parent, const char* name ){
   bottom_layout->addWidget( cancel );
 
   main_layout->addWidget( grid_box );
-  main_layout->addStretch();
   main_layout->addWidget( new_region_box );
-  main_layout->addStretch();
   main_layout->addWidget( grid_filter_view_ );
   main_layout->addStretch();
   main_layout->addLayout( bottom_layout );
@@ -127,6 +125,24 @@ bool New_region_from_grid_filter_dialog::create_region(){
 		return false;
 	  }
 
+    Grid_filter* filter = grid_filter_view_->create_filter();
+    if(filter == 0) {
+      GsTLcerr << "No filer selected"<<gstlIO::end;
+      return false;
+    }
+
+    Geostat_grid* grid = get_grid_from_manager(grid_name.toStdString());
+    if(grid==0) return 0;
+
+    GsTLGridRegion* region = grid->add_region(region_name.toStdString());
+    if(region==0) return 0;
+
+    int region_size = region->size();
+    for(int i=0; i< region_size; ++i) {
+      if(filter->is_valid_nodeid(i)) region->set_region_value(true,i);
+    }
+
+    delete filter;
 
 	  QApplication::restoreOverrideCursor();
 	  return true;

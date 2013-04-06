@@ -22,38 +22,13 @@
 ** sourceforge.net/projects/sgems.
 ** ----------------------------------------------------------------------------*/
 
+#include <GsTLAppli/grid/utilities.h>
+#include <GsTLAppli/utils/manager.h>
+#include <GsTLAppli/appli/manager_repository.h>
 
+Geostat_grid* get_grid_from_manager( std::string grid_name ){
 
-#ifndef GRID_FILTER_TREE_VIEW_H
-#define GRID_FILTER_TREE_VIEW_H
+  SmartPtr<Named_interface> ni = Root::instance()->interface(gridModels_manager+"/"+grid_name );
+  return dynamic_cast<Geostat_grid*>(ni.raw_ptr());
 
-#include <GsTLAppli/extra/qtplugins/common.h>
-#include <GsTLAppli/extra/qtplugins/grid_filter_model.h>
-
-#include <QTreeView>
-#include <QModelIndex>
-
-class QTPLUGINS_DECL Grid_filter_tree_view : public QTreeView
-{
-  Q_OBJECT
-
-public:
-    Grid_filter_tree_view(QWidget *parent);
-
-    ~Grid_filter_tree_view();
-
-
-public slots:
-  void set_grid(const QString& grid_name);
-
-signals:
-  void grid_modified(const QString&);
-
-private:
-   void assign_delegate();
-
-private:
-    Grid_filter_model* model_;
-};
-
-#endif // HISTOGRAM_ITEM_TREE_VIEW_H
+}

@@ -22,48 +22,8 @@
 ** sourceforge.net/projects/sgems.
 ** ----------------------------------------------------------------------------*/
 
+#include <GsTLAppli/grid/common.h>
+#include <GsTLAppli/grid/grid_model/geostat_grid.h>
 
 
-#ifndef __NEW_REGION_FROM_GRID_FILTER_H__ 
-#define __NEW_REGION_FROM_GRID_FILTER_H__ 
-
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/grid/grid_filter.h>
-
-#include <QApplication>
-#include <QDialog>
-#include <QLineEdit>
-
-class GridSelectorBasic;
-class Grid_filter_selector;
-
-class GsTL_project;
-
-
-
-class New_region_from_grid_filter_dialog : public QDialog {
-  Q_OBJECT
-
-public:
-  New_region_from_grid_filter_dialog( QWidget* parent = 0 );
-  QString selected_grid() const;
-
-  QString new_region_name() const;
-
-private slots:
-
-  bool create_region();
-  void create_region_and_close();
-
-private:
-  GridSelectorBasic* gridSelector_;
-  Grid_filter_selector* grid_filter_view_;
-
-  bool isCategorical_;
-  QLineEdit *new_region_;
-
-
-};
-
- 
-#endif 
+GRID_DECL Geostat_grid* get_grid_from_manager( std::string grid_name );

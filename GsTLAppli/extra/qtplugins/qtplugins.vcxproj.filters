@@ -175,16 +175,10 @@
     <ClCompile Include="grid_filter_model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="grid_filter_tree_view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="grid_filter_model_item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include=".moc\moc_grid_filter_model.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_grid_filter_tree_view.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include=".moc\moc_grid_filter_delegate.cpp">
@@ -194,6 +188,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="library_qtplugins_init.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".moc\moc_grid_filter_widgets.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="grid_filter_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -325,10 +325,10 @@
     <CustomBuild Include="grid_filter_model.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="grid_filter_tree_view.h">
+    <CustomBuild Include="grid_filter_delegate.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="grid_filter_delegate.h">
+    <CustomBuild Include="grid_filter_widgets.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

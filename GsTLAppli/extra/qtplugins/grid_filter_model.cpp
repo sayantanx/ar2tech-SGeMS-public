@@ -207,3 +207,52 @@ void Grid_filter_model::set_grid(const QString& grid_name){
 
 
 }
+
+
+Grid_filter* Grid_filter_model::create_filter() const{
+
+  int n_filters_active = 0;
+  std::vector<Grid_filter_item*> active_filters_;
+
+  for(int i=0; i< grid_filters_.size(); ++i) {
+    if( grid_filters_[i]->is_selected()  ) {
+      active_filters_.push_back(grid_filters_[i]);
+    }
+  }
+
+
+  if(active_filters_.size() == 0) return 0;
+  else if(active_filters_.size() == 1) {
+    return active_filters_[0]->create_filter();
+  }
+  else { // We assume an intersection
+    Grid_filter_intersection* filter = new Grid_filter_intersection();
+    for(int i=0; i< active_filters_.size(); ++i) {
+      Grid_filter* sub_filter = active_filters_[i]->create_filter();
+      if(sub_filter==0)  {
+        delete filter;
+        return 0;
+      }
+      filter->add_filter(sub_filter);
+    }
+    return filter;
+  }
+
+  return 0;
+
+}
+
+
+QStringList Grid_filter_model::get_grid_filter_name() const{
+
+  int n_filters_active = 0;
+  QStringList filter_params;
+
+  for(int i=0; i< grid_filters_.size(); ++i) {
+    if( grid_filters_[i]->is_selected()  ) {
+      filter_params.append( grid_filters_[i]->parameter().toString()  );
+    }
+  }
+  return filter_params;
+
+}

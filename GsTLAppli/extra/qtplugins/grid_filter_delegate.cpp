@@ -26,10 +26,10 @@
 
 
 #include <GsTLAppli/extra/qtplugins/grid_filter_delegate.h>
-#include <GsTLAppli/extra/qtplugins/selectors.h>
 #include <GsTLAppli/appli/manager_repository.h>
 
 #include<QEvent>
+
 
 
 Grid_filter_region_delegate::Grid_filter_region_delegate( QObject *parent)
@@ -106,12 +106,16 @@ void Grid_filter_region_delegate::updateEditorGeometry(QWidget *editor,
 
 void Grid_filter_region_delegate::set_grid(const Geostat_grid* grid){
   grid_ = grid;
+  if(grid_) grid_name_ = QString::fromStdString(grid_->name());
 
 }
 
 
 void Grid_filter_region_delegate::set_grid(const QString& grid_name){
   grid_name_ = grid_name;
+  SmartPtr< Named_interface > ni = 
+    Root::instance()->interface( gridModels_manager + "/" + grid_name.toStdString() );
+  grid_ = dynamic_cast<Geostat_grid*>(ni.raw_ptr());
 }
 
 // 
@@ -156,18 +160,10 @@ Grid_filter_coord_bounded_delegate::Grid_filter_coord_bounded_delegate( QObject 
   : Grid_filter_abstract_delegate(parent), grid_(0)
 {
 
-
-  std::stringstream str;
-  str<<"temp "<<rand()<<".txt";
-
-  ostream_.open(str.str().c_str());
-  //ostream_.open("temp.txt");
-
 }
 
 Grid_filter_coord_bounded_delegate::~Grid_filter_coord_bounded_delegate()
 {
-  ostream_.close();
 }
 
  void Grid_filter_coord_bounded_delegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
@@ -214,14 +210,7 @@ QSize Grid_filter_coord_bounded_delegate::sizeHint(const QStyleOptionViewItem &o
                             const QModelIndex &index) const
 {
   return QStyledItemDelegate::sizeHint(option, index);
-  /*
-    if (qVariantCanConvert<QColor>(index.data())) {
-        QColor color = qVariantValue<QColor>(index.data());
-        return starRating.sizeHint();
-    } else {
-        return QStyledItemDelegate::sizeHint(option, index);
-    }
-    */
+
 }
 
 void Grid_filter_coord_bounded_delegate::updateEditorGeometry(QWidget *editor,
@@ -240,125 +229,274 @@ void Grid_filter_coord_bounded_delegate::commitAndCloseEditor()
 
 void Grid_filter_coord_bounded_delegate::set_grid(const Geostat_grid* grid){
   grid_ = grid;
+  if(grid_) grid_name_ = QString::fromStdString(grid_->name());
 
 }
 
 
 void Grid_filter_coord_bounded_delegate::set_grid(const QString& grid_name){
   grid_name_ = grid_name;
+  SmartPtr< Named_interface > ni = 
+    Root::instance()->interface( gridModels_manager + "/" + grid_name.toStdString() );
+  grid_ = dynamic_cast<Geostat_grid*>(ni.raw_ptr());
 }
 
 
-bool Grid_filter_coord_bounded_delegate::eventFilter(QObject *object, QEvent *event)
+
+// 
+//       ------------------------------
+//
+
+
+Grid_filter_threshold_property_editor::Grid_filter_threshold_property_editor(const Geostat_grid* grid, QWidget *parent)
+:QFrame(parent)
 {
-    Grid_filter_coord_bounded_editor *editor = qobject_cast<Grid_filter_coord_bounded_editor*>(object);
-    if (!editor)
-        return false;
+  bound_spin_ = new QDoubleSpinBox(this);
+  prop_selector_ = new SinglePropertySelector(this);
+  QString grid_name = QString::fromStdString(grid->name());
+  prop_selector_->show_properties( grid_name );
 
-    QWidget *w_focused = QApplication::focusWidget();
-    QEvent::Type t = event->type();
+  QHBoxLayout* layout = new QHBoxLayout(this);
+  layout->addWidget(prop_selector_);
+  layout->addStretch(1);
+  layout->addWidget(new QLabel("Threshold", this));
+  layout->addWidget(bound_spin_);
+  layout->addStretch(9);
 
-    std::string class_name = (w_focused!=0)?w_focused->metaObject()->className():std::string("000");
-    ostream_<<w_focused<<" "<<class_name <<" "<< QString("%1").arg(t).toStdString()+"\n";
 
-    if (event->type() == QEvent::KeyPress) {
-        switch (static_cast<QKeyEvent *>(event)->key()) {
-        case Qt::Key_Tab:
-            emit commitData(editor);
-            emit closeEditor(editor, QAbstractItemDelegate::EditNextItem);
-            return true;
-        case Qt::Key_Backtab:
-            emit commitData(editor);
-            emit closeEditor(editor, QAbstractItemDelegate::EditPreviousItem);
-            return true;
-        case Qt::Key_Enter:
-        case Qt::Key_Return:
+  layout->setContentsMargins(0,0,0,0);
+  this->setLayout(layout);
 
-            QMetaObject::invokeMethod(this, "_q_commitDataAndCloseEditor",
-                                      Qt::QueuedConnection, Q_ARG(QWidget*, editor));
-            return false;
-        case Qt::Key_Escape:
-            // don't commit data
-            emit closeEditor(editor, QAbstractItemDelegate::RevertModelCache);
-            break;
-        default:
-            return false;
-        }
-        if (editor->parentWidget())
-            editor->parentWidget()->setFocus();
-        return true;
-    } else if (event->type() == QEvent::FocusOut || (event->type() == QEvent::Hide && editor->isWindow())) {
-        //the Hide event will take care of he editors that are in fact complete dialogs
-        if (!editor->isActiveWindow() || (QApplication::focusWidget() != editor)) {
-        //if (!editor->isActiveWindow() || (w_focused != editor)) {
-            //QWidget *w = w_focused;
-            QWidget *w = QApplication::focusWidget();
-            while (w) { // don't worry about focus changes internally in the editor
-                if (w == editor)
-                    return false;
-                w = w->parentWidget();
-            }
-            emit commitData(editor);
-            emit closeEditor(editor, NoHint);
-        }
-    } else if (event->type() == QEvent::ShortcutOverride) {
-        if (static_cast<QKeyEvent*>(event)->key() == Qt::Key_Escape) {
-            event->accept();
-            return true;
-        }
-    }
-    return false;
+  this->setAutoFillBackground(true);
+
+  //this->setFocusPolicy( Qt::StrongFocus );
+
 }
 
-/*
-bool Grid_filter_coord_bounded_delegate::editorEvent(QEvent *event,
-                                QAbstractItemModel *model,
-                                const QStyleOptionViewItem &option,
-                                const QModelIndex &index)
+
+Grid_filter_threshold_property_delegate::Grid_filter_threshold_property_delegate( QObject *parent)
+  : Grid_filter_abstract_delegate(parent), grid_(0)
 {
-    Q_ASSERT(event);
-    Q_ASSERT(model);
 
-    // make sure that the item is checkable
-    Qt::ItemFlags flags = model->flags(index);
-    if (!(flags & Qt::ItemIsUserCheckable) || !(option.state & QStyle::State_Enabled)
-        || !(flags & Qt::ItemIsEnabled))
-        return false;
 
-    // make sure that we have a check state
-    QVariant value = index.data(Qt::CheckStateRole);
-    if (!value.isValid())
-        return false;
+}
 
-    const QWidget *widget = QStyledItemDelegatePrivate::widget(option);
-    QStyle *style = widget ? widget->style() : QApplication::style();
+Grid_filter_threshold_property_delegate::~Grid_filter_threshold_property_delegate()
+{
 
-    // make sure that we have the right event type
-    if ((event->type() == QEvent::MouseButtonRelease)
-        || (event->type() == QEvent::MouseButtonDblClick)
-        || (event->type() == QEvent::MouseButtonPress)) {
-        QStyleOptionViewItemV4 viewOpt(option);
-        initStyleOption(&viewOpt, index);
-        QRect checkRect = style->subElementRect(QStyle::SE_ItemViewItemCheckIndicator, &viewOpt, widget);
-        QMouseEvent *me = static_cast<QMouseEvent*>(event);
-        if (me->button() != Qt::LeftButton || !checkRect.contains(me->pos()))
-            return false;
+}
 
-        if ((event->type() == QEvent::MouseButtonPress)
-            || (event->type() == QEvent::MouseButtonDblClick))
-            return true;
+ void Grid_filter_threshold_property_delegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
+                          const QModelIndex &index) const
+ {
+   QStyledItemDelegate::paint(painter, option, index);
+}
 
-    } else if (event->type() == QEvent::KeyPress) {
-        if (static_cast<QKeyEvent*>(event)->key() != Qt::Key_Space
-         && static_cast<QKeyEvent*>(event)->key() != Qt::Key_Select)
-            return false;
+
+
+ QWidget *Grid_filter_threshold_property_delegate::createEditor(QWidget *parent,
+                                     const QStyleOptionViewItem &option,
+                                     const QModelIndex &index) const
+
+ {
+   Grid_filter_threshold_property_editor* editor = new Grid_filter_threshold_property_editor(grid_, parent);
+         connect(editor, SIGNAL(editingFinished()),
+                 this, SLOT(commitAndCloseEditor()));
+
+   return editor;
+
+ }
+
+void	Grid_filter_threshold_property_delegate::setEditorData ( QWidget * editor, const QModelIndex & index ) const{
+  Grid_filter_threshold_property_editor* edit = static_cast<Grid_filter_threshold_property_editor*>(editor);
+  QStringList data;
+  // could be less or greater
+  QString current_data = index.data().toString();
+  if( current_data.contains("<") ) {
+    data = index.data().toString().split("<");
+  }
+  else if( current_data.contains(">") ) {
+    data = index.data().toString().split(">");
+  }
+  else {
+    return;
+  }
+  if( data.size() !=2 ) return;
+
+  edit->set_property(data[0]);
+  if(data[1].contains("nan",Qt::CaseInsensitive) ) {
+    edit->set_bound(GsTLGridProperty::no_data_value);
+  }
+  else {
+    edit->set_bound(data[1].toDouble());
+  }
+}
+
+void	Grid_filter_threshold_property_delegate::setModelData ( QWidget * editor, QAbstractItemModel * model, const QModelIndex & index ) const{
+  Grid_filter_threshold_property_editor* edit = static_cast<Grid_filter_threshold_property_editor*>(editor);
+
+  QStringList data;
+
+  data.append( QString("%1").arg(edit->get_property()) );
+  data.append( QString("%1").arg(edit->get_bound()) );
+   
+  model->setData(index, data, Qt::EditRole );
+
+}
+
+
+QSize Grid_filter_threshold_property_delegate::sizeHint(const QStyleOptionViewItem &option,
+                            const QModelIndex &index) const
+{
+  return QStyledItemDelegate::sizeHint(option, index);
+  /*
+    if (qVariantCanConvert<QColor>(index.data())) {
+        QColor color = qVariantValue<QColor>(index.data());
+        return starRating.sizeHint();
     } else {
-        return false;
+        return QStyledItemDelegate::sizeHint(option, index);
     }
+    */
+}
 
-    Qt::CheckState state = (static_cast<Qt::CheckState>(value.toInt()) == Qt::Checked
-                            ? Qt::Unchecked : Qt::Checked);
-    return model->setData(index, state, Qt::CheckStateRole);
+void Grid_filter_threshold_property_delegate::updateEditorGeometry(QWidget *editor,
+     const QStyleOptionViewItem &option, const QModelIndex &/* index */) const
+ {
+     editor->setGeometry(option.rect);
+ }
+
+
+void Grid_filter_threshold_property_delegate::commitAndCloseEditor()
+{
+    Grid_filter_coord_bounded_editor *editor = qobject_cast<Grid_filter_coord_bounded_editor *>(sender());
+    emit commitData(editor);
+    emit closeEditor(editor);
+}
+
+void Grid_filter_threshold_property_delegate::set_grid(const Geostat_grid* grid){
+  grid_ = grid;
+  grid_name_ = QString::fromStdString(grid_->name() );
 
 }
-*/
+
+
+void Grid_filter_threshold_property_delegate::set_grid(const QString& grid_name){
+  grid_name_ = grid_name;
+  SmartPtr< Named_interface > ni = 
+    Root::instance()->interface( gridModels_manager + "/" + grid_name.toStdString() );
+  grid_ = dynamic_cast<Geostat_grid*>(ni.raw_ptr());
+}
+
+//
+//---------------------------------------------
+//
+
+
+Grid_filter_categorical_property_editor::Grid_filter_categorical_property_editor(const Geostat_grid* grid, QWidget *parent)
+:QFrame(parent)
+{
+  prop_selector_ = new SingleCategoricalPropertySelector(this);
+  category_selector_ = new SingleCategorySelector( this);
+
+  QString grid_name = QString::fromStdString(grid->name());
+  prop_selector_->show_properties( grid_name );
+
+  QHBoxLayout* layout = new QHBoxLayout(this);
+  layout->addWidget(prop_selector_);
+  layout->addStretch(1);
+  layout->addWidget(category_selector_);
+  layout->addStretch(9);
+
+
+  layout->setContentsMargins(0,0,0,0);
+  this->setLayout(layout);
+
+  this->setAutoFillBackground(true);
+
+  QObject::connect(prop_selector_, SIGNAL( categorical_property_selected(const GsTLGridCategoricalProperty*) ), 
+                   category_selector_, SLOT(show_categories( const GsTLGridCategoricalProperty*) ) );
+
+  //this->setFocusPolicy( Qt::StrongFocus );
+
+}
+
+
+Grid_filter_cateorical_property_delegate::Grid_filter_cateorical_property_delegate( QObject *parent)
+  : Grid_filter_abstract_delegate(parent), grid_(0)
+{
+
+}
+
+Grid_filter_cateorical_property_delegate::~Grid_filter_cateorical_property_delegate()
+{
+
+}
+
+ void Grid_filter_cateorical_property_delegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
+                          const QModelIndex &index) const
+ {
+   QStyledItemDelegate::paint(painter, option, index);
+}
+
+
+
+ QWidget *Grid_filter_cateorical_property_delegate::createEditor(QWidget *parent,
+                                     const QStyleOptionViewItem &option,
+                                     const QModelIndex &index) const
+
+ {
+   //if( grid_ == 0 ) return  0;
+   if(grid_name_.isEmpty()) return 0;
+   Grid_filter_categorical_property_editor* editor = new Grid_filter_categorical_property_editor(grid_, parent );
+   return editor;
+
+ }
+
+void	Grid_filter_cateorical_property_delegate::setEditorData ( QWidget * editor, const QModelIndex & index ) const{
+  Grid_filter_categorical_property_editor* edit = static_cast<Grid_filter_categorical_property_editor*>(editor);
+  QString data = index.data().toString();
+  QStringList params = data.split(" : ");
+  if(params.size() !=2) return;
+  edit->set_property( params.at(1) );
+  edit->set_category( params.at(0) );
+}
+
+void	Grid_filter_cateorical_property_delegate::setModelData ( QWidget * editor, QAbstractItemModel * model, const QModelIndex & index ) const{
+  Grid_filter_categorical_property_editor* edit = static_cast<Grid_filter_categorical_property_editor*>(editor);
+
+  QStringList data;
+
+  data.append( QString("%1").arg(edit->get_property()) );
+  data.append( QString("%1").arg(edit->get_category()) );
+
+  model->setData(index, data, Qt::EditRole );
+
+}
+
+
+QSize Grid_filter_cateorical_property_delegate::sizeHint(const QStyleOptionViewItem &option,
+                            const QModelIndex &index) const
+{
+  return QStyledItemDelegate::sizeHint(option, index);
+
+}
+
+void Grid_filter_cateorical_property_delegate::updateEditorGeometry(QWidget *editor,
+     const QStyleOptionViewItem &option, const QModelIndex &/* index */) const
+ {
+     editor->setGeometry(option.rect);
+ }
+
+void Grid_filter_cateorical_property_delegate::set_grid(const Geostat_grid* grid){
+  grid_ = grid;
+  if(grid_) grid_name_ = QString::fromStdString(grid_->name());
+
+}
+
+
+void Grid_filter_cateorical_property_delegate::set_grid(const QString& grid_name){
+  grid_name_ = grid_name;
+  SmartPtr< Named_interface > ni = 
+    Root::instance()->interface( gridModels_manager + "/" + grid_name.toStdString() );
+  grid_ = dynamic_cast<Geostat_grid*>(ni.raw_ptr());
+}
