@@ -96,7 +96,7 @@ Grid_filter_selector_button::Grid_filter_selector_button(QWidget* parent) : QPus
 
   filter_selector_ = new Grid_filter_selector();
 
-
+  this->setText("No filters");
   this->setToolTip("No Filter Selected");
 
   filter_dialog_ = new QDialog(this);
@@ -116,10 +116,17 @@ Grid_filter_selector_button::Grid_filter_selector_button(QWidget* parent) : QPus
   QObject::connect( clear_selection_button, SIGNAL( clicked() ),
                     filter_dialog_, SLOT( clearSelection() ) );
 */
-  QObject::connect( close_selection_button, SIGNAL( clicked( ) ),
+
+  bool ok = QObject::connect( this, SIGNAL( clicked() ),
+                    this, SLOT( open_filters_selector( ) ) );
+
+  ok = QObject::connect( close_selection_button, SIGNAL( clicked( ) ),
                     filter_dialog_, SLOT( accept( ) ) );
 
-  QObject::connect( this, SIGNAL( filters_changed( QStringList ) ),
+  ok = QObject::connect( close_selection_button, SIGNAL( clicked( ) ),
+                    this, SLOT( toggle( ) ) );
+
+  ok = QObject::connect( this, SIGNAL( filters_changed( QStringList ) ),
                     this, SLOT( set_filter_selection( QStringList ) ) );
 
 }
@@ -150,6 +157,12 @@ void Grid_filter_selector_button::set_filter_selection(QStringList filters){
   }
 }
 
+void Grid_filter_selector_button::set_grid(const QString& grid_name)
+{
+  filter_selector_->set_grid(grid_name);
+  emit this->grid_modified( grid_name );
+
+}
 
 //
 // ---------------------------------------
@@ -166,11 +179,8 @@ Grid_filter_selector_collapsing::Grid_filter_selector_collapsing(QWidget* parent
   layout->addWidget(filter_selector_);
 
 
-  QObject::connect( filter_button_, SIGNAL( toggled( bool ) ),
-                    filter_selector_, SLOT( setVisible( bool ) ) );
-
-  QObject::connect( filter_button_, SIGNAL( toggled( bool ) ),
-                    this, SLOT( update_filter_selection( QStringList ) ) );
+  bool ok = QObject::connect( filter_button_, SIGNAL( clicked( ) ),
+                    this, SLOT( toggle_selection_visibility(  ) ) );
 
 }
 
@@ -199,3 +209,15 @@ void Grid_filter_selector_collapsing::update_filter_selection(bool on){
 
 }
 
+void Grid_filter_selector_collapsing::set_grid(const QString& grid_name)
+{
+  filter_selector_->set_grid(grid_name);
+  emit this->grid_modified( grid_name );
+
+}
+
+void Grid_filter_selector_collapsing::toggle_selection_visibility(){
+  bool ok = filter_selector_->isVisible();
+  filter_selector_->setVisible(!ok);
+  this->update_filter_selection( !ok );
+}

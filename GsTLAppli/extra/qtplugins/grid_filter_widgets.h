@@ -74,11 +74,13 @@ public :
   Grid_filter* create_filter() const;
 
 public slots:
-    void open_filters_selector();
-    void set_filter_selection(QStringList parameters);
+  void set_grid(const QString& grid_name);
+  void open_filters_selector();
+  void set_filter_selection(QStringList parameters);
 
 signals:
     void filters_changed(QStringList);
+    void grid_modified(QString);
 
 private:
   Grid_filter_selector* filter_selector_;
@@ -96,10 +98,13 @@ public :
   Grid_filter* create_filter() const;
 
 public slots:
-    void update_filter_selection(bool);
+  void set_grid(const QString& grid_name);
+  void update_filter_selection(bool);
+  void toggle_selection_visibility();
 
 signals:
-    void filters_changed(QStringList);
+  void filters_changed(QStringList);
+  void grid_modified(QString);
 
 private:
   Grid_filter_selector* filter_selector_;
