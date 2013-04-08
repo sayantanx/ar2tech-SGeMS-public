@@ -97,7 +97,7 @@ class GUI_DECL vtkProp_mgrid : public GsTL_vtkProp {
 
   vtkUnstructuredGrid* ugrid_;
   vtkDataSetMapper* mapper_;
-  vtkActor* actor_;
+  //vtkActor* actor_;
   vtkActor* actor_outline_;
   vtkImageData* image_data_;
   vtkThreshold* vtk_mask_threshold_;

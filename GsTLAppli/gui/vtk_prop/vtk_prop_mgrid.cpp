@@ -96,7 +96,7 @@ bool vtkProp_mgrid::requires_manual_override( float x, float y, float z ) {
 vtkProp_mgrid::vtkProp_mgrid()
   : GsTL_vtkProp(),
     grid_( 0 ),
-    initialized_(false), actor_(0),
+    initialized_(false),
     mapper_(0),image_data_(0)
  {
 
