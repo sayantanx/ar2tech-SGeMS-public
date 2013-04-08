@@ -38,7 +38,7 @@ HEADERS += region_proxy_model.h \
     grid_filter_model.h \
     grid_filter_model_item.h \
     grid_filter_named_interface.h \
-    grid_filter_tree_view.h \
+    grid_filter_widgets.h \
     library_qtplugins_init.h
 FORMS += order_properties_dialog.ui \
     variogram_input_base.ui \
@@ -71,7 +71,7 @@ SOURCES += region_proxy_model.cpp \
     grid_filter_model.cpp \
     grid_filter_model_item.cpp \
     grid_filter_named_interface.cpp \
-    grid_filter_tree_view.cpp \
+    grid_filter_widgets.cpp \
     library_qtplugins_init.cpp
 RESOURCES += icons.qrc
 TARGET = GsTLAppli_qtplugins
