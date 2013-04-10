@@ -169,7 +169,7 @@
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>$(VTKDIRwin32);$(VTKDIRwin32)\Common;$(VTKDIRwin32)\Common\Core;$(VTKDIRwin32)\Common\DataModel;$(VTKDIRwin32)\Common\ExecutionModel;$(VTKDIRwin32)\Filters\Statistics;$(VTKDIRwin32)\Common\;$(VTKDIRwin32)\infovis\;$(VTKDIRwin32)\Filtering\;$(VTKDIRwin32)\build\;$(PYTHONDIRwin32)\include;$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(BOOSTDIR);$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;$(QTDIRwin32)\include\QtXml;$(QTDIRwin32)\include;.;filtersim_std;snesim_std;$(QTDIRwin32)\include\ActiveQt;release;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GSTL_NDEBUG;GSTLAPPLI_NDEBUG;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;QT_DLL;SOQT_DLL;COIN_DLL;SIMVOLEON_DLL;QWT_DLL;GEOSTAT_EXPORTS;QT_THREAD_SUPPORT;QT_NO_DEBUG;QT_LARGEFILE_SUPPORT;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GSTL_NDEBUG;GSTLAPPLI_NDEBUG;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;QT_DLL;SOQT_DLL;COIN_DLL;SIMVOLEON_DLL;QWT_DLL;GEOSTAT_EXPORTS;QT_THREAD_SUPPORT;QT_NO_DEBUG;QT_LARGEFILE_SUPPORT;QT_GUI_LIB;QT_CORE_LIB;vtkRenderingCore_INCLUDE="$(AR2TECH_SGEMS_DIR)\GsTLAppli\utils\vtk_definition.h";vtkRenderingVolume_AUTOINIT=1(vtkRenderingVolumeOpenGL);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
       <ExceptionHandling>Sync</ExceptionHandling>

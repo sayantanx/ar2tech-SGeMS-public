@@ -62,7 +62,6 @@ class GUI_DECL vtkProp_structured_grid : public GsTL_vtkProp {
  
  public: 
   static Named_interface* create_new_interface( std::string& ); 
-  static bool requires_manual_override( float x, float y, float z );
 
  public: 
   vtkProp_structured_grid();

@@ -84,15 +84,6 @@ Named_interface* vtkProp_mgrid::create_new_interface( std::string& ) {
   return new vtkProp_mgrid;
 }
 
-bool vtkProp_mgrid::requires_manual_override( float x, float y, float z ) {
-  const float min_ratio = 0.05;
-  if( x/y < min_ratio || y/x < min_ratio ) return true;
-  if( x/z < min_ratio || z/x < min_ratio ) return true;
-  if( z/y < min_ratio || y/z < min_ratio ) return true;
-
-  return false;
-}
-
 vtkProp_mgrid::vtkProp_mgrid()
   : GsTL_vtkProp(),
     grid_( 0 ),
