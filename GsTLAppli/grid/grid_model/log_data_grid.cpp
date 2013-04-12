@@ -69,7 +69,7 @@ void Log_data::add_log_segment(int node_id, GsTLPoint begin, GsTLPoint end){
 	if(it == log_coords_.end()) {
 		log_coords_[node_id] = std::make_pair(begin,end);
 		GsTLPoint d = end-begin;
-		float length = sqrt(d.x()*d.x() + d.y()*d.y() + d.z()*d.z());
+		double length = sqrt(d.x()*d.x() + d.y()*d.y() + d.z()*d.z());
 		if( length < min_segment_length_ ) min_segment_length_ = length;
 		if( length > max_segment_length_ ) max_segment_length_ = length;
 		lengths_[node_id] = length;
@@ -127,14 +127,14 @@ int Log_data::number_of_segments() const{
 	return log_coords_.size();
 }
 
-float Log_data::min_segment_length() const{
+double Log_data::min_segment_length() const{
 	return min_segment_length_;
 }
-float Log_data::max_segment_length() const{
+double Log_data::max_segment_length() const{
 	return max_segment_length_;
 }
 
-float Log_data::average_segment_length() {
+double Log_data::average_segment_length() {
 	if( average_segment_length_ < 0 ) {
 		float sum = 0.0;
 		std::map<int, float>::const_iterator it = lengths_.begin();
@@ -175,6 +175,23 @@ bool Log_data::are_segments_continuous(int start_nodeid, int segment_length ) co
  
   return true;
 
+}
+
+void Log_data::update_geomety(){
+  // Check is all segements are equal length
+  if(min_segment_length_ == max_segment_length_) {
+    are_segments_equal_length_ = true;
+    return;
+  }
+  //Check if the difference is not due to the last composite
+  int n_segments = this->number_of_segments();
+  for(int i=0;i<n_segments-1; ++i) {
+    if( this->segment_length( this->nodeid_from_segmentid(i)) < max_segment_length_ ) {
+      are_segments_equal_length_ = false;
+      return;
+    }
+  }
+  are_segments_equal_length_ = true;
 }
 
 	// GsTL_object_item implementation
@@ -365,6 +382,8 @@ void Log_data_grid::set_log_geometry( std::map<std::string, std::vector< std::pa
 		number_of_values+= it_log->second.size();
 	}
 
+  are_segments_equal_length_ = true;
+
 	std::vector< Point_set::location_type > point_locations(number_of_values);
   log_id_.insert(log_id_.begin(),number_of_values,-1);
 
@@ -384,9 +403,15 @@ void Log_data_grid::set_log_geometry( std::map<std::string, std::vector< std::pa
       log_id_[it_segments->first] = log_id;
 //			point_locations.push_back(loc);
 		}
+    log_data->update_geomety();
+    if(  !log_data->are_segments_equal_length() ) are_segments_equal_length_=false;
 	}
 
 	this->point_locations( point_locations );
+
+  
+
+
 }
 
 

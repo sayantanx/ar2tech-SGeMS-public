@@ -353,7 +353,7 @@ void QSP_application::init_menu_bar() {
                              SLOT(show_qpplot_dialog() ) );
   data_analysis->addAction( "Scatter-plot", this,
                              SLOT(show_scatterplot_dialog() ) );
-  data_analysis->addAction( "Data Explorer (beta)", this, 
+  data_analysis->addAction( "Data Analysis Toolkit (beta)", this, 
                             SLOT(show_eda_beta() ) , Qt::CTRL+Qt::Key_E );
   data_analysis->addSeparator();
   data_analysis->addAction( "Variogram", this,
@@ -1669,8 +1669,8 @@ void QSP_application::show_project_model(){
 
 void QSP_application::show_eda_beta(){
 	  Chart_dialog* dialog =
-	    new Chart_dialog( this );
-	  dialog->setWindowTitle( "SGeMS grid" );
+	    new Chart_dialog( 0 );
+	  dialog->setWindowTitle( "Data Analysis Toolbox" );
 	  dialog->show();
 }
 

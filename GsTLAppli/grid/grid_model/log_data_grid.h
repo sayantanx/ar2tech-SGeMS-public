@@ -64,13 +64,16 @@ public :
 	nodeid_to_log_coords::const_iterator position_end() const;
 
 	int number_of_segments() const;
-	float min_segment_length() const;
-	float max_segment_length() const;
-	float average_segment_length();
+	double min_segment_length() const;
+	double max_segment_length() const;
+	double average_segment_length();
   double segment_length(int nodeid) const;
   double total_length() const;
 
   bool are_segments_continuous(int start_segmentid, int segment_length ) const;
+  bool are_segments_equal_length() const {return are_segments_equal_length_;}
+
+  void update_geomety();
 
 
 	// GsTL_object_item implementation
@@ -90,13 +93,14 @@ protected :
 
 	std::map<int, float> lengths_;
 
-	float min_segment_length_;
-	float max_segment_length_;
-	float average_segment_length_;
+	double min_segment_length_;
+	double max_segment_length_;
+	double average_segment_length_;
+  bool are_segments_equal_length_;
   
 
-
 	nodeid_to_log_coords log_coords_;
+
 };
 
 
@@ -172,6 +176,7 @@ public:
  const Log_data& get_log_data(std::string name_id) const;
  const Log_data& get_log_data(int id) const;
 
+ bool are_segments_equal_length() const {return are_segments_equal_length_;}
 
 
  virtual GsTLInt closest_node( const location_type& P ) {
@@ -201,6 +206,8 @@ protected:
 private:
  Log_data_grid( const Log_data_grid& );
  Log_data_grid& operator = ( const Log_data_grid& );
+
+ bool are_segments_equal_length_;
 };
 
 /*
