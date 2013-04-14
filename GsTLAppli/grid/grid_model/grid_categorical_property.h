@@ -362,7 +362,7 @@ GsTLGridCategoricalProperty::get_indicator_value( GsTLInt id, std::string catego
 inline
 void GsTLGridCategoricalProperty::set_value( property_type val, GsTLInt id ) {
   unsigned int cat = static_cast<unsigned int>(val);
-  if( cat >= number_of_categories_) number_of_categories_ = cat+1;
+  //if( cat >= number_of_categories_) number_of_categories_ = cat+1;
   accessor_->set_property_value( cat, id );
 }
 
@@ -370,7 +370,7 @@ void GsTLGridCategoricalProperty::set_value( property_type val, GsTLInt id ) {
 inline
 void GsTLGridCategoricalProperty::set_value( std::string val, GsTLInt id ) {
   int code = cat_definitions_->category_id(val);
-  if( code >= number_of_categories_) number_of_categories_ = code +1;
+  //if( code >= number_of_categories_) number_of_categories_ = code +1;
   if( code >= 0 )
 	  accessor_->set_property_value( code, id );
 }
@@ -390,17 +390,20 @@ CategoricalPropertyDefinition*
 
 inline 
 int GsTLGridCategoricalProperty::get_number_of_category() {
-	if(number_of_categories_==0)
-		number_of_categories_ = this->compute_number_of_category();
-  return number_of_categories_;
+  return this->compute_number_of_category();
+//	if(number_of_categories_==0)
+//		number_of_categories_ = this->compute_number_of_category();
+//  return number_of_categories_;
 }
 
 inline
 int GsTLGridCategoricalProperty::get_number_of_category() const {
-	if(number_of_categories_==0)
-		return this->compute_number_of_category();
-	else
-		return number_of_categories_;
+  return this->compute_number_of_category();
+
+//	if(number_of_categories_==0)
+//		return this->compute_number_of_category();
+//	else
+//		return number_of_categories_;
 }
 
 inline

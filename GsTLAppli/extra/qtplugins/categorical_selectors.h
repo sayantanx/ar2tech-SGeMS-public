@@ -90,7 +90,7 @@ class QTPLUGINS_DECL  SingleCategoricalPropertySelector : public SinglePropertyS
   virtual ~SingleCategoricalPropertySelector() {}
 
 signals:
-  void categorical_property_selected(const GsTLGridCategoricalProperty*);
+  void categorical_property_selected( GsTLGridCategoricalProperty*);
   
   public slots:
     virtual void show_properties( const QString& grid_name );
@@ -234,6 +234,8 @@ class QTPLUGINS_DECL  CategoricalDefinitionTable : public QTableView {
   void initialize();
   QString get_definition_name() const {return current_definition_;}
   QStringList selected_category_names() const;
+  Category_proxy_model* get_model(){return model_;}
+
 //  std::vector<int> selected_category_ids() const;
 
  public slots:
@@ -253,6 +255,44 @@ protected:
   QString current_definition_;
 
 };
+
+
+
+/** A widget to choose multiple categorical property definition
+ */ 
+class QTPLUGINS_DECL  CategoricalDefinitionTableAllClearOptions : public QWidget {
+
+  Q_OBJECT
+
+ public:
+  CategoricalDefinitionTableAllClearOptions( QWidget* parent = 0 );
+  virtual ~CategoricalDefinitionTableAllClearOptions() {}
+
+  void initialize();
+  QString get_definition_name() const {return table_->get_definition_name();}
+  QStringList selected_category_names() const;
+//  std::vector<int> selected_category_ids() const;
+
+ public slots:
+  void show_definition( QString cdef_name);
+  void show_definition( CategoricalPropertyDefinition* cdef );
+  void show_definition( int ncat );
+  void show_definition( GsTLGridCategoricalProperty* cprop );
+  void show_color_editor(const QModelIndex& index);
+  void set_flags_name(Qt::ItemFlags flags) {if(table_->get_model()) table_->get_model()->set_flags_name(flags);}
+  void set_flags_color(Qt::ItemFlags flags) {if(table_->get_model()) table_->get_model()->set_flags_color(flags);}
+  void set_read_only();
+  void clear_checked();
+  void check_all();
+
+protected: 
+
+  QPushButton* select_all_;
+  QPushButton* clear_all_;
+  CategoricalDefinitionTable* table_;
+
+};
+
 
 
 /** A widget to choose multiple categories from a property

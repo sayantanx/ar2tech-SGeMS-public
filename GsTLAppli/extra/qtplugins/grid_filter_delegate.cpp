@@ -128,6 +128,14 @@ Grid_filter_coord_bounded_editor::Grid_filter_coord_bounded_editor(const Geostat
 {
   lower_bound_spin_ = new QDoubleSpinBox(this);
   upper_bound_spin_ = new QDoubleSpinBox(this);
+  lower_bound_spin_->setMinimum(-9e10);
+  lower_bound_spin_->setMaximum(9e10);
+  lower_bound_spin_->setValue(0);
+  upper_bound_spin_->setMinimum(-9e10);
+  upper_bound_spin_->setMaximum(9e10);
+  upper_bound_spin_->setValue(0);
+  
+
 
   QHBoxLayout* layout = new QHBoxLayout(this);
   layout->addWidget(new QLabel("Lower", this));

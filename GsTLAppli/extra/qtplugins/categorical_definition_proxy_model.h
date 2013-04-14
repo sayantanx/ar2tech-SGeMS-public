@@ -151,6 +151,8 @@ public slots :
   void set_flags_name(Qt::ItemFlags flags) {flags_name_ = flags;}
   void set_flags_color(Qt::ItemFlags flags) {flags_color_ = flags;}
   void set_read_only();
+  void clear_checked();
+  void check_all();
     /*  no insertion or deletion of rows:  only the exsiting data can change
     bool insert_row(CategoricalPropertyDefinitionName* cat_def);
     bool remove_rows(std::vector< GsTL_object_item*> items);

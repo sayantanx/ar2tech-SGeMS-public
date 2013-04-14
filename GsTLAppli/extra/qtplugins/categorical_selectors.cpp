@@ -109,7 +109,7 @@ void SingleCategoricalPropertySelector::show_properties( const QString& grid_nam
 }
 
 void SingleCategoricalPropertySelector::property_been_selected(const QString& cprop_name ){
-  const GsTLGridCategoricalProperty* cprop = grid_->categorical_property(cprop_name.toStdString());
+  GsTLGridCategoricalProperty* cprop = grid_->categorical_property(cprop_name.toStdString());
   if( cprop == 0 ) return;
 
   emit this->categorical_property_selected( cprop );
@@ -531,6 +531,83 @@ std::vector<int> CategoricalDefinitionTable::selected_category_ids() const {
 }
 */
 //===============================================
+
+
+
+//===============================================
+
+CategoricalDefinitionTableAllClearOptions::CategoricalDefinitionTableAllClearOptions(QWidget *parent)
+: QWidget(parent) {
+
+
+  table_ = new CategoricalDefinitionTable(this);
+
+  QWidget* button_widget = new QWidget(this);
+  QPushButton* select_all = new QPushButton("Select All",button_widget);
+  QPushButton* clear_all = new QPushButton("Clear",button_widget);
+
+  QHBoxLayout* button_laytout = new QHBoxLayout(button_widget);
+  button_laytout->setContentsMargins(0,0,0,0);
+  button_laytout->addWidget(select_all);
+  button_laytout->addWidget(clear_all);
+  button_widget->setLayout(button_laytout);
+
+  QVBoxLayout* layout = new QVBoxLayout(this);
+  layout->addWidget(button_widget);
+  layout->addWidget(table_);
+
+  this->setLayout(layout);
+
+  bool ok = connect(this, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(show_color_editor(const QModelIndex&)));
+  ok = connect(clear_all, SIGNAL(clicked()), this, SLOT(clear_checked()));
+  ok = connect(select_all, SIGNAL(clicked()), this, SLOT(check_all()));
+
+}
+
+void CategoricalDefinitionTableAllClearOptions::initialize( ) {
+  table_->initialize();
+}
+
+void CategoricalDefinitionTableAllClearOptions::set_read_only() {
+  if(table_->get_model()) table_->get_model()->set_read_only();
+}
+
+void CategoricalDefinitionTableAllClearOptions::show_definition( QString cat_def_name) {
+  table_->show_definition(cat_def_name );
+}
+
+//Definition for the default
+void CategoricalDefinitionTableAllClearOptions::show_definition( int ncat) {
+  table_->show_definition(ncat );
+}
+
+void CategoricalDefinitionTableAllClearOptions::show_definition( CategoricalPropertyDefinition* cdef) {
+  table_->show_definition(cdef );
+}
+
+void CategoricalDefinitionTableAllClearOptions::show_definition( GsTLGridCategoricalProperty* cprop ){
+  table_->show_definition(cprop );
+}
+
+void CategoricalDefinitionTableAllClearOptions::show_color_editor(const QModelIndex& index){
+  table_->show_color_editor(index);
+}
+
+
+QStringList CategoricalDefinitionTableAllClearOptions::selected_category_names() const {
+  return table_->selected_category_names();
+}
+
+void CategoricalDefinitionTableAllClearOptions::clear_checked() {
+  return table_->get_model()->clear_checked();
+}
+
+void CategoricalDefinitionTableAllClearOptions::check_all() {
+  return table_->get_model()->check_all ();
+}
+
+//===============================================
+
 
 
 //===============================================

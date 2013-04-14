@@ -93,7 +93,7 @@ Grid_filter* Grid_filter_y_coord_bounded_item::create_filter() const{
   if(grid_ == 0) return 0;
   if(y_lower_bound_ > y_upper_bound_) return 0;
 
-  return new Grid_filter_x_coord_bounded(grid_, y_lower_bound_, y_upper_bound_);
+  return new Grid_filter_y_coord_bounded(grid_, y_lower_bound_, y_upper_bound_);
 
 }
 

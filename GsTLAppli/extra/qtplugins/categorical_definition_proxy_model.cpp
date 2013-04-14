@@ -489,3 +489,21 @@ QModelIndex	Category_proxy_model::mapToSource ( const QModelIndex & proxyIndex )
 
 }
 
+  void Category_proxy_model::clear_checked(){
+
+    for(int i=0; i<visibility_.size(); ++i) {
+      visibility_[i] = false;
+    }
+
+    this->reset();
+
+  }
+  void Category_proxy_model::check_all(){
+
+    for(int i=0; i<visibility_.size(); ++i) {
+      visibility_[i] = true;
+    }
+
+    this->reset();
+
+  }
