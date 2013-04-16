@@ -655,7 +655,7 @@ void MultipleCategorySelector::show_categories( const QString& cat_def_name ) {
 
 	if(cat_def != 0) {
 	  for(unsigned int i=0; i<cat_def->number_of_category(); i++) {
-		  addItem( cat_def->get_category_name(i).c_str() );
+		  addItem( cat_def->get_category_name_from_index(i).c_str() );
 	  }
 	}
 

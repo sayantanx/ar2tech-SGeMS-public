@@ -496,6 +496,12 @@
     <ClCompile Include="utils\categorical_property_dialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include=".moc\moc_set_not_informed_dialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\set_not_informed_dialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="utils\categorical_definition_dialog.h">
@@ -787,6 +793,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="utils\categorical_property_dialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="utils\set_not_informed_dialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

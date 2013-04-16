@@ -105,6 +105,7 @@
 #include <GsTLAppli/filters/filter.h>
 #include <GsTLAppli/gui/utils/new_region_from_grid_filter_dialog.h>
 #include <GsTLAppli/gui/utils/categorical_property_dialog.h>
+#include <GsTLAppli/gui/utils/set_not_informed_dialog.h>
 
 #include <GsTLAppli/gui/appli/about_sgems.h>
 
@@ -309,6 +310,7 @@ void QSP_application::init_menu_bar() {
     property_menu->addAction( "Copy Property", this, SLOT( copy_property() ) );
     property_menu->addAction( "Create Indicator Properties", this, SLOT( create_indicator_properties() ),Qt::CTRL+Qt::Key_I  );
     property_menu->addAction( "Delete Properties", this, SLOT( delete_object_properties() ) , Qt::CTRL+Qt::Key_D);
+    property_menu->addAction( "Set Not Informed", this, SLOT( set_not_informed_property() ) );
     property_menu->addSeparator();
     property_menu->addAction( "Upscale properties (block average)", this, SLOT( upscale_properties() ) );
     property_menu->addSeparator();
@@ -1540,6 +1542,15 @@ void QSP_application::new_region_from_property(){
   New_region_from_property_dialog* dialog = 
     new New_region_from_property_dialog( project_, this, "Create region from property" );
   dialog->setWindowTitle( "Create New Region" );
+  dialog->exec();
+  delete dialog;
+
+}
+
+void QSP_application::set_not_informed_property(){
+  Set_not_informed_dialog* dialog = 
+    new Set_not_informed_dialog( project_, this, "Create region from property" );
+  dialog->setWindowTitle( "Set values as NaN" );
   dialog->exec();
   delete dialog;
 

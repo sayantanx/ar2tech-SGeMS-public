@@ -298,7 +298,7 @@ void Chart_base_display_controls::reset_axis(){
 void Chart_base_display_controls::save_figure() {
 
   QString filename = 
-    QFileDialog::getSaveFileName( this);
+    QFileDialog::getSaveFileName( this,"Save figure",chart_control_->get_title());
 
   if(filename.isEmpty()) return;
 

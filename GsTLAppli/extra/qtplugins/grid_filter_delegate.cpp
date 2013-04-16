@@ -421,8 +421,8 @@ Grid_filter_categorical_property_editor::Grid_filter_categorical_property_editor
 
   this->setAutoFillBackground(true);
 
-  QObject::connect(prop_selector_, SIGNAL( categorical_property_selected(const GsTLGridCategoricalProperty*) ), 
-                   category_selector_, SLOT(show_categories( const GsTLGridCategoricalProperty*) ) );
+  QObject::connect(prop_selector_, SIGNAL( categorical_property_selected( GsTLGridCategoricalProperty*) ), 
+                   category_selector_, SLOT(show_categories(  GsTLGridCategoricalProperty*) ) );
 
   //this->setFocusPolicy( Qt::StrongFocus );
 

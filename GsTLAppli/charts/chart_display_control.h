@@ -44,6 +44,8 @@ public:
     bool is_x_axis_log_scale();
     bool is_y_axis_log_scale();
 
+    QString get_title() const { return this->ui.title_label_edit->text(); }
+
 public slots:
   void set_xaxis_min(double min);
   void set_xaxis_max(double max);

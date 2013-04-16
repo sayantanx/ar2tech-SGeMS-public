@@ -161,6 +161,8 @@ class GUI_DECL QSP_application : public QMainWindow {
   void downscale_grid();
   void upscale_properties();
 
+  void set_not_informed_property();
+
   void show_categorical_definition();
   void new_categorical_definition();
   void assign_categorical_definition();
