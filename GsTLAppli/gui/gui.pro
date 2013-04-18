@@ -74,6 +74,7 @@ HEADERS +=       library_gui_init.h    \
       utils/qwidget_value_accessor.h    \
       utils/qwidget_value_collector.h    \
       utils/rename_dialog.h    \
+      utils/set_not_informed_dialog.h \
       models/categorical_table_model.h    \
       models/gstl_item.h    \
       models/gstl_item_action.h    \
@@ -194,6 +195,7 @@ SOURCES +=       library_gui_init.cpp    \
       utils/qwidget_value_accessor.cpp    \
       utils/qwidget_value_collector.cpp    \
       utils/rename_dialog.cpp    \
+      utils/set_not_informed_dialog.cpp \
       models/categorical_table_model.cpp    \
       models/gstl_item.cpp    \
       models/gstl_item_action.cpp    \
