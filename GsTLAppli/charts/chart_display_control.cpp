@@ -171,6 +171,9 @@ void Chart_display_control::set_yaxis_label(const QString& label) {
   ui.y_label_edit->setText( label );
 }
 
+void Chart_display_control::set_legend_visibility(bool ok){
+  ui.legend_display->setChecked(true);
+}
 
 void Chart_display_control::hide_x_log_scale(bool ok){
   ui.x_logscale->setHidden(ok);
@@ -193,3 +196,4 @@ bool Chart_display_control::is_x_axis_log_scale(){
 bool Chart_display_control::is_y_axis_log_scale(){
   return ui.y_logscale->isChecked();
 }
+

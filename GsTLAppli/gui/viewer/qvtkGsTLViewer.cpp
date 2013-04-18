@@ -103,6 +103,11 @@ QvtkGsTLViewer::QvtkGsTLViewer( QWidget* parent, const char* name, bool embed   
   // Create the legend actor
   scale_actor_ = vtkSmartPointer<vtkLegendScaleActor>::New();
   scale_actor_->SetLabelModeToXYCoordinates ();
+ // scale_actor_->GetRightAxis()->SetLabelFormat( );
+ // scale_actor_->GetRightAxis()->SetAdjustLabels(0);
+ // scale_actor_->GetLeftAxis()->SetAdjustLabels(1);
+ // scale_actor_->GetTopAxis()->SetAdjustLabels(2);
+ // scale_actor_->GetBottomAxis()->SetAdjustLabels(3);
   scale_actor_->VisibilityOff();
   renderer_->AddViewProp(scale_actor_);
 

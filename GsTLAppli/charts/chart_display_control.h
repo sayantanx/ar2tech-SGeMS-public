@@ -66,6 +66,8 @@ public slots:
   void hide_y_controls(bool ok);
 
   void set_title(const QString& label);
+  void set_legend_visibility(bool ok);
+
 
 signals :
     void xaxis_label_changed(const QString& axis);

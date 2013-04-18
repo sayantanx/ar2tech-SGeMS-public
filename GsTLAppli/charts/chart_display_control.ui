@@ -20,6 +20,9 @@
    <string>Chart_display_control</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_4">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetFixedSize</enum>
+   </property>
    <property name="topMargin">
     <number>0</number>
    </property>
@@ -59,6 +62,9 @@
             <bool>false</bool>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMinimumSize</enum>
+            </property>
             <property name="topMargin">
              <number>0</number>
             </property>
@@ -67,6 +73,9 @@
             </property>
             <item>
              <layout class="QGridLayout" name="gridLayout_3">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetMinimumSize</enum>
+              </property>
               <item row="0" column="0">
                <widget class="QWidget" name="widget_2" native="true"/>
               </item>
@@ -214,6 +223,9 @@
             <bool>false</bool>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMinimumSize</enum>
+            </property>
             <property name="topMargin">
              <number>0</number>
             </property>
@@ -222,6 +234,9 @@
             </property>
             <item>
              <layout class="QGridLayout" name="gridLayout">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetMinimumSize</enum>
+              </property>
               <item row="0" column="0" colspan="2">
                <widget class="QPushButton" name="x_autoscale">
                 <property name="text">
@@ -350,6 +365,9 @@
             <bool>false</bool>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMinimumSize</enum>
+            </property>
             <property name="topMargin">
              <number>0</number>
             </property>
@@ -358,6 +376,9 @@
             </property>
             <item>
              <layout class="QGridLayout" name="gridLayout_2">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetMinimumSize</enum>
+              </property>
               <item row="0" column="0" colspan="2">
                <widget class="QPushButton" name="y_autoscale">
                 <property name="text">
