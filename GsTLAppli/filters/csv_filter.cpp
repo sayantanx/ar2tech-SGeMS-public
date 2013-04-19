@@ -417,20 +417,26 @@ Geostat_grid* Csv_logdata_infilter::read_no_gui(ifstream& infile, std::string na
 	int zend_id = column_names.indexOf("botz");
 	if(zend_id == -1 ) return 0;
 
+  //Check for if from-to is present
+	int from_id = column_names.indexOf("from");
+	if(from_id == -1 ) return 0;
+	int to_id = column_names.indexOf("to");
+	if(to_id == -1 ) return 0;
+
 	infile.seekg(0);
 
   if(name.empty()) name = "test-dh";
 
 	return this->read(infile, name,dh_id,
 					  xstart_id, ystart_id, zstart_id,
-					  xend_id, yend_id, zend_id, -99);
+					  xend_id, yend_id, zend_id, from_id, to_id, -99);
 
 
 }
 
 Geostat_grid* Csv_logdata_infilter::read( std::ifstream& infile, std::string name, int dh_id,
 							  int xstart_id, int ystart_id, int zstart_id,
-							  int xend_id, int yend_id, int zend_id,
+							  int xend_id, int yend_id, int zend_id, int from_id, int to_id,
 							  float nan  ){
 
 
@@ -460,10 +466,13 @@ Geostat_grid* Csv_logdata_infilter::read( std::ifstream& infile, std::string nam
 
   std::vector< std::vector< QString > > property_values( property_names.size() );
 
-  typedef std::vector< std::pair< int, std::pair<GsTLPoint ,GsTLPoint > > > segment_geometry_vectorT;
-  segment_geometry_vectorT  log_segments;
+//  typedef std::vector< std::pair< int, std::pair<GsTLPoint ,GsTLPoint > > > segment_geometry_vectorT;
+//  segment_geometry_vectorT  log_segments;
 
-  std::map<std::string, segment_geometry_vectorT>  dh_log_segments;
+//  std::map<std::string, segment_geometry_vectorT>  dh_log_segments;
+
+  std::vector<Log_data::Segment_geometry> log_geometry;
+  std::map<std::string, std::vector<Log_data::Segment_geometry>>  grid_log_geometry;
 
   std::vector< Point_set::location_type > start_point_locations;
   std::vector< Point_set::location_type > end_point_locations;
@@ -487,10 +496,15 @@ Geostat_grid* Csv_logdata_infilter::read( std::ifstream& infile, std::string nam
     end_loc[2] = fields[zend_id].toDouble();
     end_point_locations.push_back(end_loc);
 
-    log_segments.push_back(std::make_pair( grid_size, std::make_pair(start_loc,end_loc)));
+
+    double from = fields[from_id].toDouble();
+    double to = fields[to_id].toDouble();
+
+ //   log_segments.push_back(std::make_pair( grid_size, std::make_pair(start_loc,end_loc)));
+ //   log_geometry.push_back( Log_data::Segment_geometry( grid_size, start_loc,end_loc, from, to) );
 
     std::string dh_name = fields[dh_id].toStdString();
-
+/*
     std::map<std::string, segment_geometry_vectorT>::iterator it = dh_log_segments.find(dh_name);
     if( it  == dh_log_segments.end()) {
     	segment_geometry_vectorT vector;
@@ -498,6 +512,15 @@ Geostat_grid* Csv_logdata_infilter::read( std::ifstream& infile, std::string nam
     	it = dh_log_segments.find(dh_name);
     }
     it->second.push_back(std::make_pair( grid_size, std::make_pair(start_loc,end_loc)));
+*/
+    std::map<std::string, std::vector<Log_data::Segment_geometry>>::iterator it_grid = grid_log_geometry.find(dh_name);
+    if( it_grid  == grid_log_geometry.end()) {
+    	std::vector<Log_data::Segment_geometry> vector_segments;
+    	grid_log_geometry[dh_name] = vector_segments;
+    	it_grid = grid_log_geometry.find(dh_name);
+    }
+    it_grid->second.push_back(Log_data::Segment_geometry( grid_size, start_loc,end_loc, from, to));
+
 
     dh_id_values.push_back(fields[dh_id].toStdString());
 
@@ -540,7 +563,8 @@ Geostat_grid* Csv_logdata_infilter::read( std::ifstream& infile, std::string nam
   Log_data_grid* log_grid = dynamic_cast<Log_data_grid*>( ni.raw_ptr() );
   appli_assert( log_grid != 0 );
 
-  log_grid->set_log_geometry(dh_log_segments);
+  //log_grid->set_log_geometry(dh_log_segments);
+  log_grid->set_log_geometry(grid_log_geometry);
 
 
 
@@ -1357,6 +1381,11 @@ bool Csv_outfilter::write( std::string outfile_name, const Named_interface* ni, 
   const Geostat_grid* grid = dynamic_cast<const Geostat_grid*>(ni);
   if(grid == 0) return false;
 
+  const Log_data_grid* log_grid = dynamic_cast<const Log_data_grid*>(grid);
+  if(log_grid) {
+    return write_log_data_grid(outfile_name, log_grid, errors );
+  }
+
   std::ofstream outfile( outfile_name.c_str() );
   if( !outfile ) {
     if( errors )
@@ -1410,7 +1439,7 @@ bool Csv_outfilter::write( std::string outfile_name, const Named_interface* ni, 
 	  Geostat_grid::location_type loc = grid->location( i );
 		std::stringstream ss_x, ss_y, ss_z;
 
-		ss_x.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
+    ss_x.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
     ss_y.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
     ss_z.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
 		ss_x << loc.x();
@@ -1444,3 +1473,122 @@ bool Csv_outfilter::write( std::string outfile_name, const Named_interface* ni, 
 
 
 
+bool Csv_outfilter::write_log_data_grid( std::string outfile_name,const Log_data_grid* grid, std::string* errors  ) {
+  
+  std::ofstream outfile( outfile_name.c_str() );
+  if( !outfile ) {
+    if( errors )
+      errors->append( "can't write to file: " + outfile_name );
+    return false;
+  }
+
+  typedef std::list<std::string>::const_iterator string_iterator;
+  std::list<std::string> & property_names = _list_to_write;
+  std::vector< const GsTLGridProperty* > properties;
+
+  //Be sure to remove the from and to from the property_names list
+  std::list<std::string>::iterator it_name = property_names.begin();
+  while( it_name != property_names.end()) {
+    std::string p_name = *it_name;
+    if(p_name == "from" || p_name=="to" || p_name=="dhid" || 
+       p_name=="topx" || p_name=="topy" || p_name=="topz" || 
+       p_name=="midx" || p_name=="midy" || p_name=="midz" || 
+       p_name=="botx" || p_name=="boty" || p_name=="botz" ) {
+      std::list<std::string>::iterator it_to_be_deleted = it_name;
+      ++it_name;
+      property_names.erase(it_to_be_deleted);
+    }
+    else {
+      ++it_name;
+    }
+
+  }
+
+  int nb_properties = property_names.size();
+
+  // write property names
+  outfile << "dhid,topx,topy,topz,midx,midy,midz,botx,boty,botz,from,to";
+  string_iterator it = property_names.begin();
+//  if(it != property_names.end()) {
+//  	outfile << *it;
+//    const GsTLGridProperty* prop = grid->property( *it );
+//  	if( prop != 0 )properties.push_back( prop );
+//  	it++;
+//  }
+  for( ; it != property_names.end();
+       ++ it ) {
+    outfile <<","<< *it;
+    const GsTLGridProperty* prop = grid->property( *it );
+  	if( prop != 0 )properties.push_back( prop );
+  }
+  outfile<<std::endl;
+
+  int grid_size;
+  if( properties.empty() )
+    grid_size = 0;
+  else
+    grid_size = properties[0]->size();
+
+  // Write the property values
+  for( int i=0; i < grid_size ; i++ ) {
+
+	  Geostat_grid::location_type mid_loc = grid->location( i );
+    const Log_data::Segment_geometry& seg_geom = grid->get_segment_geometry( i );
+
+		std::stringstream ss_start_x, ss_start_y, ss_start_z;
+    std::stringstream ss_mid_x, ss_mid_y, ss_mid_z;
+    std::stringstream ss_end_x, ss_end_y, ss_end_z;
+    std::stringstream ss_from, ss_to;
+
+    ss_start_x.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
+    ss_start_y.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
+    ss_start_z.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
+    ss_start_x << seg_geom.start.x();
+    ss_start_y << seg_geom.start.y();
+    ss_start_z << seg_geom.start.z();
+
+    ss_mid_x.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
+    ss_mid_y.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
+    ss_mid_z.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
+		ss_mid_x << mid_loc.x();
+    ss_mid_y << mid_loc.y();
+    ss_mid_z << mid_loc.z();
+
+    ss_end_x.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
+    ss_end_y.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
+    ss_end_z.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
+		ss_end_x << seg_geom.end.x();
+    ss_end_y << seg_geom.end.y();
+    ss_end_z << seg_geom.end.z();
+
+    ss_from.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
+    ss_to.precision(std::numeric_limits<GsTLCoord>::digits10);//override the default
+		ss_from << seg_geom.from;
+    ss_to << seg_geom.to;
+
+    outfile<<grid->get_log_name_from_nodeid( i )<<",";
+    outfile << ss_start_x.str()<<","<<ss_start_y.str() << "," << ss_start_z.str()<< ",";
+    outfile << ss_mid_x.str()<<","<<ss_mid_y.str() << "," << ss_mid_z.str()<< ",";
+    outfile << ss_end_x.str()<<","<<ss_end_y.str() << "," << ss_end_z.str()<< ",";
+    outfile << ss_from.str()<<","<<ss_to.str() << ",";
+
+		for( unsigned int j=0; j < property_names.size(); ++j ) {
+			if( properties[j]->is_informed( i ) ) {
+				const GsTLGridCategoricalProperty* cprop =
+						dynamic_cast<const GsTLGridCategoricalProperty*>(properties[j]);
+				if(cprop)
+					outfile << cprop->get_category_name(i);
+				else
+					outfile << properties[j]->get_value( i );
+			}
+
+
+			else
+				outfile << GsTLGridProperty::no_data_value;
+			if( j < property_names.size()-1 ) outfile<<",";
+		}
+
+		outfile << std::endl;
+  }
+  return true;
+}

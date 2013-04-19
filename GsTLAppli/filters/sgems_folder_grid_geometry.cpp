@@ -347,16 +347,18 @@ QDomElement Log_data_grid_geometry_xml_io::write_log_data_geometry( QDomDocument
 	elemGeom.setAttribute("name",ldata->name().c_str());
 	elemGeom.setAttribute("size",ldata->number_of_segments());
 
-	Log_data::nodeid_to_log_coords::const_iterator it = ldata->position_begin();
+  std::map<int, Log_data::Segment_geometry>::const_iterator it = ldata->segment_begin();
 
 
-	for( ; it != ldata->position_end(); ++it ) {
+	for( ; it != ldata->segment_end(); ++it ) {
 		QDomElement elemSegment = doc.createElement("Segment");
 		elemSegment.setAttribute("nodeid", QString::number(it->first));
-		QString from = QString("%1,%2,%3").arg(it->second.first.x()).arg(it->second.first.y()).arg(it->second.first.z());
-		QString to = QString("%1,%2,%3").arg(it->second.second.x()).arg(it->second.second.y()).arg(it->second.second.z());
-		elemSegment.setAttribute("from", from);
-		elemSegment.setAttribute("to", to);
+    elemSegment.setAttribute("from", QString::number(it->second.from));
+    elemSegment.setAttribute("to", QString::number(it->second.to));
+		QString from = QString("%1,%2,%3").arg(it->second.start.x()).arg(it->second.start.y()).arg(it->second.start.z());
+		QString to = QString("%1,%2,%3").arg(it->second.end.x()).arg(it->second.end.y()).arg(it->second.end.z());
+		elemSegment.setAttribute("start", from);
+		elemSegment.setAttribute("end", to);
 		elemGeom.appendChild(elemSegment);
 	}
 
@@ -407,28 +409,33 @@ Geostat_grid* Log_data_grid_geometry_xml_io::
   grid->point_locations( coords );
 
   //Read the geometry of each log
-  typedef std::vector< std::pair< int, std::pair<GsTLPoint ,GsTLPoint > > > segment_geometry_vectorT;
-  segment_geometry_vectorT  log_segments;
-  std::map<std::string, segment_geometry_vectorT>  dh_log_segments;
+//  typedef std::vector< std::pair< int, std::pair<GsTLPoint ,GsTLPoint > > > segment_geometry_vectorT;
+//  segment_geometry_vectorT  log_segments;
+//  std::map<std::string, segment_geometry_vectorT>  dh_log_segments;
+  std::vector<Log_data::Segment_geometry> segment_geometries;
+  std::map<std::string,std::vector<Log_data::Segment_geometry>> grid_geometries;
 
   QDomElement elemLog = elemGeom.firstChildElement("Log_Geometry");
   for( ; !elemLog.isNull(); elemLog = elemLog.nextSiblingElement("Log_Geometry") ){
-  	segment_geometry_vectorT vector;
+  	std::vector<Log_data::Segment_geometry> segment_vector;
   	std::string log_name = elemLog.attribute("name").toStdString();
-  	dh_log_segments[log_name] = vector;
-  	std::map<std::string, segment_geometry_vectorT>::iterator it = dh_log_segments.find(log_name);
+  	grid_geometries[log_name] = segment_vector;
+  	std::map<std::string, std::vector<Log_data::Segment_geometry>>::iterator it = grid_geometries.find(log_name);
   	QDomElement elemSegment = elemLog.firstChildElement("Segment");
   	for( ; !elemSegment.isNull(); elemSegment = elemSegment.nextSiblingElement("Segment") ){
   		int nodeid = elemSegment.attribute("nodeid").toInt();
-  		QStringList from = elemSegment.attribute("from").split(",");
-  		QStringList to = elemSegment.attribute("to").split(",");
-  		GsTLPoint start_loc(from.at(0).toDouble(),from.at(1).toDouble(),from.at(2).toDouble());
-  		GsTLPoint end_loc(to.at(0).toDouble(),to.at(1).toDouble(),to.at(2).toDouble());
-  		it->second.push_back(std::make_pair( nodeid, std::make_pair(start_loc,end_loc)));
+  		QStringList start_str = elemSegment.attribute("start").split(",");
+  		QStringList end_str = elemSegment.attribute("end").split(",");
+  		GsTLPoint start_loc(start_str.at(0).toDouble(),start_str.at(1).toDouble(),start_str.at(2).toDouble());
+  		GsTLPoint end_loc(end_str.at(0).toDouble(),end_str.at(1).toDouble(),end_str.at(2).toDouble());
+      double from = elemSegment.attribute("from").toDouble();
+      double to = elemSegment.attribute("to").toDouble();
+      Log_data::Segment_geometry test(nodeid, start_loc, end_loc, from,to);
+      it->second.push_back( Log_data::Segment_geometry(nodeid, start_loc, end_loc, from,to) );
   	}
 
   }
-  grid->set_log_geometry(dh_log_segments);
+  grid->set_log_geometry(grid_geometries);
 
 
   return grid;

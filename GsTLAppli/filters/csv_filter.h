@@ -40,6 +40,7 @@ class Gslib_input_grid_dialog;
 class Gslib_input_pointset_dialog; 
 class QWidget; 
 class Reduced_grid;
+class Log_data_grid;
 class Csv_input_pointset_dialog;
 
 
@@ -147,7 +148,7 @@ class FILTERS_DECL Csv_logdata_infilter : public Csv_specialized_infilter {
 
   virtual Geostat_grid* read( std::ifstream& infile, std::string name, int dh_id,
 							  int xstart_id, int ystart_id, int zstart_id,
-							  int xend_id, int yend_id, int zend_id,
+							  int xend_id, int yend_id, int zend_id, int from_id, int to_id,
 							  float nan = GsTLGridProperty::no_data_value );
 
   Csv_logdata_infilter( const Csv_logdata_infilter& );
@@ -277,6 +278,9 @@ public:
                       std::string* errors = 0 );
 
   virtual std::string type_data() const {return "Grid";}
+
+private:
+  bool write_log_data_grid( std::string outfile_name,const Log_data_grid* grid, std::string* errors = 0 );
 };
 
 #endif

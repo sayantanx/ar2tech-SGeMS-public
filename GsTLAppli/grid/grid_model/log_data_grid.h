@@ -40,6 +40,21 @@
 class GRID_DECL Log_data : public GsTL_object_item {
 public :
 
+  struct Segment_geometry {
+    int nodeid;
+    GsTLPoint start; 
+    GsTLPoint end;
+    double from;
+    double to;
+    double length;
+
+    Segment_geometry(){}
+
+    Segment_geometry(int id,GsTLPoint startxyz, GsTLPoint endxyz, double from_length, double to_length) :
+    nodeid(id),start(startxyz), end(endxyz), from(from_length), to(to_length), length(to-from){}
+
+  };
+
 	typedef std::map<int, std::pair<GsTLPoint,GsTLPoint> >  nodeid_to_log_coords;
 
 	Log_data(std::string name_id, int id, GsTL_object_item* parent);
@@ -51,17 +66,19 @@ public :
 	GsTLPoint collar_location() const;
 	void collar_location(GsTLPoint collar_location);
 
-	void add_log_segment(int node_id, GsTLPoint begin, GsTLPoint end);
+  void add_segment_geometry(Segment_geometry& segment_geom);
 	std::pair<GsTLPoint,GsTLPoint> get_log_segment(int node_id) const;
+  const Segment_geometry& get_segment_geometry(int nodeid) const;
 
   int nodeid_from_segmentid(int segmentid) const;
   int segmentid_from_nodeid(int nodeid) const;
 
-	nodeid_to_log_coords::const_iterator position_begin();
-	nodeid_to_log_coords::const_iterator position_end();
+	std::map<int, Segment_geometry>::const_iterator segment_begin();
+	std::map<int, Segment_geometry>::const_iterator segment_end();
 
-	nodeid_to_log_coords::const_iterator position_begin() const;
-	nodeid_to_log_coords::const_iterator position_end() const;
+	std::map<int, Segment_geometry>::const_iterator segment_begin() const;
+	std::map<int, Segment_geometry>::const_iterator segment_end() const;
+
 
 	int number_of_segments() const;
 	double min_segment_length() const;
@@ -69,6 +86,7 @@ public :
 	double average_segment_length();
   double segment_length(int nodeid) const;
   double total_length() const;
+  std::pair<double,double> get_from_to(int nodeid) const;
 
   bool are_segments_continuous(int start_segmentid, int segment_length ) const;
   bool are_segments_equal_length() const {return are_segments_equal_length_;}
@@ -90,16 +108,14 @@ protected :
 	std::string name_id_;
 	GsTLPoint collar_location_;
   double total_length_;
+  bool are_segments_equal_length_;
 
-	std::map<int, float> lengths_;
+  std::map<int, Segment_geometry> log_geometry_;
 
 	double min_segment_length_;
 	double max_segment_length_;
 	double average_segment_length_;
-  bool are_segments_equal_length_;
-  
 
-	nodeid_to_log_coords log_coords_;
 
 };
 
@@ -119,7 +135,7 @@ public :
 
 	const Log_data* get_log_data(std::string name_id) const;
 	const Log_data* get_log_data(int id) const;
-
+ 
 	 std::string get_log_name(int index) const;
 	 int get_log_id(std::string log_name) const;
 
@@ -148,17 +164,9 @@ public:
 
 	Log_data_grid(std::string name, int size);
 	virtual ~Log_data_grid();
+  
+  void set_log_geometry( std::map<std::string, std::vector< Log_data::Segment_geometry>>&  log_geometry );
 
-
-	void set_log_geometry( std::map<std::string, std::vector< std::pair< int, std::pair<GsTLPoint,GsTLPoint> > > >&  log_segments );
-/*
-	 void point_locations( const std::vector<location_type>& locations ) {
-	   point_loc_ = locations;
-	 }
-*/
-/*
- const std::vector<location_type>& point_locations() const { return point_loc_;}
- */
  // Returns the most specific name of the current class
  virtual std::string classname() const { return "Log_data_grid"; }
 
@@ -166,12 +174,15 @@ public:
  int number_of_segment_inside_region(int id, const GsTLGridRegion* region=0) const;
 
  std::string get_log_name(int index) const;
+ std::string get_log_name_from_nodeid(int nodeid) const;
  int get_log_id(std::string log_name) const;
  int get_log_id_from_nodeid(int nodeid) const;
 
  int number_of_logs() const;
  Log_data& get_log_data(std::string name_id);
  Log_data& get_log_data(int id);
+ 
+ const Log_data::Segment_geometry& get_segment_geometry(int nodeid) const;
 
  const Log_data& get_log_data(std::string name_id) const;
  const Log_data& get_log_data(int id) const;
@@ -209,17 +220,6 @@ private:
 
  bool are_segments_equal_length_;
 };
-
-/*
-inline
-Geovalue Log_data_grid:: geovalue(int node_id)
-{
-      Geovalue temp(this,point_prop_.selected_property(),node_id);
-      return temp;
-}
-*/
-
-
 
 
 

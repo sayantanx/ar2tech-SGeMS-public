@@ -136,8 +136,8 @@ void vtkProp_log::init(  Geostat_grid* grid, vtkRenderer* renderer ) {
 	  pipeline.vtk_data_log = vtkPolyData::New();
 	  region_pipeline.log_data = &(grid_->get_log_data(i));
 	  region_pipeline.vtk_data_log = vtkPolyData::New();
-	  Log_data::nodeid_to_log_coords::const_iterator it = pipeline.log_data->position_begin();
-	  Log_data::nodeid_to_log_coords::const_iterator it_end = pipeline.log_data->position_end();
+    std::map<int,Log_data::Segment_geometry>::const_iterator it = pipeline.log_data->segment_begin();
+	  std::map<int,Log_data::Segment_geometry>::const_iterator it_end = pipeline.log_data->segment_end();
 	  pipeline.vtk_data_log->Allocate( pipeline.log_data->number_of_segments() );
 
 	  vtkPoints* linePoints = vtkPoints::New();
@@ -146,11 +146,11 @@ void vtkProp_log::init(  Geostat_grid* grid, vtkRenderer* renderer ) {
 	  int index = 0;
 	  for( ; it != it_end; ++it) {
 		  vtkSmartPointer<vtkLine>  line  = vtkSmartPointer<vtkLine>::New();
-		  linePoints->InsertPoint(index, it->second.first.x(),it->second.first.y(),it->second.first.z());
+		  linePoints->InsertPoint(index, it->second.start.x(),it->second.start.y(),it->second.start.z());
 		  line->GetPointIds()->SetId(0, index);
 		  index++;
 
-		  linePoints->InsertPoint(++index, it->second.second.x(),it->second.second.y(),it->second.second.z());
+		  linePoints->InsertPoint(++index, it->second.end.x(),it->second.end.y(),it->second.end.z());
 		  line->GetPointIds()->SetId(1, index++);
 		  index++;
 
@@ -220,19 +220,21 @@ void vtkProp_log::set_property( const std::string& property_name, Colormap* cmap
 
     for( ; it_pipeline != log_pipelines_.end(); ++it_pipeline ) {
 
-        Log_data::nodeid_to_log_coords::const_iterator it = it_pipeline->log_data->position_begin();
-        Log_data::nodeid_to_log_coords::const_iterator it_end = it_pipeline->log_data->position_end();
+      std::map<int,Log_data::Segment_geometry>::const_iterator it = it_pipeline->log_data->segment_begin();
+	    std::map<int,Log_data::Segment_geometry>::const_iterator it_end = it_pipeline->log_data->segment_end();
+    //  Log_data::nodeid_to_log_coords::const_iterator it = it_pipeline->log_data->position_begin();
+    //  Log_data::nodeid_to_log_coords::const_iterator it_end = it_pipeline->log_data->position_end();
 
-        vtkSmartPointer<vtkFloatArray> values = vtkSmartPointer<vtkFloatArray>::New();
-        values->SetNumberOfTuples(1);
-        values->SetNumberOfValues(it_pipeline->log_data->number_of_segments());
-        for(int i=0 ; it!= it_end; ++it, ++i) {
-        	int nodeid = it->first;
-        	float val = current_property_->get_value(nodeid);
-            values->SetValue(i,current_property_->get_value(it->first));
-        }
-        it_pipeline->vtk_data_log->GetCellData()->SetScalars(values);
-        it_pipeline->vtk_data_log->Modified();
+      vtkSmartPointer<vtkFloatArray> values = vtkSmartPointer<vtkFloatArray>::New();
+      values->SetNumberOfTuples(1);
+      values->SetNumberOfValues(it_pipeline->log_data->number_of_segments());
+      for(int i=0 ; it!= it_end; ++it, ++i) {
+        int nodeid = it->first;
+        float val = current_property_->get_value(nodeid);
+          values->SetValue(i,current_property_->get_value(it->first));
+      }
+      it_pipeline->vtk_data_log->GetCellData()->SetScalars(values);
+      it_pipeline->vtk_data_log->Modified();
 
     }
 
@@ -263,26 +265,25 @@ void vtkProp_log::set_property_with_region( const std::string& property_name, Co
     std::vector<log_pipeline>::iterator it_pipeline_region = log_pipelines_region_.begin();
 
     for( ; it_pipeline_region != log_pipelines_region_.end(); ++it_pipeline_region ) {
+      std::map<int,Log_data::Segment_geometry>::const_iterator it = it_pipeline_region->log_data->segment_begin();
+	    std::map<int,Log_data::Segment_geometry>::const_iterator it_end = it_pipeline_region->log_data->segment_end();
 
-    	Log_data::nodeid_to_log_coords::const_iterator it = it_pipeline_region->log_data->position_begin();
-    	Log_data::nodeid_to_log_coords::const_iterator it_end = it_pipeline_region->log_data->position_end();
+		  vtkSmartPointer<vtkFloatArray> values = vtkSmartPointer<vtkFloatArray>::New();
+		  values->SetNumberOfTuples(1);
+		  // Count number of segment
+		  std::string log_name = it_pipeline_region->log_data->name();
+		  int size_region_in_segment = grid_->number_of_segment_inside_region(log_name, current_region_ );
+		  values->SetNumberOfValues(size_region_in_segment);
 
-		vtkSmartPointer<vtkFloatArray> values = vtkSmartPointer<vtkFloatArray>::New();
-		values->SetNumberOfTuples(1);
-		// Count number of segment
-		std::string log_name = it_pipeline_region->log_data->name();
-		int size_region_in_segment = grid_->number_of_segment_inside_region(log_name, current_region_ );
-		values->SetNumberOfValues(size_region_in_segment);
-
-		int i=0;
-		for(; it!= it_end; ++it) {
-			int nodeid = it->first;
-			if( !current_region_->is_inside_region(nodeid) ) continue;
-			float val = current_property_->get_value(nodeid);
-			values->SetValue(i++,current_property_->get_value(it->first));
-		}
-		it_pipeline_region->vtk_data_log->GetCellData()->SetScalars(values);
-		it_pipeline_region->vtk_data_log->Modified();
+		  int i=0;
+		  for(; it!= it_end; ++it) {
+			  int nodeid = it->first;
+			  if( !current_region_->is_inside_region(nodeid) ) continue;
+			  float val = current_property_->get_value(nodeid);
+			  values->SetValue(i++,current_property_->get_value(it->first));
+		  }
+		  it_pipeline_region->vtk_data_log->GetCellData()->SetScalars(values);
+		  it_pipeline_region->vtk_data_log->Modified();
     }
 
     if(cmap_) {
@@ -351,9 +352,9 @@ void vtkProp_log::refresh() {
   std::vector<log_pipeline>::iterator it_pipeline = log_pipelines_.begin();
 
   for( ; it_pipeline != log_pipelines_.end(); ++it_pipeline ) {
+    std::map<int,Log_data::Segment_geometry>::const_iterator it = it_pipeline->log_data->segment_begin();
+	  std::map<int,Log_data::Segment_geometry>::const_iterator it_end = it_pipeline->log_data->segment_end();
 
-	  Log_data::nodeid_to_log_coords::const_iterator it = it_pipeline->log_data->position_begin();
-	  Log_data::nodeid_to_log_coords::const_iterator it_end = it_pipeline->log_data->position_end();
 	  vtkSmartPointer<vtkFloatArray> values = vtkSmartPointer<vtkFloatArray>::New();
 	  values->SetNumberOfTuples(1);
 	  values->SetNumberOfValues(it_pipeline->log_data->number_of_segments());
@@ -419,8 +420,8 @@ void vtkProp_log::set_region(const std::string& region_name ) {
 
 			it_pipeline_region->vtk_data_log = vtkPolyData::New();
 			it_pipeline_region->vtk_data_log->Allocate( it_pipeline_region->log_data->number_of_segments() );
-			Log_data::nodeid_to_log_coords::const_iterator it = it_pipeline_region->log_data->position_begin();
-			Log_data::nodeid_to_log_coords::const_iterator it_end = it_pipeline_region->log_data->position_end();
+      std::map<int,Log_data::Segment_geometry>::const_iterator it = it_pipeline_region->log_data->segment_begin();
+	    std::map<int,Log_data::Segment_geometry>::const_iterator it_end = it_pipeline_region->log_data->segment_end();
 
 			vtkPoints* linePoints = vtkPoints::New();
 			//	  linePoints->SetNumberOfPoints(Log_data.number_of_segments()*2);
@@ -430,11 +431,11 @@ void vtkProp_log::set_region(const std::string& region_name ) {
 			  if( !current_region_->is_inside_region(it->first) ) continue;
 
 			  vtkSmartPointer<vtkLine> line = vtkSmartPointer<vtkLine>::New();
-			  linePoints->InsertPoint(index, it->second.first.x(),it->second.first.y(),it->second.first.z());
+			  linePoints->InsertPoint(index, it->second.start.x(),it->second.start.y(),it->second.start.z());
 			  line->GetPointIds()->SetId(0, index);
 			  index++;
 
-			  linePoints->InsertPoint(++index, it->second.second.x(),it->second.second.y(),it->second.second.z());
+			  linePoints->InsertPoint(++index, it->second.end.x(),it->second.end.y(),it->second.end.z());
 			  line->GetPointIds()->SetId(1, index++);
 			  index++;
 

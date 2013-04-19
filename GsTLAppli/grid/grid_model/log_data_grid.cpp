@@ -64,67 +64,74 @@ void Log_data::collar_location(GsTLPoint collar_location){
 	collar_location_=collar_location;
 }
 
-void Log_data::add_log_segment(int node_id, GsTLPoint begin, GsTLPoint end){
-	nodeid_to_log_coords::iterator it = log_coords_.find(node_id);
-	if(it == log_coords_.end()) {
-		log_coords_[node_id] = std::make_pair(begin,end);
-		GsTLPoint d = end-begin;
+void Log_data::add_segment_geometry(Log_data::Segment_geometry& segment_geom){
+  std::map<int, Segment_geometry>::const_iterator it = log_geometry_.find(segment_geom.nodeid);
+	if(it == log_geometry_.end()) {
+    log_geometry_[segment_geom.nodeid] = segment_geom;
+//    log_coords_[segment_geom.nodeid] = std::make_pair(segment_geom.start,segment_geom.end);
+		GsTLPoint d = segment_geom.start-segment_geom.end;
 		double length = sqrt(d.x()*d.x() + d.y()*d.y() + d.z()*d.z());
 		if( length < min_segment_length_ ) min_segment_length_ = length;
 		if( length > max_segment_length_ ) max_segment_length_ = length;
-		lengths_[node_id] = length;
+	//	lengths_[segment_geom.nodeid] = length;
     total_length_ +=  length;
-
+ //   from_to_[segment_geom.nodeid] = std::make_pair(segment_geom.from,segment_geom.to);
 	}
-
 }
 
 
 std::pair<GsTLPoint,GsTLPoint> Log_data::get_log_segment(int node_id) const{
 
-	nodeid_to_log_coords::const_iterator it = log_coords_.find(node_id);
-	if(it == log_coords_.end()) {
+  std::map<int, Segment_geometry>::const_iterator it = log_geometry_.find(node_id);
+
+	//nodeid_to_log_coords::const_iterator it = log_coords_.find(node_id);
+	if(it == log_geometry_.end()) {
 		GsTLPoint nan_pt(GsTLGridProperty::no_data_value,GsTLGridProperty::no_data_value,GsTLGridProperty::no_data_value);
 		return std::make_pair(nan_pt,nan_pt);
 	}
-	return it->second;
+	//return it->second;
+  return std::make_pair( it->second.start, it->second.end);
 
 }
 
+const Log_data::Segment_geometry& Log_data::get_segment_geometry(int nodeid) const{
+  std::map<int, Segment_geometry>::const_iterator it = log_geometry_.find(nodeid);
+  return it->second;
+}
 
 int Log_data::nodeid_from_segmentid(int segmentid) const {
-  if(segmentid >= lengths_.size()) return -1;
-  nodeid_to_log_coords::const_iterator it = log_coords_.begin();
+  if(segmentid >= log_geometry_.size()) return -1;
+  std::map<int, Segment_geometry>::const_iterator it = log_geometry_.begin();
   std::advance(it,segmentid);
   return it->first;
 }
 
 
 int Log_data::segmentid_from_nodeid(int nodeid) const {
-  nodeid_to_log_coords::const_iterator it = log_coords_.find(nodeid);
-  if(it == log_coords_.end()) return -1;
-  return distance( log_coords_.begin(), it);
+  std::map<int, Segment_geometry>::const_iterator it = log_geometry_.find(nodeid);
+  if(it == log_geometry_.end()) return -1;
+  return distance( log_geometry_.begin(), it);
 }
 
-Log_data::nodeid_to_log_coords::const_iterator Log_data::position_begin(){
-	return log_coords_.begin();
-}
+	std::map<int, Log_data::Segment_geometry>::const_iterator Log_data::segment_begin(){
+    return log_geometry_.begin();
+  }
+	std::map<int, Log_data::Segment_geometry>::const_iterator Log_data::segment_end(){
+    return log_geometry_.end();
+  }
 
-Log_data::nodeid_to_log_coords::const_iterator Log_data::position_end(){
-	return log_coords_.end();
-}
 
+	std::map<int, Log_data::Segment_geometry>::const_iterator Log_data::segment_begin() const{
+    return log_geometry_.begin();
+  }
+	std::map<int, Log_data::Segment_geometry>::const_iterator Log_data::segment_end() const{
+    return log_geometry_.end();
+  }
 
-Log_data::nodeid_to_log_coords::const_iterator Log_data::position_begin() const {
-	return log_coords_.begin();
-}
-
-Log_data::nodeid_to_log_coords::const_iterator Log_data::position_end() const{
-	return log_coords_.end();
-}
+ 
 
 int Log_data::number_of_segments() const{
-	return log_coords_.size();
+	return log_geometry_.size();
 }
 
 double Log_data::min_segment_length() const{
@@ -137,20 +144,22 @@ double Log_data::max_segment_length() const{
 double Log_data::average_segment_length() {
 	if( average_segment_length_ < 0 ) {
 		float sum = 0.0;
-		std::map<int, float>::const_iterator it = lengths_.begin();
-		for( ; it!= lengths_.end(); ++it) {
-			sum += it->second;
+    std::map<int, Log_data::Segment_geometry>::const_iterator it = log_geometry_.begin();
+		//std::map<int, float>::const_iterator it = lengths_.begin();
+		for( ; it!= log_geometry_.end(); ++it) {
+			sum += it->second.length;
 		}
-		average_segment_length_ = sum/lengths_.size();
+		average_segment_length_ = sum/log_geometry_.size();
 	}
 	return average_segment_length_;
 
 }
 
 double Log_data::segment_length(int nodeid) const {
-  std::map<int, float>::const_iterator it = lengths_.find( nodeid );
-  if( it == lengths_.end() ) return -1;
-  return it->second;
+  //std::map<int, float>::const_iterator it = lengths_.find( nodeid );
+  std::map<int, Log_data::Segment_geometry>::const_iterator it = log_geometry_.find(nodeid);
+  if( it == log_geometry_.end() ) return -1;
+  return it->second.length;
 }
 
 
@@ -158,18 +167,23 @@ double Log_data::total_length() const{
   return total_length_;
 }
 
+std::pair<double,double> Log_data::get_from_to(int nodeid) const{
+  std::map<int, Log_data::Segment_geometry>::const_iterator it = log_geometry_.find(nodeid);
+  if(it == log_geometry_.end()) return std::make_pair((double)-1.0,(double)-1.0);
+  return std::make_pair(it->second.from,it->second.to);
+}
 
 bool Log_data::are_segments_continuous(int start_nodeid, int segment_length ) const {
 
   int start_segmentid = this->segmentid_from_nodeid(start_nodeid);
-  if( start_segmentid < 0 || start_segmentid+segment_length > log_coords_.size() ) return false;
+  if( start_segmentid < 0 || start_segmentid+segment_length > log_geometry_.size() ) return false;
  
 
-  nodeid_to_log_coords::const_iterator it_current = log_coords_.find(start_nodeid);
-  nodeid_to_log_coords::const_iterator it_next = log_coords_.find(start_nodeid);
+  std::map<int, Log_data::Segment_geometry>::const_iterator it_current = log_geometry_.find(start_nodeid);
+  std::map<int, Log_data::Segment_geometry>::const_iterator it_next = log_geometry_.find(start_nodeid);
   for(int i=0; i<segment_length-1; ++i ) {
     std::advance(it_next,1);
-    if( it_current->second.second !=  it_next->second.first ) return false;
+    if( it_current->second.to !=  it_next->second.from ) return false;
     it_current = it_next;
   }
  
@@ -371,14 +385,11 @@ Log_data_grid::~Log_data_grid() {
 	delete log_manager_;
 }
 
+void Log_data_grid::set_log_geometry( std::map<std::string, std::vector< Log_data::Segment_geometry>>&  log_geometry ){
 
-void Log_data_grid::set_log_geometry( std::map<std::string, std::vector< std::pair<int, std::pair<GsTLPoint,GsTLPoint> > > >& log_segments)
-{
-
-
-	std::map<std::string, std::vector<  std::pair<int,std::pair<GsTLPoint,GsTLPoint> > > >::iterator it_log = log_segments.begin();
+	std::map<std::string, std::vector< Log_data::Segment_geometry> >::iterator it_log = log_geometry.begin();
 	int number_of_values=0;
-	for( ; it_log != log_segments.end(); ++it_log) {
+	for( ; it_log != log_geometry.end(); ++it_log) {
 		number_of_values+= it_log->second.size();
 	}
 
@@ -387,20 +398,20 @@ void Log_data_grid::set_log_geometry( std::map<std::string, std::vector< std::pa
 	std::vector< Point_set::location_type > point_locations(number_of_values);
   log_id_.insert(log_id_.begin(),number_of_values,-1);
 
-	for(it_log = log_segments.begin() ; it_log != log_segments.end(); ++it_log) {
+	for(it_log = log_geometry.begin() ; it_log != log_geometry.end(); ++it_log) {
 		Log_data* log_data = log_manager_->add_log(it_log->first);
     int log_id = log_data->id();
 //		Log_data* log_data = log_manager_->get_log_data(id);
-		std::vector< std::pair<int,std::pair<GsTLPoint,GsTLPoint> > >::iterator it_segments = it_log->second.begin();
+		std::vector< Log_data::Segment_geometry>::iterator it_segments = it_log->second.begin();
 		for( ; it_segments != it_log->second.end(); ++it_segments) {
-			log_data->add_log_segment(it_segments->first,it_segments->second.first,it_segments->second.second);
+			log_data->add_segment_geometry(*it_segments);
 
 			GsTLPoint loc;
-			loc[0] = (it_segments->second.second.x()  + it_segments->second.first.x())/2.0;
-			loc[1] = (it_segments->second.second.y()  + it_segments->second.first.y())/2.0;
-			loc[2] = (it_segments->second.second.z()  + it_segments->second.first.z())/2.0;
-			point_locations[it_segments->first] = loc;
-      log_id_[it_segments->first] = log_id;
+			loc[0] = (it_segments->end.x()  + it_segments->start.x())/2.0;
+			loc[1] = (it_segments->end.y()  + it_segments->start.y())/2.0;
+			loc[2] = (it_segments->end.z()  + it_segments->start.z())/2.0;
+			point_locations[it_segments->nodeid] = loc;
+      log_id_[it_segments->nodeid] = log_id;
 //			point_locations.push_back(loc);
 		}
     log_data->update_geomety();
@@ -408,12 +419,10 @@ void Log_data_grid::set_log_geometry( std::map<std::string, std::vector< std::pa
 	}
 
 	this->point_locations( point_locations );
-
-  
+ 
 
 
 }
-
 
 
 int Log_data_grid::number_of_logs() const{
@@ -424,6 +433,10 @@ std::string Log_data_grid::get_log_name(int index) const{
 	return log_manager_->get_log_name(index);
 }
 
+std::string Log_data_grid::get_log_name_from_nodeid(int nodeid) const{
+  return this->get_log_name( log_id_[nodeid]);
+}
+
 int Log_data_grid::get_log_id(std::string log_name) const{
 	return log_manager_->get_log_id(log_name);
 }
@@ -431,6 +444,11 @@ int Log_data_grid::get_log_id(std::string log_name) const{
 int Log_data_grid::get_log_id_from_nodeid(int nodeid) const {
   if(nodeid < 0 || nodeid>= this->size() ) return -1;
   return log_id_[nodeid];
+}
+
+const Log_data::Segment_geometry& Log_data_grid::get_segment_geometry(int nodeid) const{
+  int log_id =  log_id_[nodeid];
+  return log_manager_->get_log_data(log_id)->get_segment_geometry(nodeid);
 }
 
 Log_data& Log_data_grid::get_log_data(std::string name_id){
@@ -462,8 +480,8 @@ int Log_data_grid::number_of_segment_inside_region(int id, const GsTLGridRegion*
 	if( region == 0 ) return ldata->number_of_segments();
 
 	int n = 0;
-	Log_data::nodeid_to_log_coords::const_iterator it = ldata->position_begin();
-	for( ;it!=ldata->position_end(); ++ it) {
+  std::map<int, Log_data::Segment_geometry>::const_iterator it = ldata->segment_begin();
+ 	for( ;it!=ldata->segment_end(); ++ it) {
 		if( region->is_inside_region(it->first)) n++;
 	}
 	return n;
