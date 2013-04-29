@@ -125,6 +125,22 @@ public:
 };
 
 
+class Absolute_transform_action: public Unary_action {
+public:
+	static Named_interface* create_new_interface(std::string&) {
+		return new Absolute_transform_action();
+	}
+
+public:
+	Absolute_transform_action(): Unary_action("absolute"){}
+	virtual ~Absolute_transform_action(){}
+	bool transform(const Geovalue::property_type& _val, Geovalue::property_type& _new_val){
+		_new_val = std::abs(_val);
+
+		return true;
+	}
+};
+
 class Inverse_transform_action: public Unary_action {
 public:
 	static Named_interface* create_new_interface(std::string&) {

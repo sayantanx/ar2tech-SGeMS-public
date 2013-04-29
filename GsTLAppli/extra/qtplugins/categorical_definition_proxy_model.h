@@ -141,6 +141,8 @@ public:
 
     virtual bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
 
+    const CategoricalPropertyDefinition* get_categorical_definition() const {return cdef_;}
+
 signals :
     void checked_category_changed(int , bool );
 

@@ -85,13 +85,13 @@ public:
 
   static int get_dim() { return GsTLTripletTmpl<R>::dimension; }
 
-  R length() { 
+  R length() const { 
     return std::sqrt( coords_[0]*coords_[0]+
                       coords_[1]*coords_[1]+
                       coords_[2]*coords_[2]  );
   }
 
-  R distance2(const GsTLTripletTmpl<R>& gp) { 
+  R distance2(const GsTLTripletTmpl<R>& gp) const { 
     R dx =  coords_[0] - gp[0];
     R dy =  coords_[1] - gp[1];
     R dz =  coords_[2] - gp[2];
@@ -191,6 +191,42 @@ public:
     } 
  
 
+    
+    GsTLTripletTmpl<R> operator / (R r ) const { 
+        return (GsTLTripletTmpl<R>( 
+                coords_[0]/r, 
+                coords_[1]/r, 
+                coords_[2]/r 
+            ) 
+        ); 
+    }
+
+    void operator /= ( R r ) {
+
+      coords_[0] /= r;
+
+      coords_[1] /= r;
+
+      coords_[2] /=r;
+
+    }
+
+
+    GsTLTripletTmpl<R> operator * (R r ) const { 
+        return (GsTLTripletTmpl<R>( 
+                coords_[0]*r, 
+                coords_[1]*r, 
+                coords_[2]*r 
+            ) 
+        ); 
+    }
+
+    void operator *= (R r ) const { 
+        coords_[0]*=r,;
+        coords_[1]*=r;
+        coords_[2]*=r;
+    }
+
     void operator -= ( const GsTLTripletTmpl<R>& t ) {
 
       coords_[0] -= t.coords_[0];
@@ -198,6 +234,16 @@ public:
       coords_[1] -= t.coords_[1];
 
       coords_[2] -= t.coords_[2];
+
+    }
+
+    void operator += ( const GsTLTripletTmpl<R>& t ) {
+
+      coords_[0] += t.coords_[0];
+
+      coords_[1] += t.coords_[1];
+
+      coords_[2] += t.coords_[2];
 
     }
 
@@ -253,6 +299,12 @@ inline R dot( const GsTLTripletTmpl<R>& t1, const GsTLTripletTmpl<R>& t2 ) {
 }
 
 
+/*
+template<class R>
+inline GsTLTripletTmpl<R> operator * (R r, const GsTLTripletTmpl<R>& t ) const { 
+  return t*r;
+}
+*/
 
 // CGLA requirements
 

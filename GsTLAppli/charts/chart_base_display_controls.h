@@ -93,6 +93,8 @@ public slots :
   void set_save_figure_visibility(bool ok);
   void set_view_report_visibility(bool ok);
 
+  QFrame* get_report_frame() {return report_frame_;}
+
 
 protected:
 

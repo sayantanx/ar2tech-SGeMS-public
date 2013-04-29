@@ -234,6 +234,8 @@ class QTPLUGINS_DECL  CategoricalDefinitionTable : public QTableView {
   void initialize();
   QString get_definition_name() const {return current_definition_;}
   QStringList selected_category_names() const;
+  std::vector<int> selected_category_ids() const;
+  int number_of_total_categories() const;
   Category_proxy_model* get_model(){return model_;}
 
 //  std::vector<int> selected_category_ids() const;
@@ -271,7 +273,8 @@ class QTPLUGINS_DECL  CategoricalDefinitionTableAllClearOptions : public QWidget
   void initialize();
   QString get_definition_name() const {return table_->get_definition_name();}
   QStringList selected_category_names() const;
-//  std::vector<int> selected_category_ids() const;
+  std::vector<int> selected_category_ids() const;
+  int number_of_total_categories() const;
 
  public slots:
   void show_definition( QString cdef_name);

@@ -237,6 +237,7 @@ bool library_actions_init::bind_action_factories(Manager* dir)
 	dir->factory(Logit_transform_action().name(), Logit_transform_action::create_new_interface);
 	dir->factory(Logistic_transform_action().name(), Logistic_transform_action::create_new_interface);
 	dir->factory(Square_transform_action().name(), Square_transform_action::create_new_interface);
+  dir->factory(Absolute_transform_action().name(), Absolute_transform_action::create_new_interface);
 
 
 	return true;

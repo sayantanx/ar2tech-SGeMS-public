@@ -515,6 +515,25 @@ QStringList CategoricalDefinitionTable::selected_category_names() const {
   }
   return selected_categories;
 }
+
+std::vector<int>  CategoricalDefinitionTable::selected_category_ids() const{
+  std::vector<int> selected_categories;
+  if(model_ == 0) return selected_categories;
+
+  QStringList selected_category_names = this->selected_category_names();
+  const CategoricalPropertyDefinition* cdef = model_->get_categorical_definition();
+  for(int i=0; i<selected_category_names.size(); ++i) {
+    selected_categories.push_back(  cdef->category_id( selected_category_names.at(i).toStdString() ));
+  }
+
+  return selected_categories;
+
+}
+
+int CategoricalDefinitionTable::number_of_total_categories() const{
+  return model_->rowCount();
+}
+
 /*
 std::vector<int> CategoricalDefinitionTable::selected_category_ids() const {
 
@@ -596,6 +615,14 @@ void CategoricalDefinitionTableAllClearOptions::show_color_editor(const QModelIn
 
 QStringList CategoricalDefinitionTableAllClearOptions::selected_category_names() const {
   return table_->selected_category_names();
+}
+
+std::vector<int> CategoricalDefinitionTableAllClearOptions::selected_category_ids() const {
+  return table_->selected_category_ids();
+}
+
+int CategoricalDefinitionTableAllClearOptions::number_of_total_categories() const{
+  return table_->number_of_total_categories();
 }
 
 void CategoricalDefinitionTableAllClearOptions::clear_checked() {
