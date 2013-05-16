@@ -167,6 +167,19 @@ double Log_data::total_length() const{
   return total_length_;
 }
 
+double Log_data::total_distance_from_collar() const{
+  if(log_geometry_.empty()) return 0.0;
+  std::map<int, Segment_geometry>::const_iterator it = (--log_geometry_.end());
+  return it->second.to;
+}
+
+double Log_data::distance_of_first_sample_from_collar() const{
+  if(log_geometry_.empty()) return 0.0;
+  std::map<int, Segment_geometry>::const_iterator it = log_geometry_.begin();
+  return it->second.from;
+}
+
+
 std::pair<double,double> Log_data::get_from_to(int nodeid) const{
   std::map<int, Log_data::Segment_geometry>::const_iterator it = log_geometry_.find(nodeid);
   if(it == log_geometry_.end()) return std::make_pair((double)-1.0,(double)-1.0);

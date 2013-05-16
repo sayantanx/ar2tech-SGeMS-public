@@ -295,6 +295,7 @@
     <ClCompile Include=".moc\moc_property_proxy_model.cpp" />
     <ClCompile Include=".moc\moc_region_proxy_model.cpp" />
     <ClCompile Include=".moc\moc_region_weight_proxy_model.cpp" />
+    <ClCompile Include=".moc\moc_rename_dialog.cpp" />
     <ClCompile Include=".moc\moc_weight_property_proxy_model.cpp" />
     <ClCompile Include=".moc\moc_weight_property_selector.cpp" />
     <ClCompile Include="categorical_definition_proxy_model.cpp" />
@@ -323,6 +324,7 @@
     <ClCompile Include="property_proxy_model.cpp" />
     <ClCompile Include="region_proxy_model.cpp" />
     <ClCompile Include="region_weight_proxy_model.cpp" />
+    <ClCompile Include="rename_dialog.cpp" />
     <ClCompile Include="selectors.cpp" />
     <ClCompile Include="variogram_input.cpp" />
     <ClCompile Include=".moc\moc_categorical_selectors.cpp" />
@@ -831,6 +833,24 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -DQT_NO_DEBUG -DGSTLAPPLI_NDEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL  "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRx64)\include\QtDesigner" "-I$(QTDIRx64)\include\QtUiTools" "-I$(QTDIRx64)\include\QtCore" "-I$(QTDIRx64)\include\QtGui" "-I$(QTDIRx64)\include\QtXml" "-I$(QTDIRx64)\include" "-I." "-I$(QTDIRx64)\tools\designer\interfaces" "-I$(QTDIRx64)\include\ActiveQt" "-I$(BOOSTDIR)\." "-I.\.moc"</Command>
     </CustomBuild>
     <ClInclude Include="library_qtplugins_init.h" />
+    <CustomBuild Include="rename_dialog.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing rename_dialog.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRwin32)\include\QtDesigner" "-I$(QTDIRwin32)\include\QtUiTools" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(QTDIRwin32)\include\QtXml" "-I$(QTDIRwin32)\include" "-I." "-I$(QTDIRwin32)\tools\designer\interfaces" "-I$(QTDIRwin32)\include\ActiveQt" "-I.\.moc" "-I$(BOOSTDIR)\." "-I$(QTDIR)\include\QtDesigner" "-I$(QTDIR)\include\QtUiTools" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include" "-I$(QTDIR)\tools\designer\interfaces" "-I$(QTDIR)\include\ActiveQt"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing rename_dialog.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRx64)\include\QtDesigner" "-I$(QTDIRx64)\include\QtUiTools" "-I$(QTDIRx64)\include\QtCore" "-I$(QTDIRx64)\include\QtGui" "-I$(QTDIRx64)\include\QtXml" "-I$(QTDIRx64)\include" "-I." "-I$(QTDIRx64)\tools\designer\interfaces" "-I$(QTDIRx64)\include\ActiveQt" "-I$(BOOSTDIR)\." "-I.\.moc"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing rename_dialog.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -DQT_NO_DEBUG -DGSTLAPPLI_NDEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRwin32)\include\QtDesigner" "-I$(QTDIRwin32)\include\QtUiTools" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(QTDIRwin32)\include\QtXml" "-I$(QTDIRwin32)\include" "-I." "-I$(QTDIRwin32)\tools\designer\interfaces" "-I$(QTDIRwin32)\include\ActiveQt" "-I.\.moc" "-I$(BOOSTDIR)\."</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing rename_dialog.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\.moc\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\.moc\moc_%(Filename).cpp"  -DQT_NO_DEBUG -DGSTLAPPLI_NDEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQTPLUGINS_EXPORTS -DQT_DLL -DQT_PLUGIN -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_WINDLL "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIRx64)\include\QtDesigner" "-I$(QTDIRx64)\include\QtUiTools" "-I$(QTDIRx64)\include\QtCore" "-I$(QTDIRx64)\include\QtGui" "-I$(QTDIRx64)\include\QtXml" "-I$(QTDIRx64)\include" "-I." "-I$(QTDIRx64)\tools\designer\interfaces" "-I$(QTDIRx64)\include\ActiveQt" "-I$(BOOSTDIR)\." "-I.\.moc"</Command>
+    </CustomBuild>
     <ClInclude Include="ui_order_properties_dialog.h" />
     <ClInclude Include="ui_variogram_input_base.h" />
     <ClInclude Include="ui_variogram_structure_base.h" />

@@ -205,9 +205,6 @@
     <ClCompile Include="viewer\region_param_viewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="utils\rename_dialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="variogram2\rgrid_params.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -386,9 +383,6 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include=".moc\moc_qvtkGsTLViewer.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include=".moc\moc_rename_dialog.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include=".moc\moc_rgrid_params.cpp">
@@ -696,9 +690,6 @@
     <ClInclude Include="viewer\region_param_viewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <CustomBuild Include="utils\rename_dialog.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="variogram2\rgrid_params.h">
       <Filter>Header Files</Filter>
     </CustomBuild>

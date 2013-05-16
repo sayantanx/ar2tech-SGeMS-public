@@ -31,7 +31,7 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/gui/utils/rename_dialog.h>
+#include <GsTLAppli/extra/qtplugins/rename_dialog.h>
 
 #include <QVBoxLayout>
 #include <QPushButton>

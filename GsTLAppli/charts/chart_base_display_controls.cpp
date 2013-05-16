@@ -313,8 +313,15 @@ void Chart_base_display_controls::save_figure() {
 
 }
 
-void Chart_base_display_controls::save_figure(QString& filename ) {
+void Chart_base_display_controls::save_figure(QString& filename,QSize plot_size ) {
+
   QApplication::setOverrideCursor( Qt::WaitCursor );
+  
+  QSize original_size = qvtkWidget_->size();
+  if(!plot_size.isEmpty()) {
+    qvtkWidget_->resize(plot_size);
+  }
+
 
   vtkSmartPointer<vtkWindowToImageFilter> w2i = vtkSmartPointer<vtkWindowToImageFilter>::New();
   w2i->SetInput(context_view_->GetRenderWindow());
@@ -337,6 +344,10 @@ void Chart_base_display_controls::save_figure(QString& filename ) {
     jpeg->SetInputConnection(w2i->GetOutputPort());
     jpeg->SetFileName(ba_filename.data());
     jpeg->Write();
+  }
+
+  if(!plot_size.isEmpty()) {
+    qvtkWidget_->resize(original_size);
   }
 
   QApplication::restoreOverrideCursor();

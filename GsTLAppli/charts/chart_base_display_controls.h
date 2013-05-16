@@ -41,6 +41,7 @@
 #include <QTabWidget>
 #include <QModelIndexList>
 #include <QDropEvent>
+#include <QSize.h>
 
 
 class CHARTS_DECL Chart_base_display_controls : public Chart_base
@@ -84,7 +85,7 @@ public slots :
   void set_title_font_size(int size);
 
   virtual void save_figure();
-  virtual void save_figure(QString& filename);
+  virtual void save_figure(QString& filename, QSize plot_size = QSize());
   virtual void save_report();
   virtual void view_report();
 

@@ -196,6 +196,12 @@
     <ClCompile Include="grid_filter_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="rename_dialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".moc\moc_rename_dialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -329,6 +335,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="grid_filter_widgets.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="rename_dialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

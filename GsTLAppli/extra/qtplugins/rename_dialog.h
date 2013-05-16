@@ -35,11 +35,12 @@
 #define RENAME_DIALOG_H_
 
 #include <GsTLAppli/grid/grid_model/geostat_grid.h>
+#include <GsTLAppli/extra/qtplugins/common.h>
 
 #include <QDialog>
 #include <QLineEdit>
 
-class Rename_dialog : public QDialog
+class QTPLUGINS_DECL Rename_dialog : public QDialog
 {
 
 	Q_OBJECT

@@ -73,7 +73,6 @@ HEADERS +=       library_gui_init.h    \
       utils/qtprogress_notifier.h    \
       utils/qwidget_value_accessor.h    \
       utils/qwidget_value_collector.h    \
-      utils/rename_dialog.h    \
       utils/set_not_informed_dialog.h \
       models/categorical_table_model.h    \
       models/gstl_item.h    \
@@ -194,7 +193,6 @@ SOURCES +=       library_gui_init.cpp    \
       utils/qtprogress_notifier.cpp    \
       utils/qwidget_value_accessor.cpp    \
       utils/qwidget_value_collector.cpp    \
-      utils/rename_dialog.cpp    \
       utils/set_not_informed_dialog.cpp \
       models/categorical_table_model.cpp    \
       models/gstl_item.cpp    \

@@ -42,7 +42,7 @@
 #include <GsTLAppli/grid/grid_model/geostat_grid.h>
 #include <GsTLAppli/grid/grid_model/grid_property.h>
 
-#include <GsTLAppli/gui/utils/rename_dialog.h>
+#include <GsTLAppli/extra/qtplugins/rename_dialog.h>
 
 Gstl_item_action::Gstl_item_action(QObject * parent)
 : QAction(parent)

@@ -86,6 +86,8 @@ public :
 	double average_segment_length();
   double segment_length(int nodeid) const;
   double total_length() const;
+  double total_distance_from_collar() const;
+  double distance_of_first_sample_from_collar() const;
   std::pair<double,double> get_from_to(int nodeid) const;
 
   bool are_segments_continuous(int start_segmentid, int segment_length ) const;
