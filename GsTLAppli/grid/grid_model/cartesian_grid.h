@@ -95,6 +95,8 @@ class GRID_DECL Cartesian_grid : public RGrid {
   virtual GsTLInt closest_node( const location_type& P ) const; 
  
   GsTL_cube bounding_box() const; 
+
+  virtual double get_support(int nodeid) const {return geometry_->get_volume();}
  
  
  protected: 

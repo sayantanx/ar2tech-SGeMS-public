@@ -100,13 +100,13 @@ public:
 
     /** The dimensions of a grid cell (in stratigraphic coordinates) 
      */ 
-    void set_cell_dims( const GsTLCoordVector& v ) { 
+    virtual void set_cell_dims( const GsTLCoordVector& v ) { 
         cell_dims_ = v; 
     } 
-    const GsTLCoordVector& cell_dims() const  { 
+    virtual const GsTLCoordVector& cell_dims() const  { 
         return cell_dims_; 
     } 
- 
+
  
 protected: 
     RGrid_geometry() 
@@ -142,6 +142,13 @@ public:
         return origin_; 
     } 
 
+    virtual void set_cell_dims( const GsTLCoordVector& v ) { 
+        cell_dims_ = v; 
+        volume_ = cell_dims_[0]*cell_dims_[1]*cell_dims_[2];
+    } 
+
+    double get_volume() const {return volume_;}
+
     /** The zrotation defined the azimuth of the j axis
      */ 
    virtual void set_rotation_z(double z_angle); 
@@ -161,6 +168,9 @@ protected:
     double z_rot_;
     double z_cos_angle_;
     double z_sin_angle_;
+
+    double volume_;
+ 
  //   double z_cos_back_angle_;
  //   double z_sin_back_angle_;
 }; 

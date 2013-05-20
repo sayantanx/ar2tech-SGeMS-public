@@ -66,7 +66,8 @@ RGrid_geometry::~RGrid_geometry() {
 Simple_RGrid_geometry::Simple_RGrid_geometry() 
   : RGrid_geometry(), 
     origin_( 0,0,0 ),
-    z_rot_(0.0){
+    z_rot_(0.0),
+    volume_(1){
 }
 
 
@@ -81,6 +82,7 @@ RGrid_geometry* Simple_RGrid_geometry::clone() const {
   geom->set_origin( origin_ );
   geom->set_cell_dims( cell_dims_ );
   geom->set_rotation_z(z_rot_);
+
 
   return geom;
 }

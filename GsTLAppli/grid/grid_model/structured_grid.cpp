@@ -91,7 +91,12 @@ Geostat_grid::location_type Structured_grid::xyz_location( int node_id ) const
 
 } 
 
-
+/*
+double Structured_grid::get_support(int nodeid) const {
+  vtkSmartPointer<vtkCell> cell = vtkSmartPointer<vtkCell>::New();
+  sgrid_geom_->GetCell(nodeid)->Get
+}
+*/
 
 /*
 --------------------------

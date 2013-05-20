@@ -2448,3 +2448,78 @@ bool Save_project::init( std::string& parameters, GsTL_project* proj,
 
 
 }
+
+
+
+
+//================================================
+/* Capped_property grid_name::prop::capped_value[::output_prop_name]
+* will set values greater than capped_value at capped_value
+* if the ouput property is not specified the change is in place
+*/
+bool Capped_property::
+init( std::string& parameters, GsTL_project* proj,
+      Error_messages_handler* errors ) {
+
+  std::vector< std::string > params = 
+    String_Op::decompose_string( parameters, Actions::separator,
+                      				   Actions::unique );
+
+  if( params.size() < 3 ) {
+    errors->report( "some parameters are missing" );  
+    return false;
+  }
+
+  SmartPtr<Named_interface> grid_ni =
+    Root::instance()->interface( gridModels_manager + "/" + params[0] );
+  Geostat_grid* grid = dynamic_cast<Geostat_grid*>( grid_ni.raw_ptr() );
+  if( !grid ) {
+    std::ostringstream message;
+    message << "No grid called \"" << params[0] << "\" was found";
+    errors->report( message.str() ); 
+    return false;
+  }
+  
+  GsTLGridProperty* prop = grid->property( params[1] );
+  if( !prop ) {
+    std::ostringstream message;
+    message << "Grid \"" << params[0] << "\" has no property called \"" << params[1] << "\"";
+    errors->report( message.str() ); 
+    return false;
+  }
+
+  float cap_value = String_Op::to_number<float>( params[2] );
+
+  GsTLGridProperty* capped_prop;
+  if(params.size() == 4) {
+    capped_prop = grid->add_property( params[3] );
+    if(!capped_prop) {
+      errors->report( "Property "+ params[3] + " already exists.  Aborting execution"); 
+      return false;
+    }
+  }
+  else {
+    capped_prop = prop;
+  }
+
+  for( int i = 0 ; i < prop->size() ; i++ ) {
+    if( prop->get_value( i ) > cap_value )
+      capped_prop->set_value(cap_value,i);
+  }
+
+  proj->update( params[0] );
+  return true;
+}
+
+
+bool Capped_property::exec() {
+  return true;
+}
+
+
+Named_interface* 
+Capped_property::create_new_interface( std::string& ) {
+  return new Capped_property; 
+}
+
+

@@ -132,6 +132,10 @@ class GRID_DECL Geostat_grid : public Named_interface {
   
   virtual void set_coordinate_mapper(Coordinate_mapper* coord_mapper) {coord_mapper_ = coord_mapper;}
 
+  /** get the support (length or volume) of a cell at location nodeid
+  */
+  virtual double get_support(int nodeid) const {return 1;}
+
  
   //------------------------------------ 
   // Properties management 

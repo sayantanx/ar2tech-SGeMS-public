@@ -66,7 +66,7 @@ PYTHONDIRx64: path to the 64 bits python install directory
 AR2TECH_SGEMS_DIR : path to the source code
 AR2TECH_GSTL_DIR : The GsTL library is now included in the main source code repository.  
                    The path is then AR2TECH_SGEMS_DIR\ar2GsTL
-VTK_AUTOLOAD_PATH: To the VK binaries (e.g. C:\code-dev\VTK\VTK\bin\Release)
+
 3- Open the visual studio solution and build the release and debug binaries
 -------------------------------------------------------------
 

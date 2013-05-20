@@ -66,6 +66,8 @@ public:
   vtkSmartPointer<vtkStructuredGrid> get_structured_geometry() { return sgrid_geom_;}
   GsTLPoint get_corner_point_locations(int id) const ;
 
+//  virtual double get_support(int nodeid) const;
+
 protected:
   vtkSmartPointer<vtkStructuredGrid> sgrid_geom_;
   vtkSmartPointer<vtkCellCenters> cell_centers_filter_;

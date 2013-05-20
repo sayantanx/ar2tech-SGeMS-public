@@ -501,6 +501,11 @@ int Log_data_grid::number_of_segment_inside_region(int id, const GsTLGridRegion*
 }
 
 
+double Log_data_grid::get_support(int nodeid) const{
+  const Log_data::Segment_geometry& geom = get_segment_geometry( nodeid);
+  return geom.length;
+}
+
 QString Log_data_grid::item_type() const{
 	return QString(this->classname().c_str());
 }

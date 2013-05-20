@@ -732,4 +732,17 @@ private :
 };
 
 
+class ACTIONS_DECL Capped_property: public Action { 
+ public: 
+  static Named_interface* create_new_interface( std::string& ); 
+ 
+ public: 
+  Capped_property() {} 
+  virtual ~Capped_property() {}
+ 
+  virtual bool init( std::string& parameters, GsTL_project* proj,
+                     Error_messages_handler* errors ); 
+  virtual bool exec(); 
+};
+
 #endif 

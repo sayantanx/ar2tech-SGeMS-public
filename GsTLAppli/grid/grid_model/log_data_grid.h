@@ -191,6 +191,8 @@ public:
 
  bool are_segments_equal_length() const {return are_segments_equal_length_;}
 
+ virtual double get_support(int nodeid) const;
+
 
  virtual GsTLInt closest_node( const location_type& P ) {
    appli_warning( "NOT YET IMPLEMENTED");
