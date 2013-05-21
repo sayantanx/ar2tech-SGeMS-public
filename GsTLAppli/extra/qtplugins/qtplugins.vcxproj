@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>GsTLwidgets</ProjectName>
+    <ProjectName>ar2gems_widgets</ProjectName>
     <ProjectGuid>{227552D8-AD8A-32F7-968B-91C0ADE1FA31}</ProjectGuid>
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
@@ -112,8 +112,8 @@
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;QTPLUGINS_EXPORTS;QT_DLL;QT_PLUGIN;QT_XML_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;QDESIGNER_EXPORT_WIDGETS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_appli.lib;GsTLAppli_grid.lib;GsTLAppli_math.lib;QtXmld4.lib;QtGuid4.lib;QtCored4.lib;QtUiToolsd.lib;QtDesignerd4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\debug\GsTLwidgets.dll</OutputFile>
+      <AdditionalDependencies>ar2gems_utils.lib;ar2gems_appli.lib;ar2gems_grid.lib;ar2gems_math.lib;QtXmld4.lib;QtGuid4.lib;QtCored4.lib;QtUiToolsd.lib;QtDesignerd4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\debug\ar2gems_widgets.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRwin32)\lib;$(AR2TECH_SGEMS_DIR)\lib\win32\debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -153,8 +153,8 @@
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;QTPLUGINS_EXPORTS;QT_DLL;QT_PLUGIN;QT_XML_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;QDESIGNER_EXPORT_WIDGETS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_math.lib;GsTLAppli_appli.lib;GsTLAppli_grid.lib;QtXmld4.lib;QtGuid4.lib;QtCored4.lib;QtUiToolsd.lib;QtDesignerd4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\debug\GsTLwidgets.dll</OutputFile>
+      <AdditionalDependencies>ar2gems_utils.lib;ar2gems_math.lib;ar2gems_appli.lib;ar2gems_grid.lib;QtXmld4.lib;QtGuid4.lib;QtCored4.lib;QtUiToolsd.lib;QtDesignerd4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\debug\ar2gems_widgets.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRx64)\lib;$(AR2TECH_SGEMS_DIR)\lib\x64\debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -171,7 +171,7 @@
       </Command>
       <Outputs>
       </Outputs>
-      <Message>Copying GsTLwidget</Message>
+      <Message>Copying ar2gems_widget</Message>
     </CustomBuildStep>
     <CustomBuild>
       <Command>
@@ -180,10 +180,10 @@
       </Message>
     </CustomBuild>
     <PostBuildEvent>
-      <Command>copy $(AR2TECH_SGEMS_DIR)\lib\x64\debug\GsTLwidgets.dll $(QTDIRx64)\plugins\designer</Command>
+      <Command>copy $(AR2TECH_SGEMS_DIR)\lib\x64\debug\ar2gems_widgets.dll $(QTDIRx64)\plugins\designer</Command>
     </PostBuildEvent>
     <PostBuildEvent>
-      <Message>copying GsTLwidgets</Message>
+      <Message>copying ar2gems_widgets</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -216,8 +216,8 @@
       <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;QTPLUGINS_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_PLUGIN;QT_XML_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;QDESIGNER_EXPORT_WIDGETS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_appli.lib;GsTLAppli_grid.lib;GsTLAppli_math.lib;QtXml4.lib;QtGui4.lib;QtCore4.lib;QtUiTools.lib;QtDesigner4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\release\GsTLwidgets.dll</OutputFile>
+      <AdditionalDependencies>ar2gems_utils.lib;ar2gems_appli.lib;ar2gems_grid.lib;ar2gems_math.lib;QtXml4.lib;QtGui4.lib;QtCore4.lib;QtUiTools.lib;QtDesigner4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\release\ar2gems_widgets.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRwin32)\lib;$(AR2TECH_SGEMS_DIR)\lib\win32\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -230,7 +230,7 @@
     </Link>
     <PostBuildEvent>
       <Message>Copying into plugins/designer</Message>
-      <Command>copy $(AR2TECH_SGEMS_DIR)\lib\win32\release\GsTLwidgets.dll $(QTDIRwin32)\plugins\designer</Command>
+      <Command>copy $(AR2TECH_SGEMS_DIR)\lib\win32\release\ar2gems_widgets.dll $(QTDIRwin32)\plugins\designer</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -262,8 +262,8 @@
       <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;QTPLUGINS_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_PLUGIN;QT_XML_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;QDESIGNER_EXPORT_WIDGETS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_math.lib;GsTLAppli_appli.lib;GsTLAppli_grid.lib;QtXml4.lib;QtGui4.lib;QtCore4.lib;QtUiTools.lib;QtDesigner4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\release\GsTLwidgets.dll</OutputFile>
+      <AdditionalDependencies>ar2gems_utils.lib;ar2gems_math.lib;ar2gems_appli.lib;ar2gems_grid.lib;QtXml4.lib;QtGui4.lib;QtCore4.lib;QtUiTools.lib;QtDesigner4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\release\ar2gems_widgets.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRx64)\lib;$(AR2TECH_SGEMS_DIR)\lib\x64\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -277,7 +277,7 @@
     </Link>
     <PostBuildEvent>
       <Message>Copying into plugins/designer</Message>
-      <Command>copy $(AR2TECH_SGEMS_DIR)\lib\x64\release\GsTLwidgets.dll $(QTDIRx64)\plugins\designer</Command>
+      <Command>copy $(AR2TECH_SGEMS_DIR)\lib\x64\release\ar2gems_widgets.dll $(QTDIRx64)\plugins\designer</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -964,7 +964,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties QtVersion_x0020_x64="4.8.3-x64" QtVersion_x0020_Win32="4.8.3-win32" />
+      <UserProperties QtVersion_x0020_x64="4.7.3-x64" QtVersion_x0020_Win32="4.8.3-win32" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>GsTLAppli_filters</ProjectName>
+    <ProjectName>ar2gems_io</ProjectName>
     <ProjectGuid>{80E6520A-D5AD-3D5E-97B8-BB6C6002F178}</ProjectGuid>
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
@@ -105,8 +105,8 @@
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;FILTERS_EXPORTS;QT_DLL;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_math.lib;GsTLAppli_grid.lib;GsTLAppli_appli.lib;vtkCommonCore-6.0.lib;vtkCommonDataModel-6.0.lib;vtkCommonExecutionModel-6.0.lib;QtGuid4.lib;QtCored4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\debug\GsTLAppli_filters.dll</OutputFile>
+      <AdditionalDependencies>ar2gems_utils.lib;ar2gems_math.lib;ar2gems_grid.lib;ar2gems_appli.lib;vtkCommonCore-6.1.lib;vtkCommonDataModel-6.1.lib;vtkCommonExecutionModel-6.1.lib;QtGuid4.lib;QtCored4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\debug\ar2gems_io.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRwin32)\lib;$(AR2TECH_SGEMS_DIR)\lib\win32\debug;$(VTKDIRwin32)\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -145,8 +145,8 @@
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;FILTERS_EXPORTS;QT_DLL;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_math.lib;GsTLAppli_grid.lib;GsTLAppli_appli.lib;vtkCommonCore-6.0.lib;vtkCommonDataModel-6.0.lib;vtkCommonExecutionModel-6.0.lib;vtkCommonCore-6.0.lib;vtkCommonDataModel-6.0.lib;vtkCommonExecutionModel-6.0.lib;QtGuid4.lib;QtCored4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\debug\GsTLAppli_filters.dll</OutputFile>
+      <AdditionalDependencies>ar2gems_utils.lib;ar2gems_math.lib;ar2gems_grid.lib;ar2gems_appli.lib;vtkCommonCore-6.1.lib;vtkCommonDataModel-6.1.lib;vtkCommonExecutionModel-6.1.lib;vtkCommonCore-6.1.lib;vtkCommonDataModel-6.1.lib;vtkCommonExecutionModel-6.1.lib;QtGuid4.lib;QtCored4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\debug\ar2gems_io.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRx64)\lib;$(AR2TECH_SGEMS_DIR)\lib\x64\debug;$(VTKDIR)\lib\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -188,8 +188,8 @@
       <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;FILTERS_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_math.lib;GsTLAppli_grid.lib;GsTLAppli_appli.lib;vtkCommonCore-6.0.lib;vtkCommonDataModel-6.0.lib;vtkCommonExecutionModel-6.0.lib;QtGui4.lib;QtCore4.lib;QtXml4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\release\GsTLAppli_filters.dll</OutputFile>
+      <AdditionalDependencies>ar2gems_utils.lib;ar2gems_math.lib;ar2gems_grid.lib;ar2gems_appli.lib;vtkCommonCore-6.1.lib;vtkCommonDataModel-6.1.lib;vtkCommonExecutionModel-6.1.lib;QtGui4.lib;QtCore4.lib;QtXml4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\release\ar2gems_io.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(AR2TECH_SGEMS_DIR)\lib\win32\release;$(VTKDIRwin32)\lib\Release;$(QTDIRwin32)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -229,8 +229,8 @@
       <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;FILTERS_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_math.lib;GsTLAppli_grid.lib;GsTLAppli_appli.lib;vtkCommonCore-6.0.lib;vtkCommonDataModel-6.0.lib;vtkCommonExecutionModel-6.0.lib;QtGui4.lib;QtCore4.lib;QtXml4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\release\GsTLAppli_filters.dll</OutputFile>
+      <AdditionalDependencies>ar2gems_utils.lib;ar2gems_math.lib;ar2gems_grid.lib;ar2gems_appli.lib;vtkCommonCore-6.1.lib;vtkCommonDataModel-6.1.lib;vtkCommonExecutionModel-6.1.lib;QtGui4.lib;QtCore4.lib;QtXml4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\release\ar2gems_io.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(AR2TECH_SGEMS_DIR)\lib\x64\release;$(QTDIRx64)\lib;$(VTKDIR)\lib\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>

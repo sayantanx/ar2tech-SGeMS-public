@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>GsTLAppli_utils</ProjectName>
+    <ProjectName>ar2gems_utils</ProjectName>
     <ProjectGuid>{C52740F0-2A21-4416-997A-AC11D019B75F}</ProjectGuid>
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
@@ -106,7 +106,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>QtGuid4.lib;QtCored4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\debug\GsTLAppli_utils.dll</OutputFile>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\debug\ar2gems_utils.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRwin32)\lib;$(AR2TECH_SGEMS_DIR)\lib\win32\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -146,7 +146,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>QtGuid4.lib;QtCored4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\debug\GsTLAppli_utils.dll</OutputFile>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\debug\ar2gems_utils.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRx64)\lib;$(AR2TECH_SGEMS_DIR)\lib\x64\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -189,7 +189,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>QtCore4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\release\GsTLAppli_utils.dll</OutputFile>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\release\ar2gems_utils.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRwin32)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -230,7 +230,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>QtCore4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\release\GsTLAppli_utils.dll</OutputFile>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\release\ar2gems_utils.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRx64)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -301,7 +301,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties QtVersion_x0020_x64="4.8.3-x64" QtVersion_x0020_Win32="4.8.3-win32" />
+      <UserProperties QtVersion_x0020_x64="4.7.3-x64" QtVersion_x0020_Win32="4.8.3-win32" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>GsTLAppli_extragui</ProjectName>
+    <ProjectName>ar2gems_extragui</ProjectName>
     <ProjectGuid>{754D97C4-E031-46F1-93EE-BABF60934D8F}</ProjectGuid>
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
@@ -105,8 +105,8 @@
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;EXTRAGUI_EXPORTS;QT_DLL;QT_XML_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_appli.lib;GsTLAppli_gui.lib;GsTLwidgets.lib;QtXmld4.lib;QtGuid4.lib;QtCored4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\debug\GsTLAppli_extragui.dll</OutputFile>
+      <AdditionalDependencies>ar2gems_utils.lib;ar2gems_appli.lib;ar2gems_gui.lib;ar2gems_widgets.lib;QtXmld4.lib;QtGuid4.lib;QtCored4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\debug\ar2gems_extragui.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRwin32)\lib;$(AR2TECH_SGEMS_DIR)\lib\win32\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -145,8 +145,8 @@
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;EXTRAGUI_EXPORTS;QT_DLL;QT_XML_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_appli.lib;GsTLAppli_gui.lib;GsTLwidgets.lib;QtXmld4.lib;QtGuid4.lib;QtCored4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\debug\GsTLAppli_extragui.dll</OutputFile>
+      <AdditionalDependencies>ar2gems_utils.lib;ar2gems_appli.lib;ar2gems_gui.lib;ar2gems_widgets.lib;QtXmld4.lib;QtGuid4.lib;QtCored4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\debug\ar2gems_extragui.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRx64)\lib;$(AR2TECH_SGEMS_DIR)\lib\x64\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -188,8 +188,8 @@
       <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;EXTRAGUI_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_XML_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_appli.lib;GsTLAppli_gui.lib;GsTLwidgets.lib;QtXml4.lib;QtGui4.lib;QtCore4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\release\GsTLAppli_extragui.dll</OutputFile>
+      <AdditionalDependencies>ar2gems_utils.lib;ar2gems_appli.lib;ar2gems_gui.lib;ar2gems_widgets.lib;QtXml4.lib;QtGui4.lib;QtCore4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\release\ar2gems_extragui.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRwin32)\lib;$(AR2TECH_SGEMS_DIR)\lib\win32\release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -229,8 +229,8 @@
       <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;EXTRAGUI_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_XML_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>GsTLAppli_utils.lib;GsTLAppli_appli.lib;GsTLwidgets.lib;GsTLAppli_gui.lib;QtXml4.lib;QtGui4.lib;QtCore4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\release\GsTLAppli_extragui.dll</OutputFile>
+      <AdditionalDependencies>ar2gems_utils.lib;ar2gems_appli.lib;ar2gems_widgets.lib;ar2gems_gui.lib;QtXml4.lib;QtGui4.lib;QtCore4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\release\ar2gems_extragui.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRx64)\lib;$(AR2TECH_SGEMS_DIR)\lib\x64\release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>

@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>GsTLAppli_actions</ProjectName>
+    <ProjectName>ar2gems_actions</ProjectName>
     <ProjectGuid>{E233AC09-9720-4890-9327-C731778C1360}</ProjectGuid>
     <RootNamespace>GsTLAppli_actions</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
@@ -106,8 +106,8 @@
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;ACTIONS_EXPORTS;QT_DLL;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>python27_d.lib;GsTLAppli_utils.lib;GsTLAppli_appli.lib;GsTLAppli_grid.lib;GsTLAppli_filters.lib;QtGuid4.lib;QtCored4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\debug\GsTLAppli_actions.dll</OutputFile>
+      <AdditionalDependencies>python27_d.lib;ar2gems_utils.lib;ar2gems_appli.lib;ar2gems_grid.lib;ar2gems_io.lib;QtGuid4.lib;QtCored4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\debug\ar2gems_actions.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>
@@ -146,8 +146,8 @@
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;ACTIONS_EXPORTS;QT_DLL;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>python27_d.lib;GsTLAppli_utils.lib;GsTLAppli_appli.lib;GsTLAppli_grid.lib;GsTLAppli_filters.lib;QtGuid4.lib;QtCored4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\debug\GsTLAppli_actions.dll</OutputFile>
+      <AdditionalDependencies>python27_d.lib;ar2gems_utils.lib;ar2gems_appli.lib;ar2gems_grid.lib;ar2gems_io.lib;QtGuid4.lib;QtCored4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\debug\ar2gems_actions.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(PYTHONDIRx64)\libs;$(QTDIRx64)\lib;$(AR2TECH_SGEMS_DIR)\lib\x64\debug;$(PYTHONDIRx64)\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -189,8 +189,8 @@
       <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;ACTIONS_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>python27.lib;GsTLAppli_utils.lib;GsTLAppli_appli.lib;GsTLAppli_grid.lib;GsTLAppli_filters.lib;QtCore4.lib;QtXml4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\release\GsTLAppli_actions.dll</OutputFile>
+      <AdditionalDependencies>python27.lib;ar2gems_utils.lib;ar2gems_appli.lib;ar2gems_grid.lib;ar2gems_io.lib;QtCore4.lib;QtXml4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\win32\release\ar2gems_actions.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(QTDIRwin32)\lib;$(AR2TECH_SGEMS_DIR)\lib\win32\release\;$(PYTHONDIRwin32)/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -231,8 +231,8 @@
       <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;ACTIONS_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>python27.lib;GsTLAppli_utils.lib;GsTLAppli_appli.lib;GsTLAppli_grid.lib;GsTLAppli_filters.lib;QtCore4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\release\GsTLAppli_actions.dll</OutputFile>
+      <AdditionalDependencies>python27.lib;ar2gems_utils.lib;ar2gems_appli.lib;ar2gems_grid.lib;ar2gems_io.lib;QtCore4.lib;QtXmld4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(AR2TECH_SGEMS_DIR)\lib\x64\release\ar2gems_actions.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(PYTHONDIRx64)\libs;$(QTDIRx64)\lib;$(AR2TECH_SGEMS_DIR)\lib\x64\release\;$(PYTHONDIRx64)/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -305,7 +305,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties QtVersion_x0020_x64="4.8.3-x64" QtVersion_x0020_Win32="4.8.3-win32" />
+      <UserProperties QtVersion_x0020_x64="4.7.3-x64" QtVersion_x0020_Win32="4.8.3-win32" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
