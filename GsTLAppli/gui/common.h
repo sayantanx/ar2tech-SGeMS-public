@@ -85,7 +85,7 @@
 
 
 //!!WARNING!! Ugly hack to get around _debug definition conflict
-#undef _CRT_MANIFEST_RETAIL
+//#undef _CRT_MANIFEST_RETAIL
 
 
 #endif

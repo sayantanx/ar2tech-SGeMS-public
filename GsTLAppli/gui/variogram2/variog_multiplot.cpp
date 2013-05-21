@@ -57,11 +57,11 @@
 #include <GsTL/math/math_functions.h>
 #include <GsTLAppli/math/gstlpoint.h>
 #include <GsTL/geometry/geometry_algorithms.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_grid.h>
-#include <GsTLAppli/extra/qwt/qwt_symbol.h>
-#include <GsTLAppli/extra/qwt/qwt_scale_engine.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_curve.h>
-#include <GsTLAppli/extra/qwt/qwt_legend.h>
+#include <GsTLAppli/qwt/qwt_plot_grid.h>
+#include <GsTLAppli/qwt/qwt_symbol.h>
+#include <GsTLAppli/qwt/qwt_scale_engine.h>
+#include <GsTLAppli/qwt/qwt_plot_curve.h>
+#include <GsTLAppli/qwt/qwt_legend.h>
 #include <qpen.h>
 #include <qbrush.h>
 #include <QVector>

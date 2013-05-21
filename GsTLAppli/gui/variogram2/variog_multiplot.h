@@ -58,7 +58,7 @@
 #include <GsTLAppli/gui/common.h>
 #include <GsTLAppli/math/gstlvector.h>
 #include <GsTLAppli/math/gstlpoint.h>
-#include <GsTLAppli/extra/qwt/qwt_plot.h>
+#include <GsTLAppli/qwt/qwt_plot.h>
 
 #include <GsTL/geometry/covariance.h>
 
@@ -69,7 +69,7 @@
 #include <vector>
   
 
-class Model_manager;
+//class Model_manager;
 class Discrete_function;
 
 

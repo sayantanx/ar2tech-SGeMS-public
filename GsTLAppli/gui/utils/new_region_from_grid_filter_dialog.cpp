@@ -24,8 +24,8 @@
 
 
 #include <GsTLAppli/gui/utils/new_region_from_grid_filter_dialog.h>
-#include <GsTLAppli/extra/qtplugins/selectors.h>
-#include <GsTLAppli/extra/qtplugins/grid_filter_widgets.h>
+#include <GsTLAppli/qtplugins/selectors.h>
+#include <GsTLAppli/qtplugins/grid_filter_widgets.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 #include <GsTLAppli/utils/error_messages_handler.h>
 #include <GsTLAppli/actions/common.h>

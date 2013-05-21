@@ -57,7 +57,7 @@
 
 #include <GsTLAppli/gui/ui_first_scr_base.h>
 
-#include <GsTLAppli/extra/qtplugins/selectors.h>
+#include <GsTLAppli/qtplugins/selectors.h>
 #include <GsTLAppli/appli/project.h>
 #include <GsTLAppli/math/gstlvector.h>
 #include <GsTLAppli/math/discrete_function.h>

@@ -53,7 +53,7 @@
 **********************************************************************/
 
 #include <GsTLAppli/gui/appli/snapshot_dialog.h>
-#include <GsTLAppli/extra/qtplugins/filechooser.h>
+#include <GsTLAppli/qtplugins/filechooser.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 #include <GsTLAppli/utils/string_manipulation.h>
 

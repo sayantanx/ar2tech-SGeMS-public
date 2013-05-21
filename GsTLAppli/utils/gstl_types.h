@@ -52,8 +52,8 @@
 **
 **********************************************************************/
 
-#ifndef gstlappli_utils_gstl_types_h 
-#define gstlappli_utils_gstl_types_h 
+#ifndef __GSTLAPPLI_GSTLTYPES__
+#define __GSTLAPPLI_GSTLTYPES__ 
  
 typedef char GsTLChar; 
 typedef unsigned char GsTLUChar; 

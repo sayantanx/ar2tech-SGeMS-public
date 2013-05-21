@@ -59,7 +59,7 @@
 #include <qpushbutton.h>
 #include <qradiobutton.h>
 #include <qlineedit.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_curve.h>
+#include <GsTLAppli/qwt/qwt_plot_curve.h>
 
 PlotSettingsDialog::
 PlotSettingsDialog( const std::vector<QwtPlot*>& plot_widgets, 

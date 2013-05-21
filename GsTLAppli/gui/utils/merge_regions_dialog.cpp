@@ -53,7 +53,7 @@
 **********************************************************************/
 
 #include <GsTLAppli/gui/utils/merge_regions_dialog.h>
-#include <GsTLAppli/extra/qtplugins/selectors.h>
+#include <GsTLAppli/qtplugins/selectors.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 
 #include <qpushbutton.h>

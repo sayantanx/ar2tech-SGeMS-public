@@ -53,7 +53,7 @@
 **********************************************************************/
 
 #include <GsTLAppli/gui/utils/new_mgrid_from_cgrid_dialog.h>
-#include <GsTLAppli/extra/qtplugins/selectors.h>
+#include <GsTLAppli/qtplugins/selectors.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 
 #include <QtGui/QGroupBox>

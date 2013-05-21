@@ -27,7 +27,7 @@
 #ifndef REGION_WEIGHT_DELEGATE_H
 #define REGION_WEIGHT_DELEGATE_H
 
-#include <GsTLAppli/extra/qtplugins/region_weight_proxy_model.h>
+#include <GsTLAppli/qtplugins/region_weight_proxy_model.h>
 #include <GsTLAppli/charts/common.h>
 
 #include <QStyledItemDelegate>

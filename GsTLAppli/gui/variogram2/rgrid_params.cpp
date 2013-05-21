@@ -56,7 +56,7 @@
 #include <GsTLAppli/gui/utils/qwidget_value_collector.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 #include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/extra/qtplugins/gstl_table.h>
+#include <GsTLAppli/qtplugins/gstl_table.h>
 #include <GsTLAppli/math/correlation_measure.h>
 
 #include <qfiledialog.h>

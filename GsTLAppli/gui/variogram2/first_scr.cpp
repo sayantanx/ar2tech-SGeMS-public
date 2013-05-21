@@ -55,7 +55,7 @@
 #include <GsTLAppli/gui/variogram2/first_scr.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 #include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/extra/qtplugins/filechooser.h>
+#include <GsTLAppli/qtplugins/filechooser.h>
 
 #include <QTextStream>
 #include <qstring.h>

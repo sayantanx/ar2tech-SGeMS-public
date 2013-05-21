@@ -42,7 +42,7 @@
 #include <GsTLAppli/gui/models/context_menu_interface.h>
 #include <GsTLAppli/gui/models/gstl_item_selection_model.h>
 #include <GsTLAppli/gui/models/gstl_item_action.h>
-#include <GsTLAppli/extra/qtplugins/project_proxy_model.h>
+#include <GsTLAppli/qtplugins/project_proxy_model.h>
 #include <GsTLAppli/utils/error_messages_handler.h>
 #include <GsTLAppli/appli/project.h>
 

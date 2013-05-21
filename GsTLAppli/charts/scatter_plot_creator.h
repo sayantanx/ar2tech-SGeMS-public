@@ -31,8 +31,8 @@
 #include <GsTLAppli/charts/scatter_plot_proxy_model.h>
 #include <GsTLAppli/charts/chart_mdi_area.h>
 #include <GsTLAppli/charts/common.h>
-#include <GsTLAppli/extra/qtplugins/selectors.h>
-#include <GsTLAppli/extra/qtplugins/group_selectors.h>
+#include <GsTLAppli/qtplugins/selectors.h>
+#include <GsTLAppli/qtplugins/group_selectors.h>
 
 #include <QDialog>
 #include <QMainWindow>

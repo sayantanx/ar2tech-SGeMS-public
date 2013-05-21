@@ -27,7 +27,7 @@
 #include <GsTLAppli/charts/chart_scatter_plot.h>
 #include <GsTLAppli/appli/manager_repository.h>
 #include <GsTLAppli/grid/grid_model/grid_region_temp_selector.h>
-#include <GsTLAppli/extra/qtplugins/color_delegate.h>
+#include <GsTLAppli/qtplugins/color_delegate.h>
 #include <GsTLAppli/charts/region_weight_delegate.h>
 #include <GsTLAppli/charts/scatter_plot_point_style_delegate.h>
 #include <GsTLAppli/charts/scatter_plot_item_tree_view.h>

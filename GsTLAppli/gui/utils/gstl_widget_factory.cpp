@@ -56,7 +56,7 @@
 #include <GsTLAppli/appli/manager_repository.h>
 #include <GsTLAppli/appli/project.h>
 #include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/extra/qtplugins/selectors.h>
+#include <GsTLAppli/qtplugins/selectors.h>
 
 #include <QtUiTools/QUiLoader>
 #include <qobject.h>

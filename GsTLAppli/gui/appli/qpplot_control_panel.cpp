@@ -56,7 +56,7 @@
 #include <GsTLAppli/appli/project.h>
 #include <GsTLAppli/utils/string_manipulation.h>
 #include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/extra/qtplugins/selectors.h>
+#include <GsTLAppli/qtplugins/selectors.h>
 #include <GsTLAppli/grid/grid_model/grid_property.h>
 #include <GsTLAppli/grid/grid_model/grid_region.h>
 #include <GsTLAppli/grid/grid_model/geostat_grid.h>

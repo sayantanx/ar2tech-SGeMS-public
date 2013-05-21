@@ -53,8 +53,8 @@
 **********************************************************************/
 
 #include <GsTLAppli/gui/utils/new_region_from_property_dialog.h>
-#include <GsTLAppli/extra/qtplugins/selectors.h>
-#include <GsTLAppli/extra/qtplugins/categorical_selectors.h>
+#include <GsTLAppli/qtplugins/selectors.h>
+#include <GsTLAppli/qtplugins/categorical_selectors.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 #include <GsTLAppli/utils/error_messages_handler.h>
 #include <GsTLAppli/actions/common.h>

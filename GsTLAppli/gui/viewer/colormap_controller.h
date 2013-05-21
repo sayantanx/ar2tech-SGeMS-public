@@ -36,7 +36,7 @@
 
 #include <GsTLAppli/grid/grid_model/grid_property.h>
 #include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
-#include <GsTLAppli/extra/qtplugins/categorical_selectors.h>
+#include <GsTLAppli/qtplugins/categorical_selectors.h>
 #include <GsTLAppli/gui/utils/colormap.h>
 #include <GsTLAppli/gui/vtk_prop/vtk_prop_gstl.h>
 

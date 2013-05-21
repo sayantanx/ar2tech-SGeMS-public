@@ -403,9 +403,6 @@
     <ClCompile Include=".moc\moc_variog_multiplot.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include=".moc\moc_variog_plot.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include=".moc\moc_variogram_controls.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -495,6 +492,9 @@
     </ClCompile>
     <ClCompile Include="utils\set_not_informed_dialog.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".moc\moc_variog_plot.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -54,11 +54,11 @@
 
 #include <GsTLAppli/gui/appli/scatterplot_gui.h>
 #include <GsTLAppli/gui/appli/scatterplot_control_panel.h>
-#include <GsTLAppli/extra/qwt/qwt_plot.h>
-#include <GsTLAppli/extra/qwt/qwt_scale_div.h>
-#include <GsTLAppli/extra/qwt/qwt_symbol.h>
-#include <GsTLAppli/extra/qwt/qwt_data.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_curve.h>
+#include <GsTLAppli/qwt/qwt_plot.h>
+#include <GsTLAppli/qwt/qwt_scale_div.h>
+#include <GsTLAppli/qwt/qwt_symbol.h>
+#include <GsTLAppli/qwt/qwt_data.h>
+#include <GsTLAppli/qwt/qwt_plot_curve.h>
 #include <GsTLAppli/grid/grid_model/grid_property.h>
 #include <GsTLAppli/grid/grid_model/grid_region.h>
 #include <GsTLAppli/appli/project.h>

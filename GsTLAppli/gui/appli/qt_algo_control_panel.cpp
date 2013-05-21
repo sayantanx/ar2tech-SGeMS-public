@@ -65,7 +65,7 @@
 #include <GsTLAppli/gui/utils/qwidget_value_collector.h>
 #include <GsTLAppli/actions/defines.h>
 
-#include <GsTLAppli/extra/qtplugins/selectors.h>
+#include <GsTLAppli/qtplugins/selectors.h>
 
 #include <qlayout.h>
 #include <qstring.h>

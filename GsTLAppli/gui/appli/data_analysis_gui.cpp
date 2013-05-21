@@ -53,11 +53,11 @@
 **********************************************************************/
 
 #include <GsTLAppli/gui/appli/data_analysis_gui.h>
-#include <GsTLAppli/extra/qwt/qwt_plot.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_curve.h>
-#include <GsTLAppli/extra/qwt/qwt_scale_div.h>
-#include <GsTLAppli/extra/qwt/qwt_scale_engine.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_grid.h>
+#include <GsTLAppli/qwt/qwt_plot.h>
+#include <GsTLAppli/qwt/qwt_plot_curve.h>
+#include <GsTLAppli/qwt/qwt_scale_div.h>
+#include <GsTLAppli/qwt/qwt_scale_engine.h>
+#include <GsTLAppli/qwt/qwt_plot_grid.h>
 #include <GsTLAppli/gui/utils/data_analysis_save_dialog.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 #include <GsTLAppli/utils/simpleps.h>

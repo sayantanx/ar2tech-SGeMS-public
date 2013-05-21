@@ -54,9 +54,9 @@
 
 #include <GsTLAppli/gui/appli/qpplot_gui.h>
 #include <GsTLAppli/gui/appli/qpplot_control_panel.h>
-#include <GsTLAppli/extra/qwt/qwt_plot.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_curve.h>
-#include <GsTLAppli/extra/qwt/qwt_symbol.h>
+#include <GsTLAppli/qwt/qwt_plot.h>
+#include <GsTLAppli/qwt/qwt_plot_curve.h>
+#include <GsTLAppli/qwt/qwt_symbol.h>
 #include <GsTLAppli/grid/grid_model/grid_property.h>
 #include <GsTLAppli/grid/grid_model/grid_region.h>
 #include <GsTLAppli/appli/project.h>

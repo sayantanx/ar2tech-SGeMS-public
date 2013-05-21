@@ -63,12 +63,6 @@
     <ClInclude Include="error_messages_handler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gstl_data_array.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gstl_data_array.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="gstl_messages.h">
       <Filter>Header Files</Filter>
     </ClInclude>

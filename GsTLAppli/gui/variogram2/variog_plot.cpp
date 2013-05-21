@@ -55,27 +55,27 @@
 #include <GsTLAppli/gui/variogram2/variog_plot.h>
 #include <GsTLAppli/math/discrete_function.h>
 #include <GsTL/math/math_functions.h>
-#include <GsTLAppli/math/gstlpoint.h>
+
 #include <GsTL/geometry/geometry_algorithms.h>
 
-#include <qpen.h>
-#include <qbrush.h>
+#include <QPen>
+#include <QBrush>
 #include <QVector>
-#include <qpainter.h>
-
+#include <QPainter>
+#include <QIcon>
 #include <QMouseEvent>
 
 #include <algorithm>
 #include <cmath>
 
-#include <GsTLAppli/extra/qwt/qwt_symbol.h>
-#include <GsTLAppli/extra/qwt/qwt_scale_engine.h>
-#include <GsTLAppli/extra/qwt/qwt_scale_div.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_curve.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_marker.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_grid.h>
-#include <GsTLAppli/extra/qwt/qwt_legend.h>
-#include <QIcon>
+#include <GsTLAppli/qwt/qwt_symbol.h>
+#include <GsTLAppli/qwt/qwt_scale_engine.h>
+#include <GsTLAppli/qwt/qwt_scale_div.h>
+#include <GsTLAppli/qwt/qwt_plot_curve.h>
+#include <GsTLAppli/qwt/qwt_plot_marker.h>
+#include <GsTLAppli/qwt/qwt_plot_grid.h>
+#include <GsTLAppli/qwt/qwt_legend.h>
+
 
 Variog_plot::
 Variog_plot( const Discrete_function& df,

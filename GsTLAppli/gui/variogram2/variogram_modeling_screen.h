@@ -59,7 +59,7 @@
 #include <GsTLAppli/math/gstlpoint.h>
 #include <GsTLAppli/math/gstlvector.h>
 #include <GsTLAppli/math/discrete_function.h>
-#include <GsTLAppli/extra/qwt/qwt_plot.h>
+#include <GsTLAppli/qwt/qwt_plot.h>
 
 #include <GsTL/geometry/covariance.h>
 

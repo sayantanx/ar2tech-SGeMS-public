@@ -53,8 +53,8 @@
 **********************************************************************/
 
 #include <GsTLAppli/gui/utils/categorical_definition_dialog.h>
-#include <GsTLAppli/extra/qtplugins/selectors.h>
-#include <GsTLAppli/extra/qtplugins/categorical_selectors.h>
+#include <GsTLAppli/qtplugins/selectors.h>
+#include <GsTLAppli/qtplugins/categorical_selectors.h>
 #include <GsTLAppli/utils/error_messages_handler.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 #include <GsTLAppli/appli/manager_repository.h>
@@ -62,7 +62,7 @@
 #include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
 #include <GsTLAppli/actions/defines.h>
 
-#include <GsTLAppli/extra/qtplugins/color_delegate.h>
+#include <GsTLAppli/qtplugins/color_delegate.h>
 
 #include <set>
 

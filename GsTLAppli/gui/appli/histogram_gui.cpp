@@ -58,13 +58,13 @@
 #include <GsTLAppli/gui/utils/data_analysis_save_dialog.h>
 #include <GsTLAppli/appli/project.h>
 #include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/extra/qtplugins/selectors.h>
-#include <GsTLAppli/extra/qwt/qwt_plot.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_curve.h>
-#include <GsTLAppli/extra/qwt/qwt_text.h>
-#include <GsTLAppli/extra/qwt/qwt_scale_engine.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_grid.h>
-#include <GsTLAppli/extra/qwt/qwt_legend.h>
+#include <GsTLAppli/qtplugins/selectors.h>
+#include <GsTLAppli/qwt/qwt_plot.h>
+#include <GsTLAppli/qwt/qwt_plot_curve.h>
+#include <GsTLAppli/qwt/qwt_text.h>
+#include <GsTLAppli/qwt/qwt_scale_engine.h>
+#include <GsTLAppli/qwt/qwt_plot_grid.h>
+#include <GsTLAppli/qwt/qwt_legend.h>
 #include <GsTLAppli/grid/grid_model/geostat_grid.h>
 #include <GsTLAppli/grid/grid_model/grid_property.h>
 #include <GsTLAppli/utils/gstl_messages.h>
@@ -81,7 +81,7 @@
 #include <qmessagebox.h>
 
 #include <sstream>
-#include <GsTLAppli/extra/qwt/qwt_math.h>
+#include <GsTLAppli/qwt/qwt_math.h>
 
 typedef std::pair<std::string,std::string> Pair;
 //=======================================

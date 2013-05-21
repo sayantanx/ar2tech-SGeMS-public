@@ -53,8 +53,8 @@
 **********************************************************************/
 
 #include <GsTLAppli/gui/variogram2/print_plots_dialog.h>
-#include <GsTLAppli/extra/qtplugins/filechooser.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_curve.h>
+#include <GsTLAppli/qtplugins/filechooser.h>
+#include <GsTLAppli/qwt/qwt_plot_curve.h>
 #include <GsTLAppli/utils/string_manipulation.h>
 #include <qgroupbox.h>
 #include <qlistwidget.h>

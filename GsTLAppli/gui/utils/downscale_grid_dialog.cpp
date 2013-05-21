@@ -24,7 +24,7 @@
 
 #include <GsTLAppli/gui/utils/downscale_grid_dialog.h>
 #include <GsTLAppli/actions/obj_manag_actions.h>
-#include <GsTLAppli/extra/qtplugins/selectors.h>
+#include <GsTLAppli/qtplugins/selectors.h>
 #include <GsTLAppli/appli/project.h>
 #include <GsTLAppli/appli/manager_repository.h>
 #include <GsTLAppli/utils/error_messages_handler.h>

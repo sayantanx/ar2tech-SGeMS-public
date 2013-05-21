@@ -46,7 +46,7 @@
 #include <GsTLAppli/gui/viewer/visualization_parameters.h>
 #include <GsTLAppli/gui/models/visualization_tree_view.h>
 #include <GsTLAppli/gui/models/gstl_item.h>
-#include <GsTLAppli/extra/qtplugins/project_proxy_model.h>
+#include <GsTLAppli/qtplugins/project_proxy_model.h>
 
 #include <QFrame>
 #include <QTreeView>

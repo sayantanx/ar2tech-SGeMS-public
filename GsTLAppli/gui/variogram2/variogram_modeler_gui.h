@@ -69,7 +69,7 @@
 #include <GsTLAppli/gui/ui_variogram_modeler_gui_base.h>
 
 #include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/extra/qtplugins/selectors.h>
+#include <GsTLAppli/qtplugins/selectors.h>
 #include <GsTLAppli/appli/project.h>
 
 #include <qapplication.h>

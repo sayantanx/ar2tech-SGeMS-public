@@ -30,7 +30,7 @@
 #include <GsTLAppli/gui/common.h>
 #include <GsTLAppli/appli/project.h>
 
-#include <GsTLAppli/extra/qtplugins/selectors.h>
+#include <GsTLAppli/qtplugins/selectors.h>
 
 #include <QDialog>
 #include <QCheckBox>

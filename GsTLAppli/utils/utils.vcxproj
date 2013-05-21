@@ -262,8 +262,6 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="directory.h" />
     <ClInclude Include="error_messages_handler.h" />
-    <ClInclude Include="gstl_data_array.h" />
-    <ClInclude Include="gstl_data_array.hpp" />
     <CustomBuild Include="gstl_item_model.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing %(Identity)...</Message>

@@ -40,7 +40,7 @@
 #include <GsTLAppli/appli/project.h>
 #include <GsTLAppli/appli/manager_repository.h>
 
-#include <GsTLAppli/extra/qtplugins/project_proxy_model.h>
+#include <GsTLAppli/qtplugins/project_proxy_model.h>
 
 #include <QTreeView>
 #include <QVBoxLayout>

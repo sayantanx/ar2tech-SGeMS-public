@@ -56,16 +56,18 @@
 #define __GSTLAPPLI_VARIOG_PLOT_H__
 
 #include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/math/gstlvector.h>
+
 #include <GsTLAppli/math/gstlpoint.h>
-#include <GsTLAppli/extra/qwt/qwt_plot.h>
-#include <GsTLAppli/extra/qwt/qwt_plot_curve.h>
+
+#include <GsTLAppli/qwt/qwt_plot.h>
+#include <GsTLAppli/qwt/qwt_plot_curve.h>
+
 #include <GsTL/geometry/covariance.h>
 
-#include <qapplication.h>
-#include <qpixmap.h>
-#include <qwidget.h>
-#include <qevent.h>
+#include <QApplication>
+#include <QPixmap>
+#include <QWidget>
+#include <QEvent>
 
 #include <QMouseEvent>
 #include <vector>
@@ -74,8 +76,8 @@
 
 const int margin =40;
 
-class Model_manager;
 class Discrete_function;
+
 
 
 class GUI_DECL Variog_plot : public QwtPlot {

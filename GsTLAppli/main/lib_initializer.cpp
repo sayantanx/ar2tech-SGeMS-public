@@ -61,8 +61,8 @@
 #include <GsTLAppli/grid/library_grid_init.h>
 #include <GsTLAppli/gui/library_gui_init.h>
 #include <GsTLAppli/charts/library_charts_init.h>
-#include <GsTLAppli/extra/gui/library_extragui_init.h>
-#include <GsTLAppli/extra/qtplugins/library_qtplugins_init.h>
+#include <GsTLAppli/widget_accessor/library_extragui_init.h>
+#include <GsTLAppli/qtplugins/library_qtplugins_init.h>
 #include <GsTLAppli/utils/gstl_messages.h>
 
 #include <qdir.h>
