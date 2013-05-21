@@ -224,12 +224,12 @@ public:
     item_type_ = "Category";
   }
 
-  Grid_filter_category(const GsTLGridCategoricalProperty* cprop, int active_category) 
+  Grid_filter_category(const Grid_categorical_property* cprop, int active_category) 
     : cprop_(cprop), category_(active_category){
     item_type_ = "Category";
   }
 
-  Grid_filter_category(const GsTLGridCategoricalProperty* cprop, std::string category_name) 
+  Grid_filter_category(const Grid_categorical_property* cprop, std::string category_name) 
     : cprop_(cprop){
 
     category_ = cprop_->get_category_definition()->category_id(category_name);
@@ -238,12 +238,12 @@ public:
 
   virtual ~Grid_filter_category(void){}
 
-  void set_category(const GsTLGridCategoricalProperty* cprop, int active_category) {
+  void set_category(const Grid_categorical_property* cprop, int active_category) {
     cprop_ = cprop;
     category_ = active_category;
   }
 
-  void set_category(const GsTLGridCategoricalProperty* cprop, std::string category_name) {
+  void set_category(const Grid_categorical_property* cprop, std::string category_name) {
     cprop_ = cprop;
     category_ = cprop_->get_category_definition()->category_id(category_name);
   }
@@ -259,7 +259,7 @@ public:
   }
 
 private :
-  const GsTLGridCategoricalProperty* cprop_;
+  const Grid_categorical_property* cprop_;
   int category_;
 };
 
@@ -277,14 +277,14 @@ public:
     item_type_ = "Less than";
   }
 
-  Grid_filter_less_than(const GsTLGridProperty* prop, float upper_bound) 
+  Grid_filter_less_than(const Grid_continuous_property* prop, float upper_bound) 
     : prop_(prop), upper_bound_(upper_bound){
     item_type_ = "Less than";
   }
 
   virtual ~Grid_filter_less_than(void){}
 
-  void set_upper_bound(const GsTLGridProperty* prop, float upper_bound)  {
+  void set_upper_bound(const Grid_continuous_property* prop, float upper_bound)  {
     prop_ = prop;
     upper_bound_ =upper_bound;
   }
@@ -300,7 +300,7 @@ public:
   }
 
 private :
-  const GsTLGridProperty* prop_;
+  const Grid_continuous_property* prop_;
   float upper_bound_;
 };
 
@@ -319,14 +319,14 @@ public:
     item_type_ = "Less or equal than";
   }
 
-  Grid_filter_lessor_or_equal_than(const GsTLGridProperty* prop, float upper_bound) 
+  Grid_filter_lessor_or_equal_than(const Grid_continuous_property* prop, float upper_bound) 
     : prop_(prop), upper_bound_(upper_bound){
     item_type_ = "Less or equal than";
   }
 
   virtual ~Grid_filter_lessor_or_equal_than(void){}
 
-  void set_upper_bound(const GsTLGridProperty* prop, float upper_bound)  {
+  void set_upper_bound(const Grid_continuous_property* prop, float upper_bound)  {
     prop_ = prop;
     upper_bound_= upper_bound;
   }
@@ -342,7 +342,7 @@ public:
   }
 
 private :
-  const GsTLGridProperty* prop_;
+  const Grid_continuous_property* prop_;
   float upper_bound_;
 };
 
@@ -360,14 +360,14 @@ public:
     item_type_ = "Greater than";
   }
 
-  Grid_filter_greater_than(const GsTLGridProperty* prop, float lower_bound) 
+  Grid_filter_greater_than(const Grid_continuous_property* prop, float lower_bound) 
     : prop_(prop), lower_bound_(lower_bound){
     item_type_ = "Greater than";
   }
 
   virtual ~Grid_filter_greater_than(void){}
 
-  void set_lower_bound(const GsTLGridProperty* prop, float lower_bound)  {
+  void set_lower_bound(const Grid_continuous_property* prop, float lower_bound)  {
     prop_ = prop;
     lower_bound_= lower_bound;
   }
@@ -383,7 +383,7 @@ public:
   }
 
 private :
-  const GsTLGridProperty* prop_;
+  const Grid_continuous_property* prop_;
   float lower_bound_;
 };
 
@@ -400,14 +400,14 @@ public:
     item_type_ = "Greater or equal than";
   }
 
-  Grid_filter_greater_or_equal_than(const GsTLGridProperty* prop, float lower_bound) 
+  Grid_filter_greater_or_equal_than(const Grid_continuous_property* prop, float lower_bound) 
     : prop_(prop), lower_bound_(lower_bound){
     item_type_ = "Greater or equal than";
   }
 
   virtual ~Grid_filter_greater_or_equal_than(void){}
 
-  void set_lower_bound(const GsTLGridProperty* prop, float lower_bound)  {
+  void set_lower_bound(const Grid_continuous_property* prop, float lower_bound)  {
     prop_ = prop;
     lower_bound_= lower_bound;
   }
@@ -423,7 +423,7 @@ public:
   }
 
 private :
-  const GsTLGridProperty* prop_;
+  const Grid_continuous_property* prop_;
   float lower_bound_;
 };
 
@@ -441,14 +441,14 @@ public:
     item_type_ = "Bounded by";
   }
 
-  Grid_filter_bounded(const GsTLGridProperty* prop, float lower_bound,float upper_bound) 
+  Grid_filter_bounded(const Grid_continuous_property* prop, float lower_bound,float upper_bound) 
     : prop_(prop), lower_bound_(lower_bound), upper_bound_(upper_bound){
     item_type_ = "Bounded by";
   }
 
   virtual ~Grid_filter_bounded(void){}
 
-  void set_bounds(const GsTLGridProperty* prop, float lower_bound,float upper_bound)  {
+  void set_bounds(const Grid_continuous_property* prop, float lower_bound,float upper_bound)  {
     prop_ = prop;
     lower_bound_= lower_bound;
     upper_bound_= upper_bound;
@@ -466,7 +466,7 @@ public:
   }
 
 private :
-  const GsTLGridProperty* prop_;
+  const Grid_continuous_property* prop_;
   float lower_bound_;
   float upper_bound_;
 };

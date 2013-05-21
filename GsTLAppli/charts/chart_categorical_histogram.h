@@ -56,12 +56,12 @@ public slots :
   void add_data(Categorical_histogram_item* prop_item);
   void update_data_display(Categorical_histogram_item* item);
 
-//  void add_data( GsTLGridProperty* prop, Grid_region* region=0, GsTLGridProperty* weigths=0);
+//  void add_data( Grid_continuous_property* prop, Grid_region* region=0, Grid_continuous_property* weigths=0);
 
   //Add the data to the model first which then send it to the chart
-  void add_data( GsTLGridCategoricalProperty* prop);
-  void add_data( GsTLGridCategoricalProperty* prop, GsTLGridWeightProperty* weigths);
-  void add_data( GsTLGridCategoricalProperty* prop, Grid_region* region);
+  void add_data( Grid_categorical_property* prop);
+  void add_data( Grid_categorical_property* prop, GsTLGridWeightProperty* weigths);
+  void add_data( Grid_categorical_property* prop, Grid_region* region);
   void add_data( GsTLGridPropertyGroup* group);
   void add_data( GsTLGridPropertyGroup* group, GsTLGridWeightProperty* weigths);
   void add_data( GsTLGridPropertyGroup* group, Grid_region* region);
@@ -77,7 +77,7 @@ private:
     
   struct histo_data {
     std::string name;
-    GsTLGridCategoricalProperty* prop;
+    Grid_categorical_property* prop;
     GsTLGridWeightProperty* weight;
     Grid_region* region;
     vtkSmartPointer<vtkTable> histo_table;

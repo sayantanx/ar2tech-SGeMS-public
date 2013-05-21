@@ -75,8 +75,8 @@
 #include <list> 
 #include <string>
 
-class GsTLGridProperty;
-class GsTLGridCategoricalProperty;
+class Grid_continuous_property;
+class Grid_categorical_property;
 class GsTLGridWeightProperty;
 class Grid_region;
 class GsTLGridPropertyGroup;
@@ -145,7 +145,7 @@ class GRID_DECL Geostat_grid : public Named_interface {
    * for example because the property already existed, a null pointer 
    * is returned. 
    */ 
-  virtual GsTLGridProperty* add_property( const std::string& name ) = 0;
+  virtual Grid_continuous_property* add_property( const std::string& name ) = 0;
   
   /** Adds a new property called \a name where the values
    * are loaded from the file \a filename.
@@ -153,7 +153,7 @@ class GRID_DECL Geostat_grid : public Named_interface {
    * failed,for example because the property already existed, a null pointer
    * is returned.
    */
-  virtual GsTLGridProperty* add_property_from_disk( const std::string& name,const std::string& filename )=0;
+  virtual Grid_continuous_property* add_property_from_disk( const std::string& name,const std::string& filename )=0;
 
   /** Adds a new weight property called \a name. 
    * A pointer to the new property is returned. If \a add_property(...) failed, 
@@ -175,7 +175,7 @@ class GRID_DECL Geostat_grid : public Named_interface {
    * failed,for example because the property already existed, a null pointer
    * is returned.
    */
-  virtual GsTLGridCategoricalProperty* add_categorical_property(
+  virtual Grid_categorical_property* add_categorical_property(
 			  const std::string& name,
 			  const std::string& definition_name="Default") = 0;
 
@@ -185,7 +185,7 @@ class GRID_DECL Geostat_grid : public Named_interface {
    * failed,for example because the property already existed, a null pointer
    * is returned.
    */
-  virtual GsTLGridCategoricalProperty* add_categorical_property_from_disk(
+  virtual Grid_categorical_property* add_categorical_property_from_disk(
 			  const std::string& name, const std::string& filename,
 			  const std::string& definition_name="Default") = 0;
 
@@ -199,29 +199,29 @@ class GRID_DECL Geostat_grid : public Named_interface {
    * the property the grid operates on by default: iterators returned 
    * by begin(), end() will iterate on the default property.  
    */ 
-  virtual GsTLGridProperty* select_property( const std::string& name ) = 0;
+  virtual Grid_continuous_property* select_property( const std::string& name ) = 0;
   
   /** Returns a pointer to the currently selected property. To select a 
   * property, use function \a select_property( name ).
   * By default, the first property that was added to the grid is the
   * selected property.
   */
-  virtual const GsTLGridProperty* selected_property() const = 0; 
-  virtual GsTLGridProperty* selected_property() = 0;
+  virtual const Grid_continuous_property* selected_property() const = 0; 
+  virtual Grid_continuous_property* selected_property() = 0;
   
   /** Provides direct access to property \a name. The function returns
   * a pointer to the property array. If property \a name does not exist,
   * a null pointer is returned.
   */
-  virtual const GsTLGridProperty* property( const std::string& name ) const = 0; 
-  virtual GsTLGridProperty* property( const std::string& name ) = 0; 
+  virtual const Grid_continuous_property* property( const std::string& name ) const = 0; 
+  virtual Grid_continuous_property* property( const std::string& name ) = 0; 
 
   /** Provides direct access to categorical property \a name. The function returns
   * a pointer to the categorical property array. If categorical property \a name does not exist,
   * a null pointer is returned.
   */
-  virtual const GsTLGridCategoricalProperty* categorical_property( const std::string& name ) const = 0;
-  virtual GsTLGridCategoricalProperty* categorical_property( const std::string& name ) = 0;
+  virtual const Grid_categorical_property* categorical_property( const std::string& name ) const = 0;
+  virtual Grid_categorical_property* categorical_property( const std::string& name ) = 0;
 
 
   /** Provides direct access to weight property \a name. The function returns
@@ -334,10 +334,10 @@ class GRID_DECL Geostat_grid : public Named_interface {
    * iterating on property \a prop. If no property is specified, the iterator
    * iterated on the current selected property. 
    */ 
-  virtual iterator begin( GsTLGridProperty* prop = 0 ) = 0; 
-  virtual iterator end( GsTLGridProperty* prop = 0 ) = 0; 
-  virtual const_iterator begin( const GsTLGridProperty* prop = 0 ) const = 0; 
-  virtual const_iterator end( const GsTLGridProperty* prop = 0 ) const = 0; 
+  virtual iterator begin( Grid_continuous_property* prop = 0 ) = 0; 
+  virtual iterator end( Grid_continuous_property* prop = 0 ) = 0; 
+  virtual const_iterator begin( const Grid_continuous_property* prop = 0 ) const = 0; 
+  virtual const_iterator end( const Grid_continuous_property* prop = 0 ) const = 0; 
 
   /** Call this function before any call to \a random_path_begin(), or 
   * \a random_path_end(), to initialize the random path. 
@@ -351,8 +351,8 @@ class GRID_DECL Geostat_grid : public Named_interface {
   /** Get the beginning of the current random path. To change the random path
   * use \a init_random_path().
   */
-  virtual random_path_iterator random_path_begin( GsTLGridProperty* prop = 0 ) = 0; 
-  virtual random_path_iterator random_path_end( GsTLGridProperty* prop = 0 ) = 0; 
+  virtual random_path_iterator random_path_begin( Grid_continuous_property* prop = 0 ) = 0; 
+  virtual random_path_iterator random_path_end( Grid_continuous_property* prop = 0 ) = 0; 
  
  
   //---------------------------- 

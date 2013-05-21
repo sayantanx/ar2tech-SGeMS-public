@@ -81,8 +81,8 @@ Pset_variog_computer::Pset_variog_computer() {
 
 Pset_variog_computer::
 Pset_variog_computer( Point_set *pset, 
-                      GsTLGridProperty* head_prop, 
-                      GsTLGridProperty* tail_prop ) {
+                      Grid_continuous_property* head_prop, 
+                      Grid_continuous_property* tail_prop ) {
   pset_ = pset; 
   head_prop_ = head_prop;
   tail_prop_ = tail_prop;

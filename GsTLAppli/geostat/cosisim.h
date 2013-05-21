@@ -96,10 +96,10 @@ protected:
 
   Geostat_grid* simul_grid_; 
   MultiRealization_property* multireal_property_; 
-  std::vector< GsTLGridProperty* > indicators_;
+  std::vector< Grid_continuous_property* > indicators_;
   
-  std::vector< GsTLGridProperty* > primary_indicators_;
-  std::vector< GsTLGridProperty* > secondary_indicators_;
+  std::vector< Grid_continuous_property* > primary_indicators_;
+  std::vector< Grid_continuous_property* > secondary_indicators_;
 
 
   long int seed_; 
@@ -156,7 +156,7 @@ protected:
   void clear_ccdf();
   void reset_indicator_properties();
   void remove_temporary_properties();
-  void clean( GsTLGridProperty* prop ); 
+  void clean( Grid_continuous_property* prop ); 
 }; 
  
  

@@ -59,7 +59,7 @@
 #include <GsTLAppli/gui/ui_scatterplot_control_panel_base.h>
 
 class GsTL_project;
-class GsTLGridProperty;
+class Grid_continuous_property;
 class Grid_region;
 class GridSelector;
 class SinglePropertySelector;
@@ -92,10 +92,10 @@ protected slots:
   void forward_var2_high_clip_changed();
   
 signals:
-//  void var1_changed( const GsTLGridProperty* );
-//  void var2_changed( const GsTLGridProperty* );
-  void var1_changed(  GsTLGridProperty*,  const Grid_region* );
-  void var2_changed(  GsTLGridProperty*,  const Grid_region* );
+//  void var1_changed( const Grid_continuous_property* );
+//  void var2_changed( const Grid_continuous_property* );
+  void var1_changed(  Grid_continuous_property*,  const Grid_region* );
+  void var2_changed(  Grid_continuous_property*,  const Grid_region* );
 
   void var1_low_clip_changed( float );
   void var2_low_clip_changed( float );
@@ -113,7 +113,7 @@ protected:
   SinglePropertySelector* prop_selector_var2_;
 
 protected:
-  GsTLGridProperty* get_property( const SinglePropertySelector* );
+  Grid_continuous_property* get_property( const SinglePropertySelector* );
   Grid_region* get_region( const GridSelector* );
 
 };

@@ -69,7 +69,7 @@
 #include <stack> 
  
 class RGrid; 
-class GsTLGridProperty; 
+class Grid_continuous_property; 
  
 
 
@@ -86,7 +86,7 @@ public:
  public: 
   Rgrid_window_neighborhood(); 
   Rgrid_window_neighborhood( const Grid_template& geom, RGrid* grid=0, 
-			     GsTLGridProperty* prop = 0 ); 
+			     Grid_continuous_property* prop = 0 ); 
   virtual ~Rgrid_window_neighborhood() {} 
  
   virtual void set_geometry( Grid_template::iterator begin,  
@@ -103,7 +103,7 @@ public:
 
   void set_grid( RGrid* grid ); 
   virtual bool select_property( const std::string& prop_name );  
-  virtual const GsTLGridProperty* selected_property() const { return property_; }
+  virtual const Grid_continuous_property* selected_property() const { return property_; }
 
   virtual void find_neighbors( const Geovalue& center ) ; 
   virtual void find_all_neighbors( const Geovalue& center );
@@ -117,7 +117,7 @@ public:
 
  protected: 
   RGrid* grid_; 
-  GsTLGridProperty* property_; 
+  Grid_continuous_property* property_; 
 //  Grid_template geom_; 
   Geovalue center_; 
   SGrid_cursor cursor_; 
@@ -145,7 +145,7 @@ public:
    * azimuth. It's pi/2-azimuth.
    */ 
   Rgrid_ellips_neighborhood( RGrid* grid, 
-			     GsTLGridProperty* property, 
+			     Grid_continuous_property* property, 
 			     GsTLInt max_radius, GsTLInt mid_radius, GsTLInt min_radius, 
 			     double x_angle, double y_angle, double z_angle, 
 			     int max_neighbors = 20, 
@@ -154,7 +154,7 @@ public:
  
   virtual ~Rgrid_ellips_neighborhood() {}; 
   virtual bool select_property( const std::string& prop_name );  
-  virtual const GsTLGridProperty* selected_property() const { return property_; }
+  virtual const Grid_continuous_property* selected_property() const { return property_; }
 
   virtual void find_neighbors( const Geovalue& center ); 
   virtual void max_size( int s ); 
@@ -168,7 +168,7 @@ public:
 
  protected: 
   RGrid* grid_; 
-  GsTLGridProperty* property_; 
+  Grid_continuous_property* property_; 
   SGrid_cursor cursor_; 
   Grid_template geom_; 
   int max_neighbors_; 
@@ -187,7 +187,7 @@ public:
 
  public: 
   Rgrid_ellips_neighborhood_hd( RGrid* grid, 
-				GsTLGridProperty* property, 
+				Grid_continuous_property* property, 
 				GsTLInt max_radius, GsTLInt mid_radius, GsTLInt min_radius, 
 				double x_angle, double y_angle, double z_angle, 
 				int max_neighbors = 20, 

@@ -168,7 +168,7 @@ void QPplot_control_panel::set_var2_clipping_values( float low, float high ) {
 
  
 
-GsTLGridProperty*
+Grid_continuous_property*
 QPplot_control_panel::get_property( const PropertySelector* object_selector ) {
   std::string grid_name( qstring2string(object_selector->selectedGrid()) );
   if( grid_name.empty() ) return 0;
@@ -182,7 +182,7 @@ QPplot_control_panel::get_property( const PropertySelector* object_selector ) {
   appli_assert( grid );
 
   std::string prop_name( qstring2string(object_selector->selectedProperty()) );
-  GsTLGridProperty* prop = grid->property( prop_name );
+  Grid_continuous_property* prop = grid->property( prop_name );
   appli_assert( prop );
   return prop;
 }

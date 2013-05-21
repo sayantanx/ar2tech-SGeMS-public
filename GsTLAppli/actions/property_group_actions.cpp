@@ -84,7 +84,7 @@ bool New_property_group::init( std::string& parameters, GsTL_project* proj,
   }
 
   for(int i=3; i< params.size(); i++) {
-    GsTLGridProperty* prop = grid->property(params[i]);
+    Grid_continuous_property* prop = grid->property(params[i]);
     if(prop == NULL)  {
       errors->report( "The property "+params[i]+" does not exist" );
       return false;
@@ -140,7 +140,7 @@ bool Add_properties_to_group::init( std::string& parameters, GsTL_project* proj,
   }
 
   for(int i=2; i< params.size(); i++) {
-    GsTLGridProperty* prop = grid->property(params[i]);
+    Grid_continuous_property* prop = grid->property(params[i]);
     if(prop == NULL)  {
       errors->report( "The property "+params[i]+" does not exist" );
       return false;
@@ -197,7 +197,7 @@ bool Remove_properties_from_group::init( std::string& parameters, GsTL_project* 
   }
 
   for(int i=2; i< params.size(); i++) {
-    GsTLGridProperty* prop = grid->property(params[i]);
+    Grid_continuous_property* prop = grid->property(params[i]);
     if(prop == NULL)  {
       errors->report( "The property "+params[i]+" does not exist" );
       return false;

@@ -279,14 +279,14 @@ void Chart_scatter_plot::load_data(GsTL_object_item* item_x, std::vector<GsTL_ob
   if( item_x == 0 || items_y.empty()) return;
 
   // Check if some filters has been selected
-  GsTLGridProperty* prop_x = dynamic_cast<GsTLGridProperty*>(item_x);
+  Grid_continuous_property* prop_x = dynamic_cast<Grid_continuous_property*>(item_x);
   if( !prop_x ) return;
 
 
   for( int i=0; i<items_y.size(); ++i ) {
     GsTL_object_item* item_y = items_y[i];
     if(item_y->item_type() == "ContinuousProperty") {
-	  GsTLGridProperty* prop_y = static_cast<GsTLGridProperty*>(item_y->data_pointer());
+	  Grid_continuous_property* prop_y = static_cast<Grid_continuous_property*>(item_y->data_pointer());
      GsTLlog<<"Loading property "+prop_y->name()+"\n";
       if(prop_y == prop_x) continue;
       std::vector<GsTL_object_item*>::iterator it = items_filter.begin();
@@ -304,7 +304,7 @@ void Chart_scatter_plot::load_data(GsTL_object_item* item_x, std::vector<GsTL_ob
           GsTLlog<<"Finisehed inserting rows (with region) for property "+prop_y->name()+"\n";
         }
         else if( (*it)->item_type() == "CategoricalProperty" ) {
-          model_->insert_row(prop_x,prop_y,dynamic_cast<GsTLGridCategoricalProperty*>(*it), 
+          model_->insert_row(prop_x,prop_y,dynamic_cast<Grid_categorical_property*>(*it), 
                              default_colors_.at(default_color_id_%max_index_default_colors_) );
           ++default_color_id_;
         }
@@ -327,7 +327,7 @@ void Chart_scatter_plot::load_data(GsTL_object_item* item_x, std::vector<GsTL_ob
           ++default_color_id_;
         }
         else if( (*it)->item_type() == "CategoricalProperty" ) {
-          model_->insert_row(prop_x,group_y,dynamic_cast<GsTLGridCategoricalProperty*>(*it), 
+          model_->insert_row(prop_x,group_y,dynamic_cast<Grid_categorical_property*>(*it), 
                              default_colors_.at(default_color_id_%max_index_default_colors_) );
           ++default_color_id_;
         }
@@ -372,15 +372,15 @@ void Chart_scatter_plot::load_data(QModelIndex index_x, QModelIndexList indexes_
 
 }
 /*
-void Chart_scatter_plot::add_data( GsTLGridProperty* prop_x){
+void Chart_scatter_plot::add_data( Grid_continuous_property* prop_x){
   model_->insert_row(prop, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_scatter_plot::add_data( GsTLGridProperty* prop, GsTLGridWeightProperty* weigths){
+void Chart_scatter_plot::add_data( Grid_continuous_property* prop, GsTLGridWeightProperty* weigths){
   model_->insert_row(prop,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_scatter_plot::add_data( GsTLGridProperty* prop, Grid_region* region){
+void Chart_scatter_plot::add_data( Grid_continuous_property* prop, Grid_region* region){
   model_->insert_row(prop,region, default_colors_.at(default_color_id_%max_index_default_colors_) );
   default_color_id_++;
 }
@@ -652,7 +652,7 @@ void Chart_scatter_plot::compute_stats_with_weights(Scatter_data& data){
 
   std::vector< std::pair<float, float> > data_weights;
 
-  GsTLGridProperty* prop = data.prop;
+  Grid_continuous_property* prop = data.prop;
   bool need_memory_swap = !prop->is_in_memory();
   if(need_memory_swap) {
     prop->swap_to_memory();

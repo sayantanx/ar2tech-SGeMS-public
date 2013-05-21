@@ -70,7 +70,7 @@
 void HD_DEV_Finder_Categorical::
 initialize_DEV( vector< vector<float> >& data_event, vector<float>& weight )
 {
-  vector< float > temp( neighbors_->max_size(), GsTLGridProperty::no_data_value );
+  vector< float > temp( neighbors_->max_size(), Grid_continuous_property::no_data_value );
     
     for(int i=0; i<nb_facies_; ++i) 
         data_event.push_back( temp );
@@ -370,7 +370,7 @@ operator()( RGrid::random_path_iterator current_node_iter, vector< vector<float>
     for ( int j=0; j<nb_facies_; j++ )  // for each filter
     {
         // get the right soft property
-        GsTLGridProperty* prop = softDataProps_[j];
+        Grid_continuous_property* prop = softDataProps_[j];
         soft_neighbors_->select_property( prop->name() );
         
         int data_loc=0;

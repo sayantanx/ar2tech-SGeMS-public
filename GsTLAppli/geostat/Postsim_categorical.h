@@ -93,8 +93,8 @@ class  Postsim_categorical : public Geostat_algo {
 //    int execute_categorical();
 
 private :
-	typedef std::vector< GsTLGridCategoricalProperty* > cat_prop_vecT;
-  typedef std::vector< GsTLGridProperty* > prop_vecT;
+	typedef std::vector< Grid_categorical_property* > cat_prop_vecT;
+  typedef std::vector< Grid_continuous_property* > prop_vecT;
   
   int ncat_;
 

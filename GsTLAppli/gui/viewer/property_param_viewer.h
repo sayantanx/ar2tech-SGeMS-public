@@ -57,10 +57,10 @@ public:
 //	static Named_interface* create_new_interface(std::string&);
 
 	Property_param_viewer();
-	Property_param_viewer(GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop);
+	Property_param_viewer(Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop);
 	virtual ~Property_param_viewer();
 
-	virtual void initialize(GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop);
+	virtual void initialize(Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop);
 
 	const Geostat_grid* grid();
 	QString grid_name() const;
@@ -90,8 +90,8 @@ protected :
 
 protected :
 	const Geostat_grid* grid_;
-	const GsTLGridProperty *prop_;
-	const GsTLGridCategoricalProperty *cprop_;
+	const Grid_continuous_property *prop_;
+	const Grid_categorical_property *cprop_;
 
 	GsTL_vtkProp* vtk_prop_;
 
@@ -115,18 +115,18 @@ public :
 
 	Property_viz_parameters();
 	~Property_viz_parameters();
-	void initialize( GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop);
+	void initialize( Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop);
 
 	virtual void display();
 	virtual void undisplay();
 
-	GsTLGridProperty* property();
+	Grid_continuous_property* property();
 
 	virtual QWidget* interface();
 
 
 protected :
-	GsTLGridProperty* prop_;
+	Grid_continuous_property* prop_;
 	Property_param_viewer* viewer_;
 };
 

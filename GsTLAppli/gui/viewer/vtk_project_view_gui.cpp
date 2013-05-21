@@ -656,7 +656,7 @@ Visualization_parameters* Vtk_view::get_viz_parameters( GsTL_object_item* item)
 	}
 
 
-	GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item);
+	Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item);
 	if(prop == 0 ){
 		GsTL_object_property_item* prop_item = dynamic_cast<GsTL_object_property_item*>(item);
 		if(prop_item) prop = prop_item->property();
@@ -901,7 +901,7 @@ vtkRenderWindowInteractor::SafeDownCast(caller);
  if( cellData!= 0 )
   value = dset->GetCellData()->GetScalars()->GetComponent(0,nodeid);
  else
-   value = GsTLGridProperty::no_data_value;
+   value = Grid_continuous_property::no_data_value;
 
  GsTLcout <<"Value : "<<value<<"  (x,y,z) :("<<loc[0]<<","<<loc[1]<<","<<loc[2]<<")"<< gstlIO::end;
 // GsTLcout << "Node id: "<<nodeid<<" Value : "<<value<<" (x,y,z) :("<<loc[0]<<","<<loc[1]<<","<<loc[2]<<")"<< gstlIO::end;

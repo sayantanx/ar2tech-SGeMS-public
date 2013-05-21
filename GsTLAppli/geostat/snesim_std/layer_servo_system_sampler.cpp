@@ -198,7 +198,7 @@ operator () ( GeoValue& gval, const CategNonParamCdf& ccdf )
 
 template < class RandNumberGenerator, class ComputeLayerIndex >
 void Layer_servo_system_sampler< RandNumberGenerator, ComputeLayerIndex >::
-removeSimulatedNode( GsTLGridProperty* prop, vector<int>& grid_path )
+removeSimulatedNode( Grid_continuous_property* prop, vector<int>& grid_path )
 {
     int current_value; 
     int z; // layer index
@@ -217,7 +217,7 @@ removeSimulatedNode( GsTLGridProperty* prop, vector<int>& grid_path )
 
 template < class RandNumberGenerator, class ComputeLayerIndex >
 void Layer_servo_system_sampler< RandNumberGenerator, ComputeLayerIndex >::
-removeSimulatedNode( RGrid* grid, GsTLGridProperty* prop, vector<int>& grid_path )
+removeSimulatedNode( RGrid* grid, Grid_continuous_property* prop, vector<int>& grid_path )
 {
     SGrid_cursor  cursor = SGrid_cursor( *(grid->cursor()) );
     int current_value; 

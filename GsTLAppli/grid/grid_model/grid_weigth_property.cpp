@@ -25,7 +25,7 @@
 
 
 /*
- * GsTLGridCategoricalProperty.cpp
+ * Grid_categorical_property.cpp
  *
  *  Created on: Mar 29, 2010
  *      Author: aboucher
@@ -38,13 +38,13 @@
 
 
 /*
- *   GsTLGridCategoricalProperty
+ *   Grid_categorical_property
  */
 
 GsTLGridWeightProperty::GsTLGridWeightProperty(
 		GsTLInt size, const std::string& name,
 		property_type default_value)
-		: GsTLGridProperty(size,name,no_data_value)
+		: Grid_continuous_property(size,name,no_data_value)
 {
 }
 
@@ -52,7 +52,7 @@ GsTLGridWeightProperty::GsTLGridWeightProperty(
 GsTLGridWeightProperty::GsTLGridWeightProperty(
 		GsTLInt size, const std::string& name, const std::string& in_filename,
 		property_type default_value)
-		: GsTLGridProperty(size,name,in_filename, no_data_value)
+		: Grid_continuous_property(size,name,in_filename, no_data_value)
 {
 }
 

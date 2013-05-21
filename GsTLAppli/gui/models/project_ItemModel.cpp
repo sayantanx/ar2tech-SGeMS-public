@@ -401,7 +401,7 @@ void Project_ItemModel::end_update_item(std::string type_hierarchy,std::string t
 
  }
 
- void Project_ItemModel::add_property_to_grid( Geostat_grid* grid, GsTLGridProperty* prop ){
+ void Project_ItemModel::add_property_to_grid( Geostat_grid* grid, Grid_continuous_property* prop ){
 
  }
 

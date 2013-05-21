@@ -455,11 +455,11 @@ void GsTL_vtkProp::set_property( const std::string& property_name, Colormap* cma
 }
 
 bool GsTL_vtkProp::compute_min_max( std::pair<float, float>& min_max,
-			const GsTLGridProperty* property ){
+			const Grid_continuous_property* property ){
 	float min = 9e99;
 	float max = -9e99;
 
-	GsTLGridProperty::const_iterator it = property->begin(true);
+	Grid_continuous_property::const_iterator it = property->begin(true);
 	for( ;it != property->end(); ++it) {
 		float val = *it;
 		if(val < min ) min =val;

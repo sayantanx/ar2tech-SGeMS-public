@@ -91,7 +91,7 @@ bool Postsim::initialize( const Parameters_handler* parameters,
 	
 	for(std::vector< std::string >::iterator it_str = prop_name.begin(); 
     it_str != prop_name.end(); it_str++ ) {
-      GsTLGridProperty* prop = grid_->property( *it_str );
+      Grid_continuous_property* prop = grid_->property( *it_str );
       errors->report(!prop, "props","No property exist with that name");
       props_.push_back(prop);
   }
@@ -180,7 +180,7 @@ int Postsim::execute( GsTL_project* ) {
 
 
 	bool flag;
-	std::vector< GsTLGridProperty* >::const_iterator it_prop;;
+	std::vector< Grid_continuous_property* >::const_iterator it_prop;;
 	int nprop = props_.size();
 	double sum;
 	std::vector< float > values( props_.size() );
@@ -216,7 +216,7 @@ int Postsim::execute( GsTL_project* ) {
 
 		if(quantile_)
 		{
-			std::vector<GsTLGridProperty*>::iterator it_prop = quantile_props_.begin();
+			std::vector<Grid_continuous_property*>::iterator it_prop = quantile_props_.begin();
 			std::vector<float>::iterator it_val = quantile_vals_.begin();
 
 			for(;it_prop != quantile_props_.end(); ++it_prop, ++it_val)
@@ -228,7 +228,7 @@ int Postsim::execute( GsTL_project* ) {
 
 		if(mean_above_)
 		{
-			std::vector<GsTLGridProperty*>::iterator it_prop = mean_above_props_.begin();
+			std::vector<Grid_continuous_property*>::iterator it_prop = mean_above_props_.begin();
 			std::vector<float>::iterator it_val = mean_above_vals_.begin();
 			for(;it_prop != mean_above_props_.end(); ++it_prop, ++it_val)
 			{
@@ -242,7 +242,7 @@ int Postsim::execute( GsTL_project* ) {
 
 		if(mean_below_)
 		{
-			std::vector<GsTLGridProperty*>::iterator it_prop = mean_below_props_.begin();
+			std::vector<Grid_continuous_property*>::iterator it_prop = mean_below_props_.begin();
 			std::vector<float>::iterator it_val = mean_below_vals_.begin();
 			for(;it_prop != mean_below_props_.end(); ++it_prop, ++it_val)
 			{
@@ -256,7 +256,7 @@ int Postsim::execute( GsTL_project* ) {
 
 		if(prob_above_)
 		{
-			std::vector<GsTLGridProperty*>::iterator it_prop = prob_above_props_.begin();
+			std::vector<Grid_continuous_property*>::iterator it_prop = prob_above_props_.begin();
 			std::vector<float>::iterator it_val = prob_above_vals_.begin();
 			for(;it_prop != prob_above_props_.end(); ++it_prop, ++it_val)
 			{
@@ -267,7 +267,7 @@ int Postsim::execute( GsTL_project* ) {
 
 		if(prob_below_)
 		{
-			std::vector<GsTLGridProperty*>::iterator it_prop = prob_below_props_.begin();
+			std::vector<Grid_continuous_property*>::iterator it_prop = prob_below_props_.begin();
 			std::vector<float>::iterator it_val = prob_below_vals_.begin();
 			for(;it_prop != prob_below_props_.end(); ++it_prop, ++it_val)
 			{
@@ -282,7 +282,7 @@ int Postsim::execute( GsTL_project* ) {
 	return 0;
 }
 
-void Postsim::initialize_operation(std::vector<GsTLGridProperty*>& props_, 
+void Postsim::initialize_operation(std::vector<Grid_continuous_property*>& props_, 
 		std::vector<float>& vals,Error_messages_handler* errors, 
 		const Parameters_handler* parameters, std::string tag)
 {
@@ -297,7 +297,7 @@ void Postsim::initialize_operation(std::vector<GsTLGridProperty*>& props_,
 	  {
 		  std::ostringstream prop_name;
 		  prop_name << base_prop_name <<"_tr"<< *it;
-      GsTLGridProperty* prop = geostat_utils::add_property_to_grid( grid_,prop_name.str() );
+      Grid_continuous_property* prop = geostat_utils::add_property_to_grid( grid_,prop_name.str() );
       prop->set_parameters(parameters_);
 		  props_.push_back(prop);
   		 
@@ -306,7 +306,7 @@ void Postsim::initialize_operation(std::vector<GsTLGridProperty*>& props_,
 }
 
 
-void Postsim::initialize_operation(GsTLGridProperty*& prop,Error_messages_handler* errors, 
+void Postsim::initialize_operation(Grid_continuous_property*& prop,Error_messages_handler* errors, 
 	const Parameters_handler* parameters, std::string tag)
 {
   std::string prop_name = parameters->value( tag+"_prop.value" );

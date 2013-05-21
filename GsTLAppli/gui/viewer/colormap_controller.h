@@ -52,7 +52,7 @@ class Colormap_controller : public QWidget{
 
 	Q_OBJECT
 public:
-	Colormap_controller(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop,QWidget *parent=0);
+	Colormap_controller(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop,QWidget *parent=0);
 	virtual ~Colormap_controller();
 
 	virtual Colormap* colormap() = 0;
@@ -65,7 +65,7 @@ signals:
   void colormap_changed( const Colormap* );
 
 protected :
-	const GsTLGridProperty* prop_;
+	const Grid_continuous_property* prop_;
 	GsTL_vtkProp* vtk_prop_;
 
 };
@@ -74,7 +74,7 @@ class Colormap_continuous_controller : public Colormap_controller{
 
 	Q_OBJECT
 public:
-	Colormap_continuous_controller(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop,QWidget *parent=0);
+	Colormap_continuous_controller(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop,QWidget *parent=0);
 	virtual ~Colormap_continuous_controller();
   virtual Colormap* colormap(){return cmap_;}
 	bool is_log_scale();
@@ -118,7 +118,7 @@ class Colormap_categorical_controller : public Colormap_controller{
 
 	Q_OBJECT
 public:
-	Colormap_categorical_controller(const GsTLGridCategoricalProperty* prop, GsTL_vtkProp* vtk_prop,QWidget *parent=0);
+	Colormap_categorical_controller(const Grid_categorical_property* prop, GsTL_vtkProp* vtk_prop,QWidget *parent=0);
 	virtual ~Colormap_categorical_controller();
 
   virtual Colormap* colormap() {return cmap_;}
@@ -131,7 +131,7 @@ signals :
     void colormap_changed( const Colormap* );
 
 protected :
-	const GsTLGridCategoricalProperty* cprop_;
+	const Grid_categorical_property* cprop_;
   CategoricalDefinitionTable* cdef_table_;
   QPushButton* display_button_;
 

@@ -117,12 +117,12 @@ class Gval_iterator {
  
  public: 
   Gval_iterator(); 
-  Gval_iterator( Geostat_grid* grid, GsTLGridProperty* prop, 
+  Gval_iterator( Geostat_grid* grid, Grid_continuous_property* prop, 
 		 int index, int max_index, MapIndex map ); 
   Gval_iterator( const Gval_iterator<MapIndex>& it ); 
  
    
-  void init( Geostat_grid* grid, GsTLGridProperty* prop, 
+  void init( Geostat_grid* grid, Grid_continuous_property* prop, 
 	     int index, int max_index, MapIndex map ); 
  
  
@@ -170,12 +170,12 @@ class Gval_const_iterator {
  public: 
   Gval_const_iterator(); 
   Gval_const_iterator( const Geostat_grid* grid, 
-                       const GsTLGridProperty* prop, 
+                       const Grid_continuous_property* prop, 
 		                   int index, int max_index, MapIndex map ); 
   Gval_const_iterator( const Self& it ); 
  
    
-  void init( const Geostat_grid* grid, const GsTLGridProperty* prop, 
+  void init( const Geostat_grid* grid, const Grid_continuous_property* prop, 
 	     int index, int max_index, MapIndex map ); 
  
  
@@ -215,7 +215,7 @@ Gval_iterator<MapIndex>::Gval_iterator()
  
  
 template<class MapIndex> 
-Gval_iterator<MapIndex>::Gval_iterator( Geostat_grid* grid, GsTLGridProperty* prop, 
+Gval_iterator<MapIndex>::Gval_iterator( Geostat_grid* grid, Grid_continuous_property* prop, 
 					int index, int max_index, 
 					MapIndex map ) 
   : grid_(grid), index_(index), max_index_( max_index ), 
@@ -239,7 +239,7 @@ Gval_iterator<MapIndex>::Gval_iterator( const Gval_iterator& it )
    
 template<class MapIndex> 
 void 
-Gval_iterator<MapIndex>::init( Geostat_grid* grid, GsTLGridProperty* prop, 
+Gval_iterator<MapIndex>::init( Geostat_grid* grid, Grid_continuous_property* prop, 
 			       int index, int max_index,  
 			       MapIndex map ) {  
   grid_ = grid; 
@@ -338,7 +338,7 @@ Gval_const_iterator<MapIndex>::Gval_const_iterator()
  
 template<class MapIndex> 
 Gval_const_iterator<MapIndex>::
-Gval_const_iterator( const Geostat_grid* grid, const GsTLGridProperty* prop, 
+Gval_const_iterator( const Geostat_grid* grid, const Grid_continuous_property* prop, 
             				int index, int max_index, 
 					          MapIndex map ) 
   : grid_(grid), index_(index), max_index_( max_index ), 
@@ -365,7 +365,7 @@ Gval_const_iterator( const Gval_const_iterator& it )
 template<class MapIndex> 
 void 
 Gval_const_iterator<MapIndex>::
-init( const Geostat_grid* grid, const GsTLGridProperty* prop, 
+init( const Geostat_grid* grid, const Grid_continuous_property* prop, 
       int index, int max_index,  
       MapIndex map ) {  
   grid_ = grid; 

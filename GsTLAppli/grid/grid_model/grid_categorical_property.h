@@ -25,7 +25,7 @@
 
 
 /*
- * GsTLGridCategoricalProperty.h
+ * Grid_categorical_property.h
  *
  *  Created on: Mar 29, 2010
  *      Author: aboucher
@@ -45,7 +45,7 @@ Named_interface* create_new_categorical_definition( std::string& );
 
 class GRID_DECL CategoricalPropertyDefinition :public Named_interface {
 public:
-  typedef std::set<const GsTLGridProperty*, compareGsTLGridProperty > property_set;
+  typedef std::set<const Grid_continuous_property*, compareGsTLGridProperty > property_set;
 	CategoricalPropertyDefinition(){}
 	virtual ~CategoricalPropertyDefinition(){}
 
@@ -67,9 +67,9 @@ public:
   
   virtual std::string name() const = 0;
 
-  void register_property(const GsTLGridProperty* prop);
+  void register_property(const Grid_continuous_property* prop);
 
-  void unregister_property(const GsTLGridProperty* prop);
+  void unregister_property(const Grid_continuous_property* prop);
 
   property_set::const_iterator begin_property() const;
   property_set::const_iterator end_property() const;
@@ -265,24 +265,24 @@ protected :
 };
 
 
-class GRID_DECL GsTLGridCategoricalProperty: public GsTLGridProperty {
+class GRID_DECL Grid_categorical_property: public Grid_continuous_property {
 public:
-	GsTLGridCategoricalProperty( GsTLInt size, const std::string& name,
+	Grid_categorical_property( GsTLInt size, const std::string& name,
 				const std::string cat_definition_name = "Default",
 				property_type default_value = no_data_value );
-	GsTLGridCategoricalProperty(const std::string& in_filename, GsTLInt size, const std::string& name,
+	Grid_categorical_property(const std::string& in_filename, GsTLInt size, const std::string& name,
 				const std::string cat_definition_name = "Default",
 				property_type default_value = no_data_value );
 /*
-	GsTLGridCategoricalProperty( GsTLGridProperty* cont_prop,
+	Grid_categorical_property( Grid_continuous_property* cont_prop,
 				const std::string cat_definition_name = "Default",
 				property_type default_value = no_data_value );
 */
-	virtual ~GsTLGridCategoricalProperty();
+	virtual ~Grid_categorical_property();
 
 	/** Return the name of the class
 	*/
-	virtual std::string classname() const {return "GsTLGridCategoricalProperty";}
+	virtual std::string classname() const {return "Grid_categorical_property";}
 
 	  /** Returns the category name value of the ith element.
 	  */
@@ -338,21 +338,21 @@ protected :
 };
 
 inline std::string
-GsTLGridCategoricalProperty::get_category_name( GsTLInt id ) const {
+Grid_categorical_property::get_category_name( GsTLInt id ) const {
   appli_assert( accessor_->get_property_value( id ) != no_data_value );
   property_type val = accessor_->get_property_value( id );
   return cat_definitions_->get_category_name(val);
 }
 
 inline int 
-GsTLGridCategoricalProperty::get_indicator_value( GsTLInt id, int category ) const{
+Grid_categorical_property::get_indicator_value( GsTLInt id, int category ) const{
   return this->get_value(id)==category?1:0;
 }
 
 	/** Returns the an indicator (0-1) for a given category.
 	*/
 inline int 
-GsTLGridCategoricalProperty::get_indicator_value( GsTLInt id, std::string category_name ) const{
+Grid_categorical_property::get_indicator_value( GsTLInt id, std::string category_name ) const{
   int code = cat_definitions_->category_id(category_name);
   if( code <0 ) return -1;
   return this->get_indicator_value(id,code);
@@ -360,7 +360,7 @@ GsTLGridCategoricalProperty::get_indicator_value( GsTLInt id, std::string catego
 
 
 inline
-void GsTLGridCategoricalProperty::set_value( property_type val, GsTLInt id ) {
+void Grid_categorical_property::set_value( property_type val, GsTLInt id ) {
   unsigned int cat = static_cast<unsigned int>(val);
   //if( cat >= number_of_categories_) number_of_categories_ = cat+1;
   accessor_->set_property_value( cat, id );
@@ -368,7 +368,7 @@ void GsTLGridCategoricalProperty::set_value( property_type val, GsTLInt id ) {
 
 
 inline
-void GsTLGridCategoricalProperty::set_value( std::string val, GsTLInt id ) {
+void Grid_categorical_property::set_value( std::string val, GsTLInt id ) {
   int code = cat_definitions_->category_id(val);
   //if( code >= number_of_categories_) number_of_categories_ = code +1;
   if( code >= 0 )
@@ -378,18 +378,18 @@ void GsTLGridCategoricalProperty::set_value( std::string val, GsTLInt id ) {
 
 inline
 const CategoricalPropertyDefinition*
-	GsTLGridCategoricalProperty::get_category_definition( ) const {
+	Grid_categorical_property::get_category_definition( ) const {
 	return cat_definitions_;
 }
 
 inline
 CategoricalPropertyDefinition*
-	GsTLGridCategoricalProperty::get_category_definition( ) {
+	Grid_categorical_property::get_category_definition( ) {
 	return cat_definitions_;
 }
 
 inline 
-int GsTLGridCategoricalProperty::get_number_of_category() {
+int Grid_categorical_property::get_number_of_category() {
   return this->compute_number_of_category();
 //	if(number_of_categories_==0)
 //		number_of_categories_ = this->compute_number_of_category();
@@ -397,7 +397,7 @@ int GsTLGridCategoricalProperty::get_number_of_category() {
 }
 
 inline
-int GsTLGridCategoricalProperty::get_number_of_category() const {
+int Grid_categorical_property::get_number_of_category() const {
   return this->compute_number_of_category();
 
 //	if(number_of_categories_==0)
@@ -407,8 +407,8 @@ int GsTLGridCategoricalProperty::get_number_of_category() const {
 }
 
 inline
-std::vector<int> GsTLGridCategoricalProperty::get_category_id(){
-	GsTLGridProperty::const_iterator it = this->begin();
+std::vector<int> Grid_categorical_property::get_category_id(){
+	Grid_continuous_property::const_iterator it = this->begin();
 
   std::set<int> category_codes;
 	for( ; it!=this->end(); ++it) {
@@ -420,8 +420,8 @@ std::vector<int> GsTLGridCategoricalProperty::get_category_id(){
 }
 
 inline
-std::vector<int> GsTLGridCategoricalProperty::get_category_id() const{
-	GsTLGridProperty::const_iterator it = this->begin();
+std::vector<int> Grid_categorical_property::get_category_id() const{
+	Grid_continuous_property::const_iterator it = this->begin();
 
   std::set<int> category_codes;
 	for( ; it!=this->end(); ++it) {

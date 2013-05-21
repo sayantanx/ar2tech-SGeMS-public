@@ -66,7 +66,7 @@ RGrid_gval_accessor::RGrid_gval_accessor(
 
 RGrid_gval_accessor::RGrid_gval_accessor(
     RGrid* rgrid,
-    GsTLGridProperty* prop
+    Grid_continuous_property* prop
   ) 
   : current_geovalue_(rgrid, prop, 0) {
   

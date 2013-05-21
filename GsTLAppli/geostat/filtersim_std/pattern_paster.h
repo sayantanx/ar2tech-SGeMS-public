@@ -98,7 +98,7 @@ protected:
     Patch_Helper* patcher_;
 
     Grid_template geom_;
-    GsTLGridProperty* prop;
+    Grid_continuous_property* prop;
     SGrid_cursor * cursor;
 };
 

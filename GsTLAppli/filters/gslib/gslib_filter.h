@@ -62,7 +62,7 @@
  
 #include <vector>
 
-class GsTLGridProperty;
+class Grid_continuous_property;
 class Gslib_infilter_dialog; 
 class Gslib_input_grid_dialog; 
 class Gslib_input_pointset_dialog; 
@@ -152,7 +152,7 @@ class FILTERS_DECL Gslib_grid_infilter : public Gslib_specialized_infilter {
   Gslib_grid_infilter& operator=( const Gslib_grid_infilter& ); 
 
   bool read_one_realization( std::ifstream& infile, 
-                             const std::vector<GsTLGridProperty*>& props,
+                             const std::vector<Grid_continuous_property*>& props,
                              long int grid_size);
 }; 
  
@@ -178,7 +178,7 @@ class FILTERS_DECL Gslib_mgrid_infilter : public Gslib_specialized_infilter {
   Geostat_grid * readRegularGridFormat(std::ifstream& infile,Reduced_grid *);
   Geostat_grid * readPointsetFormat(std::ifstream& infile,Reduced_grid *);
   bool read_one_realization( std::ifstream& infile, 
-                             const std::vector<GsTLGridProperty*>& props,
+                             const std::vector<Grid_continuous_property*>& props,
                              Reduced_grid * grid);
 
   bool get_mgrid_xyz_dimensions(

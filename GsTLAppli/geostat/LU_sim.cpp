@@ -129,7 +129,7 @@ int LU_sim::execute( GsTL_project* ) {
   iterator end_d( harddata_grid_, harddata_property_ ,id_data.size(),  
 			      id_data.size(), TabularMapIndex(&id_data) );
 
-  GsTLGridProperty* prop = multireal_property_->new_realization();
+  Grid_continuous_property* prop = multireal_property_->new_realization();
   
   iterator begin_u( simul_grid_, prop ,0,  
 			      id_unknown.size(), TabularMapIndex(&id_unknown) );
@@ -156,7 +156,7 @@ int LU_sim::execute( GsTL_project* ) {
     // Create a new property to hold the realization and tell the simulation 
     // grid to use it as the current property 
     appli_message( "Creating new realization" );
-    //GsTLGridProperty* prop = multireal_property_->new_realization();
+    //Grid_continuous_property* prop = multireal_property_->new_realization();
     if(nreal>0) prop = multireal_property_->new_realization();
     prop->set_parameters(parameters_);
     simul_grid_->select_property( prop->name() );
@@ -334,7 +334,7 @@ bool LU_sim::initialize( const Parameters_handler* parameters,
 
 
 
-void LU_sim::clean( GsTLGridProperty* prop ) {
+void LU_sim::clean( Grid_continuous_property* prop ) {
   if( prop ) 
     simul_grid_->remove_property( prop->name() );
 

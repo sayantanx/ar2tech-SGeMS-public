@@ -72,19 +72,19 @@ bool GsTLGridPropertyGroup::is_member_property(std::string prop_name) const {
   return( properties_.find( prop_name) != properties_.end() );
 }
 
-GsTLGridProperty* GsTLGridPropertyGroup::get_property(std::string prop_name) {
+Grid_continuous_property* GsTLGridPropertyGroup::get_property(std::string prop_name) {
   property_map::iterator it = properties_.find( prop_name);
   if( it == properties_.end() ) return 0;
   return it->second;
 }
 
-const GsTLGridProperty* GsTLGridPropertyGroup::get_property(std::string prop_name) const {
+const Grid_continuous_property* GsTLGridPropertyGroup::get_property(std::string prop_name) const {
   property_map::const_iterator it = properties_.find( prop_name);
   if( it == properties_.end() ) return 0;
   return it->second;
 }
 
-GsTLGridProperty* GsTLGridPropertyGroup::get_property(int id) {
+Grid_continuous_property* GsTLGridPropertyGroup::get_property(int id) {
   if( id >= properties_.size() ) return 0;
   property_map::iterator it = properties_.begin();
   std::advance(it,id);
@@ -93,7 +93,7 @@ GsTLGridProperty* GsTLGridPropertyGroup::get_property(int id) {
 }
 
 
-const GsTLGridProperty* GsTLGridPropertyGroup::get_property(int id) const {
+const Grid_continuous_property* GsTLGridPropertyGroup::get_property(int id) const {
   if( id >= properties_.size() ) return 0;
   property_map::const_iterator it = properties_.begin();
   std::advance(it,id);
@@ -101,7 +101,7 @@ const GsTLGridProperty* GsTLGridPropertyGroup::get_property(int id) const {
   return it->second;
 }
 
-bool GsTLGridPropertyGroup::add_property(GsTLGridProperty* prop) {
+bool GsTLGridPropertyGroup::add_property(Grid_continuous_property* prop) {
   if(prop == 0) return false;
   if(model_) {
 	  property_map::iterator it =properties_.lower_bound(prop->name());
@@ -118,7 +118,7 @@ bool GsTLGridPropertyGroup::add_property(GsTLGridProperty* prop) {
   return true;
 }
 
-bool GsTLGridPropertyGroup::remove_property(GsTLGridProperty* prop){
+bool GsTLGridPropertyGroup::remove_property(Grid_continuous_property* prop){
   unsigned int ok = properties_.erase( prop->name() );
   if(ok) {
 	  if(model_) {
@@ -142,10 +142,10 @@ std::vector<std::string> GsTLGridPropertyGroup::property_names() const{
   return names;
 }
 
-std::vector<GsTLGridProperty::property_type> 
+std::vector<Grid_continuous_property::property_type> 
 GsTLGridPropertyGroup::get_vector_data( int node_id ) const{
   property_map::const_iterator it = properties_.begin();
-  std::vector<GsTLGridProperty::property_type> values;
+  std::vector<Grid_continuous_property::property_type> values;
   values.reserve(properties_.size() );
   for( ; it!= properties_.end(); ++it) {
     if( it->second->is_informed(node_id) ) values.push_back( it->second->get_value(node_id) );
@@ -250,11 +250,11 @@ void Grid_property_group_manager::remove_group(const std::string& name) {
 
 // remove property membership from group
   GsTLGridPropertyGroup::property_map::iterator it = group->begin_property();
-  std::vector<GsTLGridProperty*> props;
+  std::vector<Grid_continuous_property*> props;
   for( ; it != group->end_property(); ++it) {
   	props.push_back(it->second);
   }
-  std::vector<GsTLGridProperty*>::iterator it_props = props.begin();
+  std::vector<Grid_continuous_property*>::iterator it_props = props.begin();
   for( ; it_props != props.end(); ++it_props) {
   	group->remove_property(*it_props);
   }
@@ -289,7 +289,7 @@ Grid_property_group_manager::get_group(const std::string& name) const{
 }
 
 bool Grid_property_group_manager::
-add_property_to_group(GsTLGridProperty* prop, const std::string& name) {
+add_property_to_group(Grid_continuous_property* prop, const std::string& name) {
   group_map::iterator it = groups_.find(name);
   if(it != groups_.end()) return false;
   it->second->add_property(prop);
@@ -297,7 +297,7 @@ add_property_to_group(GsTLGridProperty* prop, const std::string& name) {
 }
 
 bool Grid_property_group_manager::
-remove_property_from_group(GsTLGridProperty* prop, const std::string& name) {
+remove_property_from_group(Grid_continuous_property* prop, const std::string& name) {
   group_map::iterator it = groups_.find(name);
   if(it != groups_.end()) return false;
   it->second->remove_property(prop);
@@ -480,7 +480,7 @@ CategoricalProbabilityPropertyGroup(std::string name)
 
 Categ_non_param_cdf<int>  
 CategoricalProbabilityPropertyGroup::get_distribution(int node_id) const{
-  std::vector<GsTLGridProperty::property_type> prob = get_vector_data( node_id );
+  std::vector<Grid_continuous_property::property_type> prob = get_vector_data( node_id );
   return Categ_non_param_cdf<int>(prob.size(), prob.begin());
 }
 
@@ -573,7 +573,7 @@ std::vector<float> IndicatorContinuousPropertyGroup::get_thresholds() const {
 
 Non_param_cdf<>
 IndicatorContinuousPropertyGroup::get_distribution(int node_id) const{
-  std::vector<GsTLGridProperty::property_type> prob = get_vector_data( node_id );
+  std::vector<Grid_continuous_property::property_type> prob = get_vector_data( node_id );
   return Non_param_cdf<>(thresholds_.begin(),thresholds_.end(), prob.begin() );
 }
 

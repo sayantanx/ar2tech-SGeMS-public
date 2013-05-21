@@ -167,7 +167,7 @@ public:
 	Sine_transform_action(): Unary_action("sin"){}
 	virtual ~Sine_transform_action(){}
 	bool transform(const Geovalue::property_type& _val, Geovalue::property_type& _new_val){
-		if (_val == GsTLGridProperty::no_data_value) return false;
+		if (_val == Grid_continuous_property::no_data_value) return false;
 		_new_val = std::sin(_val);
 		return true;
 	}
@@ -183,7 +183,7 @@ public:
 	Cosine_transform_action(): Unary_action("cos"){}
 	virtual ~Cosine_transform_action(){}
 	bool transform(const Geovalue::property_type& _val, Geovalue::property_type& _new_val){
-		if (_val == GsTLGridProperty::no_data_value) return false;
+		if (_val == Grid_continuous_property::no_data_value) return false;
 		_new_val = std::cos(_val);
 		return true;
 	}
@@ -248,7 +248,7 @@ public:
 	Logistic_transform_action(): Unary_action("logistic"){}
 	virtual ~Logistic_transform_action(){}
 	bool transform(const Geovalue::property_type& _val, Geovalue::property_type& _new_val){
-		if (_val == GsTLGridProperty::no_data_value) return false;
+		if (_val == Grid_continuous_property::no_data_value) return false;
     _new_val = 1/(1 + exp(-_val));
 		return true;
 	}

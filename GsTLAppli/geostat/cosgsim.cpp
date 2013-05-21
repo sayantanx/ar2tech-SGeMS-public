@@ -149,7 +149,7 @@ int Cosgsim::execute( GsTL_project* ) {
     // Create a new property to hold the realization and tell the simulation 
     // grid to use it as the current property 
     appli_message( "Creating new realization" );
-    GsTLGridProperty* prop = multireal_property_->new_realization();
+    Grid_continuous_property* prop = multireal_property_->new_realization();
     prop->set_parameters(parameters_);;
     simul_grid_->select_property( prop->name() );
     neighborhood_vector_[0].select_property( prop->name() );
@@ -196,7 +196,7 @@ int Cosgsim::execute( GsTL_project* ) {
 }
 
 
-void Cosgsim::clean( GsTLGridProperty* prop ) {
+void Cosgsim::clean( Grid_continuous_property* prop ) {
   if( prop ) 
     simul_grid_->remove_property( prop->name() );
 

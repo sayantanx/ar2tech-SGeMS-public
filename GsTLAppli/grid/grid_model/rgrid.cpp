@@ -126,12 +126,12 @@ void RGrid::set_accessor(RGrid_gval_accessor* accessor) {
 }
 
 
-GsTLGridProperty* RGrid::add_property( const std::string& name ) {
+Grid_continuous_property* RGrid::add_property( const std::string& name ) {
 				
   return property_manager_.add_property( name );
 }
 
-GsTLGridProperty* RGrid::add_property_from_disk( const std::string& name, const std::string& filename ) {
+Grid_continuous_property* RGrid::add_property_from_disk( const std::string& name, const std::string& filename ) {
 
   return property_manager_.add_property_from_disk( name, filename );
 }
@@ -148,14 +148,14 @@ GsTLGridWeightProperty* RGrid::add_weight_property_from_disk( const std::string&
 }
 
 
-GsTLGridCategoricalProperty* RGrid::add_categorical_property(
+Grid_categorical_property* RGrid::add_categorical_property(
 		const std::string& name,
 		const std::string& definition_name){
 	return property_manager_.add_categorical_property( name, definition_name );
 }
 
 
-GsTLGridCategoricalProperty* RGrid::add_categorical_property_from_disk(
+Grid_categorical_property* RGrid::add_categorical_property_from_disk(
 		const std::string& name,
 		const std::string& filename,
 		const std::string& definition_name){
@@ -167,7 +167,7 @@ bool RGrid::remove_property( const std::string& name ) {
 
   std::string name_group;
 
-  GsTLGridProperty* prop = property(name );
+  Grid_continuous_property* prop = property(name );
   if(!prop) return false;
   std::vector< GsTLGridPropertyGroup*> groups = prop->groups();
   bool ok = property_manager_.remove_property( name);
@@ -181,8 +181,8 @@ bool RGrid::remove_property( const std::string& name ) {
 
 }
 
-GsTLGridProperty* RGrid::select_property(const std::string& prop_name) {
-  GsTLGridProperty* prop = property_manager_.select_property( prop_name );
+Grid_continuous_property* RGrid::select_property(const std::string& prop_name) {
+  Grid_continuous_property* prop = property_manager_.select_property( prop_name );
 
   if (accessor_) delete accessor_;
 
@@ -218,7 +218,7 @@ std::list<std::string> RGrid::categorical_property_list() const {
   Grid_property_manager::Property_name_iterator end =
     property_manager_.names_end();
   for( ; it != end ; ++it ) {
-    const GsTLGridCategoricalProperty* prop = categorical_property(*it);
+    const Grid_categorical_property* prop = categorical_property(*it);
     if(prop) result.push_back( *it );
   }
 
@@ -379,7 +379,7 @@ void RGrid::init_random_path( bool from_scratch ) {
 void RGrid::clear_selected_region_from_property(){
   Grid_property_manager::Property_name_iterator it = property_manager_.names_begin();
   for(; it != property_manager_.names_end(); ++it) {
-    GsTLGridProperty* prop = property_manager_.get_property( *it );
+    Grid_continuous_property* prop = property_manager_.get_property( *it );
     prop->set_region(NULL);
   }
 }

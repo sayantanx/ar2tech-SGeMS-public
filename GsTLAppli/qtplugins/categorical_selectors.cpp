@@ -109,7 +109,7 @@ void SingleCategoricalPropertySelector::show_properties( const QString& grid_nam
 }
 
 void SingleCategoricalPropertySelector::property_been_selected(const QString& cprop_name ){
-  GsTLGridCategoricalProperty* cprop = grid_->categorical_property(cprop_name.toStdString());
+  Grid_categorical_property* cprop = grid_->categorical_property(cprop_name.toStdString());
   if( cprop == 0 ) return;
 
   emit this->categorical_property_selected( cprop );
@@ -144,7 +144,7 @@ void MultiCategoricalPropertySelector::show_properties( const QString& grid_name
     QString prop_name( begin->c_str() );
      std::string name = *begin;
     //const CategoricalPropertyDefinition* cdef;// = grid->categorical_property(name)->get_category_definition();
-//    const GsTLGridCategoricalProperty* prop = grid->categorical_property(name);
+//    const Grid_categorical_property* prop = grid->categorical_property(name);
     const CategoricalPropertyDefinition* cdef = grid->categorical_property(name)->get_category_definition();
     QString def_name( cdef->name().c_str() );
     //addItem( prop_name + "  ("+def_name+")" );
@@ -483,7 +483,7 @@ void CategoricalDefinitionTable::show_definition( CategoricalPropertyDefinition*
 
 }
 
-void CategoricalDefinitionTable::show_definition( GsTLGridCategoricalProperty* cprop ){
+void CategoricalDefinitionTable::show_definition( Grid_categorical_property* cprop ){
   if(cprop == 0) return;
   this->show_definition(cprop->get_category_definition());
 }
@@ -604,7 +604,7 @@ void CategoricalDefinitionTableAllClearOptions::show_definition( CategoricalProp
   table_->show_definition(cdef );
 }
 
-void CategoricalDefinitionTableAllClearOptions::show_definition( GsTLGridCategoricalProperty* cprop ){
+void CategoricalDefinitionTableAllClearOptions::show_definition( Grid_categorical_property* cprop ){
   table_->show_definition(cprop );
 }
 
@@ -650,8 +650,8 @@ MultipleCategorySelector::MultipleCategorySelector( QWidget* parent, const char*
 		    this, SLOT( selection_size() ) );
 }
 
-void MultipleCategorySelector::show_categories( const GsTLGridProperty* prop){
-	const GsTLGridCategoricalProperty* cprop = dynamic_cast<const GsTLGridCategoricalProperty*>(prop);
+void MultipleCategorySelector::show_categories( const Grid_continuous_property* prop){
+	const Grid_categorical_property* cprop = dynamic_cast<const Grid_categorical_property*>(prop);
 	if(cprop == 0) return;
 
 //	const CategoricalPropertyDefinition* cdef = cprop->get_category_definition();
@@ -737,7 +737,7 @@ SingleCategorySelector::SingleCategorySelector( QWidget* parent, const char* nam
  
 }
 
-void SingleCategorySelector::show_categories( const GsTLGridCategoricalProperty* cprop){
+void SingleCategorySelector::show_categories( const Grid_categorical_property* cprop){
   
   if(model_ == 0) {
     model_ = new Category_proxy_model(this);

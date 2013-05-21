@@ -78,8 +78,8 @@ Grid_variog_computer::Grid_variog_computer() {
 
 Grid_variog_computer::
 Grid_variog_computer( RGrid *grid, 
-                      GsTLGridProperty* head_prop, 
-                      GsTLGridProperty* tail_prop ) {
+                      Grid_continuous_property* head_prop, 
+                      Grid_continuous_property* tail_prop ) {
   grid_ = grid; 
   head_prop_ = head_prop;
   tail_prop_ = tail_prop;

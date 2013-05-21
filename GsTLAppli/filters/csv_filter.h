@@ -149,7 +149,7 @@ class FILTERS_DECL Csv_logdata_infilter : public Csv_specialized_infilter {
   virtual Geostat_grid* read( std::ifstream& infile, std::string name, int dh_id,
 							  int xstart_id, int ystart_id, int zstart_id,
 							  int xend_id, int yend_id, int zend_id, int from_id, int to_id,
-							  float nan = GsTLGridProperty::no_data_value );
+							  float nan = Grid_continuous_property::no_data_value );
 
   Csv_logdata_infilter( const Csv_logdata_infilter& );
   Csv_logdata_infilter& operator=( const Csv_logdata_infilter& );
@@ -252,7 +252,7 @@ class FILTERS_DECL Csv_structured_infilter : public Csv_specialized_infilter {
 
   virtual Geostat_grid* read( std::ifstream& infile, std::string name, int xcorners,
 							  int ycorners, int zcorners,
-							  float nan = GsTLGridProperty::no_data_value );
+							  float nan = Grid_continuous_property::no_data_value );
 
   Csv_structured_infilter( const Csv_structured_infilter& );
   Csv_structured_infilter& operator=( const Csv_structured_infilter& );

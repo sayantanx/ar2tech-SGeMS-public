@@ -96,7 +96,7 @@ class Grid_template;
 class Geostat_grid;
 class RGrid;
 class Neighborhood;
-class GsTLGridProperty;
+class Grid_continuous_property;
 
 typedef  int  GsTLInt;
 typedef  GsTLTripletTmpl<GsTLInt> GsTLGridNode;
@@ -140,19 +140,19 @@ public:
 
 private:
 	// for simulation
-    bool simulate_one_realization( SmartPtr<Progress_notifier>& progress_notifier, GsTLGridProperty* prop, int nreal);
+    bool simulate_one_realization( SmartPtr<Progress_notifier>& progress_notifier, Grid_continuous_property* prop, int nreal);
 
 	void init_random_path();
     void copy_pre_simulation_data();
     void set_region_indicator();
     void pre_progress_notifer(int& total_steps, int& frequency);
 
-	void clean( GsTLGridProperty* prop = 0 );
+	void clean( Grid_continuous_property* prop = 0 );
     void get_filter_score_weight();
 
     // for pasting with dual tempate
-    void fillin_with_dual_template( GsTLGridProperty* prop, Pattern_Node_Map& mapping, int ncoarse );
-    void record_intermediate_sim( GsTLGridProperty* prop, int ncoarse, string dual="" );
+    void fillin_with_dual_template( Grid_continuous_property* prop, Pattern_Node_Map& mapping, int ncoarse );
+    void record_intermediate_sim( Grid_continuous_property* prop, int ncoarse, string dual="" );
 
     template <class CPrototype > void  create_prototypelist( vector<CPrototype>& proto_list, int nreal, int ncoarse, int nb_facies,
                                                     Window_neighborhood* TI_neighbors, Window_neighborhood* patch_neighbors, 
@@ -194,7 +194,7 @@ private:
 	std::string training_property_name_;
 	
     // for soft conditioning
-	std::vector<GsTLGridProperty*> softDataProps_;
+	std::vector<Grid_continuous_property*> softDataProps_;
 	std::string softdata_property_names_;
 	float  tau1_;
 	float  tau2_;
@@ -202,12 +202,12 @@ private:
 		
     // for hard conditioning
 	Geostat_grid* harddata_grid_;
-	GsTLGridProperty* harddata_property_;
+	Grid_continuous_property* harddata_property_;
 	SmartPtr<Property_copier> property_copier_;
 	
     // simulation with regions
-	GsTLGridProperty* region_property_;
-	GsTLGridProperty* region_simulated_;
+	Grid_continuous_property* region_property_;
+	Grid_continuous_property* region_simulated_;
 	std::string region_property_name_;
 	std::string pre_region_property_name_;
 
@@ -222,7 +222,7 @@ private:
 	Filter* my_filters_;
     int use_default_filter_;
     vector<float> filter_weight_;
-	std::vector<GsTLGridProperty*> scoreProps_;
+	std::vector<Grid_continuous_property*> scoreProps_;
     Grid_template* window_geom_;
 	
     // for debug output

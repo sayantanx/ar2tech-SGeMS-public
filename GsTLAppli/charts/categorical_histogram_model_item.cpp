@@ -41,7 +41,7 @@
  }
 
 
-Categorical_histogram_property_item::Categorical_histogram_property_item( GsTLGridCategoricalProperty* prop, int& id, Categorical_histogram_item* parent)
+Categorical_histogram_property_item::Categorical_histogram_property_item( Grid_categorical_property* prop, int& id, Categorical_histogram_item* parent)
   : Categorical_histogram_item(id), prop_(prop), parent_(parent), weights_(0), region_(0)
 {
   grid_ = dynamic_cast< Geostat_grid*>(prop->parent()->parent());
@@ -70,7 +70,7 @@ Categorical_histogram_group_item::Categorical_histogram_group_item( GsTLGridProp
   GsTLGridPropertyGroup::property_map::const_iterator it=  group_->begin_property();
   for( ; it!= group_->end_property(); ++it) {
     ++id;
-    GsTLGridCategoricalProperty* cprop = dynamic_cast<GsTLGridCategoricalProperty*>(it->second);
+    Grid_categorical_property* cprop = dynamic_cast<Grid_categorical_property*>(it->second);
     if(cprop == 0) continue;
     prop_items_.insert( new Categorical_histogram_property_item(cprop, id, this)  );
   }

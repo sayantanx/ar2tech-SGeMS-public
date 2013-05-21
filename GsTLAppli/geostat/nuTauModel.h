@@ -38,7 +38,7 @@
 #include <vector>
 
 class Geostat_grid;
-class GsTLGridProperty;
+class Grid_continuous_property;
 
 class  NuTauModel : public Geostat_algo {
  
@@ -60,10 +60,10 @@ class  NuTauModel : public Geostat_algo {
   private:
 
 	Geostat_grid* grid_;
-	std::vector< GsTLGridProperty* > props_;
-	GsTLGridProperty* redun_prop_;
-  GsTLGridProperty* nu_values_prop_;
-  std::vector< GsTLGridProperty* > tau_values_props_;
+	std::vector< Grid_continuous_property* > props_;
+	Grid_continuous_property* redun_prop_;
+  Grid_continuous_property* nu_values_prop_;
+  std::vector< Grid_continuous_property* > tau_values_props_;
   bool is_redun_prop_;
   bool is_nu_;
 	float nu0_;

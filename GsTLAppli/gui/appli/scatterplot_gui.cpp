@@ -132,14 +132,14 @@ Scatterplot_gui::Scatterplot_gui( GsTL_project* project,
 
   // Signal-slot connections
   QObject::connect( control_panel_, 
-                    SIGNAL( var1_changed(  GsTLGridProperty*, const Grid_region* ) ),
+                    SIGNAL( var1_changed(  Grid_continuous_property*, const Grid_region* ) ),
                     this,
-                    SLOT( get_var1_data_from(  GsTLGridProperty*, const Grid_region* ) ) );
+                    SLOT( get_var1_data_from(  Grid_continuous_property*, const Grid_region* ) ) );
   
   QObject::connect( control_panel_, 
-                    SIGNAL( var2_changed(  GsTLGridProperty*, const Grid_region* ) ),
+                    SIGNAL( var2_changed(  Grid_continuous_property*, const Grid_region* ) ),
                     this,
-                    SLOT( get_var2_data_from(  GsTLGridProperty*, const Grid_region* ) ) );
+                    SLOT( get_var2_data_from(  Grid_continuous_property*, const Grid_region* ) ) );
      
   QObject::connect( control_panel_, SIGNAL( var1_low_clip_changed(float) ),
                     this, SLOT( update_var1_low_clip(float) ) );
@@ -228,7 +228,7 @@ void Scatterplot_gui::reset_var2_clipping_values() {
 }
 
 
-void Scatterplot_gui::get_var1_data_from( GsTLGridProperty* prop,
+void Scatterplot_gui::get_var1_data_from( Grid_continuous_property* prop,
                                          const Grid_region* region) {
   if( !prop ) return;
   prop1_ = prop;
@@ -237,7 +237,7 @@ void Scatterplot_gui::get_var1_data_from( GsTLGridProperty* prop,
     regionSelector.set_temporary_region(region,prop);
 
   plotter_->set_data( Scatter_plot::Xvar, 
-                      prop->begin(false), prop->end(), GsTLGridProperty::no_data_value );
+                      prop->begin(false), prop->end(), Grid_continuous_property::no_data_value );
   control_panel_->set_var1_clipping_values( plotter_->low_clip( Scatter_plot::Xvar ),
                                             plotter_->high_clip( Scatter_plot::Xvar ) );
 
@@ -246,7 +246,7 @@ void Scatterplot_gui::get_var1_data_from( GsTLGridProperty* prop,
 }
 
  
-void Scatterplot_gui::get_var2_data_from( GsTLGridProperty* prop,
+void Scatterplot_gui::get_var2_data_from( Grid_continuous_property* prop,
                                          const Grid_region* region) {
   if( !prop ) return;
   prop2_ = prop;
@@ -256,7 +256,7 @@ void Scatterplot_gui::get_var2_data_from( GsTLGridProperty* prop,
     regionSelector.set_temporary_region(region,prop);
 
   plotter_->set_data( Scatter_plot::Yvar, 
-                      prop->begin(false), prop->end(), GsTLGridProperty::no_data_value );
+                      prop->begin(false), prop->end(), Grid_continuous_property::no_data_value );
   control_panel_->set_var2_clipping_values( plotter_->low_clip( Scatter_plot::Yvar ),
                                             plotter_->high_clip( Scatter_plot::Yvar ) );
 

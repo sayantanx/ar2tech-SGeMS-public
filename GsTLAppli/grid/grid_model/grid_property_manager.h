@@ -71,8 +71,8 @@
  
 
  
-//class GsTLGridProperty;
-//class GsTLGridCategoricalProperty;
+//class Grid_continuous_property;
+//class Grid_categorical_property;
 class Grid_property_manager; 
 //class CategoricalPropertyDefinition;
 class GsTLGridPropertyGroup;
@@ -81,7 +81,7 @@ class GsTLGridPropertyGroup;
 /** A MultiRealization_property is a property that can have multiple  
  * realizations. This class mainly serves as an interface to create  
  * and access the different realizations.  
- * Each realization is a classical GsTLGridProperty. Each time a new 
+ * Each realization is a classical Grid_continuous_property. Each time a new 
  * realization is added, the previous one is swapped to disk. 
  */  
 class GRID_DECL MultiRealization_property { 
@@ -101,20 +101,20 @@ class GRID_DECL MultiRealization_property {
   MultiRealization_property& operator = ( const MultiRealization_property& rhs ); 
  
  
-  GsTLGridProperty* new_realization(); 
+  Grid_continuous_property* new_realization(); 
  
-  GsTLGridProperty* realization( int id ); 
-  const GsTLGridProperty* realization( int id ) const; 
+  Grid_continuous_property* realization( int id ); 
+  const Grid_continuous_property* realization( int id ) const; 
  
 
   void set_category_definition(CategoricalPropertyDefinition* definition);
 
   void set_group( GsTLGridPropertyGroup* group);
 
-  GsTLGridCategoricalProperty* new_categorical_realization(); 
+  Grid_categorical_property* new_categorical_realization(); 
  
-  GsTLGridCategoricalProperty* categorical_realization( int id ); 
-  const GsTLGridCategoricalProperty* categorical_realization( int id ) const; 
+  Grid_categorical_property* categorical_realization( int id ); 
+  const Grid_categorical_property* categorical_realization( int id ) const; 
 
   int size() const { return size_; } 
 
@@ -134,7 +134,7 @@ class GRID_DECL Const_multiRealization_property {
  public: 
   Const_multiRealization_property( const std::string& name, 
 				   const Grid_property_manager* manager ); 
-  const GsTLGridProperty* realization( int id ) const; 
+  const Grid_continuous_property* realization( int id ) const; 
  
   int size() const { return size_; } 
  
@@ -166,8 +166,8 @@ class GRID_DECL Grid_property_manager : public GsTL_object_item {
    * failed (most probably  because a property with the same name already  
    * existed ).  
    */ 
-  GsTLGridProperty* add_property( const std::string& name ); 
-  GsTLGridProperty* add_property_from_disk( const std::string& name, const std::string& filename );
+  Grid_continuous_property* add_property( const std::string& name ); 
+  Grid_continuous_property* add_property_from_disk( const std::string& name, const std::string& filename );
 
   /** Adds a new weight property 
    * @return a pointer to the new property. The pointer is 0 if add_weight_property  
@@ -183,10 +183,10 @@ class GRID_DECL Grid_property_manager : public GsTL_object_item {
    * add_categorical_propertyfailed (most probablybecause a property
    * with the same name already existed ).
    */
-  GsTLGridCategoricalProperty*
+  Grid_categorical_property*
     add_categorical_property( const std::string& name,
   		const std::string definition_name = "Default");
-  GsTLGridCategoricalProperty*
+  Grid_categorical_property*
     add_categorical_property_from_disk( const std::string& name,
     	const std::string& filename,
   		const std::string definition_name = "Default");
@@ -202,13 +202,13 @@ class GRID_DECL Grid_property_manager : public GsTL_object_item {
   /** Retrieve a property 
    * @return 0 if the property can not be retrieved
    */ 
-  inline GsTLGridProperty* get_property( const std::string& name ); 
-  inline const GsTLGridProperty* get_property( const std::string& name ) const; 
+  inline Grid_continuous_property* get_property( const std::string& name ); 
+  inline const Grid_continuous_property* get_property( const std::string& name ) const; 
   /** Retrieve a property. Overloaded to enable faster access. 
    * @return 0 if the property can not be retrieved
    */ 
-  inline GsTLGridProperty* get_property( int prop_id ); 
-  inline const GsTLGridProperty* get_property( int prop_id ) const; 
+  inline Grid_continuous_property* get_property( int prop_id ); 
+  inline const Grid_continuous_property* get_property( int prop_id ) const; 
  
   /** Retrieve a weight property 
    * @return 0 if the property can not be retrieved
@@ -225,21 +225,21 @@ class GRID_DECL Grid_property_manager : public GsTL_object_item {
   /** Retrieve a categorical property
    * @return 0 if the categorical property can not be retrieved
    */
-  inline GsTLGridCategoricalProperty* get_categorical_property( const std::string& name );
-  inline const GsTLGridCategoricalProperty* get_categorical_property( const std::string& name ) const;
+  inline Grid_categorical_property* get_categorical_property( const std::string& name );
+  inline const Grid_categorical_property* get_categorical_property( const std::string& name ) const;
   /** Retrieve a categorical property. Overloaded to enable faster access.
    * @return 0 if the categorical property can not be retrieved
    */
-  inline GsTLGridCategoricalProperty* get_categorical_property( int prop_id );
-  inline const GsTLGridCategoricalProperty* get_categorical_property( int prop_id ) const;
+  inline Grid_categorical_property* get_categorical_property( int prop_id );
+  inline const Grid_categorical_property* get_categorical_property( int prop_id ) const;
 
   /** Selects a property. That property becomes the default property 
    * @return 0 if the property can not be retrieved
    */ 
-  inline GsTLGridProperty* select_property( const std::string& name ); 
-  inline GsTLGridProperty* select_property( int prop_id ); 
-  inline GsTLGridProperty* selected_property(); 
-  inline const GsTLGridProperty* selected_property() const; 
+  inline Grid_continuous_property* select_property( const std::string& name ); 
+  inline Grid_continuous_property* select_property( int prop_id ); 
+  inline Grid_continuous_property* selected_property(); 
+  inline const Grid_continuous_property* selected_property() const; 
  
   class Property_name_iterator; 
   Property_name_iterator names_begin() const ; 
@@ -280,7 +280,7 @@ protected:
  
   GsTLInt size_; 
   std::map< std::string, int > properties_map_; 
-  std::vector< GsTLGridProperty* > properties_; 
+  std::vector< Grid_continuous_property* > properties_; 
   int selected_property_; 
 
   typedef std::map< std::string, MultiRealization_property > MultirealProperty_map; 
@@ -322,7 +322,7 @@ private:
 //   Definition of inline functions 
  
  
-inline GsTLGridProperty*  
+inline Grid_continuous_property*  
 Grid_property_manager::get_property( const std::string& name ) { 
   Property_map::iterator it = properties_map_.find(name); 
   if( it != properties_map_.end() )  
@@ -331,7 +331,7 @@ Grid_property_manager::get_property( const std::string& name ) {
     return 0; 
 } 
  
-inline const GsTLGridProperty*  
+inline const Grid_continuous_property*  
 Grid_property_manager::get_property( const std::string& name ) const { 
   if( name.empty() ) return 0; 
  
@@ -342,13 +342,13 @@ Grid_property_manager::get_property( const std::string& name ) const {
     return 0; 
 } 
  
-inline GsTLGridProperty*  
+inline Grid_continuous_property*  
 Grid_property_manager::get_property( int prop_id ) { 
   appli_assert( prop_id < (int) properties_.size() ); 
   return properties_[prop_id]; 
 } 
  
-inline const GsTLGridProperty*  
+inline const Grid_continuous_property*  
 Grid_property_manager::get_property( int prop_id ) const { 
   appli_assert( prop_id < (int) properties_.size() ); 
   return properties_[prop_id]; 
@@ -390,41 +390,41 @@ Grid_property_manager::get_weight_property( int prop_id ) const {
  
 
 
-inline GsTLGridCategoricalProperty*
+inline Grid_categorical_property*
 Grid_property_manager::get_categorical_property( const std::string& name ) {
   Property_map::iterator it = properties_map_.find(name);
   if( it != properties_map_.end() )  {
-	return  dynamic_cast<GsTLGridCategoricalProperty*>(properties_[ it->second ]);
+	return  dynamic_cast<Grid_categorical_property*>(properties_[ it->second ]);
   }
   else
     return 0;
 }
 
-inline const GsTLGridCategoricalProperty*
+inline const Grid_categorical_property*
 Grid_property_manager::get_categorical_property( const std::string& name ) const {
   if( name.empty() ) return 0;
 
   Property_map::const_iterator it = properties_map_.find(name);
   if( it != properties_map_.end() )
-    return dynamic_cast<GsTLGridCategoricalProperty*>(properties_[ it->second ]);
+    return dynamic_cast<Grid_categorical_property*>(properties_[ it->second ]);
   else
     return 0;
 }
 
-inline GsTLGridCategoricalProperty*
+inline Grid_categorical_property*
 Grid_property_manager::get_categorical_property( int prop_id ) {
   appli_assert( prop_id < (int) properties_.size() );
-  return dynamic_cast<GsTLGridCategoricalProperty*>(properties_[ prop_id ]);;
+  return dynamic_cast<Grid_categorical_property*>(properties_[ prop_id ]);;
 }
 
-inline const GsTLGridCategoricalProperty*
+inline const Grid_categorical_property*
 Grid_property_manager::get_categorical_property( int prop_id ) const {
   appli_assert( prop_id < (int) properties_.size() );
-  return  dynamic_cast<GsTLGridCategoricalProperty*>(properties_[prop_id ]);
+  return  dynamic_cast<Grid_categorical_property*>(properties_[prop_id ]);
 }
 
 
-inline GsTLGridProperty*  
+inline Grid_continuous_property*  
 Grid_property_manager::select_property( const std::string& name ) { 
   if( name.empty() ) return 0; 
  
@@ -437,14 +437,14 @@ Grid_property_manager::select_property( const std::string& name ) {
     return 0; 
 } 
  
-inline GsTLGridProperty*  
+inline Grid_continuous_property*  
 Grid_property_manager::select_property( int prop_id ) { 
   appli_assert( prop_id < (int) properties_.size() ); 
   selected_property_ = prop_id; 
   return properties_[prop_id]; 
 } 
  
-inline GsTLGridProperty*  
+inline Grid_continuous_property*  
 Grid_property_manager::selected_property() { 
   if( selected_property_ >=0 ) 
     return properties_[ selected_property_ ] ; 
@@ -452,7 +452,7 @@ Grid_property_manager::selected_property() {
     return 0; 
 } 
  
-inline const GsTLGridProperty*  
+inline const Grid_continuous_property*  
 Grid_property_manager::selected_property() const { 
   if( selected_property_ >=0 ) 
     return properties_[ selected_property_ ] ; 

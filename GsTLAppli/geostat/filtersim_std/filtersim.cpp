@@ -242,7 +242,7 @@ int Filtersim_Std::execute( GsTL_project* proj )
 		if( ! progress_notifier->notify() ) return 1;
 		
         // add new property
-		GsTLGridProperty* prop = multireal_property_->new_realization();
+		Grid_continuous_property* prop = multireal_property_->new_realization();
 
         bool not_success = simulate_one_realization( progress_notifier, prop, nreal );
         if ( not_success )    return not_success;
@@ -606,7 +606,7 @@ bool Filtersim_Std::get_soft_data( const Parameters_handler* parameters,
         for( vector< string >::const_iterator it = prop_names.begin();
                     it != prop_names.end(); ++it ) 
         {
-            GsTLGridProperty* prop = simul_grid_->property( *it );
+            Grid_continuous_property* prop = simul_grid_->property( *it );
             if( !prop ) 
             {
                 error_mesgs->report( "SoftData_properties", "The given soft does not exist" );
@@ -1262,7 +1262,7 @@ void Filtersim_Std::init_random_path()
  */
 void Filtersim_Std::copy_pre_simulation_data()
 {
-    GsTLGridProperty* prop = simul_grid_->selected_property();
+    Grid_continuous_property* prop = simul_grid_->selected_property();
     
     for (int i=0; i<simul_grid_->nxyz(); i++) 
     {
@@ -1304,7 +1304,7 @@ void Filtersim_Std::set_region_indicator()
  * function to remove the simulation property when
  * this program abort
  */
-void Filtersim_Std::clean( GsTLGridProperty* prop ) 
+void Filtersim_Std::clean( Grid_continuous_property* prop ) 
 {
 	if( prop ) 
 		simul_grid_->remove_property( prop->name() );
@@ -1336,7 +1336,7 @@ void Filtersim_Std::get_filter_score_weight()
  * main function to perform simulation for one realization
  */
 bool Filtersim_Std::simulate_one_realization( SmartPtr<Progress_notifier>& progress_notifier, 
-                                             GsTLGridProperty* prop, int nreal )
+                                             Grid_continuous_property* prop, int nreal )
 {
     simul_grid_->select_property( prop->name() );
     simul_grid_->set_level(1);	
@@ -1861,7 +1861,7 @@ bool Filtersim_Std::simulate_one_realization( SmartPtr<Progress_notifier>& progr
 /*
  * function to record the intermediate result in the corresponding coarse grid
  */
-void Filtersim_Std::record_intermediate_sim( GsTLGridProperty* prop, int ncoarse, string dual )
+void Filtersim_Std::record_intermediate_sim( Grid_continuous_property* prop, int ncoarse, string dual )
 {
     // initialize the property name to be recorded
     string  previous_prop;
@@ -1875,7 +1875,7 @@ void Filtersim_Std::record_intermediate_sim( GsTLGridProperty* prop, int ncoarse
 
     // select the property to be saved, 
     // if the property does not exit, add the property to current object
-    GsTLGridProperty* prop2 = simul_grid_->select_property( previous_prop );
+    Grid_continuous_property* prop2 = simul_grid_->select_property( previous_prop );
     if ( !prop2 )   prop2 = geostat_utils::add_property_to_grid(simul_grid_,previous_prop);
 
     // record the data property
@@ -1892,7 +1892,7 @@ void Filtersim_Std::record_intermediate_sim( GsTLGridProperty* prop, int ncoarse
 /*
  * function to paste the 2nd to finest grid with dual template
  */
-void Filtersim_Std::fillin_with_dual_template( GsTLGridProperty* prop, 
+void Filtersim_Std::fillin_with_dual_template( Grid_continuous_property* prop, 
                                                                      Pattern_Node_Map& mapping, int ncoarse )
 {
     GsTLcout << "Fill-in the 2nd multiple grid with dual-template !" << gstlIO::end;

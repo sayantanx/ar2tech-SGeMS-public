@@ -68,7 +68,7 @@ bool NuTauModel::initialize( const Parameters_handler* parameters,
 	
 	for(std::vector< std::string >::iterator it_str = prop_name.begin(); 
     it_str != prop_name.end(); it_str++ ) {
-      GsTLGridProperty* temp = grid_->property( *it_str );
+      Grid_continuous_property* temp = grid_->property( *it_str );
     if( !temp ) {
 	    errors->report( "props", "One property name does not exist" );
       for( int i=0; i < props_.size(); i++ ) grid_->remove_property(props_[i]->name());
@@ -139,7 +139,7 @@ bool NuTauModel::initialize( const Parameters_handler* parameters,
 		return false;
       }
       for( int i=0; i<tau_names.size(); i++ ) {
-        GsTLGridProperty* temp_prop = grid_->property(tau_names[i]);
+        Grid_continuous_property* temp_prop = grid_->property(tau_names[i]);
         if( !temp_prop ) {
           errors->report("redun_prop","Non existing property" );
           return false;

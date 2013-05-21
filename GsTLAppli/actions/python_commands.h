@@ -116,8 +116,8 @@ static PyObject* sgems_execute(PyObject *self, PyObject *args)
 }
 
 
-static GsTLGridProperty* get_coordinates( Geostat_grid* grid, int coord ) {
-  GsTLGridProperty* prop = new GsTLGridProperty(grid->size(), "coord" );
+static Grid_continuous_property* get_coordinates( Geostat_grid* grid, int coord ) {
+  Grid_continuous_property* prop = new Grid_continuous_property(grid->size(), "coord" );
   for( int i=0; i < grid->size() ; i++ ) {
     Geostat_grid::location_type loc = grid->location( i );
     prop->set_value( loc[coord], i );
@@ -148,7 +148,7 @@ static PyObject* sgems_get_property( PyObject *self, PyObject *args)
   }
 
   bool delete_prop = false;
-  GsTLGridProperty* prop = 0;
+  Grid_continuous_property* prop = 0;
   if( prop_name == "_X_" ) {
     prop = get_coordinates( grid, 0 );
     delete_prop = true;
@@ -176,7 +176,7 @@ static PyObject* sgems_get_property( PyObject *self, PyObject *args)
   PyObject *list = PyList_New(prop->size());
   
   for ( int i = 0; i < prop->size(); i++) {
-	  float val = GsTLGridProperty::no_data_value;
+	  float val = Grid_continuous_property::no_data_value;
 	  if( prop->is_informed( i ) )
 		  val = prop->get_value( i );
 	  PyObject* item = Py_BuildValue("f", val);
@@ -220,7 +220,7 @@ static PyObject* sgems_set_property( PyObject *self, PyObject *args)
   }
 
 
-  GsTLGridProperty* prop = grid->property( prop_name );
+  Grid_continuous_property* prop = grid->property( prop_name );
   if( !prop ) {
     prop = grid->add_property( prop_name );
   }
@@ -271,7 +271,7 @@ static PyObject* sgems_set_weight_property( PyObject *self, PyObject *args)
   }
 
 
-  GsTLGridProperty* prop = grid->property( prop_name );
+  Grid_continuous_property* prop = grid->property( prop_name );
   if( !prop ) {
     prop = grid->add_weight_property( prop_name );
   }
@@ -318,7 +318,7 @@ static PyObject* sgems_get_weight_property( PyObject *self, PyObject *args)
   }
 
   bool delete_prop = false;
-  GsTLGridProperty* prop =  grid->weight_property( prop_name );
+  Grid_continuous_property* prop =  grid->weight_property( prop_name );
 
   if( !prop ) {
     *GsTLAppli_Python_cerr::instance() << "Grid \"" << object 
@@ -333,7 +333,7 @@ static PyObject* sgems_get_weight_property( PyObject *self, PyObject *args)
   PyObject *list = PyList_New(prop->size());
   
   for ( int i = 0; i < prop->size(); i++) {
-	  float val = GsTLGridProperty::no_data_value;
+	  float val = Grid_continuous_property::no_data_value;
 	  if( prop->is_informed( i ) )
 		  val = prop->get_value( i );
 	  PyObject* item = Py_BuildValue("f", val);
@@ -386,12 +386,12 @@ static PyObject* sgems_set_categorical_property_alpha( PyObject *self, PyObject 
     dynamic_cast<CategoricalPropertyDefinitionName*>(ni.raw_ptr());
 
 
-  GsTLGridCategoricalProperty* prop = grid->categorical_property( prop_name );
+  Grid_categorical_property* prop = grid->categorical_property( prop_name );
   if( !prop ) {
     prop = grid->add_categorical_property( prop_name );
   }
   else {
-	  prop = dynamic_cast<GsTLGridCategoricalProperty*>(prop);
+	  prop = dynamic_cast<Grid_categorical_property*>(prop);
   }
   if( !prop ) return Py_None;
 
@@ -487,12 +487,12 @@ static PyObject* sgems_set_categorical_property_integer( PyObject *self, PyObjec
     return Py_None;
   }
 
-  GsTLGridCategoricalProperty* prop = grid->categorical_property( prop_name );
+  Grid_categorical_property* prop = grid->categorical_property( prop_name );
   if( !prop ) {
     prop = grid->add_categorical_property( prop_name );
   }
   else {
-	  prop = dynamic_cast<GsTLGridCategoricalProperty*>(prop);
+	  prop = dynamic_cast<Grid_categorical_property*>(prop);
   }
   if( !prop ) return Py_None;
   prop->set_category_definition(cat_def_name);
@@ -537,7 +537,7 @@ static PyObject* sgems_get_categorical_definition( PyObject *self, PyObject *arg
     return Py_None;
   }
 
-  GsTLGridCategoricalProperty* prop = grid->categorical_property( prop_name );
+  Grid_categorical_property* prop = grid->categorical_property( prop_name );
 
   if( !prop ) {
     *GsTLAppli_Python_cerr::instance() << "Grid \"" << object
@@ -712,7 +712,7 @@ static PyObject* sgems_set_active_region( PyObject *self, PyObject *args)
 
 static PyObject* get_nan_value( PyObject *self, PyObject *args)
 {
-  PyObject* nan = Py_BuildValue("f", GsTLGridProperty::no_data_value);
+  PyObject* nan = Py_BuildValue("f", Grid_continuous_property::no_data_value);
   Py_INCREF(nan);
 	return nan;
 }

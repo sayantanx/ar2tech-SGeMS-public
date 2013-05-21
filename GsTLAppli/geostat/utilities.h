@@ -216,7 +216,7 @@ namespace geostat_utils {
   GEOSTAT_DECL NeighborhoodHandle
     init_secondary_neighborhood( Cokriging_type type, 
                                  Geostat_grid* hdata_grid,
-                                 const GsTLGridProperty* secondary_prop,
+                                 const Grid_continuous_property* secondary_prop,
                                  const Parameters_handler* parameters = 0, 
                                  Error_messages_handler* errors = 0,
                                  const std::string& max_size_tag = "",
@@ -309,11 +309,11 @@ namespace geostat_utils {
   * The returned pointer is ensured to be non-null. The actual name of the new
   * function can be accessed from the returned property:
   * \code
-  * GsTLGridProperty* new_prop = add_property_to_grid( grid, name );
+  * Grid_continuous_property* new_prop = add_property_to_grid( grid, name );
   * std::string actual_name = new_prop->name();
   * \endcode
   */
-  GEOSTAT_DECL GsTLGridProperty* 
+  GEOSTAT_DECL Grid_continuous_property* 
     add_property_to_grid( Geostat_grid* grid, 
                           const std::string& prop_name );
 
@@ -329,11 +329,11 @@ namespace geostat_utils {
   * The returned pointer is ensured to be non-null. The actual name of the new
   * function can be accessed from the returned property:
   * \code
-  * GsTLGridProperty* new_prop = add_property_to_grid( grid, name );
+  * Grid_continuous_property* new_prop = add_property_to_grid( grid, name );
   * std::string actual_name = new_prop->name();
   * \endcode
   */
-  GEOSTAT_DECL GsTLGridCategoricalProperty* 
+  GEOSTAT_DECL Grid_categorical_property* 
     add_categorical_property_to_grid( Geostat_grid* grid, 
                           const std::string& prop_name, std::string cdef_name="Default" );
 
@@ -425,9 +425,9 @@ namespace geostat_utils {
 
 
   template < class InputIterator, class Cdf >
-  GsTLGridProperty* gaussian_transform_property( InputIterator original_distribution_begin,
+  Grid_continuous_property* gaussian_transform_property( InputIterator original_distribution_begin,
                                                  InputIterator original_distribution_end,
-                                                 GsTLGridProperty* original_prop,
+                                                 Grid_continuous_property* original_prop,
                                                  Cdf& original_cdf,
                                                  Geostat_grid* grid ) {
     build_cdf_copy( original_distribution_begin, original_distribution_end,
@@ -436,7 +436,7 @@ namespace geostat_utils {
     std::string transformed_prop_name = 
       "__" + original_prop->name() + "transformed__";
 
-    GsTLGridProperty* transf_prop = 
+    Grid_continuous_property* transf_prop = 
       geostat_utils::add_property_to_grid( grid, transformed_prop_name );
     appli_assert( transf_prop );
 
@@ -465,13 +465,13 @@ namespace geostat_utils {
   */
 
   template < class Cdf >
-  GsTLGridProperty* gaussian_transform_property( GsTLGridProperty* original_prop,
+  Grid_continuous_property* gaussian_transform_property( Grid_continuous_property* original_prop,
                                                  Cdf& original_cdf,
                                                  Geostat_grid* grid ) {
     std::string transformed_prop_name = 
       "__" + original_prop->name() + "transformed__";
 
-    GsTLGridProperty* transf_prop = 
+    Grid_continuous_property* transf_prop = 
       geostat_utils::add_property_to_grid( grid, transformed_prop_name );
     appli_assert( transf_prop );
 
@@ -496,7 +496,7 @@ namespace geostat_utils {
 // cdf to the target cdf	
 
 template<class Cdf1, class Cdf2>
-void cdf_transform( GsTLGridProperty* prop, Cdf1 cdf_source, Cdf2 cdf_target )
+void cdf_transform( Grid_continuous_property* prop, Cdf1 cdf_source, Cdf2 cdf_target )
 {
 	for( int node_id=0; node_id< prop->size(); node_id++ )
 	{
@@ -555,7 +555,7 @@ void cdf_transform( GsTLGridProperty* prop, Cdf1 cdf_source, Cdf2 cdf_target )
 namespace distribution_utils {
 
 
-GEOSTAT_DECL void cdf_transform( GsTLGridProperty* prop, 
+GEOSTAT_DECL void cdf_transform( Grid_continuous_property* prop, 
           Continuous_distribution* cdf_source, 
           Continuous_distribution* cdf_target );
 /*
@@ -570,14 +570,14 @@ GEOSTAT_DECL void cdf_transform( GsTLGridProperty* prop,
 }
 */
 
-GEOSTAT_DECL GsTLGridProperty* gaussian_transform_property( GsTLGridProperty* original_prop,
+GEOSTAT_DECL Grid_continuous_property* gaussian_transform_property( Grid_continuous_property* original_prop,
                                                  Continuous_distribution* cdf_source,
                                                  Geostat_grid* grid );
 /*{
     std::string transformed_prop_name = 
       "__" + original_prop->name() + "transformed__";
 
-    GsTLGridProperty* transf_prop = 
+    Grid_continuous_property* transf_prop = 
       geostat_utils::add_property_to_grid( grid, transformed_prop_name );
     appli_assert( transf_prop );
 
@@ -705,30 +705,30 @@ public:
 
 class GEOSTAT_DECL Drift_function_impl : public Trend_function_impl {
 public:
-	Drift_function_impl(const Geostat_grid* grid, const GsTLGridProperty* prop) {
+	Drift_function_impl(const Geostat_grid* grid, const Grid_continuous_property* prop) {
 		drift_[grid] = prop;
 	}
-	Drift_function_impl(const Geostat_grid* grid1, const GsTLGridProperty* prop1,
-						const Geostat_grid* grid2, const GsTLGridProperty* prop2){
+	Drift_function_impl(const Geostat_grid* grid1, const Grid_continuous_property* prop1,
+						const Geostat_grid* grid2, const Grid_continuous_property* prop2){
 		drift_[grid1] = prop1;
 		drift_[grid2] = prop2;
 	}
-	Drift_function_impl(std::map<const Geostat_grid*,const GsTLGridProperty*> drift){
+	Drift_function_impl(std::map<const Geostat_grid*,const Grid_continuous_property*> drift){
 		drift_ = drift;
 	}
-	void add_drift_property(const Geostat_grid* grid, const GsTLGridProperty* prop){
+	void add_drift_property(const Geostat_grid* grid, const Grid_continuous_property* prop){
 		drift_[grid] = prop;
 	}
 
 	virtual double operator()(const Geovalue& gval)  const {
-		std::map<const Geostat_grid*,const GsTLGridProperty*>::const_iterator it = drift_.find(gval.grid());
+		std::map<const Geostat_grid*,const Grid_continuous_property*>::const_iterator it = drift_.find(gval.grid());
 		return it->second->get_value(gval.node_id());
 	}
 
 	virtual Trend_function_impl* clone(){return new Drift_function_impl(drift_);}
 
 protected :
-	std::map<const Geostat_grid*,const GsTLGridProperty*> drift_;
+	std::map<const Geostat_grid*,const Grid_continuous_property*> drift_;
 };
 
 class GEOSTAT_DECL Trend_functor{

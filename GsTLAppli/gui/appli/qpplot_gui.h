@@ -63,7 +63,7 @@
 #include <QLabel>
 
 class GsTL_project;
-class GsTLGridProperty;
+class Grid_continuous_property;
 class Grid_region;
 class QPplot_control_panel;
 class QLabel;
@@ -86,10 +86,10 @@ public slots:
   void update_var2_high_clip( float );
   void reset_var1_clipping_values();
   void reset_var2_clipping_values();
-//  void get_var1_data_from( const GsTLGridProperty* );
-//  void get_var2_data_from( const GsTLGridProperty* );
-  void get_var1_data_from(  GsTLGridProperty*, const Grid_region* = NULL );
-  void get_var2_data_from(  GsTLGridProperty*, const Grid_region* = NULL );
+//  void get_var1_data_from( const Grid_continuous_property* );
+//  void get_var2_data_from( const Grid_continuous_property* );
+  void get_var1_data_from(  Grid_continuous_property*, const Grid_region* = NULL );
+  void get_var2_data_from(  Grid_continuous_property*, const Grid_region* = NULL );
   void set_analysis_type( const QString& type );
 
 protected:
@@ -100,13 +100,13 @@ protected:
 
   //TL modified
   void build_stats();
-//  GsTLGridProperty* get_property( const PropertySelector* );
+//  Grid_continuous_property* get_property( const PropertySelector* );
 
 // When the two same properties are selected
 // there is a riks that the original
 // active region will be lost
-//  GsTLGridProperty* prop1_;
-//  GsTLGridProperty* prop2_;
+//  Grid_continuous_property* prop1_;
+//  Grid_continuous_property* prop2_;
 
 protected:
   QPplot_control_panel* control_panel_;

@@ -72,7 +72,7 @@ class Geostat_grid;
 class GsTL_project;
 //class Cdf;
 
-typedef std::vector< GsTLGridProperty* > prop_vecT;
+typedef std::vector< Grid_continuous_property* > prop_vecT;
 
 class  PostKriging : public Geostat_algo {
  public:
@@ -110,21 +110,21 @@ class  PostKriging : public Geostat_algo {
 	bool prob_below_;
 	bool quantile_;
 
-	GsTLGridProperty*  mean_prop_;
-	GsTLGridProperty*  iqr_prop_;
-	GsTLGridProperty*  cond_var_prop_;
-	std::vector<GsTLGridProperty*>  quantile_props_;
-	std::vector<GsTLGridProperty*>  prob_above_props_;
-	std::vector<GsTLGridProperty*>  prob_below_props_;
+	Grid_continuous_property*  mean_prop_;
+	Grid_continuous_property*  iqr_prop_;
+	Grid_continuous_property*  cond_var_prop_;
+	std::vector<Grid_continuous_property*>  quantile_props_;
+	std::vector<Grid_continuous_property*>  prob_above_props_;
+	std::vector<Grid_continuous_property*>  prob_below_props_;
 
 	std::vector<float> quantile_vals_;
 	std::vector<float> prob_above_vals_;
 	std::vector<float> prob_below_vals_;
 
-	void initialize_operation(std::vector<GsTLGridProperty*>& props, std::vector<float>& vals,
+	void initialize_operation(std::vector<Grid_continuous_property*>& props, std::vector<float>& vals,
 		Error_messages_handler* errors, const Parameters_handler* parameters, std::string base_name);
 
-	void initialize_operation(GsTLGridProperty*& props,Error_messages_handler* errors, 
+	void initialize_operation(Grid_continuous_property*& props,Error_messages_handler* errors, 
 		const Parameters_handler* parameters, std::string base_name);
 
   void check_input_string(Error_messages_handler* errors, 

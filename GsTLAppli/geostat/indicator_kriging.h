@@ -100,7 +100,7 @@ class GEOSTAT_DECL Indicator_kriging : public Geostat_algo {
   MultiRealization_property* multireal_property_; 
    
   Geostat_grid* hdata_grid_; 
-  std::vector< GsTLGridProperty* > hdata_properties_; 
+  std::vector< Grid_continuous_property* > hdata_properties_; 
  
   Non_parametric_cdf<float>* ccdf_; 
   std::vector<double> marginal_probs_; 

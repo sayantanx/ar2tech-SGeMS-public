@@ -64,7 +64,7 @@
 
 class Discrete_function;
 class RGrid;
-class GsTLGridProperty;
+class Grid_continuous_property;
 class Progress_notifier;
 class Correlation_measure;
 
@@ -73,8 +73,8 @@ class GEOSTAT_DECL Grid_variog_computer {
 public:
   Grid_variog_computer();
   Grid_variog_computer( RGrid *grid, 
-                        GsTLGridProperty* head_prop, 
-                        GsTLGridProperty* tail_prop );
+                        Grid_continuous_property* head_prop, 
+                        Grid_continuous_property* tail_prop );
   ~Grid_variog_computer(){}    
 
   bool standardize() const { return standardize_; }
@@ -91,8 +91,8 @@ protected:
 
 protected: 
   const RGrid *grid_;
-  const GsTLGridProperty* head_prop_;    
-  const GsTLGridProperty* tail_prop_;    
+  const Grid_continuous_property* head_prop_;    
+  const Grid_continuous_property* tail_prop_;    
   bool standardize_;
 
 };

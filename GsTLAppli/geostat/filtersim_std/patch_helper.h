@@ -80,7 +80,7 @@ class Patch_Helper
 public:
     Patch_Helper( RGrid* simu_grid, vector<bool>& region, bool has_hard_data=false );
     Patch_Helper( RGrid* simu_grid, bool has_hard_data=false );
-    Patch_Helper( GsTLGridProperty* prop );
+    Patch_Helper( Grid_continuous_property* prop );
     Patch_Helper( Patch_Helper& rhs );
     ~Patch_Helper(){};
 

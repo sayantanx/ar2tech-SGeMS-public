@@ -69,8 +69,8 @@
  
 
 
-class GsTLGridProperty;
-class GsTLGridCategoricalProperty;
+class Grid_continuous_property;
+class Grid_categorical_property;
 class Point_set_neighborhood; 
  
  
@@ -100,9 +100,9 @@ class GRID_DECL Point_set : public Geostat_grid {
 
   //----------------------------
   // Properties management 
-  virtual GsTLGridProperty* add_property( const std::string& name );
+  virtual Grid_continuous_property* add_property( const std::string& name );
 
-  virtual GsTLGridProperty* add_property_from_disk( const std::string& name,
+  virtual Grid_continuous_property* add_property_from_disk( const std::string& name,
 													const std::string& filename );
  
  
@@ -111,11 +111,11 @@ class GRID_DECL Point_set : public Geostat_grid {
   virtual GsTLGridWeightProperty* add_weight_property_from_disk( 
           const std::string& name,const std::string& filename );
 
-  virtual GsTLGridCategoricalProperty* add_categorical_property(
+  virtual Grid_categorical_property* add_categorical_property(
 			  const std::string& name,
 			  const std::string& definition_name = "Default");
 
-  virtual GsTLGridCategoricalProperty* add_categorical_property_from_disk(
+  virtual Grid_categorical_property* add_categorical_property_from_disk(
 			  const std::string& name,const std::string& filename,
 			  const std::string& definition_name = "Default");
 
@@ -126,15 +126,15 @@ class GRID_DECL Point_set : public Geostat_grid {
    * the property the grid operates on by default: iterators returned 
    * by begin(), end() will iterate on the default property. 
    */ 
-  virtual GsTLGridProperty* select_property( const std::string& name ); 
-  virtual const GsTLGridProperty* selected_property() const; 
-  virtual GsTLGridProperty* selected_property(); 
+  virtual Grid_continuous_property* select_property( const std::string& name ); 
+  virtual const Grid_continuous_property* selected_property() const; 
+  virtual Grid_continuous_property* selected_property(); 
  
-  virtual const GsTLGridProperty* property( const std::string& name ) const; 
-  virtual GsTLGridProperty* property( const std::string& name ); 
+  virtual const Grid_continuous_property* property( const std::string& name ) const; 
+  virtual Grid_continuous_property* property( const std::string& name ); 
  
-  virtual const GsTLGridCategoricalProperty* categorical_property( const std::string& name ) const;
-  virtual GsTLGridCategoricalProperty* categorical_property( const std::string& name );
+  virtual const Grid_categorical_property* categorical_property( const std::string& name ) const;
+  virtual Grid_categorical_property* categorical_property( const std::string& name );
 
   virtual const GsTLGridWeightProperty* weight_property( const std::string& name ) const;
   virtual GsTLGridWeightProperty* weight_property( const std::string& name );
@@ -207,14 +207,14 @@ class GRID_DECL Point_set : public Geostat_grid {
   /** returns an iterator to the begining of the current region, 
    * iterating on the current selected property. 
    */ 
-  virtual iterator begin( GsTLGridProperty* prop = 0 ); 
-  virtual iterator end( GsTLGridProperty* prop = 0 ); 
-  virtual const_iterator begin( const GsTLGridProperty* prop = 0 ) const; 
-  virtual const_iterator end( const GsTLGridProperty* prop = 0 ) const ; 
+  virtual iterator begin( Grid_continuous_property* prop = 0 ); 
+  virtual iterator end( Grid_continuous_property* prop = 0 ); 
+  virtual const_iterator begin( const Grid_continuous_property* prop = 0 ) const; 
+  virtual const_iterator end( const Grid_continuous_property* prop = 0 ) const ; 
  
   virtual void init_random_path( bool from_scratch = true );
-  virtual random_path_iterator random_path_begin( GsTLGridProperty* prop = 0 );
-  virtual random_path_iterator random_path_end( GsTLGridProperty* prop = 0 );
+  virtual random_path_iterator random_path_begin( Grid_continuous_property* prop = 0 );
+  virtual random_path_iterator random_path_end( Grid_continuous_property* prop = 0 );
  
  
   /** Computes the location of a node, given its node_id. 
@@ -280,18 +280,18 @@ Geovalue Point_set:: geovalue(int node_id)
 } 
  
 inline 
-GsTLGridProperty* Point_set::select_property( const std::string& name ) 
+Grid_continuous_property* Point_set::select_property( const std::string& name ) 
 { 
-   GsTLGridProperty* prop = point_prop_.select_property( name );
+   Grid_continuous_property* prop = point_prop_.select_property( name );
    return prop; 
 } 
  
  
-inline const GsTLGridProperty* Point_set::selected_property() const { 
+inline const Grid_continuous_property* Point_set::selected_property() const { 
   return point_prop_.selected_property();
 } 
  
-inline GsTLGridProperty* Point_set::selected_property() { 
+inline Grid_continuous_property* Point_set::selected_property() { 
   return point_prop_.selected_property();
 } 
  
@@ -310,14 +310,14 @@ Point_set::location_type Point_set::xyz_location( int node_id ) const {
  
  
 inline 
-const GsTLGridProperty* Point_set::property( const std::string& name ) const 
+const Grid_continuous_property* Point_set::property( const std::string& name ) const 
 { 
     return point_prop_.get_property( name );
 } 
  
  
 inline 
-GsTLGridProperty* Point_set::property( const std::string& name )  
+Grid_continuous_property* Point_set::property( const std::string& name )  
 { 
     return point_prop_.get_property( name );
 } 
@@ -336,12 +336,12 @@ GsTLGridWeightProperty* Point_set::weight_property( const std::string& name )
 } 
 
 inline
-const GsTLGridCategoricalProperty* Point_set::categorical_property( const std::string& name ) const{
+const Grid_categorical_property* Point_set::categorical_property( const std::string& name ) const{
 	 return point_prop_.get_categorical_property( name );
 }
 
 inline
-GsTLGridCategoricalProperty* Point_set::categorical_property( const std::string& name ){
+Grid_categorical_property* Point_set::categorical_property( const std::string& name ){
 	return point_prop_.get_categorical_property( name );
 }
  
@@ -391,8 +391,8 @@ inline bool Point_set::is_inside_selected_region(int node_id) const {
 
  
 inline 
-Point_set::iterator Point_set::begin( GsTLGridProperty* prop ){ 
-  GsTLGridProperty* property = prop;
+Point_set::iterator Point_set::begin( Grid_continuous_property* prop ){ 
+  Grid_continuous_property* property = prop;
   if( !prop )
     property = point_prop_.selected_property();
 
@@ -400,8 +400,8 @@ Point_set::iterator Point_set::begin( GsTLGridProperty* prop ){
 		               0,xyz_point_loc_.size(), LinearMapIndex() ); 
 } 
 inline 
-Point_set::iterator Point_set::end( GsTLGridProperty* prop ){ 
-  GsTLGridProperty* property = prop;
+Point_set::iterator Point_set::end( Grid_continuous_property* prop ){ 
+  Grid_continuous_property* property = prop;
   if( !prop )
     property = point_prop_.selected_property();
 
@@ -411,8 +411,8 @@ Point_set::iterator Point_set::end( GsTLGridProperty* prop ){
  
 
 inline 
-Point_set::const_iterator Point_set::begin( const GsTLGridProperty* prop ) const { 
-  const GsTLGridProperty* property = prop;
+Point_set::const_iterator Point_set::begin( const Grid_continuous_property* prop ) const { 
+  const Grid_continuous_property* property = prop;
   if( !prop )
     property = point_prop_.selected_property();
 
@@ -421,8 +421,8 @@ Point_set::const_iterator Point_set::begin( const GsTLGridProperty* prop ) const
                    LinearMapIndex() ); 
 } 
 inline 
-Point_set::const_iterator Point_set::end( const GsTLGridProperty* prop ) const { 
-  const GsTLGridProperty* property = prop;
+Point_set::const_iterator Point_set::end( const Grid_continuous_property* prop ) const { 
+  const Grid_continuous_property* property = prop;
   if( !prop )
     property = point_prop_.selected_property();
 

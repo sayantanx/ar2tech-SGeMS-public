@@ -44,7 +44,7 @@
 
 
 
-typedef std::pair< GsTLGridProperty*, GsTLGridProperty* > pair_propT;
+typedef std::pair< Grid_continuous_property*, Grid_continuous_property* > pair_propT;
 
 
 class Geostat_grid;
@@ -83,7 +83,7 @@ class  Moving_window : public Geostat_algo {
   int nCategory_;
   const CategoricalPropertyDefinition* catdef_;
 
-  std::vector< GsTLGridProperty* > props_;
+  std::vector< Grid_continuous_property* > props_;
 
   Grid_template create_neigh_template( int nx, int ny, int nz );
 };

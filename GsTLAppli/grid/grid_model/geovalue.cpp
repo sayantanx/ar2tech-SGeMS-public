@@ -77,7 +77,7 @@ Geovalue::Geovalue( const Geovalue& rhs )
 }
 
 
-Geovalue::Geovalue( Geostat_grid* grid, GsTLGridProperty* prop,
+Geovalue::Geovalue( Geostat_grid* grid, Grid_continuous_property* prop,
 		    int node_id )
   : grid_(grid), property_array_(prop), 
     node_id_(node_id),
@@ -107,7 +107,7 @@ Geovalue& Geovalue::operator = ( const Geovalue& rhs ) {
 }
 
 
-void Geovalue::init( Geostat_grid* grid, GsTLGridProperty* prop,
+void Geovalue::init( Geostat_grid* grid, Grid_continuous_property* prop,
 		     int node_id) {
   appli_assert( prop );
   grid_ = grid;
@@ -124,7 +124,7 @@ void Geovalue::init( Geostat_grid* grid, GsTLGridProperty* prop,
 }
 
 
-void Geovalue::set_property_array( GsTLGridProperty* prop ) {
+void Geovalue::set_property_array( Grid_continuous_property* prop ) {
   appli_assert( prop );
   property_array_ = prop;
   values_array_ = prop->data();
@@ -193,7 +193,7 @@ Const_geovalue::Const_geovalue( const Const_geovalue& rhs )
 
 
 Const_geovalue::Const_geovalue( const Geostat_grid* grid,
-                                const GsTLGridProperty* prop,
+                                const Grid_continuous_property* prop,
 		                            int node_id )
   : grid_(grid), property_array_(prop), 
     node_id_(node_id),
@@ -221,7 +221,7 @@ Const_geovalue& Const_geovalue::operator = ( const Const_geovalue& rhs ) {
 }
 
 
-void Const_geovalue::init( const Geostat_grid* grid, const GsTLGridProperty* prop,
+void Const_geovalue::init( const Geostat_grid* grid, const Grid_continuous_property* prop,
 		                 int node_id) {
   appli_assert( prop );
   grid_ = grid;
@@ -238,7 +238,7 @@ void Const_geovalue::init( const Geostat_grid* grid, const GsTLGridProperty* pro
 }
 
 
-void Const_geovalue::set_property_array( const GsTLGridProperty* prop ) {
+void Const_geovalue::set_property_array( const Grid_continuous_property* prop ) {
   appli_assert( prop );
   property_array_ = prop;
   values_array_ = prop->data();

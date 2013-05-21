@@ -73,12 +73,12 @@ public slots :
   void add_data(Histogram_item* prop_item);
   void update_data_display(Histogram_item* item);
 
-//  void add_data( GsTLGridProperty* prop, Grid_region* region=0, GsTLGridProperty* weigths=0);
+//  void add_data( Grid_continuous_property* prop, Grid_region* region=0, Grid_continuous_property* weigths=0);
 
   //Add the data to the model first which then send it to the chart
-  void add_data( GsTLGridProperty* prop);
-  void add_data( GsTLGridProperty* prop, GsTLGridWeightProperty* weigths);
-  void add_data( GsTLGridProperty* prop, Grid_region* region);
+  void add_data( Grid_continuous_property* prop);
+  void add_data( Grid_continuous_property* prop, GsTLGridWeightProperty* weigths);
+  void add_data( Grid_continuous_property* prop, Grid_region* region);
   void add_data( GsTLGridPropertyGroup* group);
   void add_data( GsTLGridPropertyGroup* group, GsTLGridWeightProperty* weigths);
   void add_data( GsTLGridPropertyGroup* group, Grid_region* region);
@@ -142,7 +142,7 @@ private:
 
   struct histo_data {
     std::string name;
-    GsTLGridProperty* prop;
+    Grid_continuous_property* prop;
     GsTLGridWeightProperty* weight;
     Grid_region* region;
     Continuous_distribution* dist;
@@ -196,7 +196,7 @@ private:
   float min_values_;
   float max_values_;
 
-  //std::map<GsTLGridProperty*, histo_data> data_stats_;
+  //std::map<Grid_continuous_property*, histo_data> data_stats_;
   std::map<int, histo_data> data_stats_;
 
   vtkSmartPointer<vtkTable> histo_table_;

@@ -43,7 +43,7 @@
 
 
 
-class GRID_DECL GsTLGridWeightProperty: public GsTLGridProperty {
+class GRID_DECL GsTLGridWeightProperty: public Grid_continuous_property {
 public:
 	GsTLGridWeightProperty( GsTLInt size, const std::string& name,
 								property_type default_value = no_data_value );

@@ -77,7 +77,7 @@ public:
 
 //  static Named_interface* create_new_interface( std::string& name);
 
-  typedef std::map<std::string, GsTLGridProperty*> property_map;
+  typedef std::map<std::string, Grid_continuous_property*> property_map;
   GsTLGridPropertyGroup();
   GsTLGridPropertyGroup(std::string name);
   virtual ~GsTLGridPropertyGroup(){}
@@ -87,17 +87,17 @@ public:
   
 
   bool is_member_property(std::string prop_name) const;
-  GsTLGridProperty* get_property(std::string prop_name);
-  GsTLGridProperty* get_property(int id);
-  const GsTLGridProperty* get_property(std::string prop_name) const;
-  const GsTLGridProperty* get_property(int id) const;
+  Grid_continuous_property* get_property(std::string prop_name);
+  Grid_continuous_property* get_property(int id);
+  const Grid_continuous_property* get_property(std::string prop_name) const;
+  const Grid_continuous_property* get_property(int id) const;
   int size() const {return properties_.size();}
   bool empty() const {return properties_.empty();}
 
-  bool add_property(GsTLGridProperty*);
-  bool remove_property(GsTLGridProperty*);
+  bool add_property(Grid_continuous_property*);
+  bool remove_property(Grid_continuous_property*);
 
-  std::vector<GsTLGridProperty::property_type> get_vector_data( int node_id ) const;
+  std::vector<Grid_continuous_property::property_type> get_vector_data( int node_id ) const;
 
   property_map::iterator begin_property(){ return properties_.begin(); }
   property_map::iterator end_property() {  return properties_.end(); }
@@ -148,9 +148,9 @@ public :
   GsTLGridPropertyGroup* get_group(const std::string& name);
   const GsTLGridPropertyGroup* get_group(const std::string& name) const;
 
-  bool add_property_to_group(GsTLGridProperty* prop, const std::string& group_name);
+  bool add_property_to_group(Grid_continuous_property* prop, const std::string& group_name);
 
-  bool remove_property_from_group(GsTLGridProperty* prop, const std::string& group_name);
+  bool remove_property_from_group(Grid_continuous_property* prop, const std::string& group_name);
 
   std::list<std::string> group_types() const;
 

@@ -167,7 +167,7 @@ select_property( const std::string& prop_name ) {
   return second_->select_property( prop_name );
 }
 
-const GsTLGridProperty* Combined_neighborhood::
+const Grid_continuous_property* Combined_neighborhood::
 selected_property() const {
   return second_->selected_property();
 }

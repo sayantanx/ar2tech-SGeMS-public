@@ -61,7 +61,7 @@
 #include <set>  // for set
 #include <cmath> // for ceil and floor
 
-#include <GsTLAppli/grid/grid_model/grid_property.h>    // for GsTLGridProperty
+#include <GsTLAppli/grid/grid_model/grid_property.h>    // for Grid_continuous_property
 
 
 bool is_number( const std::string& str ) 
@@ -93,7 +93,7 @@ template <class T>  inline bool is_categorical(T value)
 
 
 // --- check whether the current property is integer ----------------------------
-bool is_integer_prop(GsTLGridProperty* prop, int& nb_cat)
+bool is_integer_prop(Grid_continuous_property* prop, int& nb_cat)
 {
 	std::set<int> categories;
 
@@ -117,7 +117,7 @@ bool is_integer_prop(GsTLGridProperty* prop, int& nb_cat)
 // --- check whether the current property is indicator  -------------------------
 // a valid indicator must be integer, and gradually increase from 0
 // the maximun indicator must be "nb_cat-1"
-bool is_indicator_prop(GsTLGridProperty* prop, int& nb_cat)
+bool is_indicator_prop(Grid_continuous_property* prop, int& nb_cat)
 {
 
     int i, value;

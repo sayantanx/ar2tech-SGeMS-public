@@ -64,7 +64,7 @@ class GEOSTAT_DECL Declus : public Geostat_algo {
  protected: 
   typedef Geostat_grid::location_type Location; 
 
-  GsTLGridProperty* prop_;
+  Grid_continuous_property* prop_;
   Grid_region* region_;
   Geostat_grid* grid_;
 

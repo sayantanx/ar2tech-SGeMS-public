@@ -104,7 +104,7 @@ void Project_selection_model::select ( const QItemSelection & selection, QItemSe
 			return;
 		}
 
-		GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item);
+		Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item);
 		if(prop == 0) {
 			GsTL_object_property_item* object_prop = dynamic_cast<GsTL_object_property_item*>(item);
 			if(object_prop) prop = object_prop->property();
@@ -122,7 +122,7 @@ void Project_selection_model::select ( const QItemSelection & selection, QItemSe
 
 					GsTL_object_item* item_in_selection = static_cast<GsTL_object_item*>(proxy_model_->mapToSource(selected_index_list.at(i)).internalPointer());
           //GsTL_object_item* item_in_selection = static_cast<GsTL_object_item*>(selected_index_list.at(i).internalPointer());
-					GsTLGridProperty* prop_in_selection = dynamic_cast<GsTLGridProperty*>(item_in_selection);
+					Grid_continuous_property* prop_in_selection = dynamic_cast<Grid_continuous_property*>(item_in_selection);
 					if(prop_in_selection == 0) {
 						GsTL_object_property_item* object_prop_in_selection = dynamic_cast<GsTL_object_property_item*>(item_in_selection);
 						if(object_prop_in_selection) prop_in_selection = object_prop_in_selection->property();

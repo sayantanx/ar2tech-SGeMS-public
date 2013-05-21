@@ -89,9 +89,9 @@ class GEOSTAT_DECL Kriging : public Geostat_algo {
 private:
 
    void init_option_properties(std::string base_name, 
-                              GsTLGridProperty*& var_prop,GsTLGridProperty*& nsamples_prop,
-                              GsTLGridProperty*& aver_dist_prop,GsTLGridProperty*& sum_pos_prop,
-                              GsTLGridProperty*& sum_weights_prop, GsTLGridProperty*& lagrangian_prop);
+                              Grid_continuous_property*& var_prop,Grid_continuous_property*& nsamples_prop,
+                              Grid_continuous_property*& aver_dist_prop,Grid_continuous_property*& sum_pos_prop,
+                              Grid_continuous_property*& sum_weights_prop, Grid_continuous_property*& lagrangian_prop);
 
  protected: 
   typedef Geostat_grid::location_type Location; 
@@ -103,8 +103,8 @@ private:
   std::string property_name_; 
    
   Geostat_grid* harddata_grid_; 
-  GsTLGridProperty* hdata_prop_;
-  GsTLGridProperty* blk_hdata_prop_;
+  Grid_continuous_property* hdata_prop_;
+  Grid_continuous_property* blk_hdata_prop_;
   std::string harddata_property_name_;
    
   SmartPtr<Neighborhood> neighborhood_; 

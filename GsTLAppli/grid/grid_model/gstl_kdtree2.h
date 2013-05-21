@@ -69,7 +69,7 @@ class kdtree2_node;
 class searchrecord;
 
 // A Boucher
-class GsTLGridProperty; 
+class Grid_continuous_property; 
 
 //
 // struct KDTREE2_RESULT
@@ -145,7 +145,7 @@ public:
   // A Boucher:  add the property and node_id reference
 
   kdtree2(kdtree2_array& data_in,
-          const GsTLGridProperty*, const std::vector<int>*,
+          const Grid_continuous_property*, const std::vector<int>*,
                  bool rearrange_in = true,int dim_in=-1);
 
 
@@ -184,7 +184,7 @@ public:
   int r_count_around_point(int idxin, int correltime, GsTLCoord r2);
   // like r_count, c
 
-  void set_property(const GsTLGridProperty* prop);
+  void set_property(const Grid_continuous_property* prop);
 
   friend class kdtree2_node;
   friend class searchrecord;
@@ -212,12 +212,12 @@ private:
   // This reduced the number of nodes found.
   // The sorting is then faster and we do not need to sort the informed/not informed
   // after the search is performed
-  const GsTLGridProperty* prop_;
+  const Grid_continuous_property* prop_;
   const std::vector<int>* node_id_;
 
 
 private:
-  void set_data(kdtree2_array& din,  const GsTLGridProperty*& prop,
+  void set_data(kdtree2_array& din,  const Grid_continuous_property*& prop,
   const std::vector<int>*& node_id); 
   void build_tree(); // builds the tree.  Used upon construction. 
   kdtree2_node* build_tree_for_range(int l, int u, kdtree2_node* parent);
@@ -237,7 +237,7 @@ private:
 class kdtree2_node {
 public:
   // constructor
-  kdtree2_node(int dim, const GsTLGridProperty*& prop_,
+  kdtree2_node(int dim, const Grid_continuous_property*& prop_,
   const std::vector<int>*& node_id_);
   //, int cut_dim_in,
   // 	       float cut_val_in, float cut_val_left_in, 
@@ -275,7 +275,7 @@ private:
   // This reduced the number of nodes found.
   // The sorting is then faster and we do not need to sort the informed/not informed
   // after the search is performed
-  const GsTLGridProperty*& prop_;
+  const Grid_continuous_property*& prop_;
   const std::vector<int>*& node_id_;
 
 };

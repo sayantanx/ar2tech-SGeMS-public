@@ -113,13 +113,13 @@ protected :
 
 class CHARTS_DECL Categorical_histogram_property_item :public Categorical_histogram_item {
 public :
-  Categorical_histogram_property_item( GsTLGridCategoricalProperty* prop, int& id, Categorical_histogram_item* parent=0);
+  Categorical_histogram_property_item( Grid_categorical_property* prop, int& id, Categorical_histogram_item* parent=0);
   virtual ~Categorical_histogram_property_item(){}
 
   virtual QString type() const {return "CategoricalProperty";}
 
   
-  GsTLGridCategoricalProperty* prop() {return prop_;}
+  Grid_categorical_property* prop() {return prop_;}
   virtual GsTL_object_item* object_item() {return dynamic_cast<GsTL_object_item*>(prop_);}
 
   virtual GsTLGridWeightProperty* weights() {return weights_;}
@@ -145,7 +145,7 @@ public :
 private :
   
   Categorical_histogram_item* parent_;
-  GsTLGridCategoricalProperty* prop_;
+  Grid_categorical_property* prop_;
   Grid_region* region_;
   GsTLGridWeightProperty* weights_;
 
@@ -201,7 +201,7 @@ public :
   virtual QString type() const {return "CategoricalDistribution";}
 
   
-  GsTLGridCategoricalProperty* prop() {return 0;}
+  Grid_categorical_property* prop() {return 0;}
   virtual GsTL_object_item* object_item() {return dist_;}
 
   virtual GsTLGridWeightProperty* weights() {return 0;}

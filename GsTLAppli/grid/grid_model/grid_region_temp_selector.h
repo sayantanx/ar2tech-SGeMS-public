@@ -74,13 +74,13 @@ public :
   Temporary_propRegion_Selector():region_(NULL), prop_(NULL){}
 
   Temporary_propRegion_Selector(const Grid_region* new_region,
-    GsTLGridProperty* prop) {
+    Grid_continuous_property* prop) {
       set_temporary_region(new_region, prop);
   }
 
 
   void set_temporary_region(const Grid_region* new_region,
-    GsTLGridProperty* prop)  {
+    Grid_continuous_property* prop)  {
       prop_ = prop;
       region_ = prop_->get_region();
       prop_->set_region( new_region );
@@ -95,7 +95,7 @@ public :
 
 protected:
   const Grid_region* region_;
-  GsTLGridProperty* prop_;
+  Grid_continuous_property* prop_;
 
 };
 

@@ -44,7 +44,7 @@ Grid_filter* Grid_filter_category_item::create_filter() const{
   if(property_name_.isEmpty() || category_name_.isEmpty()) return 0;
 
   std::string cprop_str = property_name_.toStdString();
-  const GsTLGridCategoricalProperty* cprop = grid_->categorical_property(cprop_str);
+  const Grid_categorical_property* cprop = grid_->categorical_property(cprop_str);
   if(cprop ==0) return 0;
 
   std::string category_str = category_name_.toStdString();
@@ -60,7 +60,7 @@ Grid_filter* Grid_filter_less_than_item::create_filter() const{
   if(prop_name_.isEmpty() ) return 0;
 
   std::string prop_str = prop_name_.toStdString();
-  const GsTLGridProperty* prop = grid_->property(prop_str);
+  const Grid_continuous_property* prop = grid_->property(prop_str);
   if(prop ==0) return 0;
 
   return new Grid_filter_less_than( prop, upper_bound_);
@@ -74,7 +74,7 @@ Grid_filter* Grid_filter_greater_than_item::create_filter() const{
   if(prop_name_.isEmpty() ) return 0;
 
   std::string prop_str = prop_name_.toStdString();
-  const GsTLGridProperty* prop = grid_->property(prop_str);
+  const Grid_continuous_property* prop = grid_->property(prop_str);
   if(prop ==0) return 0;
 
   return new Grid_filter_greater_than( prop, lower_bound_);

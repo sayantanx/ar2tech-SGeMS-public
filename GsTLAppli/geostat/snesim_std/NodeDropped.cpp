@@ -74,7 +74,7 @@ void NodeDropped::GetRevisitNodes( vector<int>& grid_path_new)
 
 
 
-void NodeDropped::setDNProp( RGrid* grid, GsTLGridProperty* prop )
+void NodeDropped::setDNProp( RGrid* grid, Grid_continuous_property* prop )
 {
     SGrid_cursor  cursor = SGrid_cursor( *(grid->cursor()) );
     int node_id;

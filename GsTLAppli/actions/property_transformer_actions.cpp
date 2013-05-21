@@ -78,9 +78,9 @@ bool New_pca_transformer::init( std::string& parameters, GsTL_project* proj,
   if( !params[2].empty() )  {
     region = grid->region(params[2]);
   }
-  std::vector<const GsTLGridProperty*> props;
+  std::vector<const Grid_continuous_property*> props;
   for(int i=3; i<params.size(); ++i) {
-    GsTLGridProperty* prop = grid->property(params[i]);
+    Grid_continuous_property* prop = grid->property(params[i]);
     if(prop==0) {
       errors->report( "The property "+params[i]+" does not exist" );
       return false;
@@ -159,9 +159,9 @@ bool Multivariate_forward_transform::init( std::string& parameters, GsTL_project
   if( !params[2].empty() )  {
     region = grid->region(params[2]);
   }
-  std::vector<const GsTLGridProperty*> props;
+  std::vector<const Grid_continuous_property*> props;
   for(int i=3; i<params.size(); ++i) {
-    GsTLGridProperty* prop = grid->property(params[i]);
+    Grid_continuous_property* prop = grid->property(params[i]);
     if(prop==0) {
       errors->report( "The property "+params[i]+" does not exist" );
       return false;
@@ -230,9 +230,9 @@ bool Multivariate_back_transform::init( std::string& parameters, GsTL_project* p
   if( !params[2].empty() )  {
     region = grid->region(params[2]);
   }
-  std::vector<const GsTLGridProperty*> props;
+  std::vector<const Grid_continuous_property*> props;
   for(int i=3; i<params.size();++i) {
-    GsTLGridProperty* prop = grid->property(params[i]);
+    Grid_continuous_property* prop = grid->property(params[i]);
     if(prop==0) {
       errors->report( "The property "+params[i]+" does not exist" );
       return false;

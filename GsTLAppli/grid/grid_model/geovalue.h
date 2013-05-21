@@ -88,20 +88,20 @@ class GRID_DECL Const_geovalue {
  
   Const_geovalue(); 
   Const_geovalue( const Const_geovalue& rhs ); 
-  Const_geovalue( const Geostat_grid* grid, const GsTLGridProperty* prop,  
+  Const_geovalue( const Geostat_grid* grid, const Grid_continuous_property* prop,  
 	                int node_id ); 
  
   Const_geovalue& operator = ( const Const_geovalue& rhs ); 
 
-  void init( const Geostat_grid* grid, const GsTLGridProperty* prop, 
+  void init( const Geostat_grid* grid, const Grid_continuous_property* prop, 
 	           int node_id ); 
  
   const int& node_id() const { return node_id_; } 
   int& node_id() { return node_id_; } 
   void set_node_id( int id ) ; 
  
-  void set_property_array( const GsTLGridProperty* prop ); 
-  const GsTLGridProperty* property_array() const { return property_array_; } 
+  void set_property_array( const Grid_continuous_property* prop ); 
+  const Grid_continuous_property* property_array() const { return property_array_; } 
 
   const Geostat_grid* grid() const { return grid_; }
  
@@ -133,7 +133,7 @@ class GRID_DECL Const_geovalue {
     return property_array_->is_informed(node_id_);
 #else
     return !(boost::math::isnan)(values_array_[ node_id_ ]);
-    //return ( values_array_[ node_id_ ] != GsTLGridProperty::no_data_value );
+    //return ( values_array_[ node_id_ ] != Grid_continuous_property::no_data_value );
 #endif
   } 
    
@@ -170,7 +170,7 @@ class GRID_DECL Const_geovalue {
   static const location_type::coordinate_type invalid_coord_;
    
   const Geostat_grid* grid_; 
-  const GsTLGridProperty* property_array_; 
+  const Grid_continuous_property* property_array_; 
   const float* values_array_; 
   int node_id_; 
   mutable location_type loc_; 
@@ -195,7 +195,7 @@ class GRID_DECL Const_geovalue {
  * algorithm, hence is implemented so as to optimize performance. The grid 
  * property supplied to the Geovalue constructor has to be loaded into memory 
  * for the geovalue to work. Geovalue directly accesses the data array of the  
- * grid property to bypass the virtual function calls in GsTLGridProperty. 
+ * grid property to bypass the virtual function calls in Grid_continuous_property. 
  */    
  
 class GRID_DECL Geovalue { 
@@ -208,7 +208,7 @@ class GRID_DECL Geovalue {
  
   Geovalue(); 
   Geovalue( const Geovalue& rhs ); 
-  Geovalue( Geostat_grid* grid, GsTLGridProperty* prop,  
+  Geovalue( Geostat_grid* grid, Grid_continuous_property* prop,  
 	    int node_id ); 
  
   Geovalue& operator = ( const Geovalue& rhs ); 
@@ -216,15 +216,15 @@ class GRID_DECL Geovalue {
     return Const_geovalue( grid_, property_array_, node_id_ );
   }
 
-  void init( Geostat_grid* grid, GsTLGridProperty* prop, 
+  void init( Geostat_grid* grid, Grid_continuous_property* prop, 
 	     int node_id ); 
  
   const int& node_id() const { return node_id_; } 
   int& node_id() { return node_id_; } 
   void set_node_id( int id ) ; 
  
-  void set_property_array( GsTLGridProperty* prop ); 
-  const GsTLGridProperty* property_array() const { return property_array_; } 
+  void set_property_array( Grid_continuous_property* prop ); 
+  const Grid_continuous_property* property_array() const { return property_array_; } 
 
   const Geostat_grid* grid() const { return grid_; }
  
@@ -260,7 +260,7 @@ class GRID_DECL Geovalue {
      //volatile float v = values_array_[ node_id_ ];
     //return !(v!=v);
 //    return !(values_array_[ node_id_ ] != values_array_[ node_id_ ]);  // checking IEEE754 NaN
-//    return ( values_array_[ node_id_ ] != GsTLGridProperty::no_data_value );
+//    return ( values_array_[ node_id_ ] != Grid_continuous_property::no_data_value );
 #endif
   } 
    
@@ -305,7 +305,7 @@ class GRID_DECL Geovalue {
   static const location_type::coordinate_type invalid_coord_;
    
   Geostat_grid* grid_; 
-  GsTLGridProperty* property_array_; 
+  Grid_continuous_property* property_array_; 
   float* values_array_; 
   int node_id_; 
   mutable location_type loc_; 

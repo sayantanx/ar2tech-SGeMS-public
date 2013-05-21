@@ -102,7 +102,7 @@ void Categorical_histogram_creator::show_categorical_histogram(){
       region_indexes.append(index);
     }
     else if(item->item_type() == "CategoricalProperty") {
-      GsTLGridCategoricalProperty* cprop = static_cast<GsTLGridCategoricalProperty*>(item->data_pointer());
+      Grid_categorical_property* cprop = static_cast<Grid_categorical_property*>(item->data_pointer());
       CategoricalPropertyDefinition* cdef = cprop->get_category_definition();
       std::map<std::string, QModelIndexList>::iterator it = cdef_indexes.find(cdef->name());
       if( it == cdef_indexes.end() ) {
@@ -112,12 +112,12 @@ void Categorical_histogram_creator::show_categorical_histogram(){
     }
     else if(item->item_type() == "Group") {
       GsTLGridPropertyGroup* group = static_cast<GsTLGridPropertyGroup*>(index.internalPointer());
-      std::map<std::string,GsTLGridProperty*>::iterator it_prop = group->begin_property();
-      GsTLGridCategoricalProperty* cprop = dynamic_cast<GsTLGridCategoricalProperty*>(it_prop->second);
+      std::map<std::string,Grid_continuous_property*>::iterator it_prop = group->begin_property();
+      Grid_categorical_property* cprop = dynamic_cast<Grid_categorical_property*>(it_prop->second);
       if(!cprop) continue;
       CategoricalPropertyDefinition* cdef_group = cprop->get_category_definition();
       for( ; it_prop != group->end_property(); ++it_prop ) {   //Check that all properties are categorical and have the same cdef
-        GsTLGridCategoricalProperty* cprop = dynamic_cast<GsTLGridCategoricalProperty*>(it_prop->second);
+        Grid_categorical_property* cprop = dynamic_cast<Grid_categorical_property*>(it_prop->second);
         if( cdef_group!= cprop->get_category_definition() ) {
           cdef_group=0;
           break;

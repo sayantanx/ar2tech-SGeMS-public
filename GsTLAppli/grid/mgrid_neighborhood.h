@@ -63,7 +63,7 @@ class GRID_DECL MgridNeighborhood : public Rgrid_ellips_neighborhood
 {
 public:
 	MgridNeighborhood( RGrid* grid, 
-		GsTLGridProperty* property, 
+		Grid_continuous_property* property, 
 		GsTLInt max_radius, GsTLInt mid_radius, GsTLInt min_radius, 
 		double x_angle, double y_angle, double z_angle, 
 		int max_neighbors = 20, 
@@ -80,7 +80,7 @@ class GRID_DECL MgridWindowNeighborhood : public Rgrid_window_neighborhood
 {
 public:
 	 MgridWindowNeighborhood( const Grid_template& geom, RGrid* grid=0, 
-			     GsTLGridProperty* prop = 0 );
+			     Grid_continuous_property* prop = 0 );
 	 ~MgridWindowNeighborhood(){}
 	 virtual void find_neighbors( const Geovalue& center ); 
 	 virtual void set_grid(RGrid *);
@@ -94,7 +94,7 @@ class GRID_DECL MgridNeighborhood_hd : public Rgrid_ellips_neighborhood_hd
 {
 public:
 	MgridNeighborhood_hd( RGrid* grid, 
-		GsTLGridProperty* property, 
+		Grid_continuous_property* property, 
 		GsTLInt max_radius, GsTLInt mid_radius, GsTLInt min_radius, 
 		double x_angle, double y_angle, double z_angle, 
 		int max_neighbors = 20, 

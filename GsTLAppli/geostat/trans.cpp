@@ -78,8 +78,8 @@ int trans::execute( GsTL_project* ) {
 
 	for(int i=0; i<source_props_.size(); i++ ) {
 
-    GsTLGridProperty* source_prop = source_props_[i];
-		GsTLGridProperty* target_prop = 
+    Grid_continuous_property* source_prop = source_props_[i];
+		Grid_continuous_property* target_prop = 
 			geostat_utils::add_property_to_grid( grid_, source_prop->name()+suffix_ );
 
     for(int i=0; i<grid_->size();++i) {
@@ -139,7 +139,7 @@ bool trans::initialize( const Parameters_handler* parameters,
 		errors->report( wgt_factor_str.empty(),"weight_factor", "No weight factor specified" );
 		float wgt_factor = String_Op::to_number< float >( wgt_factor_str );
 
-		GsTLGridProperty* cond_prop = grid_->property( cond_prop_str );
+		Grid_continuous_property* cond_prop = grid_->property( cond_prop_str );
 
 		//weights_.insert(weights_.begin(), cond_prop->begin(),cond_prop->end() );
     for (int i=0; i<cond_prop->size(); i++)
@@ -171,7 +171,7 @@ bool trans::initialize( const Parameters_handler* parameters,
 //	else if(cgrid) prop_copier = new Cgrid_to_cgrid_copier();
 
 	for(int j=0; j<prop_names.size() ; j++ ) {
-		GsTLGridProperty* sourceProp = grid_->property( prop_names[j] );
+		Grid_continuous_property* sourceProp = grid_->property( prop_names[j] );
     if( sourceProp== 0 ) {
 		  errors->report( "props", "Non existing properties" );
       return false;
@@ -240,7 +240,7 @@ SmartPtr<Continuous_distribution> trans::get_cdf( const Parameters_handler* para
 	return cdist;
 }
 
-void  trans::cdf_transform( GsTLGridProperty* prop )
+void  trans::cdf_transform( Grid_continuous_property* prop )
 {
 	grid_->select_property( prop->name() );
 	for( Geostat_grid::iterator it = grid_->begin(); it != grid_->end(); ++it )
@@ -259,7 +259,7 @@ void  trans::cdf_transform( GsTLGridProperty* prop )
 }
 
 
-void  trans::cdf_transform_weighted( GsTLGridProperty* prop  )
+void  trans::cdf_transform_weighted( Grid_continuous_property* prop  )
 {
 	grid_->select_property( prop->name() );
 	wgth_iterator it_wt = weights_.begin();

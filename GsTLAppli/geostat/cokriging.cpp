@@ -111,7 +111,7 @@ int Cokriging::execute( GsTL_project* ) {
 
   // create property for kriging variance
   std::string var_prop_name = property_name_ + "_krig_var";
-  GsTLGridProperty* var_prop = 
+  Grid_continuous_property* var_prop = 
     geostat_utils::add_property_to_grid( simul_grid_, var_prop_name );
   appli_assert( var_prop );
   var_prop->set_parameters(parameters_);
@@ -215,7 +215,7 @@ bool Cokriging::initialize( const Parameters_handler* parameters,
     if( !ok ) return false;
   }
 
-  GsTLGridProperty* new_prop = 
+  Grid_continuous_property* new_prop = 
     geostat_utils::add_property_to_grid( simul_grid_, property_name_ );
   errors->report( new_prop == 0, 
                   "Property_Name", "Property already exists. Choose another name" );
@@ -373,7 +373,7 @@ bool Cokriging::initialize( const Parameters_handler* parameters,
   //-------------
   // Initialize the secondary variable neighborhood
 
-  const GsTLGridProperty* secondary_prop = 
+  const Grid_continuous_property* secondary_prop = 
     sec_harddata_grid_->property( secondary_variable_ );
 
   NeighborhoodHandle sec_neighborhood = 

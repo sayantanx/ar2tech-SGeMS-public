@@ -66,7 +66,7 @@
 #include <cmath> // for ceil and floor
 #include <numeric>
 
-#include <GsTLAppli/grid/grid_model/grid_property.h>    // for GsTLGridProperty
+#include <GsTLAppli/grid/grid_model/grid_property.h>    // for Grid_continuous_property
 
 using namespace std;
 
@@ -112,7 +112,7 @@ GEOSTAT_DECL bool is_categorical(T value)
  * and total number of categories (unique integer numbers)
  */
 inline
-GEOSTAT_DECL bool is_integer_prop(GsTLGridProperty* prop, int& nb_cat)
+GEOSTAT_DECL bool is_integer_prop(Grid_continuous_property* prop, int& nb_cat)
 {
     set<int> categories;    // set<int> will remove the identical values
 
@@ -141,7 +141,7 @@ GEOSTAT_DECL bool is_integer_prop(GsTLGridProperty* prop, int& nb_cat)
  * and total number of indicators
  */
 inline
-GEOSTAT_DECL bool is_indicator_prop(GsTLGridProperty* prop, int& nb_cat)
+GEOSTAT_DECL bool is_indicator_prop(Grid_continuous_property* prop, int& nb_cat)
 {
     int i, value;
     set<int> categories;    // set<int> will remove the identical values

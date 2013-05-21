@@ -66,7 +66,7 @@
  
  
 class Geostat_grid; 
-class GsTLGridProperty; 
+class Grid_continuous_property; 
  
  
  
@@ -96,7 +96,7 @@ class GRID_DECL Neighborhood : public SmartPtr_interface<Neighborhood> {
    * property "prop_name". 
    */ 
   virtual bool select_property( const std::string& prop_name ) = 0;  
-  virtual const GsTLGridProperty* selected_property() const = 0;  
+  virtual const Grid_continuous_property* selected_property() const = 0;  
  
   bool includes_center() const { return includes_center_; }
   /** If \c on is true, then the center of the neighborhood will be considered
@@ -185,7 +185,7 @@ class GsTL_neighborhood {
   bool select_property( const std::string& prop_name ) { 
     return neighborhood_->select_property( prop_name ); 
   } 
-  const GsTLGridProperty* selected_property() const {
+  const Grid_continuous_property* selected_property() const {
     return neighborhood_->selected_property();
   }
   iterator begin() { return neighborhood_->begin(); } 
@@ -230,7 +230,7 @@ class GRID_DECL Colocated_neighborhood : public Neighborhood {
 
   virtual ~Colocated_neighborhood() {}; 
   virtual bool select_property( const std::string& prop_name );  
-  virtual const GsTLGridProperty* selected_property() const { return property_; }
+  virtual const Grid_continuous_property* selected_property() const { return property_; }
 
   virtual void find_neighbors( const Geovalue& center ); 
   virtual Geovalue center() const;// { return center_; } 
@@ -244,9 +244,9 @@ class GRID_DECL Colocated_neighborhood : public Neighborhood {
  
  private: 
   Geostat_grid* grid_; 
-  GsTLGridProperty* property_;  
+  Grid_continuous_property* property_;  
   //  Geovalue center_; 
-  // const GsTLGridProperty* center_property_; 
+  // const Grid_continuous_property* center_property_; 
 }; 
  
  
@@ -267,7 +267,7 @@ class GRID_DECL DummyNeighborhood : public Neighborhood {
   virtual Geovalue center() const { return Geovalue(); }
  
   virtual bool select_property( const std::string& ) { return true; }  
-  virtual const GsTLGridProperty* selected_property() const { return 0; }  
+  virtual const Grid_continuous_property* selected_property() const { return 0; }  
  
   virtual void max_size( int ) {} 
   virtual int max_size() const { return 0; } 

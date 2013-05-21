@@ -133,8 +133,8 @@ public:
     /*
      * function to unsign simulated value at some locations
      */
-    void removeSimulatedNode( GsTLGridProperty* prop, vector<int>& grid_path );
-    void removeSimulatedNode( RGrid* grid, GsTLGridProperty* prop, vector<int>& grid_path );
+    void removeSimulatedNode( Grid_continuous_property* prop, vector<int>& grid_path );
+    void removeSimulatedNode( RGrid* grid, Grid_continuous_property* prop, vector<int>& grid_path );
 
 private:
 

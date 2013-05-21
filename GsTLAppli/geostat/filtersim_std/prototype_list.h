@@ -438,7 +438,7 @@ create_prototype_indicator()
     string prop_name = "prototype_#_mg_" + ostr.str();
 
     // add a new property
-    GsTLGridProperty* prop = geostat_utils::add_property_to_grid(TI_grid_,prop_name);
+    Grid_continuous_property* prop = geostat_utils::add_property_to_grid(TI_grid_,prop_name);
     
     int prototype_id=0;
     for (ListItr itr = prototypes_.begin(); itr != prototypes_.end(); itr++, prototype_id++)

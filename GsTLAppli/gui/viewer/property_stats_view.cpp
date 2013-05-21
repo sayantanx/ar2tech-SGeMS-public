@@ -39,16 +39,16 @@
 #include <QTableWidgetItem>
 #include <QHeaderView>
 
-Property_stats_view* get_stats_view(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop, QWidget *parent){
-	if(prop->classname()=="GsTLGridCategoricalProperty")
+Property_stats_view* get_stats_view(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop, QWidget *parent){
+	if(prop->classname()=="Grid_categorical_property")
 		return new Categorical_property_stats_view(prop,vtk_prop,parent);
-	else if(prop->classname()=="GsTLGridProperty")
+	else if(prop->classname()=="Grid_continuous_property")
 		return new Continuous_property_stats_view(prop,vtk_prop,parent);
 	else
 		return 0;
 }
 
-Property_stats_view::Property_stats_view(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop, QWidget *parent)
+Property_stats_view::Property_stats_view(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop, QWidget *parent)
  : prop_(prop), vtk_prop_(vtk_prop), QWidget(parent)
 {
 
@@ -60,11 +60,11 @@ Property_stats_view::~Property_stats_view() {
 
 
 Continuous_property_stats_view::
-Continuous_property_stats_view(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop, QWidget *parent)
+Continuous_property_stats_view(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop, QWidget *parent)
  : Property_stats_view(prop,vtk_prop,parent){
 
-	GsTLGridProperty::const_iterator it1 = prop->begin(true);
-	GsTLGridProperty::const_iterator it = prop_->begin(true);
+	Grid_continuous_property::const_iterator it1 = prop->begin(true);
+	Grid_continuous_property::const_iterator it = prop_->begin(true);
 	QVBoxLayout* layout = new QVBoxLayout(this);
 
 	unsigned int n = 0;
@@ -84,11 +84,11 @@ Continuous_property_stats_view(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_p
 Continuous_property_stats_view::~Continuous_property_stats_view(){}
 
 Categorical_property_stats_view::
-Categorical_property_stats_view(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop, QWidget *parent)
+Categorical_property_stats_view(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop, QWidget *parent)
  : Property_stats_view(prop,vtk_prop,parent){
 
-	const GsTLGridCategoricalProperty* cprop_ = dynamic_cast<const GsTLGridCategoricalProperty*>(prop_);
-	GsTLGridProperty::const_iterator it = cprop_->begin(true);
+	const Grid_categorical_property* cprop_ = dynamic_cast<const Grid_categorical_property*>(prop_);
+	Grid_continuous_property::const_iterator it = cprop_->begin(true);
 	QVBoxLayout* layout = new QVBoxLayout(this);
 
   std::vector<int> codes = cprop_->get_category_id();

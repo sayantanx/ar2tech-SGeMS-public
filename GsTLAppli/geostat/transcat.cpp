@@ -123,7 +123,7 @@ int transcat::execute(  GsTL_project* proj )
 {
     // set up conditioning property
     cond_prop_name_ = source_property_name_ + "_cond";
-    GsTLGridProperty* cond_prop = geostat_utils::add_property_to_grid(source_grid_,cond_prop_name_);
+    Grid_continuous_property* cond_prop = geostat_utils::add_property_to_grid(source_grid_,cond_prop_name_);
     cond_prop_name_ = cond_prop->name();
 
     if( property_copier_ ) 
@@ -134,7 +134,7 @@ int transcat::execute(  GsTL_project* proj )
 
     // set up output property
     string output_prop_name = source_property_name_ + output_suffix_;
-    GsTLGridProperty* output_prop = geostat_utils::add_property_to_grid(source_grid_,output_prop_name);
+    Grid_continuous_property* output_prop = geostat_utils::add_property_to_grid(source_grid_,output_prop_name);
     output_prop_name = output_prop->name();
     output_prop->set_parameters(parameters_);
 
@@ -144,7 +144,7 @@ int transcat::execute(  GsTL_project* proj )
 
     // set up working property
     string working_prop_name = output_prop_name + "bak";
-    GsTLGridProperty* working_prop = geostat_utils::add_property_to_grid(source_grid_,working_prop_name);
+    Grid_continuous_property* working_prop = geostat_utils::add_property_to_grid(source_grid_,working_prop_name);
     working_prop_name = working_prop->name();
 
     // initialize a search neighborhood with the moving window template geometry
@@ -215,7 +215,7 @@ int transcat::execute(  GsTL_project* proj )
 }
 
 
-void transcat::calculate_category_proportions( GsTLGridProperty* prop )
+void transcat::calculate_category_proportions( Grid_continuous_property* prop )
 {
     current_prop_.clear();
     current_prop_factor_.clear();

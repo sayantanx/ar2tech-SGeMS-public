@@ -175,7 +175,7 @@ New_indicator_from_property_dialog::show_continuous_input() {
   SmartPtr< Named_interface > ni =
 	Root::instance()->interface( gridModels_manager + "/" + grid_name.toStdString() );
   Geostat_grid* grid = dynamic_cast<Geostat_grid*>(ni.raw_ptr());
-  GsTLGridCategoricalProperty *prop = grid->categorical_property(prop_name.toStdString());
+  Grid_categorical_property *prop = grid->categorical_property(prop_name.toStdString());
   if(prop) {
   	continuous_box_->setHidden(true);
   	isCategorical_ = true;

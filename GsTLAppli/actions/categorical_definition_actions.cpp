@@ -190,7 +190,7 @@ bool Assign_categorical_definition::init( std::string& parameters, GsTL_project*
   }
 
   for(int i=2;i<params.size(); ++i) {
-    GsTLGridCategoricalProperty* prop = grid->categorical_property(params[i]);
+    Grid_categorical_property* prop = grid->categorical_property(params[i]);
     if(!prop) continue;
     prop->set_category_definition( cat_def );
   }

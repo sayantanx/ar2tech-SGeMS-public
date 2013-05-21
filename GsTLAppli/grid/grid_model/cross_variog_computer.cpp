@@ -67,12 +67,12 @@
 #include <iterator>
 
 
-GsTLGridProperty* add_property_to_grid( Geostat_grid* grid, 
+Grid_continuous_property* add_property_to_grid( Geostat_grid* grid, 
                                        const std::string& prop_name ) {
   std::ostringstream new_prop_name_stream;
   new_prop_name_stream << prop_name;
 
-  GsTLGridProperty* new_prop =
+  Grid_continuous_property* new_prop =
     grid->add_property( prop_name );
 
   while( !new_prop ) {
@@ -102,15 +102,15 @@ Cross_variog_computer::Cross_variog_computer(Geostat_grid *pset,Geostat_grid *gr
 
     
      SmartPtr<Property_copier> ptr= Property_copier_factory:: get_copier( pset_, grid_);
-    GsTLGridProperty *new_prop = add_property_to_grid((Geostat_grid *)grid_,"temp");
+    Grid_continuous_property *new_prop = add_property_to_grid((Geostat_grid *)grid_,"temp");
     temp_prop_name=new_prop->name(); 
     ptr->copy(pset_,pset_->selected_property(),(Geostat_grid *)grid_,new_prop);
 
     double mean;
-    const GsTLGridProperty *prop1=pset_->selected_property();
+    const Grid_continuous_property *prop1=pset_->selected_property();
     prim_var_=GsTL::variance(prop1->begin(true),prop1->end(),&mean);
 
-    const GsTLGridProperty *prop2=grid_->selected_property();
+    const Grid_continuous_property *prop2=grid_->selected_property();
     sec_var_=GsTL::variance(prop2->begin(true),prop2->end(),&mean);
     
 }
@@ -150,9 +150,9 @@ std::vector<int> Cross_variog_computer::compute_variogram_values(Discrete_functi
 	    {
 		
 		std::pair<float,float> temp;
-		const GsTLGridProperty *prop1=tempGrid->selected_property();
+		const Grid_continuous_property *prop1=tempGrid->selected_property();
                 temp.first=prop1->get_value(j);
-		const GsTLGridProperty *prop2=tempGrid->property(temp_prop_name);
+		const Grid_continuous_property *prop2=tempGrid->property(temp_prop_name);
 		if (prop2->is_informed(node_id))
 		{
 		    temp.second=prop2->get_value(node_id);
@@ -204,7 +204,7 @@ std::vector<int> Cross_variog_computer::compute_variogram_values(Discrete_functi
 float Cross_variog_computer:: compute_variance()
 {
     const RGrid *tempGrid=dynamic_cast<const RGrid*>(grid_);
-    const GsTLGridProperty *prop=tempGrid->selected_property();
+    const Grid_continuous_property *prop=tempGrid->selected_property();
 
     
     

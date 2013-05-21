@@ -113,7 +113,7 @@ int KrigingMean::execute( GsTL_project* ) {
 
   // create the property
   appli_message("creating new property: " << property_name_ << "..." );
-  GsTLGridProperty* prop = 
+  Grid_continuous_property* prop = 
     geostat_utils::add_property_to_grid( simul_grid_, property_name_ );
   prop->set_parameters(parameters_);
   simul_grid_->select_property( prop->name() );
@@ -262,7 +262,7 @@ bool KrigingMean::initialize( const Parameters_handler* parameters,
 
  
 
-  GsTLGridProperty* prop =
+  Grid_continuous_property* prop =
     harddata_grid_->select_property( harddata_property_name_ );
   if( !prop ) {
     std::ostringstream error_stream;

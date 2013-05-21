@@ -181,7 +181,7 @@ int PostKriging::execute( GsTL_project* ) {
 
 
 	bool ok;
-	std::vector< GsTLGridProperty* >::const_iterator it_prop;;
+	std::vector< Grid_continuous_property* >::const_iterator it_prop;;
 	int nprop = props.size();
 	std::vector< float > values( props.size() );
 
@@ -226,7 +226,7 @@ int PostKriging::execute( GsTL_project* ) {
 
 			if(quantile_)
 			{
-				std::vector<GsTLGridProperty*>::iterator it_prop = quantile_props_.begin();
+				std::vector<Grid_continuous_property*>::iterator it_prop = quantile_props_.begin();
 				std::vector<float>::iterator it_val = quantile_vals_.begin();
 				for(;it_prop != quantile_props_.end(); ++it_prop, ++it_val)
 				{
@@ -238,7 +238,7 @@ int PostKriging::execute( GsTL_project* ) {
 
 			if(prob_above_)
 			{
-				std::vector<GsTLGridProperty*>::iterator it_prop = prob_above_props_.begin();
+				std::vector<Grid_continuous_property*>::iterator it_prop = prob_above_props_.begin();
 				std::vector<float>::iterator it_val = prob_above_vals_.begin();
 				for(;it_prop != prob_above_props_.end(); ++it_prop, ++it_val) {
 					if( is_non_param_cdf_ )
@@ -249,7 +249,7 @@ int PostKriging::execute( GsTL_project* ) {
 
 			if(prob_below_)
 			{
-				std::vector<GsTLGridProperty*>::iterator it_prop = prob_below_props_.begin();
+				std::vector<Grid_continuous_property*>::iterator it_prop = prob_below_props_.begin();
 				std::vector<float>::iterator it_val = prob_below_vals_.begin();
 				for(;it_prop != prob_below_props_.end(); ++it_prop, ++it_val){
 					if( is_non_param_cdf_ )
@@ -264,7 +264,7 @@ int PostKriging::execute( GsTL_project* ) {
 	return 0;
 }
 
-void PostKriging::initialize_operation(std::vector<GsTLGridProperty*>& props, 
+void PostKriging::initialize_operation(std::vector<Grid_continuous_property*>& props, 
 		std::vector<float>& vals,Error_messages_handler* errors, 
 		const Parameters_handler* parameters, std::string tag)
 {
@@ -279,7 +279,7 @@ void PostKriging::initialize_operation(std::vector<GsTLGridProperty*>& props,
 	  {
 		  std::ostringstream prop_name;
 		  prop_name << base_prop_name <<"_tr"<< *it;
-      GsTLGridProperty* prop = geostat_utils::add_property_to_grid( grid_,prop_name.str() );
+      Grid_continuous_property* prop = geostat_utils::add_property_to_grid( grid_,prop_name.str() );
       prop->set_parameters(parameters_);
 		  props.push_back(prop);
   		 
@@ -287,7 +287,7 @@ void PostKriging::initialize_operation(std::vector<GsTLGridProperty*>& props,
   }
 }
 
-void PostKriging::initialize_operation(GsTLGridProperty*& prop,Error_messages_handler* errors, 
+void PostKriging::initialize_operation(Grid_continuous_property*& prop,Error_messages_handler* errors, 
 	const Parameters_handler* parameters, std::string tag)
 {
   std::string prop_name = parameters->value( tag+"_prop.value" );

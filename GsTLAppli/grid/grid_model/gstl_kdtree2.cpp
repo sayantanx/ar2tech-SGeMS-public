@@ -97,7 +97,7 @@ GsTLCoord kdtree2_result_vector::replace_maxpri_elt_return_new_maxpri(kdtree2_re
 //
 
 // constructor
-kdtree2::kdtree2(kdtree2_array& data_in, const GsTLGridProperty* prop,
+kdtree2::kdtree2(kdtree2_array& data_in, const Grid_continuous_property* prop,
                  const std::vector<int>* node_id, bool rearrange_in,int dim_in)
   : the_data(data_in),
     N  ( data_in.shape()[0] ),
@@ -590,7 +590,7 @@ int kdtree2::r_count_around_point(int idxin, int correltime, GsTLCoord r2)
 }
 
 
-void kdtree2::set_property(const GsTLGridProperty* prop) {
+void kdtree2::set_property(const Grid_continuous_property* prop) {
   prop_ = prop;
 }
 
@@ -599,7 +599,7 @@ void kdtree2::set_property(const GsTLGridProperty* prop) {
 //
 
 // constructor
-kdtree2_node::kdtree2_node(int dim, const GsTLGridProperty*& prop,
+kdtree2_node::kdtree2_node(int dim, const Grid_continuous_property*& prop,
   const std::vector<int>*& node_id ) : box(dim), prop_(prop), node_id_(node_id) { 
   left = right = NULL; 
   //

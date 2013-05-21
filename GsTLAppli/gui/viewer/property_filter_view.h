@@ -85,7 +85,7 @@ class Property_filter_view: public QScrollArea {
 
 	Q_OBJECT
 public:
-	Property_filter_view( const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop,QWidget *parent = 0);
+	Property_filter_view( const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop,QWidget *parent = 0);
 	virtual ~Property_filter_view();
 
 	virtual int number_of_enabled_threshold(void)=0;
@@ -99,7 +99,7 @@ signals :
   void rendering_modified();
 
 protected :
-	const GsTLGridProperty* prop_;
+	const Grid_continuous_property* prop_;
 	GsTL_vtkProp* vtk_prop_;
 
 };
@@ -110,7 +110,7 @@ class Property_thresholds_continuous_control: public Property_filter_view {
 
 	Q_OBJECT
 public:
-	Property_thresholds_continuous_control(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop, QWidget *parent = 0);
+	Property_thresholds_continuous_control(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop, QWidget *parent = 0);
 	virtual ~Property_thresholds_continuous_control();
 
 	virtual int number_of_enabled_threshold(void);
@@ -153,7 +153,7 @@ class Property_thresholds_categorical_control: public Property_filter_view {
 
 	Q_OBJECT
 public:
-	Property_thresholds_categorical_control(const GsTLGridCategoricalProperty* prop, GsTL_vtkProp* vtk_prop, QWidget *parent = 0);
+	Property_thresholds_categorical_control(const Grid_categorical_property* prop, GsTL_vtkProp* vtk_prop, QWidget *parent = 0);
 	virtual ~Property_thresholds_categorical_control();
 
 	virtual int number_of_enabled_threshold(void);
@@ -171,7 +171,7 @@ protected slots:
 
 protected :
 
-	const GsTLGridCategoricalProperty* cprop_;
+	const Grid_categorical_property* cprop_;
   CategoricalDefinitionTable* cdef_table_;
 	QList<QCheckBox*> thresholds_;
 /*

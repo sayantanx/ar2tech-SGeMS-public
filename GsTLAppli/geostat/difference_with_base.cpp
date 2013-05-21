@@ -92,7 +92,7 @@ bool DiffProperties::initialize( const Parameters_handler* parameters,
 
 	for(std::vector< std::string >::iterator it_str = prop_name.begin(); 
     it_str != prop_name.end(); it_str++ ) {
-      GsTLGridProperty* prop = grid_->property( *it_str );
+      Grid_continuous_property* prop = grid_->property( *it_str );
       errors->report(!prop, "props","No property exist with that name");
       props_.push_back(prop);
   }
@@ -116,7 +116,7 @@ bool DiffProperties::initialize( const Parameters_handler* parameters,
 
 int DiffProperties::execute( GsTL_project* ) { 
 
-  std::vector< GsTLGridProperty* >::const_iterator it_prop = props_.begin();
+  std::vector< Grid_continuous_property* >::const_iterator it_prop = props_.begin();
 
   GsTLGridPropertyGroup* group;
   std::string group_name = "Difference with "+prop_base_->name();
@@ -126,7 +126,7 @@ int DiffProperties::execute( GsTL_project* ) {
 
   for(  ; it_prop!= props_.end(); ++it_prop) {
     std::string name = (*it_prop)->name()+" - " + prop_base_->name();
-    GsTLGridProperty*  prop_diff = 
+    Grid_continuous_property*  prop_diff = 
       geostat_utils::add_property_to_grid(grid_, name );
     prop_diff->set_parameters(parameters_);
     if(group) group->add_property(prop_diff);

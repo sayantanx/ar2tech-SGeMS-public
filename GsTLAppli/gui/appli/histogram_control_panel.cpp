@@ -144,7 +144,7 @@ void Histogram_control_panel::set_clipping_values( float low, float high ) {
 }
 
 
-GsTLGridProperty*
+Grid_continuous_property*
 Histogram_control_panel::get_property( const PropertySelector* object_selector ) {
   if( object_selector->selectedGrid().isEmpty() ||
       object_selector->selectedProperty().isEmpty() ) return 0;
@@ -162,7 +162,7 @@ Histogram_control_panel::get_property( const PropertySelector* object_selector )
 
   tmp = object_selector->selectedProperty().toLatin1() ;
   std::string prop_name( tmp.constData());
-  GsTLGridProperty* prop = grid->property( prop_name );
+  Grid_continuous_property* prop = grid->property( prop_name );
 //  if(prop == 0) return 0;
   appli_assert( prop );
   return prop;

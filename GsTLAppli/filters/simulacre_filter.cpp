@@ -197,7 +197,7 @@ Simulacre_input_filter::read_reduced_grid( QDataStream& stream, std::string* err
   
   for( unsigned int j = 0; j < properties_count; j++ ) {
     std::string prop_name( prop_names[j] );
-    GsTLGridProperty* prop = grid->add_property( prop_name );
+    Grid_continuous_property* prop = grid->add_property( prop_name );
     for( GsTLInt k = 0; k < numActive ; k++ ) {
       float val;
       stream >> val;
@@ -264,7 +264,7 @@ Simulacre_input_filter::read_cartesian_grid( QDataStream& stream,
   
   for( unsigned int j = 0; j < properties_count; j++ ) {
     std::string prop_name( prop_names[j] );
-    GsTLGridProperty* prop = grid->add_property( prop_name );
+    Grid_continuous_property* prop = grid->add_property( prop_name );
     for( GsTLInt k = 0; k < nx*ny*nz ; k++ ) {
       float val;
       stream >> val;
@@ -337,7 +337,7 @@ Simulacre_input_filter::read_pointset( QDataStream& stream,
   // read all the properties
   for( unsigned int j = 0; j < properties_count; j++ ) {
     std::string prop_name( prop_names[j] );
-    GsTLGridProperty* prop = grid->add_property( prop_name );
+    Grid_continuous_property* prop = grid->add_property( prop_name );
     for( GsTLInt k = 0; k < size ; k++ ) {
       float val;
       stream >> val;
@@ -509,13 +509,13 @@ bool Simulacre_output_filter::write_reduced_grid( QDataStream& stream,
 	// write the property values, one property at a time
 	it = prop_list.begin();
 	for( ; it != prop_list.end(); ++it ) {
-		const GsTLGridProperty* prop = grid->property( *it );
+		const Grid_continuous_property* prop = grid->property( *it );
 		appli_assert( prop );
 		for( unsigned int i = 0; i < prop->size(); i++ ) { 
 			if( prop->is_informed( i ) )
 				stream << (float) prop->get_value( i );
 			else
-				stream << (float) GsTLGridProperty::no_data_value;
+				stream << (float) Grid_continuous_property::no_data_value;
 		}
 	}
   write_region_and_goup(stream, grid);
@@ -562,13 +562,13 @@ bool Simulacre_output_filter::write_cartesian_grid( QDataStream& stream,
   // write the property values, one property at a time
   it = prop_list.begin();
   for( ; it != prop_list.end(); ++it ) {
-    const GsTLGridProperty* prop = grid->property( *it );
+    const Grid_continuous_property* prop = grid->property( *it );
     appli_assert( prop );
     for( unsigned int i = 0; i < prop->size(); i++ ) { 
       if( prop->is_informed( i ) )
         stream << (float) prop->get_value( i );
       else
-        stream << (float) GsTLGridProperty::no_data_value;
+        stream << (float) Grid_continuous_property::no_data_value;
     }
   }
   write_region_and_goup(stream, grid);
@@ -608,13 +608,13 @@ bool Simulacre_output_filter::write_pointset( QDataStream& stream,
   // write the property values, one property at a time
   it = prop_list.begin();
   for( ; it != prop_list.end(); ++it ) {
-    const GsTLGridProperty* prop = grid->property( *it );
+    const Grid_continuous_property* prop = grid->property( *it );
     appli_assert( prop );
     for( unsigned int i = 0; i < prop->size(); i++ ) { 
       if( prop->is_informed( i ) )
         stream << (float) prop->get_value( i );
       else
-        stream << (float) GsTLGridProperty::no_data_value;
+        stream << (float) Grid_continuous_property::no_data_value;
     }
   }
   write_region_and_goup(stream, grid);

@@ -25,7 +25,7 @@
 
 
 /*
- * GsTLGridCategoricalProperty.cpp
+ * Grid_categorical_property.cpp
  *
  *  Created on: Mar 29, 2010
  *      Author: aboucher
@@ -49,11 +49,11 @@ QColor CategoricalPropertyDefinition::color(std::string name) const{
 
 }
 
-void CategoricalPropertyDefinition::register_property(const GsTLGridProperty* prop) {
+void CategoricalPropertyDefinition::register_property(const Grid_continuous_property* prop) {
   props_.insert(prop);
 }
 
-void CategoricalPropertyDefinition::unregister_property(const GsTLGridProperty* prop) {
+void CategoricalPropertyDefinition::unregister_property(const Grid_continuous_property* prop) {
   props_.erase(prop);
 }
 
@@ -467,14 +467,14 @@ std::string CategoricalPropertyDefinitionDefault::name() const {
 
 
 /*
- *   GsTLGridCategoricalProperty
+ *   Grid_categorical_property
  */
 
-GsTLGridCategoricalProperty::GsTLGridCategoricalProperty(
+Grid_categorical_property::Grid_categorical_property(
 		GsTLInt size, const std::string& name,
     const std::string cat_definition_name,
 		property_type default_value)
-		: GsTLGridProperty(size,name,no_data_value),number_of_categories_(0)
+		: Grid_continuous_property(size,name,no_data_value),number_of_categories_(0)
 {
 
   SmartPtr<Named_interface> ni = 
@@ -493,11 +493,11 @@ GsTLGridCategoricalProperty::GsTLGridCategoricalProperty(
 }
 
 
-GsTLGridCategoricalProperty::GsTLGridCategoricalProperty(
+Grid_categorical_property::Grid_categorical_property(
 		const std::string& in_filename, GsTLInt size, const std::string& name,
     const std::string cat_definition_name,
 		property_type default_value)
-		: GsTLGridProperty(size,name,in_filename, no_data_value),number_of_categories_(0) 
+		: Grid_continuous_property(size,name,in_filename, no_data_value),number_of_categories_(0) 
 {
 
   SmartPtr<Named_interface> ni =
@@ -518,11 +518,11 @@ GsTLGridCategoricalProperty::GsTLGridCategoricalProperty(
 
 
 /*
-GsTLGridCategoricalProperty::GsTLGridCategoricalProperty( 
-        GsTLGridProperty* cont_prop, const std::string& name,
+Grid_categorical_property::Grid_categorical_property( 
+        Grid_continuous_property* cont_prop, const std::string& name,
 				const std::string cat_definition_name = "Default",
         property_type default_value = no_data_value ) 
-        :GsTLGridProperty(cont_prop->size(), cont_prop->name(), no_data_value)
+        :Grid_continuous_property(cont_prop->size(), cont_prop->name(), no_data_value)
 {
 
   SmartPtr<Named_interface> ni = 
@@ -543,11 +543,11 @@ GsTLGridCategoricalProperty::GsTLGridCategoricalProperty(
 
 
 
-GsTLGridCategoricalProperty::~GsTLGridCategoricalProperty(){
+Grid_categorical_property::~Grid_categorical_property(){
     if(cat_definitions_)  cat_definitions_->unregister_property(this);
   }
 
-bool GsTLGridCategoricalProperty::set_category_definition( std::string cat_definition_name){
+bool Grid_categorical_property::set_category_definition( std::string cat_definition_name){
 
   SmartPtr<Named_interface> ni = 
     Root::instance()->interface( categoricalDefinition_manager+"/"+cat_definition_name  );
@@ -566,7 +566,7 @@ bool GsTLGridCategoricalProperty::set_category_definition( std::string cat_defin
   return true;
 }
 
-bool GsTLGridCategoricalProperty
+bool Grid_categorical_property
 ::set_category_definition( CategoricalPropertyDefinition* cat_definition){
   if(cat_definition == 0) return false;
   if(cat_definitions_ == cat_definition) return true;
@@ -578,9 +578,9 @@ bool GsTLGridCategoricalProperty
 }
 
 /*
-void GsTLGridCategoricalProperty
+void Grid_categorical_property
 ::compute_number_of_category(){
-	GsTLGridProperty::const_iterator it = this->begin();
+	Grid_continuous_property::const_iterator it = this->begin();
 	number_of_categories_ = 0;
 	for( ; it!=this->end(); ++it) {
 		if(*it > number_of_categories_) number_of_categories_ = *it;
@@ -588,9 +588,9 @@ void GsTLGridCategoricalProperty
 	number_of_categories_++;
 }
 */
-int GsTLGridCategoricalProperty
+int Grid_categorical_property
 ::compute_number_of_category() const{
-	GsTLGridProperty::const_iterator it = this->begin();
+	Grid_continuous_property::const_iterator it = this->begin();
 
   std::set<int> category_codes;
 	for( ; it!=this->end(); ++it) {
@@ -606,6 +606,6 @@ int GsTLGridCategoricalProperty
   */
 }
 
-QString GsTLGridCategoricalProperty::item_type() const{
+QString Grid_categorical_property::item_type() const{
 	return "CategoricalProperty";
 }

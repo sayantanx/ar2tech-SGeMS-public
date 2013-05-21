@@ -102,7 +102,7 @@ public:
 			   double ang1,double ang2,double ang3, 
 			   int max_neighbors, 
 			   Point_set* pset,  
-			   GsTLGridProperty* property, 
+			   Grid_continuous_property* property, 
 			   const Covariance<location_type>* cov = 0,
          bool only_harddata = false,
          const Grid_region* region=0,
@@ -110,7 +110,7 @@ public:
  
   virtual ~Point_set_neighborhood(); 
   virtual bool select_property( const std::string& prop_name );  
-  virtual const GsTLGridProperty* selected_property() const { return property_; }
+  virtual const Grid_continuous_property* selected_property() const { return property_; }
  
   virtual void find_neighbors(const Geovalue& center); 
   virtual void max_size( int s );
@@ -122,7 +122,7 @@ public:
 
 protected: 
   Point_set* pset_;   
-  GsTLGridProperty* property_; 
+  Grid_continuous_property* property_; 
  
   double a_,b_,c_,ang1_,ang2_,ang3_; 
   int max_neighbors_; 
@@ -190,7 +190,7 @@ public:
 			double ang1,double ang2,double ang3, 
 			int max_neighbors, 
 			Point_set* pset,  
-			GsTLGridProperty* property, 
+			Grid_continuous_property* property, 
 			const Covariance<location_type>* cov = 0,
       bool only_harddata = false); 
 

@@ -352,7 +352,7 @@ bool initialize_kriging_system( std::string kriging_type_base_name,
       }
 
       typedef SK_local_mean_combiner_impl<WeightIterator, Neighborhood,
-                                     GsTLGridProperty, Geostat_grid> LVM_combiner;
+                                     Grid_continuous_property, Geostat_grid> LVM_combiner;
 
 
       LVM_combiner* comb = new LVM_combiner();
@@ -738,7 +738,7 @@ CovarianceSet* init_covariance_set( Cokriging_type type,
 NeighborhoodHandle 
 init_secondary_neighborhood( Cokriging_type type, 
                              Geostat_grid* hdata_grid,
-                             const GsTLGridProperty* secondary_prop,
+                             const Grid_continuous_property* secondary_prop,
                              const Parameters_handler* parameters, 
                              Error_messages_handler* errors,
                              const std::string& max_size_tag,
@@ -972,12 +972,12 @@ Kriging_type kriging_type( const std::string& tag_name,
 
 
 
-GsTLGridProperty* add_property_to_grid( Geostat_grid* grid, 
+Grid_continuous_property* add_property_to_grid( Geostat_grid* grid, 
                                        const std::string& prop_name ) {
   std::ostringstream new_prop_name_stream;
   new_prop_name_stream << prop_name;
 
-  GsTLGridProperty* new_prop =
+  Grid_continuous_property* new_prop =
     grid->add_property( prop_name );
 
   while( !new_prop ) {
@@ -991,13 +991,13 @@ GsTLGridProperty* add_property_to_grid( Geostat_grid* grid,
 
 
 
-GsTLGridCategoricalProperty* add_categorical_property_to_grid( Geostat_grid* grid, 
+Grid_categorical_property* add_categorical_property_to_grid( Geostat_grid* grid, 
                                        const std::string& prop_name,
                                        std::string cdef_name) {
   std::ostringstream new_prop_name_stream;
   new_prop_name_stream << prop_name;
 
-  GsTLGridCategoricalProperty* new_prop =
+  Grid_categorical_property* new_prop =
     grid->add_categorical_property( prop_name,cdef_name );
 
   while( !new_prop ) {
@@ -1198,7 +1198,7 @@ bool get_non_param_cdf(GsTLNonParametricCdfType& cdf_non_param,
 			else 
 				return false;
 			ref_grid->select_property( ref_prop_str );
-			GsTLGridProperty* ref_prop = ref_grid->property(ref_prop_str);
+			Grid_continuous_property* ref_prop = ref_grid->property(ref_prop_str);
 
 			reference.reserve( ref_grid->size() );
 
@@ -1362,7 +1362,7 @@ namespace distribution_utils {
 
 
 
-void cdf_transform( GsTLGridProperty* prop, Continuous_distribution* cdf_source, Continuous_distribution* cdf_target )
+void cdf_transform( Grid_continuous_property* prop, Continuous_distribution* cdf_source, Continuous_distribution* cdf_target )
 {
 	for( int node_id=0; node_id< prop->size(); node_id++ )
 	{
@@ -1374,13 +1374,13 @@ void cdf_transform( GsTLGridProperty* prop, Continuous_distribution* cdf_source,
 }
 
 
-GsTLGridProperty* gaussian_transform_property( GsTLGridProperty* original_prop,
+Grid_continuous_property* gaussian_transform_property( Grid_continuous_property* original_prop,
                                                  Continuous_distribution* cdf_source,
                                                  Geostat_grid* grid ) {
     std::string transformed_prop_name = 
       "__" + original_prop->name() + "transformed__";
 
-    GsTLGridProperty* transf_prop = 
+    Grid_continuous_property* transf_prop = 
       geostat_utils::add_property_to_grid( grid, transformed_prop_name );
     appli_assert( transf_prop );
 
@@ -1475,7 +1475,7 @@ bool get_continuous_cdf(SmartPtr<Continuous_distribution>& cdist, const Paramete
 			else 
 				return false;
 			ref_grid->select_property( ref_prop_str );
-      GsTLGridProperty* ref_prop = ref_grid->property(ref_prop_str);
+      Grid_continuous_property* ref_prop = ref_grid->property(ref_prop_str);
 			Grid_region* ref_region = ref_grid->region(ref_region_str);
 
 			reference.reserve( ref_grid->size() );
@@ -1576,7 +1576,7 @@ bool get_non_param_cdf(Non_parametric_distribution& cdf_non_param,
 			else 
 				return false;
 			ref_grid->select_property( ref_prop_str );
-			GsTLGridProperty* ref_prop = ref_grid->property(ref_prop_str);
+			Grid_continuous_property* ref_prop = ref_grid->property(ref_prop_str);
 
 			reference.reserve( ref_grid->size() );
 

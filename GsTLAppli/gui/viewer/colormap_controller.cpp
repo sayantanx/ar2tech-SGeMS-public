@@ -42,7 +42,7 @@
 #include <QLabel>
 #include <QSpinBox>
 
-Colormap_controller::Colormap_controller(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop,QWidget *parent) :
+Colormap_controller::Colormap_controller(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop,QWidget *parent) :
 	QWidget(parent),prop_(prop), vtk_prop_(vtk_prop)
 {
 }
@@ -65,7 +65,7 @@ Colormap_controller::~Colormap_controller() {
 
 
 Colormap_continuous_controller::
-Colormap_continuous_controller(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop,QWidget* parent)
+Colormap_continuous_controller(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop,QWidget* parent)
 	: Colormap_controller(prop,vtk_prop,parent), cmap_(0)
 {
 
@@ -344,7 +344,7 @@ bool Colormap_continuous_controller::reset_min_max() {
 
 
 Colormap_categorical_controller::
-Colormap_categorical_controller(const GsTLGridCategoricalProperty* prop, GsTL_vtkProp* vtk_prop,QWidget* parent)
+Colormap_categorical_controller(const Grid_categorical_property* prop, GsTL_vtkProp* vtk_prop,QWidget* parent)
 	: Colormap_controller(prop,vtk_prop,parent), cprop_(prop), cmap_(0)
 {
   cmap_ = new Colormap_categorical(cprop_->get_category_definition(), cprop_->get_number_of_category());

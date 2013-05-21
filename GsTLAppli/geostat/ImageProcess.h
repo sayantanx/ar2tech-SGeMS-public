@@ -73,11 +73,11 @@ private:
 private:
     // source
     RGrid* source_grid_;
-    GsTLGridProperty* source_property_;
+    Grid_continuous_property* source_property_;
 
     // target
     RGrid* target_grid_;
-    GsTLGridProperty* target_property_;
+    Grid_continuous_property* target_property_;
     string target_prop_name_;
 
     // rotation

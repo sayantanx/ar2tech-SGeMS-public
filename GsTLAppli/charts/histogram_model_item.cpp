@@ -41,7 +41,7 @@
  }
 
 
-Histogram_property_item::Histogram_property_item( GsTLGridProperty* prop, int& id, Histogram_item* parent)
+Histogram_property_item::Histogram_property_item( Grid_continuous_property* prop, int& id, Histogram_item* parent)
   : Histogram_item(id), prop_(prop), parent_(parent), weights_(0), region_(0)
 {
   grid_ = dynamic_cast< Geostat_grid*>(prop->parent()->parent());

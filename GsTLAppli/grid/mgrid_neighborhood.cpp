@@ -61,7 +61,7 @@
 #include <GsTLAppli/grid/grid_model/reduced_grid.h>
 
 MgridNeighborhood::MgridNeighborhood( RGrid* grid, 
-		GsTLGridProperty* property, 
+		Grid_continuous_property* property, 
 		GsTLInt max_radius, GsTLInt mid_radius, GsTLInt min_radius, 
 		double x_angle, double y_angle, double z_angle, 
 		int max_neighbors , 
@@ -159,7 +159,7 @@ void MgridNeighborhood::find_neighbors( const Geovalue& center )
 }
 
 MgridNeighborhood_hd::MgridNeighborhood_hd( RGrid* grid, 
-		GsTLGridProperty* property, 
+		Grid_continuous_property* property, 
 		GsTLInt max_radius, GsTLInt mid_radius, GsTLInt min_radius, 
 		double x_angle, double y_angle, double z_angle, 
 		int max_neighbors , 
@@ -218,7 +218,7 @@ void MgridNeighborhood_hd::find_neighbors( const Geovalue& center ) {
 }
 
 MgridWindowNeighborhood::MgridWindowNeighborhood( const Grid_template& geom, RGrid* grid, 
-												 GsTLGridProperty* prop  ) :
+												 Grid_continuous_property* prop  ) :
 		Rgrid_window_neighborhood(geom,grid,prop)
 		{}
 

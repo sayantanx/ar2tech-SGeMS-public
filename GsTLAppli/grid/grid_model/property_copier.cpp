@@ -127,13 +127,13 @@ Property_copier::Property_copier() {
 
 
 void Property_copier::copy_categorical_definition(
-  const GsTLGridProperty* server_prop,
-  GsTLGridProperty* client_prop) {
+  const Grid_continuous_property* server_prop,
+  Grid_continuous_property* client_prop) {
     //Set the definition if the property is categorical
-    const GsTLGridCategoricalProperty* server_cprop = 
-              dynamic_cast<const GsTLGridCategoricalProperty*>(server_prop);
-    GsTLGridCategoricalProperty* client_cprop = 
-              dynamic_cast<GsTLGridCategoricalProperty*>(client_prop);
+    const Grid_categorical_property* server_cprop = 
+              dynamic_cast<const Grid_categorical_property*>(server_prop);
+    Grid_categorical_property* client_cprop = 
+              dynamic_cast<Grid_categorical_property*>(client_prop);
     if(server_cprop && client_cprop ) {
       client_cprop->set_category_definition(server_cprop->get_category_definition()->name());
     }
@@ -158,9 +158,9 @@ bool Mask_to_mask_copier::undo_copy()
 }
 
 bool Mask_to_mask_copier::copy( const Geostat_grid* server, 
-                                 const GsTLGridProperty* server_prop,
+                                 const Grid_continuous_property* server_prop,
                                  Geostat_grid* client, 
-                                 GsTLGridProperty* client_prop ) 
+                                 Grid_continuous_property* client_prop ) 
 {
 	Reduced_grid* to_grid = dynamic_cast< Reduced_grid* >( client );
 	const Reduced_grid* from_grid = dynamic_cast< const Reduced_grid* >( server );
@@ -199,15 +199,15 @@ Pset_to_cgrid_copier::Pset_to_cgrid_copier()
 }
 
 bool Pset_to_cgrid_copier::copy( const Geostat_grid* server, 
-                                 const GsTLGridProperty* server_prop,
+                                 const Grid_continuous_property* server_prop,
                                  Geostat_grid* client, 
-                                 GsTLGridProperty* client_prop ) {
+                                 Grid_continuous_property* client_prop ) {
   Cartesian_grid* cgrid = dynamic_cast< Cartesian_grid* >( client );
   const Point_set* pset = dynamic_cast< const Point_set* >( server );
 
   if( !cgrid || !pset ) return false;
 
-  typedef GsTLGridProperty::property_type Property_type;
+  typedef Grid_continuous_property::property_type Property_type;
 
   copy_categorical_definition(server_prop,client_prop);
 
@@ -298,7 +298,7 @@ bool Pset_to_cgrid_copier::copy( const Geostat_grid* server,
    	last_assignement_.push_back( std::make_pair( current_id, node_id ) );
 
     if( !undo_enabled_ ) {
-      Property_type backup_val = GsTLGridProperty::no_data_value;
+      Property_type backup_val = Grid_continuous_property::no_data_value;
       if( client_prop->is_informed( node_id ) )
         backup_val = client_prop->get_value( node_id );
       backup_.push_back( std::make_pair( node_id, backup_val ) );
@@ -354,9 +354,9 @@ Cgrid_to_cgrid_copier::Cgrid_to_cgrid_copier()
 
 
 bool Cgrid_to_cgrid_copier::copy( const Geostat_grid* server, 
-                                  const GsTLGridProperty* server_prop,
+                                  const Grid_continuous_property* server_prop,
                                   Geostat_grid* client, 
-                                  GsTLGridProperty* client_prop ) {
+                                  Grid_continuous_property* client_prop ) {
   Cartesian_grid* to_grid = dynamic_cast< Cartesian_grid* >( client );
   const Cartesian_grid* from_grid = dynamic_cast< const Cartesian_grid* >( server );
 
@@ -385,7 +385,7 @@ bool Cgrid_to_cgrid_copier::copy( const Geostat_grid* server,
   }
   
 
-  typedef GsTLGridProperty::property_type Property_type;
+  typedef Grid_continuous_property::property_type Property_type;
 
   // check if we already worked with "source" and "property_name" 
   // If that's the case and we're not required to do the assignement
@@ -472,7 +472,7 @@ bool Cgrid_to_cgrid_copier::copy( const Geostat_grid* server,
    	last_assignement_.push_back( std::make_pair( grid_it->node_id(), node_id ) );
 
     if( undo_enabled_ ) {
-      Property_type backup_val = GsTLGridProperty::no_data_value;
+      Property_type backup_val = Grid_continuous_property::no_data_value;
       if( client_prop->is_informed( node_id ) )
         backup_val = client_prop->get_value( node_id );
       backup_.push_back( std::make_pair( node_id, backup_val ) );
@@ -532,9 +532,9 @@ Pset_to_mask_copier::Pset_to_mask_copier()
 }
 
 bool Pset_to_mask_copier::copy( const Geostat_grid* server, 
-                                  const GsTLGridProperty* server_prop,
+                                  const Grid_continuous_property* server_prop,
                                   Geostat_grid* client, 
-                                  GsTLGridProperty* client_prop ) {
+                                  Grid_continuous_property* client_prop ) {
   Reduced_grid* to_grid = dynamic_cast< Reduced_grid* >( client );
   const Point_set* from_grid = dynamic_cast< const Point_set* >( server );
   client_property_ = client_prop;
@@ -637,9 +637,9 @@ Pset_to_pset_copier::Pset_to_pset_copier()
 
 
 bool Pset_to_pset_copier::copy( const Geostat_grid* server, 
-                                  const GsTLGridProperty* server_prop,
+                                  const Grid_continuous_property* server_prop,
                                   Geostat_grid* client, 
-                                  GsTLGridProperty* client_prop ) {
+                                  Grid_continuous_property* client_prop ) {
   Point_set* to_grid = dynamic_cast< Point_set* >( client );
   const Point_set* from_grid = dynamic_cast< const Point_set* >( server );
 
@@ -676,9 +676,9 @@ bool Pset_to_pset_copier::copy( const Geostat_grid* server,
 //-----------------------------
 
 bool Rgrid_to_pset_copier::copy( const Geostat_grid* server, 
-                     const GsTLGridProperty* server_prop,
+                     const Grid_continuous_property* server_prop,
                      Geostat_grid* client, 
-                     GsTLGridProperty* client_prop )
+                     Grid_continuous_property* client_prop )
 {
   const RGrid* server_rgrid = dynamic_cast<const RGrid*>(server);
   Point_set* client_pset = dynamic_cast<Point_set*>(client);
@@ -708,9 +708,9 @@ bool Rgrid_to_pset_copier::copy( const Geostat_grid* server,
 // --------------------
 
 bool Pset_to_structured_grid_copier::copy( const Geostat_grid* server, 
-                     const GsTLGridProperty* server_prop,
+                     const Grid_continuous_property* server_prop,
                      Geostat_grid* client, 
-                     GsTLGridProperty* client_prop ) {
+                     Grid_continuous_property* client_prop ) {
 
   Structured_grid* to_grid = dynamic_cast< Structured_grid* >( client );
   const Point_set* from_grid = dynamic_cast< const Point_set* >( server );

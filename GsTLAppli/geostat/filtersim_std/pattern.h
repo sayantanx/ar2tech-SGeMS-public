@@ -67,7 +67,7 @@
 
 using namespace std;
 
-const float UNINFORMED = GsTLGridProperty::no_data_value;  // uninformed data
+const float UNINFORMED = Grid_continuous_property::no_data_value;  // uninformed data
 const float EPSILON = 0.000001;     // a small number
 
 // score type
@@ -150,7 +150,7 @@ void create_filter_cate_scores( RGrid* training_image_,
                           ScoresType& score, Filter* my_filters_, 
                           int ncoarse, int is_viewscore_, int nb_facies, 
                           string training_property_name_,
-                          vector<GsTLGridProperty*>& scoreProps_, int nreal,
+                          vector<Grid_continuous_property*>& scoreProps_, int nreal,
                           vector<float>& max_value, vector<float>& min_value )
 {
 	int loc=0;          // node location with score values
@@ -201,7 +201,7 @@ void create_filter_cate_scores( RGrid* training_image_,
     {
         for(int j=0; j<nb_filter*nb_facies; j++) 
         {
-            GsTLGridProperty * prop = training_image_->select_property ( scoreProps_[ j ]->name() );
+            Grid_continuous_property * prop = training_image_->select_property ( scoreProps_[ j ]->name() );
 
             for (int i=0; i<score.size(); i++)
                 prop->set_value( score[i].second[j], score[i].first );
@@ -232,7 +232,7 @@ void create_filter_cont_scores( RGrid* training_image_,
                           ScoresType& score, Filter* my_filters_, 
                           int ncoarse, int is_viewscore_,
                           string training_property_name_,
-                          vector<GsTLGridProperty*>& scoreProps_, int nreal,
+                          vector<Grid_continuous_property*>& scoreProps_, int nreal,
                           vector<float>& max_value, vector<float>& min_value )
 {
 	int loc=0;          // node location with score values
@@ -278,7 +278,7 @@ void create_filter_cont_scores( RGrid* training_image_,
     {
         for(int cur_filter=0; cur_filter<nb_filter; cur_filter++) 
         {
-            GsTLGridProperty * prop = training_image_->select_property ( scoreProps_[ cur_filter ]->name() );
+            Grid_continuous_property * prop = training_image_->select_property ( scoreProps_[ cur_filter ]->name() );
 
             for (int i=0; i<score.size(); i++)
                 prop->set_value( score[i].second[cur_filter], score[i].first );
@@ -302,7 +302,7 @@ void create_filter_scores( RGrid* training_image_,
                           int ncoarse, int is_viewscore_,
                           int treat_cate_as_cont, int nb_facies, 
                           string training_property_name_,
-                          vector<GsTLGridProperty*>& scoreProps_, int nreal,
+                          vector<Grid_continuous_property*>& scoreProps_, int nreal,
                           vector<float>& max_value, vector<float>& min_value )
 {
     // for continuous variable

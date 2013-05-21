@@ -84,8 +84,8 @@ bool Moving_window::initialize( const Parameters_handler* parameters,
 
 
   std::string prop_name = parameters->value("Input_data.property");
-  GsTLGridProperty* prop_input = grid_->property( prop_name );
-  GsTLGridCategoricalProperty* cprop = dynamic_cast<GsTLGridCategoricalProperty*>(prop_input);
+  Grid_continuous_property* prop_input = grid_->property( prop_name );
+  Grid_categorical_property* cprop = dynamic_cast<Grid_categorical_property*>(prop_input);
   nCategory_ = 0;
   if(cprop) {
     nCategory_ = cprop->get_number_of_category();
@@ -265,7 +265,7 @@ bool Moving_window::initialize( const Parameters_handler* parameters,
  else {
    for(int i=0; i<filters_->number_filters(); i++ ) {
       std::string filter_name = prefix + " "+filters_->name(i);
-      GsTLGridProperty* prop = geostat_utils::add_property_to_grid( grid_, filter_name );
+      Grid_continuous_property* prop = geostat_utils::add_property_to_grid( grid_, filter_name );
       prop->set_parameters(parameters_);
       props_.push_back( prop );
       group->add_property(prop);
@@ -300,13 +300,13 @@ int Moving_window::execute(GsTL_project *) {
 
       int index = 0;
 
-      std::vector< GsTLGridProperty::property_type >  data;
+      std::vector< Grid_continuous_property::property_type >  data;
       Neighborhood::iterator it_neigh = neigh_->begin();
       for( ; it_neigh != neigh_->end() ; ++it_neigh ) {
         if( it_neigh->is_informed() )  data.push_back( it_neigh->property_value() );
       }
       for(int c = 0; c< nCategory_; c++ ) {
-        std::vector< GsTLGridProperty::property_type >  data_id;
+        std::vector< Grid_continuous_property::property_type >  data_id;
         for( int i=0; i<data.size(); ++i )
           data_id.push_back( (data[i]==c)?1.0:0.0 );
 

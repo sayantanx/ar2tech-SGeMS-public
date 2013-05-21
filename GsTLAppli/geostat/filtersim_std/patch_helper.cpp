@@ -120,7 +120,7 @@ Patch_Helper::Patch_Helper( RGrid* simul_grid, bool has_hard_data )
 /*
  * constructor, from property
  */
-Patch_Helper::Patch_Helper( GsTLGridProperty* prop )
+Patch_Helper::Patch_Helper( Grid_continuous_property* prop )
 {
     patch_.resize( prop->size(), false );
     nb_data_ = 0;

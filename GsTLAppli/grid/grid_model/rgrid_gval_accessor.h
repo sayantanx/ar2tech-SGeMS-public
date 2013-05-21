@@ -75,7 +75,7 @@ public:
    
   RGrid_gval_accessor( RGrid* rgrid, 
 		       const std::string & prop_name ); 
-  RGrid_gval_accessor( RGrid* rgrid, GsTLGridProperty* property ); 
+  RGrid_gval_accessor( RGrid* rgrid, Grid_continuous_property* property ); 
  
   RGrid_gval_accessor(const RGrid_gval_accessor& a); 
  

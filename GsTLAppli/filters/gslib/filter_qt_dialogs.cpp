@@ -288,7 +288,7 @@ bool Gslib_input_mgrid_dialog::use_no_data_value() const {
 
 float Gslib_input_mgrid_dialog::no_data_value() const {
   QString val = no_data_value_edit_->text();
-  if(val.isEmpty()) return GsTLGridProperty::no_data_value;
+  if(val.isEmpty()) return Grid_continuous_property::no_data_value;
   return val.toFloat();
 }
 

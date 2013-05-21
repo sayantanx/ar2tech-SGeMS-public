@@ -227,7 +227,7 @@ void New_region_from_property_dialog::set_filter_type(){
   SmartPtr< Named_interface > ni =
 	Root::instance()->interface( gridModels_manager + "/" + grid_name.toStdString() );
   Geostat_grid* grid = dynamic_cast<Geostat_grid*>(ni.raw_ptr());
-  GsTLGridCategoricalProperty *prop = grid->categorical_property(prop_name.toStdString());
+  Grid_categorical_property *prop = grid->categorical_property(prop_name.toStdString());
   if(prop) {
 	  min_max_box_->setHidden(true);
 	  category_box_->setVisible(true);
@@ -249,7 +249,7 @@ void New_region_from_property_dialog::populate_categories(){
   SmartPtr< Named_interface > ni =
 	Root::instance()->interface( gridModels_manager + "/" + grid_name.toStdString() );
   Geostat_grid* grid = dynamic_cast<Geostat_grid*>(ni.raw_ptr());
-  GsTLGridCategoricalProperty *prop = grid->categorical_property(prop_name.toStdString());
+  Grid_categorical_property *prop = grid->categorical_property(prop_name.toStdString());
 
   if(!prop) return;
 

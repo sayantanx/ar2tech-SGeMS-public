@@ -49,7 +49,7 @@ Property_param_viewer::Property_param_viewer()
 
 }
 
-Property_param_viewer::Property_param_viewer(GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop)
+Property_param_viewer::Property_param_viewer(Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop)
 : is_displayed_(false)
 {
 	this->initialize(prop,vtk_prop);
@@ -89,11 +89,11 @@ void Property_param_viewer::deleted_object(std::string obj){
 
 
 
-void Property_param_viewer::initialize(GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop){
+void Property_param_viewer::initialize(Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop){
 	vtk_prop_ = vtk_prop;
 	grid_ = vtk_prop->grid();
 	prop_ = prop;
-	cprop_ = dynamic_cast<const GsTLGridCategoricalProperty*>(prop_);
+	cprop_ = dynamic_cast<const Grid_categorical_property*>(prop_);
 //	this->setTitle(QString("%1 on grid %2").arg(prop_->name().c_str()).arg(grid_->name().c_str()));
 
 	QVBoxLayout * layout = new QVBoxLayout(this);
@@ -203,8 +203,8 @@ void Property_param_viewer::init_color_page(){
 }
 
 void Property_param_viewer::init_filtering_page(){
-	if(prop_->classname() == "GsTLGridCategoricalProperty") {
-		const GsTLGridCategoricalProperty* cprop  = dynamic_cast<const GsTLGridCategoricalProperty*>(prop_);
+	if(prop_->classname() == "Grid_categorical_property") {
+		const Grid_categorical_property* cprop  = dynamic_cast<const Grid_categorical_property*>(prop_);
 		threshold_ = new Property_thresholds_categorical_control(cprop,vtk_prop_,this);
 	}
 	else {
@@ -255,7 +255,7 @@ Property_viz_parameters::~Property_viz_parameters(){
 }
 
 
-void Property_viz_parameters::initialize( GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop){
+void Property_viz_parameters::initialize( Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop){
 	prop_ = prop;
 	vtk_prop_ = vtk_prop;
 	viewer_ = new Property_param_viewer(prop, vtk_prop);
@@ -266,7 +266,7 @@ QWidget* Property_viz_parameters::interface(){
 	return viewer_;
 }
 
-GsTLGridProperty* Property_viz_parameters::property(){
+Grid_continuous_property* Property_viz_parameters::property(){
 	return prop_;
 }
 

@@ -105,7 +105,7 @@ void Scatter_plot_creator::show_scatter_plot(){
   Geostat_grid* grid = grid_selector_->selected_grid_object();
   if(grid == 0 ) return;
 
-  GsTLGridProperty* x_prop = grid->property(x_prop_name.toStdString());
+  Grid_continuous_property* x_prop = grid->property(x_prop_name.toStdString());
   if(x_prop == 0 ) return;
 
   QStringList y_prop_names = y_props_selector_->selected_properties();
@@ -117,7 +117,7 @@ void Scatter_plot_creator::show_scatter_plot(){
 
   std::vector<GsTL_object_item*> y_items;
   for(int i=0; i<y_prop_names.size(); ++i) {
-    GsTLGridProperty* prop = grid->property( y_prop_names.at(i).toStdString() );
+    Grid_continuous_property* prop = grid->property( y_prop_names.at(i).toStdString() );
     if( prop ) y_items.push_back( prop );
   }
   for(int i=0; i<y_groups_items.size(); ++i) {

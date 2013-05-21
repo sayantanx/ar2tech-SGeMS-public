@@ -65,8 +65,8 @@ class GEOSTAT_DECL Kriging_x_validation : public Geostat_algo {
   std::string property_name_; 
    
   Geostat_grid* harddata_grid_; 
-  GsTLGridProperty* hdata_prop_;
-  GsTLGridProperty* blk_hdata_prop_;
+  Grid_continuous_property* hdata_prop_;
+  Grid_continuous_property* blk_hdata_prop_;
   std::string harddata_property_name_;
    
   SmartPtr<Neighborhood> neighborhood_; 

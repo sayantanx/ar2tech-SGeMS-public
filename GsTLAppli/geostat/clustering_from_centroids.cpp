@@ -88,7 +88,7 @@ bool Clustering_from_centroids::initialize( const Parameters_handler* parameters
   String_Op::decompose_string( prop_names, property_names_str, ";");
 
   for(int i=0; i<prop_names.size(); ++i) {
-    GsTLGridProperty* prop = grid_->property(prop_names[i]);
+    Grid_continuous_property* prop = grid_->property(prop_names[i]);
     if(prop == 0) {
        errors->report( "property_names", "No property called "+prop_names[i] );
        return false;
@@ -159,7 +159,7 @@ bool Clustering_from_centroids::initialize( const Parameters_handler* parameters
 
 int Clustering_from_centroids::execute( GsTL_project* proj ){
 
-  GsTLGridCategoricalProperty* kprop = grid_->add_categorical_property(clusters_prop_name_);
+  Grid_categorical_property* kprop = grid_->add_categorical_property(clusters_prop_name_);
   while( kprop ==0 ) {
     clusters_prop_name_ = clusters_prop_name_+"_0";
     kprop = grid_->add_categorical_property(clusters_prop_name_);

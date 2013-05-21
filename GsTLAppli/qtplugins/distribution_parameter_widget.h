@@ -84,7 +84,7 @@ private :
   UpperTailCdfInput* upper_tail_input_;
 
   Geostat_grid* grid_;  
-  GsTLGridProperty* prop_;
+  Grid_continuous_property* prop_;
   GsTLGridWeightProperty* weight_;
   Grid_region* region_;
 

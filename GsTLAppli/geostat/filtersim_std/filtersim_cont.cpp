@@ -250,7 +250,7 @@ int Filtersim_Cont::execute( GsTL_project* proj )
 		if( ! progress_notifier->notify() ) return 1;
 		
         // add new property
-		GsTLGridProperty* prop = multireal_property_->new_realization();
+		Grid_continuous_property* prop = multireal_property_->new_realization();
     prop->set_parameters(parameters_);
 
     bool not_success = simulate_one_realization( progress_notifier, prop, nreal );
@@ -469,7 +469,7 @@ bool Filtersim_Cont::get_training_image( const Parameters_handler* parameters,
         if ( transcon_data_==1)
         {
             // create a cdf from training image
-            GsTLGridProperty* prop =training_image_->select_property( training_property_name_ );
+            Grid_continuous_property* prop =training_image_->select_property( training_property_name_ );
             vector<float> TI_data;
             get_property_vector( prop, TI_data );
 
@@ -556,7 +556,7 @@ bool Filtersim_Cont::get_soft_data( const Parameters_handler* parameters,
     if ( use_soft_field_==1 )
     {
         softdata_property_names_ = parameters->value( "Soft_Data.value" );
-        GsTLGridProperty* prop = simul_grid_->property( softdata_property_names_ );
+        Grid_continuous_property* prop = simul_grid_->property( softdata_property_names_ );
 
         if( !prop ) 
         {
@@ -1241,7 +1241,7 @@ void Filtersim_Cont::init_random_path()
  */
 void Filtersim_Cont::copy_pre_simulation_data()
 {
-    GsTLGridProperty* prop = simul_grid_->selected_property();
+    Grid_continuous_property* prop = simul_grid_->selected_property();
     
     //for (int i=0; i<simul_grid_->nxyz(); i++) 
     for (int i=0; i<simul_grid_->size(); i++) 
@@ -1286,7 +1286,7 @@ void Filtersim_Cont::set_region_indicator()
  * function to remove the simulation property when
  * this program abort
  */
-void Filtersim_Cont::clean( GsTLGridProperty* prop ) 
+void Filtersim_Cont::clean( Grid_continuous_property* prop ) 
 {
 	if( prop ) 
 		simul_grid_->remove_property( prop->name() );
@@ -1320,7 +1320,7 @@ void Filtersim_Cont::get_filter_score_weight()
  * main function to perform simulation for one realization
  */
 bool Filtersim_Cont::simulate_one_realization( SmartPtr<Progress_notifier>& progress_notifier, 
-                                             GsTLGridProperty* prop, int nreal )
+                                             Grid_continuous_property* prop, int nreal )
 {
     simul_grid_->select_property( prop->name() );
     simul_grid_->set_level(1);	
@@ -1722,7 +1722,7 @@ bool Filtersim_Cont::simulate_one_realization( SmartPtr<Progress_notifier>& prog
 /*
  * function to store the data value from prop into a vector data
  */
-void Filtersim_Cont::get_property_vector( GsTLGridProperty* prop, vector<float>& data, bool use_region )
+void Filtersim_Cont::get_property_vector( Grid_continuous_property* prop, vector<float>& data, bool use_region )
 {
     if ( use_region )
     {  // for simulations
@@ -1746,7 +1746,7 @@ void Filtersim_Cont::get_property_vector( GsTLGridProperty* prop, vector<float>&
 /*
  * function to transform an input prop to honor the target histogram of training image
  */
-void Filtersim_Cont::trans_prop_cdf( GsTLGridProperty* prop, Non_param_cdf<>& source_cdf )
+void Filtersim_Cont::trans_prop_cdf( Grid_continuous_property* prop, Non_param_cdf<>& source_cdf )
 {
     for (int i=0; i<prop->size(); i++)
     {
@@ -1768,7 +1768,7 @@ void Filtersim_Cont::trans_prop_cdf( GsTLGridProperty* prop, Non_param_cdf<>& so
 /*
  * function to record the intermediate result in the corresponding coarse grid
  */
-void Filtersim_Cont::record_intermediate_sim( GsTLGridProperty* prop, int ncoarse, string dual )
+void Filtersim_Cont::record_intermediate_sim( Grid_continuous_property* prop, int ncoarse, string dual )
 {
     // initialize the property name to be recorded
     string  previous_prop;
@@ -1782,7 +1782,7 @@ void Filtersim_Cont::record_intermediate_sim( GsTLGridProperty* prop, int ncoars
 
     // select the property to be saved, 
     // if the property does not exit, add the property to current object
-    GsTLGridProperty* prop2 = simul_grid_->select_property( previous_prop );
+    Grid_continuous_property* prop2 = simul_grid_->select_property( previous_prop );
     if ( !prop2 )   prop2 = geostat_utils::add_property_to_grid(simul_grid_,previous_prop);
 
     // record the data property
@@ -1800,7 +1800,7 @@ void Filtersim_Cont::record_intermediate_sim( GsTLGridProperty* prop, int ncoars
 /*
  * function to paste the 2nd to finest grid with dual template
  */
-void Filtersim_Cont::fillin_with_dual_template( GsTLGridProperty* prop, 
+void Filtersim_Cont::fillin_with_dual_template( Grid_continuous_property* prop, 
                                                                        Pattern_Node_Map& mapping, int ncoarse )
 {
     simul_grid_->set_level(1);

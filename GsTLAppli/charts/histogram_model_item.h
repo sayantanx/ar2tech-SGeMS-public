@@ -122,13 +122,13 @@ protected :
 
 class CHARTS_DECL Histogram_property_item :public Histogram_item {
 public :
-  Histogram_property_item( GsTLGridProperty* prop, int& id, Histogram_item* parent=0);
+  Histogram_property_item( Grid_continuous_property* prop, int& id, Histogram_item* parent=0);
   virtual ~Histogram_property_item(){}
 
   virtual QString type() const {return "Property";}
 
   
-  GsTLGridProperty* prop() {return prop_;}
+  Grid_continuous_property* prop() {return prop_;}
   virtual GsTL_object_item* object_item() {return prop_;}
 
   virtual GsTLGridWeightProperty* weights() {return weights_;}
@@ -154,7 +154,7 @@ public :
 private :
   
   Histogram_item* parent_;
-  GsTLGridProperty* prop_;
+  Grid_continuous_property* prop_;
   Grid_region* region_;
   GsTLGridWeightProperty* weights_;
 
@@ -221,7 +221,7 @@ public :
   virtual QString type() const {return "Distribution";}
 
   
-  GsTLGridProperty* prop() {return 0;}
+  Grid_continuous_property* prop() {return 0;}
   virtual GsTL_object_item* object_item() {return dist_;}
 
   virtual GsTLGridWeightProperty* weights() {return 0;}

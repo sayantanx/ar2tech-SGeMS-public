@@ -41,7 +41,7 @@
  }
 
 
-Scatter_plot_property_item::Scatter_plot_property_item( GsTLGridProperty* prop_x,GsTLGridProperty* prop_y, int& id, Scatter_plot_item* parent)
+Scatter_plot_property_item::Scatter_plot_property_item( Grid_continuous_property* prop_x,Grid_continuous_property* prop_y, int& id, Scatter_plot_item* parent)
   : Scatter_plot_item(id), prop_x_(prop_x), prop_y_(prop_y), parent_(parent), weights_(0), region_(0)
 {
   grid_ = dynamic_cast< Geostat_grid*>(prop_x_->parent()->parent());
@@ -54,7 +54,7 @@ Scatter_plot_property_item::Scatter_plot_property_item( GsTLGridProperty* prop_x
 
 
 
-Scatter_plot_property_group_item::Scatter_plot_property_group_item( GsTLGridProperty* prop_x,GsTLGridPropertyGroup* group_y, int& id)
+Scatter_plot_property_group_item::Scatter_plot_property_group_item( Grid_continuous_property* prop_x,GsTLGridPropertyGroup* group_y, int& id)
   : Scatter_plot_item(id), prop_x_(prop_x), group_y_(group_y), weights_(0), region_(0) 
 {
 
@@ -137,7 +137,7 @@ void Scatter_plot_property_group_item::weights(GsTLGridWeightProperty* weights){
   }
 }
 
-void Scatter_plot_property_group_item::categorical_property(GsTLGridCategoricalProperty* cprop){
+void Scatter_plot_property_group_item::categorical_property(Grid_categorical_property* cprop){
   cprop_ = cprop;
   std::set< Scatter_plot_property_item*>::iterator it = prop_items_.begin();
   for( ; it != prop_items_.end(); ++it) {
@@ -268,7 +268,7 @@ void Scatter_plot_group_item::weights(GsTLGridWeightProperty* weights){
   }
 }
 
-void Scatter_plot_group_item::categorical_property(GsTLGridCategoricalProperty* cprop){
+void Scatter_plot_group_item::categorical_property(Grid_categorical_property* cprop){
   cprop_ = cprop;
   std::set< Scatter_plot_property_item*>::iterator it = prop_items_.begin();
   for( ; it != prop_items_.end(); ++it) {

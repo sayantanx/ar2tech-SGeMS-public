@@ -115,7 +115,7 @@ Point_set_neighborhood::Point_set_neighborhood( double x,double y,double z,
 						double ang1,double ang2,double ang3,
 						int max_neighbors,
 						Point_set* pset,
-						GsTLGridProperty* property,
+						Grid_continuous_property* property,
 						const Covariance<location_type>* cov, bool only_harddata,
             const Grid_region* region,
             Coordinate_mapper* coord_mapper)
@@ -574,7 +574,7 @@ Point_set_rectangular_neighborhood::Point_set_rectangular_neighborhood( double x
 						double ang1,double ang2,double ang3,
 						int max_neighbors,
 						Point_set* pset,
-						GsTLGridProperty* prop,
+						Grid_continuous_property* prop,
 						const Covariance<location_type>* cov, bool only_harddata ) 
 : Point_set_neighborhood( std::sqrt(x*x+y*y+x*z)/2, std::sqrt(x*x+y*y+x*z)/2, std::sqrt(x*x+y*y+x*z)/2,
                           ang1, ang2, ang3, max_neighbors, pset,prop, cov, only_harddata ),

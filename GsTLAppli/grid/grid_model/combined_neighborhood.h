@@ -89,7 +89,7 @@ class GRID_DECL Combined_neighborhood : public Neighborhood {
    * behavior of the first neighborhood. 
    */  
   virtual bool select_property( const std::string& prop_name );  
-  virtual const GsTLGridProperty* selected_property() const;
+  virtual const Grid_continuous_property* selected_property() const;
   
   virtual void includes_center( bool on );
 

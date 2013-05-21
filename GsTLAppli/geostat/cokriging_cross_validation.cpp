@@ -110,26 +110,26 @@ int Cokriging_x_validation::execute( GsTL_project* ) {
 
   // create property for the cross-validation
   // value
-  GsTLGridProperty* kvalue_prop = geostat_utils::add_property_to_grid(prim_harddata_grid_, property_name_ );
+  Grid_continuous_property* kvalue_prop = geostat_utils::add_property_to_grid(prim_harddata_grid_, property_name_ );
   property_name_ = kvalue_prop->name();
   kvalue_prop->set_parameters(parameters_);
 
-  GsTLGridProperty* var_prop = 
+  Grid_continuous_property* var_prop = 
     geostat_utils::add_property_to_grid( prim_harddata_grid_, property_name_ + "_krig_var" );
   appli_assert( var_prop );
   var_prop->set_parameters(parameters_);
 
-  GsTLGridProperty* error_prop = 
+  Grid_continuous_property* error_prop = 
     geostat_utils::add_property_to_grid( prim_harddata_grid_, property_name_ + "_error" );
   appli_assert( error_prop );
   error_prop->set_parameters(parameters_);
 
-  GsTLGridProperty* error2_prop = 
+  Grid_continuous_property* error2_prop = 
     geostat_utils::add_property_to_grid( prim_harddata_grid_, property_name_ + "_error2" );
   appli_assert( error2_prop );
   error2_prop->set_parameters(parameters_);
 
-  GsTLGridProperty* error2_kvar_prop = 
+  Grid_continuous_property* error2_kvar_prop = 
     geostat_utils::add_property_to_grid( prim_harddata_grid_, property_name_ + "_error2_kvar_ratio" );
   appli_assert( error2_kvar_prop );
   error2_kvar_prop->set_parameters(parameters_);
@@ -185,7 +185,7 @@ int Cokriging_x_validation::execute( GsTL_project* ) {
 //    std::cout << "  estimate: " << estimate << std::endl;
       begin->set_property_value( estimate );
       int nodeid = begin->node_id();
-      GsTLGridProperty::property_type value = neighborhood_vector_[0].selected_property()->get_value(nodeid);
+      Grid_continuous_property::property_type value = neighborhood_vector_[0].selected_property()->get_value(nodeid);
       float error = estimate - value;
       float error2 = error*error;
       float error_kvar = error2/variance;
@@ -277,7 +277,7 @@ bool Cokriging_x_validation::initialize( const Parameters_handler* parameters,
 		  "Property_Name", "No property name specified" );
 
 /*
-  GsTLGridProperty* new_prop = 
+  Grid_continuous_property* new_prop = 
     geostat_utils::add_property_to_grid( prim_harddata_grid_, property_name_ );
   errors->report( new_prop == 0, 
                   "Property_Name", "Property already exists. Choose another name" );
@@ -368,7 +368,7 @@ bool Cokriging_x_validation::initialize( const Parameters_handler* parameters,
   //-------------
   // Initialize the secondary variable neighborhood
 
-  const GsTLGridProperty* secondary_prop = 
+  const Grid_continuous_property* secondary_prop = 
     sec_harddata_grid_->property( secondary_variable_ );
 
   NeighborhoodHandle sec_neighborhood = 

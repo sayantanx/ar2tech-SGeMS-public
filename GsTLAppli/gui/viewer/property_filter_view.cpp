@@ -111,7 +111,7 @@ void Property_filter_threshold_continuous::forward_remove(){
 
 
 Property_thresholds_continuous_control::
-Property_thresholds_continuous_control(const GsTLGridProperty* prop,GsTL_vtkProp* vtk_prop,QWidget *parent)
+Property_thresholds_continuous_control(const Grid_continuous_property* prop,GsTL_vtkProp* vtk_prop,QWidget *parent)
  : Property_filter_view(prop, vtk_prop, parent),  threshold_counter_(0){
 
 	QVBoxLayout *layout = new QVBoxLayout(this);
@@ -248,7 +248,7 @@ void Property_thresholds_continuous_control::unselect_all_categories(){
  */
 
 
-Property_filter_view::Property_filter_view(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop,QWidget *parent)
+Property_filter_view::Property_filter_view(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop,QWidget *parent)
  : prop_(prop), vtk_prop_(vtk_prop), QScrollArea(parent)
 {
 }
@@ -261,7 +261,7 @@ Property_filter_view::~Property_filter_view() {
 
 
 Property_thresholds_categorical_control::
-Property_thresholds_categorical_control(const GsTLGridCategoricalProperty* prop,GsTL_vtkProp* vtk_prop,QWidget *parent)
+Property_thresholds_categorical_control(const Grid_categorical_property* prop,GsTL_vtkProp* vtk_prop,QWidget *parent)
  : Property_filter_view(prop, vtk_prop, parent), cprop_(prop){
 
 	QVBoxLayout *layout = new QVBoxLayout(this);

@@ -126,7 +126,7 @@ Rename_property_item_action::Rename_property_item_action(QObject * parent)
 
 bool Rename_property_item_action::execute(GsTL_object_item* item){
 
-	GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item);
+	Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item);
 	if(prop == 0) return false;
 
 	std::string old_name = prop->name();
@@ -156,7 +156,7 @@ Swap_to_RAM_property_item_action::
 ~Swap_to_RAM_property_item_action(){}
 
 void Swap_to_RAM_property_item_action::initialize(GsTL_object_item* item){
-	GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item);
+	Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item);
 
 	if(prop == 0) {
 		this->setVisible(false);
@@ -170,7 +170,7 @@ void Swap_to_RAM_property_item_action::initialize(GsTL_object_item* item){
 }
 
 bool Swap_to_RAM_property_item_action::execute(GsTL_object_item* item){
-	GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item);
+	Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item);
 	if(prop) {
 		prop->swap_to_memory();
 	}
@@ -193,7 +193,7 @@ Swap_to_disk_property_item_action::
 ~Swap_to_disk_property_item_action(){}
 
 void Swap_to_disk_property_item_action::initialize(GsTL_object_item* item){
-	GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item);
+	Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item);
 	if(prop == 0) {
 		this->setVisible(false);
 	}
@@ -206,7 +206,7 @@ void Swap_to_disk_property_item_action::initialize(GsTL_object_item* item){
 }
 
 bool Swap_to_disk_property_item_action::execute(GsTL_object_item* item){
-	GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item);
+	Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item);
 	if(prop) {
 		prop->swap_to_disk();
 		return true;
@@ -225,7 +225,7 @@ Unary_property_item_action::~Unary_property_item_action(){}
 bool Unary_property_item_action::execute(GsTL_object_item* item){
 
 	Error_messages_handler error_messages;
-	GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item);
+	Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item);
   if(prop == 0) { //May be inside a region
     GsTL_object_property_item* prop_in_group = dynamic_cast<GsTL_object_property_item*>(item);
     if(prop_in_group)

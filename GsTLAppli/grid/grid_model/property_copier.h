@@ -91,8 +91,8 @@ public:
   virtual ~Property_copier() {}
 
   virtual bool copy( const Geostat_grid* server, 
-                     const GsTLGridProperty* server_prop,
-                     Geostat_grid* client, GsTLGridProperty* client_prop ) = 0;
+                     const Grid_continuous_property* server_prop,
+                     Geostat_grid* client, Grid_continuous_property* client_prop ) = 0;
 
   virtual bool undo_copy() = 0;
 
@@ -108,8 +108,8 @@ public:
   bool is_undo_enabled() const { return undo_enabled_; }
   void set_undo_enabled( bool on ) { undo_enabled_ = on; }
 
-  void copy_categorical_definition(const GsTLGridProperty* server_prop,
-                                   GsTLGridProperty* client_prop);
+  void copy_categorical_definition(const Grid_continuous_property* server_prop,
+                                   Grid_continuous_property* client_prop);
 
 protected:
 
@@ -149,20 +149,20 @@ public:
 	Mask_to_mask_copier();
 	
 	virtual bool copy( const Geostat_grid* server, 
-		const GsTLGridProperty* server_prop,
+		const Grid_continuous_property* server_prop,
 		Geostat_grid* client, 
-		GsTLGridProperty* client_prop );
+		Grid_continuous_property* client_prop );
 
 	virtual bool undo_copy();
 protected:
 	const Geostat_grid* server_;
 	const Geostat_grid* client_;
-	const GsTLGridProperty* server_prop_;
+	const Grid_continuous_property* server_prop_;
 
 	std::vector< std::pair<GsTLInt,GsTLInt> > last_assignement_; 
 
-	GsTLGridProperty* client_property_;
-	std::vector< std::pair< GsTLInt, GsTLGridProperty::property_type > > backup_;
+	Grid_continuous_property* client_property_;
+	std::vector< std::pair< GsTLInt, Grid_continuous_property::property_type > > backup_;
     bool unset_harddata_flag_;
 
 };
@@ -177,9 +177,9 @@ public:
   Pset_to_mask_copier();
 
   virtual bool copy( const Geostat_grid* server, 
-                     const GsTLGridProperty* server_prop,
+                     const Grid_continuous_property* server_prop,
                      Geostat_grid* client, 
-                     GsTLGridProperty* client_prop );
+                     Grid_continuous_property* client_prop );
 
   virtual bool undo_copy();
 
@@ -187,8 +187,8 @@ public:
 protected:
   const Geostat_grid* server_;
   const Geostat_grid* client_;
-  const GsTLGridProperty* server_prop_;
-  GsTLGridProperty* client_property_;
+  const Grid_continuous_property* server_prop_;
+  Grid_continuous_property* client_property_;
 
   //Allow to keep track which node-id was assigned where
   // useful for the undo
@@ -224,9 +224,9 @@ public:
   Pset_to_cgrid_copier();
 
   virtual bool copy( const Geostat_grid* server, 
-                     const GsTLGridProperty* server_prop,
+                     const Grid_continuous_property* server_prop,
                      Geostat_grid* client, 
-                     GsTLGridProperty* client_prop );
+                     Grid_continuous_property* client_prop );
 
   virtual bool undo_copy();
 
@@ -234,12 +234,12 @@ public:
 protected:
   const Geostat_grid* server_;
   const Geostat_grid* client_;
-  const GsTLGridProperty* server_prop_;
+  const Grid_continuous_property* server_prop_;
 
   std::vector< std::pair<GsTLInt,GsTLInt> > last_assignement_; 
 
-  GsTLGridProperty* client_property_;
-  std::vector< std::pair< GsTLInt, GsTLGridProperty::property_type > > backup_;
+  Grid_continuous_property* client_property_;
+  std::vector< std::pair< GsTLInt, Grid_continuous_property::property_type > > backup_;
   bool unset_harddata_flag_;
 
 };
@@ -257,9 +257,9 @@ public:
   Cgrid_to_cgrid_copier();
 
   virtual bool copy( const Geostat_grid* server, 
-                     const GsTLGridProperty* server_prop,
+                     const Grid_continuous_property* server_prop,
                      Geostat_grid* client, 
-                     GsTLGridProperty* client_prop );
+                     Grid_continuous_property* client_prop );
 
   virtual bool undo_copy();
 
@@ -271,12 +271,12 @@ protected:
 protected:
   const Geostat_grid* server_;
   const Geostat_grid* client_;
-  const GsTLGridProperty* server_prop_;
+  const Grid_continuous_property* server_prop_;
 
   std::vector< std::pair<GsTLInt,GsTLInt> > last_assignement_; 
 
-  GsTLGridProperty* client_property_;
-  std::vector< std::pair< GsTLInt, GsTLGridProperty::property_type > > backup_;
+  Grid_continuous_property* client_property_;
+  std::vector< std::pair< GsTLInt, Grid_continuous_property::property_type > > backup_;
   bool unset_harddata_flag_;
 
 };
@@ -296,9 +296,9 @@ public:
   Pset_to_pset_copier();
 
   virtual bool copy( const Geostat_grid* server, 
-                     const GsTLGridProperty* server_prop,
+                     const Grid_continuous_property* server_prop,
                      Geostat_grid* client, 
-                     GsTLGridProperty* client_prop );
+                     Grid_continuous_property* client_prop );
 
   virtual bool undo_copy(){return false;}
 
@@ -311,12 +311,12 @@ protected:
 protected:
   const Geostat_grid* server_;
   const Geostat_grid* client_;
-  const GsTLGridProperty* server_prop_;
+  const Grid_continuous_property* server_prop_;
 
   std::vector< std::pair<GsTLInt,GsTLInt> > last_assignement_; 
 
-  GsTLGridProperty* client_property_;
-  std::vector< std::pair< GsTLInt, GsTLGridProperty::property_type > > backup_;
+  Grid_continuous_property* client_property_;
+  std::vector< std::pair< GsTLInt, Grid_continuous_property::property_type > > backup_;
   bool unset_harddata_flag_;
 
 };
@@ -332,9 +332,9 @@ public:
   Rgrid_to_pset_copier(){}
 
   virtual bool copy( const Geostat_grid* server, 
-                     const GsTLGridProperty* server_prop,
+                     const Grid_continuous_property* server_prop,
                      Geostat_grid* client, 
-                     GsTLGridProperty* client_prop );
+                     Grid_continuous_property* client_prop );
 
   virtual bool undo_copy(){return false;}
 
@@ -354,9 +354,9 @@ public:
   Pset_to_structured_grid_copier(){}
 
   virtual bool copy( const Geostat_grid* server, 
-                     const GsTLGridProperty* server_prop,
+                     const Grid_continuous_property* server_prop,
                      Geostat_grid* client, 
-                     GsTLGridProperty* client_prop );
+                     Grid_continuous_property* client_prop );
 
   virtual bool undo_copy();
 
@@ -364,8 +364,8 @@ public:
 private :
   const Geostat_grid* server_;
   const Geostat_grid* client_;
-  const GsTLGridProperty* server_prop_;
-  GsTLGridProperty* client_property_;
+  const Grid_continuous_property* server_prop_;
+  Grid_continuous_property* client_property_;
 
   //Allow to keep track which node-id was assigned where
   // useful for the undo

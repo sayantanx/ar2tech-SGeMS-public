@@ -71,13 +71,13 @@ public slots :
   void add_data(Scatter_plot_item* prop_item);
   void update_data_display(Scatter_plot_item* item);
 
-//  void add_data( GsTLGridProperty* prop, Grid_region* region=0, GsTLGridProperty* weigths=0);
+//  void add_data( Grid_continuous_property* prop, Grid_region* region=0, Grid_continuous_property* weigths=0);
 
   //Add the data to the model first which then send it to the chart
   /*
-  void add_data( GsTLGridProperty* prop);
-  void add_data( GsTLGridProperty* prop, GsTLGridWeightProperty* weigths);
-  void add_data( GsTLGridProperty* prop, Grid_region* region);
+  void add_data( Grid_continuous_property* prop);
+  void add_data( Grid_continuous_property* prop, GsTLGridWeightProperty* weigths);
+  void add_data( Grid_continuous_property* prop, Grid_region* region);
   void add_data( GsTLGridPropertyGroup* group);
   void add_data( GsTLGridPropertyGroup* group, GsTLGridWeightProperty* weigths);
   void add_data( GsTLGridPropertyGroup* group, Grid_region* region);
@@ -146,11 +146,11 @@ private:
     std::string name_x;
     std::string name_y;
     std::string filter_name;
-    GsTLGridProperty* prop_x;
-    GsTLGridProperty* prop_y;
+    Grid_continuous_property* prop_x;
+    Grid_continuous_property* prop_y;
     GsTLGridWeightProperty* weight;
     Grid_region* region;
-    GsTLGridCategoricalProperty* cprop;
+    Grid_categorical_property* cprop;
     Geostat_grid* grid;
     float mean;
     float variance;
@@ -194,7 +194,7 @@ private:
   float min_values_;
   float max_values_;
 
-  //std::map<GsTLGridProperty*, histo_data> data_stats_;
+  //std::map<Grid_continuous_property*, histo_data> data_stats_;
   std::map<int, Scatter_data> data_stats_;
 
   vtkSmartPointer<vtkTable> scatter_table_;

@@ -340,7 +340,7 @@ void Chart_continuous_histogram::load_data(QModelIndexList indexes){
     GsTL_object_item* item = static_cast<GsTL_object_item*>(index.internalPointer());
     //if(item->item_type() == "ContinuousProperty" || item->item_type() == "WeightsProperty") {
     if(item->item_type() == "ContinuousProperty" ) {
-      GsTLGridProperty* prop = static_cast<GsTLGridProperty*>(item->data_pointer());
+      Grid_continuous_property* prop = static_cast<Grid_continuous_property*>(item->data_pointer());
       GsTL_object_item* parent_grid = prop->parent()->parent();
   
       std::map<GsTL_object_item*,Grid_region*>::iterator it = grid_to_region.find(parent_grid);
@@ -380,15 +380,15 @@ void Chart_continuous_histogram::load_data(QModelIndexList indexes){
   }
 }
 
-void Chart_continuous_histogram::add_data( GsTLGridProperty* prop){
+void Chart_continuous_histogram::add_data( Grid_continuous_property* prop){
   model_->insert_row(prop, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_continuous_histogram::add_data( GsTLGridProperty* prop, GsTLGridWeightProperty* weigths){
+void Chart_continuous_histogram::add_data( Grid_continuous_property* prop, GsTLGridWeightProperty* weigths){
   model_->insert_row(prop,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_continuous_histogram::add_data( GsTLGridProperty* prop, Grid_region* region){
+void Chart_continuous_histogram::add_data( Grid_continuous_property* prop, Grid_region* region){
   model_->insert_row(prop,region, default_colors_.at(default_color_id_%max_index_default_colors_) );
   default_color_id_++;
 }
@@ -597,7 +597,7 @@ void Chart_continuous_histogram::compute_stats(histo_data& data){
   vtkSmartPointer<vtkFloatArray> x = vtkSmartPointer<vtkFloatArray>::New();
 
   
-  GsTLGridProperty* prop = data.prop;
+  Grid_continuous_property* prop = data.prop;
   
   bool need_memory_swap = !prop->is_in_memory();
   if(need_memory_swap) {
@@ -610,7 +610,7 @@ void Chart_continuous_histogram::compute_stats(histo_data& data){
 
   if(data.region == 0) { 
  //   x->SetArray(prop->data(),prop->size(),1);
-    GsTLGridProperty::const_iterator it = data.prop->begin();
+    Grid_continuous_property::const_iterator it = data.prop->begin();
     for( ; it != data.prop->end(); ++it, ++ndata) {}
     x->Allocate(ndata);
     for(it = data.prop->begin() ; it != prop->end(); ++it) {
@@ -619,7 +619,7 @@ void Chart_continuous_histogram::compute_stats(histo_data& data){
   }
   else {
     Temporary_propRegion_Selector temp_region(data.region, prop);
-    GsTLGridProperty::const_iterator it = prop->begin();
+    Grid_continuous_property::const_iterator it = prop->begin();
     for( ; it != data.prop->end(); ++it, ++ndata) {}
     x->Allocate(ndata);
     for(it = prop->begin() ; it != prop->end(); ++it) {
@@ -786,7 +786,7 @@ void Chart_continuous_histogram::compute_stats_with_weights(histo_data& data){
 
   std::vector< std::pair<float, float> > data_weights;
 
-  GsTLGridProperty* prop = data.prop;
+  Grid_continuous_property* prop = data.prop;
   bool need_memory_swap = !prop->is_in_memory();
   if(need_memory_swap) {
     prop->swap_to_memory();

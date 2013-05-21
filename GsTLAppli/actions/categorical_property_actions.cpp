@@ -64,9 +64,9 @@ init( std::string& parameters, GsTL_project* proj,
   }
 
   for(int i=1; i<params.size(); ++i) {
-    GsTLGridCategoricalProperty* cprop = grid->categorical_property(params[i]);
+    Grid_categorical_property* cprop = grid->categorical_property(params[i]);
     if(cprop) continue;
-    GsTLGridProperty* prop = grid->property(params[i]);
+    Grid_continuous_property* prop = grid->property(params[i]);
     if(prop == 0) continue;
     std::set<int> cat_codes;
     std::string prop_name = prop->name()+" - categorical";
@@ -156,7 +156,7 @@ init( std::string& parameters, GsTL_project* proj,
     return false;
   }
 
-  GsTLGridCategoricalProperty* cprop = grid->categorical_property(params[1]);
+  Grid_categorical_property* cprop = grid->categorical_property(params[1]);
   if(cprop->get_category_definition()->is_sequential_coding()) return true;
 
   const CategoricalPropertyDefinitionName* cdef = dynamic_cast<const CategoricalPropertyDefinitionName*>(cprop->get_category_definition());
@@ -197,7 +197,7 @@ init( std::string& parameters, GsTL_project* proj,
   }
 
   std::string prop_name = cprop->name()+" sequential";
-  GsTLGridCategoricalProperty* seq_cprop = grid->add_categorical_property(cprop->name()+" sequential",cdef->name());
+  Grid_categorical_property* seq_cprop = grid->add_categorical_property(cprop->name()+" sequential",cdef->name());
   while(!seq_cprop) {
     prop_name.append("_0");
     seq_cprop = grid->add_categorical_property(prop_name);
@@ -210,7 +210,7 @@ init( std::string& parameters, GsTL_project* proj,
     int code = cprop->get_value(i);
     std::map<int,int>::const_iterator it = map_codes.find(code);
     if( it == map_codes.end()  ) continue;
-    seq_cprop->set_value(static_cast<GsTLGridProperty::property_type>(it->second),i);
+    seq_cprop->set_value(static_cast<Grid_continuous_property::property_type>(it->second),i);
   }
   seq_cprop->set_category_definition(cat_def);
   proj->update( params[0] );

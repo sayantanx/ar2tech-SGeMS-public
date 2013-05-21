@@ -91,7 +91,7 @@ class GEOSTAT_DECL Tau_updating
 {
  public:
      Tau_updating( vector<double> target_pdf, const double tau1, const double tau2,
-                   float no_data_value=GsTLGridProperty::no_data_value )
+                   float no_data_value=Grid_continuous_property::no_data_value )
           : target_pdf_(target_pdf), tau1_(tau1), tau2_(tau2), UNINFORMED(no_data_value)
 	 {
 		 tau0_ = 1 - tau1_ -tau2_;

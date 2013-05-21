@@ -63,7 +63,7 @@
 #include <qcombobox.h>
 
 class GsTL_project;
-class GsTLGridProperty;
+class Grid_continuous_property;
 class Grid_region;
 class GridSelector;
 class PropertySelector;
@@ -100,8 +100,8 @@ signals:
   // TL modified
   void comboChanged(const QString &);
 
-  void var_changed(  GsTLGridProperty*,  const Grid_region* );
-//  void reg_changed( const GsTLGridProperty* );
+  void var_changed(  Grid_continuous_property*,  const Grid_region* );
+//  void reg_changed( const Grid_continuous_property* );
 
   void low_clip_changed( float );
   void high_clip_changed( float );
@@ -116,7 +116,7 @@ protected:
   QComboBox * _combo;
 
 protected:
-  GsTLGridProperty* get_property( const PropertySelector* );
+  Grid_continuous_property* get_property( const PropertySelector* );
   Grid_region* get_region( const PropertySelector* );
 
 };

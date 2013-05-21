@@ -62,7 +62,7 @@
 #include <QLabel>
 
 class GsTL_project;
-class GsTLGridProperty;
+class Grid_continuous_property;
 class Grid_region;
 class Scatterplot_control_panel;
 class QLabel;
@@ -87,10 +87,10 @@ public slots:
   void reset_var1_clipping_values();
   void reset_var2_clipping_values();
 
-//  void get_var1_data_from( const GsTLGridProperty* );
-//  void get_var2_data_from( const GsTLGridProperty* );
-  void get_var1_data_from(  GsTLGridProperty*, const Grid_region* = NULL );
-  void get_var2_data_from(  GsTLGridProperty*, const Grid_region* = NULL );
+//  void get_var1_data_from( const Grid_continuous_property* );
+//  void get_var2_data_from( const Grid_continuous_property* );
+  void get_var1_data_from(  Grid_continuous_property*, const Grid_region* = NULL );
+  void get_var2_data_from(  Grid_continuous_property*, const Grid_region* = NULL );
   void draw_regression_line( bool on );
 
   virtual void set_x_axis_logscale( bool on );
@@ -109,8 +109,8 @@ protected:
 // When the two same properties are selected
 // there is a riks that the original
 // active region will be lost
-  GsTLGridProperty* prop1_;
-  GsTLGridProperty* prop2_;
+  Grid_continuous_property* prop1_;
+  Grid_continuous_property* prop2_;
 
 
 protected:

@@ -100,7 +100,7 @@ int Cosisim::execute( GsTL_project* ) {
     // Create a new property to hold the realization and tell the simulation 
     // grid to use it as the current property 
     appli_message( "Creating new realization" );
-    GsTLGridProperty* prop = multireal_property_->new_realization();
+    Grid_continuous_property* prop = multireal_property_->new_realization();
     prop->set_parameters(parameters_);
     simul_grid_->select_property( prop->name() );
 
@@ -340,7 +340,7 @@ full_ik_find_neighbors( const Geovalue& center,
 
 void Cosisim::reset_indicator_properties() {
   for( unsigned int i = 0; i < indicators_.size() ; i++ ) {
-    GsTLGridProperty* prop = indicators_[i];
+    Grid_continuous_property* prop = indicators_[i];
     for( unsigned int j = 0; j < prop->size() ; j++ ) {
       if( !prop->is_harddata( j ) )
         prop->set_not_informed( j );
@@ -361,7 +361,7 @@ void Cosisim::remove_temporary_properties() {
 }
 
 
-void Cosisim::clean( GsTLGridProperty* prop ) {
+void Cosisim::clean( Grid_continuous_property* prop ) {
   simul_grid_->remove_property( prop->name() );
   remove_temporary_properties();
 }
@@ -551,7 +551,7 @@ bool Cosisim::initialize( const Parameters_handler* parameters,
   for( unsigned int j = 0 ; j < nb_indicators ; j++ ) {
     std::ostringstream prop_name;
     prop_name << "__tmp_indicator_" << j;
-    GsTLGridProperty* prop = 
+    Grid_continuous_property* prop = 
       geostat_utils::add_property_to_grid( simul_grid_, prop_name.str() );
     indicators_.push_back( prop );
   }

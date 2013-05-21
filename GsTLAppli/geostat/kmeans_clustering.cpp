@@ -91,7 +91,7 @@ bool Kmeans_clustering::initialize( const Parameters_handler* parameters,
   String_Op::decompose_string( prop_names, property_names_str, ";");
 
   for(int i=0; i<prop_names.size(); ++i) {
-    GsTLGridProperty* prop = grid_->property(prop_names[i]);
+    Grid_continuous_property* prop = grid_->property(prop_names[i]);
     if(prop == 0) {
        errors->report( "property_names", "No property called "+prop_names[i] );
        return false;
@@ -129,7 +129,7 @@ bool Kmeans_clustering::initialize( const Parameters_handler* parameters,
 
 int Kmeans_clustering::execute( GsTL_project* proj ){
 
-  GsTLGridCategoricalProperty* kprop = grid_->add_categorical_property(kmeans_prop_name_);
+  Grid_categorical_property* kprop = grid_->add_categorical_property(kmeans_prop_name_);
   while( kprop ==0 ) {
     kmeans_prop_name_ = kmeans_prop_name_+"_0";
     kprop = grid_->add_categorical_property(kmeans_prop_name_);
@@ -157,7 +157,7 @@ int Kmeans_clustering::execute( GsTL_project* proj ){
   vtkSmartPointer<vtkTable> table = vtkSmartPointer<vtkTable>::New();
 
   for(int p=0; p<props_.size(); ++p) {
-    const GsTLGridProperty* prop = props_[p];
+    const Grid_continuous_property* prop = props_[p];
     vtkSmartPointer<vtkFloatArray> data = vtkSmartPointer<vtkFloatArray>::New();
  
     data->SetName(prop->name().c_str());

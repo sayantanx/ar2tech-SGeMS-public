@@ -161,17 +161,17 @@ void Chart_categorical_histogram::load_data(QModelIndexList indexes){
 
 // Need to compute the numbers of categories
 
-  std::vector<GsTLGridCategoricalProperty*> cprops;
+  std::vector<Grid_categorical_property*> cprops;
   foreach(index, indexes) {
     GsTL_object_item* item = static_cast<GsTL_object_item*>(index.internalPointer());
     if(item->item_type() == "CategoricalProperty") {
-      cprops.push_back(static_cast<GsTLGridCategoricalProperty*>(item->data_pointer()));
+      cprops.push_back(static_cast<Grid_categorical_property*>(item->data_pointer()));
     }
     else if(item->item_type() == "Group") {
       GsTLGridPropertyGroup* group = static_cast<GsTLGridPropertyGroup*>(index.internalPointer());
-      std::map<std::string,GsTLGridProperty*>::const_iterator  it_p_in_group = group->begin_property();
+      std::map<std::string,Grid_continuous_property*>::const_iterator  it_p_in_group = group->begin_property();
       for( ; it_p_in_group != group->end_property(); ++it_p_in_group ) {
-        GsTLGridCategoricalProperty* cprop = dynamic_cast<GsTLGridCategoricalProperty*>(it_p_in_group->second);
+        Grid_categorical_property* cprop = dynamic_cast<Grid_categorical_property*>(it_p_in_group->second);
         if(cprop) cprops.push_back(cprop);
       }
     }
@@ -199,7 +199,7 @@ void Chart_categorical_histogram::load_data(QModelIndexList indexes){
     QModelIndex index = indexes.at(i);
     GsTL_object_item* item = static_cast<GsTL_object_item*>(index.internalPointer());
     if(item->item_type() == "CategoricalProperty" ) {
-      GsTLGridCategoricalProperty* prop = static_cast<GsTLGridCategoricalProperty*>(item->data_pointer());
+      Grid_categorical_property* prop = static_cast<Grid_categorical_property*>(item->data_pointer());
       std::map<GsTL_object_item*,Grid_region*>::iterator it = grid_to_region.find(prop->parent()->parent());
       Grid_region* region = 0;
       if(it != grid_to_region.end()) region = it->second;
@@ -228,15 +228,15 @@ void Chart_categorical_histogram::load_data(QModelIndexList indexes){
 
 }
 
-void Chart_categorical_histogram::add_data( GsTLGridCategoricalProperty* prop){
+void Chart_categorical_histogram::add_data( Grid_categorical_property* prop){
   model_->insert_row(prop, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_categorical_histogram::add_data( GsTLGridCategoricalProperty* prop, GsTLGridWeightProperty* weigths){
+void Chart_categorical_histogram::add_data( Grid_categorical_property* prop, GsTLGridWeightProperty* weigths){
   model_->insert_row(prop,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_categorical_histogram::add_data( GsTLGridCategoricalProperty* prop, Grid_region* region){
+void Chart_categorical_histogram::add_data( Grid_categorical_property* prop, Grid_region* region){
   model_->insert_row(prop,region, default_colors_.at(default_color_id_%max_index_default_colors_) );
   default_color_id_++;
 }
@@ -353,7 +353,7 @@ void Chart_categorical_histogram::initialize_data(Categorical_histogram_property
   data.histo_table = vtkSmartPointer<vtkTable>::New();
 
   if(it == data_stats_.end()) {
-    data.prop = dynamic_cast<GsTLGridCategoricalProperty*>(item->prop());
+    data.prop = dynamic_cast<Grid_categorical_property*>(item->prop());
     data.region = item->region();
     data.weight =item->weights();
     data.id = -1;
@@ -422,7 +422,7 @@ void Chart_categorical_histogram::remove_data( int id){
 void Chart_categorical_histogram::compute_stats(histo_data& data){
   
  
-  GsTLGridCategoricalProperty* prop = data.prop;
+  Grid_categorical_property* prop = data.prop;
   CategoricalPropertyDefinition* cdef = prop->get_category_definition();
   
   bool need_memory_swap = !prop->is_in_memory();
@@ -439,7 +439,7 @@ void Chart_categorical_histogram::compute_stats(histo_data& data){
 
   {
     Temporary_propRegion_Selector temp_region(data.region, prop);
-    GsTLGridCategoricalProperty::const_iterator it = data.prop->begin();
+    Grid_categorical_property::const_iterator it = data.prop->begin();
     for( ; it != data.prop->end(); ++it, ++ndata) {
       count[*it]++;
     }
@@ -468,7 +468,7 @@ void Chart_categorical_histogram::compute_stats(histo_data& data){
 //It is either a region or weight, not  both together.
 void Chart_categorical_histogram::compute_stats_with_weights(histo_data& data){
   
-  GsTLGridCategoricalProperty* prop = data.prop;
+  Grid_categorical_property* prop = data.prop;
   GsTLGridWeightProperty* weight = data.weight;
   CategoricalPropertyDefinition* cdef = prop->get_category_definition();
   
@@ -609,7 +609,7 @@ void Chart_categorical_histogram::initialize_proportion_table(){
   std::map<int, histo_data>::iterator it  = data_stats_.begin();
   for( ; it != data_stats_.end(); ++it) {
     cprop_names_.push_back(it->second.prop->name());
-    GsTLGridCategoricalProperty* cprop = it->second.prop;
+    Grid_categorical_property* cprop = it->second.prop;
     if(cprop==0) continue;
     int ncat = cprop->get_number_of_category();
     if (ncat > ncat_) ncat_ = ncat;
@@ -622,8 +622,8 @@ void Chart_categorical_histogram::initialize_proportion_table(){
    cprop_names_.clear();
    for( it  = data_stats_.begin() ; it != data_stats_.end(); ++it) {
      cprop_names_.push_back(it->second.prop->name());
-     GsTLGridCategoricalProperty* cprop = it->second.prop;
-     GsTLGridCategoricalProperty::const_iterator it_cat = cprop->begin();
+     Grid_categorical_property* cprop = it->second.prop;
+     Grid_categorical_property::const_iterator it_cat = cprop->begin();
      std::vector<float> p(ncat_, 0.0);
      for( ; it_cat != cprop->end(); ++it_cat) {
         p[static_cast<int>(*it_cat)]++;

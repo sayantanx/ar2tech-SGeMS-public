@@ -63,7 +63,7 @@
 
 
 class Point_set;
-class GsTLGridProperty;
+class Grid_continuous_property;
 class Discrete_function;
 class Direction_3d;
 class Progress_notifier;
@@ -74,8 +74,8 @@ class GEOSTAT_DECL Pset_variog_computer {
  public:
   Pset_variog_computer();
   Pset_variog_computer( Point_set *pset, 
-                        GsTLGridProperty* head_prop = 0, 
-                        GsTLGridProperty* tail_prop = 0 );
+                        Grid_continuous_property* head_prop = 0, 
+                        Grid_continuous_property* tail_prop = 0 );
     
   bool standardize() const { return standardize_; }
   void standardize( bool f ) { standardize_ = f; }
@@ -88,8 +88,8 @@ class GEOSTAT_DECL Pset_variog_computer {
   
  private:
   Point_set *pset_;
-  GsTLGridProperty* head_prop_;    
-  GsTLGridProperty* tail_prop_;    
+  Grid_continuous_property* head_prop_;    
+  Grid_continuous_property* tail_prop_;    
   bool standardize_;
 };
 

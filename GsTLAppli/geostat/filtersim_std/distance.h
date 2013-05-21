@@ -98,7 +98,7 @@ public:
     typedef typename std::iterator_traits<InputIterator1>::value_type result_type;
 
 public:
-    Manhattan_Distance( result_type no_data_value=GsTLGridProperty::no_data_value): UNINFORMED(no_data_value) {};
+    Manhattan_Distance( result_type no_data_value=Grid_continuous_property::no_data_value): UNINFORMED(no_data_value) {};
 
     // overloaded function, retun the distance between two vectors
     result_type operator() ( InputIterator1 p1_begin, InputIterator1 p1_end, 
@@ -218,7 +218,7 @@ public:
     typedef typename std::iterator_traits<InputIterator1>::value_type result_type;
 
 public:
-	Euclidean_Distance( result_type no_data_value=GsTLGridProperty::no_data_value): UNINFORMED(no_data_value) {};
+	Euclidean_Distance( result_type no_data_value=Grid_continuous_property::no_data_value): UNINFORMED(no_data_value) {};
 
     // overloaded function, retun the distance between two vectors
     result_type operator() ( InputIterator1 p1_begin, InputIterator1 p1_end, 

@@ -235,7 +235,7 @@ Geostat_grid* Csv_poinset_infilter::read( std::ifstream& infile ) {
   }
 
   bool use_no_data_value = dialog_->use_no_data_value();
-  float no_data_value = GsTLGridProperty::no_data_value;
+  float no_data_value = Grid_continuous_property::no_data_value;
   if( dialog_->use_no_data_value() ) {
     no_data_value = dialog_->no_data_value();
   }
@@ -320,11 +320,11 @@ Geostat_grid* Csv_poinset_infilter::read( std::ifstream& infile ) {
     }
 
     if(!is_categ) {
-      GsTLGridProperty* prop = pset->add_property( property_names[k].toStdString() );
+      Grid_continuous_property* prop = pset->add_property( property_names[k].toStdString() );
       for( int l=0; l < point_set_size; l++ ) {
         float val = property_values[k][l].toFloat();
         if(use_no_data_value && val == no_data_value) 
-          val = GsTLGridProperty::no_data_value;
+          val = Grid_continuous_property::no_data_value;
         prop->set_value( val, l );
       }
     }
@@ -345,13 +345,13 @@ Geostat_grid* Csv_poinset_infilter::read( std::ifstream& infile ) {
       for( int code; it_cat_names != cat_names.end(); ++code, ++it_cat_names) {
         cat_def->add_category(code, it_cat_names->toStdString() );
       }
-      GsTLGridCategoricalProperty* prop = pset->add_categorical_property( property_names[k].toStdString(),cat_def->name() );
+      Grid_categorical_property* prop = pset->add_categorical_property( property_names[k].toStdString(),cat_def->name() );
 //      prop->set_category_definition(cat_def->name());
       QString no_data_value_str = QString().arg( no_data_value);
       for( int i=0; i < point_set_size; i++ ) {
         QString val =  property_values[k][i];
         if(use_no_data_value && val == no_data_value_str)  {
-          prop->set_value( GsTLGridProperty::no_data_value, i );
+          prop->set_value( Grid_continuous_property::no_data_value, i );
         }
         else 
           prop->set_value( val.toStdString(), i );
@@ -582,7 +582,7 @@ Geostat_grid* Csv_logdata_infilter::read( std::ifstream& infile, std::string nam
     }
 
     if(!is_categ) {
-      GsTLGridProperty* prop = log_grid->add_property( property_names[k].toStdString() );
+      Grid_continuous_property* prop = log_grid->add_property( property_names[k].toStdString() );
       for( int l=0; l < grid_size; l++ ) {
     	  if( property_values[k][l] != nan_str ) {
     		  prop->set_value( property_values[k][l].toFloat(), l );
@@ -607,7 +607,7 @@ Geostat_grid* Csv_logdata_infilter::read( std::ifstream& infile, std::string nam
         cat_def->add_category( code, it_cat_names->toStdString() );
       }
 
-      GsTLGridCategoricalProperty* prop = log_grid->add_categorical_property( property_names[k].toStdString(),cat_def->name() );
+      Grid_categorical_property* prop = log_grid->add_categorical_property( property_names[k].toStdString(),cat_def->name() );
 //      prop->set_category_definition(cat_def->name());
       for( int i=0; i < grid_size; i++ ) {
     	  if( property_values[k][i] != nan_str ) {
@@ -663,7 +663,7 @@ Geostat_grid* Csv_grid_infilter::read( std::ifstream& infile ) {
   float rotation_z_angle = dialog_->rotation_z();
 
   bool use_no_data_value = dialog_->use_no_data_value();
-  float no_data_value = GsTLGridProperty::no_data_value;
+  float no_data_value = Grid_continuous_property::no_data_value;
   QString no_data_value_str = QString().arg(no_data_value);
   if( dialog_->use_no_data_value() ) {
     no_data_value = dialog_->no_data_value();
@@ -728,7 +728,7 @@ Geostat_grid* Csv_grid_infilter::read( std::ifstream& infile ) {
     infile.seekg( start_data );
 
     if(is_categ) {
-      GsTLGridCategoricalProperty* prop = 
+      Grid_categorical_property* prop = 
         grid->add_categorical_property(property_names[j].toStdString());
       
       ni = Root::instance()->new_interface( categoricalDefinition_manager, name+"-"+property_names[j].toStdString());
@@ -758,7 +758,7 @@ Geostat_grid* Csv_grid_infilter::read( std::ifstream& infile ) {
         QStringList values_qstr = qstr.split(",");
         QString val = values_qstr[j];
         if(use_no_data_value && val == no_data_value_str)  {
-          prop->set_value( GsTLGridProperty::no_data_value, node_id );
+          prop->set_value( Grid_continuous_property::no_data_value, node_id );
         }
         else {
           prop->set_value( val.toStdString(), node_id );
@@ -767,7 +767,7 @@ Geostat_grid* Csv_grid_infilter::read( std::ifstream& infile ) {
       }
     }
     else {
-      GsTLGridProperty* prop = 
+      Grid_continuous_property* prop = 
         grid->add_property(property_names[j].toStdString());
       int node_id=0;
       while( std::getline(infile, buffer) ) {
@@ -928,7 +928,7 @@ Geostat_grid* Csv_mgrid_infilter::readRegularGridFormat(std::ifstream& infile,Re
   int Z_col_id = dialog_->Z_column_index();
 
   bool use_no_data_value = dialog_->use_no_data_value();
-  float no_data_value = GsTLGridProperty::no_data_value;
+  float no_data_value = Grid_continuous_property::no_data_value;
   QString no_data_value_str = QString().arg(no_data_value);
   if( dialog_->use_no_data_value() ) {
     no_data_value = dialog_->no_data_value();
@@ -980,7 +980,7 @@ Geostat_grid* Csv_mgrid_infilter::readRegularGridFormat(std::ifstream& infile,Re
     infile.seekg( start_data );
 
     if(is_categ) {
-      GsTLGridCategoricalProperty* prop = 
+      Grid_categorical_property* prop = 
         grid->add_categorical_property(property_names[j]);
 
       // Set the category definition
@@ -1025,7 +1025,7 @@ Geostat_grid* Csv_mgrid_infilter::readRegularGridFormat(std::ifstream& infile,Re
       }
     }
     else {
-      GsTLGridProperty* prop = 
+      Grid_continuous_property* prop = 
         grid->add_property(property_names[j]);
       int node_id=0;
       int index = 0;
@@ -1070,7 +1070,7 @@ Geostat_grid* Csv_mgrid_infilter::readPointsetFormat(std::ifstream& infile, Redu
   }
 
   bool use_no_data_value = dialog_->use_no_data_value();
-  float no_data_value = GsTLGridProperty::no_data_value;
+  float no_data_value = Grid_continuous_property::no_data_value;
   QString no_data_value_str = QString().arg(no_data_value);
   if( dialog_->use_no_data_value() ) {
     no_data_value = dialog_->no_data_value();
@@ -1107,7 +1107,7 @@ Geostat_grid* Csv_mgrid_infilter::readPointsetFormat(std::ifstream& infile, Redu
     infile.seekg( start_data );
 
     if(is_categ) {
-      GsTLGridCategoricalProperty* prop = 
+      Grid_categorical_property* prop = 
         grid->add_categorical_property(property_names[j].toStdString());
 
             // Set the category definition
@@ -1167,7 +1167,7 @@ Geostat_grid* Csv_mgrid_infilter::readPointsetFormat(std::ifstream& infile, Redu
       }
     }
     else {
-      GsTLGridProperty* prop = 
+      Grid_continuous_property* prop = 
         grid->add_property(property_names[j].toStdString());
       int node_id=0;
       while( std::getline(infile, buffer) ) {
@@ -1396,7 +1396,7 @@ bool Csv_outfilter::write( std::string outfile_name, const Named_interface* ni, 
   typedef std::list<std::string>::const_iterator string_iterator;
   std::list<std::string> & property_names = _list_to_write;
   //std::list<std::string> property_names = grid->property_list();
-  std::vector< const GsTLGridProperty* > properties;
+  std::vector< const Grid_continuous_property* > properties;
 
   bool output_locations = false;
   int nb_properties = property_names.size();
@@ -1414,14 +1414,14 @@ bool Csv_outfilter::write( std::string outfile_name, const Named_interface* ni, 
   string_iterator it = property_names.begin();
   if(it != property_names.end()) {
   	outfile << *it;
-    const GsTLGridProperty* prop = grid->property( *it );
+    const Grid_continuous_property* prop = grid->property( *it );
   	if( prop != 0 )properties.push_back( prop );
   	it++;
   }
   for( ; it != property_names.end();
        ++ it ) {
     outfile <<","<< *it;
-    const GsTLGridProperty* prop = grid->property( *it );
+    const Grid_continuous_property* prop = grid->property( *it );
   	if( prop != 0 )properties.push_back( prop );
   }
   outfile<<std::endl;
@@ -1452,8 +1452,8 @@ bool Csv_outfilter::write( std::string outfile_name, const Named_interface* ni, 
 
 		for( unsigned int j=0; j < property_names.size(); ++j ) {
 			if( properties[j]->is_informed( i ) ) {
-				const GsTLGridCategoricalProperty* cprop =
-						dynamic_cast<const GsTLGridCategoricalProperty*>(properties[j]);
+				const Grid_categorical_property* cprop =
+						dynamic_cast<const Grid_categorical_property*>(properties[j]);
 				if(cprop)
 					outfile << cprop->get_category_name(i);
 				else
@@ -1462,7 +1462,7 @@ bool Csv_outfilter::write( std::string outfile_name, const Named_interface* ni, 
 
 
 			else
-				outfile << GsTLGridProperty::no_data_value;
+				outfile << Grid_continuous_property::no_data_value;
 			if( j < property_names.size()-1 ) outfile<<",";
 		}
 
@@ -1484,7 +1484,7 @@ bool Csv_outfilter::write_log_data_grid( std::string outfile_name,const Log_data
 
   typedef std::list<std::string>::const_iterator string_iterator;
   std::list<std::string> & property_names = _list_to_write;
-  std::vector< const GsTLGridProperty* > properties;
+  std::vector< const Grid_continuous_property* > properties;
 
   //Be sure to remove the from and to from the property_names list
   std::list<std::string>::iterator it_name = property_names.begin();
@@ -1511,14 +1511,14 @@ bool Csv_outfilter::write_log_data_grid( std::string outfile_name,const Log_data
   string_iterator it = property_names.begin();
 //  if(it != property_names.end()) {
 //  	outfile << *it;
-//    const GsTLGridProperty* prop = grid->property( *it );
+//    const Grid_continuous_property* prop = grid->property( *it );
 //  	if( prop != 0 )properties.push_back( prop );
 //  	it++;
 //  }
   for( ; it != property_names.end();
        ++ it ) {
     outfile <<","<< *it;
-    const GsTLGridProperty* prop = grid->property( *it );
+    const Grid_continuous_property* prop = grid->property( *it );
   	if( prop != 0 )properties.push_back( prop );
   }
   outfile<<std::endl;
@@ -1574,8 +1574,8 @@ bool Csv_outfilter::write_log_data_grid( std::string outfile_name,const Log_data
 
 		for( unsigned int j=0; j < property_names.size(); ++j ) {
 			if( properties[j]->is_informed( i ) ) {
-				const GsTLGridCategoricalProperty* cprop =
-						dynamic_cast<const GsTLGridCategoricalProperty*>(properties[j]);
+				const Grid_categorical_property* cprop =
+						dynamic_cast<const Grid_categorical_property*>(properties[j]);
 				if(cprop)
 					outfile << cprop->get_category_name(i);
 				else
@@ -1584,7 +1584,7 @@ bool Csv_outfilter::write_log_data_grid( std::string outfile_name,const Log_data
 
 
 			else
-				outfile << GsTLGridProperty::no_data_value;
+				outfile << Grid_continuous_property::no_data_value;
 			if( j < property_names.size()-1 ) outfile<<",";
 		}
 

@@ -149,7 +149,7 @@ int Sisim::median_ik( Progress_notifier* progress_notifier ) {
     // Create a new property to hold the realization and tell the simulation 
     // grid to use it as the current property 
     appli_message( "Creating new realization" );
-    GsTLGridProperty* prop;
+    Grid_continuous_property* prop;
     if(is_categorical_)
     	prop = multireal_property_->new_categorical_realization();
     else
@@ -209,7 +209,7 @@ int Sisim::full_ik( Progress_notifier* progress_notifier ) {
     // Create a new property to hold the realization and tell the simulation 
     // grid to use it as the current property 
     appli_message( "Creating new realization" );
-    GsTLGridProperty* prop;
+    Grid_continuous_property* prop;
     if(is_categorical_)
     	prop = multireal_property_->new_categorical_realization();
     else
@@ -343,7 +343,7 @@ bool Sisim::initialize( const Parameters_handler* parameters,
 		       "coded_grid", errors );
   }
   
-  std::vector<GsTLGridProperty*> coded_props;
+  std::vector<Grid_continuous_property*> coded_props;
   std::string coded_prop_names = parameters->value( "coded_props.value" );
   if(!coded_prop_names.empty() && coded_grid_ ) {
     is_data_coded_ = true;

@@ -141,35 +141,35 @@ public:
  
  
   // Property management 
-  virtual GsTLGridProperty* add_property( const std::string& name );
-  virtual GsTLGridProperty* add_property_from_disk( const std::string& name,
+  virtual Grid_continuous_property* add_property( const std::string& name );
+  virtual Grid_continuous_property* add_property_from_disk( const std::string& name,
 																										const std::string& filename );
 
   virtual GsTLGridWeightProperty* add_weight_property( const std::string& name );
   virtual GsTLGridWeightProperty* add_weight_property_from_disk( 
           const std::string& name,const std::string& filename );
 
-  virtual GsTLGridCategoricalProperty* add_categorical_property(
+  virtual Grid_categorical_property* add_categorical_property(
 		  const std::string& name,
 		  const std::string& definition_name="Default");
-  virtual GsTLGridCategoricalProperty* add_categorical_property_from_disk(
+  virtual Grid_categorical_property* add_categorical_property_from_disk(
 		  const std::string& name,
 		  const std::string& filename,
 		  const std::string& definition_name="Default");
 
   virtual bool remove_property( const std::string& name ) ; 
-  virtual GsTLGridProperty* select_property( const std::string& name ); 
-  virtual const GsTLGridProperty* selected_property() const ; 
-  virtual GsTLGridProperty* selected_property() ; 
+  virtual Grid_continuous_property* select_property( const std::string& name ); 
+  virtual const Grid_continuous_property* selected_property() const ; 
+  virtual Grid_continuous_property* selected_property() ; 
   virtual std::list<std::string> property_list() const; 
   virtual std::list<std::string> categorical_property_list() const; 
   virtual std::list<std::string> weight_property_list() const;
 
-  virtual const GsTLGridProperty* property( const std::string& name ) const; 
-  virtual GsTLGridProperty* property( const std::string& name ); 
+  virtual const Grid_continuous_property* property( const std::string& name ) const; 
+  virtual Grid_continuous_property* property( const std::string& name ); 
 
-  virtual const GsTLGridCategoricalProperty* categorical_property( const std::string& name ) const;
-  virtual GsTLGridCategoricalProperty* categorical_property( const std::string& name );
+  virtual const Grid_categorical_property* categorical_property( const std::string& name ) const;
+  virtual Grid_categorical_property* categorical_property( const std::string& name );
 
   virtual const GsTLGridWeightProperty* weight_property( const std::string& name ) const;
   virtual GsTLGridWeightProperty* weight_property( const std::string& name );
@@ -239,23 +239,23 @@ public:
  
   // Iterators 
    
-  virtual iterator begin( GsTLGridProperty* prop = 0 ); 
-  virtual iterator end( GsTLGridProperty* prop = 0 ); 
-  virtual const_iterator begin( const GsTLGridProperty* prop = 0 ) const; 
-  virtual const_iterator end( const GsTLGridProperty* prop = 0 ) const; 
+  virtual iterator begin( Grid_continuous_property* prop = 0 ); 
+  virtual iterator end( Grid_continuous_property* prop = 0 ); 
+  virtual const_iterator begin( const Grid_continuous_property* prop = 0 ) const; 
+  virtual const_iterator end( const Grid_continuous_property* prop = 0 ) const; 
   virtual void init_random_path( bool from_scratch = true ); 
 
   /** Returns a random path to the "begining" of the selected property. 
   * Be careful that in the current implementation, the path visits all 
   * the nodes of the grid, whether they are informed or not.
   */
-  virtual random_path_iterator random_path_begin( GsTLGridProperty* prop = 0 ); 
+  virtual random_path_iterator random_path_begin( Grid_continuous_property* prop = 0 ); 
 
   /** Returns a random path to the "end" of the selected property. 
   * Be careful that in the current implementation, the path visits all 
   * the nodes of the grid, whether they are informed or not.
   */
-  virtual random_path_iterator random_path_end( GsTLGridProperty* prop = 0 ); 
+  virtual random_path_iterator random_path_end( Grid_continuous_property* prop = 0 ); 
    
  
   //TL modified 
@@ -422,22 +422,22 @@ int RGrid::current_level() const {
 } 
  
 inline  
-const GsTLGridProperty* RGrid::property( const std::string& name ) const { 
+const Grid_continuous_property* RGrid::property( const std::string& name ) const { 
   return property_manager_.get_property( name ); 
 } 
  
 inline  
-GsTLGridProperty* RGrid::property( const std::string& name ) { 
+Grid_continuous_property* RGrid::property( const std::string& name ) { 
   return property_manager_.get_property( name ); 
 } 
  
 inline
-const GsTLGridCategoricalProperty* RGrid::categorical_property( const std::string& name ) const{
+const Grid_categorical_property* RGrid::categorical_property( const std::string& name ) const{
 	 return property_manager_.get_categorical_property( name );
 }
 
 inline
-GsTLGridCategoricalProperty* RGrid::categorical_property( const std::string& name ){
+Grid_categorical_property* RGrid::categorical_property( const std::string& name ){
 	return property_manager_.get_categorical_property( name );
 }
 
@@ -451,11 +451,11 @@ GsTLGridWeightProperty* RGrid::weight_property( const std::string& name ){
 	return property_manager_.get_weight_property( name );
 }
 
-inline const GsTLGridProperty* RGrid::selected_property() const { 
+inline const Grid_continuous_property* RGrid::selected_property() const { 
   return property_manager_.selected_property(); 
 } 
  
-inline GsTLGridProperty* RGrid::selected_property() { 
+inline Grid_continuous_property* RGrid::selected_property() { 
   return property_manager_.selected_property(); 
 } 
  
@@ -504,7 +504,7 @@ inline bool RGrid::select_region(const std::string& region_name) {
   if( region == NULL && !region_name.empty() ) return false;
   Grid_property_manager::Property_name_iterator it = property_manager_.names_begin();
   for(; it != property_manager_.names_end(); ++it) {
-    GsTLGridProperty* prop = property_manager_.get_property( *it );
+    Grid_continuous_property* prop = property_manager_.get_property( *it );
     prop->set_region(region);
   }
   return true;
@@ -602,8 +602,8 @@ RGrid::location( int i, int j, int k ) const {
  
  
 inline 
-RGrid::iterator RGrid::begin( GsTLGridProperty* prop ) { 
-  GsTLGridProperty* property = prop;
+RGrid::iterator RGrid::begin( Grid_continuous_property* prop ) { 
+  Grid_continuous_property* property = prop;
   if( !prop )
     property = property_manager_.selected_property();
 
@@ -612,8 +612,8 @@ RGrid::iterator RGrid::begin( GsTLGridProperty* prop ) {
 } 
  
 inline 
-RGrid::iterator RGrid::end( GsTLGridProperty* prop ) { 
-  GsTLGridProperty* property = prop;
+RGrid::iterator RGrid::end( Grid_continuous_property* prop ) { 
+  Grid_continuous_property* property = prop;
   if( !prop )
     property = property_manager_.selected_property();
 
@@ -623,8 +623,8 @@ RGrid::iterator RGrid::end( GsTLGridProperty* prop ) {
 } 
  
 inline 
-RGrid::const_iterator RGrid::begin( const GsTLGridProperty* prop ) const { 
-  const GsTLGridProperty* property = prop;
+RGrid::const_iterator RGrid::begin( const Grid_continuous_property* prop ) const { 
+  const Grid_continuous_property* property = prop;
   if( !prop )
     property = property_manager_.selected_property();
 
@@ -633,8 +633,8 @@ RGrid::const_iterator RGrid::begin( const GsTLGridProperty* prop ) const {
 } 
  
 inline 
-RGrid::const_iterator RGrid::end( const GsTLGridProperty* prop ) const { 
-  const GsTLGridProperty* property = prop;
+RGrid::const_iterator RGrid::end( const Grid_continuous_property* prop ) const { 
+  const Grid_continuous_property* property = prop;
   if( !prop )
     property = property_manager_.selected_property();
 
@@ -645,11 +645,11 @@ RGrid::const_iterator RGrid::end( const GsTLGridProperty* prop ) const {
  
  
 inline RGrid::random_path_iterator 
-RGrid::random_path_begin( GsTLGridProperty* prop ) { 
+RGrid::random_path_begin( Grid_continuous_property* prop ) { 
   if( int(grid_path_.size()) != grid_cursor_->max_index() )  
     init_random_path(); 
  
-  GsTLGridProperty* property = prop;
+  Grid_continuous_property* property = prop;
   if( !prop )
     property = property_manager_.selected_property();
 
@@ -659,11 +659,11 @@ RGrid::random_path_begin( GsTLGridProperty* prop ) {
 } 
  
 inline RGrid::random_path_iterator 
-RGrid::random_path_end( GsTLGridProperty* prop ) { 
+RGrid::random_path_end( Grid_continuous_property* prop ) { 
   if( int(grid_path_.size()) != grid_cursor_->max_index() )  
     init_random_path(); 
  
-  GsTLGridProperty* property = prop;
+  Grid_continuous_property* property = prop;
   if( !prop )
     property = property_manager_.selected_property();
 

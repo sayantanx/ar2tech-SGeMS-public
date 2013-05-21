@@ -150,7 +150,7 @@ class GEOSTAT_DECL ST_DEV_Finder_Categorical
 {
 public:
     ST_DEV_Finder_Categorical(RGrid* simu_grid, Window_neighborhood* neighbors, 
-                                vector<GsTLGridProperty*>& softDataProps, 
+                                vector<Grid_continuous_property*>& softDataProps, 
                                 int nb_facies, const vector< float >& data_weight):
                     simu_grid_(simu_grid), soft_neighbors_(neighbors), 
                     softDataProps_(softDataProps), nb_facies_(nb_facies), data_weight_(data_weight) {}
@@ -165,7 +165,7 @@ private:
 private:
     RGrid* simu_grid_;
     Window_neighborhood* soft_neighbors_;
-    vector<GsTLGridProperty*> softDataProps_;
+    vector<Grid_continuous_property*> softDataProps_;
     int nb_facies_;
 
     const vector< float > data_weight_;
@@ -183,7 +183,7 @@ class GEOSTAT_DECL ST_DEV_Finder_Continuous
 {
 public:
     ST_DEV_Finder_Continuous(RGrid* simu_grid, Window_neighborhood* neighbors,
-                             GsTLGridProperty* softDataProps, 
+                             Grid_continuous_property* softDataProps, 
                              const vector< float >& data_weight ):
                 simu_grid_(simu_grid), soft_neighbors_(neighbors), 
                 softDataProps_(softDataProps), data_weight_(data_weight) {}
@@ -198,7 +198,7 @@ private:
 private:
     RGrid* simu_grid_;
     Window_neighborhood* soft_neighbors_;
-    GsTLGridProperty* softDataProps_;
+    Grid_continuous_property* softDataProps_;
 
     const vector< float > data_weight_;
 	// [0]   weight_hard_data_;

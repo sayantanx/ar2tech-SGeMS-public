@@ -315,7 +315,7 @@ int Snesim_Std::execute( GsTL_project* proj )
 
         appli_message("realization " << nreal );
 
-        GsTLGridProperty* prop = multireal_property_->new_categorical_realization();
+        Grid_continuous_property* prop = multireal_property_->new_categorical_realization();
         prop->set_parameters(parameters_);
         simul_grid_->select_property( prop->name() );
 
@@ -388,7 +388,7 @@ int Snesim_Std::execute( GsTL_project* proj )
 }
 
 
-void Snesim_Std::clean( GsTLGridProperty* prop ) 
+void Snesim_Std::clean( Grid_continuous_property* prop ) 
 {
 	if( prop ) 
 		simul_grid_->remove_property( prop->name() );
@@ -808,7 +808,7 @@ void Snesim_Std::check_vertical_prop(const Parameters_handler* parameters,
 void Snesim_Std::check_soft_global()
 {
 	float cur_value;
-	const GsTLGridProperty* prop;
+	const Grid_continuous_property* prop;
 	vector<float> soft_sum;
 	int i,j;
 	int x,y,z;
@@ -1457,7 +1457,7 @@ bool Snesim_Std::get_soft_prob_data( const Parameters_handler* parameters,
         for( std::vector< std::string >::const_iterator it = prop_names.begin();
         it != prop_names.end(); ++it ) 
         {
-            GsTLGridProperty* prop = simul_grid_->property( *it );
+            Grid_continuous_property* prop = simul_grid_->property( *it );
             if( !prop ) 
             {
                 error_mesgs->report( "ProbField_properties", "The given probability field does not exist" );
@@ -1593,8 +1593,8 @@ bool Snesim_Std::get_training_image( const Parameters_handler* parameters,
           return true;
     }
 
-		GsTLGridProperty* ti_prop = training_image_->select_property( training_property_name_ );
-    GsTLGridCategoricalProperty* ti_cprop = dynamic_cast<GsTLGridCategoricalProperty*>(ti_prop);
+		Grid_continuous_property* ti_prop = training_image_->select_property( training_property_name_ );
+    Grid_categorical_property* ti_cprop = dynamic_cast<Grid_categorical_property*>(ti_prop);
     if( ti_cprop != 0 ) {
       nb_facies_ = ti_cprop->get_number_of_category();
       if( multireal_property_ !=0  ) multireal_property_->set_category_definition(ti_cprop->get_category_definition());
@@ -1673,7 +1673,7 @@ bool Snesim_Std::get_marginal_cdf( const Parameters_handler* parameters,
         for (i=0; i<nb_facies_; i++)
             cur_class_sum.push_back(0);
         
-        const GsTLGridProperty* prop = training_image_->property(training_property_name_);
+        const Grid_continuous_property* prop = training_image_->property(training_property_name_);
         
         for (i=0; i<nxyz; i++) 
             cur_class_sum[prop->get_value(i)] ++;
@@ -1705,7 +1705,7 @@ void Snesim_Std::update_ccdf_from_available(CdfType& ccdf)
     int i;
     //int nxyz=simul_grid_->nxyz();
     int nxyz=simul_grid_->size();
-    GsTLGridProperty* prop = simul_grid_->selected_property();
+    Grid_continuous_property* prop = simul_grid_->selected_property();
     vector<float> cur_class_sum(nb_facies_, 0);
     
     for (i=0; i<nxyz; i++) 
@@ -1723,7 +1723,7 @@ void Snesim_Std::update_ccdf_from_available(CdfType& ccdf)
 
 void Snesim_Std::copy_pre_simulation_data()
 {
-    GsTLGridProperty* prop = simul_grid_->selected_property();
+    Grid_continuous_property* prop = simul_grid_->selected_property();
     
     //for (int i=0; i<simul_grid_->nxyz(); i++) 
     for (int i=0; i<simul_grid_->size(); i++) 
@@ -1825,7 +1825,7 @@ bool Snesim_Std::get_vert_prob_data( const Parameters_handler* parameters,
         
         for (int i=0; i<nb_facies_; i++)
         {
-            GsTLGridProperty* prop = vertical_curve_grid_->property( vert_prop_names[i] );
+            Grid_continuous_property* prop = vertical_curve_grid_->property( vert_prop_names[i] );
             if( !prop ) 
             {
                 error_mesgs->report( "VerticalProperties", "Vertical property does not exist" );
@@ -2051,7 +2051,7 @@ bool Snesim_Std::get_pre_simulation_gridded_data( const Parameters_handler* para
 }
 
 bool Snesim_Std::simulate_one_realization( SmartPtr<Progress_notifier>& progress_notifier, 
-                                          GsTLGridProperty* prop, int nreal )
+                                          Grid_continuous_property* prop, int nreal )
 {
     CdfType ccdf = ccdf_;     // copy of current ccdf
     std::vector<CdfType> vert_ccdf = vert_ccdf_;
@@ -2084,12 +2084,12 @@ bool Snesim_Std::simulate_one_realization( SmartPtr<Progress_notifier>& progress
             ostringstream ostr; 
             ostr << ncoarse+1;
             string previous_prop = prop->name() + "_mg_" + ostr.str();
-            GsTLGridProperty* prop2;
+            Grid_continuous_property* prop2;
             prop2 = simul_grid_->select_property(previous_prop);
             if ( !prop2)
                 prop2 = geostat_utils::add_property_to_grid(simul_grid_,previous_prop);
 
-            GsTLGridProperty* prop1 = simul_grid_->select_property(prop->name());
+            Grid_continuous_property* prop1 = simul_grid_->select_property(prop->name());
 
             //for (int ik=0; ik<simul_grid_->nxyz(); ik++) 
             for (int ik=0; ik<simul_grid_->size(); ik++) 

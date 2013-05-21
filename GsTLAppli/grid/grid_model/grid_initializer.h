@@ -64,7 +64,7 @@
  
 class Cartesian_grid; 
 class Geostat_grid; 
-class GsTLGridProperty; 
+class Grid_continuous_property; 
  
 
 //class GRID_DECL Grid_initializer { 
@@ -106,7 +106,7 @@ class GsTLGridProperty;
   /** Copy property \c source_property of \c source to \c target_property. 
    */ 
 /*
-  bool assign( GsTLGridProperty* target_property, 
+  bool assign( Grid_continuous_property* target_property, 
 	             const Geostat_grid* source, 
 	             const std::string& source_property ); 
  */

@@ -86,7 +86,7 @@ std::pair<GsTLPoint,GsTLPoint> Log_data::get_log_segment(int node_id) const{
 
 	//nodeid_to_log_coords::const_iterator it = log_coords_.find(node_id);
 	if(it == log_geometry_.end()) {
-		GsTLPoint nan_pt(GsTLGridProperty::no_data_value,GsTLGridProperty::no_data_value,GsTLGridProperty::no_data_value);
+		GsTLPoint nan_pt(Grid_continuous_property::no_data_value,Grid_continuous_property::no_data_value,Grid_continuous_property::no_data_value);
 		return std::make_pair(nan_pt,nan_pt);
 	}
 	//return it->second;

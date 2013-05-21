@@ -477,16 +477,16 @@ bool Sgems_folder_input_filter::read_properties(QDir dir,const QDomElement& root
 
   long int filesize = grid->size()*sizeof( float );
 
-	QDomElement elem = root.firstChildElement("GsTLGridProperty");
-	for(; !elem.isNull(); elem = elem.nextSiblingElement("GsTLGridProperty") ) {
+	QDomElement elem = root.firstChildElement("Grid_continuous_property");
+	for(; !elem.isNull(); elem = elem.nextSiblingElement("Grid_continuous_property") ) {
 		std::string prop_name = elem.attribute("name").toStdString();
 	//	bool isCategorical = elem.attribute("type") == "Categorical";
-    GsTLGridProperty* prop;
+    Grid_continuous_property* prop;
     QString filepath =  dir.absoluteFilePath(elem.attribute("filepath"));
     if(elem.attribute("type") == "Categorical") {
     	std::string  cdef_name = elem.attribute("categoryDefinition").toStdString();
-    	GsTLGridCategoricalProperty* cprop = grid->add_categorical_property_from_disk(prop_name, filepath.toStdString().c_str(), cdef_name );
-    	prop = dynamic_cast<GsTLGridProperty*>(cprop);
+    	Grid_categorical_property* cprop = grid->add_categorical_property_from_disk(prop_name, filepath.toStdString().c_str(), cdef_name );
+    	prop = dynamic_cast<Grid_continuous_property*>(cprop);
     }
     else if(elem.attribute("type") == "Continuous") {
     	 prop = grid->add_property_from_disk( prop_name, filepath.toStdString().c_str() );
@@ -1031,10 +1031,10 @@ Sgems_folder_output_filter::write_properties(QDir dir, QDomDocument& doc, const 
 
 	//Write each property
 	for(; it!=plist.end(); ++it) {
-		QDomElement elemProp = doc.createElement("GsTLGridProperty");
-		const GsTLGridProperty* prop = grid->property(*it);
+		QDomElement elemProp = doc.createElement("Grid_continuous_property");
+		const Grid_continuous_property* prop = grid->property(*it);
 		elemProp.setAttribute("name",prop->name().c_str());
-		const GsTLGridCategoricalProperty* cprop = dynamic_cast<const GsTLGridCategoricalProperty*>(prop);
+		const Grid_categorical_property* cprop = dynamic_cast<const Grid_categorical_property*>(prop);
 		bool isCategorical = cprop != 0;
     elemProp.setAttribute("type",prop->item_type());
 
@@ -1091,7 +1091,7 @@ Sgems_folder_output_filter::write_properties(QDir dir, QDomDocument& doc, const 
 			for( int i=0; i < prop->size() ; i++  ) {
 				float z;
 				if(prop->is_informed(i))  z = prop->get_value(i);
-				else z = GsTLGridProperty::no_data_value;
+				else z = Grid_continuous_property::no_data_value;
 				prop_stream.write( (char*) (&z),  sizeof(float) );
 				//prop_stream<<(char*)(&z);
 			}
@@ -1197,7 +1197,7 @@ QDomElement Sgems_folder_output_filter::write_category_definition(QDomDocument& 
 	std::list<std::string> cat_defs;
 	std::list<std::string>::const_iterator it = cat_props.begin();
 	for( ; it != cat_props.end(); ++it) {
-		const GsTLGridCategoricalProperty* cprop = grid->categorical_property(*it);
+		const Grid_categorical_property* cprop = grid->categorical_property(*it);
 		cat_defs.push_back( cprop->get_category_definition()->name() );
 	}
 	cat_defs.sort();

@@ -53,7 +53,7 @@ Histogram_proxy_model::Histogram_proxy_model(QList< GsTL_object_item*> items, QO
 
   for(int i=0; i< items.size(); ++i) {
 
-    GsTLGridProperty* prop = dynamic_cast< GsTLGridProperty*>(items.at(i));
+    Grid_continuous_property* prop = dynamic_cast< Grid_continuous_property*>(items.at(i));
     if(prop) {
       Histogram_property_item* prop_item = new Histogram_property_item(prop, current_id_);
       current_id_++;
@@ -134,7 +134,7 @@ Qt::ItemFlags Histogram_proxy_model::flags(const QModelIndex &index) const
 
 }
 /*
-bool Histogram_proxy_model::insert_row(GsTLGridProperty* prop, Grid_region* region, GsTLGridProperty* weights, QColor color){
+bool Histogram_proxy_model::insert_row(Grid_continuous_property* prop, Grid_region* region, Grid_continuous_property* weights, QColor color){
   std::map<GsTL_object_item*,Histogram_item*>::iterator it =  lookup_items_.find(prop);
   if( it != lookup_items_.end() ) return false;
 
@@ -157,7 +157,7 @@ bool Histogram_proxy_model::insert_row(GsTLGridProperty* prop, Grid_region* regi
 
 }
 
-bool Histogram_proxy_model::insert_row(GsTLGridPropertyGroup* group, Grid_region* region, GsTLGridProperty* weights, QColor color){
+bool Histogram_proxy_model::insert_row(GsTLGridPropertyGroup* group, Grid_region* region, Grid_continuous_property* weights, QColor color){
   std::map<GsTL_object_item*,Histogram_item*>::iterator it =  lookup_items_.find(group);
   if( it != lookup_items_.end() ) return false;
 
@@ -201,7 +201,7 @@ bool Histogram_proxy_model::insert_row(Continuous_distribution* dist,QColor colo
   return this->insert_row(item);
 }
 
-bool Histogram_proxy_model::insert_row(GsTLGridProperty* prop, QColor color){
+bool Histogram_proxy_model::insert_row(Grid_continuous_property* prop, QColor color){
 //  if (this->is_item_exist(prop) ) return false;
 
   Histogram_item* item = new Histogram_property_item(prop, current_id_);
@@ -211,7 +211,7 @@ bool Histogram_proxy_model::insert_row(GsTLGridProperty* prop, QColor color){
   return this->insert_row(item);
 }
 
-bool Histogram_proxy_model::insert_row(GsTLGridProperty* prop, Grid_region* region, QColor color){
+bool Histogram_proxy_model::insert_row(Grid_continuous_property* prop, Grid_region* region, QColor color){
   //if (this->is_item_exist(prop, region) ) return false;
 
   Histogram_item* item = new Histogram_property_item(prop,current_id_);
@@ -222,7 +222,7 @@ bool Histogram_proxy_model::insert_row(GsTLGridProperty* prop, Grid_region* regi
   return this->insert_row(item);
 }
 
-bool Histogram_proxy_model::insert_row(GsTLGridProperty* prop, GsTLGridWeightProperty* weights, QColor color){
+bool Histogram_proxy_model::insert_row(Grid_continuous_property* prop, GsTLGridWeightProperty* weights, QColor color){
 
   //if (this->is_item_exist(prop, weights) ) return false;
   Histogram_item* item = new Histogram_property_item(prop, current_id_);
@@ -278,7 +278,7 @@ bool Histogram_proxy_model::insert_rows(std::vector<GsTL_object_item*> new_objec
 //    if( it != lookup_items_.end() ) continue;
 
     //Histogram_item* new_item=0;
-    GsTLGridProperty* prop = dynamic_cast< GsTLGridProperty*>(new_object_items[i]);
+    Grid_continuous_property* prop = dynamic_cast< Grid_continuous_property*>(new_object_items[i]);
     if(prop) {
       ok = ok | this->insert_row(prop);
     }
@@ -353,14 +353,14 @@ bool Histogram_proxy_model::remove_rows(std::vector<GsTL_object_item*> new_objec
     
     //Need to emit some sort of signal to indicate a new data has been removed in order to update the display
     if(item_to_be_removed->type() == "Property") {
-      GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item_to_be_removed->object_item());
+      Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item_to_be_removed->object_item());
       emit this->data_removed(prop);
     }
     else if(item_to_be_removed->type() == "Group") {
       Histogram_group_item* group_item = dynamic_cast<Histogram_group_item*>(item_to_be_removed);
       int n_props = group_item->children_count();
       for(int j=0; j<n_props;++j) {
-        GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item_to_be_removed->children(j)->object_item());
+        Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item_to_be_removed->children(j)->object_item());
         emit this->data_removed(prop);
       }
     }
@@ -565,7 +565,7 @@ QModelIndex	Histogram_proxy_model::mapToSource ( const QModelIndex & proxyIndex 
   Histogram_item* item = static_cast<Histogram_item*>(proxyIndex.internalPointer());
 
   if(item->type() == "Property") {
-    GsTL_object_item* object_item = dynamic_cast<GsTLGridProperty*>(item->object_item() );
+    GsTL_object_item* object_item = dynamic_cast<Grid_continuous_property*>(item->object_item() );
     QModelIndex prop_parent = model_->property_root_index(item->grid_name());
     return this->sourceModel()->index(proxyIndex.row(), proxyIndex.column(), prop_parent );
   }
@@ -639,7 +639,7 @@ void Histogram_proxy_model::find_items_to_be_removed(GsTL_object_item* item, std
     return;
   }
 
-  GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item);
+  Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item);
 
   if(prop) {  //could either be a prop or a weight
     std::set< Histogram_item*>::iterator it = items_.begin();
@@ -666,7 +666,7 @@ void Histogram_proxy_model::find_items_to_be_removed(GsTL_object_item* item, std
 }
 
 
-bool Histogram_proxy_model::is_item_exist(GsTLGridProperty* prop){
+bool Histogram_proxy_model::is_item_exist(Grid_continuous_property* prop){
   std::set< Histogram_item*>::iterator it = items_.begin();
   for( ; it!= items_.end(); ++it) {
     Histogram_property_item* p_item = dynamic_cast<Histogram_property_item*>(*it);
@@ -675,7 +675,7 @@ bool Histogram_proxy_model::is_item_exist(GsTLGridProperty* prop){
   return false;
 }
 
-bool Histogram_proxy_model::is_item_exist(GsTLGridProperty* prop, Grid_region* region){
+bool Histogram_proxy_model::is_item_exist(Grid_continuous_property* prop, Grid_region* region){
   std::set< Histogram_item*>::iterator it = items_.begin();
   for( ; it!= items_.end(); ++it) {
     Histogram_property_item* p_item = dynamic_cast<Histogram_property_item*>(*it);
@@ -684,7 +684,7 @@ bool Histogram_proxy_model::is_item_exist(GsTLGridProperty* prop, Grid_region* r
   return false;
 }
 
-bool Histogram_proxy_model::is_item_exist(GsTLGridProperty* prop, GsTLGridWeightProperty* weights){
+bool Histogram_proxy_model::is_item_exist(Grid_continuous_property* prop, GsTLGridWeightProperty* weights){
   std::set< Histogram_item*>::iterator it = items_.begin();
   for( ; it!= items_.end(); ++it) {
     Histogram_property_item* p_item = dynamic_cast<Histogram_property_item*>(*it);

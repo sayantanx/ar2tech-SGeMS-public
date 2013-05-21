@@ -31,14 +31,14 @@ Named_interface* PCA_transformer::create_new_interface( std::string& name){
   return new PCA_transformer;
 }
 /*
-PCA_transformer( std::vector<const GsTLGridProperty*> props, const Grid_region* region, bool use_covariance)
+PCA_transformer( std::vector<const Grid_continuous_property*> props, const Grid_region* region, bool use_covariance)
 {
   this->initialize(props,region,use_covariance);
 }
 */
 
 
-bool PCA_transformer::initialize( std::vector<const GsTLGridProperty*> props, 
+bool PCA_transformer::initialize( std::vector<const Grid_continuous_property*> props, 
                                 const Grid_region* region, bool use_covariance)
 {
   int prop_size = props[0]->size();
@@ -98,17 +98,17 @@ bool PCA_transformer::initialize( std::vector<const GsTLGridProperty*> props,
  
   /** Take the vector of property and return a vector of transformed property 
    */ 
-std::vector<GsTLGridProperty*> 
+std::vector<Grid_continuous_property*> 
   PCA_transformer::forward_transform(Geostat_grid* grid, 
-   std::vector<const GsTLGridProperty*> props, const Grid_region* region)
+   std::vector<const Grid_continuous_property*> props, const Grid_region* region)
 {
   // Create new property
-  std::vector<GsTLGridProperty*> pc_props;
+  std::vector<Grid_continuous_property*> pc_props;
   for(int i=0;i<props.size(); ++ i) {
     std::ostringstream str_stream;
     str_stream<<this->name()<<" PC "<<i+1;
 
-    GsTLGridProperty* prop = grid->add_property(str_stream.str());
+    Grid_continuous_property* prop = grid->add_property(str_stream.str());
     while(prop==0) {
       str_stream<<"_0";
       prop = grid->add_property(str_stream.str());
@@ -143,13 +143,13 @@ std::vector<GsTLGridProperty*>
   
   /** Take a vector 
    */
-std::vector<GsTLGridProperty*> 
+std::vector<Grid_continuous_property*> 
   PCA_transformer::back_transform(Geostat_grid* grid, 
-   std::vector<const GsTLGridProperty*> pc_props, const Grid_region* region )
+   std::vector<const Grid_continuous_property*> pc_props, const Grid_region* region )
 {
 
   // Create new property
-  std::vector<GsTLGridProperty*> props;
+  std::vector<Grid_continuous_property*> props;
   for(int i=0;i<pc_props.size(); ++ i) {
    
     std::ostringstream str_stream;
@@ -162,7 +162,7 @@ std::vector<GsTLGridProperty*>
       str_stream<<name.right( name.size() - index ).toStdString();
     }
 
-    GsTLGridProperty* prop = grid->add_property(str_stream.str());
+    Grid_continuous_property* prop = grid->add_property(str_stream.str());
     while(prop==0) {
       str_stream<<"_0";
       prop = grid->add_property(str_stream.str());

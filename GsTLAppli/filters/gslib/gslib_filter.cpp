@@ -402,12 +402,12 @@ Geostat_grid* Gslib_mgrid_infilter::readRegularGridFormat(std::ifstream& infile,
 	}
 
   bool has_multi_real = false;
-//	std::vector<GsTLGridProperty*> properties;
+//	std::vector<Grid_continuous_property*> properties;
 	for( int i=0; i<total_columns; i++ ) {
 		std::getline( infile, buffer, '\n');
 		QString prop_name( buffer.c_str() );
 //		if( i != maskColNumber ) {
-//      GsTLGridProperty* prop = grid->add_property(prop_name.toStdString());
+//      Grid_continuous_property* prop = grid->add_property(prop_name.toStdString());
 //      properties.push_back( prop );
 //		}
 	}
@@ -469,11 +469,11 @@ Geostat_grid* Gslib_mgrid_infilter::readRegularGridFormat(std::ifstream& infile,
       char c = infile.peek();
       if( !std::isdigit(c) ) break;
 
-			std::vector<GsTLGridProperty*> props;
+			std::vector<Grid_continuous_property*> props;
       std::vector<MultiRealization_property*>::iterator multi_prop_it = properties.begin();
 			for( unsigned int ii=0; ii < total_columns; ii++) {	
         if (ii != maskColNumber) {
-				  GsTLGridProperty* prop = (*multi_prop_it)->new_realization();
+				  Grid_continuous_property* prop = (*multi_prop_it)->new_realization();
           multi_prop_it++;
 				  props.push_back( prop );
         }
@@ -484,13 +484,13 @@ Geostat_grid* Gslib_mgrid_infilter::readRegularGridFormat(std::ifstream& infile,
 	}
 
 	else {
-		std::vector<GsTLGridProperty*> properties;
+		std::vector<Grid_continuous_property*> properties;
 		for( int i=0; i<total_columns; i++ ) {
 			std::getline( infile, buffer, '\n');
 			QString prop_name( buffer.c_str() );
     
 			if (i != maskColNumber) {
-				GsTLGridProperty* prop = 
+				Grid_continuous_property* prop = 
           grid->add_property( prop_name.toStdString() );
 				properties.push_back( prop );
 			}
@@ -504,7 +504,7 @@ Geostat_grid* Gslib_mgrid_infilter::readRegularGridFormat(std::ifstream& infile,
 
 bool Gslib_mgrid_infilter::
 read_one_realization( std::ifstream& infile, 
-                      const std::vector<GsTLGridProperty*>& properties,
+                      const std::vector<Grid_continuous_property*>& properties,
                       Reduced_grid * grid) 
 {
 
@@ -600,11 +600,11 @@ Geostat_grid* Gslib_mgrid_infilter::readPointsetFormat(std::ifstream& infile, Re
 	std::getline( infile, buffer, '\n');
 
 	// read property names 
-	std::vector<GsTLGridProperty*> properties;
+	std::vector<Grid_continuous_property*> properties;
 	for( int i=0; i<columns_count; i++ ) {
 		std::getline( infile, buffer, '\n');
 		if( i != X_col_id && i != Y_col_id && i != Z_col_id ) {
-      GsTLGridProperty* prop = grid->add_property( buffer);
+      Grid_continuous_property* prop = grid->add_property( buffer);
       properties.push_back( prop );
 		}
 	}
@@ -646,7 +646,7 @@ Geostat_grid* Gslib_mgrid_infilter::readPointsetFormat(std::ifstream& infile, Re
         val = buf[j].toFloat();
 				if( use_no_data_value ) {
 					if( val == no_data_value )
-						val = GsTLGridProperty::no_data_value;          
+						val = Grid_continuous_property::no_data_value;          
 				}
         properties[ property_index ]->set_value(val,node_id);
 				property_index++;
@@ -681,11 +681,11 @@ bool Gslib_mgrid_infilter::read_data(
 	std::getline( infile, buffer, '\n');
 
 	// read property names 
-	std::vector<GsTLGridProperty*> properties;
+	std::vector<Grid_continuous_property*> properties;
 	for( int i=0; i<columns_count; i++ ) {
 		std::getline( infile, buffer, '\n');
 		if( i != X_col_id && i != Y_col_id && i != Z_col_id ) {
-      GsTLGridProperty* prop = grid->add_property( buffer);
+      Grid_continuous_property* prop = grid->add_property( buffer);
       properties.push_back( prop );
 		}
 	}
@@ -721,7 +721,7 @@ bool Gslib_mgrid_infilter::read_data(
         val = buf[j].toFloat();
 				if( use_no_data_value ) {
 					if( val == no_data_value )
-						val = GsTLGridProperty::no_data_value;          
+						val = Grid_continuous_property::no_data_value;          
 				}
         properties[ property_index ]->set_value(val,node_id);
 				property_index++;
@@ -881,11 +881,11 @@ Geostat_grid* Gslib_grid_infilter::read( std::ifstream& infile ) {
       char c = infile.peek();
       if( !std::isdigit(c) ) break;
 
-      std::vector<GsTLGridProperty*> props;
+      std::vector<Grid_continuous_property*> props;
 	  int index = 0;
       for( unsigned int ii=0; ii < property_count; ii++) {
 		 
-		  GsTLGridProperty* prop = properties[index]->new_realization();
+		  Grid_continuous_property* prop = properties[index]->new_realization();
 		  props.push_back( prop );
 		  ++index;
 
@@ -895,13 +895,13 @@ Geostat_grid* Gslib_grid_infilter::read( std::ifstream& infile ) {
   }
 
   else {
-    std::vector<GsTLGridProperty*> properties;
+    std::vector<Grid_continuous_property*> properties;
     for( int i=0; i<property_count; i++ ) {
 	  std::getline( infile, buffer, '\n');
       QString prop_name( buffer.c_str() );
 	 
 	  QByteArray tmp  =prop_name.simplified().toAscii();
-      GsTLGridProperty* prop = 
+      Grid_continuous_property* prop = 
 		  grid->add_property( tmp.constData() );
       properties.push_back( prop );
 	}    
@@ -915,7 +915,7 @@ Geostat_grid* Gslib_grid_infilter::read( std::ifstream& infile ) {
 
 bool Gslib_grid_infilter::
 read_one_realization( std::ifstream& infile, 
-                      const std::vector<GsTLGridProperty*>& properties,
+                      const std::vector<Grid_continuous_property*>& properties,
                       long int grid_size) {
   // read the property values
   int property_count = properties.size();
@@ -1059,7 +1059,7 @@ Geostat_grid* Gslib_poinset_infilter::read( std::ifstream& infile ) {
         if( use_no_data_value ) {
           float no_data_value = dialog_->no_data_value();
           if( val == no_data_value )
-            val = GsTLGridProperty::no_data_value;          
+            val = Grid_continuous_property::no_data_value;          
         }
   	    property_values[ property_index ].push_back( val );
 	      property_index++;
@@ -1097,7 +1097,7 @@ Geostat_grid* Gslib_poinset_infilter::read( std::ifstream& infile ) {
   pset->point_locations( point_locations );
 
   for( unsigned int k= 0; k < property_names.size(); k++ ) {
-    GsTLGridProperty* prop = pset->add_property( property_names[k] );
+    Grid_continuous_property* prop = pset->add_property( property_names[k] );
     for( int l=0; l < point_set_size; l++ ) {
       prop->set_value( property_values[k][l], l );
     }
@@ -1141,7 +1141,7 @@ bool Gslib_outfilter::write( std::string outfile, const Named_interface* ni,
 bool Gslib_outfilter::writeReduced2Cartesian( std::ofstream& outfile, const Geostat_grid* grid ) 
 {
 	typedef std::list<std::string>::const_iterator string_iterator; 
-	std::vector< const GsTLGridProperty* > properties;
+	std::vector< const Grid_continuous_property* > properties;
     std::list<std::string> & property_names = _list_to_write;
 	const Reduced_grid * rgrid = dynamic_cast<const Reduced_grid *>(grid);
 
@@ -1208,7 +1208,7 @@ bool Gslib_outfilter::write( std::ofstream& outfile, const Geostat_grid* grid ) 
   typedef std::list<std::string>::const_iterator string_iterator; 
   std::list<std::string> & property_names = _list_to_write;
   //std::list<std::string> property_names = grid->property_list();
-  std::vector< const GsTLGridProperty* > properties;
+  std::vector< const Grid_continuous_property* > properties;
 
   bool output_locations = false;
   int nb_properties = property_names.size();
@@ -1260,7 +1260,7 @@ bool Gslib_outfilter::write( std::ofstream& outfile, const Geostat_grid* grid ) 
       if( properties[j]->is_informed( i ) )
         outfile << properties[j]->get_value( i ) << " ";
       else
-        outfile << static_cast<int>(GsTLGridProperty::no_data_value)<<" ";
+        outfile << static_cast<int>(Grid_continuous_property::no_data_value)<<" ";
 	
     }
 	

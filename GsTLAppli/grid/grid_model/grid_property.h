@@ -99,27 +99,27 @@ private :
 */
 
 
-/** A GsTLGridProperty contains 3 types of information: 
+/** A Grid_continuous_property contains 3 types of information: 
  *    \li one flag to indicate if the node contains a data value 
  *    \li a data value 
  *    \li one flag to indicate if the data value is a "hard data" 
  */ 
-class GRID_DECL GsTLGridProperty: public GsTL_object_item {
+class GRID_DECL Grid_continuous_property: public GsTL_object_item {
  
  public: 
   typedef float property_type; 
   static const float no_data_value; 
  
  public: 
-  GsTLGridProperty( GsTLInt size, const std::string& name, 
+  Grid_continuous_property( GsTLInt size, const std::string& name, 
 		    property_type default_value = no_data_value ); 
-  GsTLGridProperty( GsTLInt size, const std::string& name,
+  Grid_continuous_property( GsTLInt size, const std::string& name,
 				const std::string& in_filename, property_type default_value = no_data_value );
-  virtual ~GsTLGridProperty();
+  virtual ~Grid_continuous_property();
 
   /** Return the name of the class
   */
-  virtual std::string classname() const {return "GsTLGridProperty";}
+  virtual std::string classname() const {return "Grid_continuous_property";}
      
   /** Tells whether the ith element of the property array is informed,
   * ie contains a value.
@@ -240,11 +240,11 @@ class GRID_DECL GsTLGridProperty: public GsTL_object_item {
   std::string parameters_;
      
  private: 
-  GsTLGridProperty( const GsTLGridProperty& rhs ); 
-  GsTLGridProperty& operator = ( const GsTLGridProperty& rhs ); 
+  Grid_continuous_property( const Grid_continuous_property& rhs ); 
+  Grid_continuous_property& operator = ( const Grid_continuous_property& rhs ); 
  
-  friend class GsTLGridProperty::const_iterator;
-  friend class GsTLGridProperty::iterator;
+  friend class Grid_continuous_property::const_iterator;
+  friend class Grid_continuous_property::iterator;
   friend class PropertyValueProxy;
 
   //-------- 
@@ -252,18 +252,18 @@ class GRID_DECL GsTLGridProperty: public GsTL_object_item {
 
    // Iterator nested class
   class GRID_DECL iterator { 
-    friend class GsTLGridProperty::const_iterator;
+    friend class Grid_continuous_property::const_iterator;
   public: 
     // STL requirement for an iterator 
     typedef std::forward_iterator_tag iterator_category; 
     //    typedef PropertyValueProxy value_type; 
-    typedef GsTLGridProperty::property_type value_type; 
+    typedef Grid_continuous_property::property_type value_type; 
     typedef int difference_type; 
     typedef value_type* pointer; 
     typedef value_type& reference; 
    
   public: 
-    iterator( GsTLGridProperty* prop, GsTLInt id, bool skip = true ); 
+    iterator( Grid_continuous_property* prop, GsTLInt id, bool skip = true ); 
     inline PropertyValueProxy operator * (); 
     inline float operator * () const; 
     inline iterator& operator ++ (); 
@@ -274,7 +274,7 @@ class GRID_DECL GsTLGridProperty: public GsTL_object_item {
     inline int node_id() const;
  
   private: 
-    GsTLGridProperty* prop_; 
+    Grid_continuous_property* prop_; 
     GsTLInt id_; 
     GsTLInt max_id_; 
     bool skip_uninformed_;
@@ -287,13 +287,13 @@ class GRID_DECL GsTLGridProperty: public GsTL_object_item {
     // STL requirement for an iterator 
     typedef std::forward_iterator_tag iterator_category; 
     //    typedef PropertyValueProxy value_type; 
-    typedef GsTLGridProperty::property_type value_type; 
+    typedef Grid_continuous_property::property_type value_type; 
     typedef int difference_type; 
     typedef value_type* pointer; 
     typedef value_type& reference; 
    
   public: 
-    const_iterator( const GsTLGridProperty* prop, GsTLInt id, bool skip = true ); 
+    const_iterator( const Grid_continuous_property* prop, GsTLInt id, bool skip = true ); 
     const_iterator( iterator it );
     inline float operator * () const ;
     inline const_iterator& operator ++ (); 
@@ -304,7 +304,7 @@ class GRID_DECL GsTLGridProperty: public GsTL_object_item {
     inline int node_id() const;
  
   private: 
-    const GsTLGridProperty* prop_; 
+    const Grid_continuous_property* prop_; 
     GsTLInt id_; 
     GsTLInt max_id_; 
     bool skip_uninformed_;
@@ -438,7 +438,7 @@ class GRID_DECL DiskAccessor : public PropertyAccessor {
  
 //--------------------------- 
 class GRID_DECL PropertyValueProxy { 
-  friend class GsTLGridProperty::iterator; 
+  friend class Grid_continuous_property::iterator; 
    
  public: 
    operator float() { return prop_->accessor_->get_property_value(id_); }// return prop_->get_value( id_ ); } 
@@ -460,19 +460,19 @@ class GRID_DECL PropertyValueProxy {
   } 
 
  private: 
-  GsTLGridProperty* prop_; 
+  Grid_continuous_property* prop_; 
   GsTLInt id_; 
  
-  explicit PropertyValueProxy( GsTLGridProperty* prop, GsTLInt id ) 
+  explicit PropertyValueProxy( Grid_continuous_property* prop, GsTLInt id ) 
     : prop_(prop), id_(id) {} 
 }; 
  
-/** Comparator to store  GsTLGridProperty pointer in STL container
+/** Comparator to store  Grid_continuous_property pointer in STL container
  *
  */ 
 struct compareGsTLGridProperty
 {
-  bool operator()(const GsTLGridProperty* p1,const GsTLGridProperty* p2) const
+  bool operator()(const Grid_continuous_property* p1,const Grid_continuous_property* p2) const
   {
     return p1->name() < p2->name();
   }
@@ -482,13 +482,13 @@ struct compareGsTLGridProperty
 class GsTL_object_property_item : public GsTL_object_item {
 public :
 	GsTL_object_property_item();
-	GsTL_object_property_item(GsTLGridProperty* prop, GsTL_object_item* parent)
+	GsTL_object_property_item(Grid_continuous_property* prop, GsTL_object_item* parent)
 		: GsTL_object_item(parent), prop_(prop){}
 
 	virtual void* data_pointer(){return static_cast<void*>(prop_);}
 
-	GsTLGridProperty* property(){return prop_;}
-	void property(GsTLGridProperty* prop){prop_ = prop;}
+	Grid_continuous_property* property(){return prop_;}
+	void property(Grid_continuous_property* prop){prop_ = prop;}
 	virtual  ~GsTL_object_property_item(){}
 	// GsTL_object_item
 	virtual QString item_type() const {return prop_->item_type();}
@@ -500,7 +500,7 @@ public :
 	}
 
 private :
-	  GsTLGridProperty* prop_;
+	  Grid_continuous_property* prop_;
 };
 
  
@@ -509,15 +509,15 @@ private :
  
  
 //--------------------------- 
-//  GsTLGridProperty 
+//  Grid_continuous_property 
  
 inline  
-GsTLInt GsTLGridProperty::size() const {  
+GsTLInt Grid_continuous_property::size() const {  
   return accessor_->size();  
 } 
  
 inline  
-bool GsTLGridProperty::is_informed( GsTLInt id ) const { 
+bool Grid_continuous_property::is_informed( GsTLInt id ) const { 
   if( id < 0 || id >= size() ) return false; 
 //  return ( accessor_->get_property_value( id ) != no_data_value );
   return !(boost::math::isnan)(accessor_->get_property_value( id ));
@@ -527,80 +527,80 @@ bool GsTLGridProperty::is_informed( GsTLInt id ) const {
 } 
  
 inline  
-void GsTLGridProperty::set_not_informed( GsTLInt id ) { 
+void Grid_continuous_property::set_not_informed( GsTLInt id ) { 
   accessor_->set_property_value( no_data_value, id ); 
 } 
  
 inline  
-bool GsTLGridProperty::is_harddata( GsTLInt id ) const { 
+bool Grid_continuous_property::is_harddata( GsTLInt id ) const { 
   return accessor_->get_flag( 0, id ); 
 } 
  
 inline  
-void GsTLGridProperty::set_harddata( bool flag, GsTLInt id ) { 
+void Grid_continuous_property::set_harddata( bool flag, GsTLInt id ) { 
   accessor_->set_flag( flag, 0, id ); 
 } 
  
 inline  
-void GsTLGridProperty::set_value( property_type val, GsTLInt id ) { 
+void Grid_continuous_property::set_value( property_type val, GsTLInt id ) { 
   accessor_->set_property_value( val, id ); 
 } 
  
-inline GsTLGridProperty::property_type 
-GsTLGridProperty::get_value( GsTLInt id ) const { 
+inline Grid_continuous_property::property_type 
+Grid_continuous_property::get_value( GsTLInt id ) const { 
   //appli_assert( accessor_->get_property_value( id ) != no_data_value );
   return accessor_->get_property_value( id ); 
 } 
 
-inline GsTLGridProperty::property_type 
-GsTLGridProperty::get_value_no_check( GsTLInt id ) const { 
+inline Grid_continuous_property::property_type 
+Grid_continuous_property::get_value_no_check( GsTLInt id ) const { 
   //appli_assert( accessor_->get_property_value( id ) != no_data_value ); 
   return accessor_->get_property_value( id ); 
 } 
 
 inline 
-GsTLGridProperty::property_type* GsTLGridProperty::data()  { 
+Grid_continuous_property::property_type* Grid_continuous_property::data()  { 
   return accessor_->data(); 
 } 
  
 inline 
-const GsTLGridProperty::property_type* GsTLGridProperty::data() const { 
+const Grid_continuous_property::property_type* Grid_continuous_property::data() const { 
   return accessor_->data(); 
 } 
  
 inline 
-bool GsTLGridProperty::is_inside_region(GsTLInt id) const {
+bool Grid_continuous_property::is_inside_region(GsTLInt id) const {
   if(!region_) return true;
   return region_->is_inside_region( id );
 }
 
 
 inline 
-void GsTLGridProperty::set_region(const Grid_region* region){
+void Grid_continuous_property::set_region(const Grid_region* region){
   region_ = region;
 }
 
 inline 
-const Grid_region* GsTLGridProperty::get_region(){
+const Grid_region* Grid_continuous_property::get_region(){
   return region_;
 }
 
 inline 
-const Grid_region* GsTLGridProperty::get_region() const{
+const Grid_region* Grid_continuous_property::get_region() const{
   return region_;
 }
 
 /*
 inline 
-bool GsTLGridProperty::has_group_membership() const{
+bool Grid_continuous_property::has_group_membership() const{
   return groups_.empty();
 }
 inline 
-std::vector< std::pair<std::string,std::string> > GsTLGridProperty::group_ids() const{
+std::vector< std::pair<std::string,std::string> > Grid_continuous_property::group_ids() const{
 
 }
 inline 
-std::vector<std::string > GsTLGridProperty::group_names() const{
+std::vector<std::string > Grid_continuous_property::group_names() const{
   std::vector<std::string> names;
   std::vector< const GsTLGridPropertyGroup* >::const_iterator it = groups_.begin();
   for(; it != groups_.end(); ++it) {
@@ -610,7 +610,7 @@ std::vector<std::string > GsTLGridProperty::group_names() const{
 }
 
 inline 
-std::vector<std::string > GsTLGridProperty::group_types() const{
+std::vector<std::string > Grid_continuous_property::group_types() const{
   std::vector<std::string> types;
   std::vector< const GsTLGridPropertyGroup* >::const_iterator it = groups_.begin();
   for(; it != groups_.end(); ++it) {
@@ -620,12 +620,12 @@ std::vector<std::string > GsTLGridProperty::group_types() const{
 }
 
 inline 
-const std::vector<const GsTLGridPropertyGroup*>& GsTLGridProperty::groups() const {
+const std::vector<const GsTLGridPropertyGroup*>& Grid_continuous_property::groups() const {
   return groups_;
 }
 
 inline 
-bool GsTLGridProperty::add_group_membership(GsTLGridPropertyGroup* group) {
+bool Grid_continuous_property::add_group_membership(GsTLGridPropertyGroup* group) {
   std::vector< const GsTLGridPropertyGroup* >::iterator it = groups_.begin();
   std::string gname = group->name();
   for(; it != groups_.end(); ++it) {
@@ -636,7 +636,7 @@ bool GsTLGridProperty::add_group_membership(GsTLGridPropertyGroup* group) {
 }
 
 inline bool 
-GsTLGridProperty::remove_group_membership(GsTLGridPropertyGroup* group){
+Grid_continuous_property::remove_group_membership(GsTLGridPropertyGroup* group){
   std::vector< const GsTLGridPropertyGroup* >::iterator it = groups_.begin();
   std::string gname = group->name();
   for(; it != groups_.end(); ++it) {
@@ -649,26 +649,26 @@ GsTLGridProperty::remove_group_membership(GsTLGridPropertyGroup* group){
 }
 */
 
-//  end of GsTLGridProperty 
+//  end of Grid_continuous_property 
 //--------------------------- 
  
 
 //---------------------------------- 
-//  GsTLGridProperty::iterator 
+//  Grid_continuous_property::iterator 
  
 inline PropertyValueProxy  
-GsTLGridProperty::iterator::operator * () { 
+Grid_continuous_property::iterator::operator * () { 
   return PropertyValueProxy( prop_, id_ ); 
 } 
  
 inline float
-GsTLGridProperty::iterator::operator * () const { 
+Grid_continuous_property::iterator::operator * () const { 
 //  return prop_->get_value( id_ ); 
   return prop_->accessor_->get_property_value( id_ );
 } 
 
-inline GsTLGridProperty::iterator&  
-GsTLGridProperty::iterator::operator ++ () { 
+inline Grid_continuous_property::iterator&  
+Grid_continuous_property::iterator::operator ++ () { 
   id_++;
   if(id_ < max_id_ && skip_uninformed_) {
     while( !prop_->is_inside_region(id_) || !prop_->is_informed( id_ ) ) {
@@ -685,8 +685,8 @@ GsTLGridProperty::iterator::operator ++ () {
   return *this; 
 } 
  
-inline GsTLGridProperty::iterator& 
-GsTLGridProperty::iterator::operator ++ (int) { 
+inline Grid_continuous_property::iterator& 
+Grid_continuous_property::iterator::operator ++ (int) { 
   id_++; 
   if(id_ < max_id_ && skip_uninformed_) {
     while( !prop_->is_inside_region(id_) || !prop_->is_informed( id_ ) ) {
@@ -703,16 +703,16 @@ GsTLGridProperty::iterator::operator ++ (int) {
 } 
  
 inline bool  
-GsTLGridProperty::iterator::operator == ( const iterator& it ) const { 
+Grid_continuous_property::iterator::operator == ( const iterator& it ) const { 
   return (prop_ == it.prop_) && (id_ == it.id_);  
 } 
 inline bool 
-GsTLGridProperty::iterator::operator != ( const iterator& it ) const { 
+Grid_continuous_property::iterator::operator != ( const iterator& it ) const { 
   return (prop_ != it.prop_) || (id_ != it.id_);  
 } 
  
-inline GsTLGridProperty::iterator& 
-GsTLGridProperty::iterator::operator = ( const iterator& it ) { 
+inline Grid_continuous_property::iterator& 
+Grid_continuous_property::iterator::operator = ( const iterator& it ) { 
   prop_ = it.prop_; 
   id_ = it.id_; 
   return *this; 
@@ -720,20 +720,20 @@ GsTLGridProperty::iterator::operator = ( const iterator& it ) {
  
 
 inline int 
-GsTLGridProperty::iterator::node_id() const { 
+Grid_continuous_property::iterator::node_id() const { 
   return id_; 
 }
  
 
 
 inline float  
-GsTLGridProperty::const_iterator::operator * () const { 
+Grid_continuous_property::const_iterator::operator * () const { 
 //  return prop_->get_value( id_ ); 
   return prop_->accessor_->get_property_value( id_ );
 } 
 
-inline GsTLGridProperty::const_iterator&  
-GsTLGridProperty::const_iterator::operator ++ () { 
+inline Grid_continuous_property::const_iterator&  
+Grid_continuous_property::const_iterator::operator ++ () { 
   id_++; 
   if(id_ < max_id_ && skip_uninformed_) {
     while( !prop_->is_inside_region(id_) || !prop_->is_informed( id_ ) ) {
@@ -760,8 +760,8 @@ GsTLGridProperty::const_iterator::operator ++ () {
   */
 } 
  
-inline GsTLGridProperty::const_iterator& 
-GsTLGridProperty::const_iterator::operator ++ (int) { 
+inline Grid_continuous_property::const_iterator& 
+Grid_continuous_property::const_iterator::operator ++ (int) { 
   id_++; 
   if(id_ < max_id_ && skip_uninformed_) {
     while( !prop_->is_inside_region(id_) || !prop_->is_informed( id_ ) ) {
@@ -778,23 +778,23 @@ GsTLGridProperty::const_iterator::operator ++ (int) {
 } 
  
 inline bool  
-GsTLGridProperty::const_iterator::operator == ( const const_iterator& it ) const { 
+Grid_continuous_property::const_iterator::operator == ( const const_iterator& it ) const { 
   return (prop_ == it.prop_) && (id_ == it.id_);  
 } 
 inline bool 
-GsTLGridProperty::const_iterator::operator != ( const const_iterator& it ) const { 
+Grid_continuous_property::const_iterator::operator != ( const const_iterator& it ) const { 
   return (prop_ != it.prop_) || (id_ != it.id_);  
 } 
  
-inline GsTLGridProperty::const_iterator& 
-GsTLGridProperty::const_iterator::operator = ( const const_iterator& it ) { 
+inline Grid_continuous_property::const_iterator& 
+Grid_continuous_property::const_iterator::operator = ( const const_iterator& it ) { 
   prop_ = it.prop_; 
   id_ = it.id_; 
   return *this; 
 } 
  
 inline int 
-GsTLGridProperty::const_iterator::node_id() const { 
+Grid_continuous_property::const_iterator::node_id() const { 
   return id_; 
 }
  

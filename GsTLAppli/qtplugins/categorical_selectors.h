@@ -78,7 +78,7 @@ class QString;
 class QLabel;
 class QKeyEvent;
 
-class GsTLGridProperty;
+class Grid_continuous_property;
 class CategoricalPropertyDefinition;
 
 class QTPLUGINS_DECL  SingleCategoricalPropertySelector : public SinglePropertySelector {
@@ -90,7 +90,7 @@ class QTPLUGINS_DECL  SingleCategoricalPropertySelector : public SinglePropertyS
   virtual ~SingleCategoricalPropertySelector() {}
 
 signals:
-  void categorical_property_selected( GsTLGridCategoricalProperty*);
+  void categorical_property_selected( Grid_categorical_property*);
   
   public slots:
     virtual void show_properties( const QString& grid_name );
@@ -244,7 +244,7 @@ class QTPLUGINS_DECL  CategoricalDefinitionTable : public QTableView {
   void show_definition( QString cdef_name);
   void show_definition( CategoricalPropertyDefinition* cdef );
   void show_definition( int ncat );
-  void show_definition( GsTLGridCategoricalProperty* cprop );
+  void show_definition( Grid_categorical_property* cprop );
   void show_color_editor(const QModelIndex& index);
   void set_flags_name(Qt::ItemFlags flags) {if(model_) model_->set_flags_name(flags);}
   void set_flags_color(Qt::ItemFlags flags) {if(model_) model_->set_flags_color(flags);}
@@ -280,7 +280,7 @@ class QTPLUGINS_DECL  CategoricalDefinitionTableAllClearOptions : public QWidget
   void show_definition( QString cdef_name);
   void show_definition( CategoricalPropertyDefinition* cdef );
   void show_definition( int ncat );
-  void show_definition( GsTLGridCategoricalProperty* cprop );
+  void show_definition( Grid_categorical_property* cprop );
   void show_color_editor(const QModelIndex& index);
   void set_flags_name(Qt::ItemFlags flags) {if(table_->get_model()) table_->get_model()->set_flags_name(flags);}
   void set_flags_color(Qt::ItemFlags flags) {if(table_->get_model()) table_->get_model()->set_flags_color(flags);}
@@ -312,7 +312,7 @@ class QTPLUGINS_DECL  MultipleCategorySelector : public QTableView {
 
   public slots:
     void show_categories( const QString& cat_def_name);
-    void show_categories( const GsTLGridProperty* prop);
+    void show_categories( const Grid_continuous_property* prop);
     void show_categories( const CategoricalPropertyDefinition* cdef);
     void show_default_categories( int number_of_category );
 
@@ -340,7 +340,7 @@ class QTPLUGINS_DECL  MultipleCategorySelector : public QListWidget {
 
   public slots:
     void show_categories( const QString& cat_def_name);
-    void show_categories( const GsTLGridProperty* prop);
+    void show_categories( const Grid_continuous_property* prop);
     void show_categories( const CategoricalPropertyDefinition* cdef);
     void show_default_categories( int number_of_category );
 
@@ -366,7 +366,7 @@ class QTPLUGINS_DECL  SingleCategorySelector : public QComboBox {
 
   public slots:
     void show_categories( const QString& cat_def_name);
-    void show_categories( const GsTLGridCategoricalProperty* prop);
+    void show_categories( const Grid_categorical_property* prop);
     void show_categories( const CategoricalPropertyDefinitionName* cdef);
     void show_default_categories( int number_of_category );
     void set_selected_category(const QString& cat_name);

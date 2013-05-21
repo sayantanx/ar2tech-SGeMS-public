@@ -130,14 +130,14 @@ void Point_set::point_locations( const std::vector<location_type>& locations ) {
 
   } 
 
-GsTLGridProperty*
+Grid_continuous_property*
 Point_set::add_property( const std::string& name )
                                    
 {
   return point_prop_.add_property( name );
 }
 
-GsTLGridProperty*
+Grid_continuous_property*
 Point_set::add_property_from_disk(const std::string& name,
 																					const std::string& filename){
 	return point_prop_.add_property_from_disk( name, filename );
@@ -158,14 +158,14 @@ Point_set::add_weight_property_from_disk(const std::string& name,
 }
 
 
-GsTLGridCategoricalProperty*
+Grid_categorical_property*
 Point_set::add_categorical_property(
 		const std::string& name,
 		const std::string& definition_name){
 	return point_prop_.add_categorical_property( name, definition_name );
 }
 
-GsTLGridCategoricalProperty*
+Grid_categorical_property*
 Point_set::add_categorical_property_from_disk(
 		const std::string& name,
 		const std::string& filename,
@@ -176,7 +176,7 @@ Point_set::add_categorical_property_from_disk(
 bool Point_set::remove_property(const std::string& name)
 {
   std::string name_group;
-  GsTLGridProperty* prop = property(name );
+  Grid_continuous_property* prop = property(name );
   if(!prop) return false;
   std::vector< GsTLGridPropertyGroup*> groups = prop->groups();
   bool ok = point_prop_.remove_property( name);
@@ -228,7 +228,7 @@ std::list<std::string> Point_set::categorical_property_list() const {
   Grid_property_manager::Property_name_iterator end =
     point_prop_.names_end();
   for( ; it != end ; ++it ) {
-    const GsTLGridCategoricalProperty* prop = categorical_property(*it);
+    const Grid_categorical_property* prop = categorical_property(*it);
     if(prop) result.push_back( *it );
   }
 
@@ -310,11 +310,11 @@ void Point_set::init_random_path( bool from_scratch ) {
 } 
 
 Point_set::random_path_iterator 
-Point_set::random_path_begin( GsTLGridProperty* prop ) {
+Point_set::random_path_begin( Grid_continuous_property* prop ) {
   if( int(grid_path_.size()) != xyz_point_loc_.size() )  
     init_random_path( true ); 
 
-  GsTLGridProperty* property = prop;
+  Grid_continuous_property* property = prop;
   if( !prop )
     property = point_prop_.selected_property();
  
@@ -325,11 +325,11 @@ Point_set::random_path_begin( GsTLGridProperty* prop ) {
 
 
 Point_set::random_path_iterator 
-Point_set::random_path_end( GsTLGridProperty* prop ) {
+Point_set::random_path_end( Grid_continuous_property* prop ) {
   if( int(grid_path_.size()) != xyz_point_loc_.size() )  
     init_random_path( true ); 
 
-  GsTLGridProperty* property = prop;
+  Grid_continuous_property* property = prop;
   if( !prop )
     property = point_prop_.selected_property();
 

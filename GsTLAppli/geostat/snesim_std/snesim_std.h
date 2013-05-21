@@ -96,12 +96,12 @@ public:
 	typedef float value_type;
 	
 public:
-	Property_map( const GsTLGridProperty* prop ) : prop_(prop) {}
+	Property_map( const Grid_continuous_property* prop ) : prop_(prop) {}
 	value_type operator() ( const key_type& g ) const;
-	const GsTLGridProperty* property() { return prop_; }
+	const Grid_continuous_property* property() { return prop_; }
 	
 private:
-	const GsTLGridProperty* prop_;
+	const Grid_continuous_property* prop_;
 };
 
 
@@ -114,7 +114,7 @@ inline float get( const Property_map& map, const Geovalue& g )
 class GEOSTAT_DECL Colocated_value
 {
 public:
-	Colocated_value( const GsTLGridProperty* prop )	
+	Colocated_value( const Grid_continuous_property* prop )	
 	{
 		property_ = prop;
 	}
@@ -127,7 +127,7 @@ public:
 	}
 	
 private:
-	const GsTLGridProperty* property_;
+	const Grid_continuous_property* property_;
 };
 
 
@@ -184,7 +184,7 @@ public:
 	
 private:
     // for execute() function;
-    bool simulate_one_realization( SmartPtr<Progress_notifier>& progress_notifier, GsTLGridProperty* prop, int nreal );
+    bool simulate_one_realization( SmartPtr<Progress_notifier>& progress_notifier, Grid_continuous_property* prop, int nreal );
     bool get_simulation_choice(int sg_no, int ncoarse);
 	void init_random_path(int level);
     void init_random_path_normal(int level);
@@ -196,7 +196,7 @@ private:
 	Grid_template* multgrid_template(Grid_template* base_template);
     void update_ccdf_from_available(CdfType& ccdf);
     void copy_pre_simulation_data();
-    void clean( GsTLGridProperty* prop = 0 );
+    void clean( Grid_continuous_property* prop = 0 );
 
     // for initialize() function
     bool get_rotation_data( const Parameters_handler* parameters, Error_messages_handler* error_mesgs );
@@ -249,7 +249,7 @@ private:
 	std::string training_property_name_;
 	
 	//  for local rotation
-	GsTLGridProperty* rot_property_;
+	Grid_continuous_property* rot_property_;
 	std::string rot_property_name_;
 
     int local_rot_;
@@ -257,7 +257,7 @@ private:
 	std::vector<double> angles_;
 
     //  for local scaling
-	GsTLGridProperty* aff_property_;
+	Grid_continuous_property* aff_property_;
 	std::string aff_property_name_;
 
 	int local_aff_;
@@ -265,8 +265,8 @@ private:
 	std::vector<double> aff_[3];
 	
 	//  for simulation with regions
-	GsTLGridProperty* region_property_;
-	GsTLGridProperty* pre_simulated_property_;
+	Grid_continuous_property* region_property_;
+	Grid_continuous_property* pre_simulated_property_;
 
 	std::string pre_region_property_name_;
 
@@ -286,12 +286,12 @@ private:
 
     // for hard conditioning data
 	Geostat_grid* harddata_grid_;
-	GsTLGridProperty* harddata_property_;
+	Grid_continuous_property* harddata_property_;
 	SmartPtr<Property_copier> property_copier_;
 	
 	//  vertical proportion curve
 	Strati_grid* vertical_curve_grid_;
-	std::vector<GsTLGridProperty*> vertical_properties_;
+	std::vector<Grid_continuous_property*> vertical_properties_;
 	std::string vertical_properties_names_;
 
     bool use_vertical_;
@@ -303,7 +303,7 @@ private:
     // the property to record: 
     //      (1) # of conditioning nodes when use less than 10 conditioning data (or tree level)
     //      (2)  # of conditioning nodes dropped, otherwise
-    GsTLGridProperty* data_drop_prop_;
+    Grid_continuous_property* data_drop_prop_;
 	
     // search template geometry
 	Grid_template* window_geom_sg_[NUM_SG+1];

@@ -63,7 +63,7 @@ class GEOSTAT_DECL NodeDropped {
      
      //void GetRevisitNodes( vector<int>& grid_path_new);
 
-     void setDNProp( RGrid* grid, GsTLGridProperty* prop );
+     void setDNProp( RGrid* grid, Grid_continuous_property* prop );
 
 private:
     int nb_cut_;

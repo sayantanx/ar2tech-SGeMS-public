@@ -62,13 +62,13 @@ bool Unary_action::init(std::string& _parameters, GsTL_project* _proj, Error_mes
 		return false;
 	}
 
-	GsTLGridProperty* property = grid_->property(property_name_);
+	Grid_continuous_property* property = grid_->property(property_name_);
 	if (property == 0) {
 		_errors->report("Illegal property specified");
 		return false;
 	}
 
-	GsTLGridProperty* new_property = grid_->property(new_property_name_);
+	Grid_continuous_property* new_property = grid_->property(new_property_name_);
 	if (new_property != 0) {
 		_errors->report("New Property already exists in specified grid");
 		return false;
@@ -82,9 +82,9 @@ bool Unary_action::exec() {
 	this->grid_->select_property(this->property_name_);
 
 	// add new property to the grid
-//	GsTLGridProperty* newProperty = 
+//	Grid_continuous_property* newProperty = 
  //   geostat_utils::add_property_to_grid(this->grid_, this->new_property_name_);
-  GsTLGridProperty* newProperty = this->grid_->property( this->new_property_name_ );
+  Grid_continuous_property* newProperty = this->grid_->property( this->new_property_name_ );
   if( !newProperty ) 
     newProperty = this->grid_->add_property( this->new_property_name_ );
 
@@ -155,9 +155,9 @@ bool Unit_scaling_transform_action::init(std::string& _parameters, GsTL_project*
 	bool ok = Unary_action::init(_parameters,_proj,_errors);
 	if(!ok) return false;
 
-  GsTLGridProperty* prop = this->grid_->select_property(this->property_name_);
+  Grid_continuous_property* prop = this->grid_->select_property(this->property_name_);
 
-  GsTLGridProperty::const_iterator it = prop->begin();
+  Grid_continuous_property::const_iterator it = prop->begin();
   min_ = 9e20;
   max_ = -9e20;
   for( ; it != prop->end(); ++it ){

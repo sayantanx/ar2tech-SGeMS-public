@@ -53,7 +53,7 @@ public:
   virtual std::string name() const { return "KmeansClustering"; } 
 
 protected :
-  std::vector<const GsTLGridProperty*> props_;
+  std::vector<const Grid_continuous_property*> props_;
   Grid_region* region_;
   int k_centroids_;
   std::string kmeans_prop_name_;
@@ -101,7 +101,7 @@ protected :
 
   std::string infile_name_;
   std::string clustered_prop_name_;
-  std::vector<const GsTLGridProperty*> props_;
+  std::vector<const Grid_continuous_property*> props_;
   const Grid_region region_;
 
 };

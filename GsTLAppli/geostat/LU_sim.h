@@ -100,7 +100,7 @@ class GEOSTAT_DECL LU_sim : public Geostat_algo {
   MultiRealization_property* multireal_property_; 
    
   Geostat_grid* harddata_grid_;   
-  GsTLGridProperty* harddata_property_; 
+  Grid_continuous_property* harddata_property_; 
 //  Grid_initializer* initializer_; 
   SmartPtr<Property_copier> property_copier_;
  
@@ -122,7 +122,7 @@ class GEOSTAT_DECL LU_sim : public Geostat_algo {
  protected: 
 
 
-  void clean( GsTLGridProperty* prop = 0 );
+  void clean( Grid_continuous_property* prop = 0 );
 }; 
 
 

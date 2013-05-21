@@ -97,7 +97,7 @@ class Filtersim_Tau_updating
  public:
      // constructor
      Filtersim_Tau_updating( const vector<float> target_cpdf, const float tau1, 
-                             const float tau2, float no_data_value=GsTLGridProperty::no_data_value )
+                             const float tau2, float no_data_value=Grid_continuous_property::no_data_value )
           : target_cpdf_(target_cpdf), tau1_(tau1), tau2_(tau2), UNINFORMED(no_data_value)
 	 {
 		 tau0_ = 1 - tau1_ -tau2_;

@@ -333,7 +333,7 @@ void	Grid_filter_threshold_property_delegate::setEditorData ( QWidget * editor, 
 
   edit->set_property(data[0]);
   if(data[1].contains("nan",Qt::CaseInsensitive) ) {
-    edit->set_bound(GsTLGridProperty::no_data_value);
+    edit->set_bound(Grid_continuous_property::no_data_value);
   }
   else {
     edit->set_bound(data[1].toDouble());
@@ -421,8 +421,8 @@ Grid_filter_categorical_property_editor::Grid_filter_categorical_property_editor
 
   this->setAutoFillBackground(true);
 
-  QObject::connect(prop_selector_, SIGNAL( categorical_property_selected( GsTLGridCategoricalProperty*) ), 
-                   category_selector_, SLOT(show_categories(  GsTLGridCategoricalProperty*) ) );
+  QObject::connect(prop_selector_, SIGNAL( categorical_property_selected( Grid_categorical_property*) ), 
+                   category_selector_, SLOT(show_categories(  Grid_categorical_property*) ) );
 
   //this->setFocusPolicy( Qt::StrongFocus );
 

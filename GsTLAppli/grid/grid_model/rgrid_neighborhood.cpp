@@ -80,7 +80,7 @@ Rgrid_window_neighborhood::Rgrid_window_neighborhood()
 
 Rgrid_window_neighborhood::
 Rgrid_window_neighborhood( const Grid_template& geom, RGrid* grid,
-			   GsTLGridProperty* prop )
+			   Grid_continuous_property* prop )
   : Window_neighborhood(),
     grid_( grid ),
     property_( prop ),
@@ -269,7 +269,7 @@ int Rgrid_window_neighborhood::size() const {
 
 Rgrid_ellips_neighborhood::
 Rgrid_ellips_neighborhood( RGrid* grid,
-			   GsTLGridProperty* property,
+			   Grid_continuous_property* property,
 			   GsTLInt max_radius, GsTLInt mid_radius, GsTLInt min_radius,
 			   double x_angle, double y_angle, double z_angle,
 			   int max_neighbors, 
@@ -328,7 +328,7 @@ select_property( const std::string& prop_name ) {
 
 
 /* This function could be optimized by directly using the property values 
- * array, hence bypassing the virtual function calls in GsTLGridProperty.
+ * array, hence bypassing the virtual function calls in Grid_continuous_property.
  */
 void Rgrid_ellips_neighborhood::find_neighbors( const Geovalue& center ) {
   neighbors_.clear();
@@ -480,7 +480,7 @@ set_neighbors( const_iterator begin, const_iterator end ) {
 
 Rgrid_ellips_neighborhood_hd::
 Rgrid_ellips_neighborhood_hd( RGrid* grid,
-			      GsTLGridProperty* property,
+			      Grid_continuous_property* property,
 			      GsTLInt max_radius, GsTLInt mid_radius, GsTLInt min_radius,
 			      double x_angle, double y_angle, double z_angle,
 			      int max_neighbors,

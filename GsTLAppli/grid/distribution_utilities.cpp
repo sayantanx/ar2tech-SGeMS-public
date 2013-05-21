@@ -30,7 +30,7 @@
 #include <GsTLAppli/appli/manager_repository.h>
 
 Non_parametric_distribution* 
-  build_non_param_distribution( std::string name, GsTLGridProperty* prop, 
+  build_non_param_distribution( std::string name, Grid_continuous_property* prop, 
     const Tail_interpolator low_interp,
 		const Linear_interpol mid_interp,
 		const Tail_interpolator up_interp	)  
@@ -65,7 +65,7 @@ Non_parametric_distribution*
 
 Non_parametric_distribution* 
   build_non_param_distribution( std::string name,
-  const GsTLGridProperty* prop, const Grid_region* region, 
+  const Grid_continuous_property* prop, const Grid_region* region, 
   const Tail_interpolator low_interp,
 	const Linear_interpol mid_interp,
 	const Tail_interpolator up_interp	)  
@@ -106,7 +106,7 @@ Non_parametric_distribution*
 
 
 Non_parametric_distribution* 
-  build_non_param_distribution( std::string name,const GsTLGridProperty* prop, const GsTLGridWeightProperty* weight, 
+  build_non_param_distribution( std::string name,const Grid_continuous_property* prop, const GsTLGridWeightProperty* weight, 
   const Tail_interpolator low_interp,
 	const Linear_interpol mid_interp,
 	const Tail_interpolator up_interp	)  

@@ -330,7 +330,7 @@ Geostat_grid* GsTL_group_all_property_item::grid(){
 
 GsTL_property_item::GsTL_property_item():GsTL_item(0){}
 
-GsTL_property_item::GsTL_property_item(GsTLGridProperty* prop, GsTL_item *parent)
+GsTL_property_item::GsTL_property_item(Grid_continuous_property* prop, GsTL_item *parent)
     :GsTL_item(parent),prop_(prop), grid_(0)
 {
     if(parentItem_) {
@@ -354,7 +354,7 @@ GsTL_property_item::GsTL_property_item(GsTLGridProperty* prop, GsTL_item *parent
 GsTL_property_item::~GsTL_property_item(){}
 
 QString GsTL_property_item::type()const{
-    GsTLGridCategoricalProperty* cprop = dynamic_cast<GsTLGridCategoricalProperty*>(prop_);
+    Grid_categorical_property* cprop = dynamic_cast<Grid_categorical_property*>(prop_);
     if(cprop) return QString("Categorical_property");
     else return QString("Continuous_property");
 
@@ -379,7 +379,7 @@ int GsTL_property_item::columnCount() const{
 QVariant GsTL_property_item::data(int column) const{
     if( column == 0 ) return QString::fromStdString(prop_->name());
     if( column == 1) {
-        GsTLGridCategoricalProperty* cprop = dynamic_cast<GsTLGridCategoricalProperty*>(prop_);
+        Grid_categorical_property* cprop = dynamic_cast<Grid_categorical_property*>(prop_);
         if(cprop) return QString("Categorical");
         else return QString("Continuous");
     }
@@ -422,7 +422,7 @@ int GsTL_property_item::row() const{
 QString GsTL_property_item::gridName() const{
 	return gridName_;
 }
-GsTLGridProperty* GsTL_property_item::property(){
+Grid_continuous_property* GsTL_property_item::property(){
 	return prop_;
 }
 

@@ -78,7 +78,7 @@ class Grid_template;
 class Geostat_grid;
 class RGrid;
 class Neighborhood;
-class GsTLGridProperty;
+class Grid_continuous_property;
 
 using namespace std;
 using namespace geostat_utils;
@@ -108,19 +108,19 @@ private:
     bool valid_filter_file( const Parameters_handler* parameters, Error_messages_handler* error_mesgs,
                                     int nxdt, int nydt, int nzdt, string filter_file_name );
 
-    void calculate_category_proportions( GsTLGridProperty* prop );
+    void calculate_category_proportions( Grid_continuous_property* prop );
 
 private:
     // source
     RGrid* source_grid_;
-    GsTLGridProperty* source_property_;
+    Grid_continuous_property* source_property_;
     string source_property_name_;
     string output_suffix_;
 
     // for local conditioning
     int use_local_condition_;
 	Geostat_grid* harddata_grid_;
-	GsTLGridProperty* harddata_property_;
+	Grid_continuous_property* harddata_property_;
 	SmartPtr<Property_copier> property_copier_;
     float locl_cond_factor_;
     string cond_prop_name_;

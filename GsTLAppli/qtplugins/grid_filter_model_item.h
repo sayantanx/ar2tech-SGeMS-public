@@ -201,7 +201,7 @@ protected :
 
 class QTPLUGINS_DECL Grid_filter_less_than_item : public Grid_filter_item {
 public :
-  Grid_filter_less_than_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_less_than().item_type(),parent), prop_name_("None"),upper_bound_(GsTLGridProperty::no_data_value){}
+  Grid_filter_less_than_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_less_than().item_type(),parent), prop_name_("None"),upper_bound_(Grid_continuous_property::no_data_value){}
   virtual ~Grid_filter_less_than_item(){}
 
   virtual Grid_filter* create_filter() const;
@@ -226,7 +226,7 @@ protected :
 
 class QTPLUGINS_DECL Grid_filter_greater_than_item : public Grid_filter_item {
 public :
-  Grid_filter_greater_than_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_greater_than().item_type(),parent), prop_name_("None"),lower_bound_(GsTLGridProperty::no_data_value){}
+  Grid_filter_greater_than_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_greater_than().item_type(),parent), prop_name_("None"),lower_bound_(Grid_continuous_property::no_data_value){}
   virtual ~Grid_filter_greater_than_item(){}
 
   virtual Grid_filter* create_filter() const;
@@ -251,7 +251,7 @@ protected :
 class QTPLUGINS_DECL Grid_filter_x_coord_bounded_item : public Grid_filter_item {
 public :
   Grid_filter_x_coord_bounded_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_x_coord_bounded().item_type(),parent),
-    x_lower_bound_(GsTLGridProperty::no_data_value),x_upper_bound_(GsTLGridProperty::no_data_value){}
+    x_lower_bound_(Grid_continuous_property::no_data_value),x_upper_bound_(Grid_continuous_property::no_data_value){}
   virtual ~Grid_filter_x_coord_bounded_item(){}
 
   virtual Grid_filter* create_filter() const;
@@ -275,7 +275,7 @@ protected :
 class QTPLUGINS_DECL Grid_filter_y_coord_bounded_item : public Grid_filter_item {
 public :
   Grid_filter_y_coord_bounded_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_y_coord_bounded().item_type(),parent),
-  y_lower_bound_(GsTLGridProperty::no_data_value),y_upper_bound_(GsTLGridProperty::no_data_value){}
+  y_lower_bound_(Grid_continuous_property::no_data_value),y_upper_bound_(Grid_continuous_property::no_data_value){}
   virtual ~Grid_filter_y_coord_bounded_item(){}
 
   virtual Grid_filter* create_filter() const;
@@ -299,7 +299,7 @@ protected :
 class QTPLUGINS_DECL Grid_filter_z_coord_bounded_item : public Grid_filter_item {
 public :
   Grid_filter_z_coord_bounded_item(Grid_filter_item* parent=0): Grid_filter_item(Grid_filter_z_coord_bounded().item_type(),parent),
-  z_lower_bound_(GsTLGridProperty::no_data_value),z_upper_bound_(GsTLGridProperty::no_data_value){}
+  z_lower_bound_(Grid_continuous_property::no_data_value),z_upper_bound_(Grid_continuous_property::no_data_value){}
   virtual ~Grid_filter_z_coord_bounded_item(){}
 
   virtual Grid_filter* create_filter() const;

@@ -63,7 +63,7 @@ class GUI_DECL vtkProp_pointset : public GsTL_vtkProp{
   virtual void property_deleted( const std::string& prop_name );
 
 //  virtual void set_property( const std::string& property_name );
-//  virtual void set_property(const GsTLGridProperty* prop );
+//  virtual void set_property(const Grid_continuous_property* prop );
   virtual void set_property( const std::string& property_name, Colormap* cmap );
   virtual void set_region(const std::string& region_name );
   virtual void set_colormap( Colormap* cmap );

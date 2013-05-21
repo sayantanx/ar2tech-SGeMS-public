@@ -124,17 +124,17 @@ MultiRealization_property::operator = ( const MultiRealization_property& rhs ) {
 }
 
 
-GsTLGridProperty* MultiRealization_property::new_realization() {
+Grid_continuous_property* MultiRealization_property::new_realization() {
   // if there was already a realization, don't keep it loaded in memory
   // and swap it to disk
   if( size_ > 0 ) {
-    GsTLGridProperty* previous_real = 
+    Grid_continuous_property* previous_real = 
       prop_manager_->get_property( name_ + separator + 
 				   String_Op::to_string( size_-1 ) );
     previous_real->swap_to_disk();
   }
   
-  GsTLGridProperty* new_real = 
+  Grid_continuous_property* new_real = 
     prop_manager_->add_property( name_ + separator +
 				 String_Op::to_string( size_ ) );
   if( new_real )
@@ -145,7 +145,7 @@ GsTLGridProperty* MultiRealization_property::new_realization() {
   return new_real;
 }
 
-GsTLGridProperty* MultiRealization_property::realization( int id ) {
+Grid_continuous_property* MultiRealization_property::realization( int id ) {
   if( id >= size_ )
     return 0;
 
@@ -153,7 +153,7 @@ GsTLGridProperty* MultiRealization_property::realization( int id ) {
                                       String_Op::to_string( id ) );
 }
 
-const GsTLGridProperty* MultiRealization_property::realization( int id ) const {
+const Grid_continuous_property* MultiRealization_property::realization( int id ) const {
   if( id >= size_ )
     return 0;
 
@@ -169,17 +169,17 @@ set_category_definition(CategoricalPropertyDefinition* definition) {
 }
 
 
-GsTLGridCategoricalProperty* MultiRealization_property::new_categorical_realization() {
+Grid_categorical_property* MultiRealization_property::new_categorical_realization() {
   // if there was already a realization, don't keep it loaded in memory
   // and swap it to disk
   if( size_ > 0 ) {
-    GsTLGridCategoricalProperty* previous_real = 
+    Grid_categorical_property* previous_real = 
       prop_manager_->get_categorical_property( name_ + separator + 
 				   String_Op::to_string( size_-1 ) );
     previous_real->swap_to_disk();
   }
   
-  GsTLGridCategoricalProperty* new_real = 
+  Grid_categorical_property* new_real = 
     prop_manager_->add_categorical_property( name_ + separator +
 				 String_Op::to_string( size_ ), definition_->name() );
   if( new_real )
@@ -189,7 +189,7 @@ GsTLGridCategoricalProperty* MultiRealization_property::new_categorical_realizat
   return new_real;
 }
 
-GsTLGridCategoricalProperty* MultiRealization_property::categorical_realization( int id ) {
+Grid_categorical_property* MultiRealization_property::categorical_realization( int id ) {
   if( id >= size_ )
     return 0;
 
@@ -197,7 +197,7 @@ GsTLGridCategoricalProperty* MultiRealization_property::categorical_realization(
                                       String_Op::to_string( id ) );
 }
 
-const GsTLGridCategoricalProperty* MultiRealization_property::categorical_realization( int id ) const {
+const Grid_categorical_property* MultiRealization_property::categorical_realization( int id ) const {
   if( id >= size_ )
     return 0;
 
@@ -259,7 +259,7 @@ Grid_property_manager::~Grid_property_manager() {
   }
 
 /*
-  std::vector< GsTLGridProperty* >::iterator it = properties_.begin();
+  std::vector< Grid_continuous_property* >::iterator it = properties_.begin();
   for( ; it != properties_.end() ; ++it )
     if( *it != 0 ) {
       if(model_) {
@@ -272,14 +272,14 @@ Grid_property_manager::~Grid_property_manager() {
 }
 
 
-GsTLGridProperty* 
+Grid_continuous_property* 
 Grid_property_manager::add_property( const std::string& name ) {
 
   appli_assert( size_ != 0 );
   Property_map::iterator it = properties_map_.find( name );
   if( it == properties_map_.end() ) {
     int new_prop_id = properties_.size();
-    GsTLGridProperty* prop = new GsTLGridProperty( size_, name );
+    Grid_continuous_property* prop = new Grid_continuous_property( size_, name );
     prop->set_parent_item(this);
     // Check if the property has been correctly created
     if(prop->size() == 0 ) {
@@ -315,14 +315,14 @@ Grid_property_manager::add_property( const std::string& name ) {
 }
 
 
-GsTLGridProperty*
+Grid_continuous_property*
 Grid_property_manager::add_property_from_disk( const std::string& name, const std::string& filename ) {
 
   appli_assert( size_ != 0 );
   Property_map::iterator it = properties_map_.find( name );
   if( it == properties_map_.end() ) {
     int new_prop_id = properties_.size();
-    GsTLGridProperty* prop = new GsTLGridProperty( size_, name, filename );
+    Grid_continuous_property* prop = new Grid_continuous_property( size_, name, filename );
     prop->set_parent_item(this);
     // Check if the property has been correctly created
     if(prop->size() == 0 ) {
@@ -442,7 +442,7 @@ Grid_property_manager::add_weight_property_from_disk( const std::string& name, c
 
 
 
-GsTLGridCategoricalProperty*
+Grid_categorical_property*
 Grid_property_manager::add_categorical_property( const std::string& name,
                                                 const std::string definition_name) {
 
@@ -450,7 +450,7 @@ Grid_property_manager::add_categorical_property( const std::string& name,
   Property_map::iterator it = properties_map_.find( name );
   if( it == properties_map_.end() ) {
     int new_prop_id = properties_.size();
-    GsTLGridProperty* prop = new GsTLGridCategoricalProperty( size_, name, definition_name);
+    Grid_continuous_property* prop = new Grid_categorical_property( size_, name, definition_name);
     prop->set_parent_item(this);
 
     // Check if the property has been correctly created
@@ -471,13 +471,13 @@ Grid_property_manager::add_categorical_property( const std::string& name,
     properties_map_[name] = new_prop_id;
     properties_.push_back( prop );
     if(model_) model_->end_insert_item();
-    //properties_.push_back( new GsTLGridProperty( size_, name ) );
+    //properties_.push_back( new Grid_continuous_property( size_, name ) );
 
     // if no property was selected before, select the first one in the list
     if( selected_property_ == -1 )
       selected_property_ = new_prop_id;
 
-    return dynamic_cast<GsTLGridCategoricalProperty*>(properties_[ new_prop_id ]);
+    return dynamic_cast<Grid_categorical_property*>(properties_[ new_prop_id ]);
   }
   else
     return 0 ;
@@ -485,7 +485,7 @@ Grid_property_manager::add_categorical_property( const std::string& name,
 
 
 
-GsTLGridCategoricalProperty*
+Grid_categorical_property*
 Grid_property_manager::add_categorical_property_from_disk( const std::string& name,
 																								const std::string& filename,
                                                 const std::string definition_name) {
@@ -494,7 +494,7 @@ Grid_property_manager::add_categorical_property_from_disk( const std::string& na
   Property_map::iterator it = properties_map_.find( name );
   if( it == properties_map_.end() ) {
     int new_prop_id = properties_.size();
-    GsTLGridProperty* prop = new GsTLGridCategoricalProperty(filename, size_, name, definition_name);
+    Grid_continuous_property* prop = new Grid_categorical_property(filename, size_, name, definition_name);
     prop->set_parent_item(this);
 
     // Check if the property has been correctly created
@@ -515,13 +515,13 @@ Grid_property_manager::add_categorical_property_from_disk( const std::string& na
     properties_map_[name] = new_prop_id;
     properties_.push_back( prop );
     if(model_) model_->end_insert_item();
-    //properties_.push_back( new GsTLGridProperty( size_, name ) );
+    //properties_.push_back( new Grid_continuous_property( size_, name ) );
 
     // if no property was selected before, select the first one in the list
     if( selected_property_ == -1 )
       selected_property_ = new_prop_id;
 
-    return dynamic_cast<GsTLGridCategoricalProperty*>(properties_[ new_prop_id ]);
+    return dynamic_cast<Grid_categorical_property*>(properties_[ new_prop_id ]);
   }
   else
     return 0 ;

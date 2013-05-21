@@ -96,7 +96,7 @@ public slots :
 
 protected :
 
-	void add_property_to_grid( Geostat_grid* grid, GsTLGridProperty* prop );
+	void add_property_to_grid( Geostat_grid* grid, Grid_continuous_property* prop );
 
  protected:
      GsTL_item *rootItem_;

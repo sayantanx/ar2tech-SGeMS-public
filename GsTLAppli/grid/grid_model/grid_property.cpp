@@ -64,24 +64,24 @@
 
 #include <QTextStream>
 
-//const float GsTLGridProperty::no_data_value = -9966699;
-const float GsTLGridProperty::no_data_value = static_cast<float>(vtkMath::Nan());
+//const float Grid_continuous_property::no_data_value = -9966699;
+const float Grid_continuous_property::no_data_value = static_cast<float>(vtkMath::Nan());
 
-GsTLGridProperty::GsTLGridProperty( GsTLInt size, const std::string& name,
+Grid_continuous_property::Grid_continuous_property( GsTLInt size, const std::string& name,
 				    property_type default_value )
   : name_( name ), region_(NULL) {
   accessor_ = new MemoryAccessor( size, default_value );
   item_name_ = name_.c_str();
 }
 
-GsTLGridProperty::GsTLGridProperty( GsTLInt size, const std::string& name,
+Grid_continuous_property::Grid_continuous_property( GsTLInt size, const std::string& name,
 			const std::string& in_filename, property_type default_value)
 : name_( name ), region_(NULL) {
 accessor_ = new DiskAccessor( size, name, in_filename );
 item_name_ = name_.c_str();
 }
 
-GsTLGridProperty::~GsTLGridProperty() {
+Grid_continuous_property::~Grid_continuous_property() {
 	std::vector<GsTLGridPropertyGroup*> groups = this->groups();
 	for(int i=0; i<groups.size(); ++i ) {
 		groups[i]->remove_property(this);
@@ -90,7 +90,7 @@ GsTLGridProperty::~GsTLGridProperty() {
   delete accessor_;
 }
 
-void GsTLGridProperty::swap_to_disk() const {
+void Grid_continuous_property::swap_to_disk() const {
   // If the property is already on disk, don't do anything.
   // Otherwise, create a DiskAccessor and delete the old Accessor.
 
@@ -105,7 +105,7 @@ void GsTLGridProperty::swap_to_disk() const {
 }
 
 
-void GsTLGridProperty::swap_to_memory() const {
+void Grid_continuous_property::swap_to_memory() const {
   DiskAccessor* current = dynamic_cast<DiskAccessor*>( accessor_ );
   if( !current ) return;
     
@@ -115,7 +115,7 @@ void GsTLGridProperty::swap_to_memory() const {
   accessor_ = new_accessor;
 }
 
-bool GsTLGridProperty::is_in_memory() const{
+bool Grid_continuous_property::is_in_memory() const{
 	return dynamic_cast<MemoryAccessor*>( accessor_ );
 }
 
@@ -255,7 +255,7 @@ DiskAccessor::DiskAccessor( GsTLInt size, const std::string& filename,
   }
   else {
     // write arbitrary values
-    float arbitrary = GsTLGridProperty::no_data_value;
+    float arbitrary = Grid_continuous_property::no_data_value;
     for(GsTLInt i=0; i< size; i++ )
       cache_stream_.write( (char*) &arbitrary, 1 );
   }
@@ -503,7 +503,7 @@ void DiskAccessor::close_cache_stream() {
 
 //=====================================
 
-GsTLGridProperty::iterator::iterator( GsTLGridProperty* prop, GsTLInt id, bool skip )
+Grid_continuous_property::iterator::iterator( Grid_continuous_property* prop, GsTLInt id, bool skip )
   : prop_(prop), id_(id), skip_uninformed_( skip ) {
   max_id_ = prop_->size();
  
@@ -515,7 +515,7 @@ GsTLGridProperty::iterator::iterator( GsTLGridProperty* prop, GsTLInt id, bool s
 }
 
 
-GsTLGridProperty::const_iterator::const_iterator( GsTLGridProperty::iterator it )
+Grid_continuous_property::const_iterator::const_iterator( Grid_continuous_property::iterator it )
   : prop_(it.prop_), id_(it.id_), skip_uninformed_( skip_uninformed_ ) {
   max_id_ = prop_->size();
  
@@ -527,8 +527,8 @@ GsTLGridProperty::const_iterator::const_iterator( GsTLGridProperty::iterator it 
 
 
 
-GsTLGridProperty::const_iterator::
-const_iterator( const GsTLGridProperty* prop, GsTLInt id, bool skip )
+Grid_continuous_property::const_iterator::
+const_iterator( const Grid_continuous_property* prop, GsTLInt id, bool skip )
   : prop_(prop), id_(id), skip_uninformed_( skip ) {
   max_id_ = prop_->size();
  
@@ -540,11 +540,11 @@ const_iterator( const GsTLGridProperty* prop, GsTLInt id, bool skip )
 
 
 
-bool GsTLGridProperty::has_group_membership() const{
+bool Grid_continuous_property::has_group_membership() const{
   return !groups_.empty();
 }
 inline 
-std::vector< std::pair<std::string,std::string> > GsTLGridProperty::group_pair_name_type() const{
+std::vector< std::pair<std::string,std::string> > Grid_continuous_property::group_pair_name_type() const{
   std::vector< std::pair<std::string,std::string> > group_ids;
   std::vector<  GsTLGridPropertyGroup* >::const_iterator it = groups_.begin();
   for(; it != groups_.end(); ++it) {
@@ -554,7 +554,7 @@ std::vector< std::pair<std::string,std::string> > GsTLGridProperty::group_pair_n
   return group_ids;
 }
 
-std::vector<std::string > GsTLGridProperty::group_names() const{
+std::vector<std::string > Grid_continuous_property::group_names() const{
   std::vector<std::string> names;
   std::vector<  GsTLGridPropertyGroup* >::const_iterator it = groups_.begin();
   for(; it != groups_.end(); ++it) {
@@ -564,7 +564,7 @@ std::vector<std::string > GsTLGridProperty::group_names() const{
 }
 
 
-std::vector<std::string > GsTLGridProperty::group_types() const{
+std::vector<std::string > Grid_continuous_property::group_types() const{
   std::vector<std::string> types;
   std::vector< GsTLGridPropertyGroup* >::const_iterator it = groups_.begin();
   for(; it != groups_.end(); ++it) {
@@ -574,12 +574,12 @@ std::vector<std::string > GsTLGridProperty::group_types() const{
 }
 
 
- std::vector< GsTLGridPropertyGroup*>& GsTLGridProperty::groups() {
+ std::vector< GsTLGridPropertyGroup*>& Grid_continuous_property::groups() {
   return groups_;
 }
 
 
-bool GsTLGridProperty::add_group_membership(GsTLGridPropertyGroup* group) {
+bool Grid_continuous_property::add_group_membership(GsTLGridPropertyGroup* group) {
   std::vector<  GsTLGridPropertyGroup* >::iterator it = groups_.begin();
   std::string gname = group->name();
   for(; it != groups_.end(); ++it) {
@@ -590,11 +590,11 @@ bool GsTLGridProperty::add_group_membership(GsTLGridPropertyGroup* group) {
 }
 
 
-bool GsTLGridProperty::remove_group_membership(GsTLGridPropertyGroup* group){
+bool Grid_continuous_property::remove_group_membership(GsTLGridPropertyGroup* group){
   return remove_group_membership(group->name());
 }
 
-bool GsTLGridProperty::remove_group_membership(const std::string& group_name){
+bool Grid_continuous_property::remove_group_membership(const std::string& group_name){
   std::vector<  GsTLGridPropertyGroup* >::iterator it = groups_.begin();
   for(; it != groups_.end(); ++it) {
     if(group_name == (*it)->name()) {
@@ -605,35 +605,35 @@ bool GsTLGridProperty::remove_group_membership(const std::string& group_name){
   return false;
 }
 
-int GsTLGridProperty::number_group_membership() const{
+int Grid_continuous_property::number_group_membership() const{
   return groups_.size();
 }
 
-QString GsTLGridProperty::item_type() const{
+QString Grid_continuous_property::item_type() const{
 	return QString("ContinuousProperty");
 }
 
-QString GsTLGridProperty::item_name() const{
+QString Grid_continuous_property::item_name() const{
   return QString(name_.c_str());
 }
 
-GsTL_object_item *GsTLGridProperty::child(int row){
+GsTL_object_item *Grid_continuous_property::child(int row){
 	return 0;
 }
-int GsTLGridProperty::childCount() const {
+int Grid_continuous_property::childCount() const {
 	return 0;
 }
 
-int GsTLGridProperty::columnCount() const {
+int Grid_continuous_property::columnCount() const {
 	return 2;
 }
-QVariant GsTLGridProperty::item_data(int column) const{
+QVariant Grid_continuous_property::item_data(int column) const{
 	if(column == 0) return QString(name_.c_str());
 	else if (column == 1) return this->item_type();
 
 	else return QVariant();
 }
-int GsTLGridProperty::row() const{
+int Grid_continuous_property::row() const{
 	int nChild = parent_->childCount();
 	for(int i; i<nChild; ++i) {
 		if( parent_->child(i) == this ) return i;
@@ -641,7 +641,7 @@ int GsTLGridProperty::row() const{
 	return 0;
 }
 
-std::string GsTLGridProperty::grid_name() const {
+std::string Grid_continuous_property::grid_name() const {
   const GsTL_object_item* group_item = this->parent();
   if(group_item == 0) return "";
   const GsTL_object_item* grid_item = group_item->parent();
@@ -683,20 +683,20 @@ void Property_parameters::clear_parameters(){
 
 
 /*
-bool GsTLGridPropertyGroup::add_property(GsTLGridProperty* prop) {
+bool GsTLGridPropertyGroup::add_property(Grid_continuous_property* prop) {
   properties_.insert(prop);
   return true;
 }
 
-bool GsTLGridPropertyGroup::remove_property(GsTLGridProperty* prop){
+bool GsTLGridPropertyGroup::remove_property(Grid_continuous_property* prop){
     unsigned int ok = properties_.erase( prop );
     return ok != 0;
 }
 
-std::vector<GsTLGridProperty::property_type> 
+std::vector<Grid_continuous_property::property_type> 
 GsTLGridPropertyGroup::get_vector_data( int node_id ){
   property_set::iterator it = properties_.begin();
-  std::vector<GsTLGridProperty::property_type> values;
+  std::vector<Grid_continuous_property::property_type> values;
   values.reserve(properties_.size() );
   for( ; it!= properties_.end(); ++it) {
     if((*it)->is_informed(node_id) ) values.push_back( (*it)->get_value(node_id) );

@@ -94,7 +94,7 @@ void Grid_initializer::target_grid( Geostat_grid* target ) {
  * point lies within the cell it is closest to. 
  */
 /*
-bool Grid_initializer::assign( GsTLGridProperty* target_property,
+bool Grid_initializer::assign( Grid_continuous_property* target_property,
 			                         const Geostat_grid* source,
 			                         const std::string& property_name ) {
 
@@ -108,7 +108,7 @@ bool Grid_initializer::assign( GsTLGridProperty* target_property,
   if( !from_scratch_ && source == source_ &&
       property_name == source_property_name_ ) {
     
-    const GsTLGridProperty* source_property = source_pset->property( property_name );
+    const Grid_continuous_property* source_property = source_pset->property( property_name );
     for( unsigned int i=0; i < last_assignements_.size() ; i++ ) {
       float val = source_property->get_value( last_assignements_[i].first );
       target_property->set_value( val, last_assignements_[i].second );
@@ -133,7 +133,7 @@ bool Grid_initializer::assign( GsTLGridProperty* target_property,
   SGrid_cursor cursor = *target_->cursor();
   cursor.set_multigrid_level( 1 );
 
-  const GsTLGridProperty* source_property = source_pset->property( property_name );
+  const Grid_continuous_property* source_property = source_pset->property( property_name );
   const Location_vector& locations = source_pset->point_locations();
 
   GsTL_cube bbox = target_->bounding_box();
@@ -201,7 +201,7 @@ bool Grid_initializer::assign( GsTLGridProperty* target_property,
 */
 
 /*
-bool Grid_initializer::assign( GsTLGridProperty* target_property,
+bool Grid_initializer::assign( Grid_continuous_property* target_property,
 			                         const Geostat_grid* source,
 			                         const std::string& property_name ) {
 
@@ -215,7 +215,7 @@ bool Grid_initializer::assign( GsTLGridProperty* target_property,
   if( !from_scratch_ && source == source_ &&
       property_name == source_property_name_ ) {
     
-    const GsTLGridProperty* source_property = source_pset->property( property_name );
+    const Grid_continuous_property* source_property = source_pset->property( property_name );
     for( unsigned int i=0; i < last_assignements_.size() ; i++ ) {
       float val = source_property->get_value( last_assignements_[i].first );
       target_property->set_value( val, last_assignements_[i].second );
@@ -240,7 +240,7 @@ bool Grid_initializer::assign( GsTLGridProperty* target_property,
   SGrid_cursor cursor = *target_->cursor();
   cursor.set_multigrid_level( 1 );
 
-  const GsTLGridProperty* source_property = source_pset->property( property_name );
+  const Grid_continuous_property* source_property = source_pset->property( property_name );
   const Location_vector& locations = source_pset->point_locations();
 
   GsTL_cube bbox = target_->bounding_box();

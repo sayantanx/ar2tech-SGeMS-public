@@ -601,7 +601,7 @@ bool Load_sim::exec() {
 			string temp = p->dates[i];
 			temp+="_";
 			temp+=p->properties[j];
-			GsTLGridProperty* prop = grid->add_property( temp );
+			Grid_continuous_property* prop = grid->add_property( temp );
 			transform((p->data)+index*totalsize, p->X, p->Y, p->Z, prop);
 		}
 	}
@@ -613,7 +613,7 @@ bool Load_sim::exec() {
 
 // performs axis conversion between sgems and eclipse format
 void Load_sim::transform(const Type * src, int x, int y,
-			      int z, GsTLGridProperty * dest)
+			      int z, Grid_continuous_property * dest)
 {
   int i,j,k, cur, index = 0;
 
@@ -738,7 +738,7 @@ bool Copy_property::init( std::string& parameters, GsTL_project* proj,
   server_prop_ = server_->property( params[1] );
   client_prop_ = client_->property( params[3] );
   if( !client_prop_ ) {
-    GsTLGridCategoricalProperty* server_cprop = dynamic_cast<GsTLGridCategoricalProperty*>(server_prop_);
+    Grid_categorical_property* server_cprop = dynamic_cast<Grid_categorical_property*>(server_prop_);
     if(server_cprop) {
       client_prop_ = client_->add_categorical_property( params[3], server_cprop->get_category_definition()->name());
     }
@@ -796,7 +796,7 @@ bool Swap_property_to_disk::init( std::string& parameters, GsTL_project* proj,
   }
 
   for( unsigned int i=1; i < params.size() ; i++ ) {
-    GsTLGridProperty* prop = grid->property( params[i] );
+    Grid_continuous_property* prop = grid->property( params[i] );
     if( prop )
       properties_to_swap_.push_back( prop );
   }
@@ -841,7 +841,7 @@ bool Swap_property_to_ram::init( std::string& parameters, GsTL_project* proj,
   }
 
   for( unsigned int i=1; i < params.size() ; i++ ) {
-    GsTLGridProperty* prop = grid->property( params[i] );
+    Grid_continuous_property* prop = grid->property( params[i] );
     if( prop )
       properties_to_swap_.push_back( prop );
   }
@@ -975,7 +975,7 @@ init( std::string& parameters, GsTL_project* proj,
     return false;
   }
   
-  GsTLGridProperty* prop = grid->property( params[1] );
+  Grid_continuous_property* prop = grid->property( params[1] );
   if( !prop ) {
     std::ostringstream message;
     message << "Grid \"" << params[0] << "\" has no property called \"" << params[1] << "\"";
@@ -1086,7 +1086,7 @@ init( std::string& parameters, GsTL_project* proj,
   }
 
   for( unsigned int i = 1 ; i < params.size() ; i++ ) {
-    GsTLGridProperty* prop = grid->property( params[i] );
+    Grid_continuous_property* prop = grid->property( params[i] );
     if( !prop ) {
       std::ostringstream message;
       message << "Grid \"" << params[0] << "\" has no property called \"" << params[1] << "\"";
@@ -1187,7 +1187,7 @@ init( std::string& parameters, GsTL_project* proj,
   }
 
 
-  GsTLGridProperty* prop = grid->property( params[2] );
+  Grid_continuous_property* prop = grid->property( params[2] );
   if( !prop ) {
     std::ostringstream message;
     message << "Grid \"" << params[0] << "\" has no property called \"" << params[2] << "\"";
@@ -1251,7 +1251,7 @@ init( std::string& parameters, GsTL_project* proj,
   }
 
 
-  GsTLGridCategoricalProperty* prop = grid->categorical_property(params[2]);
+  Grid_categorical_property* prop = grid->categorical_property(params[2]);
   if( !prop ) {
     std::ostringstream message;
     message << "Grid \"" << params[0] << "\" has no categorical property called \"" << params[2] << "\"";
@@ -1494,7 +1494,7 @@ bool Clear_property_value_from_property::init( std::string& parameters, GsTL_pro
     errors->report( message.str() ); 
     return false;
   }
-  GsTLGridProperty* mask = grid->property(params[1]);
+  Grid_continuous_property* mask = grid->property(params[1]);
   if(!mask){
     std::ostringstream message;
     message << "No property called \"" << params[1] << "\" was found";
@@ -1503,7 +1503,7 @@ bool Clear_property_value_from_property::init( std::string& parameters, GsTL_pro
   }
   
   for( unsigned int i = 2 ; i < params.size() ; i++ ) {
-    GsTLGridProperty* prop = grid->property(params[i]);
+    Grid_continuous_property* prop = grid->property(params[i]);
     if(!prop) continue;
     for( unsigned int i = 0; i <grid->size(); ++i ) 
       if(!mask->is_informed(i) ) prop->set_not_informed(i);
@@ -1554,7 +1554,7 @@ bool Clear_property_inside_region::init( std::string& parameters, GsTL_project* 
   }
   
   for( unsigned int i = 2 ; i < params.size() ; i++ ) {
-    GsTLGridProperty* prop = grid->property(params[i]);
+    Grid_continuous_property* prop = grid->property(params[i]);
     if(!prop) continue;
     for( unsigned int i = 0; i <grid->size(); ++i ) 
       if(mask->is_inside_region(i) ) prop->set_not_informed(i);
@@ -1604,7 +1604,7 @@ bool Clear_property_outside_region::init( std::string& parameters, GsTL_project*
   }
   
   for( unsigned int i = 2 ; i < params.size() ; i++ ) {
-    GsTLGridProperty* prop = grid->property(params[i]);
+    Grid_continuous_property* prop = grid->property(params[i]);
     if(!prop) continue;
     for( unsigned int i = 0; i <grid->size(); ++i ) 
       if(!mask->is_inside_region(i) ) prop->set_not_informed(i);
@@ -1782,7 +1782,7 @@ bool Create_indicator_properties::init( std::string& parameters, GsTL_project* p
     errors->report( "No property named "+params[1]+" exists");
     return false;
   }
-  GsTLGridCategoricalProperty* cprop = grid_->categorical_property(params[1]);
+  Grid_categorical_property* cprop = grid_->categorical_property(params[1]);
   if( cprop == 0 && params.size() == 2 ) {
     errors->report( "The thresholding options must be specified for continuous property");
     return false;
@@ -1839,7 +1839,7 @@ void Create_indicator_properties::get_thresholds_from_data(std::string option){
 }
 
 bool Create_indicator_properties::exec(){
-	GsTLGridCategoricalProperty* cprop = dynamic_cast<GsTLGridCategoricalProperty*>(data_prop_);
+	Grid_categorical_property* cprop = dynamic_cast<Grid_categorical_property*>(data_prop_);
 	if(cprop == 0) {
 		IndicatorContinuousPropertyGroup* group =
 				dynamic_cast<IndicatorContinuousPropertyGroup*>(
@@ -1849,7 +1849,7 @@ bool Create_indicator_properties::exec(){
 
 		for(int t =0; t< thresholds_.size(); t++) {
 			std::string name = data_prop_->name()+" less than "+String_Op::to_string(thresholds_[t]);
-			GsTLGridProperty* prop =  grid_->add_property(name);
+			Grid_continuous_property* prop =  grid_->add_property(name);
 			if(!prop) continue;
 			for(int i = 0; i < prop->size(); ++i) {
 				if( data_prop_->is_informed(i) ) {
@@ -1872,7 +1872,7 @@ bool Create_indicator_properties::exec(){
 		if(defname) ncat = defname->number_of_category();
 		else {
 			std::set<int> codes;
-			GsTLGridProperty::const_iterator it = cprop->begin(true);
+			Grid_continuous_property::const_iterator it = cprop->begin(true);
 			for( ; it != cprop->end(); ++it) {
         codes.insert(*it);
 				//if(*it > ncat ) ncat = *it;
@@ -1883,7 +1883,7 @@ bool Create_indicator_properties::exec(){
 		for(int c=0 ; c < ncat ; c++ ) {
       int code = def->category_id_from_index(c);
 			std::string name = data_prop_->name()+" indicator "+def->get_category_name(code);
-			GsTLGridProperty* prop =  grid_->add_property(name);
+			Grid_continuous_property* prop =  grid_->add_property(name);
 			if(!prop) continue;
 			for(int i = 0; i < prop->size(); ++i) {
 				if( data_prop_->is_informed(i) )
@@ -2081,7 +2081,7 @@ bool Upscale_properties::init( std::string& parameters, GsTL_project* proj,
   compute_variance_ = params[2] == "1";
 
   for(int i=3; i<params.size(); ++i) {
-    const GsTLGridProperty* prop = source_grid_->property(params[i]);
+    const Grid_continuous_property* prop = source_grid_->property(params[i]);
     if(!prop) {
       errors->report( "The property "+params[i]+" does not exist"); 
       return false;
@@ -2146,7 +2146,7 @@ bool Upscale_properties::exec() {
 
   for(int ip=0; ip<props_.size(); ++ip) {
 
-    const GsTLGridCategoricalProperty* cprop = dynamic_cast<const GsTLGridCategoricalProperty*>(props_[ip]);
+    const Grid_categorical_property* cprop = dynamic_cast<const Grid_categorical_property*>(props_[ip]);
 
     if(cprop) {
       process_categorical_property( cprop, index );
@@ -2159,11 +2159,11 @@ bool Upscale_properties::exec() {
 }
 
 
-void Upscale_properties::process_continuous_property(const GsTLGridProperty* prop, std::vector<int>& index){
-    GsTLGridProperty* mean_prop = target_grid_->add_property(prop->name()+" mean" );
+void Upscale_properties::process_continuous_property(const Grid_continuous_property* prop, std::vector<int>& index){
+    Grid_continuous_property* mean_prop = target_grid_->add_property(prop->name()+" mean" );
     if( mean_prop == 0 ) return;
-    //GsTLGridProperty* mean_prop = geostat_utils::add_property_to_grid(target_grid_,props_[ip]->name()+" mean" );
-    GsTLGridProperty* var_prop =0;
+    //Grid_continuous_property* mean_prop = geostat_utils::add_property_to_grid(target_grid_,props_[ip]->name()+" mean" );
+    Grid_continuous_property* var_prop =0;
     if(compute_variance_) {
       //var_prop = geostat_utils::add_property_to_grid(target_grid_,props_[ip]->name()+" variance" );
       var_prop = target_grid_->add_property(prop->name()+" variance" );
@@ -2177,8 +2177,8 @@ void Upscale_properties::process_continuous_property(const GsTLGridProperty* pro
     if(compute_variance_) upscaled_props_.push_back(var_prop);
 
     std::vector<int> counts(target_grid_->size(),0);
-    std::vector<GsTLGridProperty::property_type> target_mean(target_grid_->size(),0);
-    std::vector<GsTLGridProperty::property_type> target_var;
+    std::vector<Grid_continuous_property::property_type> target_mean(target_grid_->size(),0);
+    std::vector<Grid_continuous_property::property_type> target_var;
     if(compute_variance_) {
       target_var.insert(target_var.begin(),target_grid_->size(),0);
     }
@@ -2187,7 +2187,7 @@ void Upscale_properties::process_continuous_property(const GsTLGridProperty* pro
       int target_id = index[i];
       if(target_id < 0) continue;
       if( !prop->is_informed(i) ) continue;
-      GsTLGridProperty::property_type val = prop->get_value(i);
+      Grid_continuous_property::property_type val = prop->get_value(i);
       target_mean[target_id] += val;
       if(compute_variance_) {
         target_var[target_id] += val*val;
@@ -2207,15 +2207,15 @@ void Upscale_properties::process_continuous_property(const GsTLGridProperty* pro
 
 }
 
-void Upscale_properties::process_categorical_property(const GsTLGridCategoricalProperty* cprop, std::vector<int>& index){
+void Upscale_properties::process_categorical_property(const Grid_categorical_property* cprop, std::vector<int>& index){
   int ncat = cprop->get_number_of_category();
 
   const CategoricalPropertyDefinition* cdef = cprop->get_category_definition();
 
-  std::vector<GsTLGridProperty*> props;
+  std::vector<Grid_continuous_property*> props;
   std::vector<std::vector<float> > means;
   for( int c=0; c<ncat; ++c ) {
-    GsTLGridProperty* prop = target_grid_->add_property(cprop->name()+" "+cdef->get_category_name(c)+" upscaled");
+    Grid_continuous_property* prop = target_grid_->add_property(cprop->name()+" "+cdef->get_category_name(c)+" upscaled");
     means.push_back( std::vector<float>(target_grid_->size(), 0.0) );
     if(prop == 0) {
       for(int i=0; i<props.size(); ++i) {
@@ -2259,7 +2259,7 @@ void Upscale_properties::process_categorical_property(const GsTLGridCategoricalP
 
 }
 
-std::vector<GsTLGridProperty*> Upscale_properties::get_upscaled_properties(){
+std::vector<Grid_continuous_property*> Upscale_properties::get_upscaled_properties(){
   return upscaled_props_;
 }
 
@@ -2342,7 +2342,7 @@ bool Upscale_group::exec(){
   if(ok) {
     GsTLGridPropertyGroup* group = target_grid_->add_group(group_name_+" upscaled", "General");
     if(group) {
-      std::vector<GsTLGridProperty*> props = upscaler_.get_upscaled_properties();
+      std::vector<Grid_continuous_property*> props = upscaler_.get_upscaled_properties();
       for( int i=0; i<props .size(); ++i )
         group->add_property(props[i]);
     }
@@ -2480,7 +2480,7 @@ init( std::string& parameters, GsTL_project* proj,
     return false;
   }
   
-  GsTLGridProperty* prop = grid->property( params[1] );
+  Grid_continuous_property* prop = grid->property( params[1] );
   if( !prop ) {
     std::ostringstream message;
     message << "Grid \"" << params[0] << "\" has no property called \"" << params[1] << "\"";
@@ -2490,7 +2490,7 @@ init( std::string& parameters, GsTL_project* proj,
 
   float cap_value = String_Op::to_number<float>( params[2] );
 
-  GsTLGridProperty* capped_prop;
+  Grid_continuous_property* capped_prop;
   if(params.size() == 4) {
     capped_prop = grid->add_property( params[3] );
     if(!capped_prop) {

@@ -59,7 +59,7 @@
 #include <vtkAppendPolyData.h>
 
 class Geostat_grid; 
-class GsTLGridProperty;
+class Grid_continuous_property;
 class Grid_region;
 class Colormap; 
 class QString;
@@ -103,7 +103,7 @@ class GUI_DECL GsTL_vtkProp : public Named_interface {
   virtual void enable_full_view()=0;
   virtual void disable_full_view()=0;
 
-//  virtual void set_property(const GsTLGridProperty* prop )=0;
+//  virtual void set_property(const Grid_continuous_property* prop )=0;
 
   /** Changes the current property and refreshes the display 
    */ 
@@ -111,7 +111,7 @@ class GUI_DECL GsTL_vtkProp : public Named_interface {
   virtual void set_property( const std::string& property_name, Colormap* cmap );
 
   virtual std::string current_property_name() const { return current_property_name_; }
-  virtual GsTLGridProperty* current_property() const { return current_property_; }
+  virtual Grid_continuous_property* current_property() const { return current_property_; }
  
   virtual void set_region(const std::string& property_name )=0;
   virtual Grid_region* current_region() const { return current_region_; }
@@ -159,7 +159,7 @@ class GUI_DECL GsTL_vtkProp : public Named_interface {
   virtual bool enable_section_pipeline(){return true;}
 
   bool compute_min_max( std::pair<float, float>& min_max,
-			const GsTLGridProperty* property );
+			const Grid_continuous_property* property );
 
 
  protected: 
@@ -199,7 +199,7 @@ class GUI_DECL GsTL_vtkProp : public Named_interface {
   bool is_section_active_;
 
   Geostat_grid* geostat_grid_;
-  GsTLGridProperty* current_property_;
+  Grid_continuous_property* current_property_;
   Grid_region* current_region_;
   std::string current_property_name_;
   std::string current_region_name_;

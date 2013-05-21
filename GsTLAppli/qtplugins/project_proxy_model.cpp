@@ -306,7 +306,7 @@ void Filter_root_proxy_checkable_model::update_checked_items(const QModelIndex& 
         return;
     }
 
-    GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item);
+    Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item);
     if(prop == 0) {
         GsTL_object_property_item* object_prop = dynamic_cast<GsTL_object_property_item*>(item);
         if(object_prop) prop = object_prop->property();
@@ -324,7 +324,7 @@ void Filter_root_proxy_checkable_model::update_checked_items(const QModelIndex& 
             std::vector<std::set<GsTL_object_item*>::iterator> it_to_be_deleted;
             for( ; it_selection != currently_selected_.end(); ++it_selection) {
 
-                GsTLGridProperty* prop_in_selection = dynamic_cast<GsTLGridProperty*>(*it_selection);
+                Grid_continuous_property* prop_in_selection = dynamic_cast<Grid_continuous_property*>(*it_selection);
                 if(prop_in_selection == 0) {
                     GsTL_object_property_item* object_prop_in_selection = dynamic_cast<GsTL_object_property_item*>(*it_selection);
                     if(object_prop_in_selection) prop_in_selection = object_prop_in_selection->property();
@@ -804,7 +804,7 @@ void Visualization_proxy_model::update_checked_items(const QModelIndex& index){
 		return;
 	}
 
-	GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item);
+	Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item);
 	if(prop == 0) {
 		GsTL_object_property_item* object_prop = dynamic_cast<GsTL_object_property_item*>(item);
 		if(object_prop) prop = object_prop->property();
@@ -822,7 +822,7 @@ void Visualization_proxy_model::update_checked_items(const QModelIndex& index){
       std::vector<std::set<GsTL_object_item*>::iterator> it_to_be_deleted;
 			for( ; it_selection != currently_selected_.end(); ++it_selection) {
 
-				GsTLGridProperty* prop_in_selection = dynamic_cast<GsTLGridProperty*>(*it_selection);
+				Grid_continuous_property* prop_in_selection = dynamic_cast<Grid_continuous_property*>(*it_selection);
 				if(prop_in_selection == 0) {
 					GsTL_object_property_item* object_prop_in_selection = dynamic_cast<GsTL_object_property_item*>(*it_selection);
 					if(object_prop_in_selection) prop_in_selection = object_prop_in_selection->property();

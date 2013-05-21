@@ -209,7 +209,7 @@ public:
   
 protected: 
 
-  typedef GsTLGridProperty::property_type Type ;
+  typedef Grid_continuous_property::property_type Type ;
 
   QString dirname_; 
   GsTL_project* proj_; 
@@ -217,7 +217,7 @@ protected:
   SmartPtr<Input_filter> filter_; 
   static const std::string parser ;
 
-  void transform(const Type *, int, int, int, GsTLGridProperty *) ;
+  void transform(const Type *, int, int, int, Grid_continuous_property *) ;
 
 };
 
@@ -269,10 +269,10 @@ class ACTIONS_DECL Copy_property: public Action {
   SmartPtr<Property_copier> copier_;
 
   Geostat_grid* server_;
-  GsTLGridProperty* server_prop_;
+  Grid_continuous_property* server_prop_;
 
   Geostat_grid* client_;
-  GsTLGridProperty* client_prop_;
+  Grid_continuous_property* client_prop_;
 
 };  
 
@@ -293,7 +293,7 @@ class ACTIONS_DECL Swap_property_to_disk : public Action {
   virtual bool exec(); 
 
  protected: 
-  std::vector<GsTLGridProperty*> properties_to_swap_;
+  std::vector<Grid_continuous_property*> properties_to_swap_;
   GsTL_project* proj_; 
   Error_messages_handler* errors_;
 }; 
@@ -316,7 +316,7 @@ class ACTIONS_DECL Swap_property_to_ram : public Action {
   virtual bool exec(); 
 
  protected: 
-  std::vector<GsTLGridProperty*> properties_to_swap_;
+  std::vector<Grid_continuous_property*> properties_to_swap_;
   GsTL_project* proj_; 
   Error_messages_handler* errors_;
 }; 
@@ -337,7 +337,7 @@ class ACTIONS_DECL Delete_objects : public Action {
   virtual bool exec(); 
 
  protected: 
-  std::vector<GsTLGridProperty*> properties_to_delete_;
+  std::vector<Grid_continuous_property*> properties_to_delete_;
   GsTL_project* proj_; 
   Error_messages_handler* errors_;
 }; 
@@ -357,7 +357,7 @@ class ACTIONS_DECL Delete_properties : public Action {
   virtual bool exec(); 
 
  protected: 
-  std::vector<GsTLGridProperty*> properties_to_delete_;
+  std::vector<Grid_continuous_property*> properties_to_delete_;
   GsTL_project* proj_; 
   Error_messages_handler* errors_;
 }; 
@@ -582,7 +582,7 @@ class ACTIONS_DECL Create_trend : public Action {
    Geostat_grid* grid_;
    std::string direction_id_;
    std::string grid_name_;
-   GsTLGridProperty* trend_;
+   Grid_continuous_property* trend_;
    std::set<std::string> directions_;
 
    bool is_direction_valid(std::string direction, 
@@ -616,7 +616,7 @@ class ACTIONS_DECL Create_indicator_properties : public Action {
   std::vector<float> thresholds_;
   std::string group_name_;
   Geostat_grid* grid_;
-  GsTLGridProperty* data_prop_;
+  Grid_continuous_property* data_prop_;
   std::vector<std::string > id_names_;
   GsTL_project* proj_;
   Error_messages_handler* errors_;
@@ -665,17 +665,17 @@ class ACTIONS_DECL Upscale_properties : public Action {
                      Error_messages_handler* errors );
   virtual bool exec();
 
-  std::vector<GsTLGridProperty*> get_upscaled_properties();
+  std::vector<Grid_continuous_property*> get_upscaled_properties();
 
 private :
-    void process_continuous_property(const GsTLGridProperty* prop, std::vector<int>& index);
-    void process_categorical_property(const GsTLGridCategoricalProperty* prop, std::vector<int>& index);
+    void process_continuous_property(const Grid_continuous_property* prop, std::vector<int>& index);
+    void process_categorical_property(const Grid_categorical_property* prop, std::vector<int>& index);
 private :
     bool compute_variance_;
     const Cartesian_grid* source_grid_;
     Cartesian_grid* target_grid_;
-    std::vector<const GsTLGridProperty*> props_;
-    std::vector<GsTLGridProperty*> upscaled_props_;
+    std::vector<const Grid_continuous_property*> props_;
+    std::vector<Grid_continuous_property*> upscaled_props_;
 
     int n_cells_;
 

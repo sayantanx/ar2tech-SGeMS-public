@@ -104,7 +104,7 @@ class GEOSTAT_DECL Sisim : public Geostat_algo {
   bool is_categorical_;
  
   Geostat_grid* harddata_grid_;   
-  GsTLGridProperty* harddata_property_; 
+  Grid_continuous_property* harddata_property_; 
   //Grid_initializer* initializer_; 
   SmartPtr<Property_copier> property_copier_;
 

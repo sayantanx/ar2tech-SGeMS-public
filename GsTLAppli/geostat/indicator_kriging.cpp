@@ -111,9 +111,9 @@ int Indicator_kriging::median_ik( Progress_notifier* progress_notifier ) {
   bool ok = true;
   
   // create all the properties we will populate
-  std::vector< GsTLGridProperty* > simul_properties;
+  std::vector< Grid_continuous_property* > simul_properties;
   for( int thres = 0; thres < thres_count_; thres++ ) {
-    GsTLGridProperty* prop = multireal_property_->new_realization();
+    Grid_continuous_property* prop = multireal_property_->new_realization();
     prop->set_parameters(parameters_);
     simul_properties.push_back( prop );
   }
@@ -203,9 +203,9 @@ int Indicator_kriging::full_ik( Progress_notifier* progress_notifier ) {
   bool order_relation_problems = false;
 
   // create all the properties we will populate
-  std::vector< GsTLGridProperty* > simul_properties;
+  std::vector< Grid_continuous_property* > simul_properties;
   for( int thres = 0; thres < thres_count_; thres++ ) {
-    GsTLGridProperty* prop = multireal_property_->new_realization();
+    Grid_continuous_property* prop = multireal_property_->new_realization();
     prop->set_parameters(parameters_);
     simul_properties.push_back( prop );
   }
@@ -313,7 +313,7 @@ int Indicator_kriging::full_ik() {
     SKCombiner combiner( marginal_probs_[thres] );
 
     // Get a new property
-    GsTLGridProperty* prop = multireal_property_->new_realization();
+    Grid_continuous_property* prop = multireal_property_->new_realization();
     simul_grid_->select_property( prop->name() );
 
     Geostat_grid::iterator begin = simul_grid_->begin();
@@ -433,7 +433,7 @@ bool Indicator_kriging::initialize( const Parameters_handler* parameters,
 
 
   for( int i=0; i < thres_count_ ; i++ ) {
-    GsTLGridProperty* prop = hdata_grid_->property( hdata_property_names[i] );
+    Grid_continuous_property* prop = hdata_grid_->property( hdata_property_names[i] );
     hdata_properties_.push_back( prop );
   }
 

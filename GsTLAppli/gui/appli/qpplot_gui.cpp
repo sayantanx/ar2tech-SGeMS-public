@@ -122,14 +122,14 @@ QPplot_gui::QPplot_gui( GsTL_project* project,
 
   // Signal-slot connections
   QObject::connect( control_panel_, 
-                    SIGNAL( var1_changed(  GsTLGridProperty*, const Grid_region* ) ),
+                    SIGNAL( var1_changed(  Grid_continuous_property*, const Grid_region* ) ),
                     this,
-                    SLOT( get_var1_data_from(  GsTLGridProperty*, const Grid_region* ) ) );
+                    SLOT( get_var1_data_from(  Grid_continuous_property*, const Grid_region* ) ) );
   
   QObject::connect( control_panel_, 
-                    SIGNAL( var2_changed(  GsTLGridProperty*, const Grid_region* ) ),
+                    SIGNAL( var2_changed(  Grid_continuous_property*, const Grid_region* ) ),
                     this,
-                    SLOT( get_var2_data_from(  GsTLGridProperty*, const Grid_region* ) ) );
+                    SLOT( get_var2_data_from(  Grid_continuous_property*, const Grid_region* ) ) );
    
   QObject::connect( control_panel_, 
                     SIGNAL( analysis_type_changed( const QString& ) ),
@@ -215,7 +215,7 @@ void QPplot_gui::reset_var2_clipping_values() {
 }
  
 /*
-void QPplot_gui::get_var1_data_from( const GsTLGridProperty* prop ) {
+void QPplot_gui::get_var1_data_from( const Grid_continuous_property* prop ) {
   if( !prop ) return;
 
   qpploter_->set_x_data( prop->begin(), prop->end() );
@@ -226,7 +226,7 @@ void QPplot_gui::get_var1_data_from( const GsTLGridProperty* prop ) {
   update_all();
 }
 */
-void QPplot_gui::get_var1_data_from( GsTLGridProperty* prop,
+void QPplot_gui::get_var1_data_from( Grid_continuous_property* prop,
                                          const Grid_region* region) {
   if( !prop ) return;
 //  prop1_ = prop;
@@ -246,7 +246,7 @@ void QPplot_gui::get_var1_data_from( GsTLGridProperty* prop,
 
 
 
-void QPplot_gui::get_var2_data_from( GsTLGridProperty* prop,
+void QPplot_gui::get_var2_data_from( Grid_continuous_property* prop,
                                          const Grid_region* region) {
   if( !prop ) return;
 //  prop2_ = prop;

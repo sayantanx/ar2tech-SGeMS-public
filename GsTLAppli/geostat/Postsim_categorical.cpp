@@ -93,7 +93,7 @@ bool Postsim_categorical::initialize( const Parameters_handler* parameters,
 	
 	for(std::vector< std::string >::iterator it_str = prop_name.begin(); 
     it_str != prop_name.end(); it_str++ ) {
-      GsTLGridCategoricalProperty* prop = grid_->categorical_property( *it_str );
+      Grid_categorical_property* prop = grid_->categorical_property( *it_str );
       errors->report(!prop, "props","No categorical property exist with that name");
       props_.push_back(prop);
   }
@@ -128,7 +128,7 @@ bool Postsim_categorical::initialize( const Parameters_handler* parameters,
 	else {
 		std::set<int> cat_code;
     for( it= props_.begin() ; it!= props_.end(); it++) {
-		  GsTLGridProperty::const_iterator it_gval = (*it)->begin(true);
+		  Grid_continuous_property::const_iterator it_gval = (*it)->begin(true);
 		  for( ; it_gval != (*it)->end(); ++it_gval) {
         cat_code.insert( *it_gval );
 		  }
@@ -143,7 +143,7 @@ bool Postsim_categorical::initialize( const Parameters_handler* parameters,
 
   for(int i =0; i<ncat_; i++) {
     std::string prop_name = output_name_prefix+" "+cat_def_->get_category_name_from_index(i);
-    GsTLGridProperty* prop = geostat_utils::add_property_to_grid( grid_, prop_name );
+    Grid_continuous_property* prop = geostat_utils::add_property_to_grid( grid_, prop_name );
     prop->set_parameters(parameters_);
     etype_props_.push_back( prop );
     cgroup->add_property(prop);
@@ -157,7 +157,7 @@ int Postsim_categorical::execute( GsTL_project* ) {
 
 
 	bool all_informed;
-	std::vector< GsTLGridProperty* >::const_iterator it_prop;;
+	std::vector< Grid_continuous_property* >::const_iterator it_prop;;
 	int nprop = props_.size();
 
   Geostat_grid::iterator it = grid_->begin();

@@ -56,8 +56,8 @@ Scatter_plot_proxy_model::Scatter_plot_proxy_model(QList< QPair<GsTL_object_item
     QString type_y = item_pair.first->item_name();
 
     if( type_x == "ContinuousProperty" && type_y == "ContinuousProperty") {
-      GsTLGridProperty* prop_x = dynamic_cast< GsTLGridProperty*>(item_pair.first);
-      GsTLGridProperty* prop_y = dynamic_cast< GsTLGridProperty*>(item_pair.second);
+      Grid_continuous_property* prop_x = dynamic_cast< Grid_continuous_property*>(item_pair.first);
+      Grid_continuous_property* prop_y = dynamic_cast< Grid_continuous_property*>(item_pair.second);
       if( prop_x == 0 || prop_y == 0 ) continue;
       Scatter_plot_property_item* prop_item = new Scatter_plot_property_item(prop_x, prop_y, current_id_);
       current_id_++;
@@ -65,7 +65,7 @@ Scatter_plot_proxy_model::Scatter_plot_proxy_model(QList< QPair<GsTL_object_item
 
     }
     if( type_x == "ContinuousProperty" && type_y == "GroupProperty") {
-      GsTLGridProperty* prop_x = dynamic_cast< GsTLGridProperty*>(item_pair.first);
+      Grid_continuous_property* prop_x = dynamic_cast< Grid_continuous_property*>(item_pair.first);
       GsTLGridPropertyGroup* group_y = dynamic_cast< GsTLGridPropertyGroup*>(item_pair.second);
       if( prop_x == 0 || group_y == 0 ) continue;
       Scatter_plot_property_group_item* prop_item = new Scatter_plot_property_group_item(prop_x, group_y, current_id_);
@@ -150,10 +150,10 @@ Qt::ItemFlags Scatter_plot_proxy_model::flags(const QModelIndex &index) const
 
 
 
-    bool insert_row(GsTLGridProperty* prop_x,GsTLGridPropertyGroup* group_y,QColor color = QColor());
-    bool insert_row(GsTLGridProperty* prop_x, GsTLGridPropertyGroup* group_y,GsTLGridWeightProperty* weights, QColor color = QColor());
-    bool insert_row(GsTLGridProperty* prop_x, GsTLGridPropertyGroup* group_y, Grid_region* region, QColor color = QColor());
-    bool insert_row(GsTLGridProperty* prop_x, GsTLGridPropertyGroup* group_y, GsTLGridCategoricalProperty* cprop, QColor color = QColor());
+    bool insert_row(Grid_continuous_property* prop_x,GsTLGridPropertyGroup* group_y,QColor color = QColor());
+    bool insert_row(Grid_continuous_property* prop_x, GsTLGridPropertyGroup* group_y,GsTLGridWeightProperty* weights, QColor color = QColor());
+    bool insert_row(Grid_continuous_property* prop_x, GsTLGridPropertyGroup* group_y, Grid_region* region, QColor color = QColor());
+    bool insert_row(Grid_continuous_property* prop_x, GsTLGridPropertyGroup* group_y, Grid_categorical_property* cprop, QColor color = QColor());
 
 
 bool Scatter_plot_proxy_model::insert_row(Scatter_plot_item* item){
@@ -169,7 +169,7 @@ bool Scatter_plot_proxy_model::insert_row(Scatter_plot_item* item){
   return true;
 }
 
-bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x,GsTLGridProperty* prop_y,QColor color){
+bool Scatter_plot_proxy_model::insert_row(Grid_continuous_property* prop_x,Grid_continuous_property* prop_y,QColor color){
 
   Scatter_plot_item* item = new Scatter_plot_property_item(prop_x, prop_y, current_id_);
   current_id_++;
@@ -178,7 +178,7 @@ bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x,GsTLGridPrope
   return this->insert_row(item);
 }
 
-bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x,GsTLGridProperty* prop_y, Grid_region* region, QColor color){
+bool Scatter_plot_proxy_model::insert_row(Grid_continuous_property* prop_x,Grid_continuous_property* prop_y, Grid_region* region, QColor color){
 
   Scatter_plot_item* item = new Scatter_plot_property_item(prop_x, prop_y,current_id_);
   current_id_++;
@@ -188,7 +188,7 @@ bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x,GsTLGridPrope
   return this->insert_row(item);
 }
 
-bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x,GsTLGridProperty* prop_y, GsTLGridWeightProperty* weights, QColor color){
+bool Scatter_plot_proxy_model::insert_row(Grid_continuous_property* prop_x,Grid_continuous_property* prop_y, GsTLGridWeightProperty* weights, QColor color){
 
   Scatter_plot_item* item = new Scatter_plot_property_item(prop_x, prop_y,  current_id_);
   current_id_++;
@@ -198,7 +198,7 @@ bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x,GsTLGridPrope
 }
 
 
-bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x, GsTLGridProperty* prop_y, GsTLGridCategoricalProperty* cprop, QColor color) {
+bool Scatter_plot_proxy_model::insert_row(Grid_continuous_property* prop_x, Grid_continuous_property* prop_y, Grid_categorical_property* cprop, QColor color) {
   Scatter_plot_item* item = new Scatter_plot_property_item(prop_x, prop_y,  current_id_);
   current_id_++;
   item->categorical_property(cprop);
@@ -208,7 +208,7 @@ bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x, GsTLGridProp
 
 
 
-bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x,GsTLGridPropertyGroup* group_y,QColor color){
+bool Scatter_plot_proxy_model::insert_row(Grid_continuous_property* prop_x,GsTLGridPropertyGroup* group_y,QColor color){
 
   Scatter_plot_item* item = new Scatter_plot_property_group_item(prop_x, group_y, current_id_);
   current_id_++;
@@ -217,7 +217,7 @@ bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x,GsTLGridPrope
   return this->insert_row(item);
 }
 
-bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x,GsTLGridPropertyGroup* group_y, Grid_region* region, QColor color){
+bool Scatter_plot_proxy_model::insert_row(Grid_continuous_property* prop_x,GsTLGridPropertyGroup* group_y, Grid_region* region, QColor color){
 
   Scatter_plot_item* item = new Scatter_plot_property_group_item(prop_x, group_y, current_id_);
   current_id_++;
@@ -227,7 +227,7 @@ bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x,GsTLGridPrope
   return this->insert_row(item);
 }
 
-bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x,GsTLGridPropertyGroup* group_y, GsTLGridWeightProperty* weights, QColor color){
+bool Scatter_plot_proxy_model::insert_row(Grid_continuous_property* prop_x,GsTLGridPropertyGroup* group_y, GsTLGridWeightProperty* weights, QColor color){
 
   Scatter_plot_item* item = new Scatter_plot_property_group_item(prop_x, group_y, current_id_);
   current_id_++;
@@ -237,7 +237,7 @@ bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x,GsTLGridPrope
 }
 
 
-bool Scatter_plot_proxy_model::insert_row(GsTLGridProperty* prop_x,GsTLGridPropertyGroup* group_y, GsTLGridCategoricalProperty* cprop, QColor color) {
+bool Scatter_plot_proxy_model::insert_row(Grid_continuous_property* prop_x,GsTLGridPropertyGroup* group_y, Grid_categorical_property* cprop, QColor color) {
   Scatter_plot_item* item = new Scatter_plot_property_group_item(prop_x, group_y, current_id_);
   current_id_++;
   item->categorical_property(cprop);
@@ -277,7 +277,7 @@ bool Scatter_plot_proxy_model::insert_row(GsTLGridPropertyGroup* group_x,GsTLGri
 }
 
 
-bool Scatter_plot_proxy_model::insert_row(GsTLGridPropertyGroup* group_x,GsTLGridPropertyGroup* group_y, GsTLGridCategoricalProperty* cprop, QColor color) {
+bool Scatter_plot_proxy_model::insert_row(GsTLGridPropertyGroup* group_x,GsTLGridPropertyGroup* group_y, Grid_categorical_property* cprop, QColor color) {
   Scatter_plot_item* item = new Scatter_plot_group_item(group_x, group_y, current_id_);
   current_id_++;
   item->categorical_property(cprop);
@@ -329,14 +329,14 @@ bool Scatter_plot_proxy_model::remove_rows(std::vector<GsTL_object_item*> new_ob
     
     //Need to emit some sort of signal to indicate a new data has been removed in order to update the display
     if(item_to_be_removed->type() == "Property") {
-      GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item_to_be_removed->object_item());
+      Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item_to_be_removed->object_item());
       emit this->data_removed(prop);
     }
     else if(item_to_be_removed->type() == "Group") {
       Scatter_plot_group_item* group_item = dynamic_cast<Scatter_plot_group_item*>(item_to_be_removed);
       int n_props = group_item->children_count();
       for(int j=0; j<n_props;++j) {
-        GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item_to_be_removed->children(j)->object_item());
+        Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item_to_be_removed->children(j)->object_item());
         emit this->data_removed(prop);
       }
     }
@@ -541,7 +541,7 @@ QModelIndex	Scatter_plot_proxy_model::mapToSource ( const QModelIndex & proxyInd
   Scatter_plot_item* item = static_cast<Scatter_plot_item*>(proxyIndex.internalPointer());
 
   if(item->type() == "Property") {
-    GsTL_object_item* object_item = dynamic_cast<GsTLGridProperty*>(item->object_item() );
+    GsTL_object_item* object_item = dynamic_cast<Grid_continuous_property*>(item->object_item() );
     QModelIndex prop_parent = model_->property_root_index(item->grid_name());
     return this->sourceModel()->index(proxyIndex.row(), proxyIndex.column(), prop_parent );
   }
@@ -623,7 +623,7 @@ void Scatter_plot_proxy_model::find_items_to_be_removed(GsTL_object_item* item, 
     return;
   }
 
-  GsTLGridProperty* prop = dynamic_cast<GsTLGridProperty*>(item);
+  Grid_continuous_property* prop = dynamic_cast<Grid_continuous_property*>(item);
 
   if(prop) {  //could either be a prop or a weight
     std::set< Scatter_plot_item*>::iterator it = items_.begin();
@@ -650,7 +650,7 @@ void Scatter_plot_proxy_model::find_items_to_be_removed(GsTL_object_item* item, 
 }
 
 /*
-bool Scatter_plot_proxy_model::is_item_exist(GsTLGridProperty* prop){
+bool Scatter_plot_proxy_model::is_item_exist(Grid_continuous_property* prop){
   std::set< Scatter_plot_item*>::iterator it = items_.begin();
   for( ; it!= items_.end(); ++it) {
     Scatter_plot_property_item* p_item = dynamic_cast<Scatter_plot_property_item*>(*it);
@@ -660,7 +660,7 @@ bool Scatter_plot_proxy_model::is_item_exist(GsTLGridProperty* prop){
   return false;
 }
 
-bool Scatter_plot_proxy_model::is_item_exist(GsTLGridProperty* prop, Grid_region* region){
+bool Scatter_plot_proxy_model::is_item_exist(Grid_continuous_property* prop, Grid_region* region){
   std::set< Scatter_plot_item*>::iterator it = items_.begin();
   for( ; it!= items_.end(); ++it) {
     Scatter_plot_property_item* p_item = dynamic_cast<Scatter_plot_property_item*>(*it);
@@ -670,7 +670,7 @@ bool Scatter_plot_proxy_model::is_item_exist(GsTLGridProperty* prop, Grid_region
   return false;
 }
 
-bool Scatter_plot_proxy_model::is_item_exist(GsTLGridProperty* prop, GsTLGridWeightProperty* weights){
+bool Scatter_plot_proxy_model::is_item_exist(Grid_continuous_property* prop, GsTLGridWeightProperty* weights){
   std::set< Scatter_plot_item*>::iterator it = items_.begin();
   for( ; it!= items_.end(); ++it) {
     Scatter_plot_property_item* p_item = dynamic_cast<Scatter_plot_property_item*>(*it);

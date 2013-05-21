@@ -99,7 +99,7 @@ protected:
     MultiRealization_property* multireal_property_;
 
     Geostat_grid* harddata_grid_;
-    GsTLGridProperty* harddata_property_;
+    Grid_continuous_property* harddata_property_;
     std::string harddata_property_name_;
     //  Grid_initializer* initializer_;
     SmartPtr<Property_copier> property_copier_;
@@ -124,7 +124,7 @@ protected:
 
 protected:
 
-    void clean( GsTLGridProperty* prop = 0 );
+    void clean( Grid_continuous_property* prop = 0 );
 }; 
 
 

@@ -356,7 +356,7 @@ bool Show_histogram::init( std::string& parameters, GsTL_project* proj,
     return false;
   }
 
-  GsTLGridProperty* prop = grid->property( params[1] );
+  Grid_continuous_property* prop = grid->property( params[1] );
   if( !prop ) {
     std::ostringstream message;
     message << "Grid \"" << params[0] << "\" has no property called \"" 
@@ -435,7 +435,7 @@ bool Save_histogram::init( std::string& parameters, GsTL_project* proj,
     return false;
   }
 
-  GsTLGridProperty* prop = grid->property( params[1] );
+  Grid_continuous_property* prop = grid->property( params[1] );
   if( !prop ) {
     std::ostringstream message;
     message << "Grid \"" << params[0] << "\" has no property called \"" 
@@ -539,8 +539,8 @@ bool Save_qqplot::init( std::string& parameters, GsTL_project* proj,
     return false;
   }
 
-  GsTLGridProperty* prop1 = grid->property( params[1] );
-  GsTLGridProperty* prop2 = grid->property( params[2] );
+  Grid_continuous_property* prop1 = grid->property( params[1] );
+  Grid_continuous_property* prop2 = grid->property( params[2] );
   if( !prop1 || !prop2 ) {
     std::ostringstream message;
     message << "Grid \"" << params[0] << "\" has no property called \"" ;
@@ -625,8 +625,8 @@ bool Save_scatterplot::init( std::string& parameters, GsTL_project* proj,
     return false;
   }
 
-  GsTLGridProperty* prop1 = grid->property( params[1] );
-  GsTLGridProperty* prop2 = grid->property( params[2] );
+  Grid_continuous_property* prop1 = grid->property( params[1] );
+  Grid_continuous_property* prop2 = grid->property( params[2] );
   if( !prop1 || !prop2 ) {
     std::ostringstream message;
     message << "Grid \"" << params[0] << "\" has no property called \"" ;
@@ -724,7 +724,7 @@ bool Display_object::init( std::string& parameters, GsTL_project* proj,
 	  if(viz_param) viz_param->display();
   }
   else {
-	  GsTLGridProperty* prop = grid->property(params[1]);
+	  Grid_continuous_property* prop = grid->property(params[1]);
 	  if(prop == 0) return false;
 	  Visualization_parameters* viz_param = view->get_viz_parameters( prop);
 	  if(viz_param) viz_param->display();  }

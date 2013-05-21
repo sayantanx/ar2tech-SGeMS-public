@@ -100,7 +100,7 @@ class GEOSTAT_DECL dssim : public Geostat_algo {
   MultiRealization_property* multireal_property_; 
    
   Geostat_grid* harddata_grid_;   
-  GsTLGridProperty* harddata_property_; 
+  Grid_continuous_property* harddata_property_; 
   std::string harddata_property_name_; 
 //  Grid_initializer* initializer_; 
   SmartPtr<Property_copier> property_copier_;
@@ -135,7 +135,7 @@ class GEOSTAT_DECL dssim : public Geostat_algo {
 //	 void set_extrapolation_tail(const Parameters_handler* parameters,
 //	Error_messages_handler* errors, Non_param_cdf<>* nparam_cdf);
 /*
-  GsTLGridProperty* transform_variable( GsTLGridProperty* prop,
+  Grid_continuous_property* transform_variable( Grid_continuous_property* prop,
                                         Geostat_grid* grid,
                                         const Parameters_handler* parameters,
                                         const std::string& from_file_parameter_name,
@@ -148,7 +148,7 @@ class GEOSTAT_DECL dssim : public Geostat_algo {
                          Error_messages_handler* errors );
 */
   
-  void clean( GsTLGridProperty* prop = 0 );
+  void clean( Grid_continuous_property* prop = 0 );
 }; 
  
  

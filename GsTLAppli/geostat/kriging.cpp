@@ -115,18 +115,18 @@ int Kriging::execute( GsTL_project* ) {
 
   // create the property
   appli_message("creating new property: " << property_name_ << "..." );
-  GsTLGridProperty* prop = 
+  Grid_continuous_property* prop = 
     geostat_utils::add_property_to_grid( simul_grid_, property_name_ );
   prop->set_parameters(parameters_);
   simul_grid_->select_property( prop->name() );
   
   // create property for kriging variance
-  GsTLGridProperty* var_prop=0;
-  GsTLGridProperty* nsamples_prop=0;
-  GsTLGridProperty* aver_dist_prop=0;
-  GsTLGridProperty* sum_pos_prop=0;
-  GsTLGridProperty* sum_weights_prop=0;
-  GsTLGridProperty* lagrangian_prop=0;
+  Grid_continuous_property* var_prop=0;
+  Grid_continuous_property* nsamples_prop=0;
+  Grid_continuous_property* aver_dist_prop=0;
+  Grid_continuous_property* sum_pos_prop=0;
+  Grid_continuous_property* sum_weights_prop=0;
+  Grid_continuous_property* lagrangian_prop=0;
 
   this->init_option_properties(prop->name(),var_prop,nsamples_prop,aver_dist_prop,sum_pos_prop,sum_weights_prop, lagrangian_prop);
 
@@ -345,7 +345,7 @@ bool Kriging::initialize( const Parameters_handler* parameters,
   }
   */ 
 
-  GsTLGridProperty* prop =
+  Grid_continuous_property* prop =
     harddata_grid_->select_property( harddata_property_name_ );
   if( !prop ) {
     std::ostringstream error_stream;
@@ -442,9 +442,9 @@ bool Kriging::initialize( const Parameters_handler* parameters,
 
 
 void  Kriging::init_option_properties(std::string base_name, 
-                              GsTLGridProperty*& var_prop,GsTLGridProperty*& nsamples_prop,
-                              GsTLGridProperty*& aver_dist_prop,GsTLGridProperty*& sum_pos_prop,
-                              GsTLGridProperty*& sum_weights_prop,GsTLGridProperty*& lagrangian_prop)
+                              Grid_continuous_property*& var_prop,Grid_continuous_property*& nsamples_prop,
+                              Grid_continuous_property*& aver_dist_prop,Grid_continuous_property*& sum_pos_prop,
+                              Grid_continuous_property*& sum_weights_prop,Grid_continuous_property*& lagrangian_prop)
 {
   if(output_krig_var_) {
     std::string prop_name = base_name + " krig_var";

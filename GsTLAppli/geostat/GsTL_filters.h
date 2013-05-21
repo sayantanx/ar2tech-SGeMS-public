@@ -51,7 +51,7 @@ public:
 
   virtual float operator()(Window_neighborhood& neigh, int filter_id) = 0;
   virtual float operator()(Window_neighborhood& neigh, std::vector<float>::iterator begin, 
-    std::vector<float>::iterator end, int filter_id ) {return GsTLGridProperty::no_data_value;}
+    std::vector<float>::iterator end, int filter_id ) {return Grid_continuous_property::no_data_value;}
 
   virtual std::string name(int filter_number = 0 ) = 0;
 
@@ -110,14 +110,14 @@ public:
     }
 
     if(n >0 ) return x/n;
-    else return GsTLGridProperty::no_data_value; //indicates not informed
+    else return Grid_continuous_property::no_data_value; //indicates not informed
   }
 
   virtual float operator()(Window_neighborhood& neigh,std::vector<float>::iterator begin, 
     std::vector<float>::iterator end, int filter_id ) {
 
     int n = std::distance(begin,end);
-    if(n == 0) return GsTLGridProperty::no_data_value;
+    if(n == 0) return Grid_continuous_property::no_data_value;
 
     return  std::accumulate(begin,end,0.0)/n;
 
@@ -185,7 +185,7 @@ public:
 
     if(n >2 ) return x2/n - x*x/n/n;
 
-    else return GsTLGridProperty::no_data_value; //indicates not informed
+    else return Grid_continuous_property::no_data_value; //indicates not informed
 
   }
 
@@ -246,7 +246,7 @@ public:
 
 
     virtual float operator()(Window_neighborhood& neigh, int filter_id=0) {
-      if( neigh.is_empty() ) return GsTLGridProperty::no_data_value;
+      if( neigh.is_empty() ) return Grid_continuous_property::no_data_value;
       float score=0.;
       float sum_weight=0.;
 
@@ -256,7 +256,7 @@ public:
 
       for(; it != neigh.end(); ++it ) {
         if( !it->is_informed() ) {
-          if(!skip_uninformed_) return GsTLGridProperty::no_data_value;
+          if(!skip_uninformed_) return Grid_continuous_property::no_data_value;
           continue;
         }
 
@@ -290,7 +290,7 @@ public:
     std::vector<float>::iterator end, int filter_id ) {
 
 
-     if( neigh.is_empty() ) return GsTLGridProperty::no_data_value;
+     if( neigh.is_empty() ) return Grid_continuous_property::no_data_value;
       float score=0.;
       float sum_weight=0.;
 
@@ -300,7 +300,7 @@ public:
 
       for(int i= 0; it != neigh.end(); ++it ) {
         if( !it->is_informed() ) {
-          if(!skip_uninformed_) return GsTLGridProperty::no_data_value;
+          if(!skip_uninformed_) return Grid_continuous_property::no_data_value;
           continue;
         }
 
@@ -373,7 +373,7 @@ public :
     if(neigh.is_empty()) {
       scores.insert(scores.begin(),
                     Parent::nfilter_,
-                    GsTLGridProperty::no_data_value);
+                    Grid_continuous_property::no_data_value);
       return;
     }
 
@@ -392,8 +392,8 @@ public :
   virtual float operator()(Window_neighborhood& neigh, int filter_id )
 
   {
-    if(neigh.is_empty()) return GsTLGridProperty::no_data_value;
-    if( n_weights_ != neigh.size() ) return GsTLGridProperty::no_data_value;
+    if(neigh.is_empty()) return Grid_continuous_property::no_data_value;
+    if( n_weights_ != neigh.size() ) return Grid_continuous_property::no_data_value;
 
     std::vector<float>::iterator it_w = filters_.weights_begin(filter_id);
     typename Window_neighborhood::iterator it = neigh.begin();
@@ -401,7 +401,7 @@ public :
     float scores = 0.;    
 
     for(; it != neigh.end(); ++it, ++it_w ) {
-      if( !it->is_informed() ) return GsTLGridProperty::no_data_value;
+      if( !it->is_informed() ) return Grid_continuous_property::no_data_value;
       scores += *it_w * it->property_value();
     }
     return scores;
@@ -412,8 +412,8 @@ public :
         std::vector<float>::iterator end, int filter_id )
 
   {
-    if(begin == end) return GsTLGridProperty::no_data_value;
-    if( n_weights_ != std::distance(begin,end) ) return GsTLGridProperty::no_data_value;
+    if(begin == end) return Grid_continuous_property::no_data_value;
+    if( n_weights_ != std::distance(begin,end) ) return Grid_continuous_property::no_data_value;
 
     std::vector<float>::iterator it_w = filters_.weights_begin(filter_id);
  //   typename Window_neighborhood::iterator it = neigh.begin();
@@ -421,7 +421,7 @@ public :
     float scores = 0.;    
 
     for( ; begin != end ; ++begin, ++it_w ) {
-      if( *begin == GsTLGridProperty::no_data_value ) return GsTLGridProperty::no_data_value;
+      if( *begin == Grid_continuous_property::no_data_value ) return Grid_continuous_property::no_data_value;
       scores += *it_w * (*begin);
     }
     return scores;

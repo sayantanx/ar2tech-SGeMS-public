@@ -110,8 +110,8 @@ class GEOSTAT_DECL Cosgsim : public Geostat_algo {
    
   Geostat_grid* prim_harddata_grid_;  
   Geostat_grid* sec_harddata_grid_;
-  GsTLGridProperty* primary_variable_;
-  GsTLGridProperty* secondary_variable_;
+  Grid_continuous_property* primary_variable_;
+  Grid_continuous_property* secondary_variable_;
   GsTLGridPropertyGroup* secondary_variable_group_;
 
   //Grid_initializer* initializer_; 
@@ -141,7 +141,7 @@ class GEOSTAT_DECL Cosgsim : public Geostat_algo {
 
  protected:
 
-  void clean( GsTLGridProperty* prop = 0 ); 
+  void clean( Grid_continuous_property* prop = 0 ); 
 }; 
  
  

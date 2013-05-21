@@ -90,8 +90,8 @@ class  DiffProperties : public Geostat_algo {
 
   Geostat_grid* grid_;
 
-	std::vector< GsTLGridProperty* > props_;
-  GsTLGridProperty* prop_base_;
+	std::vector< Grid_continuous_property* > props_;
+  Grid_continuous_property* prop_base_;
 
   std::string prop_name_diff_;
 

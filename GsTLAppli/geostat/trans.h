@@ -65,8 +65,8 @@ class GEOSTAT_DECL trans : public Geostat_algo {
 	bool is_local_cond_;
 	
   Grid_region* region_;
-	std::vector<GsTLGridProperty*> source_props_;
-	GsTLGridProperty* cond_prop_;
+	std::vector<Grid_continuous_property*> source_props_;
+	Grid_continuous_property* cond_prop_;
 	std::vector<float> weights_;
 	typedef std::vector<float>::iterator wgth_iterator;
 
@@ -76,8 +76,8 @@ class GEOSTAT_DECL trans : public Geostat_algo {
 //	Cdf<float>* cdf_source_;
 //	Cdf<float>* cdf_target_;
 
-	void cdf_transform(GsTLGridProperty* prop);
-	void  cdf_transform_weighted( GsTLGridProperty* prop  );
+	void cdf_transform(Grid_continuous_property* prop);
+	void  cdf_transform_weighted( Grid_continuous_property* prop  );
 
 	SmartPtr<Continuous_distribution> get_cdf( const Parameters_handler* parameters,
 		Error_messages_handler* errors, std::string suffix );

@@ -186,7 +186,7 @@ QVariant Weight_property_proxy_model::data(const QModelIndex &index, int role) c
 QModelIndex	Weight_property_proxy_model::mapFromSource ( const QModelIndex & sourceIndex ) const{
 
 	GsTL_object_item *item = static_cast<GsTL_object_item*>(sourceIndex.internalPointer());
-	if( dynamic_cast<GsTLGridProperty*>(item) == 0) return QModelIndex();
+	if( dynamic_cast<Grid_continuous_property*>(item) == 0) return QModelIndex();
 	return createIndex(sourceIndex.row(),sourceIndex.column(), sourceIndex.internalPointer());
 
 }

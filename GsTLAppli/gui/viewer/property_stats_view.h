@@ -42,29 +42,29 @@
 
 class Property_stats_view : public QWidget {
 public:
-	Property_stats_view(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop, QWidget *parent=0);
+	Property_stats_view(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop, QWidget *parent=0);
 	virtual ~Property_stats_view();
 
 protected :
-	const GsTLGridProperty* prop_;
+	const Grid_continuous_property* prop_;
 	GsTL_vtkProp* vtk_prop_;
 
 };
 
 class Continuous_property_stats_view : public Property_stats_view {
 public:
-	Continuous_property_stats_view(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop, QWidget *parent=0);
+	Continuous_property_stats_view(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop, QWidget *parent=0);
 	virtual ~Continuous_property_stats_view();
 
 };
 
 class Categorical_property_stats_view : public Property_stats_view {
 public:
-	Categorical_property_stats_view(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop, QWidget *parent=0);
+	Categorical_property_stats_view(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop, QWidget *parent=0);
 	virtual ~Categorical_property_stats_view();
 
 };
 
-Property_stats_view* get_stats_view(const GsTLGridProperty* prop, GsTL_vtkProp* vtk_prop, QWidget *parent=0);
+Property_stats_view* get_stats_view(const Grid_continuous_property* prop, GsTL_vtkProp* vtk_prop, QWidget *parent=0);
 
 #endif /* PROPERTY_STATS_VIEW_H_ */

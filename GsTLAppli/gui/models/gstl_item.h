@@ -171,7 +171,7 @@ class GUI_DECL GsTL_property_item : public GsTL_item
 public:
     GsTL_property_item();
 
-    GsTL_property_item(GsTLGridProperty* prop, GsTL_item *parent = 0);
+    GsTL_property_item(Grid_continuous_property* prop, GsTL_item *parent = 0);
     virtual ~GsTL_property_item();
 
     virtual QString type() const;
@@ -184,12 +184,12 @@ public:
     virtual int row() const;
 
     QString gridName() const;
-    GsTLGridProperty* property();
+    Grid_continuous_property* property();
     Geostat_grid* grid();
 
 private:
     Geostat_grid* grid_;
-    GsTLGridProperty* prop_;
+    Grid_continuous_property* prop_;
     QString gridName_;
 };
 
