@@ -122,14 +122,14 @@ QPplot_gui::QPplot_gui( GsTL_project* project,
 
   // Signal-slot connections
   QObject::connect( control_panel_, 
-                    SIGNAL( var1_changed(  GsTLGridProperty*, const GsTLGridRegion* ) ),
+                    SIGNAL( var1_changed(  GsTLGridProperty*, const Grid_region* ) ),
                     this,
-                    SLOT( get_var1_data_from(  GsTLGridProperty*, const GsTLGridRegion* ) ) );
+                    SLOT( get_var1_data_from(  GsTLGridProperty*, const Grid_region* ) ) );
   
   QObject::connect( control_panel_, 
-                    SIGNAL( var2_changed(  GsTLGridProperty*, const GsTLGridRegion* ) ),
+                    SIGNAL( var2_changed(  GsTLGridProperty*, const Grid_region* ) ),
                     this,
-                    SLOT( get_var2_data_from(  GsTLGridProperty*, const GsTLGridRegion* ) ) );
+                    SLOT( get_var2_data_from(  GsTLGridProperty*, const Grid_region* ) ) );
    
   QObject::connect( control_panel_, 
                     SIGNAL( analysis_type_changed( const QString& ) ),
@@ -227,7 +227,7 @@ void QPplot_gui::get_var1_data_from( const GsTLGridProperty* prop ) {
 }
 */
 void QPplot_gui::get_var1_data_from( GsTLGridProperty* prop,
-                                         const GsTLGridRegion* region) {
+                                         const Grid_region* region) {
   if( !prop ) return;
 //  prop1_ = prop;
   Temporary_propRegion_Selector regionSelector(region,prop);
@@ -247,7 +247,7 @@ void QPplot_gui::get_var1_data_from( GsTLGridProperty* prop,
 
 
 void QPplot_gui::get_var2_data_from( GsTLGridProperty* prop,
-                                         const GsTLGridRegion* region) {
+                                         const Grid_region* region) {
   if( !prop ) return;
 //  prop2_ = prop;
   Temporary_propRegion_Selector regionSelector(region,prop);

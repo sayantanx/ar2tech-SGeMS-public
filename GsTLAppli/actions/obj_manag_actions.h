@@ -462,8 +462,8 @@ class ACTIONS_DECL Merge_regions : public Action {
   virtual bool exec() = 0; 
 
 protected : 
-  std::vector<GsTLGridRegion*> regions_;
-  GsTLGridRegion* new_region_;
+  std::vector<Grid_region*> regions_;
+  Grid_region* new_region_;
   std::string grid_name_;
   GsTL_project* proj_;
 

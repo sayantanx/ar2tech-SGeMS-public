@@ -65,7 +65,7 @@ Non_parametric_distribution*
 
 Non_parametric_distribution* 
   build_non_param_distribution( std::string name,
-  const GsTLGridProperty* prop, const GsTLGridRegion* region, 
+  const GsTLGridProperty* prop, const Grid_region* region, 
   const Tail_interpolator low_interp,
 	const Linear_interpol mid_interp,
 	const Tail_interpolator up_interp	)  

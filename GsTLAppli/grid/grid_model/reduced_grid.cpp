@@ -96,7 +96,7 @@ Neighborhood* Reduced_grid::neighborhood( double x, double y, double z,
 				   double ang1, double ang2, double ang3,
 				   const Covariance<location_type>* cov,
 				   bool only_harddata,
-           const GsTLGridRegion* region,
+           const Grid_region* region,
            Coordinate_mapper* coord_mapper) {
 
   // The constructor of Rgrid_ellips_neighborhood expects the dimensions
@@ -144,7 +144,7 @@ Neighborhood* Reduced_grid::neighborhood( const GsTLTripletTmpl<double>& dim,
 				   const GsTLTripletTmpl<double>& angles,
 				   const Covariance<location_type>* cov,
 				   bool only_harddata,
-           const GsTLGridRegion* region,
+           const Grid_region* region,
            Coordinate_mapper* coord_mapper) {
   int nx = GsTL::round( dim[0] /geometry_->cell_dims()[0] );
   int ny = GsTL::round( dim[1] /geometry_->cell_dims()[1] );

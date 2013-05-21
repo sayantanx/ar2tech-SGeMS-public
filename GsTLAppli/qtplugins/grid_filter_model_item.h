@@ -147,7 +147,7 @@ public :
     if(grid_ == 0 ) return;
     //QStringList params = parameters.split("::");
     //grid_name_ = params[0];
-    const GsTLGridRegion* region = grid_->region(param.toStdString());
+    const Grid_region* region = grid_->region(param.toStdString());
     if( region == 0 ) {
       region_name_ = "No Region Selected";
     }

@@ -374,7 +374,7 @@ read_region_and_goup(QDataStream& stream,
 
       for( unsigned int j = 0; j < regions_count; j++ ) {
         std::string region_name( region_names[j] );
-        GsTLGridRegion* region = grid->add_region( region_name );
+        Grid_region* region = grid->add_region( region_name );
         for( GsTLInt k = 0; k < size ; k++ ) {
           bool val;
           stream >> val;
@@ -636,8 +636,8 @@ write_region_and_goup( QDataStream& stream, const Geostat_grid* grid ) {
       stream << it_name->c_str();
     
     for( it_name  = region_names.begin() ; it_name != region_names.end(); ++it_name) {
-      const GsTLGridRegion* region = grid->region(*it_name);
-      for(GsTLGridRegion::const_iterator it=region->begin(); it!=region->end(); ++it) 
+      const Grid_region* region = grid->region(*it_name);
+      for(Grid_region::const_iterator it=region->begin(); it!=region->end(); ++it) 
         stream << (bool)(*it); 
     }
   }

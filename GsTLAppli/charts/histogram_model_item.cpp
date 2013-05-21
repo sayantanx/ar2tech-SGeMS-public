@@ -136,7 +136,7 @@ void Histogram_group_item::weights(GsTLGridWeightProperty* weights){
   }
 }
 
-void Histogram_group_item::region(GsTLGridRegion* region){
+void Histogram_group_item::region(Grid_region* region){
   region_ = region;
   std::set< Histogram_property_item*>::iterator it = prop_items_.begin();
   for( ; it != prop_items_.end(); ++it) {

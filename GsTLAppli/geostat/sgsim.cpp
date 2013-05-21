@@ -391,7 +391,7 @@ bool Sgsim::initialize( const Parameters_handler* parameters,
     harddata_grid_->select_property(harddata_property_->name());
 
     std::string harddata_region_name = parameters->value( "Hard_Data.region" );
-    GsTLGridRegion* hd_region = harddata_grid_->region(harddata_region_name);
+    Grid_region* hd_region = harddata_grid_->region(harddata_region_name);
 
     Neighborhood* harddata_neigh;
     if( dynamic_cast<Point_set*>(harddata_grid_) ) {

@@ -359,7 +359,7 @@ void Filter_root_proxy_checkable_model::update_checked_items(const QModelIndex& 
         return;
     }
 
-    GsTLGridRegion* region = dynamic_cast<GsTLGridRegion*>(item);
+    Grid_region* region = dynamic_cast<Grid_region*>(item);
     if(region) {
         if(is_selected) {
             checked_states_[item] = false;
@@ -373,7 +373,7 @@ void Filter_root_proxy_checkable_model::update_checked_items(const QModelIndex& 
             std::vector<std::set<GsTL_object_item*>::iterator> it_to_be_deleted;
             for( ; it_selection != currently_selected_.end(); ++it_selection) {
 
-                GsTLGridRegion* region_in_selection = dynamic_cast<GsTLGridRegion*>(*it_selection);
+                Grid_region* region_in_selection = dynamic_cast<Grid_region*>(*it_selection);
                 if(region_in_selection == 0) continue;
                 // Does it has the same grid parent
                 if(item->parent()->parent()->item_data(0) != (*it_selection)->parent()->parent()->item_data(0)) continue;
@@ -860,7 +860,7 @@ void Visualization_proxy_model::update_checked_items(const QModelIndex& index){
 		return;
 	}
 
-	GsTLGridRegion* region = dynamic_cast<GsTLGridRegion*>(item);
+	Grid_region* region = dynamic_cast<Grid_region*>(item);
 	if(region) {
 		if(is_selected) {
       checked_states_[item] = false;
@@ -874,7 +874,7 @@ void Visualization_proxy_model::update_checked_items(const QModelIndex& index){
       std::vector<std::set<GsTL_object_item*>::iterator> it_to_be_deleted;
 			for( ; it_selection != currently_selected_.end(); ++it_selection) {
 
-				GsTLGridRegion* region_in_selection = dynamic_cast<GsTLGridRegion*>(*it_selection);
+				Grid_region* region_in_selection = dynamic_cast<Grid_region*>(*it_selection);
 				if(region_in_selection == 0) continue;
 				// Does it has the same grid parent
 				if(item->parent()->parent()->item_data(0) != (*it_selection)->parent()->parent()->item_data(0)) continue;

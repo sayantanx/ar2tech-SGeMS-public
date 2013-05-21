@@ -134,7 +134,7 @@ bool New_region_from_grid_filter_dialog::create_region(){
     Geostat_grid* grid = get_grid_from_manager(grid_name.toStdString());
     if(grid==0) return 0;
 
-    GsTLGridRegion* region = grid->add_region(region_name.toStdString());
+    Grid_region* region = grid->add_region(region_name.toStdString());
     if(region==0) return 0;
 
     int region_size = region->size();

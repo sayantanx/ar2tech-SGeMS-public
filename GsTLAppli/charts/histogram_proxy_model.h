@@ -72,10 +72,10 @@ public:
 
     bool insert_row(GsTLGridProperty* prop,QColor color = QColor());
     bool insert_row(GsTLGridProperty* prop, GsTLGridWeightProperty* weights, QColor color = QColor());
-    bool insert_row(GsTLGridProperty* prop, GsTLGridRegion* region, QColor color = QColor());
+    bool insert_row(GsTLGridProperty* prop, Grid_region* region, QColor color = QColor());
 
     bool insert_row(GsTLGridPropertyGroup* group, QColor color = QColor());
-    bool insert_row(GsTLGridPropertyGroup* group, GsTLGridRegion* region, QColor color = QColor());
+    bool insert_row(GsTLGridPropertyGroup* group, Grid_region* region, QColor color = QColor());
     bool insert_row(GsTLGridPropertyGroup* group, GsTLGridWeightProperty* weights, QColor color = QColor());
 
     bool insert_row(Continuous_distribution* dist,QColor color = QColor());
@@ -128,10 +128,10 @@ private :
   void find_items_to_be_removed(GsTL_object_item*, std::set< Histogram_item*>& items_to_be_removed);
   
   bool is_item_exist(GsTLGridProperty* prop);
-  bool is_item_exist(GsTLGridProperty* prop, GsTLGridRegion* region);
+  bool is_item_exist(GsTLGridProperty* prop, Grid_region* region);
   bool is_item_exist(GsTLGridProperty* prop, GsTLGridWeightProperty* weights);
   bool is_item_exist(GsTLGridPropertyGroup* prop);
-  bool is_item_exist(GsTLGridPropertyGroup* prop, GsTLGridRegion* region);
+  bool is_item_exist(GsTLGridPropertyGroup* prop, Grid_region* region);
   bool is_item_exist(GsTLGridPropertyGroup* prop, GsTLGridWeightProperty* weights);
 
 

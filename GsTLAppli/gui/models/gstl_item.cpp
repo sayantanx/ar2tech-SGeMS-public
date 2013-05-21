@@ -515,7 +515,7 @@ Geostat_grid* GsTL_group_region_item::grid(){
 
 GsTL_region_item::GsTL_region_item():GsTL_item(0){}
 
-GsTL_region_item::GsTL_region_item(GsTLGridRegion* region, GsTL_item *parent)
+GsTL_region_item::GsTL_region_item(Grid_region* region, GsTL_item *parent)
     :GsTL_item(parent),region_(region), grid_(0)
 {
     if(parent) {
@@ -573,7 +573,7 @@ int GsTL_region_item::row() const{
 QString GsTL_region_item::gridName() const{
 	return gridName_;
 }
-GsTLGridRegion* GsTL_region_item::region(){
+Grid_region* GsTL_region_item::region(){
 	return region_;
 }
 

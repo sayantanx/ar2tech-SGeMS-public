@@ -291,7 +291,7 @@ bool Kriging::initialize( const Parameters_handler* parameters,
     return false;
 
   std::string harddata_region_name = parameters->value( "Hard_Data.region" );
-  GsTLGridRegion* hd_region = harddata_grid_->region(harddata_region_name);
+  Grid_region* hd_region = harddata_grid_->region(harddata_region_name);
 
   // If the hard data is on the same grid than the
   // estimation grid, than it cannot be set to a region others than the one

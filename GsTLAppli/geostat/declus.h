@@ -65,7 +65,7 @@ class GEOSTAT_DECL Declus : public Geostat_algo {
   typedef Geostat_grid::location_type Location; 
 
   GsTLGridProperty* prop_;
-  GsTLGridRegion* region_;
+  Grid_region* region_;
   Geostat_grid* grid_;
 
   std::string weight_name_;

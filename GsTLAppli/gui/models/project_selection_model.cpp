@@ -146,7 +146,7 @@ void Project_selection_model::select ( const QItemSelection & selection, QItemSe
 			return;
 		}
 
-		GsTLGridRegion* region = dynamic_cast<GsTLGridRegion*>(item);
+		Grid_region* region = dynamic_cast<Grid_region*>(item);
 		if(region) {
 			if(is_selected) {
 
@@ -160,7 +160,7 @@ void Project_selection_model::select ( const QItemSelection & selection, QItemSe
 
 					GsTL_object_item* item_in_selection = static_cast<GsTL_object_item*>(proxy_model_->mapToSource(selected_index_list.at(i)).internalPointer());
           //GsTL_object_item* item_in_selection = static_cast<GsTL_object_item*>(selected_index_list.at(i).internalPointer());
-					GsTLGridRegion* region_in_selection = dynamic_cast<GsTLGridRegion*>(item_in_selection);
+					Grid_region* region_in_selection = dynamic_cast<Grid_region*>(item_in_selection);
 					if(region_in_selection == 0) continue;
 					// Does it has the same grid parent
 					if(item->parent()->parent()->item_data(0) != item_in_selection->parent()->parent()->item_data(0)) continue;

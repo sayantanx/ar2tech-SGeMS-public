@@ -178,7 +178,7 @@ QVariant Region_weight_proxy_model::data(const QModelIndex &index, int role) con
 QModelIndex	Region_weight_proxy_model::mapFromSource ( const QModelIndex & sourceIndex ) const{
 
 	GsTL_object_item *item = static_cast<GsTL_object_item*>(sourceIndex.internalPointer());
-	if( dynamic_cast<GsTLGridRegion*>(item) ) {
+	if( dynamic_cast<Grid_region*>(item) ) {
     return createIndex(sourceIndex.row(),sourceIndex.column(), 0);
   }
   else if( dynamic_cast<GsTLGridWeightProperty*>(item) ) {
@@ -192,7 +192,7 @@ QModelIndex	Region_weight_proxy_model::mapFromSource ( const QModelIndex & sourc
 QModelIndex	Region_weight_proxy_model::mapToSource ( const QModelIndex & proxyIndex ) const{
   /*
 	GsTL_object_item *item = static_cast<GsTL_object_item*>(proxyIndex.internalPointer());
-	if( dynamic_cast<GsTLGridRegion*>(item) ) {
+	if( dynamic_cast<Grid_region*>(item) ) {
     return createIndex(proxyIndex.row(),sourceIndex.column(), 0);
   }
   else if( dynamic_cast<GsTLGridWeightProperty*>(item) ) {
@@ -339,7 +339,7 @@ int Grid_proxy_model_no_selection::rowCount(const QModelIndex &parent) const
 QModelIndex	Region_weight_proxy_model_no_selection::mapFromSource ( const QModelIndex & sourceIndex ) const{
 
 	GsTL_object_item *item = static_cast<GsTL_object_item*>(sourceIndex.internalPointer());
-	if( dynamic_cast<GsTLGridRegion*>(item) ) {
+	if( dynamic_cast<Grid_region*>(item) ) {
     return createIndex(sourceIndex.row()+1,sourceIndex.column(), 0);
   }
   else if( dynamic_cast<GsTLGridWeightProperty*>(item) ) {

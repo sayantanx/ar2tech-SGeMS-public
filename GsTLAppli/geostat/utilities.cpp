@@ -744,7 +744,7 @@ init_secondary_neighborhood( Cokriging_type type,
                              const std::string& max_size_tag,
                              const std::string& ellipsoid_tag,
                              const std::string& C22_tag,
-                             const GsTLGridRegion* region) {
+                             const Grid_region* region) {
 
   SmartPtr<Neighborhood> sec_neighborhood;
 
@@ -1476,7 +1476,7 @@ bool get_continuous_cdf(SmartPtr<Continuous_distribution>& cdist, const Paramete
 				return false;
 			ref_grid->select_property( ref_prop_str );
       GsTLGridProperty* ref_prop = ref_grid->property(ref_prop_str);
-			GsTLGridRegion* ref_region = ref_grid->region(ref_region_str);
+			Grid_region* ref_region = ref_grid->region(ref_region_str);
 
 			reference.reserve( ref_grid->size() );
 

@@ -226,7 +226,7 @@ class GUI_DECL GsTL_region_item : public GsTL_item
 public:
 	GsTL_region_item();
 
-	GsTL_region_item(GsTLGridRegion* prop, GsTL_item *parent = 0);
+	GsTL_region_item(Grid_region* prop, GsTL_item *parent = 0);
     virtual ~GsTL_region_item();
 
     virtual QString type()const {return "Region";}
@@ -239,11 +239,11 @@ public:
     virtual int row() const;
 
     QString gridName() const;
-    GsTLGridRegion* region();
+    Grid_region* region();
 
 
 private:
-    GsTLGridRegion* region_;
+    Grid_region* region_;
     QString gridName_;
     Geostat_grid* grid_;
 };

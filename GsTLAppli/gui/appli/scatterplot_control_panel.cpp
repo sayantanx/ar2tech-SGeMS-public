@@ -213,7 +213,7 @@ Scatterplot_control_panel::get_property( const SinglePropertySelector* prop_sele
   return prop;
 }
  
-GsTLGridRegion*
+Grid_region*
 Scatterplot_control_panel::get_region( const GridSelector* object_selector ) {
   std::string grid_name(  object_selector->selectedGrid().toStdString() );
   std::string region_name( object_selector->selectedRegion().toStdString() );
@@ -227,7 +227,7 @@ Scatterplot_control_panel::get_region( const GridSelector* object_selector ) {
 
   appli_assert( grid );
 
-  GsTLGridRegion* region = grid->region( region_name );
+  Grid_region* region = grid->region( region_name );
   appli_assert( region );
   return region;
 }

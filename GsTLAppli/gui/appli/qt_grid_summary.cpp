@@ -229,7 +229,7 @@ void Qt_cartesian_grid_summary::init( const Geostat_grid* grid ) {
 
   // Active Region
   h->addSpacing( 8 );
-  const GsTLGridRegion* region = geostat_grid_->selected_region();
+  const Grid_region* region = geostat_grid_->selected_region();
   QString region_name;
   if(region) region_name = region->name().c_str();
   else region_name = "No Region Selected";
@@ -307,7 +307,7 @@ void Qt_pointset_summary::init( const Geostat_grid* grid ) {
 
   // Active Region
   h->addSpacing( 8 );
-  const GsTLGridRegion* region = geostat_grid_->selected_region();
+  const Grid_region* region = geostat_grid_->selected_region();
   QString region_name;
   if(region) region_name = region->name().c_str();
   else region_name = "No Region Selected";

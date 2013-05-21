@@ -312,7 +312,7 @@ void Chart_continuous_histogram::initialize_default_colors(){
 void Chart_continuous_histogram::load_data(QModelIndexList indexes){
       //Check if a region has been selected for a specific grid
 
-  std::map<GsTL_object_item*,GsTLGridRegion*> grid_to_region;
+  std::map<GsTL_object_item*,Grid_region*> grid_to_region;
 
   typedef std::multimap<GsTL_object_item*,GsTLGridWeightProperty*> map_grid_to_weights;
   typedef std::multimap<GsTL_object_item*,GsTLGridWeightProperty*>::iterator map_iterator_grid_to_weights;
@@ -323,7 +323,7 @@ void Chart_continuous_histogram::load_data(QModelIndexList indexes){
   //  QModelIndex index =     indexes.at(i);
     GsTL_object_item* item = static_cast<GsTL_object_item*>(index.internalPointer());
     if(item->item_type() == "Region") {
-      GsTLGridRegion* region = static_cast<GsTLGridRegion*>(index.internalPointer());
+      Grid_region* region = static_cast<Grid_region*>(index.internalPointer());
       grid_to_region[region->parent()->parent()] = region;
     }
     else if(item->item_type() == "WeightsProperty") {
@@ -343,8 +343,8 @@ void Chart_continuous_histogram::load_data(QModelIndexList indexes){
       GsTLGridProperty* prop = static_cast<GsTLGridProperty*>(item->data_pointer());
       GsTL_object_item* parent_grid = prop->parent()->parent();
   
-      std::map<GsTL_object_item*,GsTLGridRegion*>::iterator it = grid_to_region.find(parent_grid);
-      GsTLGridRegion* region = 0;
+      std::map<GsTL_object_item*,Grid_region*>::iterator it = grid_to_region.find(parent_grid);
+      Grid_region* region = 0;
       if(it != grid_to_region.end()) region = it->second;
       model_->insert_row(prop,region, default_colors_.at(default_color_id_%max_index_default_colors_));
       default_color_id_++;
@@ -366,8 +366,8 @@ void Chart_continuous_histogram::load_data(QModelIndexList indexes){
     }
     else if(item->item_type().contains("Group:")) {
       GsTLGridPropertyGroup* group = static_cast<GsTLGridPropertyGroup*>(index.internalPointer());
-      std::map<GsTL_object_item*,GsTLGridRegion*>::iterator it = grid_to_region.find(group->parent());
-      GsTLGridRegion* region = 0;
+      std::map<GsTL_object_item*,Grid_region*>::iterator it = grid_to_region.find(group->parent());
+      Grid_region* region = 0;
       if(it != grid_to_region.end()) region = it->second;
       model_->insert_row(group,region,default_colors_.at(default_color_id_%max_index_default_colors_));
       default_color_id_++;
@@ -388,7 +388,7 @@ void Chart_continuous_histogram::add_data( GsTLGridProperty* prop, GsTLGridWeigh
   model_->insert_row(prop,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_continuous_histogram::add_data( GsTLGridProperty* prop, GsTLGridRegion* region){
+void Chart_continuous_histogram::add_data( GsTLGridProperty* prop, Grid_region* region){
   model_->insert_row(prop,region, default_colors_.at(default_color_id_%max_index_default_colors_) );
   default_color_id_++;
 }
@@ -400,7 +400,7 @@ void Chart_continuous_histogram::add_data( GsTLGridPropertyGroup* group, GsTLGri
   model_->insert_row(group,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_continuous_histogram::add_data( GsTLGridPropertyGroup* group, GsTLGridRegion* region){
+void Chart_continuous_histogram::add_data( GsTLGridPropertyGroup* group, Grid_region* region){
   model_->insert_row(group,region, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }

@@ -188,15 +188,15 @@ public:
   virtual void remove_group( const std::string& name );
 
   // Region  managment
-  virtual const GsTLGridRegion* region(const std::string& name) const;
-  virtual GsTLGridRegion* region(const std::string& name); 
-  virtual GsTLGridRegion* add_region(const std::string& name); 
+  virtual const Grid_region* region(const std::string& name) const;
+  virtual Grid_region* region(const std::string& name); 
+  virtual Grid_region* add_region(const std::string& name); 
   virtual bool remove_region(const std::string& name); 
   virtual bool select_region(const std::string& region_name); 
   //virtual bool select_region(const std::vector<std::string>& region_names);
 
-  virtual const GsTLGridRegion* selected_region() const; 
-  virtual GsTLGridRegion* selected_region();
+  virtual const Grid_region* selected_region() const; 
+  virtual Grid_region* selected_region();
   virtual void unselect_region();
   virtual std::list<std::string> region_list() const;
 
@@ -226,13 +226,13 @@ public:
 				      double ang1, double ang2, double ang3, 
 				      const Covariance<location_type>* cov=0, 
 				      bool only_harddata = false,
-              const GsTLGridRegion* region = 0,
+              const Grid_region* region = 0,
               Coordinate_mapper* coord_mapper=0); 
   virtual Neighborhood* neighborhood( const GsTLTripletTmpl<double>& dim, 
 				      const GsTLTripletTmpl<double>& angles, 
 				      const Covariance<location_type>* cov=0, 
 				      bool only_harddata = false,
-              const GsTLGridRegion* region = 0,
+              const Grid_region* region = 0,
               Coordinate_mapper* coord_mapper=0); 
   virtual Window_neighborhood* window_neighborhood( const Grid_template& templ ); 
    
@@ -461,7 +461,7 @@ inline GsTLGridProperty* RGrid::selected_property() {
  
  
 inline 
-GsTLGridRegion* RGrid::add_region(const std::string& name) { 
+Grid_region* RGrid::add_region(const std::string& name) { 
   return region_manager_.add_region(name); 
 } 
  
@@ -482,25 +482,25 @@ bool RGrid::remove_region(const std::string& name) {
 } 
  
 inline 
-GsTLGridRegion* RGrid::region(const std::string& name) { 
+Grid_region* RGrid::region(const std::string& name) { 
   return region_manager_.get_region(name);
 } 
 
 inline 
-const GsTLGridRegion* RGrid::region(const std::string& name) const { 
+const Grid_region* RGrid::region(const std::string& name) const { 
   return region_manager_.get_region(name);
 } 
 
-inline const GsTLGridRegion* RGrid::selected_region() const { 
+inline const Grid_region* RGrid::selected_region() const { 
   return region_manager_.selected_region(); 
 } 
  
-inline GsTLGridRegion* RGrid::selected_region() { 
+inline Grid_region* RGrid::selected_region() { 
   return region_manager_.selected_region(); 
 }
 
 inline bool RGrid::select_region(const std::string& region_name) {
-  GsTLGridRegion* region = region_manager_.select_region( region_name );
+  Grid_region* region = region_manager_.select_region( region_name );
   if( region == NULL && !region_name.empty() ) return false;
   Grid_property_manager::Property_name_iterator it = property_manager_.names_begin();
   for(; it != property_manager_.names_end(); ++it) {
@@ -516,7 +516,7 @@ inline void RGrid::unselect_region() {
 }
 
 inline bool RGrid::is_inside_selected_region(int node_id) const {
-  const GsTLGridRegion* region = region_manager_.selected_region();
+  const Grid_region* region = region_manager_.selected_region();
   // When no region is selected, use the full grid
   if( !region ) return true;  
   return region->is_inside_region(node_id);

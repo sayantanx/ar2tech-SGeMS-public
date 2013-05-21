@@ -54,7 +54,7 @@ public:
 
 protected :
   std::vector<const GsTLGridProperty*> props_;
-  GsTLGridRegion* region_;
+  Grid_region* region_;
   int k_centroids_;
   std::string kmeans_prop_name_;
   Geostat_grid* grid_;
@@ -102,7 +102,7 @@ protected :
   std::string infile_name_;
   std::string clustered_prop_name_;
   std::vector<const GsTLGridProperty*> props_;
-  const GsTLGridRegion region_;
+  const Grid_region region_;
 
 };
 */

@@ -78,7 +78,7 @@
 class GsTLGridProperty;
 class GsTLGridCategoricalProperty;
 class GsTLGridWeightProperty;
-class GsTLGridRegion;
+class Grid_region;
 class GsTLGridPropertyGroup;
 class MultiRealization_property; 
 class CategoricalPropertyDefinition;
@@ -265,10 +265,10 @@ class GRID_DECL Geostat_grid : public Named_interface {
 
   virtual std::list<std::string> region_list() const = 0; 
 
-  virtual const GsTLGridRegion* region(const std::string& region_name) const = 0;
-  virtual GsTLGridRegion* region(const std::string& region_name) = 0;
+  virtual const Grid_region* region(const std::string& region_name) const = 0;
+  virtual Grid_region* region(const std::string& region_name) = 0;
 
-  virtual GsTLGridRegion* add_region( const std::string& region_name ) = 0; 
+  virtual Grid_region* add_region( const std::string& region_name ) = 0; 
   virtual bool remove_region( const std::string& region_name ) = 0; 
  
   /** Selects a region. After calling this function, any operation  
@@ -279,8 +279,8 @@ class GRID_DECL Geostat_grid : public Named_interface {
   virtual bool select_region( const std::string& region_name ) = 0; 
 //  virtual bool select_region(const std::vector<std::string>& region_names) = 0;
  
-  virtual const GsTLGridRegion* selected_region() const = 0; 
-  virtual GsTLGridRegion* selected_region() = 0;
+  virtual const Grid_region* selected_region() const = 0; 
+  virtual Grid_region* selected_region() = 0;
 
   virtual void unselect_region() =0;
 
@@ -303,7 +303,7 @@ class GRID_DECL Geostat_grid : public Named_interface {
   virtual Neighborhood* neighborhood( double x, double y, double z, 
 				      double ang1, double ang2, double ang3, 
 				      const Covariance<location_type>* cov=0, 
-				      bool only_harddata = false, const GsTLGridRegion* region = 0,
+				      bool only_harddata = false, const Grid_region* region = 0,
               Coordinate_mapper* coord_mapper=0)=0 ; 
 
   /** Creates a new ellipsoid neighborhood. Triplet \a dim defines the affinity 
@@ -319,7 +319,7 @@ class GRID_DECL Geostat_grid : public Named_interface {
   virtual Neighborhood* neighborhood( const GsTLTripletTmpl<double>& dim, 
 				      const GsTLTripletTmpl<double>& angles, 
 				      const Covariance<location_type>* cov=0, 
-				      bool only_harddata = false, const GsTLGridRegion* region = 0,
+				      bool only_harddata = false, const Grid_region* region = 0,
               Coordinate_mapper* coord_mapper=0)=0; 
   virtual Neighborhood* colocated_neighborhood( const std::string& prop ); 
 

@@ -80,10 +80,10 @@ bool Create_mgrid_from_cgrid::exec(){
     return false;
   }    
  // Get the region
-  std::vector<GsTLGridRegion*> regions;
+  std::vector<Grid_region*> regions;
   std::vector<std::string>::iterator it =  region_names_.begin();
   for( ; it!= region_names_.end(); ++it) {
-    GsTLGridRegion* region = cgrid->region( *it );
+    Grid_region* region = cgrid->region( *it );
     if(!region) {
       errors_->report( "Region " + (*it) + " does not exist."  );
       return false;

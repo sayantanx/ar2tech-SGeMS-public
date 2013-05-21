@@ -91,14 +91,14 @@ Grid_region_manager::Grid_region_manager( GsTLInt size ) {
 }
 
 Grid_region_manager::~Grid_region_manager() {
-  std::vector< GsTLGridRegion* >::iterator it = regions_.begin();
+  std::vector< Grid_region* >::iterator it = regions_.begin();
   for( ; it != regions_.end() ; ++it )
     if( *it != 0 )
       delete *it;
 }
 
 
-GsTLGridRegion* 
+Grid_region* 
 Grid_region_manager::add_region( const std::string& name ) {
 
   appli_assert( size_ != 0 );
@@ -113,7 +113,7 @@ Grid_region_manager::add_region( const std::string& name ) {
 	}
     int new_prop_id = regions_.size();
     regions_map_[name] = new_prop_id;
-    GsTLGridRegion *region = new GsTLGridRegion( size_, name );
+    Grid_region *region = new Grid_region( size_, name );
     region->set_parent_item(this);
     regions_.push_back( region );
 

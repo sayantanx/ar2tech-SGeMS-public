@@ -132,14 +132,14 @@ Scatterplot_gui::Scatterplot_gui( GsTL_project* project,
 
   // Signal-slot connections
   QObject::connect( control_panel_, 
-                    SIGNAL( var1_changed(  GsTLGridProperty*, const GsTLGridRegion* ) ),
+                    SIGNAL( var1_changed(  GsTLGridProperty*, const Grid_region* ) ),
                     this,
-                    SLOT( get_var1_data_from(  GsTLGridProperty*, const GsTLGridRegion* ) ) );
+                    SLOT( get_var1_data_from(  GsTLGridProperty*, const Grid_region* ) ) );
   
   QObject::connect( control_panel_, 
-                    SIGNAL( var2_changed(  GsTLGridProperty*, const GsTLGridRegion* ) ),
+                    SIGNAL( var2_changed(  GsTLGridProperty*, const Grid_region* ) ),
                     this,
-                    SLOT( get_var2_data_from(  GsTLGridProperty*, const GsTLGridRegion* ) ) );
+                    SLOT( get_var2_data_from(  GsTLGridProperty*, const Grid_region* ) ) );
      
   QObject::connect( control_panel_, SIGNAL( var1_low_clip_changed(float) ),
                     this, SLOT( update_var1_low_clip(float) ) );
@@ -229,7 +229,7 @@ void Scatterplot_gui::reset_var2_clipping_values() {
 
 
 void Scatterplot_gui::get_var1_data_from( GsTLGridProperty* prop,
-                                         const GsTLGridRegion* region) {
+                                         const Grid_region* region) {
   if( !prop ) return;
   prop1_ = prop;
   Temporary_propRegion_Selector regionSelector;
@@ -247,7 +247,7 @@ void Scatterplot_gui::get_var1_data_from( GsTLGridProperty* prop,
 
  
 void Scatterplot_gui::get_var2_data_from( GsTLGridProperty* prop,
-                                         const GsTLGridRegion* region) {
+                                         const Grid_region* region) {
   if( !prop ) return;
   prop2_ = prop;
   //Must avoid setting the active region on the same property twice.

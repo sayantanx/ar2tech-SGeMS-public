@@ -63,7 +63,7 @@
 
 class GsTL_project;
 class GsTLGridProperty;
-class GsTLGridRegion;
+class Grid_region;
 class Scatterplot_control_panel;
 class QLabel;
 class Scatter_plot;
@@ -89,8 +89,8 @@ public slots:
 
 //  void get_var1_data_from( const GsTLGridProperty* );
 //  void get_var2_data_from( const GsTLGridProperty* );
-  void get_var1_data_from(  GsTLGridProperty*, const GsTLGridRegion* = NULL );
-  void get_var2_data_from(  GsTLGridProperty*, const GsTLGridRegion* = NULL );
+  void get_var1_data_from(  GsTLGridProperty*, const Grid_region* = NULL );
+  void get_var2_data_from(  GsTLGridProperty*, const Grid_region* = NULL );
   void draw_regression_line( bool on );
 
   virtual void set_x_axis_logscale( bool on );

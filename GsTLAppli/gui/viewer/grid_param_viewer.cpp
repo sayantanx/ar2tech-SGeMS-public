@@ -620,7 +620,7 @@ void CGrid_param_viewer::init_stats_page(){
 
 //	  // Active Region
 //	  layout->addSpacing( 8 );
-//	  const GsTLGridRegion* region = cgrid_->selected_region();
+//	  const Grid_region* region = cgrid_->selected_region();
 //	  QString region_name;
 //	  if(region) region_name = region->name().c_str();
 //	  else region_name = "No Region Selected";
@@ -720,7 +720,7 @@ void MGrid_param_viewer::init_stats_page(){
 
 	  // Active Region
 	  layout->addSpacing( 8 );
-	  const GsTLGridRegion* region = grid_->selected_region();
+	  const Grid_region* region = grid_->selected_region();
 	  QString region_name;
 	  if(region) region_name = region->name().c_str();
 	  else region_name = "No Region Selected";
@@ -829,7 +829,7 @@ void PSet_param_viewer::init_stats_page()
   /*
   // Active Region
   layout->addSpacing( 8 );
-  const GsTLGridRegion* region = grid_->selected_region();
+  const Grid_region* region = grid_->selected_region();
   QString region_name;
   if(region) region_name = region->name().c_str();
   else region_name = "No Region Selected";
@@ -982,7 +982,7 @@ void Log_grid_param_viewer::init_stats_page()
   /*
   // Active Region
   layout->addSpacing( 8 );
-  const GsTLGridRegion* region = grid_->selected_region();
+  const Grid_region* region = grid_->selected_region();
   QString region_name;
   if(region) region_name = region->name().c_str();
   else region_name = "No Region Selected";

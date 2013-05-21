@@ -60,7 +60,7 @@
 
 class Geostat_grid; 
 class GsTLGridProperty;
-class GsTLGridRegion;
+class Grid_region;
 class Colormap; 
 class QString;
 
@@ -114,7 +114,7 @@ class GUI_DECL GsTL_vtkProp : public Named_interface {
   virtual GsTLGridProperty* current_property() const { return current_property_; }
  
   virtual void set_region(const std::string& property_name )=0;
-  virtual GsTLGridRegion* current_region() const { return current_region_; }
+  virtual Grid_region* current_region() const { return current_region_; }
 
   void set_cell_representation(const QString& type );
   void show_edges(bool );
@@ -200,7 +200,7 @@ class GUI_DECL GsTL_vtkProp : public Named_interface {
 
   Geostat_grid* geostat_grid_;
   GsTLGridProperty* current_property_;
-  GsTLGridRegion* current_region_;
+  Grid_region* current_region_;
   std::string current_property_name_;
   std::string current_region_name_;
 

@@ -596,7 +596,7 @@ static PyObject* sgems_get_region( PyObject *self, PyObject *args)
     return Py_None;
   }
 
-  GsTLGridRegion* region = grid->region( region_name );
+  Grid_region* region = grid->region( region_name );
 
   if( !region ) {
     *GsTLAppli_Python_cerr::instance() << "Grid \"" << object
@@ -650,7 +650,7 @@ static PyObject* sgems_set_region( PyObject *self, PyObject *args)
 
 
 // First must check if the region exist
-  GsTLGridRegion* region = grid->region( region_name );
+  Grid_region* region = grid->region( region_name );
   if( !region ) {
     region = grid->add_region( region_name );
   }

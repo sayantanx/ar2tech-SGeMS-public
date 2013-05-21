@@ -297,8 +297,8 @@ void Chart_scatter_plot::load_data(GsTL_object_item* item_x, std::vector<GsTL_ob
           ++default_color_id_;
           GsTLlog<<"Finisehed inserting rows for property "+prop_y->name()+"\n";
         }
-        else if( (*it)->item_type() == "GsTLGridRegion" ) {
-          model_->insert_row(prop_x,prop_y,dynamic_cast<GsTLGridRegion*>(*it), 
+        else if( (*it)->item_type() == "Grid_region" ) {
+          model_->insert_row(prop_x,prop_y,dynamic_cast<Grid_region*>(*it), 
                              default_colors_.at(default_color_id_%max_index_default_colors_) );
           ++default_color_id_;
           GsTLlog<<"Finisehed inserting rows (with region) for property "+prop_y->name()+"\n";
@@ -321,8 +321,8 @@ void Chart_scatter_plot::load_data(GsTL_object_item* item_x, std::vector<GsTL_ob
                              default_colors_.at(default_color_id_%max_index_default_colors_) );
           ++default_color_id_;
         }
-        else if( (*it)->item_type() == "GsTLGridRegion" ) {
-          model_->insert_row(prop_x,group_y,dynamic_cast<GsTLGridRegion*>(*it), 
+        else if( (*it)->item_type() == "Grid_region" ) {
+          model_->insert_row(prop_x,group_y,dynamic_cast<Grid_region*>(*it), 
                              default_colors_.at(default_color_id_%max_index_default_colors_) );
           ++default_color_id_;
         }
@@ -362,7 +362,7 @@ void Chart_scatter_plot::load_data(QModelIndex index_x, QModelIndexList indexes_
     GsTL_object_item* item_filter = static_cast<GsTL_object_item*>(index.internalPointer());
     if( item_filter ==0 ) continue;
     QString item_type = item_filter->item_type();
-    if( item_type == "CategoricalProperty"  || item_type == "GsTLGridRegion"  ) {
+    if( item_type == "CategoricalProperty"  || item_type == "Grid_region"  ) {
       filter_items.push_back( item_filter );
     }
 
@@ -380,7 +380,7 @@ void Chart_scatter_plot::add_data( GsTLGridProperty* prop, GsTLGridWeightPropert
   model_->insert_row(prop,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_scatter_plot::add_data( GsTLGridProperty* prop, GsTLGridRegion* region){
+void Chart_scatter_plot::add_data( GsTLGridProperty* prop, Grid_region* region){
   model_->insert_row(prop,region, default_colors_.at(default_color_id_%max_index_default_colors_) );
   default_color_id_++;
 }
@@ -392,7 +392,7 @@ void Chart_scatter_plot::add_data( GsTLGridPropertyGroup* group, GsTLGridWeightP
   model_->insert_row(group,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_scatter_plot::add_data( GsTLGridPropertyGroup* group, GsTLGridRegion* region){
+void Chart_scatter_plot::add_data( GsTLGridPropertyGroup* group, Grid_region* region){
   model_->insert_row(group,region, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }

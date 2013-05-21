@@ -1178,7 +1178,7 @@ init( std::string& parameters, GsTL_project* proj,
     return false;
   }
 
-  GsTLGridRegion* region = grid->add_region(params[1]);
+  Grid_region* region = grid->add_region(params[1]);
   if( !region ) {
     std::ostringstream message;
     message << "Grid \"" << params[0] << "\" has already a region called \"" << params[1] << "\"";
@@ -1276,7 +1276,7 @@ init( std::string& parameters, GsTL_project* proj,
   }
   std::sort(in_region_code.begin(), in_region_code.end());
 
-  GsTLGridRegion* region = grid->add_region(params[1]);
+  Grid_region* region = grid->add_region(params[1]);
   if( !region ) {
     std::ostringstream message;
     message << "Grid \"" << params[0] << "\" has already a region called \"" << params[1] << "\"";
@@ -1341,7 +1341,7 @@ bool Merge_regions::init( std::string& parameters, GsTL_project* proj,
   }
 
   for( unsigned int i = 2 ; i < params.size() ; i++ ) {
-    GsTLGridRegion* region = grid->region( params[i] );
+    Grid_region* region = grid->region( params[i] );
     if(region == NULL ) {
       std::ostringstream message;
       message << "No region called \"" << params[i] << "\" was found";
@@ -1441,7 +1441,7 @@ bool Set_region_complement::init( std::string& parameters, GsTL_project* proj,
     return false;
   }
 
-  GsTLGridRegion* region = grid->region( params[1] );
+  Grid_region* region = grid->region( params[1] );
   if(region == NULL ) {
     std::ostringstream message;
     message << "No region called \"" << params[1] << "\" was found";
@@ -1449,7 +1449,7 @@ bool Set_region_complement::init( std::string& parameters, GsTL_project* proj,
     return false;
   }
 
-  GsTLGridRegion* new_region;
+  Grid_region* new_region;
   if(params.size() == 2) new_region = region;
   else  new_region = grid->add_region(params[2]);
 
@@ -1545,7 +1545,7 @@ bool Clear_property_inside_region::init( std::string& parameters, GsTL_project* 
     errors->report( message.str() ); 
     return false;
   }
-  GsTLGridRegion* mask = grid->region(params[1]);
+  Grid_region* mask = grid->region(params[1]);
   if(!mask){
     std::ostringstream message;
     message << "No region called \"" << params[1] << "\" was found";
@@ -1595,7 +1595,7 @@ bool Clear_property_outside_region::init( std::string& parameters, GsTL_project*
     errors->report( message.str() ); 
     return false;
   }
-  GsTLGridRegion* mask = grid->region(params[1]);
+  Grid_region* mask = grid->region(params[1]);
   if(!mask){
     std::ostringstream message;
     message << "No region called \"" << params[1] << "\" was found";

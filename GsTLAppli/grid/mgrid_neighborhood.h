@@ -68,7 +68,7 @@ public:
 		double x_angle, double y_angle, double z_angle, 
 		int max_neighbors = 20, 
 		const Covariance<GsTLPoint>* cov = 0,
-    const GsTLGridRegion* region=0); 
+    const Grid_region* region=0); 
 	~MgridNeighborhood() {}
 	 virtual void find_neighbors( const Geovalue& center ); 
 protected:
@@ -99,7 +99,7 @@ public:
 		double x_angle, double y_angle, double z_angle, 
 		int max_neighbors = 20, 
 		const Covariance<GsTLPoint>* cov = 0,
-    const GsTLGridRegion* region=0); 
+    const Grid_region* region=0); 
 	~MgridNeighborhood_hd() {}
 	virtual void find_neighbors( const Geovalue& center ); 
 protected:

@@ -66,12 +66,12 @@
 
 
 
-/** A GsTLGridRegion contains 3 types of information: 
+/** A Grid_region contains 3 types of information: 
  *    \li one flag to indicate if the node contains a data value 
  *    \li a data value 
  *    \li one flag to indicate if the data value is a "hard data" 
  */ 
-class GRID_DECL GsTLGridRegion : public GsTL_object_item{
+class GRID_DECL Grid_region : public GsTL_object_item{
  
  public: 
   typedef bool region_type; 
@@ -81,11 +81,11 @@ class GRID_DECL GsTLGridRegion : public GsTL_object_item{
   typedef std::vector<region_type>::const_iterator const_iterator;
  
  public: 
-  GsTLGridRegion( GsTLInt size, std::string name, 
+  Grid_region( GsTLInt size, std::string name, 
     region_type default_value = false ):name_(name) {
       accessor_.assign(size,default_value);
   }
-  ~GsTLGridRegion(){}; 
+  ~Grid_region(){}; 
      
 // Direct acces to the region
   inline std::vector<region_type>& data();
@@ -149,31 +149,31 @@ class GRID_DECL GsTLGridRegion : public GsTL_object_item{
 
    
  private: 
-  GsTLGridRegion( const GsTLGridRegion& rhs ); 
-  GsTLGridRegion& operator = ( const GsTLGridRegion& rhs ); 
+  Grid_region( const Grid_region& rhs ); 
+  Grid_region& operator = ( const Grid_region& rhs ); 
 
  
 }; 
  
-inline bool GsTLGridRegion::is_inside_region( GsTLInt i ) const {
+inline bool Grid_region::is_inside_region( GsTLInt i ) const {
   if( i<0 || i >= accessor_.size() ) return false;
   return accessor_[i];
 } 
 
 /** Changes the value of the ith element to \a val.
 */
-inline void GsTLGridRegion::set_region_value( region_type val, GsTLInt id ){
+inline void Grid_region::set_region_value( region_type val, GsTLInt id ){
   appli_assert(id>=0 && id<accessor_.size());
   accessor_[id] = val;
 }
 
 inline 
-std::vector<GsTLGridRegion::region_type>& GsTLGridRegion::data() {
+std::vector<Grid_region::region_type>& Grid_region::data() {
   return accessor_;
 } 
 
 inline 
-const std::vector<GsTLGridRegion::region_type>& GsTLGridRegion::data() const{
+const std::vector<Grid_region::region_type>& Grid_region::data() const{
   return accessor_;
 } 
 

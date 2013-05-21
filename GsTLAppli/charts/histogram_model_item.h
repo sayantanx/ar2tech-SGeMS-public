@@ -65,9 +65,9 @@ public :
   Geostat_grid* grid() const {return grid_;}
 
   virtual GsTLGridWeightProperty* weights() {return 0;}
-  virtual GsTLGridRegion* region() {return 0;}
+  virtual Grid_region* region() {return 0;}
   virtual void weights(GsTLGridWeightProperty* weights) {}
-  virtual void region(GsTLGridRegion* region) {}
+  virtual void region(Grid_region* region) {}
   virtual void weights(QString weights_name) {}
   virtual void region(QString region_name) {}
 
@@ -132,9 +132,9 @@ public :
   virtual GsTL_object_item* object_item() {return prop_;}
 
   virtual GsTLGridWeightProperty* weights() {return weights_;}
-  virtual GsTLGridRegion* region() {return region_;}
+  virtual Grid_region* region() {return region_;}
   virtual void weights(GsTLGridWeightProperty* weights) {weights_ = weights;}
-  virtual void region(GsTLGridRegion* region) {region_ = region;}
+  virtual void region(Grid_region* region) {region_ = region;}
   virtual void weights(QString weights_name) {weights_ = grid_->weight_property(weights_name.toStdString());}
   virtual void region(QString region_name) {region_ = grid_->region(region_name.toStdString());}
 
@@ -155,7 +155,7 @@ private :
   
   Histogram_item* parent_;
   GsTLGridProperty* prop_;
-  GsTLGridRegion* region_;
+  Grid_region* region_;
   GsTLGridWeightProperty* weights_;
 
 
@@ -172,9 +172,9 @@ public :
   virtual GsTL_object_item* object_item() {return group_;}
 
   virtual GsTLGridWeightProperty* weights(){return weights_;}
-  virtual GsTLGridRegion* region(){return region_;}
+  virtual Grid_region* region(){return region_;}
   virtual void weights(GsTLGridWeightProperty* weights);
-  virtual void region(GsTLGridRegion* region);
+  virtual void region(Grid_region* region);
   virtual void weights(QString weights_name);
   virtual void region(QString region_name) ;
 
@@ -203,7 +203,7 @@ public :
 private :
 
   GsTLGridPropertyGroup* group_;
-  GsTLGridRegion* region_;
+  Grid_region* region_;
   GsTLGridWeightProperty* weights_;
 
   std::set< Histogram_property_item*> prop_items_;
@@ -225,9 +225,9 @@ public :
   virtual GsTL_object_item* object_item() {return dist_;}
 
   virtual GsTLGridWeightProperty* weights() {return 0;}
-  virtual GsTLGridRegion* region() {return 0;}
+  virtual Grid_region* region() {return 0;}
   virtual void weights(GsTLGridWeightProperty* weights) {}
-  virtual void region(GsTLGridRegion* region) {}
+  virtual void region(Grid_region* region) {}
   virtual void weights(QString weights_name) {}
   virtual void region(QString region_name) {}
 

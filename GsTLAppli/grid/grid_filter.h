@@ -190,12 +190,12 @@ public:
   Grid_filter_region() : region_(0){
     item_type_ = "Region";
   }
-  Grid_filter_region(const GsTLGridRegion* region) : region_(region){
+  Grid_filter_region(const Grid_region* region) : region_(region){
     item_type_ = "Region";
   }
   virtual ~Grid_filter_region(void){}
 
-  void set_region(const GsTLGridRegion* region){region_ = region;}
+  void set_region(const Grid_region* region){region_ = region;}
 
   virtual Grid_filter* clone() const {
     return new Grid_filter_region(this->region_);
@@ -207,7 +207,7 @@ public:
 
 
 private :
-  const GsTLGridRegion* region_;
+  const Grid_region* region_;
 };
 
 

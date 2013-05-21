@@ -49,10 +49,10 @@ public:
 //	static Named_interface* create_new_interface(std::string&);
 
 	Region_param_viewer();
-	Region_param_viewer(GsTLGridRegion* region, GsTL_vtkProp* vtk_prop);
+	Region_param_viewer(Grid_region* region, GsTL_vtkProp* vtk_prop);
 	virtual ~Region_param_viewer();
 
-	void initialize(GsTLGridRegion* region, GsTL_vtkProp* vtk_prop);
+	void initialize(Grid_region* region, GsTL_vtkProp* vtk_prop);
 
 // Project View interface
 	virtual void update(std::string obj);
@@ -61,7 +61,7 @@ public:
 
 protected :
 	const Geostat_grid* grid_;
-	GsTLGridRegion* region_;
+	Grid_region* region_;
 	GsTL_vtkProp* vtk_prop_;
 };
 
@@ -76,16 +76,16 @@ public :
 
 	Region_viz_parameters();
 	~Region_viz_parameters();
-	void initialize( GsTLGridRegion* region, GsTL_vtkProp* vtk_prop);
+	void initialize( Grid_region* region, GsTL_vtkProp* vtk_prop);
 
-	GsTLGridRegion* region();
+	Grid_region* region();
 
 	virtual void display();
 	virtual void undisplay();
 	virtual QWidget* interface();
 
 protected :
-	GsTLGridRegion* region_;
+	Grid_region* region_;
 	Region_param_viewer* viewer_;
 };
 

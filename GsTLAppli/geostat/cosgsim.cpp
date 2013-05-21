@@ -462,7 +462,7 @@ bool Cosgsim::initialize( const Parameters_handler* parameters,
     simul_neigh->max_size( max_neigh_1 );
 
     std::string prim_harddata_region_name = parameters->value( "Primary_Harddata_Grid.region" );
-    GsTLGridRegion* prim_hd_region = prim_harddata_grid_->region(prim_harddata_region_name);
+    Grid_region* prim_hd_region = prim_harddata_grid_->region(prim_harddata_region_name);
 
     Neighborhood* harddata_neigh;
     if( dynamic_cast<Point_set*>(prim_harddata_grid_) ) {
@@ -511,7 +511,7 @@ bool Cosgsim::initialize( const Parameters_handler* parameters,
   if( !covar_ ) return false;
 
   std::string sec_harddata_region_name = parameters->value( "Secondary_Harddata_Grid.region" );
-  GsTLGridRegion* sec_hd_region = sec_harddata_grid_->region(sec_harddata_region_name);
+  Grid_region* sec_hd_region = sec_harddata_grid_->region(sec_harddata_region_name);
 
   NeighborhoodHandle sec_neighborhood = 
     geostat_utils::init_secondary_neighborhood( cok_type, sec_harddata_grid_, 

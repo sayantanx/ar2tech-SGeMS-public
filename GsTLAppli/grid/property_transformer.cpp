@@ -31,7 +31,7 @@ Named_interface* PCA_transformer::create_new_interface( std::string& name){
   return new PCA_transformer;
 }
 /*
-PCA_transformer( std::vector<const GsTLGridProperty*> props, const GsTLGridRegion* region, bool use_covariance)
+PCA_transformer( std::vector<const GsTLGridProperty*> props, const Grid_region* region, bool use_covariance)
 {
   this->initialize(props,region,use_covariance);
 }
@@ -39,7 +39,7 @@ PCA_transformer( std::vector<const GsTLGridProperty*> props, const GsTLGridRegio
 
 
 bool PCA_transformer::initialize( std::vector<const GsTLGridProperty*> props, 
-                                const GsTLGridRegion* region, bool use_covariance)
+                                const Grid_region* region, bool use_covariance)
 {
   int prop_size = props[0]->size();
   int n_prop = props.size();
@@ -100,7 +100,7 @@ bool PCA_transformer::initialize( std::vector<const GsTLGridProperty*> props,
    */ 
 std::vector<GsTLGridProperty*> 
   PCA_transformer::forward_transform(Geostat_grid* grid, 
-   std::vector<const GsTLGridProperty*> props, const GsTLGridRegion* region)
+   std::vector<const GsTLGridProperty*> props, const Grid_region* region)
 {
   // Create new property
   std::vector<GsTLGridProperty*> pc_props;
@@ -145,7 +145,7 @@ std::vector<GsTLGridProperty*>
    */
 std::vector<GsTLGridProperty*> 
   PCA_transformer::back_transform(Geostat_grid* grid, 
-   std::vector<const GsTLGridProperty*> pc_props, const GsTLGridRegion* region )
+   std::vector<const GsTLGridProperty*> pc_props, const Grid_region* region )
 {
 
   // Create new property

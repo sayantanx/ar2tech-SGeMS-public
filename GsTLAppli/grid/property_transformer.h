@@ -69,11 +69,11 @@ class GRID_DECL Multi_property_transformer : public Named_interface {
  
   /** Take the vector of property and return a vector of transformed property 
    */ 
-  virtual std::vector<GsTLGridProperty*> forward_transform(Geostat_grid* grid,  std::vector<const GsTLGridProperty*>, const GsTLGridRegion* region = 0 ) = 0;
+  virtual std::vector<GsTLGridProperty*> forward_transform(Geostat_grid* grid,  std::vector<const GsTLGridProperty*>, const Grid_region* region = 0 ) = 0;
   
   /** Take a vector 
    */
-  virtual std::vector<GsTLGridProperty*> back_transform(Geostat_grid* grid,  std::vector<const GsTLGridProperty*>, const GsTLGridRegion* region = 0 ) = 0;
+  virtual std::vector<GsTLGridProperty*> back_transform(Geostat_grid* grid,  std::vector<const GsTLGridProperty*>, const Grid_region* region = 0 ) = 0;
 
 protected:
   int nvariate_;
@@ -87,7 +87,7 @@ public:
   static Named_interface* create_new_interface( std::string& name);
  
  
-//  PCA_transformer( std::vector<const GsTLGridProperty*> props, const GsTLGridRegion* region = 0, bool use_covariance=true);
+//  PCA_transformer( std::vector<const GsTLGridProperty*> props, const Grid_region* region = 0, bool use_covariance=true);
   PCA_transformer() {
     variate_names_.clear();
   } 
@@ -97,7 +97,7 @@ public:
   virtual std::string classname() const { return "PCA_transformer"; }
 
   bool initialize( std::vector<const GsTLGridProperty*> props, 
-                   const GsTLGridRegion* region = 0, bool use_covariance=true);
+                   const Grid_region* region = 0, bool use_covariance=true);
   virtual bool initialize(QDomElement elem);
   virtual QDomElement serialize() const; 
 
@@ -107,12 +107,12 @@ public:
   /** Take the vector of property and return a vector of transformed property 
    */ 
   virtual std::vector<GsTLGridProperty*> forward_transform(Geostat_grid* grid, 
-              std::vector<const GsTLGridProperty*>, const GsTLGridRegion* region = 0 );
+              std::vector<const GsTLGridProperty*>, const Grid_region* region = 0 );
   
   /** Take a vector 
    */
   virtual std::vector<GsTLGridProperty*> back_transform(Geostat_grid* grid,     
-              std::vector<const GsTLGridProperty*>, const GsTLGridRegion* region = 0 );
+              std::vector<const GsTLGridProperty*>, const Grid_region* region = 0 );
 
 private:
   std::vector<std::string> variate_names_;

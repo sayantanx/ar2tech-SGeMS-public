@@ -688,7 +688,7 @@ Visualization_parameters* Vtk_view::get_viz_parameters( GsTL_object_item* item)
 		viz_params_.insert(std::make_pair(static_cast<void*>(group),viz_param));
 		return viz_param;
 	}
-	GsTLGridRegion* region = dynamic_cast<GsTLGridRegion*>(item);
+	Grid_region* region = dynamic_cast<Grid_region*>(item);
 	if(region) {
 		grid = dynamic_cast< Geostat_grid*>(region->parent()->parent());
 		GsTL_vtkProp* vtk_prop = this->get_vtk_prop( grid );

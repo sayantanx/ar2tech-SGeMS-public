@@ -71,7 +71,7 @@ Modified from grid_property_manager.h and .cpp
  
 
  
-//class GsTLGridRegion; 
+//class Grid_region; 
 
  
  
@@ -86,7 +86,7 @@ Modified from grid_property_manager.h and .cpp
 class GRID_DECL Grid_region_manager : public GsTL_object_item {
  public: 
   
-//   typedef std::vector<bool> GsTLGridRegion;
+//   typedef std::vector<bool> Grid_region;
 
   Grid_region_manager( GsTLInt size = 0 ); 
   void set_region_size( GsTLInt size ) { size_ = size; } 
@@ -97,7 +97,7 @@ class GRID_DECL Grid_region_manager : public GsTL_object_item {
    * failed (most probably  because a region with the same name already  
    * existed ).  
    */ 
-  GsTLGridRegion* add_region( const std::string& name ); 
+  Grid_region* add_region( const std::string& name ); 
 
 
   /** Removes a region, but does not change the properties' id: 
@@ -110,21 +110,21 @@ class GRID_DECL Grid_region_manager : public GsTL_object_item {
   /** Retrieve a region 
    * @return 0 if the region can not be retrived 
    */ 
-  inline GsTLGridRegion* get_region( const std::string& name ); 
-  inline const GsTLGridRegion* get_region( const std::string& name ) const; 
+  inline Grid_region* get_region( const std::string& name ); 
+  inline const Grid_region* get_region( const std::string& name ) const; 
   /** Retrieve a region. Overloaded to enable faster access. 
    * @return 0 if the region can not be retrived 
    */ 
-  inline GsTLGridRegion* get_region( int prop_id ); 
-  inline const GsTLGridRegion* get_region( int prop_id ) const; 
+  inline Grid_region* get_region( int prop_id ); 
+  inline const Grid_region* get_region( int prop_id ) const; 
  
   /** Selects a region. That region becomes the default region 
    * @return 0 if the region can not be retrived 
    */ 
-  inline GsTLGridRegion* select_region( const std::string& name ); 
-  inline GsTLGridRegion* select_region( int prop_id ); 
-  inline GsTLGridRegion* selected_region(); 
-  inline const GsTLGridRegion* selected_region() const; 
+  inline Grid_region* select_region( const std::string& name ); 
+  inline Grid_region* select_region( int prop_id ); 
+  inline Grid_region* selected_region(); 
+  inline const Grid_region* selected_region() const; 
 
   /** Unselects a region. 
    */ 
@@ -153,7 +153,7 @@ protected:
  
   GsTLInt size_; 
   std::map< std::string, int > regions_map_; 
-  std::vector< GsTLGridRegion* > regions_; 
+  std::vector< Grid_region* > regions_; 
   int selected_region_; 
   std::vector< int > selected_regions_;
  
@@ -190,7 +190,7 @@ private:
 //   Definition of inline functions 
  
  
-inline GsTLGridRegion*  
+inline Grid_region*  
 Grid_region_manager::get_region( const std::string& name ) { 
   Region_map::iterator it = regions_map_.find(name); 
   if( it != regions_map_.end() )  
@@ -199,7 +199,7 @@ Grid_region_manager::get_region( const std::string& name ) {
     return 0; 
 } 
  
-inline const GsTLGridRegion*  
+inline const Grid_region*  
 Grid_region_manager::get_region( const std::string& name ) const { 
   if( name.empty() ) return 0; 
  
@@ -210,19 +210,19 @@ Grid_region_manager::get_region( const std::string& name ) const {
     return 0; 
 } 
  
-inline GsTLGridRegion*  
+inline Grid_region*  
 Grid_region_manager::get_region( int prop_id ) { 
   appli_assert( prop_id < (int) regions_.size() ); 
   return regions_[prop_id]; 
 } 
  
-inline const GsTLGridRegion*  
+inline const Grid_region*  
 Grid_region_manager::get_region( int prop_id ) const { 
   appli_assert( prop_id < (int) regions_.size() ); 
   return regions_[prop_id]; 
 } 
  
-inline GsTLGridRegion*  
+inline Grid_region*  
 Grid_region_manager::select_region( const std::string& name ) { 
   if( name.empty() ) {
     unselect_region();
@@ -237,7 +237,7 @@ Grid_region_manager::select_region( const std::string& name ) {
     return 0; 
 } 
  
-inline GsTLGridRegion*  
+inline Grid_region*  
 Grid_region_manager::select_region( int prop_id ) { 
   appli_assert( prop_id < (int) regions_.size() ); 
   selected_region_ = prop_id; 
@@ -248,7 +248,7 @@ inline void Grid_region_manager::unselect_region() {
   selected_region_ = -1;
 }
 
-inline GsTLGridRegion*  
+inline Grid_region*  
 Grid_region_manager::selected_region() { 
   if( selected_region_ >=0 ) 
     return regions_[ selected_region_ ] ; 
@@ -256,7 +256,7 @@ Grid_region_manager::selected_region() {
     return 0; 
 } 
  
-inline const GsTLGridRegion*  
+inline const Grid_region*  
 Grid_region_manager::selected_region() const { 
   if( selected_region_ >=0 ) 
     return regions_[ selected_region_ ] ; 

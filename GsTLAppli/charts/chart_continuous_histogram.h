@@ -73,15 +73,15 @@ public slots :
   void add_data(Histogram_item* prop_item);
   void update_data_display(Histogram_item* item);
 
-//  void add_data( GsTLGridProperty* prop, GsTLGridRegion* region=0, GsTLGridProperty* weigths=0);
+//  void add_data( GsTLGridProperty* prop, Grid_region* region=0, GsTLGridProperty* weigths=0);
 
   //Add the data to the model first which then send it to the chart
   void add_data( GsTLGridProperty* prop);
   void add_data( GsTLGridProperty* prop, GsTLGridWeightProperty* weigths);
-  void add_data( GsTLGridProperty* prop, GsTLGridRegion* region);
+  void add_data( GsTLGridProperty* prop, Grid_region* region);
   void add_data( GsTLGridPropertyGroup* group);
   void add_data( GsTLGridPropertyGroup* group, GsTLGridWeightProperty* weigths);
-  void add_data( GsTLGridPropertyGroup* group, GsTLGridRegion* region);
+  void add_data( GsTLGridPropertyGroup* group, Grid_region* region);
   void add_data( Continuous_distribution* dist);
   void remove_data( int id);
 
@@ -144,7 +144,7 @@ private:
     std::string name;
     GsTLGridProperty* prop;
     GsTLGridWeightProperty* weight;
-    GsTLGridRegion* region;
+    Grid_region* region;
     Continuous_distribution* dist;
     Geostat_grid* grid;
     float mean;

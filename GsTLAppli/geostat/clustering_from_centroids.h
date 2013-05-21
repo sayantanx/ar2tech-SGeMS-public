@@ -76,7 +76,7 @@ protected :
   std::string infile_name_;
   std::string clusters_prop_name_;
   std::vector<const GsTLGridProperty*> props_;
-  const GsTLGridRegion* region_;
+  const Grid_region* region_;
   Geostat_grid* grid_;
   std::vector<std::vector<float> > centroids_;
 

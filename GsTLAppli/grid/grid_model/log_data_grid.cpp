@@ -481,13 +481,13 @@ const Log_data& Log_data_grid::get_log_data(int id) const{
 }
 
 
-int Log_data_grid::number_of_segment_inside_region(std::string name_id, const GsTLGridRegion* region) const{
+int Log_data_grid::number_of_segment_inside_region(std::string name_id, const Grid_region* region) const{
 	int id = this->get_log_id(name_id);
 	if(id < 0 ) return -1;
 	return this->number_of_segment_inside_region(id, region);
 }
 
-int Log_data_grid::number_of_segment_inside_region(int id, const GsTLGridRegion* region) const{
+int Log_data_grid::number_of_segment_inside_region(int id, const Grid_region* region) const{
 	const Log_data* ldata = log_manager_->get_log_data(id);
 	if(region==0) region = this->selected_region();
 	if( region == 0 ) return ldata->number_of_segments();

@@ -74,7 +74,7 @@ bool New_pca_transformer::init( std::string& parameters, GsTL_project* proj,
     return false;
   }
 
-  GsTLGridRegion* region = 0;
+  Grid_region* region = 0;
   if( !params[2].empty() )  {
     region = grid->region(params[2]);
   }
@@ -155,7 +155,7 @@ bool Multivariate_forward_transform::init( std::string& parameters, GsTL_project
     return false;
   }
 
-  GsTLGridRegion* region = 0;
+  Grid_region* region = 0;
   if( !params[2].empty() )  {
     region = grid->region(params[2]);
   }
@@ -226,7 +226,7 @@ bool Multivariate_back_transform::init( std::string& parameters, GsTL_project* p
     return false;
   }
 
-  GsTLGridRegion* region = 0;
+  Grid_region* region = 0;
   if( !params[2].empty() )  {
     region = grid->region(params[2]);
   }

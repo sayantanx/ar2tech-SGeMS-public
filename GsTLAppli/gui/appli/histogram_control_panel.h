@@ -64,7 +64,7 @@
 
 class GsTL_project;
 class GsTLGridProperty;
-class GsTLGridRegion;
+class Grid_region;
 class GridSelector;
 class PropertySelector;
  
@@ -100,7 +100,7 @@ signals:
   // TL modified
   void comboChanged(const QString &);
 
-  void var_changed(  GsTLGridProperty*,  const GsTLGridRegion* );
+  void var_changed(  GsTLGridProperty*,  const Grid_region* );
 //  void reg_changed( const GsTLGridProperty* );
 
   void low_clip_changed( float );
@@ -117,7 +117,7 @@ protected:
 
 protected:
   GsTLGridProperty* get_property( const PropertySelector* );
-  GsTLGridRegion* get_region( const PropertySelector* );
+  Grid_region* get_region( const PropertySelector* );
 
 };
 

@@ -117,7 +117,7 @@ Point_set_neighborhood::Point_set_neighborhood( double x,double y,double z,
 						Point_set* pset,
 						GsTLGridProperty* property,
 						const Covariance<location_type>* cov, bool only_harddata,
-            const GsTLGridRegion* region,
+            const Grid_region* region,
             Coordinate_mapper* coord_mapper)
   : pset_( pset ),
     property_( property ),

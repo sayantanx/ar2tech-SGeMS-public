@@ -274,7 +274,7 @@ Rgrid_ellips_neighborhood( RGrid* grid,
 			   double x_angle, double y_angle, double z_angle,
 			   int max_neighbors, 
 			   const Covariance<GsTLPoint>* cov,
-         const GsTLGridRegion* region) 
+         const Grid_region* region) 
   : Neighborhood(),
     grid_( grid ),
     property_( property ),
@@ -485,7 +485,7 @@ Rgrid_ellips_neighborhood_hd( RGrid* grid,
 			      double x_angle, double y_angle, double z_angle,
 			      int max_neighbors,
 			      const Covariance<GsTLPoint>* cov,
-            const GsTLGridRegion* region) 
+            const Grid_region* region) 
   : Rgrid_ellips_neighborhood( grid, property,
 			       max_radius, mid_radius, min_radius,
 			       x_angle, y_angle, z_angle,

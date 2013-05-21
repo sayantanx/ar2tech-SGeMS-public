@@ -509,11 +509,11 @@ bool Sgems_folder_input_filter::read_properties(QDir dir,const QDomElement& root
 }
 
 bool Sgems_folder_input_filter::read_regions(QDir dir,const QDomElement& root, Geostat_grid* grid, std::string* errors){
-	QDomElement elem = root.firstChildElement("GsTLGridRegion");
+	QDomElement elem = root.firstChildElement("Grid_region");
 
-	for(; !elem.isNull(); elem = elem.nextSiblingElement("GsTLGridRegion") ) {
+	for(; !elem.isNull(); elem = elem.nextSiblingElement("Grid_region") ) {
 		std::string region_name = elem.attribute("name").toStdString();
-		GsTLGridRegion*	region = grid->add_region( region_name );
+		Grid_region*	region = grid->add_region( region_name );
 //		std::fstream stream;
 		QString filepath =  dir.absoluteFilePath(elem.attribute("filepath"));
 
@@ -1121,8 +1121,8 @@ Sgems_folder_output_filter::write_regions(QDir dir, QDomDocument& doc,const Geos
 
 	//Write each region
 	for(; it!=rlist.end(); ++it) {
-		QDomElement elemRegion = doc.createElement("GsTLGridRegion");
-		const GsTLGridRegion* region = grid->region(*it);
+		QDomElement elemRegion = doc.createElement("Grid_region");
+		const Grid_region* region = grid->region(*it);
 		elemRegion.setAttribute("name",region->name().c_str());
 
 
@@ -1143,7 +1143,7 @@ Sgems_folder_output_filter::write_regions(QDir dir, QDomDocument& doc,const Geos
 			stream.setFloatingPointPrecision(QDataStream::SinglePrecision);
 		#endif
 
-    for(GsTLGridRegion::const_iterator it=region->begin(); it!=region->end(); ++it)  {
+    for(Grid_region::const_iterator it=region->begin(); it!=region->end(); ++it)  {
     	bool flag = *it;
     	stream << *it;
 		}

@@ -71,16 +71,16 @@ public slots :
   void add_data(Scatter_plot_item* prop_item);
   void update_data_display(Scatter_plot_item* item);
 
-//  void add_data( GsTLGridProperty* prop, GsTLGridRegion* region=0, GsTLGridProperty* weigths=0);
+//  void add_data( GsTLGridProperty* prop, Grid_region* region=0, GsTLGridProperty* weigths=0);
 
   //Add the data to the model first which then send it to the chart
   /*
   void add_data( GsTLGridProperty* prop);
   void add_data( GsTLGridProperty* prop, GsTLGridWeightProperty* weigths);
-  void add_data( GsTLGridProperty* prop, GsTLGridRegion* region);
+  void add_data( GsTLGridProperty* prop, Grid_region* region);
   void add_data( GsTLGridPropertyGroup* group);
   void add_data( GsTLGridPropertyGroup* group, GsTLGridWeightProperty* weigths);
-  void add_data( GsTLGridPropertyGroup* group, GsTLGridRegion* region);
+  void add_data( GsTLGridPropertyGroup* group, Grid_region* region);
   */
   void remove_data( int id);
 
@@ -149,7 +149,7 @@ private:
     GsTLGridProperty* prop_x;
     GsTLGridProperty* prop_y;
     GsTLGridWeightProperty* weight;
-    GsTLGridRegion* region;
+    Grid_region* region;
     GsTLGridCategoricalProperty* cprop;
     Geostat_grid* grid;
     float mean;

@@ -252,7 +252,7 @@ bool Kriging_x_validation::initialize( const Parameters_handler* parameters,
     return false;
 
   std::string harddata_region_name = parameters->value( "Hard_Data.region" );
-  GsTLGridRegion* hd_region = harddata_grid_->region(harddata_region_name);
+  Grid_region* hd_region = harddata_grid_->region(harddata_region_name);
 
   hdgridTempRegionSelector_.set_temporary_region(
         parameters->value( "Hard_Data.region" ),harddata_grid_ );

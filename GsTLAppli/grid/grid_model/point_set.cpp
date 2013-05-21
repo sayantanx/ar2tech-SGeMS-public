@@ -265,7 +265,7 @@ Neighborhood* Point_set::neighborhood( double x, double y, double z,
 				       double ang1, double ang2, double ang3,
 				       const Covariance<location_type>* cov,
 				       bool only_harddata,
-               const GsTLGridRegion* region,
+               const Grid_region* region,
                Coordinate_mapper* coord_mapper) {
   const int max_neighbors = 20;
   return new Point_set_neighborhood( x,y,z, ang1,ang2,ang3,
@@ -281,7 +281,7 @@ Neighborhood* Point_set::neighborhood( const GsTLTripletTmpl<double>& dim,
 				       const GsTLTripletTmpl<double>& angles,
 				       const Covariance<location_type>* cov,
 				       bool only_harddata,
-               const GsTLGridRegion* region,
+               const Grid_region* region,
                Coordinate_mapper* coord_mapper) {
   const int max_neighbors = 20;
   return new Point_set_neighborhood( dim[0], dim[1], dim[2],

@@ -64,7 +64,7 @@
 
 class GsTL_project;
 class GsTLGridProperty;
-class GsTLGridRegion;
+class Grid_region;
 class QPplot_control_panel;
 class QLabel;
 class QPplot;
@@ -88,8 +88,8 @@ public slots:
   void reset_var2_clipping_values();
 //  void get_var1_data_from( const GsTLGridProperty* );
 //  void get_var2_data_from( const GsTLGridProperty* );
-  void get_var1_data_from(  GsTLGridProperty*, const GsTLGridRegion* = NULL );
-  void get_var2_data_from(  GsTLGridProperty*, const GsTLGridRegion* = NULL );
+  void get_var1_data_from(  GsTLGridProperty*, const Grid_region* = NULL );
+  void get_var2_data_from(  GsTLGridProperty*, const Grid_region* = NULL );
   void set_analysis_type( const QString& type );
 
 protected:

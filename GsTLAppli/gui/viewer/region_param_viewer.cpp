@@ -47,7 +47,7 @@ Region_param_viewer::Region_param_viewer() : QWidget() {
 }
 
 Region_param_viewer::
-Region_param_viewer(GsTLGridRegion* region, GsTL_vtkProp* vtk_prop) : QWidget(){
+Region_param_viewer(Grid_region* region, GsTL_vtkProp* vtk_prop) : QWidget(){
 	this->initialize(region, vtk_prop);
 
 }
@@ -59,7 +59,7 @@ Region_param_viewer::~Region_param_viewer() {
 	// TODO Auto-generated destructor stub
 }
 
-void Region_param_viewer::initialize(GsTLGridRegion* region, GsTL_vtkProp* vtk_prop)
+void Region_param_viewer::initialize(Grid_region* region, GsTL_vtkProp* vtk_prop)
 {
 	vtk_prop_ = vtk_prop;
 	grid_ = vtk_prop_->grid();
@@ -114,7 +114,7 @@ Region_viz_parameters::~Region_viz_parameters(){
 }
 
 
-void Region_viz_parameters::initialize( GsTLGridRegion* region, GsTL_vtkProp* vtk_prop){
+void Region_viz_parameters::initialize( Grid_region* region, GsTL_vtkProp* vtk_prop){
 	region_ = region;
 	vtk_prop_ = vtk_prop;
 	viewer_ = new Region_param_viewer(region, vtk_prop);
@@ -123,7 +123,7 @@ QWidget* Region_viz_parameters::interface(){
 	return viewer_;
 }
 
-GsTLGridRegion* Region_viz_parameters::region(){
+Grid_region* Region_viz_parameters::region(){
 	return region_;
 
 }

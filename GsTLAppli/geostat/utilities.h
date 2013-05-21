@@ -222,7 +222,7 @@ namespace geostat_utils {
                                  const std::string& max_size_tag = "",
                                  const std::string& ellipsoid_tag = "",
                                  const std::string& C22_tag = "",
-                                 const GsTLGridRegion* region=0);
+                                 const Grid_region* region=0);
   
 
 

@@ -114,14 +114,14 @@ public:
 		double ang1, double ang2, double ang3, 
 		const Covariance<location_type>* cov=0, 
 		bool only_harddata = false,
-    const GsTLGridRegion* region = 0,
+    const Grid_region* region = 0,
     Coordinate_mapper* coord_mapper=0); 
 
 	virtual Neighborhood* neighborhood( const GsTLTripletTmpl<double>& dim, 
 		const GsTLTripletTmpl<double>& angles, 
 		const Covariance<location_type>* cov=0, 
 		bool only_harddata = false,
-    const GsTLGridRegion* region = 0,
+    const Grid_region* region = 0,
     Coordinate_mapper* coord_mapper=0); 
 
 	virtual Window_neighborhood* window_neighborhood( const Grid_template& templ ); 

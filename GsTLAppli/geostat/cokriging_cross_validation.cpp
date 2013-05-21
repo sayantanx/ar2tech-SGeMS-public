@@ -285,10 +285,10 @@ bool Cokriging_x_validation::initialize( const Parameters_handler* parameters,
   */
 
   std::string prim_harddata_region_name = parameters->value( "Primary_Harddata_Grid.region" );
-  GsTLGridRegion* prim_hd_region = prim_harddata_grid_->region(prim_harddata_region_name);
+  Grid_region* prim_hd_region = prim_harddata_grid_->region(prim_harddata_region_name);
 
   std::string sec_harddata_region_name = parameters->value( "Secondary_Harddata_Grid.region" );
-  GsTLGridRegion* sec_hd_region = sec_harddata_grid_->region(sec_harddata_region_name);
+  Grid_region* sec_hd_region = sec_harddata_grid_->region(sec_harddata_region_name);
 
   //-------------
   // Primary variable variogram (covariance), C11(h), initialization 

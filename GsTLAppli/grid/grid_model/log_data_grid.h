@@ -172,8 +172,8 @@ public:
  // Returns the most specific name of the current class
  virtual std::string classname() const { return "Log_data_grid"; }
 
- int number_of_segment_inside_region(std::string name_id, const GsTLGridRegion* region=0) const;
- int number_of_segment_inside_region(int id, const GsTLGridRegion* region=0) const;
+ int number_of_segment_inside_region(std::string name_id, const Grid_region* region=0) const;
+ int number_of_segment_inside_region(int id, const Grid_region* region=0) const;
 
  std::string get_log_name(int index) const;
  std::string get_log_name_from_nodeid(int nodeid) const;

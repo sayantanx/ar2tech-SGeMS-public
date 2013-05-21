@@ -306,9 +306,9 @@ Histogram_gui::Histogram_gui( GsTL_project* project,
 
   // Signal-slot connections
   QObject::connect( control_panel_, 
-                    SIGNAL( var_changed(  GsTLGridProperty*,  const GsTLGridRegion* ) ),
+                    SIGNAL( var_changed(  GsTLGridProperty*,  const Grid_region* ) ),
                     this,
-                    SLOT( get_data_from(  GsTLGridProperty*,  const GsTLGridRegion* ) ) );
+                    SLOT( get_data_from(  GsTLGridProperty*,  const Grid_region* ) ) );
 
 
   QObject::connect( control_panel_, SIGNAL( low_clip_changed(float) ),
@@ -341,7 +341,7 @@ void Histogram_gui::clean() {
 
 
 void Histogram_gui::get_data_from(  GsTLGridProperty* prop, 
-                                    const GsTLGridRegion* region ) {
+                                    const Grid_region* region ) {
   if( !prop ) return;
   Temporary_propRegion_Selector regionSelector(region,prop);
  

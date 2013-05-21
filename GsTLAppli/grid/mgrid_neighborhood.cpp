@@ -66,7 +66,7 @@ MgridNeighborhood::MgridNeighborhood( RGrid* grid,
 		double x_angle, double y_angle, double z_angle, 
 		int max_neighbors , 
 		const Covariance<GsTLPoint>* cov,
-    const GsTLGridRegion* region) :
+    const Grid_region* region) :
 	Rgrid_ellips_neighborhood(  grid,  property,  max_radius,  mid_radius,  min_radius, 
 								x_angle,  y_angle, z_angle,  max_neighbors,cov, region )
 	{}
@@ -164,7 +164,7 @@ MgridNeighborhood_hd::MgridNeighborhood_hd( RGrid* grid,
 		double x_angle, double y_angle, double z_angle, 
 		int max_neighbors , 
 		const Covariance<GsTLPoint>* cov,
-    const GsTLGridRegion* region ):
+    const Grid_region* region ):
 	Rgrid_ellips_neighborhood_hd(  grid,  property,  max_radius,  mid_radius,  min_radius, 
 		 x_angle, y_angle,  z_angle, 	 max_neighbors , cov, region  )
 {}

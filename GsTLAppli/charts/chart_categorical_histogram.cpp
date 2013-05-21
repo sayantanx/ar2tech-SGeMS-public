@@ -156,7 +156,7 @@ Chart_categorical_histogram::~Chart_categorical_histogram()
 
 
 void Chart_categorical_histogram::load_data(QModelIndexList indexes){
-  std::map<GsTL_object_item*,GsTLGridRegion*> grid_to_region;
+  std::map<GsTL_object_item*,Grid_region*> grid_to_region;
   QModelIndex index;
 
 // Need to compute the numbers of categories
@@ -188,7 +188,7 @@ void Chart_categorical_histogram::load_data(QModelIndexList indexes){
   //  QModelIndex index =     indexes.at(i);
     GsTL_object_item* item = static_cast<GsTL_object_item*>(index.internalPointer());
     if(item->item_type() == "Region") {
-      GsTLGridRegion* region = static_cast<GsTLGridRegion*>(index.internalPointer());
+      Grid_region* region = static_cast<Grid_region*>(index.internalPointer());
       grid_to_region[region->parent()->parent()] = region;
     }
   }
@@ -200,8 +200,8 @@ void Chart_categorical_histogram::load_data(QModelIndexList indexes){
     GsTL_object_item* item = static_cast<GsTL_object_item*>(index.internalPointer());
     if(item->item_type() == "CategoricalProperty" ) {
       GsTLGridCategoricalProperty* prop = static_cast<GsTLGridCategoricalProperty*>(item->data_pointer());
-      std::map<GsTL_object_item*,GsTLGridRegion*>::iterator it = grid_to_region.find(prop->parent()->parent());
-      GsTLGridRegion* region = 0;
+      std::map<GsTL_object_item*,Grid_region*>::iterator it = grid_to_region.find(prop->parent()->parent());
+      Grid_region* region = 0;
       if(it != grid_to_region.end()) region = it->second;
     
       CategoricalPropertyDefinition* cdef = prop->get_category_definition();
@@ -210,8 +210,8 @@ void Chart_categorical_histogram::load_data(QModelIndexList indexes){
     }
     else if(item->item_type().contains("Group:")) {
       GsTLGridPropertyGroup* group = static_cast<GsTLGridPropertyGroup*>(index.internalPointer());
-      std::map<GsTL_object_item*,GsTLGridRegion*>::iterator it = grid_to_region.find(group->parent());
-      GsTLGridRegion* region = 0;
+      std::map<GsTL_object_item*,Grid_region*>::iterator it = grid_to_region.find(group->parent());
+      Grid_region* region = 0;
       if(it != grid_to_region.end()) region = it->second;
       model_->insert_row(group,region,default_colors_.at(default_color_id_%max_index_default_colors_));
       default_color_id_++;
@@ -236,7 +236,7 @@ void Chart_categorical_histogram::add_data( GsTLGridCategoricalProperty* prop, G
   model_->insert_row(prop,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_categorical_histogram::add_data( GsTLGridCategoricalProperty* prop, GsTLGridRegion* region){
+void Chart_categorical_histogram::add_data( GsTLGridCategoricalProperty* prop, Grid_region* region){
   model_->insert_row(prop,region, default_colors_.at(default_color_id_%max_index_default_colors_) );
   default_color_id_++;
 }
@@ -248,7 +248,7 @@ void Chart_categorical_histogram::add_data( GsTLGridPropertyGroup* group, GsTLGr
   model_->insert_row(group,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_categorical_histogram::add_data( GsTLGridPropertyGroup* group, GsTLGridRegion* region){
+void Chart_categorical_histogram::add_data( GsTLGridPropertyGroup* group, Grid_region* region){
   model_->insert_row(group,region, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }

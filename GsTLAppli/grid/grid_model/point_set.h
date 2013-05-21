@@ -160,10 +160,10 @@ class GRID_DECL Point_set : public Geostat_grid {
  //--------------------------- 
   // Region management 
  
-  virtual GsTLGridRegion* region(const std::string& region_name);
-  virtual const GsTLGridRegion* region(const std::string& region_name) const;
+  virtual Grid_region* region(const std::string& region_name);
+  virtual const Grid_region* region(const std::string& region_name) const;
 
-  virtual GsTLGridRegion* add_region(const std::string& name); 
+  virtual Grid_region* add_region(const std::string& name); 
   virtual bool remove_region(const std::string& name); 
 
     /** Selects a region. After calling this function, any operation 
@@ -176,8 +176,8 @@ class GRID_DECL Point_set : public Geostat_grid {
   virtual void unselect_region();
   //virtual bool select_region(const std::vector<std::string>& region_names);
 
-  virtual const GsTLGridRegion* selected_region() const; 
-  virtual GsTLGridRegion* selected_region();
+  virtual const Grid_region* selected_region() const; 
+  virtual Grid_region* selected_region();
 
   virtual std::list<std::string> region_list() const;
 
@@ -189,13 +189,13 @@ class GRID_DECL Point_set : public Geostat_grid {
   virtual Neighborhood* neighborhood( double x, double y, double z, 
                                       double ang1, double ang2, double ang3, 
 				      const Covariance<location_type>* cov=0, 
-				      bool only_harddata = false, const GsTLGridRegion* region = 0,
+				      bool only_harddata = false, const Grid_region* region = 0,
               Coordinate_mapper* coord_mapper=0); 
  
   virtual Neighborhood* neighborhood( const GsTLTripletTmpl<double>& dim, 
                                       const GsTLTripletTmpl<double>& angles, 
 				      const Covariance<location_type>* cov=0, 
-				      bool only_harddata = false, const GsTLGridRegion* region = 0,
+				      bool only_harddata = false, const Grid_region* region = 0,
               Coordinate_mapper* coord_mapper=0); 
  
  
@@ -346,7 +346,7 @@ GsTLGridCategoricalProperty* Point_set::categorical_property( const std::string&
 }
  
 inline 
-GsTLGridRegion* Point_set::add_region(const std::string& name) { 
+Grid_region* Point_set::add_region(const std::string& name) { 
   return region_manager_.add_region(name); 
 } 
  
@@ -357,20 +357,20 @@ bool Point_set::remove_region(const std::string& name) {
  
 
 inline 
-GsTLGridRegion* Point_set::region(const std::string& name) { 
+Grid_region* Point_set::region(const std::string& name) { 
   return region_manager_.get_region(name);
 } 
 
 inline 
-const GsTLGridRegion* Point_set::region(const std::string& name) const { 
+const Grid_region* Point_set::region(const std::string& name) const { 
   return region_manager_.get_region(name);
 } 
 
-inline const GsTLGridRegion* Point_set::selected_region() const { 
+inline const Grid_region* Point_set::selected_region() const { 
   return region_manager_.selected_region(); 
 } 
  
-inline GsTLGridRegion* Point_set::selected_region() { 
+inline Grid_region* Point_set::selected_region() { 
   return region_manager_.selected_region(); 
 }
 
@@ -383,7 +383,7 @@ inline void Point_set::unselect_region() {
 }
 
 inline bool Point_set::is_inside_selected_region(int node_id) const {
-  const GsTLGridRegion* region = region_manager_.selected_region();
+  const Grid_region* region = region_manager_.selected_region();
   // When no region is selected, use the full grid
   if( !region ) return true;  
   return region->is_inside_region(node_id);

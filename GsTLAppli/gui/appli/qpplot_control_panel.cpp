@@ -187,7 +187,7 @@ QPplot_control_panel::get_property( const PropertySelector* object_selector ) {
   return prop;
 }
  
-GsTLGridRegion*
+Grid_region*
 QPplot_control_panel::get_region( const PropertySelector* object_selector ) {
   std::string grid_name(  object_selector->selectedGrid().toStdString() );
   std::string region_name( object_selector->selectedRegion().toStdString() );
@@ -201,7 +201,7 @@ QPplot_control_panel::get_region( const PropertySelector* object_selector ) {
 
   appli_assert( grid );
 
-  GsTLGridRegion* region = grid->region( region_name );
+  Grid_region* region = grid->region( region_name );
   appli_assert( region );
   return region;
 }

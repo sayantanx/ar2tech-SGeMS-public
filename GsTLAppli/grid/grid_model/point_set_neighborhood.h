@@ -105,7 +105,7 @@ public:
 			   GsTLGridProperty* property, 
 			   const Covariance<location_type>* cov = 0,
          bool only_harddata = false,
-         const GsTLGridRegion* region=0,
+         const Grid_region* region=0,
          Coordinate_mapper* coord_mapper=0); 
  
   virtual ~Point_set_neighborhood(); 

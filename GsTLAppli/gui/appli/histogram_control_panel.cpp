@@ -169,7 +169,7 @@ Histogram_control_panel::get_property( const PropertySelector* object_selector )
 }
  
 
-GsTLGridRegion*
+Grid_region*
 Histogram_control_panel::get_region( const PropertySelector* object_selector ) {
   if( object_selector->selectedGrid().isEmpty() ||
       object_selector->selectedRegion().isEmpty() ) return 0;
@@ -184,7 +184,7 @@ Histogram_control_panel::get_region( const PropertySelector* object_selector ) {
   appli_assert( grid );
 
   std::string region_name = object_selector->selectedRegion().toStdString();
-  GsTLGridRegion* region = grid->region( region_name );
+  Grid_region* region = grid->region( region_name );
 //  appli_assert( region_name.empty() );
   return region;
 }

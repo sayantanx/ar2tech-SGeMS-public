@@ -86,7 +86,7 @@ private :
   Geostat_grid* grid_;  
   GsTLGridProperty* prop_;
   GsTLGridWeightProperty* weight_;
-  GsTLGridRegion* region_;
+  Grid_region* region_;
 
   QString current_grid_name_;
   QString current_prop_name_;

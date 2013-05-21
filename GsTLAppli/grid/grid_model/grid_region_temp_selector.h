@@ -48,7 +48,7 @@ public :
   bool set_temporary_region(std::string new_region_name,
     Geostat_grid* grid)  {
       grid_ = grid;
-      GsTLGridRegion* reg = grid_->selected_region();
+      Grid_region* reg = grid_->selected_region();
       if(!reg)
         region_name_ = "";
       else 
@@ -73,13 +73,13 @@ class Temporary_propRegion_Selector {
 public :
   Temporary_propRegion_Selector():region_(NULL), prop_(NULL){}
 
-  Temporary_propRegion_Selector(const GsTLGridRegion* new_region,
+  Temporary_propRegion_Selector(const Grid_region* new_region,
     GsTLGridProperty* prop) {
       set_temporary_region(new_region, prop);
   }
 
 
-  void set_temporary_region(const GsTLGridRegion* new_region,
+  void set_temporary_region(const Grid_region* new_region,
     GsTLGridProperty* prop)  {
       prop_ = prop;
       region_ = prop_->get_region();
@@ -94,7 +94,7 @@ public :
   }
 
 protected:
-  const GsTLGridRegion* region_;
+  const Grid_region* region_;
   GsTLGridProperty* prop_;
 
 };

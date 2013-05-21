@@ -125,7 +125,7 @@ Qt::ItemFlags Categorical_histogram_proxy_model::flags(const QModelIndex &index)
 
 }
 /*
-bool Categorical_histogram_proxy_model::insert_row(GsTLGridCategoricalProperty* prop, GsTLGridRegion* region, GsTLGridCategoricalProperty* weights, QColor color){
+bool Categorical_histogram_proxy_model::insert_row(GsTLGridCategoricalProperty* prop, Grid_region* region, GsTLGridCategoricalProperty* weights, QColor color){
   std::map<GsTL_object_item*,Categorical_histogram_item*>::iterator it =  lookup_items_.find(prop);
   if( it != lookup_items_.end() ) return false;
 
@@ -148,7 +148,7 @@ bool Categorical_histogram_proxy_model::insert_row(GsTLGridCategoricalProperty* 
 
 }
 
-bool Categorical_histogram_proxy_model::insert_row(GsTLGridPropertyGroup* group, GsTLGridRegion* region, GsTLGridCategoricalProperty* weights, QColor color){
+bool Categorical_histogram_proxy_model::insert_row(GsTLGridPropertyGroup* group, Grid_region* region, GsTLGridCategoricalProperty* weights, QColor color){
   std::map<GsTL_object_item*,Categorical_histogram_item*>::iterator it =  lookup_items_.find(group);
   if( it != lookup_items_.end() ) return false;
 
@@ -202,7 +202,7 @@ bool Categorical_histogram_proxy_model::insert_row(GsTLGridCategoricalProperty* 
   return this->insert_row(item);
 }
 
-bool Categorical_histogram_proxy_model::insert_row(GsTLGridCategoricalProperty* prop, GsTLGridRegion* region, QColor color){
+bool Categorical_histogram_proxy_model::insert_row(GsTLGridCategoricalProperty* prop, Grid_region* region, QColor color){
   //if (this->is_item_exist(prop, region) ) return false;
 
   Categorical_histogram_item* item = new Categorical_histogram_property_item(prop,current_id_);
@@ -236,7 +236,7 @@ bool Categorical_histogram_proxy_model::insert_row(GsTLGridPropertyGroup* group,
 }
 
 
-bool Categorical_histogram_proxy_model::insert_row(GsTLGridPropertyGroup* group, GsTLGridRegion* region, QColor color){
+bool Categorical_histogram_proxy_model::insert_row(GsTLGridPropertyGroup* group, Grid_region* region, QColor color){
 
   //if (this->is_item_exist(group, region) ) return false;;
 
@@ -633,7 +633,7 @@ void Categorical_histogram_proxy_model::find_items_to_be_removed(GsTL_object_ite
     return;
   }
 
-  GsTLGridRegion* region = dynamic_cast<GsTLGridRegion*>(item);
+  Grid_region* region = dynamic_cast<Grid_region*>(item);
 
   if(region) {  //could either be a prop or a weight
     std::set< Categorical_histogram_item*>::iterator it = items_.begin();
@@ -657,7 +657,7 @@ bool Categorical_histogram_proxy_model::is_item_exist(GsTLGridCategoricalPropert
   return false;
 }
 
-bool Categorical_histogram_proxy_model::is_item_exist(GsTLGridCategoricalProperty* prop, GsTLGridRegion* region){
+bool Categorical_histogram_proxy_model::is_item_exist(GsTLGridCategoricalProperty* prop, Grid_region* region){
   std::set< Categorical_histogram_item*>::iterator it = items_.begin();
   for( ; it!= items_.end(); ++it) {
     Categorical_histogram_property_item* p_item = dynamic_cast<Categorical_histogram_property_item*>(*it);
@@ -684,7 +684,7 @@ bool Categorical_histogram_proxy_model::is_item_exist(GsTLGridPropertyGroup* gro
   return false;
 }
 
-bool Categorical_histogram_proxy_model::is_item_exist(GsTLGridPropertyGroup* group, GsTLGridRegion* region){
+bool Categorical_histogram_proxy_model::is_item_exist(GsTLGridPropertyGroup* group, Grid_region* region){
   std::set< Categorical_histogram_item*>::iterator it = items_.begin();
   for( ; it!= items_.end(); ++it) {
     Categorical_histogram_group_item* g_item = dynamic_cast<Categorical_histogram_group_item*>(*it);

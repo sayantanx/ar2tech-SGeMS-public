@@ -62,7 +62,7 @@
 
 class GsTL_project;
 class GsTLGridProperty;
-class GsTLGridRegion;
+class Grid_region;
 class PropertySelector;
 class QPplot;
 
@@ -92,8 +92,8 @@ protected slots:
 signals:
   //void var1_changed( const GsTLGridProperty* );
   //void var2_changed( const GsTLGridProperty* );
-  void var1_changed(  GsTLGridProperty*,  const GsTLGridRegion* );
-  void var2_changed(  GsTLGridProperty*,  const GsTLGridRegion* );
+  void var1_changed(  GsTLGridProperty*,  const Grid_region* );
+  void var2_changed(  GsTLGridProperty*,  const Grid_region* );
 
   void var1_low_clip_changed( float );
   void var2_low_clip_changed( float );
@@ -112,7 +112,7 @@ protected:
 
 protected:
   GsTLGridProperty* get_property( const PropertySelector* selector );
-  GsTLGridRegion* get_region( const PropertySelector* selector);
+  Grid_region* get_region( const PropertySelector* selector);
 
 };
 

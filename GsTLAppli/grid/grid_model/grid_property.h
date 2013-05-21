@@ -195,9 +195,9 @@ class GRID_DECL GsTLGridProperty: public GsTL_object_item {
 
   /** Set the active region
   */
-  inline void set_region(const GsTLGridRegion* region);
-  inline const GsTLGridRegion* get_region();
-  inline const GsTLGridRegion* get_region() const;
+  inline void set_region(const Grid_region* region);
+  inline const Grid_region* get_region();
+  inline const Grid_region* get_region() const;
 
   /** Manage the property group
   */
@@ -234,7 +234,7 @@ class GRID_DECL GsTLGridProperty: public GsTL_object_item {
   mutable PropertyAccessor* accessor_;   
   std::string name_; 
 
-  const GsTLGridRegion* region_;
+  const Grid_region* region_;
   std::vector<GsTLGridPropertyGroup*> groups_;
 
   std::string parameters_;
@@ -576,17 +576,17 @@ bool GsTLGridProperty::is_inside_region(GsTLInt id) const {
 
 
 inline 
-void GsTLGridProperty::set_region(const GsTLGridRegion* region){
+void GsTLGridProperty::set_region(const Grid_region* region){
   region_ = region;
 }
 
 inline 
-const GsTLGridRegion* GsTLGridProperty::get_region(){
+const Grid_region* GsTLGridProperty::get_region(){
   return region_;
 }
 
 inline 
-const GsTLGridRegion* GsTLGridProperty::get_region() const{
+const Grid_region* GsTLGridProperty::get_region() const{
   return region_;
 }
 

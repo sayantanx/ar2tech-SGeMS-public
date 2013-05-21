@@ -166,7 +166,7 @@ QVariant Region_proxy_model::data(const QModelIndex &index, int role) const
 QModelIndex	Region_proxy_model::mapFromSource ( const QModelIndex & sourceIndex ) const{
 
 	GsTL_object_item *item = static_cast<GsTL_object_item*>(sourceIndex.internalPointer());
-	if( dynamic_cast<GsTLGridRegion*>(item) == 0) return QModelIndex();
+	if( dynamic_cast<Grid_region*>(item) == 0) return QModelIndex();
 	return createIndex(sourceIndex.row(),sourceIndex.column(), sourceIndex.internalPointer());
 
 }
@@ -262,7 +262,7 @@ int Region_proxy_model_no_selection::rowCount(const QModelIndex &parent) const
 QModelIndex	Region_proxy_model_no_selection::mapFromSource ( const QModelIndex & sourceIndex ) const{
 
 	GsTL_object_item *item = static_cast<GsTL_object_item*>(sourceIndex.internalPointer());
-	if( dynamic_cast<GsTLGridRegion*>(item) == 0) return QModelIndex();
+	if( dynamic_cast<Grid_region*>(item) == 0) return QModelIndex();
 	return createIndex(sourceIndex.row()+1,sourceIndex.column(), sourceIndex.internalPointer());
 
 }

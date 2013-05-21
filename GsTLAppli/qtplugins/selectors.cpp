@@ -1513,7 +1513,7 @@ void GridSelector::setSelectedRegion( const QString& name ) {
 		Geostat_grid* grid = (Geostat_grid*) ni.raw_ptr() ;
 		if( !grid) return;
 
-		GsTLGridRegion* region = grid->region(name.toStdString());
+		Grid_region* region = grid->region(name.toStdString());
     if(region != 0) {
       int i = region->row();
 		  QModelIndex index = region_model_->index(region->row(),0,QModelIndex());

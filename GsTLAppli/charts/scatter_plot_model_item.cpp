@@ -145,7 +145,7 @@ void Scatter_plot_property_group_item::categorical_property(GsTLGridCategoricalP
   }
 }
 
-void Scatter_plot_property_group_item::region(GsTLGridRegion* region){
+void Scatter_plot_property_group_item::region(Grid_region* region){
   region_ = region;
   std::set< Scatter_plot_property_item*>::iterator it = prop_items_.begin();
   for( ; it != prop_items_.end(); ++it) {
@@ -276,7 +276,7 @@ void Scatter_plot_group_item::categorical_property(GsTLGridCategoricalProperty* 
   }
 }
 
-void Scatter_plot_group_item::region(GsTLGridRegion* region){
+void Scatter_plot_group_item::region(Grid_region* region){
   region_ = region;
   std::set< Scatter_plot_property_item*>::iterator it = prop_items_.begin();
   for( ; it != prop_items_.end(); ++it) {

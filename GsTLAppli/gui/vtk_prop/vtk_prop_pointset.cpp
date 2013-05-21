@@ -293,7 +293,7 @@ void vtkProp_pointset::set_region(const std::string& region_name ) {
 
 	}
 	else {
-		GsTLGridRegion* region = geostat_grid_->region( region_name );
+		Grid_region* region = geostat_grid_->region( region_name );
 		if( region == 0 ) {
 			appli_warning( "grid has no region called " << region_name );
 			return;
@@ -302,7 +302,7 @@ void vtkProp_pointset::set_region(const std::string& region_name ) {
 
 //		if( current_region_->name() != cached_region_name_ ) {
 		if( true ) {
-			GsTLGridRegion::const_iterator it = current_region_->begin();
+			Grid_region::const_iterator it = current_region_->begin();
 			vtkBitArray* region_mask = vtkBitArray::SafeDownCast(pset_polydata_->GetCellData()->GetArray("MaskRegion"));
 			for(int i=0; it != current_region_->end();++i, ++it) {
 				region_mask->SetValue(i,*it);

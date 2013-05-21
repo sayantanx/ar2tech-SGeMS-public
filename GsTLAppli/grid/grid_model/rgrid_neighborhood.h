@@ -150,7 +150,7 @@ public:
 			     double x_angle, double y_angle, double z_angle, 
 			     int max_neighbors = 20, 
 			     const Covariance<GsTLPoint>* cov = 0,
-           const GsTLGridRegion* region = 0); 
+           const Grid_region* region = 0); 
  
   virtual ~Rgrid_ellips_neighborhood() {}; 
   virtual bool select_property( const std::string& prop_name );  
@@ -192,7 +192,7 @@ public:
 				double x_angle, double y_angle, double z_angle, 
 				int max_neighbors = 20, 
 				const Covariance<GsTLPoint>* cov = 0,
-        const GsTLGridRegion* region = 0); 
+        const Grid_region* region = 0); 
   ~Rgrid_ellips_neighborhood_hd() {}; 
  
   virtual void find_neighbors( const Geovalue& center ); 

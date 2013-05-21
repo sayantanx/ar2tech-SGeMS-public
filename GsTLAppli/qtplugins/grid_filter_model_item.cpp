@@ -31,7 +31,7 @@ Grid_filter* Grid_filter_region_item::create_filter() const{
   if(grid_ == 0) return 0;
 
   std::string region_name = region_name_.toStdString();
-  const GsTLGridRegion* region = grid_->region(region_name);
+  const Grid_region* region = grid_->region(region_name);
   if(region ==0) return 0;
 
   return new Grid_filter_region( region );

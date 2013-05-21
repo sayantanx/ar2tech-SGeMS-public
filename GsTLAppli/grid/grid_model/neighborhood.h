@@ -144,7 +144,7 @@ class GRID_DECL Neighborhood : public SmartPtr_interface<Neighborhood> {
   std::vector<Geovalue> neighbors_; 
   bool includes_center_;
   Search_filter *neigh_filter_;
-  const GsTLGridRegion* region_;
+  const Grid_region* region_;
 }; 
  
  

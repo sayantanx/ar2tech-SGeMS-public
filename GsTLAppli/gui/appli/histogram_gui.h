@@ -83,7 +83,7 @@ public slots:
   void update_high_clip( float );
   void reset_clipping_values();
   void update_bins( int count );
-  void get_data_from(  GsTLGridProperty*, const GsTLGridRegion* = NULL );
+  void get_data_from(  GsTLGridProperty*, const Grid_region* = NULL );
   virtual void set_x_axis_logscale( bool on );
   void changeCurve (const QString &);
 
