@@ -59,7 +59,7 @@ GRID_DECL Non_parametric_distribution*
 
 
 GRID_DECL Non_parametric_distribution* 
-  build_non_param_distribution( std::string name, const Grid_continuous_property* prop, const GsTLGridWeightProperty* weight, 
+  build_non_param_distribution( std::string name, const Grid_continuous_property* prop, const Grid_weight_property* weight, 
     const Tail_interpolator low_interp = Tail_interpolator( new No_TI() ),
 		const Linear_interpol mid_interp  = Linear_interpol(),
 		const Tail_interpolator up_interp  = Tail_interpolator( new No_TI() )

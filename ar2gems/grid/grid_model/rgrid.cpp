@@ -137,12 +137,12 @@ Grid_continuous_property* RGrid::add_property_from_disk( const std::string& name
 }
 
 
-GsTLGridWeightProperty* RGrid::add_weight_property( const std::string& name ) {
+Grid_weight_property* RGrid::add_weight_property( const std::string& name ) {
 				
   return property_manager_.add_weight_property( name );
 }
 
-GsTLGridWeightProperty* RGrid::add_weight_property_from_disk( const std::string& name, const std::string& filename ) {
+Grid_weight_property* RGrid::add_weight_property_from_disk( const std::string& name, const std::string& filename ) {
 
   return property_manager_.add_weight_property_from_disk( name, filename );
 }
@@ -234,7 +234,7 @@ std::list<std::string> RGrid::weight_property_list() const {
   Grid_property_manager::Property_name_iterator end =
     property_manager_.names_end();
   for( ; it != end ; ++it ) {
-    const GsTLGridWeightProperty* prop = weight_property(*it);
+    const Grid_weight_property* prop = weight_property(*it);
     if(prop) result.push_back( *it );
   }
 

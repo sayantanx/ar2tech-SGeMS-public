@@ -174,8 +174,8 @@ class GRID_DECL Grid_property_manager : public GsTL_object_item {
    * failed (most probably  because a property with the same name already  
    * existed ).  
    */ 
-  GsTLGridWeightProperty* add_weight_property( const std::string& name ); 
-  GsTLGridWeightProperty* add_weight_property_from_disk( const std::string& name, const std::string& filename );
+  Grid_weight_property* add_weight_property( const std::string& name ); 
+  Grid_weight_property* add_weight_property_from_disk( const std::string& name, const std::string& filename );
 
 
   /** Adds a new categorical property
@@ -213,13 +213,13 @@ class GRID_DECL Grid_property_manager : public GsTL_object_item {
   /** Retrieve a weight property 
    * @return 0 if the property can not be retrieved
    */ 
-  inline GsTLGridWeightProperty* get_weight_property( const std::string& name ); 
-  inline const GsTLGridWeightProperty* get_weight_property( const std::string& name ) const; 
+  inline Grid_weight_property* get_weight_property( const std::string& name ); 
+  inline const Grid_weight_property* get_weight_property( const std::string& name ) const; 
   /** Retrieve a property. Overloaded to enable faster access. 
    * @return 0 if the property can not be retrieved
    */ 
-  inline GsTLGridWeightProperty* get_weight_property( int prop_id ); 
-  inline const GsTLGridWeightProperty* get_weight_property( int prop_id ) const;
+  inline Grid_weight_property* get_weight_property( int prop_id ); 
+  inline const Grid_weight_property* get_weight_property( int prop_id ) const;
 
 
   /** Retrieve a categorical property
@@ -356,36 +356,36 @@ Grid_property_manager::get_property( int prop_id ) const {
  
 
 
-inline GsTLGridWeightProperty*  
+inline Grid_weight_property*  
 Grid_property_manager::get_weight_property( const std::string& name ) { 
   Property_map::iterator it = properties_map_.find(name); 
   if( it != properties_map_.end() )  
-    return  dynamic_cast<GsTLGridWeightProperty*>(properties_[ it->second ]); 
+    return  dynamic_cast<Grid_weight_property*>(properties_[ it->second ]); 
   else 
     return 0; 
 } 
  
-inline const GsTLGridWeightProperty*  
+inline const Grid_weight_property*  
 Grid_property_manager::get_weight_property( const std::string& name ) const { 
   if( name.empty() ) return 0; 
  
   Property_map::const_iterator it = properties_map_.find(name); 
   if( it != properties_map_.end() )  
-    return  dynamic_cast<GsTLGridWeightProperty*>(properties_[ it->second ]); 
+    return  dynamic_cast<Grid_weight_property*>(properties_[ it->second ]); 
   else 
     return 0; 
 } 
  
-inline GsTLGridWeightProperty*  
+inline Grid_weight_property*  
 Grid_property_manager::get_weight_property( int prop_id ) { 
   appli_assert( prop_id < (int) properties_.size() ); 
-  return  dynamic_cast<GsTLGridWeightProperty*>(properties_[ prop_id ]); 
+  return  dynamic_cast<Grid_weight_property*>(properties_[ prop_id ]); 
 } 
  
-inline const GsTLGridWeightProperty*  
+inline const Grid_weight_property*  
 Grid_property_manager::get_weight_property( int prop_id ) const { 
   appli_assert( prop_id < (int) properties_.size() ); 
-  return  dynamic_cast<GsTLGridWeightProperty*>(properties_[ prop_id ]); 
+  return  dynamic_cast<Grid_weight_property*>(properties_[ prop_id ]); 
 } 
  
 

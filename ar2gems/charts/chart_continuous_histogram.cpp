@@ -314,8 +314,8 @@ void Chart_continuous_histogram::load_data(QModelIndexList indexes){
 
   std::map<GsTL_object_item*,Grid_region*> grid_to_region;
 
-  typedef std::multimap<GsTL_object_item*,GsTLGridWeightProperty*> map_grid_to_weights;
-  typedef std::multimap<GsTL_object_item*,GsTLGridWeightProperty*>::iterator map_iterator_grid_to_weights;
+  typedef std::multimap<GsTL_object_item*,Grid_weight_property*> map_grid_to_weights;
+  typedef std::multimap<GsTL_object_item*,Grid_weight_property*>::iterator map_iterator_grid_to_weights;
   map_grid_to_weights grid_to_weights;
   QModelIndex index;
   foreach(index, indexes) {
@@ -327,7 +327,7 @@ void Chart_continuous_histogram::load_data(QModelIndexList indexes){
       grid_to_region[region->parent()->parent()] = region;
     }
     else if(item->item_type() == "WeightsProperty") {
-      GsTLGridWeightProperty* weigth = static_cast<GsTLGridWeightProperty*>(index.internalPointer());
+      Grid_weight_property* weigth = static_cast<Grid_weight_property*>(index.internalPointer());
       grid_to_weights.insert(std::make_pair(weigth->parent()->parent(),weigth));
     }
   }
@@ -384,7 +384,7 @@ void Chart_continuous_histogram::add_data( Grid_continuous_property* prop){
   model_->insert_row(prop, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_continuous_histogram::add_data( Grid_continuous_property* prop, GsTLGridWeightProperty* weigths){
+void Chart_continuous_histogram::add_data( Grid_continuous_property* prop, Grid_weight_property* weigths){
   model_->insert_row(prop,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
@@ -396,7 +396,7 @@ void Chart_continuous_histogram::add_data( GsTLGridPropertyGroup* group){
   model_->insert_row(group, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_continuous_histogram::add_data( GsTLGridPropertyGroup* group, GsTLGridWeightProperty* weigths){
+void Chart_continuous_histogram::add_data( GsTLGridPropertyGroup* group, Grid_weight_property* weigths){
   model_->insert_row(group,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
@@ -793,7 +793,7 @@ void Chart_continuous_histogram::compute_stats_with_weights(histo_data& data){
   }
 
 
-  GsTLGridWeightProperty* weights = data.weight;
+  Grid_weight_property* weights = data.weight;
   if(weights == 0) {
     this->compute_stats(data);
     return;

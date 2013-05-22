@@ -213,7 +213,7 @@ bool Categorical_histogram_proxy_model::insert_row(Grid_categorical_property* pr
   return this->insert_row(item);
 }
 
-bool Categorical_histogram_proxy_model::insert_row(Grid_categorical_property* prop, GsTLGridWeightProperty* weights, QColor color){
+bool Categorical_histogram_proxy_model::insert_row(Grid_categorical_property* prop, Grid_weight_property* weights, QColor color){
 
   //if (this->is_item_exist(prop, weights) ) return false;
   Categorical_histogram_item* item = new Categorical_histogram_property_item(prop, current_id_);
@@ -249,7 +249,7 @@ bool Categorical_histogram_proxy_model::insert_row(GsTLGridPropertyGroup* group,
 
 }
 
-bool Categorical_histogram_proxy_model::insert_row(GsTLGridPropertyGroup* group, GsTLGridWeightProperty* weights, QColor color){
+bool Categorical_histogram_proxy_model::insert_row(GsTLGridPropertyGroup* group, Grid_weight_property* weights, QColor color){
   //if (this->is_item_exist(group, weights) ) return false;
 
   Categorical_histogram_item* item = new Categorical_histogram_group_item(group, current_id_);
@@ -666,7 +666,7 @@ bool Categorical_histogram_proxy_model::is_item_exist(Grid_categorical_property*
   return false;
 }
 
-bool Categorical_histogram_proxy_model::is_item_exist(Grid_categorical_property* prop, GsTLGridWeightProperty* weights){
+bool Categorical_histogram_proxy_model::is_item_exist(Grid_categorical_property* prop, Grid_weight_property* weights){
   std::set< Categorical_histogram_item*>::iterator it = items_.begin();
   for( ; it!= items_.end(); ++it) {
     Categorical_histogram_property_item* p_item = dynamic_cast<Categorical_histogram_property_item*>(*it);
@@ -693,7 +693,7 @@ bool Categorical_histogram_proxy_model::is_item_exist(GsTLGridPropertyGroup* gro
   return false;
 }
 
-bool Categorical_histogram_proxy_model::is_item_exist(GsTLGridPropertyGroup* group, GsTLGridWeightProperty* weights){
+bool Categorical_histogram_proxy_model::is_item_exist(GsTLGridPropertyGroup* group, Grid_weight_property* weights){
   std::set< Categorical_histogram_item*>::iterator it = items_.begin();
   for( ; it!= items_.end(); ++it) {
     Categorical_histogram_group_item* g_item = dynamic_cast<Categorical_histogram_group_item*>(*it);

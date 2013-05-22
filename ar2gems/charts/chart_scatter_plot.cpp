@@ -376,7 +376,7 @@ void Chart_scatter_plot::add_data( Grid_continuous_property* prop_x){
   model_->insert_row(prop, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_scatter_plot::add_data( Grid_continuous_property* prop, GsTLGridWeightProperty* weigths){
+void Chart_scatter_plot::add_data( Grid_continuous_property* prop, Grid_weight_property* weigths){
   model_->insert_row(prop,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
@@ -388,7 +388,7 @@ void Chart_scatter_plot::add_data( GsTLGridPropertyGroup* group){
   model_->insert_row(group, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_scatter_plot::add_data( GsTLGridPropertyGroup* group, GsTLGridWeightProperty* weigths){
+void Chart_scatter_plot::add_data( GsTLGridPropertyGroup* group, Grid_weight_property* weigths){
   model_->insert_row(group,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
@@ -659,7 +659,7 @@ void Chart_scatter_plot::compute_stats_with_weights(Scatter_data& data){
   }
 
 
-  GsTLGridWeightProperty* weights = data.weight;
+  Grid_weight_property* weights = data.weight;
   if(weights == 0) {
     this->compute_stats(data);
     return;

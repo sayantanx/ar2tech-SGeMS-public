@@ -181,7 +181,7 @@ QModelIndex	Region_weight_proxy_model::mapFromSource ( const QModelIndex & sourc
 	if( dynamic_cast<Grid_region*>(item) ) {
     return createIndex(sourceIndex.row(),sourceIndex.column(), 0);
   }
-  else if( dynamic_cast<GsTLGridWeightProperty*>(item) ) {
+  else if( dynamic_cast<Grid_weight_property*>(item) ) {
     int i = weight_names_.indexOf(item->item_name());
     return createIndex(i + region_names_.size(),sourceIndex.column(), 0);
 
@@ -195,7 +195,7 @@ QModelIndex	Region_weight_proxy_model::mapToSource ( const QModelIndex & proxyIn
 	if( dynamic_cast<Grid_region*>(item) ) {
     return createIndex(proxyIndex.row(),sourceIndex.column(), 0);
   }
-  else if( dynamic_cast<GsTLGridWeightProperty*>(item) ) {
+  else if( dynamic_cast<Grid_weight_property*>(item) ) {
     int i = weight_names_.indexOf(item->item_name());
     return createIndex(i + region_names_.size(),proxyIndex.column(), 0);
   }
@@ -342,7 +342,7 @@ QModelIndex	Region_weight_proxy_model_no_selection::mapFromSource ( const QModel
 	if( dynamic_cast<Grid_region*>(item) ) {
     return createIndex(sourceIndex.row()+1,sourceIndex.column(), 0);
   }
-  else if( dynamic_cast<GsTLGridWeightProperty*>(item) ) {
+  else if( dynamic_cast<Grid_weight_property*>(item) ) {
     int i = weight_names_.indexOf(item->item_name());
     return createIndex(i + region_names_.size(),sourceIndex.column(), 0);  //same here since region_names_ contains the no selection
 

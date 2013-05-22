@@ -43,17 +43,17 @@
 
 
 
-class GRID_DECL GsTLGridWeightProperty: public Grid_continuous_property {
+class GRID_DECL Grid_weight_property: public Grid_continuous_property {
 public:
-	GsTLGridWeightProperty( GsTLInt size, const std::string& name,
+	Grid_weight_property( GsTLInt size, const std::string& name,
 								property_type default_value = no_data_value );
-	GsTLGridWeightProperty( GsTLInt size, const std::string& name, const std::string& in_filename,
+	Grid_weight_property( GsTLInt size, const std::string& name, const std::string& in_filename,
 				property_type default_value = no_data_value );
-  virtual ~GsTLGridWeightProperty(){}
+  virtual ~Grid_weight_property(){}
 
 	/** Return the name of the class
 	*/
-	virtual std::string classname() const {return "GsTLGridWeightProperty";}
+	virtual std::string classname() const {return "Grid_weight_property";}
 
   virtual QString item_type() const;
 

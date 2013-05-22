@@ -129,7 +129,7 @@ void Scatter_plot_property_group_item::set_visibility( bool on ) {
 }
 
 
-void Scatter_plot_property_group_item::weights(GsTLGridWeightProperty* weights){
+void Scatter_plot_property_group_item::weights(Grid_weight_property* weights){
   weights_ = weights;
   std::set< Scatter_plot_property_item*>::iterator it = prop_items_.begin();
   for( ; it != prop_items_.end(); ++it) {
@@ -260,7 +260,7 @@ void Scatter_plot_group_item::set_visibility( bool on ) {
 }
 
 
-void Scatter_plot_group_item::weights(GsTLGridWeightProperty* weights){
+void Scatter_plot_group_item::weights(Grid_weight_property* weights){
   weights_ = weights;
   std::set< Scatter_plot_property_item*>::iterator it = prop_items_.begin();
   for( ; it != prop_items_.end(); ++it) {

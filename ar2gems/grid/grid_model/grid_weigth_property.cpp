@@ -41,7 +41,7 @@
  *   Grid_categorical_property
  */
 
-GsTLGridWeightProperty::GsTLGridWeightProperty(
+Grid_weight_property::Grid_weight_property(
 		GsTLInt size, const std::string& name,
 		property_type default_value)
 		: Grid_continuous_property(size,name,no_data_value)
@@ -49,7 +49,7 @@ GsTLGridWeightProperty::GsTLGridWeightProperty(
 }
 
 
-GsTLGridWeightProperty::GsTLGridWeightProperty(
+Grid_weight_property::Grid_weight_property(
 		GsTLInt size, const std::string& name, const std::string& in_filename,
 		property_type default_value)
 		: Grid_continuous_property(size,name,in_filename, no_data_value)
@@ -58,6 +58,6 @@ GsTLGridWeightProperty::GsTLGridWeightProperty(
 
 
 
-QString GsTLGridWeightProperty::item_type() const{
+QString Grid_weight_property::item_type() const{
 	return "WeightsProperty";
 }

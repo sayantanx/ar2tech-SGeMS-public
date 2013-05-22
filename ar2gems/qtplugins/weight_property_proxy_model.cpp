@@ -332,7 +332,7 @@ QModelIndex	Weight_property_proxy_model_no_selection::mapFromSource ( const QMod
 
 	GsTL_object_item *item = static_cast<GsTL_object_item*>(sourceIndex.internalPointer());
   if(item->item_type() != "WeightProperty") return QModelIndex();
-  GsTLGridWeightProperty* wprop =   dynamic_cast<GsTLGridWeightProperty*>(item);
+  Grid_weight_property* wprop =   dynamic_cast<Grid_weight_property*>(item);
 
   if(wprop->parent() != root_) return QModelIndex(); 
 
@@ -347,7 +347,7 @@ QModelIndex	Weight_property_proxy_model_no_selection::mapToSource ( const QModel
 	if(proxyIndex.row() == 0 ) return QModelIndex();
 
   //Search for the 
-  GsTLGridWeightProperty* wprop = grid_->weight_property(proxyIndex.data().toString().toStdString());
+  Grid_weight_property* wprop = grid_->weight_property(proxyIndex.data().toString().toStdString());
   if(wprop==0) return QModelIndex();
 
   Root_model* rmodel = dynamic_cast<Root_model*>(this->sourceModel());

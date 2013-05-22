@@ -145,8 +145,8 @@ public:
   virtual Grid_continuous_property* add_property_from_disk( const std::string& name,
 																										const std::string& filename );
 
-  virtual GsTLGridWeightProperty* add_weight_property( const std::string& name );
-  virtual GsTLGridWeightProperty* add_weight_property_from_disk( 
+  virtual Grid_weight_property* add_weight_property( const std::string& name );
+  virtual Grid_weight_property* add_weight_property_from_disk( 
           const std::string& name,const std::string& filename );
 
   virtual Grid_categorical_property* add_categorical_property(
@@ -171,8 +171,8 @@ public:
   virtual const Grid_categorical_property* categorical_property( const std::string& name ) const;
   virtual Grid_categorical_property* categorical_property( const std::string& name );
 
-  virtual const GsTLGridWeightProperty* weight_property( const std::string& name ) const;
-  virtual GsTLGridWeightProperty* weight_property( const std::string& name );
+  virtual const Grid_weight_property* weight_property( const std::string& name ) const;
+  virtual Grid_weight_property* weight_property( const std::string& name );
 
   virtual MultiRealization_property*  
     add_multi_realization_property( const std::string& name ); 
@@ -442,12 +442,12 @@ Grid_categorical_property* RGrid::categorical_property( const std::string& name 
 }
 
 inline
-const GsTLGridWeightProperty* RGrid::weight_property( const std::string& name ) const{
+const Grid_weight_property* RGrid::weight_property( const std::string& name ) const{
 	 return property_manager_.get_weight_property( name );
 }
 
 inline
-GsTLGridWeightProperty* RGrid::weight_property( const std::string& name ){
+Grid_weight_property* RGrid::weight_property( const std::string& name ){
 	return property_manager_.get_weight_property( name );
 }
 

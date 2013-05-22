@@ -115,7 +115,7 @@ int Declus::execute( GsTL_project* ) {
 
         std::stringstream stream_name;
         stream_name <<weight_name_<<" ( "<<xcs<<","<<ycs<<","<<zcs<<" )";
-        GsTLGridWeightProperty* wprop = grid_->add_weight_property(stream_name.str());
+        Grid_weight_property* wprop = grid_->add_weight_property(stream_name.str());
         while(wprop == 0 ) {
           stream_name<<"_0";
           wprop = grid_->add_weight_property(stream_name.str());

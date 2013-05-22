@@ -106,9 +106,9 @@ class GRID_DECL Point_set : public Geostat_grid {
 													const std::string& filename );
  
  
-  virtual GsTLGridWeightProperty* add_weight_property( const std::string& name );
+  virtual Grid_weight_property* add_weight_property( const std::string& name );
 
-  virtual GsTLGridWeightProperty* add_weight_property_from_disk( 
+  virtual Grid_weight_property* add_weight_property_from_disk( 
           const std::string& name,const std::string& filename );
 
   virtual Grid_categorical_property* add_categorical_property(
@@ -136,8 +136,8 @@ class GRID_DECL Point_set : public Geostat_grid {
   virtual const Grid_categorical_property* categorical_property( const std::string& name ) const;
   virtual Grid_categorical_property* categorical_property( const std::string& name );
 
-  virtual const GsTLGridWeightProperty* weight_property( const std::string& name ) const;
-  virtual GsTLGridWeightProperty* weight_property( const std::string& name );
+  virtual const Grid_weight_property* weight_property( const std::string& name ) const;
+  virtual Grid_weight_property* weight_property( const std::string& name );
 
   virtual std::list<std::string> property_list() const ; 
   virtual std::list<std::string> categorical_property_list() const ; 
@@ -323,14 +323,14 @@ Grid_continuous_property* Point_set::property( const std::string& name )
 } 
  
 inline 
-const GsTLGridWeightProperty* Point_set::weight_property( const std::string& name ) const 
+const Grid_weight_property* Point_set::weight_property( const std::string& name ) const 
 { 
     return point_prop_.get_weight_property( name );
 } 
  
  
 inline 
-GsTLGridWeightProperty* Point_set::weight_property( const std::string& name )  
+Grid_weight_property* Point_set::weight_property( const std::string& name )  
 { 
     return point_prop_.get_weight_property( name );
 } 

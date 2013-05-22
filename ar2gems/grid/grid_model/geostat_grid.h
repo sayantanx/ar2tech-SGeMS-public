@@ -77,7 +77,7 @@
 
 class Grid_continuous_property;
 class Grid_categorical_property;
-class GsTLGridWeightProperty;
+class Grid_weight_property;
 class Grid_region;
 class GsTLGridPropertyGroup;
 class MultiRealization_property; 
@@ -160,7 +160,7 @@ class GRID_DECL Geostat_grid : public Named_interface {
    * for example because the property already existed, a null pointer 
    * is returned. 
    */ 
-  virtual GsTLGridWeightProperty* add_weight_property( const std::string& name ) = 0;
+  virtual Grid_weight_property* add_weight_property( const std::string& name ) = 0;
   
   /** Adds a new weight property called \a name where the values
    * are loaded from the file \a filename.
@@ -168,7 +168,7 @@ class GRID_DECL Geostat_grid : public Named_interface {
    * failed,for example because the property already existed, a null pointer
    * is returned.
    */
-  virtual GsTLGridWeightProperty* add_weight_property_from_disk( const std::string& name,const std::string& filename )=0;
+  virtual Grid_weight_property* add_weight_property_from_disk( const std::string& name,const std::string& filename )=0;
 
   /** Adds a new categorical property called \a name.
    * A pointer to the new property is returned. If \a add_categorical_property(...)
@@ -228,8 +228,8 @@ class GRID_DECL Geostat_grid : public Named_interface {
   * a pointer to the categorical property array. If weight property \a name does not exist,
   * a null pointer is returned.
   */
-  virtual const GsTLGridWeightProperty* weight_property( const std::string& name ) const = 0;
-  virtual GsTLGridWeightProperty* weight_property( const std::string& name ) = 0;
+  virtual const Grid_weight_property* weight_property( const std::string& name ) const = 0;
+  virtual Grid_weight_property* weight_property( const std::string& name ) = 0;
 
   /** Gives the list of all the names of the properties currently in the grid.
   */

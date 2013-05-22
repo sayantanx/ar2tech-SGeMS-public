@@ -71,11 +71,11 @@ public :
 
   virtual Geostat_grid* grid() const {return grid_;}
 
-  virtual GsTLGridWeightProperty* weights() {return 0;}
+  virtual Grid_weight_property* weights() {return 0;}
   virtual Grid_region* region() {return 0;}
   virtual Grid_categorical_property* categorical_property() {return 0;}
   
-  virtual void weights(GsTLGridWeightProperty* weights) {}
+  virtual void weights(Grid_weight_property* weights) {}
   virtual void categorical_property(Grid_categorical_property* cprop) {}
   virtual void region(Grid_region* region) {}
 
@@ -150,11 +150,11 @@ public :
   virtual GsTL_object_item* object_item_x() {return prop_x_;}
   virtual GsTL_object_item* object_item_y() {return prop_y_;}
 
-  virtual GsTLGridWeightProperty* weights() {return weights_;}
+  virtual Grid_weight_property* weights() {return weights_;}
   virtual Grid_region* region() {return region_;}
   virtual Grid_categorical_property* categorical_property() {return cprop_;}
 
-  virtual void weights(GsTLGridWeightProperty* weights) {weights_ = weights;}
+  virtual void weights(Grid_weight_property* weights) {weights_ = weights;}
   virtual void region(Grid_region* region) {region_ = region;}
   virtual void categorical_property(Grid_categorical_property* cprop) {cprop_ = cprop;}
 
@@ -181,7 +181,7 @@ private :
   Grid_continuous_property* prop_x_;
   Grid_continuous_property* prop_y_;
   Grid_region* region_;
-  GsTLGridWeightProperty* weights_;
+  Grid_weight_property* weights_;
   Grid_categorical_property* cprop_;
 
 
@@ -199,11 +199,11 @@ public :
   virtual GsTL_object_item* object_item_x() {return prop_x_;}
   virtual GsTL_object_item* object_item_y() {return group_y_;}
 
-  virtual GsTLGridWeightProperty* weights(){return weights_;}
+  virtual Grid_weight_property* weights(){return weights_;}
   virtual Grid_region* region(){return region_;}
   virtual Grid_categorical_property* categorical_property() {return cprop_;}
 
-  virtual void weights(GsTLGridWeightProperty* weights);
+  virtual void weights(Grid_weight_property* weights);
   virtual void region(Grid_region* region);
   virtual void categorical_property(Grid_categorical_property* cprop);
 
@@ -238,7 +238,7 @@ private :
   Grid_continuous_property*prop_x_;
   GsTLGridPropertyGroup* group_y_;
   Grid_region* region_;
-  GsTLGridWeightProperty* weights_;
+  Grid_weight_property* weights_;
   Grid_categorical_property* cprop_;
 
   std::set< Scatter_plot_property_item*> prop_items_;
@@ -258,11 +258,11 @@ public :
   virtual GsTL_object_item* object_item_x() {return group_x_;}
   virtual GsTL_object_item* object_item_y() {return group_y_;}
 
-  virtual GsTLGridWeightProperty* weights(){return weights_;}
+  virtual Grid_weight_property* weights(){return weights_;}
   virtual Grid_region* region(){return region_;}
   virtual Grid_categorical_property* categorical_property(){return cprop_;}
 
-  virtual void weights(GsTLGridWeightProperty* weights);
+  virtual void weights(Grid_weight_property* weights);
   virtual void region(Grid_region* region);
   virtual void categorical_property(Grid_categorical_property* cprop);
 
@@ -297,7 +297,7 @@ private :
   GsTLGridPropertyGroup* group_x_;
   GsTLGridPropertyGroup* group_y_;
   Grid_region* region_;
-  GsTLGridWeightProperty* weights_;
+  Grid_weight_property* weights_;
   Grid_categorical_property* cprop_;
 
   std::set< Scatter_plot_property_item*> prop_items_;

@@ -63,9 +63,9 @@ public :
 
   Geostat_grid* grid() const {return grid_;}
 
-  virtual GsTLGridWeightProperty* weights() {return 0;}
+  virtual Grid_weight_property* weights() {return 0;}
   virtual Grid_region* region() {return 0;}
-  virtual void weights(GsTLGridWeightProperty* weights) {}
+  virtual void weights(Grid_weight_property* weights) {}
   virtual void region(Grid_region* region) {}
   virtual void weights(QString weights_name) {}
   virtual void region(QString region_name) {}
@@ -122,9 +122,9 @@ public :
   Grid_categorical_property* prop() {return prop_;}
   virtual GsTL_object_item* object_item() {return dynamic_cast<GsTL_object_item*>(prop_);}
 
-  virtual GsTLGridWeightProperty* weights() {return weights_;}
+  virtual Grid_weight_property* weights() {return weights_;}
   virtual Grid_region* region() {return region_;}
-  virtual void weights(GsTLGridWeightProperty* weights) {weights_ = weights;}
+  virtual void weights(Grid_weight_property* weights) {weights_ = weights;}
   virtual void region(Grid_region* region) {region_ = region;}
   virtual void weights(QString weights_name) {weights_ = grid_->weight_property(weights_name.toStdString());}
   virtual void region(QString region_name) {region_ = grid_->region(region_name.toStdString());}
@@ -147,7 +147,7 @@ private :
   Categorical_histogram_item* parent_;
   Grid_categorical_property* prop_;
   Grid_region* region_;
-  GsTLGridWeightProperty* weights_;
+  Grid_weight_property* weights_;
 
 
 };
@@ -162,9 +162,9 @@ public :
   GsTLGridPropertyGroup* group() {return group_;}
   virtual GsTL_object_item* object_item() {return group_;}
 
-  virtual GsTLGridWeightProperty* weights(){return weights_;}
+  virtual Grid_weight_property* weights(){return weights_;}
   virtual Grid_region* region(){return region_;}
-  virtual void weights(GsTLGridWeightProperty* weights);
+  virtual void weights(Grid_weight_property* weights);
   virtual void region(Grid_region* region);
   virtual void weights(QString weights_name);
   virtual void region(QString region_name) ;
@@ -184,7 +184,7 @@ private :
 
   GsTLGridPropertyGroup* group_;
   Grid_region* region_;
-  GsTLGridWeightProperty* weights_;
+  Grid_weight_property* weights_;
 
   std::set< Categorical_histogram_property_item*> prop_items_;
 
@@ -204,9 +204,9 @@ public :
   Grid_categorical_property* prop() {return 0;}
   virtual GsTL_object_item* object_item() {return dist_;}
 
-  virtual GsTLGridWeightProperty* weights() {return 0;}
+  virtual Grid_weight_property* weights() {return 0;}
   virtual Grid_region* region() {return 0;}
-  virtual void weights(GsTLGridWeightProperty* weights) {}
+  virtual void weights(Grid_weight_property* weights) {}
   virtual void region(Grid_region* region) {}
   virtual void weights(QString weights_name) {}
   virtual void region(QString region_name) {}

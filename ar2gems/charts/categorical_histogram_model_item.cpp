@@ -119,7 +119,7 @@ void Categorical_histogram_group_item::set_visibility( bool on ) {
 }
 
 
-void Categorical_histogram_group_item::weights(GsTLGridWeightProperty* weights){
+void Categorical_histogram_group_item::weights(Grid_weight_property* weights){
   weights_ = weights;
   std::set< Categorical_histogram_property_item*>::iterator it = prop_items_.begin();
   for( ; it != prop_items_.end(); ++it) {

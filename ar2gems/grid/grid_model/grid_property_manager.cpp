@@ -357,14 +357,14 @@ Grid_property_manager::add_property_from_disk( const std::string& name, const st
 
 
 
-GsTLGridWeightProperty* 
+Grid_weight_property* 
 Grid_property_manager::add_weight_property( const std::string& name ) {
 
   appli_assert( size_ != 0 );
   Property_map::iterator it = properties_map_.find( name );
   if( it == properties_map_.end() ) {
     int new_prop_id = properties_.size();
-    GsTLGridWeightProperty* prop = new GsTLGridWeightProperty( size_, name );
+    Grid_weight_property* prop = new Grid_weight_property( size_, name );
     prop->set_parent_item(this);
     // Check if the property has been correctly created
     if(prop->size() == 0 ) {
@@ -393,21 +393,21 @@ Grid_property_manager::add_weight_property( const std::string& name ) {
     if( selected_property_ == -1 )
       selected_property_ = new_prop_id;
 
-    return dynamic_cast<GsTLGridWeightProperty*>( properties_[ new_prop_id ]);
+    return dynamic_cast<Grid_weight_property*>( properties_[ new_prop_id ]);
   }
   else
     return 0 ; 
 }
 
 
-GsTLGridWeightProperty*
+Grid_weight_property*
 Grid_property_manager::add_weight_property_from_disk( const std::string& name, const std::string& filename ) {
 
   appli_assert( size_ != 0 );
   Property_map::iterator it = properties_map_.find( name );
   if( it == properties_map_.end() ) {
     int new_prop_id = properties_.size();
-    GsTLGridWeightProperty* prop = new GsTLGridWeightProperty( size_, name, filename );
+    Grid_weight_property* prop = new Grid_weight_property( size_, name, filename );
     prop->set_parent_item(this);
     // Check if the property has been correctly created
     if(prop->size() == 0 ) {
@@ -434,7 +434,7 @@ Grid_property_manager::add_weight_property_from_disk( const std::string& name, c
     if( selected_property_ == -1 )
       selected_property_ = new_prop_id;
 
-    return dynamic_cast<GsTLGridWeightProperty*>( properties_[ new_prop_id ] );
+    return dynamic_cast<Grid_weight_property*>( properties_[ new_prop_id ] );
   }
   else
     return 0 ;

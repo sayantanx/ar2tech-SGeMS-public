@@ -71,12 +71,12 @@ public:
     virtual bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
 
     bool insert_row(Grid_continuous_property* prop,QColor color = QColor());
-    bool insert_row(Grid_continuous_property* prop, GsTLGridWeightProperty* weights, QColor color = QColor());
+    bool insert_row(Grid_continuous_property* prop, Grid_weight_property* weights, QColor color = QColor());
     bool insert_row(Grid_continuous_property* prop, Grid_region* region, QColor color = QColor());
 
     bool insert_row(GsTLGridPropertyGroup* group, QColor color = QColor());
     bool insert_row(GsTLGridPropertyGroup* group, Grid_region* region, QColor color = QColor());
-    bool insert_row(GsTLGridPropertyGroup* group, GsTLGridWeightProperty* weights, QColor color = QColor());
+    bool insert_row(GsTLGridPropertyGroup* group, Grid_weight_property* weights, QColor color = QColor());
 
     bool insert_row(Continuous_distribution* dist,QColor color = QColor());
 
@@ -129,10 +129,10 @@ private :
   
   bool is_item_exist(Grid_continuous_property* prop);
   bool is_item_exist(Grid_continuous_property* prop, Grid_region* region);
-  bool is_item_exist(Grid_continuous_property* prop, GsTLGridWeightProperty* weights);
+  bool is_item_exist(Grid_continuous_property* prop, Grid_weight_property* weights);
   bool is_item_exist(GsTLGridPropertyGroup* prop);
   bool is_item_exist(GsTLGridPropertyGroup* prop, Grid_region* region);
-  bool is_item_exist(GsTLGridPropertyGroup* prop, GsTLGridWeightProperty* weights);
+  bool is_item_exist(GsTLGridPropertyGroup* prop, Grid_weight_property* weights);
 
 
   int current_id_; //id for each element in the histogram

@@ -232,7 +232,7 @@ void Chart_categorical_histogram::add_data( Grid_categorical_property* prop){
   model_->insert_row(prop, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_categorical_histogram::add_data( Grid_categorical_property* prop, GsTLGridWeightProperty* weigths){
+void Chart_categorical_histogram::add_data( Grid_categorical_property* prop, Grid_weight_property* weigths){
   model_->insert_row(prop,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
@@ -244,7 +244,7 @@ void Chart_categorical_histogram::add_data( GsTLGridPropertyGroup* group){
   model_->insert_row(group, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
-void Chart_categorical_histogram::add_data( GsTLGridPropertyGroup* group, GsTLGridWeightProperty* weigths){
+void Chart_categorical_histogram::add_data( GsTLGridPropertyGroup* group, Grid_weight_property* weigths){
   model_->insert_row(group,weigths, default_colors_.at(default_color_id_%max_index_default_colors_));
   default_color_id_++;
 }
@@ -469,7 +469,7 @@ void Chart_categorical_histogram::compute_stats(histo_data& data){
 void Chart_categorical_histogram::compute_stats_with_weights(histo_data& data){
   
   Grid_categorical_property* prop = data.prop;
-  GsTLGridWeightProperty* weight = data.weight;
+  Grid_weight_property* weight = data.weight;
   CategoricalPropertyDefinition* cdef = prop->get_category_definition();
   
   bool need_memory_swap = !prop->is_in_memory();

@@ -106,7 +106,7 @@ Non_parametric_distribution*
 
 
 Non_parametric_distribution* 
-  build_non_param_distribution( std::string name,const Grid_continuous_property* prop, const GsTLGridWeightProperty* weight, 
+  build_non_param_distribution( std::string name,const Grid_continuous_property* prop, const Grid_weight_property* weight, 
   const Tail_interpolator low_interp,
 	const Linear_interpol mid_interp,
 	const Tail_interpolator up_interp	)  
