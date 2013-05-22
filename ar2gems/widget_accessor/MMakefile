@@ -1,7 +1,7 @@
-TARGET = GsTLAppli_extragui
-LIBS += -lGsTLAppli_utils -lGsTLAppli_appli
-LIBS += -lGsTLAppli_gui
-LIBS += -L$$GSTLAPPLI_HOME/plugins/designer -lGsTLwidgets
+TARGET = ar2tech_extragui
+LIBS += -lar2tech_utils -lar2tech_appli
+LIBS += -lar2tech_gui
+LIBS += -L$$GSTLAPPLI_HOME/plugins/designer -lar2tech_widgets
 
 win32 {
   DEFINES += EXTRAGUI_EXPORTS

@@ -1,9 +1,9 @@
 CONFIG += thread
 MOC_DIR = .moc
-LIBS += -lGsTLAppli_utils -lGsTLAppli_appli -lGsTLAppli_grid
+LIBS += -lar2tech_utils -lar2tech_appli -lar2tech_grid
 contains( CONFIG, plugin ) {
   DESTDIR=$$GSTLAPPLI_HOME/plugins/designer
-  TARGET=GsTLwidgets
+  TARGET=ar2tech_widgets
 }
 
 win32 {

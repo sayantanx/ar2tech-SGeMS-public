@@ -43,13 +43,13 @@ SOURCES += algorithms_actions.cpp \
            distribution_action.cpp \
            property_transformer_actions.cpp
 
-TARGET=GsTLAppli_actions
+TARGET=ar2tech_actions
 QT += xml
 
 
 CONFIG      += plugin
 INCLUDEPATH += $(QTDIR)/tools/designer/interfaces
-LIBS += -lGsTLAppli_filters
+LIBS += -lar2tech_io
 
 contains( TEMPLATE, lib ) {
     DESTDIR = $$GSTLAPPLI_HOME/lib/$$CUR_PLATFORM

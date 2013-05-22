@@ -32,7 +32,7 @@ SOURCES += error_messages_handler.cpp \
     progress_notifier.cpp \
     simpleps.cpp \
     string_manipulation.cpp
-TARGET = GsTLAppli_utils
+TARGET = ar2tech_utils
 CONFIG += plugin
 
 INCLUDEPATH += $(QTDIR)/tools/designer/interfaces

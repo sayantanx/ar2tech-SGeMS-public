@@ -124,7 +124,7 @@ SOURCES += difference_with_base.cpp \
     kriging_cross_validation.cpp \
     cokriging_cross_validation.cpp
 
-TARGET = GsTLAppli_geostat
+TARGET = ar2tech_geostat
 QT += xml
 CONFIG += plugin
 INCLUDEPATH += $(QTDIR)/tools/designer/interfaces

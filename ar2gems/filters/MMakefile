@@ -4,6 +4,6 @@ win32 {
   DEFINES += FILTERS_EXPORTS
 }
 
-LIBS += -lGsTLAppli_utils -lGsTLAppli_math
-LIBS += -lGsTLAppli_grid -lGsTLAppli_appli
+LIBS += -lar2tech_utils -lar2tech_math
+LIBS += -lar2tech_grid -lar2tech_appli
 LIBS += -L$$VTK_LIB

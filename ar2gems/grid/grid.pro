@@ -86,7 +86,7 @@ SOURCES += grid_model/log_data_grid.cpp \
     property_transformer.cpp \
     grid_filter.cpp \
     utilities.cpp
-TARGET = GsTLAppli_grid
+TARGET = ar2tech_grid
 QT += xml
 CONFIG += plugin
 

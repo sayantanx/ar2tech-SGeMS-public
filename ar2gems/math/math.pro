@@ -26,7 +26,7 @@ HEADERS += angle_convention.h \
            continuous_distribution.h \
            library_math_init.h \
            non_parametric_distribution.h \           
-    categorical_distribution.h
+		   categorical_distribution.h
 SOURCES += box.cpp \
            correlation_measure.cpp \
            correlation_measure_computer.cpp \
@@ -41,11 +41,11 @@ SOURCES += box.cpp \
            continuous_distribution.cpp \
            library_math_init.cpp \
            non_parametric_distribution.cpp \
-    categorical_distribution.cpp
+           categorical_distribution.cpp
            
-TARGET=GsTLAppli_math
+TARGET=ar2tech_math
 
-LIBS += -lGsTLAppli_utils
+LIBS += -lar2tech_utils
 
 CONFIG      += plugin
 INCLUDEPATH += $(QTDIR)/tools/designer/interfaces

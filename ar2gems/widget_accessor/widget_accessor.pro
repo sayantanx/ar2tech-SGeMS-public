@@ -12,7 +12,7 @@ HEADERS += common.h \
     qt_accessors.h
 SOURCES +=  library_extragui_init.cpp \
     qt_accessors.cpp
-TARGET = GsTLAppli_gui
+TARGET = ar2tech_gui
 QT += xml
 CONFIG += plugin
 INCLUDEPATH += $(QTDIR)/tools/designer/interfaces

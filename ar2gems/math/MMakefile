@@ -1,5 +1,5 @@
 
 win32 {
   DEFINES += MATH_EXPORTS
-  LIBS += -lGsTLAppli_utils
+  LIBS += -lar2tech_utils
 }

@@ -306,48 +306,6 @@ inline GsTLTripletTmpl<R> operator * (R r, const GsTLTripletTmpl<R>& t ) const {
 }
 */
 
-// CGLA requirements
-
-namespace CGLA {
-
-template<class R>
-
-inline GsTLTripletTmpl<R> v_min( const GsTLTripletTmpl<R>& t1, const GsTLTripletTmpl<R>& t2 ) {
-
-  GsTLTripletTmpl<R> v;
-
-  v.x() = std::min( t1.x(), t2.x() );
-
-  v.y() = std::min( t1.y(), t2.y() );
-
-  v.z() = std::min( t1.z(), t2.z() );
-
-  return v;
-
-}
-
-
-
-template<class R>
-
-inline GsTLTripletTmpl<R> v_max( const GsTLTripletTmpl<R>& t1, const GsTLTripletTmpl<R>& t2 ) {
-
-  GsTLTripletTmpl<R> v;
-
-  v.x() = std::max( t1.x(), t2.x() );
-
-  v.y() = std::max( t1.y(), t2.y() );
-
-  v.z() = std::max( t1.z(), t2.z() );
-
-  return v;
-
-}
-
-
-
-}
-
 
 typedef GsTLTripletTmpl<GsTLCoord> GsTLPoint; 
 typedef GsTLTripletTmpl<GsTLInt> GsTLGridNode; 

@@ -3,7 +3,7 @@
 ##############################################################
 
 TEMPLATE = subdirs
-SUBDIRS = utils appli math grid geostat extra/qtplugins filters actions charts extra/qwt  gui extra/gui main
+SUBDIRS = utils appli math grid geostat qtplugins filters actions charts qwt gui widget_accessor main
 CONFIG += ordered
 
 

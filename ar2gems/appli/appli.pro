@@ -18,7 +18,7 @@ SOURCES += root_model.cpp \
     manager_repository.cpp \
     project.cpp \
     utilities.cpp
-TARGET = GsTLAppli_appli
+TARGET = ar2tech_appli
 #CONFIG += plugin
 INCLUDEPATH += $(QTDIR)/tools/designer/interfaces
 contains( TEMPLATE, lib ) { 
