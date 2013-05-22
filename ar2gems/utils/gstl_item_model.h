@@ -24,12 +24,6 @@
 
 
 
-/*
- * gstl_item_model.h
- *
- *  Created on: Jun 7, 2011
- *      Author: aboucher
- */
 
 #ifndef GSTL_ITEM_MODEL_H_
 #define GSTL_ITEM_MODEL_H_

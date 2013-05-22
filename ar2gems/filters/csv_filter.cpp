@@ -472,7 +472,7 @@ Geostat_grid* Csv_logdata_infilter::read( std::ifstream& infile, std::string nam
 //  std::map<std::string, segment_geometry_vectorT>  dh_log_segments;
 
   std::vector<Log_data::Segment_geometry> log_geometry;
-  std::map<std::string, std::vector<Log_data::Segment_geometry>>  grid_log_geometry;
+  std::map<std::string, std::vector<Log_data::Segment_geometry> >  grid_log_geometry;
 
   std::vector< Point_set::location_type > start_point_locations;
   std::vector< Point_set::location_type > end_point_locations;
@@ -513,7 +513,7 @@ Geostat_grid* Csv_logdata_infilter::read( std::ifstream& infile, std::string nam
     }
     it->second.push_back(std::make_pair( grid_size, std::make_pair(start_loc,end_loc)));
 */
-    std::map<std::string, std::vector<Log_data::Segment_geometry>>::iterator it_grid = grid_log_geometry.find(dh_name);
+    std::map<std::string, std::vector<Log_data::Segment_geometry> >::iterator it_grid = grid_log_geometry.find(dh_name);
     if( it_grid  == grid_log_geometry.end()) {
     	std::vector<Log_data::Segment_geometry> vector_segments;
     	grid_log_geometry[dh_name] = vector_segments;

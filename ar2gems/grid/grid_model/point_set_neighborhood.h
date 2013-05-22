@@ -67,7 +67,7 @@
 
 #include <GsTL/geometry/geometry_algorithms.h> 
 #include <GsTL/geometry/covariance.h> 
-#include <GsTL/utils/KDTree.h> 
+//#include <GsTL/utils/KDTree.h>
 
 
 #include <vector> 

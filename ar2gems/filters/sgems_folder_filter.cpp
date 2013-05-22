@@ -383,14 +383,14 @@ Geostat_grid* Sgems_folder_input_filter::read_log_data_grid(QDir dir,const QDomE
 
   //Read the geometry of each log
   std::vector<Log_data::Segment_geometry> log_geometry;
-  std::map<std::string, std::vector<Log_data::Segment_geometry>>  grid_log_geometry;
+  std::map<std::string, std::vector<Log_data::Segment_geometry> >  grid_log_geometry;
 
   QDomElement elemLog = elemGeom.firstChildElement("Log_Geometry");
   for( ; !elemLog.isNull(); elemLog = elemLog.nextSiblingElement("Log_Geometry") ){
   	std::vector<Log_data::Segment_geometry> vector;
   	std::string log_name = elemLog.attribute("name").toStdString();
   	grid_log_geometry[log_name] = vector;
-  	std::map<std::string, std::vector<Log_data::Segment_geometry>> ::iterator it = grid_log_geometry.find(log_name);
+    std::map<std::string, std::vector<Log_data::Segment_geometry> > ::iterator it = grid_log_geometry.find(log_name);
   	QDomElement elemSegment = elemLog.firstChildElement("Segment");
   	for( ; !elemSegment.isNull(); elemSegment = elemSegment.nextSiblingElement("Segment") ){
   		int nodeid = elemSegment.attribute("nodeid").toInt();

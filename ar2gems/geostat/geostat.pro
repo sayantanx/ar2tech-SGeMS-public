@@ -23,7 +23,6 @@ HEADERS += difference_with_base.h \
     geostat_algo.h \
     grid_variog_computer.h \
     GsTL_filters.h \
-    hmatch.h \
     ImageProcess.h \
     indicator_kriging.h \
     kriging.h \
@@ -87,7 +86,6 @@ SOURCES += difference_with_base.cpp \
     cosisim.cpp \
     dssim.cpp \
     grid_variog_computer.cpp \
-    hmatch.cpp \
     ImageProcess.cpp \
     indicator_kriging.cpp \
     kriging.cpp \

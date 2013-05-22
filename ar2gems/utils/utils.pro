@@ -12,8 +12,6 @@ HEADERS += gstl_item_model.h \
     common.h \
     directory.h \
     error_messages_handler.h \
-    gstl_data_array.h \
-    gstl_data_array.hpp \
     gstl_messages.h \
     gstl_messages_private.h \
     gstl_plugins.h \
@@ -22,7 +20,6 @@ HEADERS += gstl_item_model.h \
     manager.h \
     named_interface.h \
     progress_notifier.h \
-    simpleps.h \
     singleton_holder.h \
     string_manipulation.h \
     xml_parsing.h
@@ -30,7 +27,6 @@ SOURCES += error_messages_handler.cpp \
     gstl_messages_private.cpp \
     manager.cpp \
     progress_notifier.cpp \
-    simpleps.cpp \
     string_manipulation.cpp
 TARGET = ar2tech_utils
 CONFIG += plugin

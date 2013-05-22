@@ -413,14 +413,14 @@ Geostat_grid* Log_data_grid_geometry_xml_io::
 //  segment_geometry_vectorT  log_segments;
 //  std::map<std::string, segment_geometry_vectorT>  dh_log_segments;
   std::vector<Log_data::Segment_geometry> segment_geometries;
-  std::map<std::string,std::vector<Log_data::Segment_geometry>> grid_geometries;
+  std::map<std::string,std::vector<Log_data::Segment_geometry> > grid_geometries;
 
   QDomElement elemLog = elemGeom.firstChildElement("Log_Geometry");
   for( ; !elemLog.isNull(); elemLog = elemLog.nextSiblingElement("Log_Geometry") ){
   	std::vector<Log_data::Segment_geometry> segment_vector;
   	std::string log_name = elemLog.attribute("name").toStdString();
   	grid_geometries[log_name] = segment_vector;
-  	std::map<std::string, std::vector<Log_data::Segment_geometry>>::iterator it = grid_geometries.find(log_name);
+    std::map<std::string, std::vector<Log_data::Segment_geometry> >::iterator it = grid_geometries.find(log_name);
   	QDomElement elemSegment = elemLog.firstChildElement("Segment");
   	for( ; !elemSegment.isNull(); elemSegment = elemSegment.nextSiblingElement("Segment") ){
   		int nodeid = elemSegment.attribute("nodeid").toInt();

@@ -398,7 +398,7 @@ Log_data_grid::~Log_data_grid() {
 	delete log_manager_;
 }
 
-void Log_data_grid::set_log_geometry( std::map<std::string, std::vector< Log_data::Segment_geometry>>&  log_geometry ){
+void Log_data_grid::set_log_geometry( std::map<std::string, std::vector< Log_data::Segment_geometry> >&  log_geometry ){
 
 	std::map<std::string, std::vector< Log_data::Segment_geometry> >::iterator it_log = log_geometry.begin();
 	int number_of_values=0;

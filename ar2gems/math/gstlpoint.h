@@ -222,7 +222,7 @@ public:
     }
 
     void operator *= (R r ) const { 
-        coords_[0]*=r,;
+        coords_[0]*=r;
         coords_[1]*=r;
         coords_[2]*=r;
     }

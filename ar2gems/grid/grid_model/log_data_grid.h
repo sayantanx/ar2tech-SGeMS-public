@@ -167,7 +167,7 @@ public:
 	Log_data_grid(std::string name, int size);
 	virtual ~Log_data_grid();
   
-  void set_log_geometry( std::map<std::string, std::vector< Log_data::Segment_geometry>>&  log_geometry );
+  void set_log_geometry( std::map<std::string, std::vector< Log_data::Segment_geometry> >&  log_geometry );
 
  // Returns the most specific name of the current class
  virtual std::string classname() const { return "Log_data_grid"; }
