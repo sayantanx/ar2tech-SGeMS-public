@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_INDICATOR_FROM_PROPERTY_H__
 #define __GSTLAPPLI_INDICATOR_FROM_PROPERTY_H__
 
-#include <GsTLAppli/gui/common.h>
+#include <gui/common.h>
 
 #include <QtGui/QApplication>
 #include <QtGui/QDialog>

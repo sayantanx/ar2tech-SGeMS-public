@@ -56,15 +56,15 @@
 #define REDUCED_GRID_H
 
 
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/maskedgridcursor.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/maskedgridcursor.h>
 
-#include <GsTLAppli/math/gstlvector.h>
-#include <GsTLAppli/grid/grid_model/neighborhood.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/math/gstlpoint.h>
+#include <math/gstlvector.h>
+#include <grid/grid_model/neighborhood.h>
+#include <utils/string_manipulation.h>
+#include <grid/grid_model/point_set.h>
+#include <math/gstlpoint.h>
 
 #include <qdatastream.h>
 

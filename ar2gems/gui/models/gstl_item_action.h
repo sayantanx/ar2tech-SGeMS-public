@@ -34,9 +34,9 @@
 #ifndef GSTL_ITEM_ACTION_H_
 #define GSTL_ITEM_ACTION_H_
 
-//#include <GsTLAppli/gui/models/gstl_item.h>
-#include <GsTLAppli/utils/gstl_object_item.h>
-#include <GsTLAppli/appli/project.h>
+//#include <gui/models/gstl_item.h>
+#include <utils/gstl_object_item.h>
+#include <appli/project.h>
 
 #include <QAction>
 #include <QStringList>

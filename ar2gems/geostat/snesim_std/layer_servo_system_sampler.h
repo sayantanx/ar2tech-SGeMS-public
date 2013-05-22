@@ -62,9 +62,9 @@
 #include <GsTL/univariate_stats/build_cdf.h>
 #include <GsTL/cdf/categ_non_param_cdf.h>
 #include <GsTL/cdf/non_param_cdf.h>
-#include <GsTLAppli/grid/grid_model/geovalue.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
+#include <grid/grid_model/geovalue.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/grid_model/gval_iterator.h>
 
 #include <algorithm>
 #include <functional>

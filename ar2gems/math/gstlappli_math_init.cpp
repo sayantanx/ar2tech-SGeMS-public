@@ -55,8 +55,8 @@
 #include <iostream>
 
 
-#include <GsTLAppli/math/gstlpoint.h>
-#include <GsTLAppli/math/gstlvector.h>
+#include <math/gstlpoint.h>
+#include <math/gstlvector.h>
 
 void GsTLAppli_Init_math() {
     std::cerr << "Init GsTLAppli Math" << std::endl;

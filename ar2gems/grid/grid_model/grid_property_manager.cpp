@@ -52,12 +52,12 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/grid_property_manager.h>
-#include <GsTLAppli/utils/string_manipulation.h> 
-#include <GsTLAppli/appli/manager_repository.h>
+#include <grid/grid_model/grid_property_manager.h>
+#include <utils/string_manipulation.h> 
+#include <appli/manager_repository.h>
 
 #include <stdlib.h>
-#include <GsTLAppli/grid/grid_model/grid_property_manager.h>
+#include <grid/grid_model/grid_property_manager.h>
 
 
 const std::string MultiRealization_property::separator( "__real" );

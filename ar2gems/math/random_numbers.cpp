@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/math/random_numbers.h>
+#include <math/random_numbers.h>
  
 Rand48_generator* Global_random_number_generator::instance_ = 0;
 

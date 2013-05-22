@@ -59,9 +59,9 @@
 #ifndef __GSTLAPPLI_TREE_FACTORY_H__ 
 #define __GSTLAPPLI_TREE_FACTORY_H__ 
 
-#include <GsTLAppli/appli/common.h>
-#include <GsTLAppli/utils/manager.h> 
-#include <GsTLAppli/utils/singleton_holder.h> 
+#include <appli/common.h>
+#include <utils/manager.h> 
+#include <utils/singleton_holder.h> 
 
 /** Root is a manager singleton (see Design Patterns by Gamma et al. for a 
  * precise definition of singleton). It is a globally accessible Manager

@@ -37,14 +37,14 @@
 
 #include <GsTL/utils/smartptr.h>
 
-#include <GsTLAppli/utils/named_interface.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
+#include <utils/named_interface.h>
+#include <utils/gstl_messages.h>
+#include <grid/grid_model/grid_categorical_property.h>
 
 
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/utils/colorscale.h>
+#include <gui/common.h>
+#include <gui/utils/colorscale.h>
 
 #include <vtkLookupTable.h>
 #include <vtkColorTransferFunction.h>

@@ -52,8 +52,8 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/math/histogram.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <math/histogram.h>
+#include <utils/gstl_messages.h>
 
 #include <GsTL/univariate_stats/utils.h>
 

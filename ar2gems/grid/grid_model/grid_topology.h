@@ -55,9 +55,9 @@
 #ifndef __GSTL_APPLI_GRID_GRID_TOPOLOGY_H__ 
 #define __GSTL_APPLI_GRID_GRID_TOPOLOGY_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/utils/gstl_types.h> 
-#include <GsTLAppli/grid/grid_model/rgrid_geometry.h> 
+#include <grid/common.h>
+#include <utils/gstl_types.h> 
+#include <grid/grid_model/rgrid_geometry.h> 
 #include <iostream> 
  
 

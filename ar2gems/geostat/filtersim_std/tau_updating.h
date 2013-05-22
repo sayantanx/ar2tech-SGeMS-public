@@ -58,7 +58,7 @@
 #define __filtersim_Tau_updating_H__
 
 
-#include <GsTLAppli/geostat/common.h>
+#include <geostat/common.h>
 #include <GsTL/math/math_functions.h>
 
 #include <vector>

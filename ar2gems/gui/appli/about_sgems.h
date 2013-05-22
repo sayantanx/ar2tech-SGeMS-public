@@ -36,7 +36,7 @@
 #ifndef ABOUT_SGEMS_H_
 #define ABOUT_SGEMS_H_
 
-#include <GsTLAppli/gui/common.h>
+#include <gui/common.h>
 #include <QDialog>
 #include <QTabWidget>
 

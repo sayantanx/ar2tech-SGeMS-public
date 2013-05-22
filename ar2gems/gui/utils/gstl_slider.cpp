@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/utils/gstl_slider.h>
+#include <gui/utils/gstl_slider.h>
 
 #include <qlineedit.h>
 #include <qslider.h>

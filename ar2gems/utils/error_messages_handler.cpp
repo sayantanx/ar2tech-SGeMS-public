@@ -52,8 +52,8 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <utils/error_messages_handler.h>
+#include <utils/gstl_messages.h>
 
 
 Error_messages_handler::Error_messages_handler() {

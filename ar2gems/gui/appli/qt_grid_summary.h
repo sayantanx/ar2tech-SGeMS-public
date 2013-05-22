@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_QT_GRID_SUMMARY_H__ 
 #define __GSTLAPPLI_GUI_QT_GRID_SUMMARY_H__
  
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/utils/named_interface.h> 
+#include <gui/common.h>
+#include <utils/named_interface.h> 
 
 class Geostat_grid; 
 class QWidget;

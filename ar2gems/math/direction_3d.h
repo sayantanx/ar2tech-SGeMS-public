@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_MATH_DIRECTION_3D_H__
 #define __GSTLAPPLI_MATH_DIRECTION_3D_H__
 
-#include <GsTLAppli/math/gstlvector.h>
+#include <math/gstlvector.h>
 
 /** All angles must be expressed in radian
 */

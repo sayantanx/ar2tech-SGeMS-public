@@ -23,8 +23,8 @@
 ** ----------------------------------------------------------------------------*/
 
 
-#include <GsTLAppli/qtplugins/grid_filter_model_item.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <qtplugins/grid_filter_model_item.h>
+#include <appli/manager_repository.h>
 
 
 Grid_filter* Grid_filter_region_item::create_filter() const{

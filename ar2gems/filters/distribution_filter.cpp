@@ -24,13 +24,13 @@
 
 
 
-#include <GsTLAppli/filters/distribution_filter.h>
+#include <filters/distribution_filter.h>
 
 #include <QDomDocument>
 #include <QFile>
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <utils/manager.h>
+#include <appli/manager_repository.h>
 
 
 #include <QStringList>

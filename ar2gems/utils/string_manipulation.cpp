@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <utils/string_manipulation.h>
 
 #include <ctype.h>
 #include <locale.h>

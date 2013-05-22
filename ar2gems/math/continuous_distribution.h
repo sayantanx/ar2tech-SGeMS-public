@@ -27,8 +27,8 @@
 #ifndef __GSTLAPPLI_MATH_STATS_DISTRIBUTION_H__
 #define __GSTLAPPLI_MATH_STATS_DISTRIBUTION_H__
 
-#include <GsTLAppli/utils/named_interface.h>
-#include <GsTLAppli/math/common.h>
+#include <utils/named_interface.h>
+#include <math/common.h>
 #include <boost/math/distributions.hpp>
 /*
 class MATH_DECL Statistical_distribution : public Named_interface

@@ -56,11 +56,11 @@
 #define __GSTLAPPLI_GUI_APPLI_CLI_COMMANDS_PANEL_H__
 
 
-#include <GsTLAppli/gui/common.h>
+#include <gui/common.h>
 
 //TL modified
-#include <GsTLAppli/gui/appli/historyscribe.h>
-#include <GsTLAppli/utils/lineeditkey.h>
+#include <gui/appli/historyscribe.h>
+#include <utils/lineeditkey.h>
 
 #include <qwidget.h>
 

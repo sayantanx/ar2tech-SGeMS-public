@@ -26,14 +26,14 @@
 #ifndef CHART_CATEGORICAL_HISTOGRAM_H
 #define CHART_CATEGORICAL_HISTOGRAM_H
 
-#include <GsTLAppli/charts/common.h>
-#include <GsTLAppli/math/categorical_distribution.h>
-#include <GsTLAppli/charts/chart_base.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
-#include <GsTLAppli/grid/grid_model/grid_weight_property.h>
-#include <GsTLAppli/grid/grid_model/grid_region.h>
-#include <GsTLAppli/charts/categorical_histogram_proxy_model.h>
+#include <charts/common.h>
+#include <math/categorical_distribution.h>
+#include <charts/chart_base.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_categorical_property.h>
+#include <grid/grid_model/grid_weight_property.h>
+#include <grid/grid_model/grid_region.h>
+#include <charts/categorical_histogram_proxy_model.h>
 
 
 #include <QObject>

@@ -55,9 +55,9 @@
 #ifndef __GSTLAPPI_GUI_APPLI_HISTOGRAM_GUI_H__
 #define __GSTLAPPI_GUI_APPLI_HISTOGRAM_GUI_H__
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/appli/data_analysis_gui.h>
-#include <GsTLAppli/gui/appli/histogram_control_panel.h>
+#include <gui/common.h>
+#include <gui/appli/data_analysis_gui.h>
+#include <gui/appli/histogram_control_panel.h>
 
 
 #include <qstring.h>

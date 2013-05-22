@@ -61,22 +61,22 @@
 #endif
 */
 #include <Python.h>
-#include <GsTLAppli/actions/library_actions_init.h>
-#include <GsTLAppli/actions/python_commands.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/actions/obj_manag_actions.h>
-#include <GsTLAppli/actions/algorithms_actions.h>
-#include <GsTLAppli/actions/misc_actions.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/actions/unary_action.h>
-#include <GsTLAppli/actions/python_script.h>
-#include <GsTLAppli/actions/python_group_script.h>
-#include <GsTLAppli/actions/maskedgrid_actions.h>
-#include <GsTLAppli/actions/categorical_property_actions.h>
-#include <GsTLAppli/actions/categorical_definition_actions.h>
-#include <GsTLAppli/actions/property_group_actions.h>
-#include <GsTLAppli/actions/distribution_action.h>
-#include <GsTLAppli/actions/property_transformer_actions.h>
+#include <actions/library_actions_init.h>
+#include <actions/python_commands.h>
+#include <appli/manager_repository.h>
+#include <actions/obj_manag_actions.h>
+#include <actions/algorithms_actions.h>
+#include <actions/misc_actions.h>
+#include <utils/gstl_messages.h>
+#include <actions/unary_action.h>
+#include <actions/python_script.h>
+#include <actions/python_group_script.h>
+#include <actions/maskedgrid_actions.h>
+#include <actions/categorical_property_actions.h>
+#include <actions/categorical_definition_actions.h>
+#include <actions/property_group_actions.h>
+#include <actions/distribution_action.h>
+#include <actions/property_transformer_actions.h>
 
 void init_python_interpreter();
 

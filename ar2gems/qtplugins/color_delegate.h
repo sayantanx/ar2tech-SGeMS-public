@@ -27,7 +27,7 @@
 #ifndef COLOR_DELEGATE_H
 #define COLOR_DELEGATE_H
 
-#include <GsTLAppli/qtplugins/common.h>
+#include <qtplugins/common.h>
 
 #include <QStyledItemDelegate>
 #include <QStyleOptionViewItem>

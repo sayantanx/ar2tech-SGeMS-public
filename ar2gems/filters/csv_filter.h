@@ -28,10 +28,10 @@
 #define __GSTLAPPLI_CSV_FILTERS_H__ 
  
  
-#include <GsTLAppli/filters/common.h>
-#include <GsTLAppli/filters/filter.h> 
-#include <GsTLAppli/filters/csv_filter_qt_dialogs.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
+#include <filters/common.h>
+#include <filters/filter.h> 
+#include <filters/csv_filter_qt_dialogs.h>
+#include <grid/grid_model/grid_property.h>
 #include <vector>
 
 

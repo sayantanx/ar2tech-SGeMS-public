@@ -55,18 +55,18 @@
 #ifndef __GSTLAPPLI_GRID_RGRID_H__ 
 #define __GSTLAPPLI_GRID_RGRID_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/grid/grid_model/rgrid_geometry.h> 
-#include <GsTLAppli/grid/grid_model/grid_topology.h> 
-#include <GsTLAppli/grid/grid_model/grid_property_manager.h> 
-#include <GsTLAppli/grid/grid_model/grid_region_manager.h> 
-#include <GsTLAppli/grid/grid_model/grid_property_set.h> 
-#include <GsTLAppli/grid/grid_model/sgrid_cursor.h> 
-#include <GsTLAppli/grid/grid_model/rgrid_gval_accessor.h> 
-#include <GsTLAppli/grid/grid_model/gval_iterator.h> 
-#include <GsTLAppli/grid/grid_model/strati_grid.h> 
-#include <GsTLAppli/math/gstlpoint.h> 
-#include <GsTLAppli/math/random_numbers.h> 
+#include <grid/common.h>
+#include <grid/grid_model/rgrid_geometry.h> 
+#include <grid/grid_model/grid_topology.h> 
+#include <grid/grid_model/grid_property_manager.h> 
+#include <grid/grid_model/grid_region_manager.h> 
+#include <grid/grid_model/grid_property_set.h> 
+#include <grid/grid_model/sgrid_cursor.h> 
+#include <grid/grid_model/rgrid_gval_accessor.h> 
+#include <grid/grid_model/gval_iterator.h> 
+#include <grid/grid_model/strati_grid.h> 
+#include <math/gstlpoint.h> 
+#include <math/random_numbers.h> 
  
 #include <vector> 
 #include <algorithm> 

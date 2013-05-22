@@ -24,7 +24,7 @@
 
 
 
-#include <GsTLAppli/math/non_parametric_distribution.h>
+#include <math/non_parametric_distribution.h>
 
 
 double Non_parametric_distribution::pdf(double z) const{

@@ -58,8 +58,8 @@
 #ifndef __filtersim_pattern_type_H__
 #define __filtersim_pattern_type_H__
 
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/geostat/common.h>
+#include <grid/grid_model/rgrid.h>
+#include <geostat/common.h>
 #include <vector>
 #include <cmath>
 

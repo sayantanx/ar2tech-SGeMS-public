@@ -55,10 +55,10 @@
 #ifndef __GSTLAPPLI_UTILS_NAMED_INTERFACE_H__ 
 #define __GSTLAPPLI_UTILS_NAMED_INTERFACE_H__ 
  
-#include <GsTLAppli/utils/common.h>
+#include <utils/common.h>
 #include <GsTL/utils/smartptr.h> 
 
-#include <GsTLAppli/utils/gstl_object_item.h>
+#include <utils/gstl_object_item.h>
  
 #include <string> 
 

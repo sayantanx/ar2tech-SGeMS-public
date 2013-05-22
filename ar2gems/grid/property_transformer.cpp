@@ -23,8 +23,8 @@
 ** ----------------------------------------------------------------------------*/
 
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/grid/property_transformer.h>
+#include <utils/manager.h>
+#include <grid/property_transformer.h>
 #include <Eigen/Eigen>
 
 Named_interface* PCA_transformer::create_new_interface( std::string& name){

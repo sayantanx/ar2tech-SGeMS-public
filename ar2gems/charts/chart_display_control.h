@@ -27,7 +27,7 @@
 #ifndef CHART_DISPLAY_CONTROL_H
 #define CHART_DISPLAY_CONTROL_H
 
-#include <GsTLAppli/charts/common.h>
+#include <charts/common.h>
 #include <QWidget>
 #include "ui_chart_display_control.h"
 

@@ -34,8 +34,8 @@
 #ifndef GSTL_ITEM_SELECTION_MODEL_H_
 #define GSTL_ITEM_SELECTION_MODEL_H_
 
-#include <GsTLAppli/gui/models/gstl_item.h>
-#include <GsTLAppli/gui/models/project_ItemModel.h>
+#include <gui/models/gstl_item.h>
+#include <gui/models/project_ItemModel.h>
 
 #include <QItemSelectionModel>
 

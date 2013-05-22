@@ -34,12 +34,12 @@
 #ifndef VTK_PROP_MAP_H_
 #define VTK_PROP_MAP_H_
 
-#include <GsTLAppli/math/gstlvector.h>
-#include <GsTLAppli/utils/named_interface.h>
-#include <GsTLAppli/appli/project.h>
+#include <math/gstlvector.h>
+#include <utils/named_interface.h>
+#include <appli/project.h>
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_gstl.h>
+#include <gui/common.h>
+#include <gui/vtk_prop/vtk_prop_gstl.h>
 
 
 #include <vtkRenderer.h>

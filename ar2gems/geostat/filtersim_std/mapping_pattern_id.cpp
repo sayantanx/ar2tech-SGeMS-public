@@ -54,8 +54,8 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/neighborhood.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
+#include <grid/grid_model/neighborhood.h>
+#include <grid/grid_model/rgrid.h>
 
 #include "distance.h"
 #include "mapping_pattern_id.h"

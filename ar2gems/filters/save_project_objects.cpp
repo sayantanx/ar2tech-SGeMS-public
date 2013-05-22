@@ -22,7 +22,7 @@
 ** sourceforge.net/projects/sgems.
 ** ----------------------------------------------------------------------------*/
 
-#include <GsTLAppli/filters/save_project_objects.h>
+#include <filters/save_project_objects.h>
 
 
 Named_interface* Save_project_objects::create_new_interface(std::string&){

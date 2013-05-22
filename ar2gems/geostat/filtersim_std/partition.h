@@ -58,7 +58,7 @@
 #ifndef __filtersim_partition_H__
 #define __filtersim_partition_H__
 
-#include <GsTLAppli/geostat/common.h>
+#include <geostat/common.h>
 #include <algorithm>
 #include <vector>
 #include <cmath>

@@ -52,20 +52,20 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/geostat/sgsim.h>
-#include <GsTLAppli/geostat/parameters_handler.h>
-#include <GsTLAppli/geostat/utilities.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/combined_neighborhood.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/math/random_numbers.h>
-#include <GsTLAppli/appli/utilities.h>
+#include <geostat/sgsim.h>
+#include <geostat/parameters_handler.h>
+#include <geostat/utilities.h>
+#include <utils/gstl_messages.h>
+#include <utils/error_messages_handler.h>
+#include <utils/string_manipulation.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/combined_neighborhood.h>
+#include <grid/grid_model/gval_iterator.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/point_set.h>
+#include <appli/manager_repository.h>
+#include <math/random_numbers.h>
+#include <appli/utilities.h>
 
 #include <GsTL/cdf/gaussian_cdf.h>
 #include <GsTL/sampler/monte_carlo_sampler.h>
@@ -74,14 +74,14 @@
 #include <GsTL/univariate_stats/cdf_transform.h>
 #include <GsTL/univariate_stats/build_cdf.h>
 
-#include <GsTLAppli/grid/grid_model/point_set_neighborhood.h>
+#include <grid/grid_model/point_set_neighborhood.h>
 
 #include <iterator>
 #include <vector>
 #include <algorithm>
 #include <fstream>
 
-#include <GsTLAppli/grid/grid_model/reduced_grid.h>
+#include <grid/grid_model/reduced_grid.h>
 
 int Sgsim::execute( GsTL_project* ) {
   

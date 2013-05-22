@@ -52,11 +52,11 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/grid_model/sgrid_cursor.h>
-#include <GsTLAppli/grid/grid_model/cross_variog_computer.h>
-#include <GsTLAppli/grid/grid_model/property_copier.h>
-#include <GsTLAppli/math/discrete_function.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/grid_model/sgrid_cursor.h>
+#include <grid/grid_model/cross_variog_computer.h>
+#include <grid/grid_model/property_copier.h>
+#include <math/discrete_function.h>
 
 #include <GsTL/geometry/geometry_algorithms.h>
 #include <GsTL/univariate_stats/utils.h>

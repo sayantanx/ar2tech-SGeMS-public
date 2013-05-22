@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_UTILS_PROGRESS_NOTIFIER_H__
 #define __GSTLAPPLI_UTILS_PROGRESS_NOTIFIER_H__
 
-#include <GsTLAppli/utils/gstl_messages_private.h>
+#include <utils/gstl_messages_private.h>
 
 #include <string>
 

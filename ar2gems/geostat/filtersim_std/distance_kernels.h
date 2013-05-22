@@ -58,7 +58,7 @@
 #ifndef __distance_kernels_H__
 #define __distance_kernels_H__
 
-#include <GsTLAppli/geostat/common.h>
+#include <geostat/common.h>
 #include <vector>
 #include <algorithm>
 

@@ -52,11 +52,11 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/utils/gstl_widget_factory.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/qtplugins/selectors.h>
+#include <gui/utils/gstl_widget_factory.h>
+#include <appli/manager_repository.h>
+#include <appli/project.h>
+#include <utils/gstl_messages.h>
+#include <qtplugins/selectors.h>
 
 #include <QtUiTools/QUiLoader>
 #include <qobject.h>

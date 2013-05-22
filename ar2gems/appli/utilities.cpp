@@ -52,8 +52,8 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/appli/utilities.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <appli/utilities.h>
+#include <appli/manager_repository.h>
 
 #include <algorithm>
 

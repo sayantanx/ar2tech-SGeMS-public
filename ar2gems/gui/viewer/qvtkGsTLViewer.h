@@ -47,8 +47,8 @@
 #ifndef __GSTLAPPLI_GUI_APPLI_VTKQTGSTLVIEWER_H__
 #define __GSTLAPPLI_GUI_APPLI_VTKQTGSTLVIEWER_H__
  
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/math/gstlvector.h> 
+#include <gui/common.h>
+#include <math/gstlvector.h> 
 
 
 #include <QVTKWidget.h>

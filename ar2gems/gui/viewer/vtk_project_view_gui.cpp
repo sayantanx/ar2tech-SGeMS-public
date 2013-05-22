@@ -33,21 +33,21 @@
 
 #include <GsTL/utils/smartptr.h>
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/actions/action.h>
-#include <GsTLAppli/actions/defines.h>
+#include <utils/manager.h>
+#include <utils/gstl_messages.h>
+#include <utils/error_messages_handler.h>
+#include <appli/manager_repository.h>
+#include <actions/action.h>
+#include <actions/defines.h>
 
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_cgrid.h>
-#include <GsTLAppli/gui/appli/snapshot_dialog.h>
-#include <GsTLAppli/gui/models/project_selection_model.h>
-#include <GsTLAppli/gui/viewer/vtk_project_view_gui.h>
-#include <GsTLAppli/gui/viewer/grid_param_viewer.h>
-#include <GsTLAppli/gui/viewer/property_param_viewer.h>
-#include <GsTLAppli/gui/viewer/region_param_viewer.h>
-#include <GsTLAppli/gui/viewer/group_param_viewer.h>
+#include <gui/vtk_prop/vtk_prop_cgrid.h>
+#include <gui/appli/snapshot_dialog.h>
+#include <gui/models/project_selection_model.h>
+#include <gui/viewer/vtk_project_view_gui.h>
+#include <gui/viewer/grid_param_viewer.h>
+#include <gui/viewer/property_param_viewer.h>
+#include <gui/viewer/region_param_viewer.h>
+#include <gui/viewer/group_param_viewer.h>
 
 #include <vtkCamera.h>
 #include <vtkSphereSource.h>
@@ -70,7 +70,7 @@
 #include <strstream>
 //#include <MouseButtons>
 
-//#include <GsTLAppli/gui/models/modeltest.h>
+//#include <gui/models/modeltest.h>
 
 Named_interface* Create_vtk_view(std::string&)
 {

@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GEOSTAT_PARAMETERS_HANDLER_IMPL_H__ 
 #define __GSTLAPPLI_GEOSTAT_PARAMETERS_HANDLER_IMPL_H__ 
  
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/geostat/parameters_handler.h> 
+#include <geostat/common.h>
+#include <geostat/parameters_handler.h> 
  
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement> 

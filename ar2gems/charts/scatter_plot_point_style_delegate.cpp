@@ -25,8 +25,8 @@
 
 
 
-#include <GsTLAppli/charts/scatter_plot_point_style_delegate.h>
-#include <GsTLAppli/charts/scatter_plot_proxy_model.h>
+#include <charts/scatter_plot_point_style_delegate.h>
+#include <charts/scatter_plot_proxy_model.h>
 
 #include <QComboBox>
 

@@ -25,9 +25,9 @@
 #ifndef __GSTLAPPLI_VTK_DESCRIPTION_POINTSET_H__
 #define __GSTLAPPLI_VTK_DESCRIPTION_POINTSET_H__
  
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_gstl.h>
-#include <GsTLAppli/grid/grid_model/reduced_grid.h>
+#include <gui/common.h>
+#include <gui/vtk_prop/vtk_prop_gstl.h>
+#include <grid/grid_model/reduced_grid.h>
 
 class vtkPolyData;
 class vtkPolyDataMapper;

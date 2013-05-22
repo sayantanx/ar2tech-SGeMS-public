@@ -56,11 +56,11 @@
 #define __GSTLAPPLI_QTPLUGINS_SELECTORS_H__
 
 
-#include <GsTLAppli/qtplugins/common.h>
-#include <GsTLAppli/qtplugins/region_proxy_model.h>
-#include <GsTLAppli/qtplugins/property_proxy_model.h>
-#include <GsTLAppli/qtplugins/project_proxy_model.h>
-#include <GsTLAppli/appli/project.h>
+#include <qtplugins/common.h>
+#include <qtplugins/region_proxy_model.h>
+#include <qtplugins/property_proxy_model.h>
+#include <qtplugins/project_proxy_model.h>
+#include <appli/project.h>
 
 #include <qcombobox.h>
 #include <QListWidget>
@@ -263,7 +263,7 @@ protected:
 };
 */
 
-#include <GsTLAppli/qtplugins/ui_order_properties_dialog.h>
+#include <qtplugins/ui_order_properties_dialog.h>
 
 class QTPLUGINS_DECL  Ordered_property_selector_dialog
     : public QDialog, public Ui::Ordered_property_selector_dialog_base {

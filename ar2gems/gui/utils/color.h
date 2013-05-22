@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_COLOR_H__ 
 #define __GSTLAPPLI_GUI_COLOR_H__ 
  
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/math/gstlpoint.h> 
+#include <gui/common.h>
+#include <math/gstlpoint.h> 
  
 typedef GsTLTripletTmpl<float> RGB_color; 
  

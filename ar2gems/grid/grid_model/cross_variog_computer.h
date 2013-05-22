@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_CROSS_VARIOG_COMPUTER_H__
 #define __GSTLAPPLI_CROSS_VARIOG_COMPUTER_H__
 
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/math/gstlvector.h>
+#include <grid/common.h>
+#include <math/gstlvector.h>
 
 #include <vector>
 #include <map>

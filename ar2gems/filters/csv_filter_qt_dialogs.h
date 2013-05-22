@@ -55,11 +55,11 @@
 #ifndef __GSTLAPPLI_FILTERS_CSV_QT_DIALOGS_H__ 
 #define __GSTLAPPLI_FILTERS_CSV_QT_DIALOGS_H__ 
 
-#include <GsTLAppli/filters/common.h>
-#include <GsTLAppli/filters/ui_importwizard.h> // "qt-designer" generated file 
-#include <GsTLAppli/filters/ui_csv_grid_import.h> // "qt-designer" generated file 
-#include <GsTLAppli/filters/ui_csv_pointset_import.h> // "qt-designer" generated file 
-#include <GsTLAppli/filters/ui_csv_masked_import.h> // "qt-designer" generated file 
+#include <filters/common.h>
+#include <filters/ui_importwizard.h> // "qt-designer" generated file 
+#include <filters/ui_csv_grid_import.h> // "qt-designer" generated file 
+#include <filters/ui_csv_pointset_import.h> // "qt-designer" generated file 
+#include <filters/ui_csv_masked_import.h> // "qt-designer" generated file 
  
 #include <QTextEdit>
 #include <qcombobox.h> 

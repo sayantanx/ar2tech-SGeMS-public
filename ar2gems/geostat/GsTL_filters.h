@@ -32,7 +32,7 @@
 
 #include <vector>
 #include <cmath>
-#include <GsTLAppli/grid/grid_model/geovalue.h>
+#include <grid/grid_model/geovalue.h>
 
 
 

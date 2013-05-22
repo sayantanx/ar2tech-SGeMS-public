@@ -52,9 +52,9 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/rgrid_neighborhood.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/math/random_numbers.h>
+#include <grid/grid_model/rgrid_neighborhood.h>
+#include <grid/grid_model/rgrid.h>
+#include <math/random_numbers.h>
 
 #include <GsTL/math/math_functions.h>
 

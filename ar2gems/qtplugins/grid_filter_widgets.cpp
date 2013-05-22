@@ -23,11 +23,11 @@
 ** ----------------------------------------------------------------------------*/
 
 
-#include <GsTLAppli/qtplugins/grid_filter_widgets.h>
-#include <GsTLAppli/qtplugins/grid_filter_model.h>
-#include <GsTLAppli/qtplugins/grid_filter_delegate.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/qtplugins/grid_filter_named_interface.h>
+#include <qtplugins/grid_filter_widgets.h>
+#include <qtplugins/grid_filter_model.h>
+#include <qtplugins/grid_filter_delegate.h>
+#include <appli/manager_repository.h>
+#include <qtplugins/grid_filter_named_interface.h>
 
 #include <QColorDialog>
 #include <QHeaderView>

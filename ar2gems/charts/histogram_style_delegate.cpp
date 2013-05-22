@@ -25,8 +25,8 @@
 
 
 
-#include <GsTLAppli/charts/histogram_style_delegate.h>
-#include <GsTLAppli/charts/histogram_proxy_model.h>
+#include <charts/histogram_style_delegate.h>
+#include <charts/histogram_proxy_model.h>
 
 #include <QComboBox>
 

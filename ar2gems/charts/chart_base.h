@@ -27,7 +27,7 @@
 #ifndef CHART_BASE_H
 #define CHART_BASE_H
 
-#include <GsTLAppli/charts/common.h>
+#include <charts/common.h>
 
 #include <QVTKWidget.h>
 #include <vtkFloatArray.h>

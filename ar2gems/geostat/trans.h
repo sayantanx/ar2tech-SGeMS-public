@@ -27,12 +27,12 @@
 #ifndef __GSTLAPPLI_GEOSTAT_PLUGIN_TRANS_H__
 #define __GSTLAPPLI_GEOSTAT_PLUGIN_TRANS_H__
 
-#include <GsTLAppli/geostat/utilities.h>
-#include <GsTLAppli/geostat/geostat_algo.h>
+#include <geostat/utilities.h>
+#include <geostat/geostat_algo.h>
 #include <GsTL/utils/smartptr.h>
-#include <GsTLAppli/grid/grid_model/neighborhood.h>
-#include <GsTLAppli/math/gstlpoint.h>
-#include <GsTLAppli/math/continuous_distribution.h>
+#include <grid/grid_model/neighborhood.h>
+#include <math/gstlpoint.h>
+#include <math/continuous_distribution.h>
 
 class Geostat_grid;
 class Grid_region;

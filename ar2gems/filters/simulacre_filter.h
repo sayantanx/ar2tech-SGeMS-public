@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_FILTERS_SIMULACRE_FILTER_H__
 #define __GSTLAPPLI_FILTERS_SIMULACRE_FILTER_H__
 
-#include <GsTLAppli/filters/common.h>
-#include <GsTLAppli/filters/filter.h>
+#include <filters/common.h>
+#include <filters/filter.h>
 
 class QDataStream;
 class Geostat_grid;

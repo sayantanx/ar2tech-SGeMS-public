@@ -56,8 +56,8 @@
 #define __GSTLAPPLI_GEOSTAT_PARAMETERS_HANDLER_H__ 
  
  
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/utils/named_interface.h> 
+#include <geostat/common.h>
+#include <utils/named_interface.h> 
  
 #include <string> 
  

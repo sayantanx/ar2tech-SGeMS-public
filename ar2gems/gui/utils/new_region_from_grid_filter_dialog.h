@@ -27,8 +27,8 @@
 #ifndef __NEW_REGION_FROM_GRID_FILTER_H__ 
 #define __NEW_REGION_FROM_GRID_FILTER_H__ 
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/grid/grid_filter.h>
+#include <gui/common.h>
+#include <grid/grid_filter.h>
 
 #include <QApplication>
 #include <QDialog>

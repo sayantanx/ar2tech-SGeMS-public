@@ -24,14 +24,14 @@
 
 
 
-#include <GsTLAppli/charts/chart_scatter_plot.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/grid_model/grid_region_temp_selector.h>
-#include <GsTLAppli/qtplugins/color_delegate.h>
-#include <GsTLAppli/charts/region_weight_delegate.h>
-#include <GsTLAppli/charts/scatter_plot_point_style_delegate.h>
-#include <GsTLAppli/charts/scatter_plot_item_tree_view.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
+#include <charts/chart_scatter_plot.h>
+#include <appli/manager_repository.h>
+#include <grid/grid_model/grid_region_temp_selector.h>
+#include <qtplugins/color_delegate.h>
+#include <charts/region_weight_delegate.h>
+#include <charts/scatter_plot_point_style_delegate.h>
+#include <charts/scatter_plot_item_tree_view.h>
+#include <grid/grid_model/grid_categorical_property.h>
 
 #include <vtkCorrelativeStatistics.h> 
 #include <vtkDoubleArray.h>
@@ -50,7 +50,7 @@
 #include <QAbstractItemView>
 
 
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <utils/gstl_messages.h>
 
 Chart_scatter_plot::Chart_scatter_plot(int nbins, QWidget *parent)
   :  Chart_base(parent)

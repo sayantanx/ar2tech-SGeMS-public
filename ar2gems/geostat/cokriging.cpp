@@ -52,20 +52,20 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/geostat/cokriging.h>
-#include <GsTLAppli/geostat/parameters_handler.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/combined_neighborhood.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/grid_model/grid_initializer.h>
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/property_copier.h>
-#include <GsTLAppli/appli/utilities.h>
+#include <geostat/cokriging.h>
+#include <geostat/parameters_handler.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
+#include <utils/error_messages_handler.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/combined_neighborhood.h>
+#include <grid/grid_model/gval_iterator.h>
+#include <appli/manager_repository.h>
+#include <grid/grid_model/grid_initializer.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/property_copier.h>
+#include <appli/utilities.h>
 
 #include <GsTL/kriging/cokriging_weights.h>
 #include <GsTL/kriging/LMC_covariance.h>

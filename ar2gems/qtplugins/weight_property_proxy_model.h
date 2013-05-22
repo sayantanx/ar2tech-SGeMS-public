@@ -35,12 +35,12 @@
 #define WEIGHT_PROPERTY_PROXY_MODEL_H_
 
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/grid/grid_model/grid_weight_property.h>
-#include <GsTLAppli/grid/grid_model/grid_property_manager.h>
-#include <GsTLAppli/qtplugins/common.h>
-#include <GsTLAppli/qtplugins/grid_proxy_model.h>
+#include <utils/manager.h>
+#include <appli/root_model.h>
+#include <grid/grid_model/grid_weight_property.h>
+#include <grid/grid_model/grid_property_manager.h>
+#include <qtplugins/common.h>
+#include <qtplugins/grid_proxy_model.h>
 
 #include <QModelIndex>
 #include <QVariant>

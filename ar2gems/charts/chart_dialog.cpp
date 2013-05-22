@@ -25,10 +25,10 @@
 
 
 
-#include <GsTLAppli/charts/chart_dialog.h>
-#include <GsTLAppli/charts/chart_creator.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/utils/named_interface.h>
+#include <charts/chart_dialog.h>
+#include <charts/chart_creator.h>
+#include <appli/manager_repository.h>
+#include <utils/named_interface.h>
 
 
 #include <QDialog>

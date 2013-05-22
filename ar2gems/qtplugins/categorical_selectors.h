@@ -56,10 +56,10 @@
 #define __GSTLAPPLI_QTPLUGINS_CATEGORICALSELECTORS_H__
 
 
-#include <GsTLAppli/qtplugins/common.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/qtplugins/categorical_definition_proxy_model.h>
-#include <GsTLAppli/appli/project.h>
+#include <qtplugins/common.h>
+#include <qtplugins/selectors.h>
+#include <qtplugins/categorical_definition_proxy_model.h>
+#include <appli/project.h>
 
 #include <qcombobox.h>
 #include <QListWidget>

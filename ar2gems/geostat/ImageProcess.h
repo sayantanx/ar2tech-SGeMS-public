@@ -29,16 +29,16 @@
 #ifndef __Image_Process_h__
 #define __Image_Process_h__
 
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/geostat/geostat_algo.h>
+#include <geostat/common.h>
+#include <geostat/geostat_algo.h>
 
 #include <GsTL/matrix_library/tnt_lib.h>
 #include <GsTL/matrix_library/tnt/cmat.h>
 
 #include <vector>
 
-#include <GsTLAppli/geostat/filtersim_std/is_categorical.h>
-#include <GsTLAppli/geostat/filtersim_std/TI_manipulation.h>
+#include <geostat/filtersim_std/is_categorical.h>
+#include <geostat/filtersim_std/TI_manipulation.h>
 
 class RGrid;
 

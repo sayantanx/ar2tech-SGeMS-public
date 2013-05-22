@@ -50,7 +50,7 @@
 #include <boost/array.hpp>
 
 #include <vector>
-#include <GsTLAppli/utils/gstl_types.h>
+#include <utils/gstl_types.h>
 
 using namespace std;
 using namespace boost;

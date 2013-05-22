@@ -31,7 +31,7 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/gui/viewer/visualization_parameters.h>
+#include <gui/viewer/visualization_parameters.h>
 
 //Param_viewer::Param_viewer() :QWidget(),Named_interface() {
 Visualization_parameters::Visualization_parameters() : Named_interface(), vtk_prop_(0) {

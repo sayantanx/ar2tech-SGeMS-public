@@ -31,11 +31,11 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/gui/viewer/vtk_prop_map.h>
+#include <gui/viewer/vtk_prop_map.h>
 
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
+#include <utils/gstl_messages.h>
+#include <appli/manager_repository.h>
+#include <grid/grid_model/geostat_grid.h>
 
 
 Vtk_prop_map::Vtk_prop_map(vtkRenderer* vtk_renderer):

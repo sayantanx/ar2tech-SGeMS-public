@@ -54,14 +54,14 @@
 //  Modified ABoucher 2011
 
 
-#include <GsTLAppli/geostat/utilities.h>
-#include <GsTLAppli/geostat/parameters_handler.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/utilities.h>
-#include <GsTLAppli/math/angle_convention.h>
+#include <geostat/utilities.h>
+#include <geostat/parameters_handler.h>
+#include <utils/gstl_messages.h>
+#include <utils/error_messages_handler.h>
+#include <utils/string_manipulation.h>
+#include <appli/manager_repository.h>
+#include <appli/utilities.h>
+#include <math/angle_convention.h>
 
 #include <GsTL/geometry/covariance.h>
 #include <GsTL/geometry/geometry_algorithms.h>
@@ -69,8 +69,8 @@
 #include <GsTL/kriging/MM1_covariance.h>
 #include <GsTL/kriging/MM2_covariance.h>
 
-#include <GsTLAppli/grid/grid_model/geostat_grid.h> 
-#include <GsTLAppli/grid/grid_model/point_set.h> 
+#include <grid/grid_model/geostat_grid.h> 
+#include <grid/grid_model/point_set.h> 
 
 #include <GsTL/utils/smartptr.h>
 #include <string>

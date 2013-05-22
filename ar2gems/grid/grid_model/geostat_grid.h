@@ -57,11 +57,11 @@
  
 
 
-#include <GsTLAppli/grid/common.h>
-//#include <GsTLAppli/grid/grid_model/gval_iterator.h>
-#include <GsTLAppli/utils/named_interface.h> 
-#include <GsTLAppli/math/gstlpoint.h> 
-#include <GsTLAppli/grid/coordinate_mapper.h>
+#include <grid/common.h>
+//#include <grid/grid_model/gval_iterator.h>
+#include <utils/named_interface.h> 
+#include <math/gstlpoint.h> 
+#include <grid/coordinate_mapper.h>
 
 #include <QModelIndex>
 #include <QVariant>

@@ -31,9 +31,9 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/gui/models/project_ItemModel.h>
+#include <appli/project.h>
+#include <appli/manager_repository.h>
+#include <gui/models/project_ItemModel.h>
 
 #include <QStringList>
 #include <QMimeData>

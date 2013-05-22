@@ -34,9 +34,9 @@
 #ifndef PARAM_VIEWER_H_
 #define PARAM_VIEWER_H_
 
-#include <GsTLAppli/utils/named_interface.h>
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_gstl.h>
+#include <utils/named_interface.h>
+#include <gui/common.h>
+#include <gui/vtk_prop/vtk_prop_gstl.h>
 
 #include <Qt>
 #include <QWidget>

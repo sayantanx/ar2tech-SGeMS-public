@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_UTILS_QTBASED_SCRIBES_H__
 #define __GSTLAPPLI_GUI_UTILS_QTBASED_SCRIBES_H__
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <gui/common.h>
+#include <utils/gstl_messages.h>
 
 #include <qstring.h>
 

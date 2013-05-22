@@ -34,10 +34,10 @@
 #ifndef CONTEXT_MENU_INTERFACE_H_
 #define CONTEXT_MENU_INTERFACE_H_
 
-#include <GsTLAppli/utils/gstl_object_item.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/gui/common.h>
-//#include <GsTLAppli/gui/models/gstl_item.h>
+#include <utils/gstl_object_item.h>
+#include <appli/project.h>
+#include <gui/common.h>
+//#include <gui/models/gstl_item.h>
 
 #include <QMenu>
 #include <QIcon>

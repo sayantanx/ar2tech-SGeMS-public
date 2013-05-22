@@ -25,14 +25,14 @@
 
 
 
-#include <GsTLAppli/actions/distribution_action.h>
-#include <GsTLAppli/actions/defines.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/math/continuous_distribution.h>
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/utils/named_interface.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/filters/distribution_filter.h>
+#include <actions/distribution_action.h>
+#include <actions/defines.h>
+#include <utils/string_manipulation.h>
+#include <math/continuous_distribution.h>
+#include <utils/manager.h>
+#include <utils/named_interface.h>
+#include <appli/manager_repository.h>
+#include <filters/distribution_filter.h>
 
 Named_interface* New_distribution_action::create_new_interface( std::string& ){
   return new New_distribution_action;

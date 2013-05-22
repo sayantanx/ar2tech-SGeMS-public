@@ -34,8 +34,8 @@
 #ifndef COLORMAP_WIDGET_H_
 #define COLORMAP_WIDGET_H_
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/utils/colormap.h>
+#include <gui/common.h>
+#include <gui/utils/colormap.h>
 
 #include <QWidget>
 #include <QPaintEvent>

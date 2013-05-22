@@ -53,7 +53,7 @@
 **********************************************************************/
 
 
-#include <GsTLAppli/math/correlation_measure.h>
+#include <math/correlation_measure.h>
 
 #include <cmath>
 

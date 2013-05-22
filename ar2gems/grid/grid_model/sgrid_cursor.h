@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GRID_GRID_CURSOR_H__ 
 #define __GSTLAPPLI_GRID_GRID_CURSOR_H__ 
 
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/utils/gstl_types.h> 
+#include <grid/common.h>
+#include <utils/gstl_types.h> 
 
 #include <GsTL/math/math_functions.h> 
 

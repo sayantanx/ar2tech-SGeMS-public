@@ -52,10 +52,10 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/variogram2/first_scr.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/qtplugins/filechooser.h>
+#include <gui/variogram2/first_scr.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
+#include <qtplugins/filechooser.h>
 
 #include <QTextStream>
 #include <qstring.h>

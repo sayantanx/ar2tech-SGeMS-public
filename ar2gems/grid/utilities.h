@@ -22,8 +22,8 @@
 ** sourceforge.net/projects/sgems.
 ** ----------------------------------------------------------------------------*/
 
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
+#include <grid/common.h>
+#include <grid/grid_model/geostat_grid.h>
 
 
 GRID_DECL Geostat_grid* get_grid_from_manager( std::string grid_name );

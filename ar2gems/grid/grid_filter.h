@@ -25,13 +25,13 @@
 #ifndef __GRID_FILTER_H__ 
 #define __GRID_FILTER_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/utils/named_interface.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h> 
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h> 
-#include <GsTLAppli/grid/grid_model/grid_region.h> 
-#include <GsTLAppli/grid/grid_model/geostat_grid.h> 
-#include <GsTLAppli/grid/grid_model/log_data_grid.h> 
+#include <grid/common.h>
+#include <utils/named_interface.h>
+#include <grid/grid_model/grid_property.h> 
+#include <grid/grid_model/grid_categorical_property.h> 
+#include <grid/grid_model/grid_region.h> 
+#include <grid/grid_model/geostat_grid.h> 
+#include <grid/grid_model/log_data_grid.h> 
 
 
 class GRID_DECL Grid_filter : public Named_interface

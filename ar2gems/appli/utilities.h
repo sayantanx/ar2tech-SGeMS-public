@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_APPLI_UTILITIES_H__
 #define __GSTLAPPLI_APPLI_UTILITIES_H__
 
-#include <GsTLAppli/appli/common.h>
-#include <GsTLAppli/utils/progress_notifier.h>
+#include <appli/common.h>
+#include <utils/progress_notifier.h>
 
 #include <GsTL/utils/smartptr.h>
 

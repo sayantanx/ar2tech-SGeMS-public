@@ -56,9 +56,9 @@
 #define __GSTLAPPLI_GSLIB_FILTERS_H__ 
  
  
-#include <GsTLAppli/filters/common.h>
-#include <GsTLAppli/filters/filter.h> 
-#include <GsTLAppli/filters/gslib/filter_qt_dialogs.h>
+#include <filters/common.h>
+#include <filters/filter.h> 
+#include <filters/gslib/filter_qt_dialogs.h>
  
 #include <vector>
 

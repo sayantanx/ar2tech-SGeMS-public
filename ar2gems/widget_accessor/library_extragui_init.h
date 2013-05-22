@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_LIBRARY_EXTRAGUI_INIT_H__
 #define __GSTLAPPLI_LIBRARY_EXTRAGUI_INIT_H__
 
-#include <GsTLAppli/widget_accessor/common.h>
+#include <widget_accessor/common.h>
 
 class Manager;
 

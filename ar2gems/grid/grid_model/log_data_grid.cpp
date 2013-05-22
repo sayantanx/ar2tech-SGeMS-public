@@ -31,8 +31,8 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/grid/grid_model/log_data_grid.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <grid/grid_model/log_data_grid.h>
+#include <utils/string_manipulation.h>
 #include <cmath>
 
 

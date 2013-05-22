@@ -26,8 +26,8 @@
 #ifndef __CATEGORICAL_PROPERTY_ACTIONS_H__ 
 #define __CATEGORICAL_PROPERTY_ACTIONS_H__ 
 
-#include <GsTLAppli/actions/common.h>
-#include <GsTLAppli/actions/action.h> 
+#include <actions/common.h>
+#include <actions/action.h> 
 
 
 #include <qstring.h>

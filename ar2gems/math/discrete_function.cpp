@@ -52,8 +52,8 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/math/discrete_function.h>
-#include <GsTLAppli/math/Interpolator_1d.h>
+#include <math/discrete_function.h>
+#include <math/Interpolator_1d.h>
 
 #include <algorithm>
 

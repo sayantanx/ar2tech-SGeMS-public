@@ -52,8 +52,8 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/viewer/qvtkGsTLViewer.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <gui/viewer/qvtkGsTLViewer.h>
+#include <utils/gstl_messages.h>
 
 #include <vtkCamera.h>
 #include <vtkRenderWindow.h>

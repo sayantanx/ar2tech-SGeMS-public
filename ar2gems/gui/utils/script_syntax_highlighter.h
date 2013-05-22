@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_GUI_UTILS_SCRIPT_SYNTAX_HIGHLIGHTER_H__
 #define __GSTLAPPLI_GUI_UTILS_SCRIPT_SYNTAX_HIGHLIGHTER_H__
 
-#include <GsTLAppli/gui/common.h>
+#include <gui/common.h>
 
 #include <qsyntaxhighlighter.h>
 #include <qstring.h>

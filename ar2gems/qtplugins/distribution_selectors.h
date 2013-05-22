@@ -27,7 +27,7 @@
 #ifndef DISTRIBUTION_SELECTORS_H
 #define DISTRIBUTION_SELECTORS_H
 
-#include <GsTLAppli/qtplugins/common.h>
+#include <qtplugins/common.h>
 
 #include <QListView>
 #include <QTreeView>

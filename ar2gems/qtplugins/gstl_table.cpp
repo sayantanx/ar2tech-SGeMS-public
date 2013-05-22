@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/qtplugins/gstl_table.h>
+#include <qtplugins/gstl_table.h>
 
 #include <qevent.h>
 #include <qclipboard.h>

@@ -55,10 +55,10 @@
 #ifndef __GSTLAPPLI_VARIOG_MULTIPLOT_H__
 #define __GSTLAPPLI_VARIOG_MULTIPLOT_H__
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/math/gstlvector.h>
-#include <GsTLAppli/math/gstlpoint.h>
-#include <GsTLAppli/qwt/qwt_plot.h>
+#include <gui/common.h>
+#include <math/gstlvector.h>
+#include <math/gstlpoint.h>
+#include <qwt/qwt_plot.h>
 
 #include <GsTL/geometry/covariance.h>
 

@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/combined_neighborhood.h>
+#include <grid/grid_model/combined_neighborhood.h>
 
 #include <GsTL/geometry/geometry_algorithms.h>
 #include <GsTL/math/math_functions.h>

@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_LIBRARY_GEOSTAT_INIT_H__ 
 #define __GSTLAPPLI_LIBRARY_GEOSTAT_INIT_H__ 
 
-#include <GsTLAppli/geostat/common.h>
+#include <geostat/common.h>
  
 class Manager; 
  

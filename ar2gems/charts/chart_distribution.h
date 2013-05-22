@@ -27,8 +27,8 @@
 #ifndef CHART_DISTRIBUTION_H
 #define CHART_DISTRIBUTION_H
 
-#include <GsTLAppli/charts/common.h>
-#include <GsTLAppli/math/continuous_distribution.h>
+#include <charts/common.h>
+#include <math/continuous_distribution.h>
 #include <QWidget>
 #include <QVTKWidget.h>
 #include <vtkSmartPointer.h>

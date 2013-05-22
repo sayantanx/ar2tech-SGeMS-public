@@ -56,8 +56,8 @@
 #define __GSTLAPPLI_SUPERBLOCK_H__ 
  
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/math/gstlpoint.h> 
+#include <grid/common.h>
+#include <math/gstlpoint.h> 
 
 #include <GsTL/math/math_functions.h> 
 #include <GsTL/geometry/geometry_algorithms.h> 

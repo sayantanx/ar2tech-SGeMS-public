@@ -36,12 +36,12 @@
 
 #include <Qt>
 #include <QWidget>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_property_set.h>
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_gstl.h>
-#include <GsTLAppli/gui/viewer/visualization_parameters.h>
+#include <appli/project.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/grid_property_set.h>
+#include <gui/common.h>
+#include <gui/vtk_prop/vtk_prop_gstl.h>
+#include <gui/viewer/visualization_parameters.h>
 
 
 class GUI_DECL Group_param_viewer : public QWidget {

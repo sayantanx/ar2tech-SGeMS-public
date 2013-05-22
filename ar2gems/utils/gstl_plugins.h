@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_UTILS_PLUGINS_H__ 
 #define __GSTLAPPLI_UTILS_PLUGINS_H__ 
  
-#include <GsTLAppli/utils/gstl_messages.h> 
-#include <GsTLAppli/appli/manager_repository.h> 
+#include <utils/gstl_messages.h> 
+#include <appli/manager_repository.h> 
 
 
 

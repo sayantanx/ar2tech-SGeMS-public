@@ -56,13 +56,13 @@
 #define __GSTLAPPLI_GRID_GVAL_ACCESSOR_H__ 
  
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/grid/grid_model/sgrid_cursor.h> 
-#include <GsTLAppli/grid/grid_model/grid_property.h> 
-#include <GsTLAppli/math/gstlpoint.h> 
-#include <GsTLAppli/utils/gstl_types.h> 
+#include <grid/common.h>
+#include <grid/grid_model/sgrid_cursor.h> 
+#include <grid/grid_model/grid_property.h> 
+#include <math/gstlpoint.h> 
+#include <utils/gstl_types.h> 
  
-#include <GsTLAppli/grid/grid_model/geovalue.h> 
+#include <grid/grid_model/geovalue.h> 
  
 class RGrid; 
  

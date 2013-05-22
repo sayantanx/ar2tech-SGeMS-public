@@ -27,10 +27,10 @@
 #ifndef CHART_BASE_DISPLAY_CONTROLS_H
 #define CHART_BASE_DISPLAY_CONTROLS_H
 
-#include <GsTLAppli/charts/chart_base.h>
-#include <GsTLAppli/charts/common.h>
+#include <charts/chart_base.h>
+#include <charts/common.h>
 
-#include <GsTLAppli/charts/chart_display_control.h>
+#include <charts/chart_display_control.h>
 
 #include <vtkStringArray.h>
 #include <vtkSmartPointer.h>

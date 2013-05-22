@@ -27,9 +27,9 @@
 #ifndef __GSTLAPPLI_DISTRIBUTION_ACTION_H__ 
 #define __GSTLAPPLI_DISTRIBUTION_ACTION_H__
 
-#include <GsTLAppli/actions/action.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/appli/project.h>
+#include <actions/action.h>
+#include <utils/error_messages_handler.h>
+#include <appli/project.h>
 #include<vector>
 
 class New_distribution_action :  public Action

@@ -34,9 +34,9 @@
 #ifndef PROJECT_PROXY_MODEL_H_
 #define PROJECT_PROXY_MODEL_H_
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/qtplugins/common.h>
+#include <utils/manager.h>
+#include <appli/root_model.h>
+#include <qtplugins/common.h>
 
 #include <QModelIndex>
 #include <QVariant>

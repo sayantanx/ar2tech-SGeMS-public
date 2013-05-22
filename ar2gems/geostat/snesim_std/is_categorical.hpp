@@ -48,7 +48,7 @@ bool is_number( const std::string& str )
 }
 
 
-#include <GsTLAppli/grid/grid_model/grid_property.h>    // for Grid_continuous_property
+#include <grid/grid_model/grid_property.h>    // for Grid_continuous_property
 
 template <typename T> inline T round(const T& _value) 
 {

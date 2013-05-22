@@ -57,8 +57,8 @@
 
 
 
-#include <GsTLAppli/gui/ui_variogram_plot_settings_dialog.h>
-#include <GsTLAppli/qwt/qwt_plot.h>
+#include <gui/ui_variogram_plot_settings_dialog.h>
+#include <qwt/qwt_plot.h>
 
 #include <vector>
 

@@ -52,10 +52,10 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/reduced_grid.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/mgrid_neighborhood.h>
-//#include <GsTLAppli/grid/maskedgridcursor.h>
+#include <grid/grid_model/reduced_grid.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/mgrid_neighborhood.h>
+//#include <grid/maskedgridcursor.h>
 
 Named_interface* create_reduced_grid( std::string& name_and_size_str){
   if( name_and_size_str.empty() ) return 0;

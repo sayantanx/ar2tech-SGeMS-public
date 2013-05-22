@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_NEW_MGRID_FROM_CGRID_H__ 
 #define __GSTLAPPLI_NEW_MGRID_FROM_CGRID_H__ 
 
-#include <GsTLAppli/gui/common.h>
+#include <gui/common.h>
 
 #include <QtGui/QApplication>
 #include <QtGui/QDialog>

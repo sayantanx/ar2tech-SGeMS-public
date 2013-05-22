@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/utils/progress_notifier.h>
+#include <utils/progress_notifier.h>
 
 #include <algorithm>
 

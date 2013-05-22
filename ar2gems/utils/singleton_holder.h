@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_UTILS_SINGLETON_HOLDER_H__ 
 #define __GSTLAPPLI_UTILS_SINGLETON_HOLDER_H__ 
 
-#include <GsTLAppli/utils/common.h>
+#include <utils/common.h>
  
 
 

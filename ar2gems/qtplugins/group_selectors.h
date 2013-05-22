@@ -55,9 +55,9 @@
 #define __GSTLAPPLI_QTPLUGINS_GROUPSELECTORS_H__
 
 
-#include <GsTLAppli/qtplugins/common.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/appli/project.h>
+#include <qtplugins/common.h>
+#include <qtplugins/selectors.h>
+#include <appli/project.h>
 
 #include <qcombobox.h>
 #include <QListWidget>

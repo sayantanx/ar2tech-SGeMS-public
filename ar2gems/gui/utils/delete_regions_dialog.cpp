@@ -53,9 +53,9 @@
 modified from delete_properties_dialog (N. Remy)
 **********************************************************************/
 
-#include <GsTLAppli/gui/utils/delete_regions_dialog.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <gui/utils/delete_regions_dialog.h>
+#include <qtplugins/selectors.h>
+#include <utils/gstl_messages.h>
 
 #include <qpushbutton.h>
 #include <qstringlist.h>

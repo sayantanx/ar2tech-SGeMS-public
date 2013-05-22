@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_MATH_RANDOM_NUMBER_H__ 
 #define __GSTLAPPLI_MATH_RANDOM_NUMBER_H__ 
  
-#include <GsTLAppli/math/common.h>
-#include <GsTLAppli/utils/singleton_holder.h> 
+#include <math/common.h>
+#include <utils/singleton_holder.h> 
  
 #include <GsTL/math/random_number_generators.h> 
  

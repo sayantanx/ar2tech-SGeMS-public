@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_ACTIONS_ACTION_H__ 
 #define __GSTLAPPLI_ACTIONS_ACTION_H__ 
  
-#include <GsTLAppli/actions/common.h>
-#include <GsTLAppli/utils/named_interface.h> 
+#include <actions/common.h>
+#include <utils/named_interface.h> 
  
 #include <string> 
  

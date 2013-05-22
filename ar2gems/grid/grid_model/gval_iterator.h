@@ -56,11 +56,11 @@
 #define __GSTLAPPLI_GRID_GVAL_ITERATORS_H__ 
  
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/grid/grid_model/geovalue.h> 
-#include <GsTLAppli/grid/grid_model/grid_property.h> 
-#include <GsTLAppli/grid/grid_model/geostat_grid.h> 
-#include <GsTLAppli/utils/gstl_messages.h> 
+#include <grid/common.h>
+#include <grid/grid_model/geovalue.h> 
+#include <grid/grid_model/grid_property.h> 
+#include <grid/grid_model/geostat_grid.h> 
+#include <utils/gstl_messages.h> 
  
 #include <vector> 
  

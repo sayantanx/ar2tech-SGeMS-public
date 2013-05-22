@@ -28,12 +28,12 @@
 #define __GSTLAPPLI_GEOSTAT_NUMODEL_H__
 
 
-#include <GsTLAppli/geostat/geostat_algo.h>
+#include <geostat/geostat_algo.h>
 #include <GsTL/utils/smartptr.h>
-#include <GsTLAppli/math/gstlpoint.h>
+#include <math/gstlpoint.h>
 
-#include <GsTLAppli/geostat/parameters_handler.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
+#include <geostat/parameters_handler.h>
+#include <utils/error_messages_handler.h>
 
 #include <vector>
 

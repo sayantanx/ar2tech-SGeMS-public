@@ -22,15 +22,15 @@
 ** sourceforge.net/projects/sgems.
 ** ----------------------------------------------------------------------------*/
 
-#include <GsTLAppli/filters/sgems_folder_grid_geometry.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/log_data_grid.h>
-#include <GsTLAppli/grid/grid_model/reduced_grid.h>
-#include <GsTLAppli/grid/grid_model/structured_grid.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/utils/manager.h>
+#include <filters/sgems_folder_grid_geometry.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/log_data_grid.h>
+#include <grid/grid_model/reduced_grid.h>
+#include <grid/grid_model/structured_grid.h>
+#include <appli/manager_repository.h>
+#include <utils/manager.h>
 
 
 Named_interface* Cartesian_grid_geometry_xml_io::create_new_interface(std::string& str){

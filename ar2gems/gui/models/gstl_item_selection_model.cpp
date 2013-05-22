@@ -32,7 +32,7 @@
  */
 
 
-#include <GsTLAppli/gui/models/gstl_item_selection_model.h>
+#include <gui/models/gstl_item_selection_model.h>
 
 
 

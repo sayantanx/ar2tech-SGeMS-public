@@ -35,11 +35,11 @@
 #define ROOT_MODEL_H_
 
 #include <QAbstractItemModel>
-#include <GsTLAppli/utils/gstl_object_item.h>
-#include <GsTLAppli/utils/named_interface.h>
-#include <GsTLAppli/utils/gstl_item_model.h>
-//#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/appli/common.h>
+#include <utils/gstl_object_item.h>
+#include <utils/named_interface.h>
+#include <utils/gstl_item_model.h>
+//#include <appli/project.h>
+#include <appli/common.h>
 
 
 

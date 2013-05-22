@@ -24,15 +24,15 @@
 
 
 
-#include <GsTLAppli/actions/property_group_actions.h>
-#include <GsTLAppli/actions/defines.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h> 
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_property_set.h>
+#include <actions/property_group_actions.h>
+#include <actions/defines.h>
+#include <utils/string_manipulation.h>
+#include <utils/error_messages_handler.h>
+#include <appli/manager_repository.h>
+#include <appli/project.h>
+#include <grid/grid_model/geostat_grid.h> 
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_property_set.h>
 
 
 /**

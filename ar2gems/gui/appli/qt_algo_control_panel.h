@@ -55,9 +55,9 @@
 #ifndef __GSTLAPPLI_QT_ALGO_CONTROL_PANEL_H__ 
 #define __GSTLAPPLI_QT_ALGO_CONTROL_PANEL_H__ 
  
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/ui_controls_widget.h> 
-#include <GsTLAppli/gui/ui_qt_algo_control_panel_base.h>
+#include <gui/common.h>
+#include <gui/ui_controls_widget.h> 
+#include <gui/ui_qt_algo_control_panel_base.h>
 
 #include <qwidget.h> 
 #include <qtreewidget.h> 

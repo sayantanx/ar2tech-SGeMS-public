@@ -27,11 +27,11 @@
 /*Author Alexandre Boucher
 
 */
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_structured_grid.h>
+#include <gui/vtk_prop/vtk_prop_structured_grid.h>
 
-#include <GsTLAppli/gui/utils/colorscale.h>
-#include <GsTLAppli/gui/utils/colormap.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <gui/utils/colorscale.h>
+#include <gui/utils/colormap.h>
+#include <appli/manager_repository.h>
 
 #include <GsTL/math/math_functions.h>
 

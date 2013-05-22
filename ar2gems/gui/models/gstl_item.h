@@ -27,11 +27,11 @@
 #ifndef GSTL_ROOT_ITEM_H
 #define GSTL_ROOT_ITEM_H
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_region.h>
+#include <gui/common.h>
+#include <appli/project.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_region.h>
 #include <QList>
 #include <QVariant>
 

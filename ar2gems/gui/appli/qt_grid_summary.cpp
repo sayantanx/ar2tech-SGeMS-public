@@ -53,11 +53,11 @@
 **********************************************************************/
 
 
-#include <GsTLAppli/gui/appli/qt_grid_summary.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/reduced_grid.h>
+#include <gui/appli/qt_grid_summary.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/reduced_grid.h>
 
 #include <qwidget.h>
 #include <qgroupbox.h>

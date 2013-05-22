@@ -52,11 +52,11 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/appli/library_appli_init.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <appli/library_appli_init.h>
+#include <appli/manager_repository.h>
+#include <appli/project.h>
+#include <appli/root_model.h>
+#include <utils/gstl_messages.h>
 
 
 int library_appli_init::references_ = 0;

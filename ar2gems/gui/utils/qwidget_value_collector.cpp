@@ -52,13 +52,13 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/utils/qwidget_value_accessor.h>
-#include <GsTLAppli/gui/utils/qwidget_value_collector.h>
-#include <GsTLAppli/gui/QWidget_value_accessors/default_accessor.h>
-#include <GsTLAppli/utils/named_interface.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <gui/utils/qwidget_value_accessor.h>
+#include <gui/utils/qwidget_value_collector.h>
+#include <gui/QWidget_value_accessors/default_accessor.h>
+#include <utils/named_interface.h>
+#include <appli/manager_repository.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
 #include <QTextStream>
 
 #include <qobject.h>

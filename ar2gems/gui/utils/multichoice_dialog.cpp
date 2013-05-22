@@ -52,8 +52,8 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/utils/multichoice_dialog.h>
-#include <GsTLAppli/qtplugins/selectors.h>
+#include <gui/utils/multichoice_dialog.h>
+#include <qtplugins/selectors.h>
 
 #include <qpushbutton.h>
 #include <qstringlist.h>

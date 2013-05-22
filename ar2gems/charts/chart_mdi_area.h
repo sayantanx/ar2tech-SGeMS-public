@@ -27,7 +27,7 @@
 #ifndef CHART_MDI_AREA_H
 #define CHART_MDI_AREA_H
 
-#include <GsTLAppli/charts/common.h>
+#include <charts/common.h>
 
 #include <QMdiArea>
 

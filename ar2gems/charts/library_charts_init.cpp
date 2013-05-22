@@ -23,13 +23,13 @@
 ** ----------------------------------------------------------------------------*/
 
 
-#include <GsTLAppli/charts/library_charts_init.h>
-#include <GsTLAppli/charts/continuous_histogram_creator.h>
-#include <GsTLAppli/charts/categorical_histogram_creator.h>
-#include <GsTLAppli/charts/scatter_plot_creator.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <charts/library_charts_init.h>
+#include <charts/continuous_histogram_creator.h>
+#include <charts/categorical_histogram_creator.h>
+#include <charts/scatter_plot_creator.h>
+#include <appli/manager_repository.h>
+#include <utils/manager.h>
+#include <utils/gstl_messages.h>
 
 #include <QTableWidget>
 

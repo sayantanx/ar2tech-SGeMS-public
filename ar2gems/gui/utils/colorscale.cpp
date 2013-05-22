@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/utils/colorscale.h>
+#include <gui/utils/colorscale.h>
 #include <fstream>
 
 

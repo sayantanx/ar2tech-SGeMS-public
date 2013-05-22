@@ -1,4 +1,4 @@
-#include <GsTLAppli/grid/grid_model/structured_grid.h>
+#include <grid/grid_model/structured_grid.h>
 
 #include <vtkPoints.h>
 #include <vtkCell.h>

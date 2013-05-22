@@ -22,9 +22,9 @@
 ** sourceforge.net/projects/sgems.
 ** ----------------------------------------------------------------------------*/
 
-#include <GsTLAppli/grid/utilities.h>
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <grid/utilities.h>
+#include <utils/manager.h>
+#include <appli/manager_repository.h>
 
 Geostat_grid* get_grid_from_manager( std::string grid_name ){
 

@@ -58,13 +58,13 @@
 #ifndef __GSTLAPPLI_Snesim_Std_TREE_LIST_H__
 #define __GSTLAPPLI_Snesim_Std_TREE_LIST_H__
 
-#include <GsTLAppli/geostat/common.h>
+#include <geostat/common.h>
 #include <GsTL/cdf/categ_non_param_cdf.h>
 #include <GsTL/cdf_estimator/search_tree.h>
 #include <GsTL/cdf_estimator/standard_allocator.h>
 
-#include <GsTLAppli/geostat/geostat_algo.h>
-#include <GsTLAppli/utils/gstl_types.h>
+#include <geostat/geostat_algo.h>
+#include <utils/gstl_types.h>
 
 #include <vector>
 #include <string>

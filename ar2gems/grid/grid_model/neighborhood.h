@@ -55,10 +55,10 @@
 #ifndef __GSTLAPPLI_GRID_MODEL_NEIGHBORHOOD_H__ 
 #define __GSTLAPPLI_GRID_MODEL_NEIGHBORHOOD_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/math/gstlvector.h> 
-#include <GsTLAppli/grid/grid_model/geovalue.h> 
-#include <GsTLAppli/grid/grid_model/search_filters.h> 
+#include <grid/common.h>
+#include <math/gstlvector.h> 
+#include <grid/grid_model/geovalue.h> 
+#include <grid/grid_model/search_filters.h> 
  
 #include <GsTL/utils/smartptr_interface.h> 
  

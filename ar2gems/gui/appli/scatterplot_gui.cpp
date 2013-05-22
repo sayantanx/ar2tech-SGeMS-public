@@ -52,25 +52,25 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/appli/scatterplot_gui.h>
-#include <GsTLAppli/gui/appli/scatterplot_control_panel.h>
-#include <GsTLAppli/qwt/qwt_plot.h>
-#include <GsTLAppli/qwt/qwt_scale_div.h>
-#include <GsTLAppli/qwt/qwt_symbol.h>
-#include <GsTLAppli/qwt/qwt_data.h>
-#include <GsTLAppli/qwt/qwt_plot_curve.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_region.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/math/scatterplot.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/grid/grid_model/grid_region_temp_selector.h> 
+#include <gui/appli/scatterplot_gui.h>
+#include <gui/appli/scatterplot_control_panel.h>
+#include <qwt/qwt_plot.h>
+#include <qwt/qwt_scale_div.h>
+#include <qwt/qwt_symbol.h>
+#include <qwt/qwt_data.h>
+#include <qwt/qwt_plot_curve.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_region.h>
+#include <appli/project.h>
+#include <math/scatterplot.h>
+#include <utils/string_manipulation.h>
+#include <grid/grid_model/grid_region_temp_selector.h> 
 
 #include <qlabel.h>
 #include <qgroupbox.h>
 #include <qscrollarea.h>
 #include <qcheckbox.h>
-#include <GsTLAppli/utils/simpleps.h>
+#include <utils/simpleps.h>
 #include <qmessagebox.h>
 #include <math.h>
 #include <fstream>

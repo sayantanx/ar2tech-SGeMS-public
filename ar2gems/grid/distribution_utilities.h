@@ -28,17 +28,17 @@
 #ifndef __NONPARAM_DISTRIBUTION_BUILDER_H__ 
 #define __NONPARAM_DISTRIBUTION_BUILDER_H__ 
 
-#include <GsTLAppli/math/non_parametric_distribution.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_region.h>
-#include <GsTLAppli/grid/grid_model/grid_weight_property.h>
+#include <math/non_parametric_distribution.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_region.h>
+#include <grid/grid_model/grid_weight_property.h>
 
 #include <boost/math/distributions.hpp>
 
 #include <GsTL/cdf/non_param_cdf.h>
 #include <GsTL/cdf/interpolators.h>
 #include <GsTL/univariate_stats/build_cdf.h>
-#include <GsTLAppli/grid/common.h>
+#include <grid/common.h>
 
 //If name is not specifed (empty string) then the distribution is not managed
 

@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_MISC_QT_ACCESSORS_H__
 #define __GSTLAPPLI_MISC_QT_ACCESSORS_H__
 
-#include <GsTLAppli/widget_accessor/common.h>
-#include <GsTLAppli/gui/utils/qwidget_value_accessor.h>
+#include <widget_accessor/common.h>
+#include <gui/utils/qwidget_value_accessor.h>
 
 #include <string>
 

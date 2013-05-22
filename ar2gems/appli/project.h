@@ -55,9 +55,9 @@
 #ifndef __GSTLAPPLI_GUI_APP_PROJECT_H__ 
 #define __GSTLAPPLI_GUI_APP_PROJECT_H__ 
  
-#include <GsTLAppli/appli/common.h>
-#include <GsTLAppli/utils/named_interface.h> 
- #include <GsTLAppli/utils/gstl_item_model.h>
+#include <appli/common.h>
+#include <utils/named_interface.h> 
+ #include <utils/gstl_item_model.h>
 
 #include <list> 
 #include <string> 

@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/utils/qtbased_scribes.h>
+#include <gui/utils/qtbased_scribes.h>
 
 #include <qstring.h>
 #include <qstringlist.h>

@@ -24,13 +24,13 @@
 
 
 
-#include <GsTLAppli/geostat/clustering_from_centroids.h>
+#include <geostat/clustering_from_centroids.h>
 
 
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
 
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
+#include <grid/grid_model/grid_categorical_property.h>
 
 
 #include <vtkKMeansStatistics.h>

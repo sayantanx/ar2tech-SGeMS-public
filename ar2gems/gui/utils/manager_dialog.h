@@ -34,7 +34,7 @@
 #ifndef MANAGER_DIALOG_H_
 #define MANAGER_DIALOG_H_
 
-#include <GsTLAppli/gui/common.h>
+#include <gui/common.h>
 #include <QDialog>
 
 class GUI_DECL Manager_dialog : public QDialog{

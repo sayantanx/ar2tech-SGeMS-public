@@ -55,7 +55,7 @@
 #ifndef FILECHOOSER_H
 #define FILECHOOSER_H
 
-#include <GsTLAppli/qtplugins/common.h>
+#include <qtplugins/common.h>
 
 #include <qwidget.h>
 

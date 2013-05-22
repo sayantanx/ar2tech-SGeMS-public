@@ -58,7 +58,7 @@
 #ifndef __filtersim_is_categorical_H__
 #define __filtersim_is_categorical_H__
 
-#include <GsTLAppli/geostat/common.h>
+#include <geostat/common.h>
 
 // c/c++
 #include <iterator>  // for distance
@@ -66,7 +66,7 @@
 #include <cmath> // for ceil and floor
 #include <numeric>
 
-#include <GsTLAppli/grid/grid_model/grid_property.h>    // for Grid_continuous_property
+#include <grid/grid_model/grid_property.h>    // for Grid_continuous_property
 
 using namespace std;
 

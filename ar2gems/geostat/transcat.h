@@ -57,11 +57,11 @@
 #ifndef __transcat_h__
 #define __transcat_h__
 
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/geostat/geostat_algo.h>
-#include <GsTLAppli/utils/gstl_types.h>
-#include <GsTLAppli/grid/grid_model/geovalue.h>
-#include <GsTLAppli/grid/grid_model/property_copier.h>
+#include <geostat/common.h>
+#include <geostat/geostat_algo.h>
+#include <utils/gstl_types.h>
+#include <grid/grid_model/geovalue.h>
+#include <grid/grid_model/property_copier.h>
 
 #include <GsTL/utils/smartptr.h>
 #include <GsTL/matrix_library/tnt_lib.h>
@@ -70,8 +70,8 @@
 #include <vector>
 #include <string>
 
-#include <GsTLAppli/geostat/filtersim_std/is_categorical.h>
-#include <GsTLAppli/geostat/filtersim_std/filters.h>
+#include <geostat/filtersim_std/is_categorical.h>
+#include <geostat/filtersim_std/filters.h>
 
 class Strati_grid;
 class Grid_template;

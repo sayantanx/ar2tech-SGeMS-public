@@ -25,9 +25,9 @@
 #ifndef __GSTLAPPLI_STRUCTURED_GRID_H__ 
 #define __GSTLAPPLI_STRUCTURED_GRID_H__ 
 
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/math/gstlpoint.h>
-#include <GsTLAppli/grid/common.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <math/gstlpoint.h>
+#include <grid/common.h>
 #include <vtkStructuredGrid.h>
 #include <vtkSmartPointer.h>
 #include <vtkCellCenters.h>

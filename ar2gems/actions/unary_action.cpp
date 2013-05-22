@@ -24,13 +24,13 @@
 
 
 
-#include <GsTLAppli/actions/unary_action.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/actions/defines.h>
-#include <GsTLAppli/geostat/utilities.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <actions/unary_action.h>
+#include <utils/error_messages_handler.h>
+#include <grid/grid_model/gval_iterator.h>
+#include <utils/string_manipulation.h>
+#include <actions/defines.h>
+#include <geostat/utilities.h>
+#include <appli/manager_repository.h>
 
 bool Unary_action::init(std::string& _parameters, GsTL_project* _proj, Error_messages_handler* _errors) {
 	this->proj_ = _proj;

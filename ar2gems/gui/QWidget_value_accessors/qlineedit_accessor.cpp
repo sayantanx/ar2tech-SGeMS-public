@@ -52,9 +52,9 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/QWidget_value_accessors/qlineedit_accessor.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <gui/QWidget_value_accessors/qlineedit_accessor.h>
+#include <utils/string_manipulation.h>
+#include <utils/gstl_messages.h>
 
 #include <qdom.h>
 #include <qstring.h>

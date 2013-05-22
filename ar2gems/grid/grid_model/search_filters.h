@@ -55,10 +55,10 @@
 #ifndef __GSTLAPPLI_OCTANT_SEARCH_TRACKER_H__ 
 #define __GSTLAPPLI_OCTANT_SEARCH_TRACKER_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/grid/grid_model/geovalue.h> 
+#include <grid/common.h>
+#include <grid/grid_model/geovalue.h> 
 #include <map>
-#include <GsTLAppli/math/gstlpoint.h>
+#include <math/gstlpoint.h>
 #include <GsTL/geometry/geometry_algorithms.h>
 
 class less_than_triplet {

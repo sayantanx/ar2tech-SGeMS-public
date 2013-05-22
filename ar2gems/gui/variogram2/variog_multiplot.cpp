@@ -52,16 +52,16 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/variogram2/variog_multiplot.h>
-#include <GsTLAppli/math/discrete_function.h>
+#include <gui/variogram2/variog_multiplot.h>
+#include <math/discrete_function.h>
 #include <GsTL/math/math_functions.h>
-#include <GsTLAppli/math/gstlpoint.h>
+#include <math/gstlpoint.h>
 #include <GsTL/geometry/geometry_algorithms.h>
-#include <GsTLAppli/qwt/qwt_plot_grid.h>
-#include <GsTLAppli/qwt/qwt_symbol.h>
-#include <GsTLAppli/qwt/qwt_scale_engine.h>
-#include <GsTLAppli/qwt/qwt_plot_curve.h>
-#include <GsTLAppli/qwt/qwt_legend.h>
+#include <qwt/qwt_plot_grid.h>
+#include <qwt/qwt_symbol.h>
+#include <qwt/qwt_scale_engine.h>
+#include <qwt/qwt_plot_curve.h>
+#include <qwt/qwt_legend.h>
 #include <qpen.h>
 #include <qbrush.h>
 #include <QVector>

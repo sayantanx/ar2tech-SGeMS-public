@@ -52,9 +52,9 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/actions/python_wrapper.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <actions/python_wrapper.h>
+#include <appli/project.h>
+#include <utils/gstl_messages.h>
 
 
 

@@ -61,7 +61,7 @@
 #include <set>  // for set
 #include <cmath> // for ceil and floor
 
-#include <GsTLAppli/grid/grid_model/grid_property.h>    // for Grid_continuous_property
+#include <grid/grid_model/grid_property.h>    // for Grid_continuous_property
 
 
 bool is_number( const std::string& str ) 

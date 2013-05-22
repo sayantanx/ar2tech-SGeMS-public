@@ -35,13 +35,13 @@
 #define REGION_PROXY_MODEL_H_
 
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/grid/grid_model/grid_region.h>
-#include <GsTLAppli/grid/grid_model/grid_region_manager.h>
-#include <GsTLAppli/qtplugins/common.h>
-//#include <GsTLAppli/gui/viewer/visualization_parameters.h>
-#include <GsTLAppli/qtplugins/grid_proxy_model.h>
+#include <utils/manager.h>
+#include <appli/root_model.h>
+#include <grid/grid_model/grid_region.h>
+#include <grid/grid_model/grid_region_manager.h>
+#include <qtplugins/common.h>
+//#include <gui/viewer/visualization_parameters.h>
+#include <qtplugins/grid_proxy_model.h>
 
 #include <QModelIndex>
 #include <QVariant>

@@ -83,7 +83,7 @@
 #ifndef MASKEDGRIDCURSOR_H
 #define MASKEDGRIDCURSOR_H
 
-#include <GsTLAppli/grid/grid_model/sgrid_cursor.h>
+#include <grid/grid_model/sgrid_cursor.h>
 #include <map>
 #include <vector>
 

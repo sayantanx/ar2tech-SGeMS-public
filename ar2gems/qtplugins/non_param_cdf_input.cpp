@@ -24,11 +24,11 @@
 
 
 
-#include <GsTLAppli/qtplugins/non_param_cdf_input.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/qtplugins/filechooser.h>
-#include <GsTLAppli/qtplugins/variogram_input.h>
-#include <GsTLAppli/qtplugins/distribution_selectors.h>
+#include <qtplugins/non_param_cdf_input.h>
+#include <qtplugins/selectors.h>
+#include <qtplugins/filechooser.h>
+#include <qtplugins/variogram_input.h>
+#include <qtplugins/distribution_selectors.h>
 
 #include <qcombobox.h>
 #include <qlineedit.h>

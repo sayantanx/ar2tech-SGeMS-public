@@ -24,7 +24,7 @@
 
 
 
-#include <GsTLAppli/qtplugins/neighborhood_filter_input.h>
+#include <qtplugins/neighborhood_filter_input.h>
 
 #include <qlabel.h>
 #include <qspinbox.h>

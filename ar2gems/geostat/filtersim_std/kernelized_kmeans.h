@@ -57,7 +57,7 @@
 #ifndef __kernelized_kmeans_H__
 #define __kernelized_kmeans_H__
 
-#include <GsTLAppli/geostat/common.h>
+#include <geostat/common.h>
 #include <GsTL/math/random_number_generators.h>
 #include <vector>
 #include <algorithm>

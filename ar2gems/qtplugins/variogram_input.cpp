@@ -80,13 +80,13 @@
 
 
 
-#include <GsTLAppli/qtplugins/variogram_input.h>
+#include <qtplugins/variogram_input.h>
 
-#include <GsTLAppli/qtplugins/gstl_table.h>
+#include <qtplugins/gstl_table.h>
 
-//#include <GsTLAppli/widget_accessor/qt_accessors.h>
+//#include <widget_accessor/qt_accessors.h>
 
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <utils/gstl_messages.h>
 
 
 

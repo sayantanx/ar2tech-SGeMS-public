@@ -59,12 +59,12 @@
 #ifndef __filtersim_prototype_helper_H__
 #define __filtersim_prototype_helper_H__
 
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/grid_model/rgrid_neighborhood.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
-#include <GsTLAppli/math/random_numbers.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <geostat/common.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/grid_model/rgrid_neighborhood.h>
+#include <grid/grid_model/gval_iterator.h>
+#include <math/random_numbers.h>
+#include <utils/string_manipulation.h>
 
 #include <algorithm>
 

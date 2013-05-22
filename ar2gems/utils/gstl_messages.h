@@ -56,8 +56,8 @@
 #define __GSTLAPPLI_UTILS_GSTL_MESSAGES_H__
 
 
-#include <GsTLAppli/utils/common.h>
-#include <GsTLAppli/utils/gstl_messages_private.h> 
+#include <utils/common.h>
+#include <utils/gstl_messages_private.h> 
 
 
 #if defined(__GNUC__) || (defined(_MSC_VER) && _MSC_VER >= 1310)   // 1310 == VC++ 7.1

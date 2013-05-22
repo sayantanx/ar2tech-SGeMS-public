@@ -56,8 +56,8 @@
 #define __GSTLAPPLI_GUI_APPLI_SCATTERPLOT_GUI_H__
 
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/appli/data_analysis_gui.h>
+#include <gui/common.h>
+#include <gui/appli/data_analysis_gui.h>
 //Added by qt3to4:
 #include <QLabel>
 

@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GRID_RGRIDGEOMETRY_H__ 
 #define __GSTLAPPLI_GRID_RGRIDGEOMETRY_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/math/gstlpoint.h> 
+#include <grid/common.h>
+#include <math/gstlpoint.h> 
  
  
 /*****************************************************************/ 

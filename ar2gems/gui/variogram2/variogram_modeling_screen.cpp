@@ -52,15 +52,15 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/variogram2/variogram_modeling_screen.h>
-#include <GsTLAppli/gui/variogram2/variog_plot.h>
-#include <GsTLAppli/gui/variogram2/variog_multiplot.h>
-#include <GsTLAppli/gui/variogram2/variogram_controls.h>
-#include <GsTLAppli/gui/variogram2/plot_settings_dialog.h>
-#include <GsTLAppli/gui/variogram2/print_plots_dialog.h>
-#include <GsTLAppli/math/discrete_function.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <gui/variogram2/variogram_modeling_screen.h>
+#include <gui/variogram2/variog_plot.h>
+#include <gui/variogram2/variog_multiplot.h>
+#include <gui/variogram2/variogram_controls.h>
+#include <gui/variogram2/plot_settings_dialog.h>
+#include <gui/variogram2/print_plots_dialog.h>
+#include <math/discrete_function.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
 #include <GsTL/math/math_functions.h>
 
 #include <qlayout.h>

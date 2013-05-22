@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/math/qpplot.h>
+#include <math/qpplot.h>
 
 #include <GsTL/univariate_stats/utils.h>
 

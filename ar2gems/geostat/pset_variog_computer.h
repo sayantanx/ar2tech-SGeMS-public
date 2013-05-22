@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_GEOSTAT_PSET_VARIOG_COMPUTER_H__
 #define __GSTLAPPLI_GEOSTAT_PSET_VARIOG_COMPUTER_H__
 
-#include <GsTLAppli/geostat/common.h>
+#include <geostat/common.h>
 
 #include <vector>
 #include <map>

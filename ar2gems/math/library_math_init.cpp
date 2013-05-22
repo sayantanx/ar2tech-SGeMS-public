@@ -25,11 +25,11 @@
 
 
 
-#include <GsTLAppli/math/library_math_init.h>
-#include <GsTLAppli/math/continuous_distribution.h>
-#include <GsTLAppli/math/categorical_distribution.h>
-#include <GsTLAppli/math/non_parametric_distribution.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <math/library_math_init.h>
+#include <math/continuous_distribution.h>
+#include <math/categorical_distribution.h>
+#include <math/non_parametric_distribution.h>
+#include <utils/gstl_messages.h>
 
 
 int library_math_init::references_ = 0;

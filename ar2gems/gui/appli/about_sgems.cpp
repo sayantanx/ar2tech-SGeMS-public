@@ -30,7 +30,7 @@
 */
 
 
-#include <GsTLAppli/gui/appli/about_sgems.h>
+#include <gui/appli/about_sgems.h>
 
 #include <QTextBrowser>
 #include <QTextDocument>

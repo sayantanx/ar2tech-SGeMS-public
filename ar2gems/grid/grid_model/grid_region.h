@@ -55,10 +55,10 @@
 #ifndef __GSTLAPPLI_GRID_REGION_H__ 
 #define __GSTLAPPLI_GRID_REGION_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/utils/gstl_types.h> 
-#include <GsTLAppli/utils/gstl_messages.h> 
-#include <GsTLAppli/utils/gstl_object_item.h>
+#include <grid/common.h>
+#include <utils/gstl_types.h> 
+#include <utils/gstl_messages.h> 
+#include <utils/gstl_object_item.h>
  
 #include <string> 
 #include <fstream> 

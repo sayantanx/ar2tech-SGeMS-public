@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_LIBRARY_ACTIONS_INIT_H__ 
 #define __GSTLAPPLI_LIBRARY_ACTIONS_INIT_H__ 
 
-#include <GsTLAppli/actions/common.h>
+#include <actions/common.h>
  
 class Manager; 
  

@@ -56,9 +56,9 @@
 #define __GSTLAPPLI_UTILS_MANAGER_H__ 
  
  
-#include <GsTLAppli/utils/common.h>
-#include <GsTLAppli/utils/directory.h>
-#include <GsTLAppli/utils/gstl_item_model.h>
+#include <utils/common.h>
+#include <utils/directory.h>
+#include <utils/gstl_item_model.h>
  
  
 #include <string> 

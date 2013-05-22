@@ -57,7 +57,7 @@
 #ifndef __prototype_kernelized_kmeans_H__
 #define __prototype_kernelized_kmeans_H__
 
-#include <GsTLAppli/geostat/common.h>
+#include <geostat/common.h>
 #include <vector>
 #include <list>
 #include <algorithm>

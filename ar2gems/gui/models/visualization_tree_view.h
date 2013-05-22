@@ -34,8 +34,8 @@
 #ifndef VISUALIZATION_TREE_VIEW_H_
 #define VISUALIZATION_TREE_VIEW_H_
 
-//#include <GsTLAppli/gui/models/gstl_item.h>
-#include <GsTLAppli/utils/gstl_object_item.h>
+//#include <gui/models/gstl_item.h>
+#include <utils/gstl_object_item.h>
 
 #include <QTreeView>
 #include <QContextMenuEvent>

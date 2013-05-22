@@ -22,12 +22,12 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/grid_downscaler.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/reduced_grid.h>
+#include <grid/grid_model/grid_downscaler.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/reduced_grid.h>
 
-#include <GsTLAppli/appli/manager_repository.h>
+#include <appli/manager_repository.h>
 
 
 

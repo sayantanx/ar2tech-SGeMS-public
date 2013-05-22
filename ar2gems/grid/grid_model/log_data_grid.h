@@ -34,8 +34,8 @@
 #ifndef LOG_DATA_GRID_H_
 #define LOG_DATA_GRID_H_
 
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/utils/gstl_object_item.h>
+#include <grid/grid_model/point_set.h>
+#include <utils/gstl_object_item.h>
 
 class GRID_DECL Log_data : public GsTL_object_item {
 public :

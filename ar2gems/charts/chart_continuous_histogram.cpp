@@ -24,13 +24,13 @@
 
 
 
-#include <GsTLAppli/charts/chart_continuous_histogram.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/grid_model/grid_region_temp_selector.h>
-#include <GsTLAppli/qtplugins/color_delegate.h>
-#include <GsTLAppli/charts/region_weight_delegate.h>
-#include <GsTLAppli/charts/histogram_style_delegate.h>
-#include <GsTLAppli/charts/histogram_item_tree_view.h>
+#include <charts/chart_continuous_histogram.h>
+#include <appli/manager_repository.h>
+#include <grid/grid_model/grid_region_temp_selector.h>
+#include <qtplugins/color_delegate.h>
+#include <charts/region_weight_delegate.h>
+#include <charts/histogram_style_delegate.h>
+#include <charts/histogram_item_tree_view.h>
 
 #include <vtkDescriptiveStatistics.h> 
 #include <vtkOrderStatistics.h>

@@ -80,9 +80,9 @@
 
 
 
-#include <GsTLAppli/qtplugins/ellipsoid_input.h>
+#include <qtplugins/ellipsoid_input.h>
 
-#include <GsTLAppli/qtplugins/gstl_table.h>
+#include <qtplugins/gstl_table.h>
 
 
 

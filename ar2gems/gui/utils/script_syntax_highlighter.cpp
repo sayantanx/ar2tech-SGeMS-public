@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/utils/script_syntax_highlighter.h>
+#include <gui/utils/script_syntax_highlighter.h>
 
 #include <qregexp.h>
 #include <qtextedit.h>

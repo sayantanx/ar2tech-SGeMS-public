@@ -32,7 +32,7 @@
  */
 
 
-#include <GsTLAppli/gui/viewer/property_param_viewer.h>
+#include <gui/viewer/property_param_viewer.h>
 
 #include <QLayout>
 #include <QLabel>

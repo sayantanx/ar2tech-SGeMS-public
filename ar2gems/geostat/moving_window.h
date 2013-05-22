@@ -28,14 +28,14 @@
 #define __GSTLAPPLI_GEOSTAT_PLUGIN_MOVING_WINDOW_H__
 
 
-#include <GsTLAppli/geostat/utilities.h>
-#include <GsTLAppli/geostat/geostat_algo.h>
+#include <geostat/utilities.h>
+#include <geostat/geostat_algo.h>
 #include <GsTL/utils/smartptr.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
-#include <GsTLAppli/grid/grid_model/neighborhood.h>
-#include <GsTLAppli/math/gstlpoint.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/grid_model/grid_categorical_property.h>
+#include <grid/grid_model/neighborhood.h>
+#include <math/gstlpoint.h>
 #include <GsTL/matrix_library/tnt/cmat.h>
 #include "GsTL_filters.h"
 #include "Filtersim_filters.h"

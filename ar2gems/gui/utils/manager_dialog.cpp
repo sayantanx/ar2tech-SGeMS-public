@@ -32,15 +32,15 @@
  */
 
 
-#include <GsTLAppli/gui/utils/manager_dialog.h>
+#include <gui/utils/manager_dialog.h>
 
 #include <GsTL/utils/smartptr.h>
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <utils/manager.h>
+#include <appli/root_model.h>
+#include <appli/project.h>
+#include <appli/manager_repository.h>
 
-#include <GsTLAppli/qtplugins/project_proxy_model.h>
+#include <qtplugins/project_proxy_model.h>
 
 #include <QTreeView>
 #include <QVBoxLayout>

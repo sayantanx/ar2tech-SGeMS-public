@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_MATH_QPPLOT_H__
 #define __GSTLAPPLI_MATH_QPPLOT_H__
 
-#include <GsTLAppli/math/common.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <math/common.h>
+#include <utils/gstl_messages.h>
 
 #include <vector>
 #include <algorithm>

@@ -56,22 +56,22 @@ Modified A. Boucher
 #ifndef __GSTLAPPLI_EXTRA_GSTL_WIDGETS_PLUGIN_H__
 #define __GSTLAPPLI_EXTRA_GSTL_WIDGETS_PLUGIN_H__
 
-#include <GsTLAppli/qtplugins/common.h>
+#include <qtplugins/common.h>
 #include <QtDesigner/QDesignerContainerExtension>
 #include <QtDesigner/QDesignerCustomWidgetInterface>
 #include <QtCore/qplugin.h>
 #include <QtGui/QIcon>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/qtplugins/filechooser.h>
-#include <GsTLAppli/qtplugins/variogram_input.h>
-#include <GsTLAppli/qtplugins/kriging_type_selector.h>
-#include <GsTLAppli/qtplugins/gstl_table.h>
-#include <GsTLAppli/qtplugins/ellipsoid_input.h>
-#include <GsTLAppli/qtplugins/non_param_cdf_input.h>
-#include <GsTLAppli/qtplugins/neighborhood_filter_input.h>
-#include <GsTLAppli/qtplugins/categorical_selectors.h>
-#include <GsTLAppli/qtplugins/weight_property_selector.h>
-#include <GsTLAppli/qtplugins/group_selectors.h>
+#include <qtplugins/selectors.h>
+#include <qtplugins/filechooser.h>
+#include <qtplugins/variogram_input.h>
+#include <qtplugins/kriging_type_selector.h>
+#include <qtplugins/gstl_table.h>
+#include <qtplugins/ellipsoid_input.h>
+#include <qtplugins/non_param_cdf_input.h>
+#include <qtplugins/neighborhood_filter_input.h>
+#include <qtplugins/categorical_selectors.h>
+#include <qtplugins/weight_property_selector.h>
+#include <qtplugins/group_selectors.h>
 #include <QDesignerCustomWidgetCollectionInterface>
 //Added by qt3to4:
 #include <QPixmap>

@@ -52,8 +52,8 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/QWidget_value_accessors/default_accessor.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <gui/QWidget_value_accessors/default_accessor.h>
+#include <utils/gstl_messages.h>
 
 Named_interface* Default_accessor::create_new_interface(std::string&) {
   return new Default_accessor();

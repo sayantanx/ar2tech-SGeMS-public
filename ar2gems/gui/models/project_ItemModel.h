@@ -34,9 +34,9 @@
 #ifndef GSTL_ITEMMODEL_H_
 #define GSTL_ITEMMODEL_H_
 
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/models/gstl_item.h>
+#include <appli/project.h>
+#include <gui/common.h>
+#include <gui/models/gstl_item.h>
 
 
 #include <QModelIndex>

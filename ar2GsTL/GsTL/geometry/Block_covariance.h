@@ -1,10 +1,8 @@
 #ifndef __GSTLAPPLI_GEOSTAT_ALGO_BLOCKCOVARIANCE_H__ 
 #define __GSTLAPPLI_GEOSTAT_ALGO_BLOCKCOVARIANCE_H__ 
 
-#include <GsTLAppli/geostat/common.h>
 
 #include <GsTL/geometry/covariance.h>
-//#include <GsTLAppli/math/gstlvector.h>
 
 
 template<class Location>

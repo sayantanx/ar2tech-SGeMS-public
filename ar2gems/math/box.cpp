@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/math/box.h>
+#include <math/box.h>
 
 GsTL_cube::GsTL_cube( const GsTLPoint& lower, const GsTLPoint& upper )
   : GsTL_box(),

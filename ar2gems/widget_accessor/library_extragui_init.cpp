@@ -52,23 +52,23 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/widget_accessor/library_extragui_init.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/widget_accessor/qt_accessors.h>
-#include <GsTLAppli/gui/QWidget_value_accessors/qtable_accessor.h>
+#include <widget_accessor/library_extragui_init.h>
+#include <appli/manager_repository.h>
+#include <utils/gstl_messages.h>
+#include <widget_accessor/qt_accessors.h>
+#include <gui/QWidget_value_accessors/qtable_accessor.h>
 
-#include <GsTLAppli/qtplugins/filechooser.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/qtplugins/weight_property_selector.h>
-#include <GsTLAppli/qtplugins/categorical_selectors.h>
-#include <GsTLAppli/qtplugins/variogram_input.h>
-#include <GsTLAppli/qtplugins/kriging_type_selector.h>
-#include <GsTLAppli/qtplugins/gstl_table.h>
-#include <GsTLAppli/qtplugins/ellipsoid_input.h>
-#include <GsTLAppli/qtplugins/non_param_cdf_input.h>
-#include <GsTLAppli/qtplugins/neighborhood_filter_input.h>
-#include <GsTLAppli/qtplugins/group_selectors.h>
+#include <qtplugins/filechooser.h>
+#include <qtplugins/selectors.h>
+#include <qtplugins/weight_property_selector.h>
+#include <qtplugins/categorical_selectors.h>
+#include <qtplugins/variogram_input.h>
+#include <qtplugins/kriging_type_selector.h>
+#include <qtplugins/gstl_table.h>
+#include <qtplugins/ellipsoid_input.h>
+#include <qtplugins/non_param_cdf_input.h>
+#include <qtplugins/neighborhood_filter_input.h>
+#include <qtplugins/group_selectors.h>
 
 int library_extragui_init::references_ = 0;
 

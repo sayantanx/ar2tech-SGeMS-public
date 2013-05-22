@@ -58,14 +58,14 @@
 #ifndef __filtersim_prototype_list_H__
 #define __filtersim_prototype_list_H__
 
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/grid_model/rgrid_neighborhood.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/math/random_numbers.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/geostat/utilities.h>
+#include <geostat/common.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/grid_model/rgrid_neighborhood.h>
+#include <grid/grid_model/gval_iterator.h>
+#include <grid/grid_model/grid_property.h>
+#include <math/random_numbers.h>
+#include <utils/string_manipulation.h>
+#include <geostat/utilities.h>
 
 #include "filters.h"
 #include "distance.h"

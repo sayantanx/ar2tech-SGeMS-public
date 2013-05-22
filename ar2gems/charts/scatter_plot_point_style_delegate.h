@@ -28,7 +28,7 @@
 #define SCATTER_PLOT_POINT_STYLE_DELEGATE_H
 
 
-#include <GsTLAppli/charts/common.h>
+#include <charts/common.h>
 
 #include <QStyledItemDelegate>
 #include <QStyleOptionViewItem>

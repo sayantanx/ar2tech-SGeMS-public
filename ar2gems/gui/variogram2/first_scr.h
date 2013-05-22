@@ -55,13 +55,13 @@
 #ifndef __GSTLAPPLI_GUI_FIRST_SCR_H__
 #define __GSTLAPPLI_GUI_FIRST_SCR_H__
 
-#include <GsTLAppli/gui/ui_first_scr_base.h>
+#include <gui/ui_first_scr_base.h>
 
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/math/gstlvector.h>
-#include <GsTLAppli/math/discrete_function.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <qtplugins/selectors.h>
+#include <appli/project.h>
+#include <math/gstlvector.h>
+#include <math/discrete_function.h>
+#include <utils/string_manipulation.h>
 #include <qstring.h>
 #include <qdom.h>
 #include <qgroupbox.h>

@@ -55,8 +55,8 @@
 #ifndef _GSTLAPPLI_GUI_APPLI_SCATTERPLOT_CONTROL_PANEL_H__
 #define _GSTLAPPLI_GUI_APPLI_SCATTERPLOT_CONTROL_PANEL_H__
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/ui_scatterplot_control_panel_base.h>
+#include <gui/common.h>
+#include <gui/ui_scatterplot_control_panel_base.h>
 
 class GsTL_project;
 class Grid_continuous_property;

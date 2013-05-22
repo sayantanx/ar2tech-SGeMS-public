@@ -56,7 +56,7 @@
 #ifndef __GSTLAPPLI_LIBRARY_GUI_INIT_H__ 
 #define __GSTLAPPLI_LIBRARY_GUI_INIT_H__ 
 
-#include <GsTLAppli/gui/common.h>
+#include <gui/common.h>
  
 class Manager; 
  

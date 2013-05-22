@@ -57,12 +57,12 @@
 
 #include <GsTL/geometry/covariance.h>
 
-#include <GsTLAppli/gui/variogram2/variogram_controls_base.h>
-#include <GsTLAppli/gui/ui_variogram_structure_controls_base.h>
+#include <gui/variogram2/variogram_controls_base.h>
+#include <gui/ui_variogram_structure_controls_base.h>
 
 
-#include <GsTLAppli/math/gstlpoint.h>
-#include <GsTLAppli/math/gstlvector.h>
+#include <math/gstlpoint.h>
+#include <math/gstlvector.h>
 
 
 #include <qwidget.h>

@@ -25,8 +25,8 @@
 
 
 
-#include <GsTLAppli/charts/region_weight_delegate.h>
-#include <GsTLAppli/charts/chart_model_item.h>
+#include <charts/region_weight_delegate.h>
+#include <charts/chart_model_item.h>
 
 #include <QComboBox>
 

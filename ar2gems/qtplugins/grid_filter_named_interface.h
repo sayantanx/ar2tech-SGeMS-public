@@ -27,11 +27,11 @@
 #ifndef GRID_FILTER_NAMED_INTERFACE_H
 #define GRID_FILTER_NAMED_INTERFACE_H
 
-#include <GsTLAppli/qtplugins/common.h>
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/grid/grid_filter.h>
-#include <GsTLAppli/qtplugins/grid_filter_model_item.h>
-#include <GsTLAppli/qtplugins/grid_filter_delegate.h>
+#include <qtplugins/common.h>
+#include <utils/manager.h>
+#include <grid/grid_filter.h>
+#include <qtplugins/grid_filter_model_item.h>
+#include <qtplugins/grid_filter_delegate.h>
 
 #include <QAbstractItemModel>
 #include <QSortFilterProxyModel>

@@ -34,23 +34,23 @@
 #ifndef GRID_PARAM_VIEWER_H_
 #define GRID_PARAM_VIEWER_H_
 
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/reduced_grid.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/log_data_grid.h>
-#include <GsTLAppli/grid/grid_model/structured_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_property_set.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_strati_grid.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_cgrid.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_mgrid.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_pointset.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_log.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_structured_grid.h>
-#include <GsTLAppli/gui/common.h>
+#include <appli/project.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/reduced_grid.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/log_data_grid.h>
+#include <grid/grid_model/structured_grid.h>
+#include <grid/grid_model/grid_property_set.h>
+#include <gui/vtk_prop/vtk_prop_strati_grid.h>
+#include <gui/vtk_prop/vtk_prop_cgrid.h>
+#include <gui/vtk_prop/vtk_prop_mgrid.h>
+#include <gui/vtk_prop/vtk_prop_pointset.h>
+#include <gui/vtk_prop/vtk_prop_log.h>
+#include <gui/vtk_prop/vtk_prop_structured_grid.h>
+#include <gui/common.h>
 
-#include <GsTLAppli/gui/viewer/visualization_parameters.h>
+#include <gui/viewer/visualization_parameters.h>
 
 #include <Qt>
 #include <QWidget>

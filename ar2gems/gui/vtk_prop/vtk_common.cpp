@@ -52,6 +52,6 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/vtk_prop/vtk_common.h>
+#include <gui/vtk_prop/vtk_common.h>
 
 const RGB_color VTK::nodata_color( 0.7, 0.7, 0.75 );

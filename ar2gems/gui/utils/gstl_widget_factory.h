@@ -56,7 +56,7 @@
 #define __GSTLAPPLI_GSTL_WIDGET_FACTORY__ 
  
  
-#include <GsTLAppli/gui/common.h>
+#include <gui/common.h>
 #include <QWidget>
 #include <QIODevice>
 #include <QtUiTools/QUiLoader>

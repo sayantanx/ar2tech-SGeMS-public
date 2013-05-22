@@ -59,9 +59,9 @@
 #ifndef _filtersim__filters_H
 #define _filtersim__filters_H
 
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/grid/grid_model/neighborhood.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <geostat/common.h>
+#include <grid/grid_model/neighborhood.h>
+#include <utils/string_manipulation.h>
 
 #include <GsTL/math/math_functions.h>
 

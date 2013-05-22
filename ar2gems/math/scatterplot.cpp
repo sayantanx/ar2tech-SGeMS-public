@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/math/scatterplot.h>
+#include <math/scatterplot.h>
 
 #include <GsTL/univariate_stats/utils.h>
 #include <GsTL/math/random_number_generators.h>

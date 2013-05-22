@@ -31,9 +31,9 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/gui/utils/colormap.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/utils/manager.h>
+#include <gui/utils/colormap.h>
+#include <appli/manager_repository.h>
+#include <utils/manager.h>
 
 
 Colormap::Colormap() {

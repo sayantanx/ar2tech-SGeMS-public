@@ -55,11 +55,11 @@
 #ifndef __GSTLAPPLI_OBJ_MANAG_ACTIONS_H__ 
 #define __GSTLAPPLI_OBJ_MANAG_ACTIONS_H__ 
  
-#include <GsTLAppli/actions/common.h>
-#include <GsTLAppli/actions/action.h> 
-#include <GsTLAppli/filters/filter.h> 
-#include <GsTLAppli/grid/grid_model/geostat_grid.h> 
-#include <GsTLAppli/grid/grid_model/property_copier.h>
+#include <actions/common.h>
+#include <actions/action.h> 
+#include <filters/filter.h> 
+#include <grid/grid_model/geostat_grid.h> 
+#include <grid/grid_model/property_copier.h>
 
 #include <qstring.h>
  

@@ -52,12 +52,12 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/appli/cli_commands_panel.h>
-#include <GsTLAppli/gui/utils/qtbased_scribes.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/actions/python_wrapper.h>
+#include <gui/appli/cli_commands_panel.h>
+#include <gui/utils/qtbased_scribes.h>
+#include <utils/string_manipulation.h>
+#include <utils/error_messages_handler.h>
+#include <appli/project.h>
+#include <actions/python_wrapper.h>
 
 #include <qtextedit.h>
 #include <qlineedit.h>

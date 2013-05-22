@@ -55,7 +55,7 @@
 #ifndef __GSLTAPPLI_MATH_CORRELATION_MEASURE_COMPUTER_H__
 #define __GSLTAPPLI_MATH_CORRELATION_MEASURE_COMPUTER_H__
 
-#include <GsTLAppli/math/common.h>
+#include <math/common.h>
 
 #include <vector>
 #include <utility>

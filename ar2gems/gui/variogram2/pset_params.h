@@ -63,7 +63,7 @@
 
 #include <vector>
 
-#include <GsTLAppli/gui/ui_point_set_base.h>
+#include <gui/ui_point_set_base.h>
 
 
 class Variogram_modeling_screen;

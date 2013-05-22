@@ -22,12 +22,12 @@
 ** sourceforge.net/projects/sgems.
 ** ----------------------------------------------------------------------------*/
 
-#include <GsTLAppli/gui/utils/downscale_grid_dialog.h>
-#include <GsTLAppli/actions/obj_manag_actions.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
+#include <gui/utils/downscale_grid_dialog.h>
+#include <actions/obj_manag_actions.h>
+#include <qtplugins/selectors.h>
+#include <appli/project.h>
+#include <appli/manager_repository.h>
+#include <utils/error_messages_handler.h>
 
 #include <QLineEdit>
 #include <QLabel>

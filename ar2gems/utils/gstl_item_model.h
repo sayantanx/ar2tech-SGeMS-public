@@ -34,7 +34,7 @@
 #ifndef GSTL_ITEM_MODEL_H_
 #define GSTL_ITEM_MODEL_H_
 
-#include <GsTLAppli/utils/named_interface.h>
+#include <utils/named_interface.h>
 
 #include <QModelIndex>
 #include <QVariant>

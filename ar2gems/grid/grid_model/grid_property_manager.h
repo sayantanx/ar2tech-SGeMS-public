@@ -55,14 +55,14 @@
 #ifndef __GSTLAPPLI_GRID_PROPERTY_MANAGER_H__ 
 #define __GSTLAPPLI_GRID_PROPERTY_MANAGER_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/utils/gstl_types.h> 
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_property_set.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
-#include <GsTLAppli/grid/grid_model/grid_weight_property.h>
+#include <grid/common.h>
+#include <utils/gstl_types.h> 
+#include <utils/gstl_messages.h>
+#include <appli/root_model.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_property_set.h>
+#include <grid/grid_model/grid_categorical_property.h>
+#include <grid/grid_model/grid_weight_property.h>
 
 #include <string> 
 #include <vector> 

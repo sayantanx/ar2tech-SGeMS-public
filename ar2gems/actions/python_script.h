@@ -27,8 +27,8 @@
 #ifndef PYTHON_SCRIPT_H_
 #define PYTHON_SCRIPT_H_
 
-#include <GsTLAppli/utils/named_interface.h>
-#include <GsTLAppli/actions/common.h>
+#include <utils/named_interface.h>
+#include <actions/common.h>
 
 #include <vector>
 

@@ -27,12 +27,12 @@
 #ifndef GRID_FILTER_MODEL_H
 #define GRID_FILTER_MODEL_H
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
+#include <utils/manager.h>
+#include <appli/root_model.h>
+#include <grid/grid_model/geostat_grid.h>
 
-#include <GsTLAppli/qtplugins/common.h>
-#include <GsTLAppli/qtplugins/grid_filter_model_item.h>
+#include <qtplugins/common.h>
+#include <qtplugins/grid_filter_model_item.h>
 
 #include <QAbstractItemModel>
 #include <QSortFilterProxyModel>

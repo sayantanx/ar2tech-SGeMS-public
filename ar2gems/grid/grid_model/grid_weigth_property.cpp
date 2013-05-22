@@ -31,8 +31,8 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/grid/grid_model/grid_weight_property.h>
-#include <GsTLAppli/appli/manager_repository.h> 
+#include <grid/grid_model/grid_weight_property.h>
+#include <appli/manager_repository.h> 
 #include <sstream>
 
 

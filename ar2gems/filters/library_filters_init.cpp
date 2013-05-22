@@ -52,21 +52,21 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/filters/library_filters_init.h>
-#include <GsTLAppli/filters/gslib/gslib_filter.h>
-#include <GsTLAppli/filters/simulacre_filter.h>
-#include <GsTLAppli/filters/csv_filter.h>
-#include <GsTLAppli/filters/sgems_folder_filter.h>
-#include <GsTLAppli/filters/distribution_filter.h>
-#include <GsTLAppli/filters/save_project_objects.h>
-#include <GsTLAppli/filters/sgems_folder_grid_geometry.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <filters/library_filters_init.h>
+#include <filters/gslib/gslib_filter.h>
+#include <filters/simulacre_filter.h>
+#include <filters/csv_filter.h>
+#include <filters/sgems_folder_filter.h>
+#include <filters/distribution_filter.h>
+#include <filters/save_project_objects.h>
+#include <filters/sgems_folder_grid_geometry.h>
+#include <utils/gstl_messages.h>
 
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/log_data_grid.h>
-#include <GsTLAppli/grid/grid_model/reduced_grid.h>
-#include <GsTLAppli/grid/grid_model/structured_grid.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/log_data_grid.h>
+#include <grid/grid_model/reduced_grid.h>
+#include <grid/grid_model/structured_grid.h>
 
 int library_filters_init::references_ = 0;
 

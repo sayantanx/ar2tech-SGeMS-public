@@ -52,18 +52,18 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/geostat/sisim.h>
-#include <GsTLAppli/geostat/parameters_handler.h>
-#include <GsTLAppli/geostat/utilities.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/progress_notifier.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/appli/utilities.h>
+#include <geostat/sisim.h>
+#include <geostat/parameters_handler.h>
+#include <geostat/utilities.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
+#include <utils/progress_notifier.h>
+#include <utils/error_messages_handler.h>
+#include <grid/grid_model/gval_iterator.h>
+#include <appli/manager_repository.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/point_set.h>
+#include <appli/utilities.h>
 
 #include <GsTL/cdf/non_param_cdf.h>
 #include <GsTL/cdf/categ_non_param_cdf.h>
@@ -73,7 +73,7 @@
 #include <GsTL/simulation/sequential_simulation.h>
 #include <GsTL/simulation/sequential_cosimulation.h>
 
-#include <GsTLAppli/grid/grid_model/combined_neighborhood.h>
+#include <grid/grid_model/combined_neighborhood.h>
 
 #include <vector>
 #include <numeric>

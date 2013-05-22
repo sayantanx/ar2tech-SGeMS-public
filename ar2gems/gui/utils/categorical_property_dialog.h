@@ -26,8 +26,8 @@
 #ifndef _CATEGORICAL_PROPERTY_DIALOG_H__
 #define _CATEGORICAL_PROPERTY_DIALOG_H__
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/qtplugins/categorical_selectors.h>
+#include <gui/common.h>
+#include <qtplugins/categorical_selectors.h>
 
 #include <QVariant>
 #include <QAction>

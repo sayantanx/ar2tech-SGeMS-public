@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_APPLI_SNAPSHOT_DIALOG_H__
 #define __GSTLAPPLI_GUI_APPLI_SNAPSHOT_DIALOG_H__
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/ui_snapshot_dialog_base.h>
+#include <gui/common.h>
+#include <gui/ui_snapshot_dialog_base.h>
 
 #include<vtkRenderWindow.h>
 class FileChooser;

@@ -52,20 +52,20 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/appli/qt_algo_control_panel.h>
-#include <GsTLAppli/gui/utils/gstl_widget_factory.h>
-#include <GsTLAppli/gui/utils/qwidget_value_accessor.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/geostat/geostat_algo.h>
-#include <GsTLAppli/geostat/parameters_handler.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/gui/utils/qwidget_value_collector.h>
-#include <GsTLAppli/actions/defines.h>
+#include <gui/appli/qt_algo_control_panel.h>
+#include <gui/utils/gstl_widget_factory.h>
+#include <gui/utils/qwidget_value_accessor.h>
+#include <appli/manager_repository.h>
+#include <appli/project.h>
+#include <geostat/geostat_algo.h>
+#include <geostat/parameters_handler.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
+#include <utils/error_messages_handler.h>
+#include <gui/utils/qwidget_value_collector.h>
+#include <actions/defines.h>
 
-#include <GsTLAppli/qtplugins/selectors.h>
+#include <qtplugins/selectors.h>
 
 #include <qlayout.h>
 #include <qstring.h>

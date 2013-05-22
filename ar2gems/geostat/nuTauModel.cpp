@@ -26,12 +26,12 @@
 
 #include "nuTauModel.h"
 
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
-#include <GsTLAppli/geostat/utilities.h>
-#include <GsTLAppli/utils/gstl_plugins.h>
+#include <utils/string_manipulation.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/gval_iterator.h>
+#include <geostat/utilities.h>
+#include <utils/gstl_plugins.h>
 
 #include <algorithm>
 #include <numeric>

@@ -62,7 +62,7 @@
 
 #include <vector>
 
-#include <GsTLAppli/geostat/filtersim_std/is_categorical.h>
+#include <geostat/filtersim_std/is_categorical.h>
 
 using namespace std;
 using namespace TNT;

@@ -57,12 +57,12 @@ Modified from grid_property_manager.h and .cpp
 #ifndef __GSTLAPPLI_GRID_REGION_MANAGER_H__ 
 #define __GSTLAPPLI_GRID_REGION_MANAGER_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/utils/gstl_types.h> 
-#include <GsTLAppli/utils/gstl_messages.h> 
-#include <GsTLAppli/utils/gstl_object_item.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/grid/grid_model/grid_region.h>
+#include <grid/common.h>
+#include <utils/gstl_types.h> 
+#include <utils/gstl_messages.h> 
+#include <utils/gstl_object_item.h>
+#include <appli/root_model.h>
+#include <grid/grid_model/grid_region.h>
 
 #include <string> 
 #include <vector> 

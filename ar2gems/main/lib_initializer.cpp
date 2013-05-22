@@ -51,19 +51,19 @@
  ** if any conditions of this licensing are not clear to you.
  **
  **********************************************************************/
-#include <GsTLAppli/main/lib_initializer.h>
-#include <GsTLAppli/actions/library_actions_init.h>
-#include <GsTLAppli/appli/library_appli_init.h>
-#include <GsTLAppli/math/library_math_init.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/filters/library_filters_init.h>
-#include <GsTLAppli/geostat/library_geostat_init.h>
-#include <GsTLAppli/grid/library_grid_init.h>
-#include <GsTLAppli/gui/library_gui_init.h>
-#include <GsTLAppli/charts/library_charts_init.h>
-#include <GsTLAppli/widget_accessor/library_extragui_init.h>
-#include <GsTLAppli/qtplugins/library_qtplugins_init.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <main/lib_initializer.h>
+#include <actions/library_actions_init.h>
+#include <appli/library_appli_init.h>
+#include <math/library_math_init.h>
+#include <appli/root_model.h>
+#include <filters/library_filters_init.h>
+#include <geostat/library_geostat_init.h>
+#include <grid/library_grid_init.h>
+#include <gui/library_gui_init.h>
+#include <charts/library_charts_init.h>
+#include <widget_accessor/library_extragui_init.h>
+#include <qtplugins/library_qtplugins_init.h>
+#include <utils/gstl_messages.h>
 
 #include <qdir.h>
 #include <qstring.h>

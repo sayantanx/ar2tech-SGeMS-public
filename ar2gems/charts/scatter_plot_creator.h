@@ -27,12 +27,12 @@
 #define SCATTER_PLOT_CREATOR_H
 
 
-#include <GsTLAppli/charts/chart_creator.h>
-#include <GsTLAppli/charts/scatter_plot_proxy_model.h>
-#include <GsTLAppli/charts/chart_mdi_area.h>
-#include <GsTLAppli/charts/common.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/qtplugins/group_selectors.h>
+#include <charts/chart_creator.h>
+#include <charts/scatter_plot_proxy_model.h>
+#include <charts/chart_mdi_area.h>
+#include <charts/common.h>
+#include <qtplugins/selectors.h>
+#include <qtplugins/group_selectors.h>
 
 #include <QDialog>
 #include <QMainWindow>

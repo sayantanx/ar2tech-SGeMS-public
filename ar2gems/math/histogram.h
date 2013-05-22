@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_MATH_HISTOGRAM_H__
 #define __GSTLAPPLI_MATH_HISTOGRAM_H__
 
-#include <GsTLAppli/math/common.h>
+#include <math/common.h>
 
 #include <vector>
 #include <algorithm>

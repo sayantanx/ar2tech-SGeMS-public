@@ -52,11 +52,11 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/filters/gslib/filter_qt_dialogs.h>
-#include <GsTLAppli/filters/gslib/gslib_filter.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
+#include <filters/gslib/filter_qt_dialogs.h>
+#include <filters/gslib/gslib_filter.h>
+#include <utils/gstl_messages.h>
+#include <appli/manager_repository.h>
+#include <grid/grid_model/grid_property.h>
 
 
 #include <qpushbutton.h>

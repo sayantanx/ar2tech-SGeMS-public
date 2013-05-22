@@ -27,7 +27,7 @@
 #ifndef SCATTER_PLOT_ITEM_TREE_VIEW_H
 #define SCATTER_PLOT_ITEM_TREE_VIEW_H
 
-#include <GsTLAppli/charts/common.h>
+#include <charts/common.h>
 
 #include <QTreeView>
 #include <QModelIndex>

@@ -32,9 +32,9 @@
 #include <vtkProp.h>
 
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/utils/named_interface.h> 
-#include <GsTLAppli/gui/vtk_prop/vtk_common.h>
+#include <gui/common.h>
+#include <utils/named_interface.h> 
+#include <gui/vtk_prop/vtk_common.h>
  
 #include <list> 
 #include <vector>

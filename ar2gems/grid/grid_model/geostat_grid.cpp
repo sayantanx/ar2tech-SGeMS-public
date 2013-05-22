@@ -52,9 +52,9 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/neighborhood.h>
+#include <utils/manager.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/neighborhood.h>
 
 
 Geostat_grid::Geostat_grid(std::string name) :

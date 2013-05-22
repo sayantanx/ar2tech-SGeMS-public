@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_QT_SP_APPLICATION_H__ 
 #define __GSTLAPPLI_QT_SP_APPLICATION_H__ 
  
-#include <GsTLAppli/gui/common.h>
+#include <gui/common.h>
 #include <qmainwindow.h> 
 #include <qfiledialog.h> 
 #include <qcheckbox.h>

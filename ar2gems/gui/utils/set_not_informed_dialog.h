@@ -27,7 +27,7 @@
 #ifndef __GSTLAPPLI_NSET_NOT_INFORMED_DIALOG_H__ 
 #define __GSTLAPPLI_NSET_NOT_INFORMED_DIALOG_H__ 
 
-#include <GsTLAppli/gui/common.h>
+#include <gui/common.h>
 
 #include <QtGui/QApplication>
 #include <QtGui/QDialog>

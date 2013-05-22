@@ -52,13 +52,13 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/utils/manager.h>
+#include <utils/manager.h>
 
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/grid_property_manager.h>
-#include <GsTLAppli/grid/grid_model/point_set_neighborhood.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/math/random_numbers.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/grid_property_manager.h>
+#include <grid/grid_model/point_set_neighborhood.h>
+#include <utils/string_manipulation.h>
+#include <math/random_numbers.h>
 
 #include <GsTL/math/math_functions.h>
 

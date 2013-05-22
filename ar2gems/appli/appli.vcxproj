@@ -86,7 +86,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);.;$(AR2TECH_SGEMS_DIR);$(QTDIR)\include\;$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;$(SGEMS_BUILD)\sgems-ar2tech;$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);.;$(AR2TECH_SGEMS_DIR);$(AR2TECH_SGEMS_DIR)\ar2gems;$(QTDIR)\include\;$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;$(SGEMS_BUILD)\sgems-ar2tech;$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;APPLI_EXPORTS;QT_CORE_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -128,7 +128,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(AR2TECH_SGEMS_DIR)\ar2gems;.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;APPLI_EXPORTS;QT_CORE_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -168,7 +168,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);.;$(AR2TECH_SGEMS_DIR);$(QTDIR)\include\;$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;.;$(AR2TECH_SGEMS_DIR);$(QTDIR)\include\;$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);.;$(AR2TECH_SGEMS_DIR);$(AR2TECH_SGEMS_DIR)\ar2gems;$(QTDIR)\include\;$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;.;$(AR2TECH_SGEMS_DIR);$(QTDIR)\include\;$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GSTLAPPLI_NDEBUG;QT_NO_DEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;APPLI_EXPORTS;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -211,7 +211,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(AR2TECH_SGEMS_DIR)\ar2gems;.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GSTLAPPLI_NDEBUG;QT_NO_DEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;APPLI_EXPORTS;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -267,19 +267,19 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I$(AR2TECH_GSTL_DIR)\." "-I." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIR)\include" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(SGEMS_BUILD)\sgems-ar2tech" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"   -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I." "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR);$(AR2TECH_SGEMS_DIR)\ar2gems" "-I$(QTDIR)\include" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(SGEMS_BUILD)\sgems-ar2tech" "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I." "-I." "-I." "-I." "root_model.h" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"   -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I." "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR);$(AR2TECH_SGEMS_DIR)\ar2gems" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I." "-I." "-I." "-I." "root_model.h" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DGSTLAPPLI_NDEBUG -DQT_NO_DEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I$(AR2TECH_GSTL_DIR)\." "-I." "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIR)\include" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"   -DGSTLAPPLI_NDEBUG -DQT_NO_DEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I." "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR);$(AR2TECH_SGEMS_DIR)\ar2gems" "-I$(QTDIR)\include" "-I$(QTDIRwin32)\include\QtCore" "-I$(QTDIRwin32)\include\QtGui" "-I$(AR2TECH_SGEMS_DIR)\." "-I$(QTDIR)\include" "-I." "-I." "-I." "-I." "root_model.h" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DGSTLAPPLI_NDEBUG -DQT_NO_DEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR)\." "-I." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"   -DGSTLAPPLI_NDEBUG -DQT_NO_DEBUG -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DAPPLI_EXPORTS -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -D_VC80_UPGRADE=0x0710 -D_WINDLL  "-I." "-I$(AR2TECH_GSTL_DIR)\." "-I$(AR2TECH_SGEMS_DIR);$(AR2TECH_SGEMS_DIR)\ar2gems" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I." "-I." "-I." "-I." "root_model.h" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
     </CustomBuild>
     <ClInclude Include="utilities.h" />
   </ItemGroup>

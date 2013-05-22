@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_RGRID_PARAMS_H__
 #define __GSTLAPPLI_GUI_RGRID_PARAMS_H__
 
-#include <GsTLAppli/gui/ui_rgrid_base.h>
-#include <GsTLAppli/math/gstlvector.h>
+#include <gui/ui_rgrid_base.h>
+#include <math/gstlvector.h>
 
 #include <qstring.h>
 #include <qtablewidget.h>

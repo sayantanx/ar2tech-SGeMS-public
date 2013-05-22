@@ -56,8 +56,8 @@
 #define __GSTLAPPLI_GUI_APPLI_NEWCARTESIANGRIDDIALOG_H__ 
  
  
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/ui_new_cartesian_grid_dialog_base.h> 
+#include <gui/common.h>
+#include <gui/ui_new_cartesian_grid_dialog_base.h> 
  
 #include <qwidget.h> 
  

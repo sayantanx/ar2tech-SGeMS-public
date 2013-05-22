@@ -23,16 +23,16 @@
 ** ----------------------------------------------------------------------------*/
 
 
-#include <GsTLAppli/gui/utils/set_not_informed_dialog.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/actions/common.h>
-#include <GsTLAppli/actions/defines.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/project.h>
+#include <gui/utils/set_not_informed_dialog.h>
+#include <qtplugins/selectors.h>
+#include <utils/gstl_messages.h>
+#include <utils/error_messages_handler.h>
+#include <actions/common.h>
+#include <actions/defines.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/grid_categorical_property.h>
+#include <appli/manager_repository.h>
+#include <appli/project.h>
 
 #include <QtGui/QGroupBox>
 #include <QtGui/QHBoxLayout>

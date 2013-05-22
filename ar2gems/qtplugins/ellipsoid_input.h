@@ -88,7 +88,7 @@
 
 
 
-#include <GsTLAppli/qtplugins/common.h>
+#include <qtplugins/common.h>
 
 
 

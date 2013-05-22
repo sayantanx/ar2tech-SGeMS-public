@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_GUI_APPLI_SPLASH_SCREEN_H__
 #define __GSTLAPPLI_GUI_APPLI_SPLASH_SCREEN_H__
 
-#include <GsTLAppli/gui/common.h>
+#include <gui/common.h>
 
 #include <qpixmap.h>
 #include <qwidget.h>

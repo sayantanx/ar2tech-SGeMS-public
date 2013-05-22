@@ -32,7 +32,7 @@
  */
 
 
-#include <GsTLAppli/gui/viewer/region_param_viewer.h>
+#include <gui/viewer/region_param_viewer.h>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>

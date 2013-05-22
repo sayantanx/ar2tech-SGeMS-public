@@ -52,22 +52,22 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/geostat/cosgsim.h>
-#include <GsTLAppli/geostat/parameters_handler.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/strati_grid.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_property_manager.h>
-#include <GsTLAppli/grid/grid_model/combined_neighborhood.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
-#include <GsTLAppli/grid/grid_model/property_copier.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/math/random_numbers.h>
-#include <GsTLAppli/appli/utilities.h>
+#include <geostat/cosgsim.h>
+#include <geostat/parameters_handler.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
+#include <utils/error_messages_handler.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/strati_grid.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_property_manager.h>
+#include <grid/grid_model/combined_neighborhood.h>
+#include <grid/grid_model/gval_iterator.h>
+#include <grid/grid_model/property_copier.h>
+#include <appli/manager_repository.h>
+#include <math/random_numbers.h>
+#include <appli/utilities.h>
 
 #include <GsTL/kriging/cokriging_weights.h>
 #include <GsTL/kriging/LMC_covariance.h>

@@ -55,7 +55,7 @@
 #ifndef KRIGING_TYPE_SELECTOR_BASE_H
 #define KRIGING_TYPE_SELECTOR_BASE_H
 
-#include <GsTLAppli/qtplugins/common.h>
+#include <qtplugins/common.h>
 
 #include <qvariant.h>
 #include <qwidget.h>

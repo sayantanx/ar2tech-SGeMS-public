@@ -34,9 +34,9 @@
 #ifndef GSTLGRIDWEIGHTPROPERTY_H_
 #define GSTLGRIDWEIGHTPROPERTY_H_
 
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_property_set.h>
-#include <GsTLAppli/utils/named_interface.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_property_set.h>
+#include <utils/named_interface.h>
 #include <set>
 
 #include <QColor>

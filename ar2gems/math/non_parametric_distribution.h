@@ -28,8 +28,8 @@
 #define __GSTLAPPLI_MATH_NONPARAM_DISTRIBUTION_H__
 
 
-#include <GsTLAppli/math/continuous_distribution.h>
-#include <GsTLAppli/math/common.h>
+#include <math/continuous_distribution.h>
+#include <math/common.h>
 
 
 #include <boost/math/distributions.hpp>

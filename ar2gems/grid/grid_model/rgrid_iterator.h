@@ -52,12 +52,12 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h> 
-#include <GsTLAppli/grid/grid_model/rgrid_gval_accessor.h> 
-#include <GsTLAppli/grid/grid_model/grid_template.h> 
-#include <GsTLAppli/grid/grid_model/sgrid_cursor.h> 
-#include <GsTLAppli/utils/gstl_types.h> 
+#include <grid/common.h>
+#include <grid/grid_model/gval_iterator.h> 
+#include <grid/grid_model/rgrid_gval_accessor.h> 
+#include <grid/grid_model/grid_template.h> 
+#include <grid/grid_model/sgrid_cursor.h> 
+#include <utils/gstl_types.h> 
  
  
  

@@ -52,9 +52,9 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/QWidget_value_accessors/qcombobox_accessor.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <gui/QWidget_value_accessors/qcombobox_accessor.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
 
 #include <qstring.h>
 #include <qdom.h>

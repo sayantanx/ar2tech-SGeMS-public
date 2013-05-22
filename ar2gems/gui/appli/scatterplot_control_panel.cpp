@@ -52,14 +52,14 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/appli/scatterplot_control_panel.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_region.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <gui/appli/scatterplot_control_panel.h>
+#include <appli/project.h>
+#include <appli/manager_repository.h>
+#include <qtplugins/selectors.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_region.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <utils/string_manipulation.h>
 
 #include <qgroupbox.h>
 #include <qlineedit.h>

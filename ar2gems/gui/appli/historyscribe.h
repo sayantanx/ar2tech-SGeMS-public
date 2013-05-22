@@ -79,11 +79,11 @@
 #ifndef HISTORY_SCRIBE_H
 #define HISTORY_SCRIBE_H
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <gui/common.h>
+#include <utils/gstl_messages.h>
 #include <vector>
 
-#include <GsTLAppli/utils/lineeditkey.h>
+#include <utils/lineeditkey.h>
 
 // saves the gstl log in a buffer
 class HistoryScribe : public Scribe

@@ -53,7 +53,7 @@
 **********************************************************************/
 
 
-#include <GsTLAppli/math/direction_3d.h>
+#include <math/direction_3d.h>
 
 #include <GsTL/math/math_functions.h>
 #include <GsTL/geometry/geometry_algorithms.h>

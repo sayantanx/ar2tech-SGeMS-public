@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/geovalue.h>
+#include <grid/grid_model/geovalue.h>
 
 
 const Geovalue::location_type::coordinate_type Geovalue::invalid_coord_ = -9.9e30;

@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/utils/data_analysis_save_dialog.h>
+#include <gui/utils/data_analysis_save_dialog.h>
 
 #include <qcheckbox.h>
 #include <qlabel.h>

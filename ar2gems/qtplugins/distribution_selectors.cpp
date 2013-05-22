@@ -24,9 +24,9 @@
 
 
 
-#include <GsTLAppli/qtplugins/distribution_selectors.h>
+#include <qtplugins/distribution_selectors.h>
 
-#include <GsTLAppli/qtplugins/distribution_proxy_model.h>
+#include <qtplugins/distribution_proxy_model.h>
 
 #include <QHeaderView>
 

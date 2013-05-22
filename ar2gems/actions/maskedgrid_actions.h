@@ -56,8 +56,8 @@
 #define __GSTLAPPLI_ACTIONS_MASKED_GRID_H__ 
 
  
-#include <GsTLAppli/actions/common.h>
-#include <GsTLAppli/actions/action.h> 
+#include <actions/common.h>
+#include <actions/action.h> 
 #include <vector>
 
 class GsTL_project;

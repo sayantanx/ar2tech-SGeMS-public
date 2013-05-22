@@ -52,10 +52,10 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/appli/snapshot_dialog.h>
-#include <GsTLAppli/qtplugins/filechooser.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <gui/appli/snapshot_dialog.h>
+#include <qtplugins/filechooser.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
 
 #include <vtkSmartPointer.h>
 #include <vtkWindowToImageFilter.h>

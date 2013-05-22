@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_QWIDGET_VALUE_COLLECTOR_H__ 
 #define __GSTLAPPLI_QWIDGET_VALUE_COLLECTOR_H__ 
  
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/utils/named_interface.h> 
+#include <gui/common.h>
+#include <utils/named_interface.h> 
  
 #include <qwidget.h> 
  

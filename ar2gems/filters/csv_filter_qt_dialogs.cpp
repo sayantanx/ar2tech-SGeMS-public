@@ -52,10 +52,10 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/filters/csv_filter_qt_dialogs.h>
-#include <GsTLAppli/filters/csv_filter.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <filters/csv_filter_qt_dialogs.h>
+#include <filters/csv_filter.h>
+#include <utils/gstl_messages.h>
+#include <appli/manager_repository.h>
 
 #include <qpushbutton.h>
 #include <qspinbox.h>

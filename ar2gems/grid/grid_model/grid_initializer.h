@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GRIDMODEL_GRID_INITIALIZER_H__ 
 #define __GSTLAPPLI_GRIDMODEL_GRID_INITIALIZER_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/utils/gstl_types.h> 
+#include <grid/common.h>
+#include <utils/gstl_types.h> 
  
 #include <string> 
 #include <vector> 

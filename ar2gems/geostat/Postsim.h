@@ -55,15 +55,15 @@
 #define __GSTLAPPLI_GEOSTAT_PLUGIN_POSTSIM_H__
 
 
-#include <GsTLAppli/geostat/geostat_algo.h>
+#include <geostat/geostat_algo.h>
 #include <GsTL/utils/smartptr.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/grid_model/neighborhood.h>
-#include <GsTLAppli/math/gstlpoint.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/grid_model/neighborhood.h>
+#include <math/gstlpoint.h>
 
-#include <GsTLAppli/geostat/parameters_handler.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
+#include <geostat/parameters_handler.h>
+#include <utils/error_messages_handler.h>
 
 
 class Geostat_grid;

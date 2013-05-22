@@ -26,11 +26,11 @@
 #ifndef EDA_CATEGORICAL_HISTOGRAMS_H
 #define EDA_CATEGORICAL_HISTOGRAMS_H
 
-#include <GsTLAppli/charts/chart_creator.h>
-#include <GsTLAppli/charts/histogram_chart_model.h>
-#include <GsTLAppli/charts/histogram_chart_model.h>
-#include <GsTLAppli/charts/chart_mdi_area.h>
-#include <GsTLAppli/charts/common.h>
+#include <charts/chart_creator.h>
+#include <charts/histogram_chart_model.h>
+#include <charts/histogram_chart_model.h>
+#include <charts/chart_mdi_area.h>
+#include <charts/common.h>
 
 #include <QDialog>
 #include <QMainWindow>

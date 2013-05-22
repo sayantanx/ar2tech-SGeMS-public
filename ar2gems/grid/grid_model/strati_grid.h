@@ -55,9 +55,9 @@
 #ifndef __GSTLAPPLI_GRID_MODEL_STRATI_GRID_H__ 
 #define __GSTLAPPLI_GRID_MODEL_STRATI_GRID_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/utils/gstl_types.h> 
-#include <GsTLAppli/grid/grid_model/geostat_grid.h> 
+#include <grid/common.h>
+#include <utils/gstl_types.h> 
+#include <grid/grid_model/geostat_grid.h> 
  
  
 class Window_neighborhood; 

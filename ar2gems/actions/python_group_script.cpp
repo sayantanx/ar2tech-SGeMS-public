@@ -26,7 +26,7 @@
 
 #include "python_group_script.h"
 #include <stdio.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <utils/gstl_messages.h>
 
 #ifdef _DEBUG
 #undef _DEBUG

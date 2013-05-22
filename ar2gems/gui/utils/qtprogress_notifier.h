@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_UTILS_QTPROGRESS_NOTIFIER_H__ 
 #define __GSTLAPPLI_GUI_UTILS_QTPROGRESS_NOTIFIER_H__ 
  
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/utils/progress_notifier.h> 
+#include <gui/common.h>
+#include <utils/progress_notifier.h> 
  
 #include <qapplication.h> 
 #include <qlabel.h> 

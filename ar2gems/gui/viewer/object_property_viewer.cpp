@@ -32,7 +32,7 @@
  */
 
 
-#include <GsTLAppli/gui/viewer/object_property_viewer.h>
+#include <gui/viewer/object_property_viewer.h>
 
 Object_property_viewer::Object_property_viewer()
 : QWidget(){

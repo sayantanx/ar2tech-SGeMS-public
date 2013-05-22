@@ -31,10 +31,10 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <utils/manager.h>
+#include <appli/root_model.h>
+#include <appli/project.h>
+#include <appli/manager_repository.h>
 
 #include <QStringList>
 #include <QMimeData>

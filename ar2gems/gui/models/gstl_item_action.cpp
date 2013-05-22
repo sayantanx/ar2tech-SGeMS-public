@@ -32,17 +32,17 @@
  */
 
 
-#include <GsTLAppli/gui/models/gstl_item_action.h>
+#include <gui/models/gstl_item_action.h>
 #include <GsTL/utils/smartptr.h>
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
+#include <utils/manager.h>
+#include <appli/manager_repository.h>
+#include <appli/project.h>
+#include <utils/error_messages_handler.h>
+#include <utils/gstl_messages.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/grid_property.h>
 
-#include <GsTLAppli/qtplugins/rename_dialog.h>
+#include <qtplugins/rename_dialog.h>
 
 Gstl_item_action::Gstl_item_action(QObject * parent)
 : QAction(parent)

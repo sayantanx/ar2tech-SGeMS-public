@@ -28,7 +28,7 @@
 #define __GSTLAPPLI_QTPLUGINS_NEIGH_FILTER_H__
 
 
-#include <GsTLAppli/qtplugins/common.h>
+#include <qtplugins/common.h>
 #include <qgroupbox.h>
 #include <qstring.h>
 #include <QResizeEvent>

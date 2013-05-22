@@ -66,20 +66,20 @@
 #endif
 */
 #include <Python.h>
-#include <GsTLAppli/actions/common.h>
-#include <GsTLAppli/actions/python_wrapper.h>
-#include <GsTLAppli/actions/defines.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
+#include <actions/common.h>
+#include <actions/python_wrapper.h>
+#include <actions/defines.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
+#include <utils/error_messages_handler.h>
+#include <appli/manager_repository.h>
+#include <appli/project.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_categorical_property.h>
 
 
 #include <string> 

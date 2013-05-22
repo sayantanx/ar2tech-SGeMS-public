@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_PROPERTY_GROUP_ACTIONS_H__ 
 #define __GSTLAPPLI_PROPERTY_GROUP_ACTIONS_H__ 
 
-#include <GsTLAppli/actions/common.h>
-#include <GsTLAppli/actions/action.h> 
+#include <actions/common.h>
+#include <actions/action.h> 
 
 
 #include <qstring.h>

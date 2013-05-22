@@ -28,17 +28,17 @@
 #define DISTRIBUTION_PARAMETER_WIDGET_H
 
 #include <QWidget>
-#include <GsTLAppli/math/continuous_distribution.h>
-#include <GsTLAppli/math/non_parametric_distribution.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_weight_property.h>
-#include <GsTLAppli/grid/grid_model/grid_region.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
+#include <math/continuous_distribution.h>
+#include <math/non_parametric_distribution.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_weight_property.h>
+#include <grid/grid_model/grid_region.h>
+#include <grid/grid_model/geostat_grid.h>
 
-#include <GsTLAppli/qtplugins/common.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/qtplugins/weight_property_selector.h>
-#include <GsTLAppli/qtplugins/non_param_cdf_input.h>
+#include <qtplugins/common.h>
+#include <qtplugins/selectors.h>
+#include <qtplugins/weight_property_selector.h>
+#include <qtplugins/non_param_cdf_input.h>
 
 #include<QTableWidget>
 #include <QLabel>

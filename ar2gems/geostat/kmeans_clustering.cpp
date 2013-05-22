@@ -24,13 +24,13 @@
 
 
 
-#include <GsTLAppli/geostat/kmeans_clustering.h>
+#include <geostat/kmeans_clustering.h>
 
 
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
 
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
+#include <grid/grid_model/grid_categorical_property.h>
 
 
 #include <vtkKMeansStatistics.h>

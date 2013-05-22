@@ -34,9 +34,9 @@
 #ifndef PROPERTY_STATS_VIEW_H_
 #define PROPERTY_STATS_VIEW_H_
 
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/gui/utils/colormap.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_gstl.h>
+#include <grid/grid_model/grid_property.h>
+#include <gui/utils/colormap.h>
+#include <gui/vtk_prop/vtk_prop_gstl.h>
 
 #include <QWidget>
 

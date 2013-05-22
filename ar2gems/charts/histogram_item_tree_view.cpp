@@ -26,9 +26,9 @@
 
 
 
-#include <GsTLAppli/charts/histogram_item_tree_view.h>
-#include <GsTLAppli/charts/histogram_proxy_model.h>
-#include <GsTLAppli/qtplugins/color_delegate.h>
+#include <charts/histogram_item_tree_view.h>
+#include <charts/histogram_proxy_model.h>
+#include <qtplugins/color_delegate.h>
 
 #include <QColorDialog>
 #include <QHeaderView>

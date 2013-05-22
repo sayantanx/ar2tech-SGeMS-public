@@ -59,8 +59,8 @@
 #endif
 */
 
-#include <GsTLAppli/grid/grid_model/neighborhood.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/neighborhood.h>
+#include <grid/grid_model/geostat_grid.h>
 
 #include <algorithm>
 #include <iterator>

@@ -63,19 +63,19 @@
 
 #include <Python.h>
 
-#include <GsTLAppli/main/lib_initializer.h>
+#include <main/lib_initializer.h>
 
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/progress_notifier.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/actions/python_wrapper.h>
-#include <GsTLAppli/actions/library_actions_init.h>
+#include <utils/gstl_messages.h>
+#include <utils/error_messages_handler.h>
+#include <utils/string_manipulation.h>
+#include <utils/progress_notifier.h>
+#include <appli/manager_repository.h>
+#include <appli/project.h>
+#include <actions/python_wrapper.h>
+#include <actions/library_actions_init.h>
 
-#include <GsTLAppli/gui/appli/qt_sp_application.h>
-#include <GsTLAppli/gui/viewer/qvtkGsTLViewer.h>
+#include <gui/appli/qt_sp_application.h>
+#include <gui/viewer/qvtkGsTLViewer.h>
 
 #include <QSplashScreen>
 #include <qapplication.h>
@@ -92,10 +92,10 @@
 
 /*
 #ifdef _DEBUG
-#include <GsTLAppli/main/modeltest.h>
-#include <GsTLAppli/gui/models/project_proxy_model.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/utils/manager.h>
+#include <main/modeltest.h>
+#include <gui/models/project_proxy_model.h>
+#include <appli/root_model.h>
+#include <utils/manager.h>
 #endif
 */
 using namespace String_Op;

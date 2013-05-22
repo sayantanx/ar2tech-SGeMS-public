@@ -52,9 +52,9 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/utils/merge_regions_dialog.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <gui/utils/merge_regions_dialog.h>
+#include <qtplugins/selectors.h>
+#include <utils/gstl_messages.h>
 
 #include <qpushbutton.h>
 #include <qstringlist.h>

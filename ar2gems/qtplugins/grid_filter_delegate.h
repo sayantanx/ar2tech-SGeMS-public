@@ -27,11 +27,11 @@
 #ifndef GRID_FILTER_DELEGATE_H
 #define GRID_FILTER_DELEGATE_H
 
-#include <GsTLAppli/qtplugins/common.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/qtplugins/categorical_selectors.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_filter.h>
+#include <qtplugins/common.h>
+#include <qtplugins/selectors.h>
+#include <qtplugins/categorical_selectors.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_filter.h>
 
 
 #include <QStyledItemDelegate>

@@ -27,7 +27,7 @@
 #ifndef NONPARAMCDFINPUT_H
 #define NONPARAMCDFINPUT_H
 
-#include <GsTLAppli/qtplugins/common.h>
+#include <qtplugins/common.h>
 
 #include <QWidget>
 #include <QLabel>

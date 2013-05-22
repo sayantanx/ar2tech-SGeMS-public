@@ -86,7 +86,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;$(QTDIRwin32)\include\QtXml;$(QTDIRwin32)\include;.;$(QTDIRwin32)\include\ActiveQt;release;$(BOOSTDIR);debug;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(AR2TECH_SGEMS_DIR)\ar2gems;$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;$(QTDIRwin32)\include\QtXml;$(QTDIRwin32)\include;.;$(QTDIRwin32)\include\ActiveQt;release;$(BOOSTDIR);debug;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;EXTRAGUI_EXPORTS;QT_DLL;QT_XML_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -128,7 +128,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(QTDIRx64)\include\QtCore;$(QTDIRx64)\include\QtGui;$(QTDIRx64)\include\QtXml;$(QTDIRx64)\include;.;$(QTDIRx64)\include\ActiveQt;$(BOOSTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(AR2TECH_SGEMS_DIR)\ar2gems;$(QTDIRx64)\include\QtCore;$(QTDIRx64)\include\QtGui;$(QTDIRx64)\include\QtXml;$(QTDIRx64)\include;.;$(QTDIRx64)\include\ActiveQt;$(BOOSTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;EXTRAGUI_EXPORTS;QT_DLL;QT_XML_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -168,7 +168,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;$(QTDIRwin32)\include\QtXml;$(QTDIRwin32)\include;.;$(QTDIRwin32)\include\ActiveQt;release;$(BOOSTDIR);$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;$(QTDIRwin32)\include\QtXml;$(QTDIRwin32)\include;.;$(QTDIRwin32)\include\ActiveQt;release;$(BOOSTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(AR2TECH_SGEMS_DIR)\ar2gems;$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;$(QTDIRwin32)\include\QtXml;$(QTDIRwin32)\include;.;$(QTDIRwin32)\include\ActiveQt;release;$(BOOSTDIR);$(QTDIRwin32)\include\QtCore;$(QTDIRwin32)\include\QtGui;$(QTDIRwin32)\include\QtXml;$(QTDIRwin32)\include;.;$(QTDIRwin32)\include\ActiveQt;release;$(BOOSTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QT_NO_DEBUG;GSTLAPPLI_NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;EXTRAGUI_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_XML_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -211,7 +211,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm300 -w34100 -w34189 -Zm300 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(QTDIRx64)\include\QtCore;$(QTDIRx64)\include\QtGui;$(QTDIRx64)\include\QtXml;$(QTDIRx64)\include;.;$(QTDIRx64)\include\ActiveQt;$(BOOSTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AR2TECH_GSTL_DIR);$(AR2TECH_SGEMS_DIR);$(AR2TECH_SGEMS_DIR)\ar2gems;$(QTDIRx64)\include\QtCore;$(QTDIRx64)\include\QtGui;$(QTDIRx64)\include\QtXml;$(QTDIRx64)\include;.;$(QTDIRx64)\include\ActiveQt;$(BOOSTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QT_NO_DEBUG;GSTLAPPLI_NDEBUG;_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;EXTRAGUI_EXPORTS;QT_DLL;QT_NO_DEBUG;QT_XML_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>

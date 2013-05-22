@@ -27,8 +27,8 @@
 #ifndef CONT_HISTO_DELEGATE_H
 #define CONT_HISTO_DELEGATE_H
 
-#include <GsTLAppli/qtplugins/region_weight_proxy_model.h>
-#include <GsTLAppli/charts/common.h>
+#include <qtplugins/region_weight_proxy_model.h>
+#include <charts/common.h>
 
 #include <QStyledItemDelegate>
 #include <QStyleOptionViewItem>

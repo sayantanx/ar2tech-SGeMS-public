@@ -31,7 +31,7 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/gui/viewer/group_param_viewer.h>
+#include <gui/viewer/group_param_viewer.h>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>

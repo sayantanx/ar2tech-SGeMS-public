@@ -52,8 +52,8 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/rgrid_gval_accessor.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
+#include <grid/grid_model/rgrid_gval_accessor.h>
+#include <grid/grid_model/rgrid.h>
 
 
 RGrid_gval_accessor::RGrid_gval_accessor(

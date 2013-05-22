@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_LIBRARY_GRID_INIT_H__ 
 #define __GSTLAPPLI_LIBRARY_GRID_INIT_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/appli/manager_repository.h> 
+#include <grid/common.h>
+#include <appli/manager_repository.h> 
  
 #include <iostream> 
  

@@ -31,11 +31,11 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_log.h>
+#include <gui/vtk_prop/vtk_prop_log.h>
 
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_pointset.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/gui/utils/colormap.h>
+#include <gui/vtk_prop/vtk_prop_pointset.h>
+#include <grid/grid_model/point_set.h>
+#include <gui/utils/colormap.h>
 
 
 #include <vtkSmartPointer.h>

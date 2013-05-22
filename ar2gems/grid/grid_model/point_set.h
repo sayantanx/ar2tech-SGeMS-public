@@ -57,13 +57,13 @@
  
  
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h> 
-#include <GsTLAppli/math/gstlpoint.h> 
-#include <GsTLAppli/grid/grid_model/geostat_grid.h> 
-#include <GsTLAppli/grid/grid_model/grid_property_manager.h> 
-#include <GsTLAppli/grid/grid_model/grid_region_manager.h>  
-#include <GsTLAppli/grid/grid_model/grid_property_set.h> 
+#include <grid/common.h>
+#include <grid/grid_model/gval_iterator.h> 
+#include <math/gstlpoint.h> 
+#include <grid/grid_model/geostat_grid.h> 
+#include <grid/grid_model/grid_property_manager.h> 
+#include <grid/grid_model/grid_region_manager.h>  
+#include <grid/grid_model/grid_property_set.h> 
 #include <string> 
 #include <vector> 
  

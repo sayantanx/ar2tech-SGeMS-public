@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_GUI_COLOR_H__ 
 #define __GSTLAPPLI_GUI_COLOR_H__ 
 
-#include <GsTLAppli/gui/common.h>
+#include <gui/common.h>
 #include <Qt> 
  
 class GUI_DECL RGB_color {

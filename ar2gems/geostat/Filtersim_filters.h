@@ -36,7 +36,7 @@
 
 #include <iostream>
 
-#include <GsTLAppli/geostat/filtersim_std/filters.h>
+#include <geostat/filtersim_std/filters.h>
 
 
 

@@ -25,16 +25,16 @@
 
 
 #include <maskedgrid_actions.h>
-#include <GsTLAppli/actions/defines.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/filters/filter.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/reduced_grid.h> 
+#include <actions/defines.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
+#include <utils/error_messages_handler.h>
+#include <appli/manager_repository.h>
+#include <appli/project.h>
+#include <filters/filter.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/reduced_grid.h> 
 
 Named_interface* Create_mgrid_from_cgrid::create_new_interface( std::string& ) {
   return new Create_mgrid_from_cgrid();

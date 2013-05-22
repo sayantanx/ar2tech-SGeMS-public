@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_APPLI_DATA_ANALYSIS_GUI_H__
 #define __GSTLAPPLI_GUI_APPLI_DATA_ANALYSIS_GUI_H__
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/ui_data_analysis_gui_base.h>
+#include <gui/common.h>
+#include <gui/ui_data_analysis_gui_base.h>
 
 #include <qstring.h>
 #include <qlabel.h>

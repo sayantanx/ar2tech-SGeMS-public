@@ -55,13 +55,13 @@
 #ifndef __GSTLAPPLI_GEOSTAT_UTILITIES_H__ 
 #define __GSTLAPPLI_GEOSTAT_UTILITIES_H__ 
  
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h> 
-#include <GsTLAppli/math/gstlpoint.h> 
-#include <GsTLAppli/math/non_parametric_distribution.h> 
-#include <GsTLAppli/math/continuous_distribution.h>
-#include <GsTLAppli/grid/grid_model/neighborhood.h> 
-#include <GsTLAppli/utils/progress_notifier.h>
+#include <geostat/common.h>
+#include <grid/grid_model/geostat_grid.h> 
+#include <math/gstlpoint.h> 
+#include <math/non_parametric_distribution.h> 
+#include <math/continuous_distribution.h>
+#include <grid/grid_model/neighborhood.h> 
+#include <utils/progress_notifier.h>
  
 #include <GsTL/kriging/kriging_constraints.h> 
 #include <GsTL/kriging/cokriging_constraints.h> 

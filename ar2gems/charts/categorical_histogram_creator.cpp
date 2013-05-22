@@ -24,9 +24,9 @@
 
 
 
-#include <GsTLAppli/charts/categorical_histogram_creator.h>
-#include <GsTLAppli/charts/chart_continuous_histogram.h>
-#include <GsTLAppli/charts/chart_categorical_histogram.h>
+#include <charts/categorical_histogram_creator.h>
+#include <charts/chart_continuous_histogram.h>
+#include <charts/chart_categorical_histogram.h>
 
 #include <QDialog>
 #include <QTreeView>

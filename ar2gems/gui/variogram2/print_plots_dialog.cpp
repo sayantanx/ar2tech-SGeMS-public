@@ -52,10 +52,10 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/variogram2/print_plots_dialog.h>
-#include <GsTLAppli/qtplugins/filechooser.h>
-#include <GsTLAppli/qwt/qwt_plot_curve.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <gui/variogram2/print_plots_dialog.h>
+#include <qtplugins/filechooser.h>
+#include <qwt/qwt_plot_curve.h>
+#include <utils/string_manipulation.h>
 #include <qgroupbox.h>
 #include <qlistwidget.h>
 #include <qpushbutton.h>
@@ -66,7 +66,7 @@
 #include <qmessagebox.h>
 //Added by qt3to4:
 #include <QPixmap>
-#include <GsTLAppli/utils/simpleps.h>
+#include <utils/simpleps.h>
 #include <fstream>
 #include <QHBoxLayout>
 

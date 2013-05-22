@@ -26,7 +26,7 @@
 #define __GSTLAPPLI_GRID_DOWNSCALER_H__
 
 //#include <../utils/named_interface.h>
-#include <GsTLAppli/utils/named_interface.h>
+#include <utils/named_interface.h>
 
 
 class Geostat_grid;

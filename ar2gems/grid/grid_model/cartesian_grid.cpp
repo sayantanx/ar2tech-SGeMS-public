@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/cartesian_grid.h>
 
 #include <GsTL/math/math_functions.h>
 

@@ -27,8 +27,8 @@
 #ifndef CHART_DIALOG_H
 #define CHART_DIALOG_H
 
-#include <GsTLAppli/charts/chart_mdi_area.h>
-#include <GsTLAppli/charts/common.h>
+#include <charts/chart_mdi_area.h>
+#include <charts/common.h>
 
 #include <QDialog>
 #include <QMainWindow>

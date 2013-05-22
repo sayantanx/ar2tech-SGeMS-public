@@ -55,12 +55,12 @@
 #ifndef __GSTLAPPLI_GRID_PROPERTY_SET_H__ 
 #define __GSTLAPPLI_GRID_PROPERTY_SET_H__ 
  
-#include <GsTLAppli/utils/gstl_object_item.h>
-#include <GsTLAppli/utils/gstl_types.h> 
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h> 
+#include <utils/gstl_object_item.h>
+#include <utils/gstl_types.h> 
+#include <utils/gstl_messages.h>
+#include <appli/root_model.h>
+#include <grid/common.h>
+#include <grid/grid_model/grid_property.h> 
 
 #include <GsTL/cdf/categ_non_param_cdf.h>
 #include <GsTL/cdf/non_param_cdf.h>

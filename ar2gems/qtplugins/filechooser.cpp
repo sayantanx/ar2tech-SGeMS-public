@@ -52,9 +52,9 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/qtplugins/filechooser.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/project.h>
+#include <qtplugins/filechooser.h>
+#include <appli/manager_repository.h>
+#include <appli/project.h>
 
 #include <qlineedit.h>
 #include <qpushbutton.h>

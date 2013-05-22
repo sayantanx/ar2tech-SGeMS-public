@@ -56,21 +56,21 @@
 #define __GSTLAPPLI_GUI_VARIOGRAM_TOP_H__
 
 
-#include <GsTLAppli/math/discrete_function.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
+#include <math/discrete_function.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/rgrid.h>
 
 
-#include <GsTLAppli/gui/variogram2/first_scr.h>
-#include <GsTLAppli/gui/variogram2/pset_params.h>
-#include <GsTLAppli/gui/variogram2/rgrid_params.h>
-#include <GsTLAppli/gui/variogram2/variogram_modeling_screen.h>
-#include <GsTLAppli/gui/ui_variogram_modeler_gui_base.h>
+#include <gui/variogram2/first_scr.h>
+#include <gui/variogram2/pset_params.h>
+#include <gui/variogram2/rgrid_params.h>
+#include <gui/variogram2/variogram_modeling_screen.h>
+#include <gui/ui_variogram_modeler_gui_base.h>
 
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/appli/project.h>
+#include <appli/manager_repository.h>
+#include <qtplugins/selectors.h>
+#include <appli/project.h>
 
 #include <qapplication.h>
 #include <QDialog>

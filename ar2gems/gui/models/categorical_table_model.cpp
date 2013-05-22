@@ -24,8 +24,8 @@
 
 
 
-#include  <GsTLAppli/gui/models/categorical_table_model.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
+#include  <gui/models/categorical_table_model.h>
+#include <grid/grid_model/grid_categorical_property.h>
 
 Categorical_table_model::Categorical_table_model(QObject *parent)
   : QAbstractTableModel(parent)

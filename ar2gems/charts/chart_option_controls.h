@@ -27,7 +27,7 @@
 #ifndef CHART_OPTION_CONTROLS_H
 #define CHART_OPTION_CONTROLS_H
 
-#include <GsTLAppli/charts/common.h>
+#include <charts/common.h>
 
 #include <QWidget>
 #include <QLineEdit>

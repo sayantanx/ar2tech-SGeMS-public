@@ -52,8 +52,8 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/utils/gstl_messages_private.h>
-#include <GsTLAppli/utils/string_manipulation.h> 
+#include <utils/gstl_messages_private.h>
+#include <utils/string_manipulation.h> 
 
 __BEGIN_DECLS
 void __appli_warning(std::string file, int line, std::string str) {

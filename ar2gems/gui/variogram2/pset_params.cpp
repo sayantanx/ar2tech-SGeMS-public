@@ -52,12 +52,12 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/variogram2/pset_params.h>
-#include <GsTLAppli/math/correlation_measure.h>
-#include <GsTLAppli/gui/utils/qwidget_value_collector.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/qtplugins/gstl_table.h>
+#include <gui/variogram2/pset_params.h>
+#include <math/correlation_measure.h>
+#include <gui/utils/qwidget_value_collector.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
+#include <qtplugins/gstl_table.h>
 
 #include <qfiledialog.h>
 #include <qpushbutton.h>

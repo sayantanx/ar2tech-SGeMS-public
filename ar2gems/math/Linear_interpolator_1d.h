@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_LINEAR_INTERPOLATOR_1D_H__
 #define __GSTLAPPLI_LINEAR_INTERPOLATOR_1D_H__
 
-#include <GsTLAppli/math/common.h>
+#include <math/common.h>
 
 #include <vector>
 class Interpolator_1d;

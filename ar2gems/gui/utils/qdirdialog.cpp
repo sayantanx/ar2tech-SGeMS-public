@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/utils/qdirdialog.h>
+#include <gui/utils/qdirdialog.h>
 
 
 QDirDialog::QDirDialog( const QString& extension, 

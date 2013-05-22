@@ -34,8 +34,8 @@
 #ifndef RENAME_DIALOG_H_
 #define RENAME_DIALOG_H_
 
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/qtplugins/common.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <qtplugins/common.h>
 
 #include <QDialog>
 #include <QLineEdit>

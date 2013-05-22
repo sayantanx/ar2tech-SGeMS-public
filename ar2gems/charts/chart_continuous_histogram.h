@@ -27,17 +27,17 @@
 #ifndef CHART_CONTINUOUS_HISTOGRAM_H
 #define CHART_CONTINUOUS_HISTOGRAM_H
 
-#include <GsTLAppli/charts/chart_base.h>
-#include <GsTLAppli/charts/common.h>
+#include <charts/chart_base.h>
+#include <charts/common.h>
 
-#include <GsTLAppli/math/continuous_distribution.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_weight_property.h>
-#include <GsTLAppli/grid/grid_model/grid_region.h>
-#include <GsTLAppli/math/continuous_distribution.h>
+#include <math/continuous_distribution.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_weight_property.h>
+#include <grid/grid_model/grid_region.h>
+#include <math/continuous_distribution.h>
 
-#include <GsTLAppli/charts/histogram_proxy_model.h>
-#include <GsTLAppli/charts/chart_display_control.h>
+#include <charts/histogram_proxy_model.h>
+#include <charts/chart_display_control.h>
 
 #include <vtkMath.h>
 #include <vtkTable.h>

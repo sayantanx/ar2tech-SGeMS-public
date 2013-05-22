@@ -36,9 +36,9 @@
 
 
 
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_gstl.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_categorical_property.h>
+#include <gui/vtk_prop/vtk_prop_gstl.h>
 
 
 #include <QWidget>

@@ -27,11 +27,11 @@
 #ifndef DISTRIBUTION_FILTER_H_
 #define DISTRIBUTION_FILTER_H_
 
-#include <GsTLAppli/filters/common.h>
-#include <GsTLAppli/filters/filter.h>
+#include <filters/common.h>
+#include <filters/filter.h>
 
-#include <GsTLAppli/math/continuous_distribution.h>
-#include <GsTLAppli/math/non_parametric_distribution.h>
+#include <math/continuous_distribution.h>
+#include <math/non_parametric_distribution.h>
 
 #include <QDomElement>
 

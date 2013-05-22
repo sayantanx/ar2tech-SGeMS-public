@@ -28,8 +28,8 @@
 #define WEIGHT_PROPERTY_SELECTOR_H
 
 #include <QComboBox>
-#include <GsTLAppli/qtplugins/common.h>
-#include <GsTLAppli/qtplugins/weight_property_proxy_model.h>
+#include <qtplugins/common.h>
+#include <qtplugins/weight_property_proxy_model.h>
 
 class QTPLUGINS_DECL SingleWeightPropertySelector : public QComboBox
 {

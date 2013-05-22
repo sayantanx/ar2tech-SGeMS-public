@@ -58,9 +58,9 @@
 #endif
 */
 
-#include <GsTLAppli/grid/grid_model/rgrid_neighborhood.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <grid/grid_model/rgrid_neighborhood.h>
+#include <grid/grid_model/rgrid.h>
+#include <utils/gstl_messages.h>
 
 #include <stack>
 #include <algorithm>

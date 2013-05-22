@@ -26,9 +26,9 @@
 
 #include "distribution_parameter_widget.h"
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/distribution_utilities.h>
+#include <utils/manager.h>
+#include <appli/manager_repository.h>
+#include <grid/distribution_utilities.h>
 
 #include <QRadioButton>
 #include <QPushButton>

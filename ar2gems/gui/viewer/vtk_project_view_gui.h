@@ -36,17 +36,17 @@
 
 
 
-#include <GsTLAppli/utils/named_interface.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/math/gstlvector.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_gstl.h>
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/viewer/vtk_prop_map.h>
-#include <GsTLAppli/gui/viewer/qvtkGsTLViewer.h>
-#include <GsTLAppli/gui/viewer/visualization_parameters.h>
-#include <GsTLAppli/gui/models/visualization_tree_view.h>
-#include <GsTLAppli/gui/models/gstl_item.h>
-#include <GsTLAppli/qtplugins/project_proxy_model.h>
+#include <utils/named_interface.h>
+#include <appli/project.h>
+#include <math/gstlvector.h>
+#include <gui/vtk_prop/vtk_prop_gstl.h>
+#include <gui/common.h>
+#include <gui/viewer/vtk_prop_map.h>
+#include <gui/viewer/qvtkGsTLViewer.h>
+#include <gui/viewer/visualization_parameters.h>
+#include <gui/models/visualization_tree_view.h>
+#include <gui/models/gstl_item.h>
+#include <qtplugins/project_proxy_model.h>
 
 #include <QFrame>
 #include <QTreeView>

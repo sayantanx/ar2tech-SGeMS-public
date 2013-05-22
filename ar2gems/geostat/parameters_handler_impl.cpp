@@ -52,9 +52,9 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/geostat/parameters_handler_impl.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <geostat/parameters_handler_impl.h>
+#include <utils/string_manipulation.h>
+#include <utils/gstl_messages.h>
 
 
 Named_interface*

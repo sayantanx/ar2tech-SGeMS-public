@@ -52,14 +52,14 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/property_copier.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/sgrid_cursor.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/grid_model/reduced_grid.h>
-#include <GsTLAppli/grid/grid_model/structured_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
+#include <grid/grid_model/property_copier.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/sgrid_cursor.h>
+#include <appli/manager_repository.h>
+#include <grid/grid_model/reduced_grid.h>
+#include <grid/grid_model/structured_grid.h>
+#include <grid/grid_model/grid_categorical_property.h>
 
 #include <GsTL/geometry/geometry_algorithms.h>
 #include <qmessagebox.h>

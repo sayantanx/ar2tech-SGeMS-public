@@ -56,14 +56,14 @@
 #define __GSTLAPPLI_POINT_SET_NEIGHBORHOOD_H__ 
  
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/math/gstlpoint.h> 
-#include <GsTLAppli/grid/grid_model/neighborhood.h> 
-#include <GsTLAppli/grid/grid_model/point_set.h> 
-#include <GsTLAppli/grid/grid_model/superblock.h> 
-#include <GsTLAppli/math/gstlvector.h> 
-#include <GsTLAppli/grid/grid_model/gstl_kdtree2.h>
-#include <GsTLAppli/grid/coordinate_mapper.h>
+#include <grid/common.h>
+#include <math/gstlpoint.h> 
+#include <grid/grid_model/neighborhood.h> 
+#include <grid/grid_model/point_set.h> 
+#include <grid/grid_model/superblock.h> 
+#include <math/gstlvector.h> 
+#include <grid/grid_model/gstl_kdtree2.h>
+#include <grid/coordinate_mapper.h>
 
 #include <GsTL/geometry/geometry_algorithms.h> 
 #include <GsTL/geometry/covariance.h> 

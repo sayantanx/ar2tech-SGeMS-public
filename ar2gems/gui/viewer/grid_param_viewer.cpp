@@ -31,9 +31,9 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/gui/viewer/grid_param_viewer.h>
-#include <GsTLAppli/gui/viewer/grid_section_view.h>
+#include <appli/manager_repository.h>
+#include <gui/viewer/grid_param_viewer.h>
+#include <gui/viewer/grid_section_view.h>
 
 #include <QWidget>
 #include <QVBoxLayout>

@@ -57,8 +57,8 @@
 #define _HAS_ITERATOR_DEBUGGING 0
 #endif
 */
-#include <GsTLAppli/grid/mgrid_neighborhood.h>
-#include <GsTLAppli/grid/grid_model/reduced_grid.h>
+#include <grid/mgrid_neighborhood.h>
+#include <grid/grid_model/reduced_grid.h>
 
 MgridNeighborhood::MgridNeighborhood( RGrid* grid, 
 		Grid_continuous_property* property, 

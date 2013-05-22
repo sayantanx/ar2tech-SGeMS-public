@@ -23,9 +23,9 @@
 ** ----------------------------------------------------------------------------*/
 
 
-#include <GsTLAppli/qtplugins/library_qtplugins_init.h>
-#include <GsTLAppli/qtplugins/grid_filter_named_interface.h>
-#include <GsTLAppli/grid/grid_filter.h>
+#include <qtplugins/library_qtplugins_init.h>
+#include <qtplugins/grid_filter_named_interface.h>
+#include <grid/grid_filter.h>
 
 int library_qtplugins_init::references_ = 0;
 

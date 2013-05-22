@@ -31,20 +31,20 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/gui/models/visualization_tree_view.h>
+#include <gui/models/visualization_tree_view.h>
 
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/grid_model/grid_property_set.h>
-#include <GsTLAppli/actions/obj_manag_actions.h>
-//#include <GsTLAppli/gui/models/project_ItemModel.h>
-#include <GsTLAppli/gui/models/gstl_item.h>
-#include <GsTLAppli/gui/models/context_menu_interface.h>
-#include <GsTLAppli/gui/models/gstl_item_selection_model.h>
-#include <GsTLAppli/gui/models/gstl_item_action.h>
-#include <GsTLAppli/qtplugins/project_proxy_model.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/appli/project.h>
+#include <appli/project.h>
+#include <appli/manager_repository.h>
+#include <grid/grid_model/grid_property_set.h>
+#include <actions/obj_manag_actions.h>
+//#include <gui/models/project_ItemModel.h>
+#include <gui/models/gstl_item.h>
+#include <gui/models/context_menu_interface.h>
+#include <gui/models/gstl_item_selection_model.h>
+#include <gui/models/gstl_item_action.h>
+#include <qtplugins/project_proxy_model.h>
+#include <utils/error_messages_handler.h>
+#include <appli/project.h>
 
 
 #include <QMenu>

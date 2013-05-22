@@ -27,10 +27,10 @@
 #ifndef COPY_PROPERTY_DIALOG_H
 #define COPY_PROPERTY_DIALOG_H
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/appli/project.h>
+#include <gui/common.h>
+#include <appli/project.h>
 
-#include <GsTLAppli/qtplugins/selectors.h>
+#include <qtplugins/selectors.h>
 
 #include <QDialog>
 #include <QCheckBox>

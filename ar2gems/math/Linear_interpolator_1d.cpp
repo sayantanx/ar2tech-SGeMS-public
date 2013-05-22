@@ -52,8 +52,8 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/math/Interpolator_1d.h>
-#include <GsTLAppli/math/Linear_interpolator_1d.h>
+#include <math/Interpolator_1d.h>
+#include <math/Linear_interpolator_1d.h>
 
 
 

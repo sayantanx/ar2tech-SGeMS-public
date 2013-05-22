@@ -24,10 +24,10 @@
 
 
 
-#include <GsTLAppli/grid/distribution_utilities.h>
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <grid/distribution_utilities.h>
+#include <utils/manager.h>
+#include <utils/manager.h>
+#include <appli/manager_repository.h>
 
 Non_parametric_distribution* 
   build_non_param_distribution( std::string name, Grid_continuous_property* prop, 

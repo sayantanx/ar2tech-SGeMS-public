@@ -23,7 +23,7 @@
 ** ----------------------------------------------------------------------------*/
 
 
-#include <GsTLAppli/charts/chart_base_display_controls.h>
+#include <charts/chart_base_display_controls.h>
 
 
 #include <vtkAxis.h>

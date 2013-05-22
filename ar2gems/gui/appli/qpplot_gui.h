@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_APPLI_QPPLOT_GUI_H__
 #define __GSTLAPPLI_GUI_APPLI_QPPLOT_GUI_H__
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/appli/data_analysis_gui.h>
+#include <gui/common.h>
+#include <gui/appli/data_analysis_gui.h>
 
 #include <QScrollArea>
 //Added by qt3to4:

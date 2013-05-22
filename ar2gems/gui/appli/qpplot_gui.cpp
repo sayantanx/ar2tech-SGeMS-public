@@ -52,16 +52,16 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/appli/qpplot_gui.h>
-#include <GsTLAppli/gui/appli/qpplot_control_panel.h>
-#include <GsTLAppli/qwt/qwt_plot.h>
-#include <GsTLAppli/qwt/qwt_plot_curve.h>
-#include <GsTLAppli/qwt/qwt_symbol.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_region.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/math/qpplot.h>
-#include <GsTLAppli/grid/grid_model/grid_region_temp_selector.h> 
+#include <gui/appli/qpplot_gui.h>
+#include <gui/appli/qpplot_control_panel.h>
+#include <qwt/qwt_plot.h>
+#include <qwt/qwt_plot_curve.h>
+#include <qwt/qwt_symbol.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_region.h>
+#include <appli/project.h>
+#include <math/qpplot.h>
+#include <grid/grid_model/grid_region_temp_selector.h> 
 
 #include <qlabel.h>
 #include <qgroupbox.h>

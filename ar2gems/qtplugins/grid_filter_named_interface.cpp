@@ -23,5 +23,5 @@
 ** ----------------------------------------------------------------------------*/
 
 
-#include <GsTLAppli/qtplugins/grid_filter_named_interface.h>
+#include <qtplugins/grid_filter_named_interface.h>
 

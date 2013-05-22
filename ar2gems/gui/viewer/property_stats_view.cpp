@@ -31,7 +31,7 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/gui/viewer/property_stats_view.h>
+#include <gui/viewer/property_stats_view.h>
 #include <QString>
 #include <QVBoxLayout>
 #include <QLabel>

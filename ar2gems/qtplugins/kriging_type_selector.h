@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_QTPLUGINS_KRIGING_TYPE_SELECTOR_H__
 #define __GSTLAPPLI_QTPLUGINS_KRIGING_TYPE_SELECTOR_H__
 
-#include <GsTLAppli/qtplugins/common.h>
-#include <GsTLAppli/qtplugins/selectors.h>
+#include <qtplugins/common.h>
+#include <qtplugins/selectors.h>
 
 #include <QString>
 #include <QCheckBox>

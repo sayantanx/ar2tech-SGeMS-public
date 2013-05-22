@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_UTILS_ERROR_HANDLER_H__ 
 #define __GSTLAPPLI_UTILS_ERROR_HANDLER_H__ 
  
-#include <GsTLAppli/utils/common.h>
+#include <utils/common.h>
 
 #include <sstream>
 #include <string> 

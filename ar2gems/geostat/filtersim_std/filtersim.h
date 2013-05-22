@@ -58,11 +58,11 @@
 #ifndef _Filtersim_Std_H__
 #define _Filtersim_Std_H__
 
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/geostat/geostat_algo.h>
-#include <GsTLAppli/utils/gstl_types.h>
-#include <GsTLAppli/grid/grid_model/geovalue.h>
-#include <GsTLAppli/grid/grid_model/property_copier.h>
+#include <geostat/common.h>
+#include <geostat/geostat_algo.h>
+#include <utils/gstl_types.h>
+#include <grid/grid_model/geovalue.h>
+#include <grid/grid_model/property_copier.h>
 
 #include <GsTL/utils/smartptr.h>
 

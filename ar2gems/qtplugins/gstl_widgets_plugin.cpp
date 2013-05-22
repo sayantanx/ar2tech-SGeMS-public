@@ -55,7 +55,7 @@
 
 
 
-#include <GsTLAppli/qtplugins/gstl_widgets_plugin.h>
+#include <qtplugins/gstl_widgets_plugin.h>
 
 
 

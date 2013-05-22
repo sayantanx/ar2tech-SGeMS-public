@@ -28,15 +28,15 @@
 #ifndef __GSTLAPPLI_KMEANS_CLUSTERING_H__ 
 #define __GSTLAPPLI_KMEANS_CLUSTERING_H__ 
  
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_region.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/geostat/geostat_algo.h> 
-#include <GsTLAppli/geostat/utilities.h> 
-#include <GsTLAppli/geostat/parameters_handler.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/actions/action.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_region.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <geostat/common.h>
+#include <geostat/geostat_algo.h> 
+#include <geostat/utilities.h> 
+#include <geostat/parameters_handler.h>
+#include <utils/error_messages_handler.h>
+#include <actions/action.h>
 
 class GEOSTAT_DECL Kmeans_clustering : public Geostat_algo { 
 

@@ -25,8 +25,8 @@
 
 
 
-#include <GsTLAppli/qtplugins/grid_filter_delegate.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <qtplugins/grid_filter_delegate.h>
+#include <appli/manager_repository.h>
 
 #include<QEvent>
 

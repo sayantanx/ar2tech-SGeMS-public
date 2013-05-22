@@ -52,8 +52,8 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/variogram2/variog_plot.h>
-#include <GsTLAppli/math/discrete_function.h>
+#include <gui/variogram2/variog_plot.h>
+#include <math/discrete_function.h>
 #include <GsTL/math/math_functions.h>
 
 #include <GsTL/geometry/geometry_algorithms.h>
@@ -68,13 +68,13 @@
 #include <algorithm>
 #include <cmath>
 
-#include <GsTLAppli/qwt/qwt_symbol.h>
-#include <GsTLAppli/qwt/qwt_scale_engine.h>
-#include <GsTLAppli/qwt/qwt_scale_div.h>
-#include <GsTLAppli/qwt/qwt_plot_curve.h>
-#include <GsTLAppli/qwt/qwt_plot_marker.h>
-#include <GsTLAppli/qwt/qwt_plot_grid.h>
-#include <GsTLAppli/qwt/qwt_legend.h>
+#include <qwt/qwt_symbol.h>
+#include <qwt/qwt_scale_engine.h>
+#include <qwt/qwt_scale_div.h>
+#include <qwt/qwt_plot_curve.h>
+#include <qwt/qwt_plot_marker.h>
+#include <qwt/qwt_plot_grid.h>
+#include <qwt/qwt_legend.h>
 
 
 Variog_plot::

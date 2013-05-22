@@ -55,11 +55,11 @@
 #ifndef __GSTLAPPLI_GRID_MODEL_GEOVALUE_H__ 
 #define __GSTLAPPLI_GRID_MODEL_GEOVALUE_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/utils/gstl_messages.h> 
-#include <GsTLAppli/math/gstlpoint.h> 
-#include <GsTLAppli/grid/grid_model/grid_property.h> 
-#include <GsTLAppli/grid/grid_model/geostat_grid.h> 
+#include <grid/common.h>
+#include <utils/gstl_messages.h> 
+#include <math/gstlpoint.h> 
+#include <grid/grid_model/grid_property.h> 
+#include <grid/grid_model/geostat_grid.h> 
 
 #include <boost/math/special_functions/fpclassify.hpp>
 

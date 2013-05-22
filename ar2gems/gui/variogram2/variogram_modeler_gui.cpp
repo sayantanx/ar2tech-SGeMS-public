@@ -52,15 +52,15 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/variogram2/variogram_modeler_gui.h>
-#include <GsTLAppli/geostat/pset_variog_computer.h>
-#include <GsTLAppli/geostat/grid_variog_computer.h>
-#include <GsTLAppli/math/direction_3d.h>
-#include <GsTLAppli/math/correlation_measure.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/appli/utilities.h>
-#include <GsTLAppli/math/angle_convention.h>
+#include <gui/variogram2/variogram_modeler_gui.h>
+#include <geostat/pset_variog_computer.h>
+#include <geostat/grid_variog_computer.h>
+#include <math/direction_3d.h>
+#include <math/correlation_measure.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
+#include <appli/utilities.h>
+#include <math/angle_convention.h>
 
 #include <GsTL/geometry/geometry_algorithms.h>
 

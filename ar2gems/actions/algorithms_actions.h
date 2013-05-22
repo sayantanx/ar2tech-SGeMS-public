@@ -55,10 +55,10 @@
 #ifndef __GSTLAPPLI_ACTIONS_ALGORITHM_ACTIONS_H__ 
 #define __GSTLAPPLI_ACTIONS_ALGORITHM_ACTIONS_H__ 
  
-#include <GsTLAppli/actions/common.h>
-#include <GsTLAppli/actions/action.h> 
-#include <GsTLAppli/geostat/geostat_algo.h> 
-#include <GsTLAppli/geostat/parameters_handler.h> 
+#include <actions/common.h>
+#include <actions/action.h> 
+#include <geostat/geostat_algo.h> 
+#include <geostat/parameters_handler.h> 
  
 class ACTIONS_DECL Run_geostat_algo : public Action { 
  public: 

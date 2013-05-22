@@ -52,9 +52,9 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/appli/new_cartesian_grid_dialog.h>
-#include <GsTLAppli/actions/defines.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <gui/appli/new_cartesian_grid_dialog.h>
+#include <actions/defines.h>
+#include <utils/string_manipulation.h>
 
 #include <qobject.h>
 #include <qspinbox.h>

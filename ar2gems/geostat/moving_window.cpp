@@ -25,15 +25,15 @@
 
 
 #include "moving_window.h"
-#include <GsTLAppli/geostat/parameters_handler.h>
-#include <GsTLAppli/utils/gstl_plugins.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/rgrid_neighborhood.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
-#include <GsTLAppli/math/gstlpoint.h>
-#include <GsTLAppli/geostat/utilities.h>
+#include <geostat/parameters_handler.h>
+#include <utils/gstl_plugins.h>
+#include <utils/error_messages_handler.h>
+#include <utils/string_manipulation.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/rgrid_neighborhood.h>
+#include <grid/grid_model/gval_iterator.h>
+#include <math/gstlpoint.h>
+#include <geostat/utilities.h>
 #include <algorithm>
 
 

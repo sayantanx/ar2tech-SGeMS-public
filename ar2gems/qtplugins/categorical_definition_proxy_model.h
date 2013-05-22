@@ -27,11 +27,11 @@
 #ifndef CATEGORICAL_DEFINITION_PROXY_MODEL_H
 #define CATEGORICAL_DEFINITION_PROXY_MODEL_H
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
+#include <utils/manager.h>
+#include <appli/root_model.h>
+#include <grid/grid_model/grid_categorical_property.h>
 
-#include <GsTLAppli/qtplugins/common.h>
+#include <qtplugins/common.h>
 
 #include <QSortFilterProxyModel>
 #include <QAbstractProxyModel>

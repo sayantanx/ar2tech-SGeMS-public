@@ -24,13 +24,13 @@
 
 
 
-#include <GsTLAppli/gui/utils/save_grid_dialog.h>
+#include <gui/utils/save_grid_dialog.h>
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/filters/filter.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/reduced_grid.h>
+#include <utils/manager.h>
+#include <appli/manager_repository.h>
+#include <filters/filter.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/reduced_grid.h>
 
 #include <QGridLayout>
 #include <QLabel>

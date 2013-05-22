@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/utils/colors.h>
+#include <gui/utils/colors.h>
 
 
 RGB_color::RGB_color( float r, float g, float b ) 

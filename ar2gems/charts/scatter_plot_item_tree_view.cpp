@@ -26,9 +26,9 @@
 
 
 
-#include <GsTLAppli/charts/scatter_plot_item_tree_view.h>
-#include <GsTLAppli/charts/scatter_plot_proxy_model.h>
-#include <GsTLAppli/qtplugins/color_delegate.h>
+#include <charts/scatter_plot_item_tree_view.h>
+#include <charts/scatter_plot_proxy_model.h>
+#include <qtplugins/color_delegate.h>
 
 
 #include <QColorDialog>

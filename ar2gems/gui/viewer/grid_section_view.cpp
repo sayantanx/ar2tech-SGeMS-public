@@ -32,8 +32,8 @@
  */
 
 
-#include <GsTLAppli/gui/viewer/grid_section_view.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <gui/viewer/grid_section_view.h>
+#include <appli/manager_repository.h>
 
 
 #include <QVBoxLayout>

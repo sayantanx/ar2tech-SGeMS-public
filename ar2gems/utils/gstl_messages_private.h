@@ -56,9 +56,9 @@
 #define __GSTLAPPLI_UTILS_GSTL_MESSAGES_PRIVATE_H__ 
  
  
-#include <GsTLAppli/utils/common.h>
-#include <GsTLAppli/utils/singleton_holder.h> 
-#include <GsTLAppli/utils/named_interface.h> 
+#include <utils/common.h>
+#include <utils/singleton_holder.h> 
+#include <utils/named_interface.h> 
 
 #include <GsTL/utils/smartptr.h> 
  

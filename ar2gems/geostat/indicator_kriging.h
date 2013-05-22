@@ -56,14 +56,14 @@
 #define __GSTLAPPLI_GEOSTAT_INDICATOR_KRIGING_H__ 
  
  
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/geostat/geostat_algo.h> 
-#include <GsTLAppli/grid/grid_model/geostat_grid.h> 
+#include <geostat/common.h>
+#include <geostat/geostat_algo.h> 
+#include <grid/grid_model/geostat_grid.h> 
  
 #include <GsTL/geometry/covariance.h> 
 #include <GsTL/utils/smartptr.h> 
 
-#include <GsTLAppli/grid/grid_model/grid_region_temp_selector.h> 
+#include <grid/grid_model/grid_region_temp_selector.h> 
 
 #include <string> 
 #include <vector> 

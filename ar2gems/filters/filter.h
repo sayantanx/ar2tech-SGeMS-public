@@ -56,8 +56,8 @@
 #define __GSTLAPPLI_FILTERS_FILTER_H__ 
  
  
-#include <GsTLAppli/filters/common.h>
-#include <GsTLAppli/utils/named_interface.h> 
+#include <filters/common.h>
+#include <utils/named_interface.h> 
  
 #include <fstream> 
 #include <sstream> 

@@ -52,14 +52,14 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/geostat/pset_variog_computer.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/math/discrete_function.h>
-#include <GsTLAppli/math/gstlvector.h>
-#include <GsTLAppli/math/correlation_measure.h>
-#include <GsTLAppli/math/direction_3d.h>
-#include <GsTLAppli/utils/progress_notifier.h>
+#include <geostat/pset_variog_computer.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/grid_property.h>
+#include <math/discrete_function.h>
+#include <math/gstlvector.h>
+#include <math/correlation_measure.h>
+#include <math/direction_3d.h>
+#include <utils/progress_notifier.h>
 
 #include <GsTL/geometry/geometry_algorithms.h>
 #include <GsTL/math/math_functions.h>

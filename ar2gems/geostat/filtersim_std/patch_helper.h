@@ -58,13 +58,13 @@
 #ifndef __filtersim_patch_H__
 #define __filtersim_patch_H__
 
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/grid_model/rgrid_neighborhood.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
-#include <GsTLAppli/grid/grid_model/geovalue.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/gstl_types.h> 
+#include <geostat/common.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/grid_model/rgrid_neighborhood.h>
+#include <grid/grid_model/gval_iterator.h>
+#include <grid/grid_model/geovalue.h>
+#include <utils/string_manipulation.h>
+#include <utils/gstl_types.h> 
 
 #include <algorithm>
 #include <vector>

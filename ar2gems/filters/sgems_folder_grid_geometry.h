@@ -26,8 +26,8 @@
 #ifndef SGEMS_GRID_GEOMETRY_FILTER_H_
 #define SGEMS_GRID_GEOMETRY_FILTER_H_
 
-#include <GsTLAppli/filters/common.h>
-#include <GsTLAppli/utils/named_interface.h>
+#include <filters/common.h>
+#include <utils/named_interface.h>
 #include <QDir>
 #include <QDomElement>
 

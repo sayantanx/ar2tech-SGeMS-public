@@ -52,8 +52,8 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/appli/splash_screen.h>
-#include <GsTLAppli/sgems_version.h>
+#include <gui/appli/splash_screen.h>
+#include <sgems_version.h>
 
 #include <qapplication.h>
 #include <qpainter.h>

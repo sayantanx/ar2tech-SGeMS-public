@@ -55,9 +55,9 @@
 #ifndef __GSTLAPPLI_MATH_GSTLPOINT_H__ 
 #define __GSTLAPPLI_MATH_GSTLPOINT_H__ 
  
-#include <GsTLAppli/math/common.h>
-#include <GsTLAppli/utils/gstl_types.h> 
-#include <GsTLAppli/math/gstlvector.h> 
+#include <math/common.h>
+#include <utils/gstl_types.h> 
+#include <math/gstlvector.h> 
  
 #include <iostream> 
 #include <cmath>

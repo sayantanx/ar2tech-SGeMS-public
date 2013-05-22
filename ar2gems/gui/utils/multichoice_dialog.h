@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_UTILS_MULTICHOICE_DIALOG_H__
 #define __GSTLAPPLI_GUI_UTILS_MULTICHOICE_DIALOG_H__
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/ui_multichoice_dialog_base.h>
+#include <gui/common.h>
+#include <gui/ui_multichoice_dialog_base.h>
 
 #include <qdialog.h>
 

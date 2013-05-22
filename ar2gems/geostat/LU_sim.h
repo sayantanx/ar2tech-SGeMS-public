@@ -56,11 +56,11 @@
 #define __GSTLAPPLI_GEOSTAT_LU_SIM_H__ 
  
  
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/geostat/geostat_algo.h> 
-#include <GsTLAppli/geostat/utilities.h> 
-#include <GsTLAppli/grid/grid_model/geostat_grid.h> 
-#include <GsTLAppli/grid/grid_model/property_copier.h> 
+#include <geostat/common.h>
+#include <geostat/geostat_algo.h> 
+#include <geostat/utilities.h> 
+#include <grid/grid_model/geostat_grid.h> 
+#include <grid/grid_model/property_copier.h> 
  
 #include <GsTL/geometry/covariance.h> 
 #include <GsTL/cdf/non_param_cdf.h> 

@@ -59,7 +59,7 @@
 #ifndef __filtersim_Servo_system_sampler_H__
 #define __filtersim_Servo_system_sampler_H__
 
-#include <GsTLAppli/geostat/common.h>
+#include <geostat/common.h>
 
 #include <algorithm>
 #include <functional>

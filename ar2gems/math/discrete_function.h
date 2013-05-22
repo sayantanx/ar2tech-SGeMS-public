@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_DISCRETE_FUNCTION_H__
 #define __GSTLAPPLI_DISCRETE_FUNCTION_H__
 
-#include <GsTLAppli/math/common.h>
+#include <math/common.h>
 
 #include <vector>
 #include <utility>

@@ -57,7 +57,7 @@
  
 /* Some constants used by actions 
  */ 
-#include <GsTLAppli/actions/common.h>
+#include <actions/common.h>
 #include <string> 
  
 namespace Actions { 

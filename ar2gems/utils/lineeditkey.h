@@ -88,9 +88,9 @@
 #ifndef LINEEDITKEY_H
 #define LINEEDITKEY_H
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/utils/gstl_messages_private.h>
+#include <utils/manager.h>
+#include <appli/manager_repository.h>
+#include <utils/gstl_messages_private.h>
 
 #include <qevent.h>
 #include <qlineedit.h>

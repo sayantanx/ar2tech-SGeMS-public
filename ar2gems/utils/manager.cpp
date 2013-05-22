@@ -52,9 +52,9 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <utils/manager.h>
+#include <utils/string_manipulation.h>
+#include <utils/gstl_messages.h>
 
 #include <qlibrary.h>
 #include <qdir.h>

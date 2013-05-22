@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_APPLI_HISTOGRAM_CONTROL_PANEL_H__
 #define __GSTLAPPLI_GUI_APPLI_HISTOGRAM_CONTROL_PANEL_H__
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/ui_histogram_control_panel_base.h>
+#include <gui/common.h>
+#include <gui/ui_histogram_control_panel_base.h>
 
 // TL modified
 #include <qcheckbox.h>

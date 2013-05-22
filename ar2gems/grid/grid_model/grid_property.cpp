@@ -52,9 +52,9 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_property_set.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_property_set.h>
+#include <utils/string_manipulation.h>
 
 #include <algorithm>
 #include <stdio.h>

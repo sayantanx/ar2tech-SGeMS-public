@@ -25,9 +25,9 @@
 
 
 
-#include <GsTLAppli/charts/histogram_proxy_model.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
+#include <charts/histogram_proxy_model.h>
+#include <appli/manager_repository.h>
+#include <grid/grid_model/geostat_grid.h>
 
 #include <QStringList>
 #include <QMimeData>

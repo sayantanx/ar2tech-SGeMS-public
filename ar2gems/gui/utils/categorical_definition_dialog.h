@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_UTILS_CATEGORICAL_DEFINITION_DIALOG_H__
 #define __GSTLAPPLI_GUI_UTILS_CATEGORICAL_DEFINITION_DIALOG_H__
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/models/categorical_table_model.h>
+#include <gui/common.h>
+#include <gui/models/categorical_table_model.h>
 
 #include <QtCore/QVariant>
 #include <QtGui/QAction>

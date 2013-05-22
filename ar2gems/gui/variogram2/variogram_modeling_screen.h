@@ -55,11 +55,11 @@
 #ifndef __GSTLAPPLI_GUI_VARIOGRAM_MODELING_SCREEN_H__
 #define __GSTLAPPLI_GUI_VARIOGRAM_MODELING_SCREEN_H__
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/math/gstlpoint.h>
-#include <GsTLAppli/math/gstlvector.h>
-#include <GsTLAppli/math/discrete_function.h>
-#include <GsTLAppli/qwt/qwt_plot.h>
+#include <gui/common.h>
+#include <math/gstlpoint.h>
+#include <math/gstlvector.h>
+#include <math/discrete_function.h>
+#include <qwt/qwt_plot.h>
 
 #include <GsTL/geometry/covariance.h>
 

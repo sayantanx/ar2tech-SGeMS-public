@@ -26,9 +26,9 @@
 
 #include "distribution_proxy_model.h"
 
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/utils/manager.h>
+#include <appli/root_model.h>
+#include <appli/manager_repository.h>
+#include <utils/manager.h>
 
 Distribution_proxy_model::Distribution_proxy_model(QObject *parent)
   : QSortFilterProxyModel(parent)

@@ -28,13 +28,13 @@
  * Author: Alexandre Boucher, @ar2tech
  */
 
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_gstl.h>
-#include <GsTLAppli/gui/utils/colorscale.h>
-#include <GsTLAppli/gui/utils/colormap.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <gui/vtk_prop/vtk_prop_gstl.h>
+#include <gui/utils/colorscale.h>
+#include <gui/utils/colormap.h>
+#include <appli/manager_repository.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/grid_property.h>
+#include <utils/string_manipulation.h>
 
 #include <algorithm>
 #include <qstring.h>

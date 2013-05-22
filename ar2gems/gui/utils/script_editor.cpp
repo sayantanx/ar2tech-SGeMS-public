@@ -61,18 +61,18 @@
 #endif
 */
 #include <Python.h>
-#include <GsTLAppli/gui/utils/script_editor.h>
-#include <GsTLAppli/gui/utils/script_syntax_highlighter.h>
-#include <GsTLAppli/actions/python_wrapper.h>
-#include <GsTLAppli/actions/python_commands.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/gui/utils/qtbased_scribes.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <gui/utils/script_editor.h>
+#include <gui/utils/script_syntax_highlighter.h>
+#include <actions/python_wrapper.h>
+#include <actions/python_commands.h>
+#include <appli/project.h>
+#include <utils/gstl_messages.h>
+#include <utils/error_messages_handler.h>
+#include <utils/string_manipulation.h>
+#include <gui/utils/qtbased_scribes.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/grid_property.h>
+#include <appli/manager_repository.h>
 
 #include <qtextedit.h>
 #include <qsplitter.h>

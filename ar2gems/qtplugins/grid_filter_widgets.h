@@ -27,9 +27,9 @@
 #ifndef GRID_FILTER_WIDGETS_H
 #define GRID_FILTER_WIDGETS_H
 
-#include <GsTLAppli/qtplugins/common.h>
-#include <GsTLAppli/qtplugins/grid_filter_model.h>
-#include <GsTLAppli/grid/grid_filter.h>
+#include <qtplugins/common.h>
+#include <qtplugins/grid_filter_model.h>
+#include <grid/grid_filter.h>
 
 #include <QTreeView>
 #include <QModelIndex>

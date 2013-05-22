@@ -64,23 +64,23 @@
 */
 #include <Python.h>
 
-#include <GsTLAppli/actions/obj_manag_actions.h>
-#include <GsTLAppli/actions/defines.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/filters/filter.h>
-#include <GsTLAppli/filters/save_project_objects.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
-#include <GsTLAppli/grid/grid_model/grid_downscaler.h>
+#include <actions/obj_manag_actions.h>
+#include <actions/defines.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
+#include <utils/error_messages_handler.h>
+#include <appli/manager_repository.h>
+#include <appli/project.h>
+#include <filters/filter.h>
+#include <filters/save_project_objects.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/grid_model/grid_categorical_property.h>
+#include <grid/grid_model/grid_downscaler.h>
 
 
-#include <GsTLAppli/geostat/utilities.h>
+#include <geostat/utilities.h>
 
 #include <GsTL/math/math_functions.h>
 
@@ -93,17 +93,17 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-//#include <GsTLAppli/filters/eclipse/pprt.h>
+//#include <filters/eclipse/pprt.h>
 #include <memory.h>
 #include <list>
 
 // TL modified
-#include <GsTLAppli/actions/python_wrapper.h>
-#include <GsTLAppli/grid/grid_model/reduced_grid.h>
+#include <actions/python_wrapper.h>
+#include <grid/grid_model/reduced_grid.h>
 //#include <q3progressdialog.h>
 #include <qapplication.h>
-//#include <GsTLAppli/filters/gslib/gslib_filter.h>
-//#include <GsTLAppli/gui/appli/oinv_project_view.h>
+//#include <filters/gslib/gslib_filter.h>
+//#include <gui/appli/oinv_project_view.h>
 
 Named_interface* New_rgrid::create_new_interface( std::string& ) {
   return new New_rgrid();

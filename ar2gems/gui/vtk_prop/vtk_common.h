@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_VTK_COMMON_H__
 #define __GSTLAPPLI_GUI_VTK_COMMON_H__
  
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/utils/colors.h> 
+#include <gui/common.h>
+#include <gui/utils/colors.h> 
  
 class GUI_DECL VTK {
  public: 

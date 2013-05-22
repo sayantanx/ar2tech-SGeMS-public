@@ -26,12 +26,12 @@
 #ifndef __GSTLAPPLI_FILTERS_SAVE_PROPJECT_H__ 
 #define __GSTLAPPLI_FILTERS_SAVE_PROPJECT_H__ 
 
-#include <GsTLAppli/utils/named_interface.h>
+#include <utils/named_interface.h>
 #include <map>
 #include <string>
 #include <utility>
 
-#include <GsTLAppli/filters/common.h>
+#include <filters/common.h>
 
 class FILTERS_DECL Save_project_objects :  public Named_interface
 {

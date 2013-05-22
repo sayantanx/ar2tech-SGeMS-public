@@ -56,11 +56,11 @@
 #define __GSTLAPPLI_GRID_PROPERTY_COPIER_H__
 
 
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/utils/named_interface.h> 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/utils/gstl_types.h>
+#include <grid/common.h>
+#include <grid/grid_model/grid_property.h>
+#include <utils/named_interface.h> 
+#include <utils/manager.h>
+#include <utils/gstl_types.h>
  
 #include <vector>
 #include <utility>

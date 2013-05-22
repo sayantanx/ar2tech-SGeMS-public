@@ -55,10 +55,10 @@
 #ifndef __GSTLAPPLI_GUI_COLOR_SCALE_H__ 
 #define __GSTLAPPLI_GUI_COLOR_SCALE_H__ 
 
-#include <GsTLAppli/utils/named_interface.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/utils/colors.h> 
+#include <utils/named_interface.h>
+#include <utils/gstl_messages.h>
+#include <gui/common.h>
+#include <gui/utils/colors.h> 
 
  
 #include <vector>

@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_QTABLE_WRAPPER_H__ 
 #define __GSTLAPPLI_QTABLE_WRAPPER_H__ 
  
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/utils/qwidget_value_accessor.h> 
+#include <gui/common.h>
+#include <gui/utils/qwidget_value_accessor.h> 
  
 #include <QTableWidget>
  

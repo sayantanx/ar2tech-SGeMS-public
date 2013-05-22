@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GEOSTAT_GRID_VARIOG_COMPUTER_H__
 #define __GSTLAPPLI_GEOSTAT_GRID_VARIOG_COMPUTER_H__
 
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/math/gstlvector.h>
+#include <geostat/common.h>
+#include <math/gstlvector.h>
 
 #include <vector>
 #include <map>

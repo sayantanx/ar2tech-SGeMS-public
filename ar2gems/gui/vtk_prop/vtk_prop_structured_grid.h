@@ -27,10 +27,10 @@
 #ifndef __GSTLAPPLI_GUI_VTK_STRUCTUREDGRID_H__
 #define __GSTLAPPLI_GUI_VTK_STRUCTUREDGRID_H__
   
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_strati_grid.h>
-//#include <GsTLAppli/gui/vtk_prop/oinv_slice.h>
-#include <GsTLAppli/grid/grid_model/structured_grid.h> 
+#include <gui/common.h>
+#include <gui/vtk_prop/vtk_prop_strati_grid.h>
+//#include <gui/vtk_prop/oinv_slice.h>
+#include <grid/grid_model/structured_grid.h> 
 
 #include <vtkDataSetMapper.h>
 #include <vtkActor.h>

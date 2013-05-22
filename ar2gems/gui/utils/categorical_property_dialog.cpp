@@ -23,11 +23,11 @@
 ** ----------------------------------------------------------------------------*/
 
 
-#include <GsTLAppli/gui/utils/categorical_property_dialog.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/actions/defines.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
+#include <gui/utils/categorical_property_dialog.h>
+#include <qtplugins/selectors.h>
+#include <utils/gstl_messages.h>
+#include <actions/defines.h>
+#include <utils/error_messages_handler.h>
 
 #include <QStringList>
 #include <QPushButton>

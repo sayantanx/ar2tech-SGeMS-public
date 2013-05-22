@@ -27,8 +27,8 @@
 #ifndef __LIBRARY_QTPLUGINS_INIT_H__ 
 #define __LIBRARY_QTPLUGINS_INIT_H__ 
  
-#include <GsTLAppli/qtplugins//common.h>
-#include <GsTLAppli/appli/manager_repository.h> 
+#include <qtplugins//common.h>
+#include <appli/manager_repository.h> 
  
 #include <iostream> 
  

@@ -52,11 +52,11 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/variogram2/variogram_controls.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/gui/utils/gstl_slider.h>
-#include <GsTLAppli/math/angle_convention.h>
+#include <gui/variogram2/variogram_controls.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
+#include <gui/utils/gstl_slider.h>
+#include <math/angle_convention.h>
 
 #include <GsTL/geometry/geometry_algorithms.h>
 

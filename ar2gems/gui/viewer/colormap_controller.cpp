@@ -32,10 +32,10 @@
  */
 
 #include <GsTL/utils/smartptr.h>
-#include <GsTLAppli/appli/manager_repository.h>
+#include <appli/manager_repository.h>
 
-#include <GsTLAppli/gui/viewer/colormap_controller.h>
-#include <GsTLAppli/gui/viewer/colormap_widget.h>
+#include <gui/viewer/colormap_controller.h>
+#include <gui/viewer/colormap_widget.h>
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>

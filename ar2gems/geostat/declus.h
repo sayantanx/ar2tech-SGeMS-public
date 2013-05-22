@@ -31,9 +31,9 @@
 #define __GSTLAPPLI_DECLUS_H__ 
  
  
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/geostat/geostat_algo.h> 
-#include <GsTLAppli/geostat/utilities.h> 
+#include <geostat/common.h>
+#include <geostat/geostat_algo.h> 
+#include <geostat/utilities.h> 
 
 
 #include <GsTL/geometry/covariance.h> 

@@ -27,10 +27,10 @@
 #ifndef __GSTLAPPLI_GEOSTAT_NODES_DROPPED_H__
 #define __GSTLAPPLI_GEOSTAT_NODES_DROPPED_H__
 
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/grid/grid_model/geovalue.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
+#include <geostat/common.h>
+#include <grid/grid_model/geovalue.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/grid_model/gval_iterator.h>
 
 #include <algorithm>
 #include <vector>

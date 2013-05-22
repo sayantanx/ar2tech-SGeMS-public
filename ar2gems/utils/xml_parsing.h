@@ -52,10 +52,10 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/utils/common.h>
+#include <utils/common.h>
 #include <GsTL/geometry/covariance.h> 
  
-#include <GsTLAppli/math/gstlpoint.h> 
+#include <math/gstlpoint.h> 
  
 #include <qdom.h> 
  

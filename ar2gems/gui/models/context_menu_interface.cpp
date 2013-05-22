@@ -31,15 +31,15 @@
  *      Author: aboucher
  */
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/project.h>
+#include <utils/manager.h>
+#include <appli/manager_repository.h>
+#include <appli/project.h>
 
-#include <GsTLAppli/actions/action.h>
-#include <GsTLAppli/actions/unary_action.h>
+#include <actions/action.h>
+#include <actions/unary_action.h>
 
-#include <GsTLAppli/gui/models/context_menu_interface.h>
-#include <GsTLAppli/gui/models/gstl_item_action.h>
+#include <gui/models/context_menu_interface.h>
+#include <gui/models/gstl_item_action.h>
 
 
 Context_menu_interface::Context_menu_interface()

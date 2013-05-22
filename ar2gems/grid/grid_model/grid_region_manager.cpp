@@ -53,9 +53,9 @@
 Modified from grid_property_manager.cpp
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/grid_region_manager.h>
-#include <GsTLAppli/utils/string_manipulation.h> 
-#include <GsTLAppli/appli/manager_repository.h>
+#include <grid/grid_model/grid_region_manager.h>
+#include <utils/string_manipulation.h> 
+#include <appli/manager_repository.h>
 
 #include <stdlib.h>
 

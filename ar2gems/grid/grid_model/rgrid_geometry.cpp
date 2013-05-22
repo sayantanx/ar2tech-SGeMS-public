@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/rgrid_geometry.h>
+#include <grid/grid_model/rgrid_geometry.h>
 
 #include <GsTL/math/math_functions.h>
 

@@ -52,14 +52,14 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/variogram2/plot_settings_dialog.h>
+#include <gui/variogram2/plot_settings_dialog.h>
 
 #include <qgroupbox.h>
 #include <qlistwidget.h>
 #include <qpushbutton.h>
 #include <qradiobutton.h>
 #include <qlineedit.h>
-#include <GsTLAppli/qwt/qwt_plot_curve.h>
+#include <qwt/qwt_plot_curve.h>
 
 PlotSettingsDialog::
 PlotSettingsDialog( const std::vector<QwtPlot*>& plot_widgets, 

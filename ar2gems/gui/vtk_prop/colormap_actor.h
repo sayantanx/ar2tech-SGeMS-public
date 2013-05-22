@@ -29,8 +29,8 @@
 #ifndef __GSTLAPPLI_VTK_COLORMAP_NODE_H__
 #define __GSTLAPPLI_VTK_COLORMAP_NODE_H__
  
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/utils/colormap.h> 
+#include <gui/common.h>
+#include <gui/utils/colormap.h> 
  
 #include <vtkScalarBarActor.h>
 #include <vtkLookupTableWithEnabling.h>

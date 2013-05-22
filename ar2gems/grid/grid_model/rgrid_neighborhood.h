@@ -56,11 +56,11 @@
 #define __GSTLAPPLI_GRID_MODEL_RGRID_NEIGHBORHOOD_H__ 
  
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/math/gstlpoint.h> 
-#include <GsTLAppli/grid/grid_model/neighborhood.h> 
-#include <GsTLAppli/grid/grid_model/sgrid_cursor.h> 
-//#include <GsTLAppli/grid/maskgridcursor.h> 
+#include <grid/common.h>
+#include <math/gstlpoint.h> 
+#include <grid/grid_model/neighborhood.h> 
+#include <grid/grid_model/sgrid_cursor.h> 
+//#include <grid/maskgridcursor.h> 
  
 #include <GsTL/geometry/geometry_algorithms.h> 
 #include <GsTL/geometry/covariance.h> 

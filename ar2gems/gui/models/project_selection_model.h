@@ -35,7 +35,7 @@
 #define PROJECT_SELECTION_MODEL_H_
 
 
-//#include <GsTLAppli/gui/models/project_proxy_model.h>
+//#include <gui/models/project_proxy_model.h>
 
 #include <QItemSelectionModel>
 #include <QAbstractItemModel>

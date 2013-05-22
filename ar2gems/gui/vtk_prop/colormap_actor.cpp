@@ -26,8 +26,8 @@
 
 
 
-#include <GsTLAppli/gui/vtk_prop/colormap_actor.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <gui/vtk_prop/colormap_actor.h>
+#include <utils/string_manipulation.h>
 
 
 #include <qstring.h>

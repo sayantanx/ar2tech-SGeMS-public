@@ -25,9 +25,9 @@
 
 
 
-#include <GsTLAppli/charts/categorical_histogram_model_item.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
+#include <charts/categorical_histogram_model_item.h>
+#include <appli/manager_repository.h>
+#include <grid/grid_model/geostat_grid.h>
 
 #include <QStringList>
 #include <QMimeData>

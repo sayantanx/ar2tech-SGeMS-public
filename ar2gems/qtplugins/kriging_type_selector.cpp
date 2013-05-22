@@ -27,7 +27,7 @@
 
 
 
-#include <GsTLAppli/qtplugins/kriging_type_selector.h>
+#include <qtplugins/kriging_type_selector.h>
 
 
 #include <QPushButton>

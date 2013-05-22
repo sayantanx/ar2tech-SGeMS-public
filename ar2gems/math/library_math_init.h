@@ -29,8 +29,8 @@
 #ifndef __GSTLAPPLI_LIBRARY_MATH_INIT_H__ 
 #define __GSTLAPPLI_LIBRARY_MATH_INIT_H__ 
 
-#include <GsTLAppli/math/common.h>
-#include <GsTLAppli/utils/manager.h>
+#include <math/common.h>
+#include <utils/manager.h>
  
 class MATH_DECL library_math_init { 
  public: 

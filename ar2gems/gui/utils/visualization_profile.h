@@ -34,8 +34,8 @@
 #ifndef VISUALIZATION_PROFILE_H_
 #define VISUALIZATION_PROFILE_H_
 
-#include <GsTLAppli/utils/named_interface.h>
-#include <GsTLAppli/gui/utils/colormap.h>
+#include <utils/named_interface.h>
+#include <gui/utils/colormap.h>
 
 #include <QDomDocument>
 #include <map>

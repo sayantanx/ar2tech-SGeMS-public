@@ -52,38 +52,38 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/geostat/library_geostat_init.h>
-#include <GsTLAppli/geostat/parameters_handler_impl.h>
+#include <geostat/library_geostat_init.h>
+#include <geostat/parameters_handler_impl.h>
 
-#include <GsTLAppli/geostat/kriging.h>
-#include <GsTLAppli/geostat/indicator_kriging.h>
-#include <GsTLAppli/geostat/cosisim.h>
-#include <GsTLAppli/geostat/cokriging.h>
-#include <GsTLAppli/geostat/sgsim.h>
-#include <GsTLAppli/geostat/sisim.h>
-#include <GsTLAppli/geostat/cosgsim.h>
-#include <GsTLAppli/geostat/snesim_std/snesim_std.h>
-#include <GsTLAppli/geostat/PostKriging.h>
-#include <GsTLAppli/geostat/Postsim.h>
-#include <GsTLAppli/geostat/Postsim_categorical.h>
-#include <GsTLAppli/geostat/trans.h>
-#include <GsTLAppli/geostat/dssim.h>
-#include <GsTLAppli/geostat/LU_sim.h>
-#include <GsTLAppli/geostat/filtersim_std/filtersim_cate.h>
-#include <GsTLAppli/geostat/filtersim_std/filtersim_cont.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/geostat/transcat.h>
-#include <GsTLAppli/geostat/ImageProcess.h>
-#include <GsTLAppli/geostat/nuTauModel.h>
-#include <GsTLAppli/geostat/moving_window.h>
-#include <GsTLAppli/geostat/difference_with_base.h>
-#include <GsTLAppli/geostat/kriging_mean.h>
-#include <GsTLAppli/geostat/declus.h>
-#include <GsTLAppli/geostat/kmeans_clustering.h>
-#include <GsTLAppli/geostat/clustering_from_centroids.h>
-#include <GsTLAppli/geostat/kriging_cross_validation.h>
-#include <GsTLAppli/geostat/cokriging_cross_validation.h>
+#include <geostat/kriging.h>
+#include <geostat/indicator_kriging.h>
+#include <geostat/cosisim.h>
+#include <geostat/cokriging.h>
+#include <geostat/sgsim.h>
+#include <geostat/sisim.h>
+#include <geostat/cosgsim.h>
+#include <geostat/snesim_std/snesim_std.h>
+#include <geostat/PostKriging.h>
+#include <geostat/Postsim.h>
+#include <geostat/Postsim_categorical.h>
+#include <geostat/trans.h>
+#include <geostat/dssim.h>
+#include <geostat/LU_sim.h>
+#include <geostat/filtersim_std/filtersim_cate.h>
+#include <geostat/filtersim_std/filtersim_cont.h>
+#include <appli/manager_repository.h>
+#include <utils/gstl_messages.h>
+#include <geostat/transcat.h>
+#include <geostat/ImageProcess.h>
+#include <geostat/nuTauModel.h>
+#include <geostat/moving_window.h>
+#include <geostat/difference_with_base.h>
+#include <geostat/kriging_mean.h>
+#include <geostat/declus.h>
+#include <geostat/kmeans_clustering.h>
+#include <geostat/clustering_from_centroids.h>
+#include <geostat/kriging_cross_validation.h>
+#include <geostat/cokriging_cross_validation.h>
 
 int library_geostat_init::references_ = 0;
  

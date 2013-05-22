@@ -27,13 +27,13 @@
 #ifndef CHART_MODEL_ITEM_H
 #define CHART_MODEL_ITEM_H
 
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/root_model.h>
-#include <GsTLAppli/charts/common.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_weight_property.h>
-#include <GsTLAppli/grid/grid_model/grid_property_set.h>
+#include <utils/manager.h>
+#include <appli/root_model.h>
+#include <charts/common.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_weight_property.h>
+#include <grid/grid_model/grid_property_set.h>
 
 #include <QModelIndex>
 #include <QVariant>

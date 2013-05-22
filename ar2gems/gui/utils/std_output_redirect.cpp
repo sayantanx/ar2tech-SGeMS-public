@@ -24,7 +24,7 @@
 
 
 
-#include <GsTLAppli/gui/utils/std_output_redirect.h>
+#include <gui/utils/std_output_redirect.h>
 
 #include <qtextedit.h>
 #include <QChar>

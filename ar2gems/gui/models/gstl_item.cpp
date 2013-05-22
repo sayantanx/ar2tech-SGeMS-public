@@ -25,12 +25,12 @@
 
 
 
-#include <GsTLAppli/gui/models/gstl_item.h>
+#include <gui/models/gstl_item.h>
 
 #include <GsTL/utils/smartptr.h>
-#include <GsTLAppli/utils/manager.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
+#include <utils/manager.h>
+#include <appli/manager_repository.h>
+#include <grid/grid_model/grid_categorical_property.h>
 
 #include <QStringList>
 

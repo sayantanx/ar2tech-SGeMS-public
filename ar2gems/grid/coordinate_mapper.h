@@ -25,9 +25,9 @@
 #ifndef __COORDINATE_MAPPER_H__ 
 #define __COORDINATE_MAPPER_H__ 
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/utils/gstl_types.h> 
-#include <GsTLAppli/math/gstlpoint.h> 
+#include <grid/common.h>
+#include <utils/gstl_types.h> 
+#include <math/gstlpoint.h> 
 
 class Geostat_grid;
 

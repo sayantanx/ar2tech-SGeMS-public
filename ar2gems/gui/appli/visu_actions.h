@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_APPLI_VISU_ACTIONS_H__ 
 #define __GSTLAPPLI_GUI_APPLI_VISU_ACTIONS_H__ 
  
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/actions/action.h>
+#include <gui/common.h>
+#include <actions/action.h>
 
 //TL modified
 class GUI_DECL Load_colorbar : public Action

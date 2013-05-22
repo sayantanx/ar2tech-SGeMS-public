@@ -27,9 +27,9 @@
 #ifndef __GSTLAPPLI_GRID_REGION_TEMP_SELECTOR_H__ 
 #define __GSTLAPPLI_GRID_REGION_TEMP_SELECTOR_H__ 
 
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_region.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/grid_region.h>
+#include <grid/grid_model/grid_property.h>
 
 /* This class temporary set a new region as 
 * active and region and revert back

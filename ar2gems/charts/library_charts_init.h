@@ -26,7 +26,7 @@
 #ifndef __GSTLAPPLI_LIBRARY_CHARTS_INIT_H__ 
 #define __GSTLAPPLI_LIBRARY_CHARTS_INIT_H__ 
 
-#include <GsTLAppli/charts/common.h>
+#include <charts/common.h>
  
 class Manager; 
  

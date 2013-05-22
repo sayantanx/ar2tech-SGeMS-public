@@ -56,7 +56,7 @@
 #define __GSTLAPPLI_QTPLUGINS_GSTL_TABLE_H__
 
 
-#include <GsTLAppli/qtplugins/common.h>
+#include <qtplugins/common.h>
 
 #include <QTableWidget>
 

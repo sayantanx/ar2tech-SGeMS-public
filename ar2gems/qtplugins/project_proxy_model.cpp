@@ -32,12 +32,12 @@
  */
 
 
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/qtplugins/project_proxy_model.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_region.h>
-#include <GsTLAppli/grid/grid_model/grid_property_set.h>
+#include <appli/manager_repository.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <qtplugins/project_proxy_model.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_region.h>
+#include <grid/grid_model/grid_property_set.h>
 
 #include <iostream>
 #include <QStringList>

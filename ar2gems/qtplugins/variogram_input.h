@@ -86,13 +86,13 @@
 
 
 
-#include <GsTLAppli/qtplugins/common.h>
+#include <qtplugins/common.h>
 
-#include <GsTLAppli/qtplugins/ui_variogram_structure_base.h>
+#include <qtplugins/ui_variogram_structure_base.h>
 
-#include <GsTLAppli/qtplugins/ui_variogram_input_base.h>
+#include <qtplugins/ui_variogram_input_base.h>
 
-#include <GsTLAppli/qtplugins/ellipsoid_input.h>
+#include <qtplugins/ellipsoid_input.h>
 
 
 

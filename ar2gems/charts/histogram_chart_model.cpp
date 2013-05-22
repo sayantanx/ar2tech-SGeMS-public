@@ -25,8 +25,8 @@
 
 
 
-#include <GsTLAppli/charts/histogram_chart_model.h>
-#include <GsTLAppli/utils/manager.h>
+#include <charts/histogram_chart_model.h>
+#include <utils/manager.h>
 
 #include <QStringList>
 

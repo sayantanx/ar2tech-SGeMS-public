@@ -52,12 +52,12 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/geostat/grid_variog_computer.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/grid_model/sgrid_cursor.h>
-#include <GsTLAppli/math/discrete_function.h>
-#include <GsTLAppli/math/correlation_measure.h>
-#include <GsTLAppli/utils/progress_notifier.h>
+#include <geostat/grid_variog_computer.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/grid_model/sgrid_cursor.h>
+#include <math/discrete_function.h>
+#include <math/correlation_measure.h>
+#include <utils/progress_notifier.h>
 
 #include <GsTL/geometry/geometry_algorithms.h>
 #include <GsTL/math/math_functions.h>

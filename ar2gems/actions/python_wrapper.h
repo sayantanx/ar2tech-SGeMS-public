@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_ACTIONS_PYHTON_WRAPPER_H__ 
 #define __GSTLAPPLI_ACTIONS_PYHTON_WRAPPER_H__ 
  
-#include <GsTLAppli/actions/common.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <actions/common.h>
+#include <utils/gstl_messages.h>
 
 class GsTL_project; 
 class Error_messages_handler; 

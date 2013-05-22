@@ -24,11 +24,11 @@
 
 
 
-#include <GsTLAppli/gui/utils/copy_property_dialog.h>
+#include <gui/utils/copy_property_dialog.h>
 
-#include <GsTLAppli/actions/action.h>
-#include <GsTLAppli/actions/defines.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
+#include <actions/action.h>
+#include <actions/defines.h>
+#include <utils/error_messages_handler.h>
 
 #include <QVBoxLayout>
 #include <QGroupBox>

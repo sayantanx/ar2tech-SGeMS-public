@@ -56,9 +56,9 @@
 #define __GSTLAPPLI_GEOSTAT_ALGO_H__ 
  
  
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/utils/named_interface.h> 
-#include <GsTLAppli/geostat/parameters_handler_impl.h>
+#include <geostat/common.h>
+#include <utils/named_interface.h> 
+#include <geostat/parameters_handler_impl.h>
  
 class Error_messages_handler; 
 //class Parameters_handler; 

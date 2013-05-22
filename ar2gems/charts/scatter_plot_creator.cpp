@@ -24,8 +24,8 @@
 
 
 
-#include <GsTLAppli/charts/scatter_plot_creator.h>
-#include <GsTLAppli/charts/chart_scatter_plot.h>
+#include <charts/scatter_plot_creator.h>
+#include <charts/chart_scatter_plot.h>
 
 
 #include <QDialog>

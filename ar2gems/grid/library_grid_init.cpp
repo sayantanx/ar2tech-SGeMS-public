@@ -52,18 +52,18 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/library_grid_init.h>
-#include <GsTLAppli/grid/grid_model/cartesian_grid.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/grid_model/point_set.h>
-#include <GsTLAppli/grid/grid_model/property_copier.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/grid/grid_model/reduced_grid.h>
-#include <GsTLAppli/grid/grid_model/log_data_grid.h>
-#include <GsTLAppli/grid/grid_model/structured_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_downscaler.h>
-#include <GsTLAppli/grid/property_transformer.h>
-#include <GsTLAppli/grid/grid_filter.h>
+#include <grid/library_grid_init.h>
+#include <grid/grid_model/cartesian_grid.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/grid_model/point_set.h>
+#include <grid/grid_model/property_copier.h>
+#include <utils/gstl_messages.h>
+#include <grid/grid_model/reduced_grid.h>
+#include <grid/grid_model/log_data_grid.h>
+#include <grid/grid_model/structured_grid.h>
+#include <grid/grid_model/grid_downscaler.h>
+#include <grid/property_transformer.h>
+#include <grid/grid_filter.h>
 
 int library_grid_init::references_ = 0;
 

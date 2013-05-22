@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_MATH_BOX_H__ 
 #define __GSTLAPPLI_MATH_BOX_H__ 
  
-#include <GsTLAppli/math/common.h>
-#include <GsTLAppli/math/gstlpoint.h> 
+#include <math/common.h>
+#include <math/gstlpoint.h> 
  
 class MATH_DECL GsTL_box { 
  public: 

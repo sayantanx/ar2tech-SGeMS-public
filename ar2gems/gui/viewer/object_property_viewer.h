@@ -36,7 +36,7 @@
 
 #include <Qt>
 #include <QWidget>
-#include <GsTLAppli/appli/project.h>
+#include <appli/project.h>
 
 class Object_property_viewer : public QWidget, public Project_view
 {

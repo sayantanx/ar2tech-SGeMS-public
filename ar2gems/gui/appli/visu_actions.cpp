@@ -54,20 +54,20 @@
 //Modified A. Boucher 2011 @ar2tech
 
 
-#include <GsTLAppli/gui/appli/visu_actions.h>
-#include <GsTLAppli/gui/viewer/vtk_project_view_gui.h>
-#include <GsTLAppli/gui/viewer/qvtkGsTLViewer.h>
-#include <GsTLAppli/gui/appli/snapshot_dialog.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/actions/defines.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/gui/appli/histogram_gui.h>
-#include <GsTLAppli/gui/appli/scatterplot_gui.h>
-#include <GsTLAppli/gui/appli/qpplot_gui.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/gui/viewer/visualization_parameters.h>
+#include <gui/appli/visu_actions.h>
+#include <gui/viewer/vtk_project_view_gui.h>
+#include <gui/viewer/qvtkGsTLViewer.h>
+#include <gui/appli/snapshot_dialog.h>
+#include <utils/string_manipulation.h>
+#include <actions/defines.h>
+#include <utils/error_messages_handler.h>
+#include <appli/manager_repository.h>
+#include <gui/appli/histogram_gui.h>
+#include <gui/appli/scatterplot_gui.h>
+#include <gui/appli/qpplot_gui.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/grid_property.h>
+#include <gui/viewer/visualization_parameters.h>
 #include <vtkRenderWindow.h>
 
 #include <qfile.h>

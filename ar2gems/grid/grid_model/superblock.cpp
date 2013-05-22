@@ -52,11 +52,11 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/superblock.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/sgrid_cursor.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
-#include <GsTLAppli/grid/grid_model/rgrid_neighborhood.h>
+#include <grid/grid_model/superblock.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/sgrid_cursor.h>
+#include <grid/grid_model/gval_iterator.h>
+#include <grid/grid_model/rgrid_neighborhood.h>
 
 
 

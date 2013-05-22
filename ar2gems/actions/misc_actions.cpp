@@ -52,13 +52,13 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/actions/misc_actions.h>
-#include <GsTLAppli/actions/defines.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/appli/project.h>
+#include <actions/misc_actions.h>
+#include <actions/defines.h>
+#include <utils/gstl_messages.h>
+#include <utils/string_manipulation.h>
+#include <utils/error_messages_handler.h>
+#include <appli/manager_repository.h>
+#include <appli/project.h>
 
 
 

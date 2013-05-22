@@ -26,7 +26,7 @@
 
 
 
-#include <GsTLAppli/qtplugins/color_delegate.h>
+#include <qtplugins/color_delegate.h>
 
 
 

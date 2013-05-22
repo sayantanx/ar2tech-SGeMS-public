@@ -54,22 +54,22 @@
 ** Modified by Jianbing Wu, SCRF, Stanford University, June 2004
 **********************************************************************/
 
-#include <GsTLAppli/grid/grid_model/strati_grid.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h>
-#include <GsTLAppli/grid/grid_model/gval_iterator.h>
-#include <GsTLAppli/grid/grid_model/rgrid_neighborhood.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/math/random_numbers.h>
-#include <GsTLAppli/geostat/parameters_handler.h>
-#include <GsTLAppli/grid/grid_model/grid_initializer.h>
-#include <GsTLAppli/geostat/utilities.h>
-#include <GsTLAppli/appli/utilities.h>
-#include <GsTLAppli/utils/gstl_plugins.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/progress_notifier.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/error_messages_handler.h>
-#include <GsTLAppli/geostat/filtersim_std/is_categorical.h>
+#include <grid/grid_model/strati_grid.h>
+#include <grid/grid_model/rgrid.h>
+#include <grid/grid_model/gval_iterator.h>
+#include <grid/grid_model/rgrid_neighborhood.h>
+#include <appli/manager_repository.h>
+#include <math/random_numbers.h>
+#include <geostat/parameters_handler.h>
+#include <grid/grid_model/grid_initializer.h>
+#include <geostat/utilities.h>
+#include <appli/utilities.h>
+#include <utils/gstl_plugins.h>
+#include <utils/gstl_messages.h>
+#include <utils/progress_notifier.h>
+#include <utils/string_manipulation.h>
+#include <utils/error_messages_handler.h>
+#include <geostat/filtersim_std/is_categorical.h>
 
 #include <GsTL/cdf/non_param_pdf.h>
 #include <GsTL/univariate_stats/build_cdf.h>

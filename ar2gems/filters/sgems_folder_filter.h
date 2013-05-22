@@ -34,8 +34,8 @@
 #ifndef SGEMS_INPUT_FILTER_H_
 #define SGEMS_INPUT_FILTER_H_
 
-#include <GsTLAppli/filters/common.h>
-#include <GsTLAppli/filters/filter.h>
+#include <filters/common.h>
+#include <filters/filter.h>
 #include <QtXml>
 #include <QDir>
 #include <QDomDocument>

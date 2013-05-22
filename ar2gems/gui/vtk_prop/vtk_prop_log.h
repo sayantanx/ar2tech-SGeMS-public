@@ -34,8 +34,8 @@
 #ifndef VTK_PROP_LOG_H_
 #define VTK_PROP_LOG_H_
 
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_gstl.h>
-#include <GsTLAppli/grid/grid_model/log_data_grid.h>
+#include <gui/vtk_prop/vtk_prop_gstl.h>
+#include <grid/grid_model/log_data_grid.h>
 
 
 #include <vtkProp.h>

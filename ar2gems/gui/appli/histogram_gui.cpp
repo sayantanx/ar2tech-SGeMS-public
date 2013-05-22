@@ -52,24 +52,24 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/math/histogram.h>
-#include <GsTLAppli/gui/appli/histogram_gui.h>
-#include <GsTLAppli/gui/appli/histogram_control_panel.h>
-#include <GsTLAppli/gui/utils/data_analysis_save_dialog.h>
-#include <GsTLAppli/appli/project.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/qwt/qwt_plot.h>
-#include <GsTLAppli/qwt/qwt_plot_curve.h>
-#include <GsTLAppli/qwt/qwt_text.h>
-#include <GsTLAppli/qwt/qwt_scale_engine.h>
-#include <GsTLAppli/qwt/qwt_plot_grid.h>
-#include <GsTLAppli/qwt/qwt_legend.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-#include <GsTLAppli/utils/simpleps.h>
-#include <GsTLAppli/grid/grid_model/grid_region_temp_selector.h> 
+#include <math/histogram.h>
+#include <gui/appli/histogram_gui.h>
+#include <gui/appli/histogram_control_panel.h>
+#include <gui/utils/data_analysis_save_dialog.h>
+#include <appli/project.h>
+#include <appli/manager_repository.h>
+#include <qtplugins/selectors.h>
+#include <qwt/qwt_plot.h>
+#include <qwt/qwt_plot_curve.h>
+#include <qwt/qwt_text.h>
+#include <qwt/qwt_scale_engine.h>
+#include <qwt/qwt_plot_grid.h>
+#include <qwt/qwt_legend.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/grid_property.h>
+#include <utils/gstl_messages.h>
+#include <utils/simpleps.h>
+#include <grid/grid_model/grid_region_temp_selector.h> 
 #include <qspinbox.h>
 #include <qlineedit.h>
 #include <qsplitter.h>
@@ -81,7 +81,7 @@
 #include <qmessagebox.h>
 
 #include <sstream>
-#include <GsTLAppli/qwt/qwt_math.h>
+#include <qwt/qwt_math.h>
 
 typedef std::pair<std::string,std::string> Pair;
 //=======================================

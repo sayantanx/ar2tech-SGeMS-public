@@ -58,7 +58,7 @@
 #ifndef __filtersim_distance_definition__
 #define __filtersim_distance_definition__
 
-#include <GsTLAppli/geostat/common.h>
+#include <geostat/common.h>
 #include <GsTL/math/math_functions.h>
 #include <boost/math/special_functions/fpclassify.hpp>
 #include <iterator>

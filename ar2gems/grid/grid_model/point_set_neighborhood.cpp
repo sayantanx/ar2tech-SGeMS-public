@@ -59,8 +59,8 @@
 */
 
 #include <GsTL/geometry/geometry_algorithms.h>
-#include <GsTLAppli/grid/grid_model/point_set_neighborhood.h>
-#include <GsTLAppli/grid/common.h>
+#include <grid/grid_model/point_set_neighborhood.h>
+#include <grid/common.h>
 
 #include <GsTL/geometry/covariance.h>
 //#include <GsTL/utils/ann_kd.h>

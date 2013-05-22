@@ -56,9 +56,9 @@
 #define __GSTLAPPLI_GUI_VTK_STRATI_GRID_H__
  
  
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_common.h>
-#include <GsTLAppli/gui/vtk_prop/vtk_prop_gstl.h>
+#include <gui/common.h>
+#include <gui/vtk_prop/vtk_common.h>
+#include <gui/vtk_prop/vtk_prop_gstl.h>
  
 #include <qstring.h>
 

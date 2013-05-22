@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_GUI_UTILS_SCRIPT_EDITOR_H__
 #define __GSTLAPPLI_GUI_UTILS_SCRIPT_EDITOR_H__
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/gui/utils/qtbased_scribes.h>
+#include <gui/common.h>
+#include <gui/utils/qtbased_scribes.h>
 
 #include <qwidget.h>
 #include <qmainwindow.h>

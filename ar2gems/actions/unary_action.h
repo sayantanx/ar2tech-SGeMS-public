@@ -27,10 +27,10 @@
 #ifndef UNARY_ACTION_H_
 #define UNARY_ACTION_H_
 
-#include <GsTLAppli/actions/common.h>
-#include <GsTLAppli/actions/action.h>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/geovalue.h>
+#include <actions/common.h>
+#include <actions/action.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/geovalue.h>
 
 class ACTIONS_DECL Unary_action: public PropertyNoParameterAction {
 protected:

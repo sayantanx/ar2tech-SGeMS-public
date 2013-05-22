@@ -24,18 +24,18 @@
 
 
 
-#include <GsTLAppli/qtplugins/categorical_selectors.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/utils/gstl_messages.h>
+#include <qtplugins/categorical_selectors.h>
+#include <appli/manager_repository.h>
+#include <utils/gstl_messages.h>
 #include <QKeySequence>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/grid/grid_model/grid_property.h>
-#include <GsTLAppli/grid/grid_model/grid_categorical_property.h>
-#include <GsTLAppli/utils/string_manipulation.h>
-#include <GsTLAppli/utils/manager.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <grid/grid_model/grid_property.h>
+#include <grid/grid_model/grid_categorical_property.h>
+#include <utils/string_manipulation.h>
+#include <utils/manager.h>
 
-#include <GsTLAppli/qtplugins/categorical_definition_proxy_model.h>
-#include <GsTLAppli/qtplugins/color_delegate.h>
+#include <qtplugins/categorical_definition_proxy_model.h>
+#include <qtplugins/color_delegate.h>
 
 #include <qstring.h>
 #include <QGroupBox>

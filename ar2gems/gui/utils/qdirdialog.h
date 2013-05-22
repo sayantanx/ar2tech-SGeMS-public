@@ -55,7 +55,7 @@
 #ifndef __GSTLAPPLI_GUI_UTILS_QDIRDIALOG_H__
 #define __GSTLAPPLI_GUI_UTILS_QDIRDIALOG_H__
 
-#include <GsTLAppli/gui/common.h>
+#include <gui/common.h>
 
 #include <qfiledialog.h>
 

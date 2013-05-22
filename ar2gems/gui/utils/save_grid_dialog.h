@@ -27,8 +27,8 @@
 #ifndef SAVE_GRID_DIALOG_H
 #define SAVE_GRID_DIALOG_H
 
-#include <GsTLAppli/gui/common.h>
-#include <GsTLAppli/appli/project.h>
+#include <gui/common.h>
+#include <appli/project.h>
 
 #include <QFileDialog>
 #include <QComboBox>

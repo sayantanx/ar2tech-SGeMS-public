@@ -55,8 +55,8 @@
 #ifndef __GSTLAPPLI_LIBRARY_FILTERS_INIT_H__ 
 #define __GSTLAPPLI_LIBRARY_FILTERS_INIT_H__ 
  
-#include <GsTLAppli/filters/common.h>
-#include <GsTLAppli/appli/manager_repository.h> 
+#include <filters/common.h>
+#include <appli/manager_repository.h> 
  
  
 #include <iostream> 

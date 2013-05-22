@@ -56,10 +56,10 @@
 #define __GSTLAPPLI_CARTESIAN_GRID_H__ 
  
  
-#include <GsTLAppli/grid/common.h>
-#include <GsTLAppli/grid/grid_model/rgrid.h> 
-#include <GsTLAppli/grid/grid_model/rgrid_geometry.h> 
-#include <GsTLAppli/math/box.h> 
+#include <grid/common.h>
+#include <grid/grid_model/rgrid.h> 
+#include <grid/grid_model/rgrid_geometry.h> 
+#include <math/box.h> 
  
  
  

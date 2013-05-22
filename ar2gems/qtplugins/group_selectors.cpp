@@ -52,14 +52,14 @@
 **********************************************************************/
 
 
-#include <GsTLAppli/qtplugins/group_selectors.h>
-#include <GsTLAppli/qtplugins/selectors.h>
-#include <GsTLAppli/appli/manager_repository.h>
-#include <GsTLAppli/utils/gstl_messages.h>
-//#include <GsTLAppli/qtplugins/widgetfactory.h>
+#include <qtplugins/group_selectors.h>
+#include <qtplugins/selectors.h>
+#include <appli/manager_repository.h>
+#include <utils/gstl_messages.h>
+//#include <qtplugins/widgetfactory.h>
 #include <QKeySequence>
-#include <GsTLAppli/grid/grid_model/geostat_grid.h>
-#include <GsTLAppli/utils/string_manipulation.h>
+#include <grid/grid_model/geostat_grid.h>
+#include <utils/string_manipulation.h>
 
 #include <qstring.h>
 #include <QGroupBox>

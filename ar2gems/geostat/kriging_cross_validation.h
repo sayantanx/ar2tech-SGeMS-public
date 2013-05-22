@@ -26,10 +26,10 @@
 #define __GSTLAPPLI_GEOSTAT_ALGO_KRIGING_XVALIDATION_H__ 
  
  
-#include <GsTLAppli/geostat/common.h>
-#include <GsTLAppli/geostat/geostat_algo.h> 
-#include <GsTLAppli/geostat/utilities.h> 
-#include <GsTLAppli/grid/grid_model/grid_region_temp_selector.h> 
+#include <geostat/common.h>
+#include <geostat/geostat_algo.h> 
+#include <geostat/utilities.h> 
+#include <grid/grid_model/grid_region_temp_selector.h> 
 
 #include <GsTL/geometry/covariance.h> 
 #include <GsTL/geometry/Block_covariance.h>

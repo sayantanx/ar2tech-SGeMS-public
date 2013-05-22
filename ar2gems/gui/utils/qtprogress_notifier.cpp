@@ -52,7 +52,7 @@
 **
 **********************************************************************/
 
-#include <GsTLAppli/gui/utils/qtprogress_notifier.h>
+#include <gui/utils/qtprogress_notifier.h>
 
 #include <qprogressdialog.h>
 #include <qnamespace.h>

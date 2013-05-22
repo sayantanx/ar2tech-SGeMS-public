@@ -27,8 +27,8 @@
 #ifndef HISTOGRAM_CHART_MODEL_H
 #define HISTOGRAM_CHART_MODEL_H
 
-#include <GsTLAppli/charts/common.h>
-#include <GsTLAppli/appli/root_model.h>
+#include <charts/common.h>
+#include <appli/root_model.h>
 #include <QSortFilterProxyModel>
 #include <QMimeData>
 

@@ -55,10 +55,10 @@
 #ifndef __GSTLAPPLI_UTILS_DIRECTORY_H 
 #define __GSTLAPPLI_UTILS_DIRECTORY_H 
  
-#include <GsTLAppli/utils/common.h>
+#include <utils/common.h>
 #include <GsTL/utils/smartptr.h> 
  
-#include <GsTLAppli/utils/named_interface.h> 
+#include <utils/named_interface.h> 
  
  
 class UTILS_DECL Directory : public Named_interface { 
