@@ -477,8 +477,8 @@ bool Sgems_folder_input_filter::read_properties(QDir dir,const QDomElement& root
 
   long int filesize = grid->size()*sizeof( float );
 
-	QDomElement elem = root.firstChildElement("Grid_continuous_property");
-	for(; !elem.isNull(); elem = elem.nextSiblingElement("Grid_continuous_property") ) {
+	QDomElement elem = root.firstChildElement("GsTLGridProperty");
+	for(; !elem.isNull(); elem = elem.nextSiblingElement("GsTLGridProperty") ) {
 		std::string prop_name = elem.attribute("name").toStdString();
 	//	bool isCategorical = elem.attribute("type") == "Categorical";
     Grid_continuous_property* prop;
@@ -509,9 +509,9 @@ bool Sgems_folder_input_filter::read_properties(QDir dir,const QDomElement& root
 }
 
 bool Sgems_folder_input_filter::read_regions(QDir dir,const QDomElement& root, Geostat_grid* grid, std::string* errors){
-	QDomElement elem = root.firstChildElement("Grid_region");
+	QDomElement elem = root.firstChildElement("GsTLGridRegion");
 
-	for(; !elem.isNull(); elem = elem.nextSiblingElement("Grid_region") ) {
+	for(; !elem.isNull(); elem = elem.nextSiblingElement("GsTLGridRegion") ) {
 		std::string region_name = elem.attribute("name").toStdString();
 		Grid_region*	region = grid->add_region( region_name );
 //		std::fstream stream;
